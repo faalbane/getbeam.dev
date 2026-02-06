@@ -239,7 +239,9 @@
                 </ol>
             </div>
 
-            <p id="emailNote" style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 24px;"></p>
+            <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 24px;">
+                Save this key somewhere safe in case you need it later.
+            </p>
 
             <a href="/" class="back-link">← Back to getbeam.dev</a>
         </div>
@@ -284,11 +286,6 @@
             document.getElementById('loading').style.display = 'none';
             document.getElementById('success').style.display = 'block';
             document.getElementById('licenseKey').textContent = licenseKey;
-
-            if (email) {
-                document.getElementById('emailNote').textContent =
-                    `A copy has also been sent to ${email}`;
-            }
         }
 
         function showError(message) {
