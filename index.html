@@ -1,10 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D0XH8B0RKL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-D0XH8B0RKL');
+
+        // Track download button clicks
+        function trackDownload() {
+            gtag('event', 'download', {
+                'event_category': 'engagement',
+                'event_label': 'DMG Download'
+            });
+        }
+    </script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Beam - Terminal Organizer for macOS</title>
-    <meta name="description" content="A fast, keyboard-driven terminal organizer with subwindows, tabs, split panes, and layouts. $29 one-time.">
+    <title>Beam - Terminal Organizer for macOS | Best for Claude Code & Vibe Coding</title>
+    <meta name="description" content="Organize your Claude Code sessions, vibe coding projects, and terminal windows with Beam. Subwindows, tabs, split panes, layouts, and easy renaming. The best terminal organizer for macOS developers. $29 one-time.">
+    <meta name="keywords" content="Claude Code, vibe coding, terminal organizer, rename terminal windows, macOS terminal, terminal tabs, terminal manager, split panes, iTerm alternative, developer tools, AI coding, terminal sessions">
+    <meta name="author" content="NextUp Technologies">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://getbeam.dev/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://getbeam.dev/">
+    <meta property="og:title" content="Beam - Terminal Organizer for macOS | Perfect for Claude Code">
+    <meta property="og:description" content="Organize Claude Code sessions and vibe coding projects. Subwindows, tabs, split panes, and layouts. The terminal organizer developers love.">
+    <meta property="og:image" content="https://getbeam.dev/beam-screenshot-1.9.8.png">
+    <meta property="og:site_name" content="Beam">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://getbeam.dev/">
+    <meta name="twitter:title" content="Beam - Terminal Organizer for macOS | Perfect for Claude Code">
+    <meta name="twitter:description" content="Organize Claude Code sessions and vibe coding projects. Subwindows, tabs, split panes, and layouts.">
+    <meta name="twitter:image" content="https://getbeam.dev/beam-screenshot-1.9.8.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Beam",
+        "description": "Terminal organizer for macOS with subwindows, tabs, split panes, and layouts. Perfect for organizing Claude Code sessions and vibe coding projects.",
+        "url": "https://getbeam.dev",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "macOS",
+        "offers": {
+            "@type": "Offer",
+            "price": "29.00",
+            "priceCurrency": "USD"
+        },
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "5",
+            "ratingCount": "10"
+        },
+        "author": {
+            "@type": "Organization",
+            "name": "NextUp Technologies"
+        },
+        "keywords": "Claude Code, vibe coding, terminal organizer, rename terminal windows, macOS terminal"
+    }
+    </script>
+
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="apple-touch-icon" href="favicon.svg">
 
@@ -45,7 +110,7 @@
             overflow-x: hidden;
         }
 
-        /* Grain overlay */
+        /* Grain overlay - below header to prevent flickering */
         body::before {
             content: '';
             position: fixed;
@@ -54,9 +119,9 @@
             width: 100%;
             height: 100%;
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-            opacity: 0.03;
+            opacity: 0.02;
             pointer-events: none;
-            z-index: 1000;
+            z-index: 50;
         }
 
         /* Grid background */
@@ -71,6 +136,7 @@
                 linear-gradient(90deg, rgba(59, 130, 246, 0.03) 1px, transparent 1px);
             background-size: 60px 60px;
             pointer-events: none;
+            transform: translateZ(0);
         }
 
         .container {
@@ -81,7 +147,7 @@
             z-index: 1;
         }
 
-        /* Header */
+        /* Header - solid background for stability */
         header {
             padding: 24px 0;
             position: fixed;
@@ -89,8 +155,7 @@
             left: 0;
             right: 0;
             z-index: 100;
-            background: rgba(10, 10, 11, 0.8);
-            backdrop-filter: blur(20px);
+            background: var(--bg-primary);
             border-bottom: 1px solid var(--border);
         }
 
@@ -107,6 +172,8 @@
             font-weight: 700;
             font-size: 1.5rem;
             letter-spacing: -0.02em;
+            text-decoration: none;
+            color: var(--text-primary);
         }
 
         .logo-icon {
@@ -178,24 +245,39 @@
             background: var(--border);
         }
 
-        /* Hero */
+        /* Hero - Side by Side Layout */
         .hero {
-            padding: 180px 0 100px;
-            text-align: center;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 120px 0 60px;
             position: relative;
+            overflow: hidden;
         }
 
         .hero::before {
             content: '';
             position: absolute;
-            top: 100px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
-            opacity: 0.3;
+            top: 50%;
+            right: 10%;
+            transform: translateY(-50%);
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 60%);
+            opacity: 0.4;
             pointer-events: none;
+        }
+
+        .hero .container {
+            display: grid;
+            grid-template-columns: 1fr 1.3fr;
+            gap: 60px;
+            align-items: center;
+            max-width: 1400px;
+        }
+
+        .hero-content {
+            text-align: left;
         }
 
         .badge {
@@ -208,7 +290,7 @@
             border-radius: 100px;
             font-size: 0.85rem;
             color: var(--text-secondary);
-            margin-bottom: 32px;
+            margin-bottom: 24px;
         }
 
         .badge-dot {
@@ -225,11 +307,11 @@
         }
 
         h1 {
-            font-size: clamp(3rem, 8vw, 5rem);
+            font-size: clamp(2.5rem, 5vw, 4rem);
             font-weight: 700;
             letter-spacing: -0.03em;
             line-height: 1.1;
-            margin-bottom: 24px;
+            margin-bottom: 20px;
         }
 
         h1 span {
@@ -240,15 +322,14 @@
         }
 
         .hero-subtitle {
-            font-size: 1.25rem;
+            font-size: 1.15rem;
             color: var(--text-secondary);
-            max-width: 600px;
-            margin: 0 auto 48px;
+            margin-bottom: 32px;
+            line-height: 1.7;
         }
 
         .hero-buttons {
             display: flex;
-            justify-content: center;
             gap: 16px;
             flex-wrap: wrap;
         }
@@ -259,7 +340,44 @@
             color: var(--text-muted);
         }
 
-        /* Screenshot */
+        /* Hero Screenshot */
+        .hero-screenshot {
+            position: relative;
+        }
+
+        .hero-screenshot::before {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            background: linear-gradient(135deg, var(--accent), #8b5cf6, #ec4899);
+            border-radius: 16px;
+            opacity: 0.6;
+            filter: blur(30px);
+            animation: glow-pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes glow-pulse {
+            0%, 100% { opacity: 0.5; filter: blur(30px); }
+            50% { opacity: 0.7; filter: blur(40px); }
+        }
+
+        .hero-screenshot .screenshot {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow:
+                0 40px 80px rgba(0, 0, 0, 0.5),
+                0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+        }
+
+        .hero-screenshot .screenshot img {
+            width: 100%;
+            display: block;
+            image-rendering: -webkit-optimize-contrast;
+        }
+
+        /* Standalone screenshot container (for other uses) */
         .screenshot-container {
             margin: 80px auto;
             max-width: 1000px;
@@ -287,6 +405,141 @@
         .screenshot img {
             width: 100%;
             display: block;
+        }
+
+        /* Clickable screenshot hint */
+        .hero-screenshot {
+            cursor: zoom-in;
+        }
+
+        .hero-screenshot .screenshot::after {
+            content: 'Click to preview';
+            position: absolute;
+            bottom: 16px;
+            right: 16px;
+            padding: 8px 14px;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.8);
+            opacity: 0;
+            transform: translateY(4px);
+            transition: all 0.3s ease;
+            pointer-events: none;
+        }
+
+        .hero-screenshot:hover .screenshot::after {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(5, 5, 8, 0.97);
+            backdrop-filter: blur(30px);
+            z-index: 2000;
+            cursor: zoom-out;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .lightbox.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 1;
+        }
+
+        .lightbox-content {
+            position: relative;
+            max-width: 92vw;
+            max-height: 90vh;
+            animation: lightbox-zoom-in 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes lightbox-zoom-in {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Glow effect behind the lightbox image */
+        .lightbox-content::before {
+            content: '';
+            position: absolute;
+            inset: -8px;
+            background: linear-gradient(135deg, var(--accent), #8b5cf6, #ec4899);
+            border-radius: 20px;
+            opacity: 0.5;
+            filter: blur(40px);
+            z-index: -1;
+            animation: lightbox-glow 3s ease-in-out infinite;
+        }
+
+        @keyframes lightbox-glow {
+            0%, 100% { opacity: 0.4; filter: blur(40px); }
+            50% { opacity: 0.6; filter: blur(50px); }
+        }
+
+        .lightbox-content img {
+            display: block;
+            max-width: 100%;
+            max-height: 90vh;
+            width: auto;
+            height: auto;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow:
+                0 0 0 1px rgba(255, 255, 255, 0.05),
+                0 60px 120px rgba(0, 0, 0, 0.7);
+            /* Ensure crisp rendering at native resolution */
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: -50px;
+            right: 0;
+            background: none;
+            border: none;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 0;
+            transition: color 0.2s;
+        }
+
+        .lightbox-close:hover {
+            color: white;
+        }
+
+        .lightbox-hint {
+            position: absolute;
+            bottom: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 0.85rem;
+            white-space: nowrap;
         }
 
         /* Features */
@@ -361,6 +614,88 @@
             border-radius: 4px;
             font-family: 'JetBrains Mono', monospace;
             font-size: 0.8rem;
+        }
+
+        /* Works With Carousel */
+        .works-with {
+            padding: 80px 0;
+            overflow: hidden;
+        }
+
+        .works-with-label {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 40px;
+        }
+
+        .tools-carousel {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+            -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+        }
+
+        .tools-track {
+            display: flex;
+            gap: 32px;
+            animation: scroll 40s linear infinite;
+            width: max-content;
+        }
+
+        .tools-track:hover {
+            animation-play-state: paused;
+        }
+
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(calc(-50% - 16px));
+            }
+        }
+
+        .tool-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 16px 28px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            transition: all 0.3s ease;
+            cursor: default;
+        }
+
+        .tool-item:hover {
+            border-color: var(--accent);
+            background: var(--bg-tertiary);
+            transform: scale(1.02);
+        }
+
+        .tool-logo {
+            width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .tool-logo svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .tool-item span {
+            color: var(--text-primary);
+            font-size: 0.95rem;
+            font-weight: 500;
+            white-space: nowrap;
         }
 
         /* Pricing */
@@ -455,6 +790,108 @@
             justify-content: center;
         }
 
+        /* Blog/Guides */
+        .blog {
+            padding: 100px 0;
+            background: var(--bg-secondary);
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+        }
+
+        .blog-card {
+            display: block;
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px;
+            transition: all 0.3s;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .blog-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-4px);
+        }
+
+        .blog-icon {
+            font-size: 2rem;
+            margin-bottom: 16px;
+        }
+
+        .blog-card h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .blog-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 16px;
+        }
+
+        .blog-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .blog-tags span {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            padding: 4px 12px;
+            border-radius: 100px;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        /* FAQ */
+        .faq {
+            padding: 100px 0;
+        }
+
+        .faq-list {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px 32px;
+            margin-bottom: 16px;
+        }
+
+        .faq-item h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .faq-item p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .faq-item a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .faq-item a:hover {
+            text-decoration: underline;
+        }
+
         /* Footer */
         footer {
             padding: 60px 0;
@@ -476,14 +913,216 @@
             color: var(--text-primary);
         }
 
+        /* Newsletter */
+        .newsletter {
+            padding: 80px 0;
+        }
+
+        .newsletter-box {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 48px;
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .newsletter-content h2 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .newsletter-content p {
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .newsletter-form input[type="email"] {
+            flex: 1;
+            min-width: 240px;
+            max-width: 320px;
+            padding: 14px 20px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+            font-size: 1rem;
+            font-family: inherit;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .newsletter-form input[type="email"]:focus {
+            border-color: var(--accent);
+        }
+
+        .newsletter-form input[type="email"]::placeholder {
+            color: var(--text-muted);
+        }
+
+        .thank-you {
+            color: var(--success);
+            font-weight: 500;
+            margin-top: 8px;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--bg-secondary);
+            border-radius: 16px;
+            max-width: 600px;
+            width: 100%;
+            max-height: 80vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid var(--border);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .modal-header h2 {
+            margin: 0;
+            font-size: 1.25rem;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 28px;
+            cursor: pointer;
+            padding: 0;
+            line-height: 1;
+        }
+
+        .modal-close:hover {
+            color: var(--text);
+        }
+
+        .modal-body {
+            padding: 24px;
+            overflow-y: auto;
+        }
+
+        .changelog-section {
+            margin-bottom: 24px;
+        }
+
+        .changelog-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .changelog-section h3 {
+            font-size: 1rem;
+            color: var(--accent);
+            margin: 0 0 12px 0;
+        }
+
+        .changelog-section ul {
+            margin: 0;
+            padding-left: 20px;
+            color: var(--text-secondary);
+        }
+
+        .changelog-section li {
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+
+        .changelog-section li ul {
+            margin-top: 8px;
+        }
+
+        .changelog-section kbd {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 2px 6px;
+            font-family: var(--font-mono);
+            font-size: 0.85em;
+        }
+
         /* Responsive */
+        @media (max-width: 1024px) {
+            .hero .container {
+                grid-template-columns: 1fr;
+                gap: 48px;
+            }
+
+            .hero-content {
+                text-align: center;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .hero-screenshot .screenshot {
+                transform: none;
+            }
+
+            .hero-screenshot:hover .screenshot {
+                transform: none;
+            }
+
+            .hero::before {
+                top: 30%;
+                right: 50%;
+                transform: translate(50%, -50%);
+            }
+        }
+
         @media (max-width: 768px) {
             nav {
                 display: none;
             }
 
             .hero {
-                padding: 140px 0 60px;
+                min-height: auto;
+                padding: 120px 0 40px;
+            }
+
+            h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
             }
 
             .hero-buttons {
@@ -506,18 +1145,19 @@
 
     <header>
         <div class="container">
-            <div class="logo">
+            <a href="/" class="logo">
                 <div class="logo-icon">
                     <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round">
                         <path d="M4 17l6-6-6-6M12 19h8"/>
                     </svg>
                 </div>
                 Beam
-            </div>
+            </a>
             <nav>
                 <a href="#features">Features</a>
+                <a href="#guides">Guides</a>
                 <a href="#pricing">Pricing</a>
-                <a href="Beam-v1.9.5-alpha.dmg" class="btn btn-primary">Download</a>
+                <a href="Beam-v1.9.13-alpha.dmg" onclick="trackDownload()" class="btn btn-primary">Download</a>
             </nav>
         </div>
     </header>
@@ -525,57 +1165,197 @@
     <main>
         <section class="hero">
             <div class="container">
-                <div class="badge">
-                    <span class="badge-dot"></span>
-                    v1.9.5 now available
+                <div class="hero-content">
+                    <div class="badge">
+                        <span class="badge-dot"></span>
+                        v1.9.13 now available
+                    </div>
+                    <h1>The IDE for the<br><span>AI era</span></h1>
+                    <p class="hero-subtitle">
+                        Organize your AI workflows, projects, and sessions. Subwindows, saveable layouts, and keyboard navigation. Your terminal is your workspace — Beam organizes it.
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="Beam-v1.9.13-alpha.dmg" onclick="trackDownload()" class="btn btn-primary">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+                            </svg>
+                            Download for macOS
+                        </a>
+                        <a href="#features" class="btn btn-secondary">
+                            See Features
+                        </a>
+                    </div>
+                    <p class="price-tag" style="margin-top: 24px;">Free to try &bull; Pro $29 one-time</p>
                 </div>
-                <h1>Terminal organizer<br>for <span>power users</span></h1>
-                <p class="hero-subtitle">
-                    Subwindows, tabs, split panes, and layouts. Navigate everything with your keyboard. Built for developers who live in the terminal.
-                </p>
-                <div class="hero-buttons">
-                    <a href="Beam-v1.9.5-alpha.dmg" class="btn btn-primary">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
-                        </svg>
-                        Download for macOS
-                    </a>
-                    <a href="#features" class="btn btn-secondary">
-                        See Features
-                    </a>
+                <div class="hero-screenshot">
+                    <div class="screenshot">
+                        <img src="beam-screenshot-1.9.8.png" alt="Beam v1.9.13 - Terminal organizer with sidebar, subwindows, tabs, and split panes">
+                    </div>
                 </div>
-                <p class="price-tag" style="margin-top: 24px;">Free to try &bull; Pro $29 one-time</p>
             </div>
         </section>
 
-        <div class="screenshot-container">
-            <div class="screenshot">
-                <img src="beam-screenshot.png" alt="Beam Terminal Organizer - Multiple subwindows with split panes">
-            </div>
-        </div>
-
-        <!-- Screenshot Gallery -->
-        <div class="container" style="margin-top: 60px;">
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px;">
-                <div class="screenshot" style="box-shadow: 0 20px 40px rgba(0,0,0,0.3);">
-                    <img src="beam-search.png" alt="Quick Switcher - Search across all tabs">
+        <!-- Works With Section -->
+        <section class="works-with">
+            <div class="container">
+                <p class="works-with-label">Works seamlessly with</p>
+                <div class="tools-carousel">
+                    <div class="tools-track">
+                        <!-- Claude Code - Anthropic orange -->
+                        <div class="tool-item">
+                            <div class="tool-logo">
+                                <svg viewBox="0 0 24 24" fill="none">
+                                    <path d="M12 2L2 7v10l10 5 10-5V7L12 2z" fill="#D97706"/>
+                                    <path d="M12 6l6 3v6l-6 3-6-3V9l6-3z" fill="#FCD34D"/>
+                                </svg>
+                            </div>
+                            <span>Claude Code</span>
+                        </div>
+                        <!-- Wispr Flow - Purple wave -->
+                        <div class="tool-item">
+                            <div class="tool-logo">
+                                <svg viewBox="0 0 24 24" fill="none">
+                                    <circle cx="12" cy="12" r="10" fill="#7C3AED"/>
+                                    <path d="M7 12c1-2 2-3 3-3s2 2 4 2 3-2 3-2" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                                    <path d="M7 16c1-2 2-3 3-3s2 2 4 2 3-2 3-2" stroke="white" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+                                </svg>
+                            </div>
+                            <span>Wispr Flow</span>
+                        </div>
+                        <!-- OpenAI - Green -->
+                        <div class="tool-item">
+                            <div class="tool-logo">
+                                <svg viewBox="0 0 24 24" fill="#10A37F">
+                                    <path d="M22.2819 9.8211a5.9847 5.9847 0 0 0-.5157-4.9108 6.0462 6.0462 0 0 0-6.5098-2.9A6.0651 6.0651 0 0 0 4.9807 4.1818a5.9847 5.9847 0 0 0-3.9977 2.9 6.0462 6.0462 0 0 0 .7427 7.0966 5.98 5.98 0 0 0 .511 4.9107 6.051 6.051 0 0 0 6.5146 2.9001A5.9847 5.9847 0 0 0 13.2599 24a6.0557 6.0557 0 0 0 5.7718-4.2058 5.9894 5.9894 0 0 0 3.9977-2.9001 6.0557 6.0557 0 0 0-.7475-7.0729zm-9.022 12.6081a4.4755 4.4755 0 0 1-2.8764-1.0408l.1419-.0804 4.7783-2.7582a.7948.7948 0 0 0 .3927-.6813v-6.7369l2.02 1.1686a.071.071 0 0 1 .038.052v5.5826a4.504 4.504 0 0 1-4.4945 4.4944zm-9.6607-4.1254a4.4708 4.4708 0 0 1-.5346-3.0137l.142.0852 4.783 2.7582a.7712.7712 0 0 0 .7806 0l5.8428-3.3685v2.3324a.0804.0804 0 0 1-.0332.0615L9.74 19.9502a4.4992 4.4992 0 0 1-6.1408-1.6464zM2.3408 7.8956a4.485 4.4850 0 0 1 2.3655-1.9728V11.6a.7664.7664 0 0 0 .3879.6765l5.8144 3.3543-2.0201 1.1685a.0757.0757 0 0 1-.071 0l-4.8303-2.7865A4.504 4.504 0 0 1 2.3408 7.8956zm16.0993 3.8558L12.6 8.3829l2.02-1.1638a.0757.0757 0 0 1 .071 0l4.8303 2.7913a4.4944 4.4944 0 0 1-.6765 8.1042v-5.6772a.79.79 0 0 0-.407-.667zm2.0107-3.0231l-.142-.0852-4.7735-2.7818a.7759.7759 0 0 0-.7854 0L9.409 9.2297V6.8974a.0662.0662 0 0 1 .0284-.0615l4.8303-2.7866a4.4992 4.4992 0 0 1 6.6802 4.66zM8.3065 12.863l-2.02-1.1638a.0804.0804 0 0 1-.038-.0567V6.0742a4.4992 4.4992 0 0 1 7.3757-3.4537l-.142.0805L8.704 5.459a.7948.7948 0 0 0-.3927.6813zm1.0976-2.3654l2.602-1.4998 2.6069 1.4998v2.9994l-2.5974 1.5056-2.6067-1.4998z"/>
+                                </svg>
+                            </div>
+                            <span>OpenAI CLI</span>
+                        </div>
+                        <!-- GitHub CLI -->
+                        <div class="tool-item">
+                            <div class="tool-logo">
+                                <svg viewBox="0 0 24 24" fill="white">
+                                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                                </svg>
+                            </div>
+                            <span>GitHub CLI</span>
+                        </div>
+                        <!-- npm -->
+                        <div class="tool-item">
+                            <div class="tool-logo">
+                                <svg viewBox="0 0 24 24" fill="#CB3837">
+                                    <path d="M0 7.334v8h6.666v1.332H12v-1.332h12v-8H0zm6.666 6.664H5.334v-4H3.999v4H1.335V8.667h5.331v5.331zm4 0v1.336H8.001V8.667h5.334v5.332h-2.669v-.001zm12.001 0h-1.33v-4h-1.336v4h-1.335v-4h-1.33v4h-2.671V8.667h8.002v5.331z"/>
+                                </svg>
+                            </div>
+                            <span>npm</span>
+                        </div>
+                        <!-- Docker -->
+                        <div class="tool-item">
+                            <div class="tool-logo">
+                                <svg viewBox="0 0 24 24" fill="#2496ED">
+                                    <path d="M13.983 11.078h2.119a.186.186 0 00.186-.185V9.006a.186.186 0 00-.186-.186h-2.119a.185.185 0 00-.185.185v1.888c0 .102.083.185.185.185m-2.954-5.43h2.118a.186.186 0 00.186-.186V3.574a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.888c0 .102.082.185.185.186m0 2.716h2.118a.187.187 0 00.186-.186V6.29a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.887c0 .102.082.185.185.186m-2.93 0h2.12a.186.186 0 00.184-.186V6.29a.185.185 0 00-.185-.185H8.1a.185.185 0 00-.185.185v1.887c0 .102.083.185.185.186m-2.964 0h2.119a.186.186 0 00.185-.186V6.29a.185.185 0 00-.185-.185H5.136a.186.186 0 00-.186.185v1.887c0 .102.084.185.186.186m5.893 2.715h2.118a.186.186 0 00.186-.185V9.006a.186.186 0 00-.186-.186h-2.118a.185.185 0 00-.185.185v1.888c0 .102.082.185.185.185m-2.93 0h2.12a.185.185 0 00.184-.185V9.006a.185.185 0 00-.184-.186h-2.12a.185.185 0 00-.184.185v1.888c0 .102.083.185.185.185m-2.964 0h2.119a.185.185 0 00.185-.185V9.006a.185.185 0 00-.184-.186h-2.12a.186.186 0 00-.186.186v1.887c0 .102.084.185.186.185m-2.92 0h2.12a.185.185 0 00.184-.185V9.006a.185.185 0 00-.184-.186h-2.12a.185.185 0 00-.184.185v1.888c0 .102.082.185.185.185M23.763 9.89c-.065-.051-.672-.51-1.954-.51-.338.001-.676.03-1.01.087-.248-1.7-1.653-2.53-1.716-2.566l-.344-.199-.226.327c-.284.438-.49.922-.612 1.43-.23.97-.09 1.882.403 2.661-.595.332-1.55.413-1.744.42H.751a.751.751 0 00-.75.748 11.376 11.376 0 00.692 4.062c.545 1.428 1.355 2.48 2.41 3.124 1.18.723 3.1 1.137 5.275 1.137.983.003 1.963-.086 2.93-.266a12.248 12.248 0 003.823-1.389c.98-.567 1.86-1.288 2.61-2.136 1.252-1.418 1.998-2.997 2.553-4.4h.221c1.372 0 2.215-.549 2.68-1.009.309-.293.55-.65.707-1.046l.098-.288z"/>
+                                </svg>
+                            </div>
+                            <span>Docker</span>
+                        </div>
+                        <!-- Kubernetes -->
+                        <div class="tool-item">
+                            <div class="tool-logo">
+                                <svg viewBox="0 0 24 24" fill="#326CE5">
+                                    <path d="M10.204 14.35l.007.01-.999 2.413a5.171 5.171 0 0 1-2.075-2.597l2.578-.437.004.005a.44.44 0 0 1 .484.606zm-.833-2.129a.44.44 0 0 0 .173-.756l.002-.011L7.585 9.7a5.143 5.143 0 0 0-.73 3.255l2.514-.725.002-.009zm1.145-1.98a.44.44 0 0 0 .699-.337l.01-.005.15-2.62a5.144 5.144 0 0 0-3.01 1.442l2.147 1.523.004-.002zm.76 2.75l.723.349.722-.347.18-.78-.5-.623h-.804l-.5.623.179.778zm1.5-2.095a.44.44 0 0 0 .7.336l.008.003 2.134-1.513a5.188 5.188 0 0 0-2.992-1.442l.148 2.615.002.001zm10.876 5.97l-5.773 7.181a1.6 1.6 0 0 1-1.248.594H9.261a1.6 1.6 0 0 1-1.247-.594l-5.776-7.181a1.583 1.583 0 0 1-.307-1.34L3.823 5.98a1.6 1.6 0 0 1 .947-1.152l7.286-3.128a1.601 1.601 0 0 1 1.272 0l7.285 3.128a1.6 1.6 0 0 1 .947 1.152l1.892 7.951c.09.46-.014.94-.307 1.34zm-3.289-6.345a6.77 6.77 0 0 0-.065-.054l.925-2.643-3.143-1.35-.007.007-2.132 1.51a1.983 1.983 0 0 0-1.99-.043l-2.15-1.523-.006-.006-3.14 1.348.92 2.648-.042.03a1.987 1.987 0 0 0-.395 1.635l-.004.004-2.63.754.343 3.407 2.59-.44.009.014a1.979 1.979 0 0 0 1.534 1.2l.003.006.994 2.405 3.257-.423v-.011a1.975 1.975 0 0 0 1.456-.829l.003-.002 3.257.423.994-2.405.003-.005a1.983 1.983 0 0 0 1.533-1.2l.009-.015 2.59.44.343-3.406-2.63-.755-.004-.003a1.982 1.982 0 0 0-.393-1.637zm-4.155 2.029a.44.44 0 0 0-.486.607l-.007.009.999 2.413a5.168 5.168 0 0 0 2.075-2.597l-2.578-.437-.003.005zm.173-1.373a.44.44 0 0 0-.174-.756l-.002-.011 1.962-1.754a5.142 5.142 0 0 1 .73 3.255l-2.514-.725-.002-.009z"/>
+                                </svg>
+                            </div>
+                            <span>kubectl</span>
+                        </div>
+                        <!-- Any CLI -->
+                        <div class="tool-item">
+                            <div class="tool-logo">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="#a1a1aa" stroke-width="2" stroke-linecap="round">
+                                    <path d="M4 17l6-6-6-6"/>
+                                    <path d="M12 19h8"/>
+                                </svg>
+                            </div>
+                            <span>Any CLI</span>
+                        </div>
+                        <!-- Duplicate set for seamless loop -->
+                        <div class="tool-item">
+                            <div class="tool-logo">
+                                <svg viewBox="0 0 24 24" fill="none">
+                                    <path d="M12 2L2 7v10l10 5 10-5V7L12 2z" fill="#D97706"/>
+                                    <path d="M12 6l6 3v6l-6 3-6-3V9l6-3z" fill="#FCD34D"/>
+                                </svg>
+                            </div>
+                            <span>Claude Code</span>
+                        </div>
+                        <div class="tool-item">
+                            <div class="tool-logo">
+                                <svg viewBox="0 0 24 24" fill="none">
+                                    <circle cx="12" cy="12" r="10" fill="#7C3AED"/>
+                                    <path d="M7 12c1-2 2-3 3-3s2 2 4 2 3-2 3-2" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                                    <path d="M7 16c1-2 2-3 3-3s2 2 4 2 3-2 3-2" stroke="white" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+                                </svg>
+                            </div>
+                            <span>Wispr Flow</span>
+                        </div>
+                        <div class="tool-item">
+                            <div class="tool-logo">
+                                <svg viewBox="0 0 24 24" fill="#10A37F">
+                                    <path d="M22.2819 9.8211a5.9847 5.9847 0 0 0-.5157-4.9108 6.0462 6.0462 0 0 0-6.5098-2.9A6.0651 6.0651 0 0 0 4.9807 4.1818a5.9847 5.9847 0 0 0-3.9977 2.9 6.0462 6.0462 0 0 0 .7427 7.0966 5.98 5.98 0 0 0 .511 4.9107 6.051 6.051 0 0 0 6.5146 2.9001A5.9847 5.9847 0 0 0 13.2599 24a6.0557 6.0557 0 0 0 5.7718-4.2058 5.9894 5.9894 0 0 0 3.9977-2.9001 6.0557 6.0557 0 0 0-.7475-7.0729zm-9.022 12.6081a4.4755 4.4755 0 0 1-2.8764-1.0408l.1419-.0804 4.7783-2.7582a.7948.7948 0 0 0 .3927-.6813v-6.7369l2.02 1.1686a.071.071 0 0 1 .038.052v5.5826a4.504 4.504 0 0 1-4.4945 4.4944zm-9.6607-4.1254a4.4708 4.4708 0 0 1-.5346-3.0137l.142.0852 4.783 2.7582a.7712.7712 0 0 0 .7806 0l5.8428-3.3685v2.3324a.0804.0804 0 0 1-.0332.0615L9.74 19.9502a4.4992 4.4992 0 0 1-6.1408-1.6464zM2.3408 7.8956a4.485 4.4850 0 0 1 2.3655-1.9728V11.6a.7664.7664 0 0 0 .3879.6765l5.8144 3.3543-2.0201 1.1685a.0757.0757 0 0 1-.071 0l-4.8303-2.7865A4.504 4.504 0 0 1 2.3408 7.8956zm16.0993 3.8558L12.6 8.3829l2.02-1.1638a.0757.0757 0 0 1 .071 0l4.8303 2.7913a4.4944 4.4944 0 0 1-.6765 8.1042v-5.6772a.79.79 0 0 0-.407-.667zm2.0107-3.0231l-.142-.0852-4.7735-2.7818a.7759.7759 0 0 0-.7854 0L9.409 9.2297V6.8974a.0662.0662 0 0 1 .0284-.0615l4.8303-2.7866a4.4992 4.4992 0 0 1 6.6802 4.66zM8.3065 12.863l-2.02-1.1638a.0804.0804 0 0 1-.038-.0567V6.0742a4.4992 4.4992 0 0 1 7.3757-3.4537l-.142.0805L8.704 5.459a.7948.7948 0 0 0-.3927.6813zm1.0976-2.3654l2.602-1.4998 2.6069 1.4998v2.9994l-2.5974 1.5056-2.6067-1.4998z"/>
+                                </svg>
+                            </div>
+                            <span>OpenAI CLI</span>
+                        </div>
+                        <div class="tool-item">
+                            <div class="tool-logo">
+                                <svg viewBox="0 0 24 24" fill="white">
+                                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                                </svg>
+                            </div>
+                            <span>GitHub CLI</span>
+                        </div>
+                        <div class="tool-item">
+                            <div class="tool-logo">
+                                <svg viewBox="0 0 24 24" fill="#CB3837">
+                                    <path d="M0 7.334v8h6.666v1.332H12v-1.332h12v-8H0zm6.666 6.664H5.334v-4H3.999v4H1.335V8.667h5.331v5.331zm4 0v1.336H8.001V8.667h5.334v5.332h-2.669v-.001zm12.001 0h-1.33v-4h-1.336v4h-1.335v-4h-1.33v4h-2.671V8.667h8.002v5.331z"/>
+                                </svg>
+                            </div>
+                            <span>npm</span>
+                        </div>
+                        <div class="tool-item">
+                            <div class="tool-logo">
+                                <svg viewBox="0 0 24 24" fill="#2496ED">
+                                    <path d="M13.983 11.078h2.119a.186.186 0 00.186-.185V9.006a.186.186 0 00-.186-.186h-2.119a.185.185 0 00-.185.185v1.888c0 .102.083.185.185.185m-2.954-5.43h2.118a.186.186 0 00.186-.186V3.574a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.888c0 .102.082.185.185.186m0 2.716h2.118a.187.187 0 00.186-.186V6.29a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.887c0 .102.082.185.185.186m-2.93 0h2.12a.186.186 0 00.184-.186V6.29a.185.185 0 00-.185-.185H8.1a.185.185 0 00-.185.185v1.887c0 .102.083.185.185.186m-2.964 0h2.119a.186.186 0 00.185-.186V6.29a.185.185 0 00-.185-.185H5.136a.186.186 0 00-.186.185v1.887c0 .102.084.185.186.186m5.893 2.715h2.118a.186.186 0 00.186-.185V9.006a.186.186 0 00-.186-.186h-2.118a.185.185 0 00-.185.185v1.888c0 .102.082.185.185.185m-2.93 0h2.12a.185.185 0 00.184-.185V9.006a.185.185 0 00-.184-.186h-2.12a.185.185 0 00-.184.185v1.888c0 .102.083.185.185.185m-2.964 0h2.119a.185.185 0 00.185-.185V9.006a.185.185 0 00-.184-.186h-2.12a.186.186 0 00-.186.186v1.887c0 .102.084.185.186.185m-2.92 0h2.12a.185.185 0 00.184-.185V9.006a.185.185 0 00-.184-.186h-2.12a.185.185 0 00-.184.185v1.888c0 .102.082.185.185.185M23.763 9.89c-.065-.051-.672-.51-1.954-.51-.338.001-.676.03-1.01.087-.248-1.7-1.653-2.53-1.716-2.566l-.344-.199-.226.327c-.284.438-.49.922-.612 1.43-.23.97-.09 1.882.403 2.661-.595.332-1.55.413-1.744.42H.751a.751.751 0 00-.75.748 11.376 11.376 0 00.692 4.062c.545 1.428 1.355 2.48 2.41 3.124 1.18.723 3.1 1.137 5.275 1.137.983.003 1.963-.086 2.93-.266a12.248 12.248 0 003.823-1.389c.98-.567 1.86-1.288 2.61-2.136 1.252-1.418 1.998-2.997 2.553-4.4h.221c1.372 0 2.215-.549 2.68-1.009.309-.293.55-.65.707-1.046l.098-.288z"/>
+                                </svg>
+                            </div>
+                            <span>Docker</span>
+                        </div>
+                        <div class="tool-item">
+                            <div class="tool-logo">
+                                <svg viewBox="0 0 24 24" fill="#326CE5">
+                                    <path d="M10.204 14.35l.007.01-.999 2.413a5.171 5.171 0 0 1-2.075-2.597l2.578-.437.004.005a.44.44 0 0 1 .484.606zm-.833-2.129a.44.44 0 0 0 .173-.756l.002-.011L7.585 9.7a5.143 5.143 0 0 0-.73 3.255l2.514-.725.002-.009zm1.145-1.98a.44.44 0 0 0 .699-.337l.01-.005.15-2.62a5.144 5.144 0 0 0-3.01 1.442l2.147 1.523.004-.002zm.76 2.75l.723.349.722-.347.18-.78-.5-.623h-.804l-.5.623.179.778zm1.5-2.095a.44.44 0 0 0 .7.336l.008.003 2.134-1.513a5.188 5.188 0 0 0-2.992-1.442l.148 2.615.002.001zm10.876 5.97l-5.773 7.181a1.6 1.6 0 0 1-1.248.594H9.261a1.6 1.6 0 0 1-1.247-.594l-5.776-7.181a1.583 1.583 0 0 1-.307-1.34L3.823 5.98a1.6 1.6 0 0 1 .947-1.152l7.286-3.128a1.601 1.601 0 0 1 1.272 0l7.285 3.128a1.6 1.6 0 0 1 .947 1.152l1.892 7.951c.09.46-.014.94-.307 1.34zm-3.289-6.345a6.77 6.77 0 0 0-.065-.054l.925-2.643-3.143-1.35-.007.007-2.132 1.51a1.983 1.983 0 0 0-1.99-.043l-2.15-1.523-.006-.006-3.14 1.348.92 2.648-.042.03a1.987 1.987 0 0 0-.395 1.635l-.004.004-2.63.754.343 3.407 2.59-.44.009.014a1.979 1.979 0 0 0 1.534 1.2l.003.006.994 2.405 3.257-.423v-.011a1.975 1.975 0 0 0 1.456-.829l.003-.002 3.257.423.994-2.405.003-.005a1.983 1.983 0 0 0 1.533-1.2l.009-.015 2.59.44.343-3.406-2.63-.755-.004-.003a1.982 1.982 0 0 0-.393-1.637zm-4.155 2.029a.44.44 0 0 0-.486.607l-.007.009.999 2.413a5.168 5.168 0 0 0 2.075-2.597l-2.578-.437-.003.005zm.173-1.373a.44.44 0 0 0-.174-.756l-.002-.011 1.962-1.754a5.142 5.142 0 0 1 .73 3.255l-2.514-.725-.002-.009z"/>
+                                </svg>
+                            </div>
+                            <span>kubectl</span>
+                        </div>
+                        <div class="tool-item">
+                            <div class="tool-logo">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="#a1a1aa" stroke-width="2" stroke-linecap="round">
+                                    <path d="M4 17l6-6-6-6"/>
+                                    <path d="M12 19h8"/>
+                                </svg>
+                            </div>
+                            <span>Any CLI</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="screenshot" style="box-shadow: 0 20px 40px rgba(0,0,0,0.3);">
-                    <img src="beam-layout-view.png" alt="Layout Manager - Save and restore workspaces">
-                </div>
             </div>
-            <div style="margin-top: 24px;">
-                <div class="screenshot" style="box-shadow: 0 20px 40px rgba(0,0,0,0.3);">
-                    <img src="beam-screenshot-two.png" alt="Beam with Claude Code - AI-powered development">
-                </div>
-            </div>
-        </div>
+        </section>
 
         <section class="features" id="features">
             <div class="container">
                 <div class="section-title">
-                    <h2>Built for keyboard warriors</h2>
-                    <p>Every action has a shortcut. Your hands never leave the keyboard.</p>
+                    <h2>Imagination moves fast. Your workspace should too.</h2>
+                    <p>Smart shortcuts, seamless navigation, and a design built for flow.</p>
                 </div>
                 <div class="features-grid">
                     <div class="feature-card">
@@ -586,7 +1366,7 @@
                     <div class="feature-card">
                         <div class="feature-icon">📑</div>
                         <h3>Tabs & Splits</h3>
-                        <p>Multiple tabs per subwindow, plus vertical and horizontal split panes within each tab. <span class="kbd">⌘T</span> for tabs, <span class="kbd">⌘⌥⌃T</span> for splits.</p>
+                        <p>Multiple tabs per subwindow, plus vertical and horizontal split panes within each tab. <span class="kbd">⌘T</span> for tabs, <span class="kbd">⌘D</span> for splits.</p>
                     </div>
                     <div class="feature-card">
                         <div class="feature-icon">💾</div>
@@ -601,12 +1381,32 @@
                     <div class="feature-card">
                         <div class="feature-icon">⌨️</div>
                         <h3>Keyboard First</h3>
-                        <p>Navigate between subwindows with <span class="kbd">⌘⌥←→</span>, between tabs with <span class="kbd">⌘⇧←→</span>. Everything is a keystroke away.</p>
+                        <p>Jump to any subwindow with <span class="kbd">⌘1-9</span>, navigate with <span class="kbd">⌘⌥←→</span>, switch tabs with <span class="kbd">⌘⇧←→</span>. Everything is a keystroke away.</p>
                     </div>
                     <div class="feature-card">
                         <div class="feature-icon">↩️</div>
                         <h3>Undo Close</h3>
                         <p>Accidentally closed a subwindow? <span class="kbd">⌘Z</span> brings it back with all tabs and shell history intact.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🖥️</div>
+                        <h3>Native macOS App</h3>
+                        <p>Built with Swift and SwiftUI, not Electron. Full terminal emulator that works with tmux, vim, ssh, and all your favorite CLI tools.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🖱️</div>
+                        <h3>Context Menu</h3>
+                        <p>Right-click for Copy, Paste, Clear, New Tab, Split Panes – plus Look Up, Search Google, and Run as Command when text is selected. Mouse users welcome.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📂</div>
+                        <h3>Working Directory</h3>
+                        <p>Set a default directory per subwindow. New tabs automatically start there. Perfect for project-specific workspaces. Right-click any subwindow to set.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">♿</div>
+                        <h3>Accessible</h3>
+                        <p>VoiceOver support, Speak Selection, and proper accessibility labels. Beam works for everyone, not just keyboard warriors.</p>
                     </div>
                 </div>
             </div>
@@ -630,7 +1430,7 @@
                             <li><span class="check">✓</span> Quick switcher</li>
                             <li><span class="check">✓</span> All keyboard shortcuts</li>
                         </ul>
-                        <a href="Beam-v1.9.5-alpha.dmg" class="btn btn-secondary">Download Free</a>
+                        <a href="Beam-v1.9.13-alpha.dmg" onclick="trackDownload()" class="btn btn-secondary">Download Free</a>
                     </div>
                     <div class="pricing-card featured">
                         <h3>Beam Pro</h3>
@@ -649,13 +1449,302 @@
                 </div>
             </div>
         </section>
+
+        <section class="blog" id="guides">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Guides & Use Cases</h2>
+                    <p>How developers use Beam to level up their terminal workflow</p>
+                </div>
+                <div class="blog-grid">
+                    <a href="blog/terminal-is-the-new-ide.html" class="blog-card">
+                        <div class="blog-icon">💡</div>
+                        <h3>Why Your Terminal is the New IDE</h3>
+                        <p>AI coding tools like Claude Code, Cursor, and Codex are changing everything. When AI writes your code, the traditional IDE becomes optional — and your terminal becomes your workspace. Here's why, and how to set it up.</p>
+                        <div class="blog-tags">
+                            <span>Terminal Era</span>
+                            <span>AI Coding</span>
+                            <span>Thought Leadership</span>
+                        </div>
+                    </a>
+                    <a href="blog/beam-claude-code-setup.html" class="blog-card">
+                        <div class="blog-icon">🛠️</div>
+                        <h3>Setting Up Beam for Claude Code</h3>
+                        <p>A complete guide to organizing your Claude Code sessions. Learn how to use subwindows for each project, save layouts for instant restoration, and master keyboard shortcuts for maximum AI coding productivity.</p>
+                        <div class="blog-tags">
+                            <span>Tutorial</span>
+                            <span>Claude Code</span>
+                            <span>Setup Guide</span>
+                        </div>
+                    </a>
+                    <a href="blog/organizing-claude-code-sessions.html" class="blog-card">
+                        <div class="blog-icon">🤖</div>
+                        <h3>Organizing Claude Code Sessions</h3>
+                        <p>Running multiple Claude Code instances across different projects? Use Beam's subwindows to keep each AI coding session organized. One subwindow per project – your frontend Claude Code in one place, backend in another. Save layouts to instantly restore your Claude Code workspace.</p>
+                        <div class="blog-tags">
+                            <span>Claude Code</span>
+                            <span>AI Coding</span>
+                            <span>Productivity</span>
+                        </div>
+                    </a>
+                    <a href="blog/vibe-coding-setup.html" class="blog-card">
+                        <div class="blog-icon">🎨</div>
+                        <h3>The Perfect Vibe Coding Setup</h3>
+                        <p>Vibe coding is all about flow state. Beam helps you stay in the zone by organizing your terminals so you never lose track of what's running where. Split panes let you watch your dev server while coding. Quick switcher (⌘P) means you never break flow searching for the right terminal.</p>
+                        <div class="blog-tags">
+                            <span>Vibe Coding</span>
+                            <span>Flow State</span>
+                            <span>Developer Experience</span>
+                        </div>
+                    </a>
+                    <a href="blog/how-to-rename-terminal-windows-macos.html" class="blog-card">
+                        <div class="blog-icon">✏️</div>
+                        <h3>How to Rename Terminal Windows on macOS</h3>
+                        <p>Tired of terminal tabs all named "zsh"? In Beam, double-click any tab or subwindow to rename it. Use ⌘⇧I to rename the current tab, or ⌘⌥⌃I to rename a split pane. Give your terminals meaningful names like "API Server", "Frontend Dev", or "Database" – and actually find them again.</p>
+                        <div class="blog-tags">
+                            <span>macOS Tips</span>
+                            <span>Terminal</span>
+                            <span>Workflow</span>
+                        </div>
+                    </a>
+                    <a href="blog/wispr-flow-claude-code-beam.html" class="blog-card">
+                        <div class="blog-icon">🎙️</div>
+                        <h3>Voice-Controlled Coding with Wispr Flow</h3>
+                        <p>Combine Wispr Flow dictation, Claude Code AI, and Beam for a hands-free coding workflow. Speak your intent, let Claude write the code, and keep everything organized in separate subwindows. The future of coding is here.</p>
+                        <div class="blog-tags">
+                            <span>Wispr Flow</span>
+                            <span>Claude Code</span>
+                            <span>Voice Coding</span>
+                        </div>
+                    </a>
+                    <a href="blog/how-to-install-openclaw-setup-guide.html" class="blog-card">
+                        <div class="blog-icon">🦀</div>
+                        <h3>How to Install OpenClaw: Complete Setup Guide</h3>
+                        <p>OpenClaw is a powerful unified messaging AI assistant that connects all your messaging apps. This complete guide covers installation, setup, and how to use Beam for managing multiple OpenClaw sessions across different accounts.</p>
+                        <div class="blog-tags">
+                            <span>OpenClaw</span>
+                            <span>AI Assistant</span>
+                            <span>Setup Guide</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="faq" id="faq">
+            <div class="container">
+                <div class="section-title">
+                    <h2>FAQ</h2>
+                    <p>Common questions about Beam</p>
+                </div>
+                <div class="faq-list">
+                    <div class="faq-item">
+                        <h3>Is Beam a terminal emulator or just a window manager?</h3>
+                        <p>Beam is a <strong>full terminal emulator</strong> – it runs your shell (zsh, bash, fish) directly, just like Terminal.app or iTerm2. It uses SwiftTerm for terminal emulation. The "organizer" part refers to features layered on top: subwindows, tabs, split panes, and layouts that help you manage multiple terminal sessions. You don't need another terminal app – Beam replaces Terminal.app entirely.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3>Does it work with tmux, vim, ssh, etc.?</h3>
+                        <p>Yes! Since Beam is a full terminal emulator, you can run anything you'd run in Terminal.app or iTerm – tmux, vim, ssh, and all your favorite CLI tools work out of the box.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3>How is Beam different from Warp?</h3>
+                        <p>Warp is a feature-rich modern terminal with AI, blocks, and collaboration. Beam is a lightweight organizer focused on one thing: managing lots of terminal sessions across projects. Beam's "subwindows" let you group terminals by project, and layouts let you save/restore your entire workspace. Also: $29 one-time vs subscription.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3>How is Beam different from iTerm2 or Ghostty?</h3>
+                        <p>iTerm2 and Ghostty are excellent terminals with tabs and split panes. Beam adds a layer above that: <strong>subwindows</strong> – separate floating windows within the app that you can organize by project. Save your entire arrangement as a layout, then restore it instantly when switching contexts. The quick switcher (<span class="kbd">⌘P</span>) searches across all subwindows, tabs, and layouts. Think of it as workspace management built into the terminal. <a href="blog/beam-vs-iterm2.html">Read the full comparison →</a></p>
+                    </div>
+                    <div class="faq-item">
+                        <h3>Why would I use Beam instead of tmux or zellij?</h3>
+                        <p>If you have tmux/zellij configured just right, you might not need Beam. But if you want similar organization without the config overhead: Beam works out of the box with native macOS UI. No prefix keys, no .tmux.conf, no learning curve. Actual floating windows you can drag and resize. And you can still run tmux inside Beam if you want both – some people use Beam for visual organization and tmux for SSH session persistence. <a href="blog/beam-vs-tmux.html">Read the full comparison →</a></p>
+                    </div>
+                    <div class="faq-item">
+                        <h3>Will Beam be on the App Store?</h3>
+                        <p>Not currently. Terminal apps need unsandboxed access to be useful, which Apple doesn't allow in the App Store. Beam has a built-in update checker that notifies you when new versions are available.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3>Why isn't Beam open source?</h3>
+                        <p>Beam is a paid product, and keeping it closed source is how I sustain development as a solo developer. If you prefer open-source terminal tools, <a href="https://github.com/tmux/tmux">tmux</a> and <a href="https://github.com/zellij-org/zellij">zellij</a> are excellent options. Beam is for people who want the convenience of a native app without configuration overhead and are willing to pay for that.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3>Why $29?</h3>
+                        <p>A few reasons: it's a <strong>native macOS app</strong> built with Swift and SwiftUI (not Electron), it's <strong>one-time payment</strong> (no subscription), and it sustains ongoing development. The free tier is fully functional – 1 subwindow, 1 layout, unlimited tabs – so you can use Beam without paying. Pro is for people who want unlimited subwindows, layouts, and split panes.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h3>How do I report bugs or request features?</h3>
+                        <p><a href="mailto:frank@nextuptechnologies.co">Email us</a> – we read everything and respond quickly.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="newsletter" id="newsletter">
+            <div class="container">
+                <div class="newsletter-box">
+                    <div class="newsletter-content">
+                        <h2>Stay in the loop</h2>
+                        <p>Get notified about new features, updates, and tips. No spam, unsubscribe anytime.</p>
+                    </div>
+                    <form class="newsletter-form" action="https://docs.google.com/forms/d/e/1FAIpQLSflaouHSQicJBIhg73yXh64T67lIrXpVto25jaFv05kmd9eRQ/formResponse" method="POST" target="hidden_iframe" onsubmit="showThankYou()">
+                        <input type="email" name="entry.2078450205" placeholder="you@example.com" required>
+                        <button type="submit" class="btn btn-primary">Subscribe</button>
+                    </form>
+                    <p class="thank-you" id="thankYou" style="display: none;">Thanks! You're on the list.</p>
+                    <iframe name="hidden_iframe" style="display:none;"></iframe>
+                </div>
+            </div>
+        </section>
+
+        <!-- Changelog Modal -->
+        <div id="changelogModal" class="modal" onclick="hideChangelog(event)">
+            <div class="modal-content" onclick="event.stopPropagation()">
+                <div class="modal-header">
+                    <h2>What's New in v1.9.13</h2>
+                    <button class="modal-close" onclick="hideChangelog()">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="changelog-section">
+                        <h3>Collapsible Sidebar</h3>
+                        <ul>
+                            <li><strong>Workspace tree view</strong> - See all layouts, subwindows, tabs, and panes in a sidebar</li>
+                            <li><strong>Click to navigate</strong> - Click any item to jump directly to it</li>
+                            <li><strong>Expand/collapse</strong> - Chevrons to expand or collapse sections</li>
+                            <li><strong>⌘⌥S</strong> toggles sidebar visibility</li>
+                            <li>Sidebar state persists across sessions</li>
+                        </ul>
+                    </div>
+                    <div class="changelog-section">
+                        <h3>Double-Click to Rename</h3>
+                        <ul>
+                            <li>Double-click any sidebar item to rename it inline</li>
+                            <li>Works for layouts, subwindows, tabs, and panes</li>
+                        </ul>
+                    </div>
+                    <div class="changelog-section">
+                        <h3>Context Menus Everywhere</h3>
+                        <ul>
+                            <li><strong>Sidebar items</strong> - Right-click for rename, new tab, split, close actions</li>
+                            <li><strong>Section headers</strong> - Right-click LAYOUTS to add new layout, WORKSPACE to add subwindow/tab/split</li>
+                            <li><strong>Terminal panes</strong> - Right-click now includes "Close Pane" option</li>
+                        </ul>
+                    </div>
+                    <div class="changelog-section">
+                        <h3>Working Directory</h3>
+                        <ul>
+                            <li><strong>Per-subwindow directories</strong> - Set a default working directory for each subwindow</li>
+                            <li><strong>New tabs inherit</strong> - New tabs and panes automatically start in that directory</li>
+                            <li><strong>Visual indicator</strong> - Directory path shown below subwindow name</li>
+                            <li>Right-click any subwindow (sidebar or header) to set or clear</li>
+                        </ul>
+                    </div>
+                    <div class="changelog-section">
+                        <h3>Font Size Controls</h3>
+                        <ul>
+                            <li><strong>⌘+</strong> - Increase font size</li>
+                            <li><strong>⌘-</strong> - Decrease font size</li>
+                            <li><strong>⌘0</strong> - Reset to default (13pt)</li>
+                            <li>Also available in View menu</li>
+                            <li>Font size persists across sessions</li>
+                        </ul>
+                    </div>
+                    <div class="changelog-section">
+                        <h3>Per-Pane Color Customization</h3>
+                        <ul>
+                            <li><strong>Background colors</strong> - Right-click any pane to set background color (15 presets + custom picker)</li>
+                            <li><strong>Text colors</strong> - Right-click any pane to set text color (13 presets + custom picker)</li>
+                            <li><strong>Per-pane or global</strong> - Set colors for individual panes or all panes at once</li>
+                            <li>Colors persist across sessions</li>
+                        </ul>
+                    </div>
+                    <div class="changelog-section">
+                        <h3>Other Improvements</h3>
+                        <ul>
+                            <li>Active items highlighted in sidebar with accent color</li>
+                            <li>Collapsed sidebar shows thin strip with expand button</li>
+                            <li>"Check for Updates" now in Beam menu for easy access</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Screenshot Lightbox -->
+        <div id="screenshotLightbox" class="lightbox" onclick="hideLightbox()">
+            <div class="lightbox-content" onclick="event.stopPropagation()">
+                <button class="lightbox-close" onclick="hideLightbox()">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 6L6 18M6 6l12 12"/>
+                    </svg>
+                    Close
+                </button>
+                <img src="beam-screenshot-1.9.8.png" alt="Beam v1.9.13 - Full resolution preview">
+                <p class="lightbox-hint">Click anywhere or press Esc to close</p>
+            </div>
+        </div>
     </main>
+
+    <script>
+        function showThankYou() {
+            document.querySelector('.newsletter-form').style.display = 'none';
+            document.getElementById('thankYou').style.display = 'block';
+        }
+
+        function showChangelog() {
+            document.getElementById('changelogModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function hideChangelog(event) {
+            if (!event || event.target === document.getElementById('changelogModal')) {
+                document.getElementById('changelogModal').classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        }
+
+        // Lightbox functions
+        function showLightbox() {
+            const lightbox = document.getElementById('screenshotLightbox');
+            lightbox.style.display = 'flex';
+            // Trigger reflow for animation
+            lightbox.offsetHeight;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function hideLightbox() {
+            const lightbox = document.getElementById('screenshotLightbox');
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+            setTimeout(() => {
+                if (!lightbox.classList.contains('active')) {
+                    lightbox.style.display = 'none';
+                }
+            }, 300);
+        }
+
+        // Close modals on Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                hideChangelog();
+                hideLightbox();
+            }
+        });
+
+        // Initialize lightbox click handler
+        document.addEventListener('DOMContentLoaded', function() {
+            const heroScreenshot = document.querySelector('.hero-screenshot');
+            if (heroScreenshot) {
+                heroScreenshot.addEventListener('click', showLightbox);
+            }
+        });
+    </script>
 
     <footer>
         <div class="container">
             <p>
-                Built by <a href="https://github.com/faalbane">@faalbane</a> &bull;
-                macOS 13+ required
+                Built by <a href="https://nextuptechnologies.co">NextUp</a> &bull;
+                macOS 13+ required &bull;
+                <a href="mailto:frank@nextuptechnologies.co">Feedback & Bug Reports</a>
             </p>
         </div>
     </footer>
