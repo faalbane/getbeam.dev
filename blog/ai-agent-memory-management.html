@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D0XH8B0RKL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-D0XH8B0RKL');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Agent Memory Management: How to Give Claude Code Persistent Context | Beam</title>
+    <meta name="description" content="AI agents like Claude Code forget everything between sessions. Learn how Beam's memory management system gives every agent persistent project context with one click.">
+    <meta name="keywords" content="AI agent memory, Claude Code memory, persistent context, AI coding workflow, Claude Code context, Beam memory management, AI agent context, project memory">
+    <meta name="author" content="NextUp Technologies">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://getbeam.dev/blog/ai-agent-memory-management.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://getbeam.dev/blog/ai-agent-memory-management.html">
+    <meta property="og:title" content="AI Agent Memory Management: How to Give Claude Code Persistent Context">
+    <meta property="og:description" content="AI agents forget everything between sessions. Here's how Beam fixes that with automatic memory prompts.">
+    <meta property="og:image" content="https://getbeam.dev/memory-menu.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="AI Agent Memory Management: How to Give Claude Code Persistent Context">
+    <meta name="twitter:description" content="AI agents forget everything between sessions. Here's how Beam fixes that with automatic memory prompts.">
+    <meta name="twitter:image" content="https://getbeam.dev/memory-menu.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "AI Agent Memory Management: How to Give Claude Code Persistent Context",
+        "description": "AI agents like Claude Code forget everything between sessions. Learn how Beam's memory management gives every agent persistent project context.",
+        "author": {
+            "@type": "Organization",
+            "name": "NextUp Technologies"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Beam"
+        },
+        "datePublished": "2026-02-10",
+        "keywords": "AI agent memory, Claude Code, persistent context, Beam, memory management"
+    }
+    </script>
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #111113;
+            --bg-tertiary: #1a1a1d;
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.4);
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --border: #27272a;
+            --success: #22c55e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+
+        .container { max-width: 800px; margin: 0 auto; padding: 0 24px; }
+
+        header {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 60px;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1.5rem;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            background: var(--accent);
+            color: white;
+            transition: all 0.2s;
+        }
+
+        .btn:hover { background: #2563eb; transform: translateY(-2px); }
+
+        article { padding-bottom: 80px; }
+
+        .breadcrumb {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+        }
+
+        .breadcrumb a { color: var(--accent); text-decoration: none; }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .meta {
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            font-size: 0.95rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 48px 0 20px;
+            color: var(--text-primary);
+        }
+
+        h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 32px 0 16px;
+            color: var(--text-primary);
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        ul, ol {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            padding-left: 24px;
+        }
+
+        li { margin-bottom: 12px; }
+
+        strong { color: var(--text-primary); }
+
+        .highlight {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 32px 0;
+        }
+
+        .highlight h3 {
+            font-size: 1.1rem;
+            margin: 0 0 12px 0;
+            color: var(--text-primary);
+        }
+
+        .highlight p:last-child, .highlight ul:last-child {
+            margin-bottom: 0;
+        }
+
+        .kbd {
+            display: inline-block;
+            padding: 2px 8px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+        }
+
+        code {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 2px 6px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+        }
+
+        pre {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 20px;
+            overflow-x: auto;
+            margin: 24px 0;
+        }
+
+        pre code {
+            background: none;
+            border: none;
+            padding: 0;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            background: var(--accent);
+            color: white;
+            border-radius: 50%;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-right: 12px;
+        }
+
+        .tip {
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 24px 0;
+        }
+
+        .tip strong {
+            color: var(--success);
+        }
+
+        .blog-screenshot {
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            margin: 32px 0;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .blog-screenshot img {
+            width: 100%;
+            display: block;
+        }
+
+        .blog-screenshot figcaption {
+            padding: 12px 16px;
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border);
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-align: center;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .cta-box h3 { font-size: 1.5rem; margin-bottom: 12px; color: white; }
+        .cta-box p { color: rgba(255,255,255,0.8); margin-bottom: 24px; }
+        .cta-box .btn { background: white; color: var(--accent); }
+
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer a { color: var(--text-secondary); text-decoration: none; }
+
+        .related-articles { margin-top: 60px; padding-top: 40px; border-top: 1px solid var(--border); }
+        .related-articles h2 { font-size: 1.5rem; margin-bottom: 24px; }
+        .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .related-card { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-decoration: none; transition: border-color 0.2s; }
+        .related-card:hover { border-color: var(--accent); }
+        .related-card h4 { color: white; font-size: 1rem; margin: 0 0 8px 0; }
+        .related-card p { color: var(--text-muted); font-size: 0.85rem; margin: 0; }
+        @media (max-width: 600px) { .related-grid { grid-template-columns: 1fr; } h1 { font-size: 1.8rem; } }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="../" class="logo">
+                <div class="logo-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round">
+                        <path d="M4 17l6-6-6-6M12 19h8"/>
+                    </svg>
+                </div>
+                Beam
+            </a>
+            <a href="../" class="btn">Download Beam</a>
+        </div>
+    </header>
+
+    <main class="container">
+        <article>
+            <div class="breadcrumb">
+                <a href="../">Home</a> &rarr; <a href="../#guides">Blog</a> &rarr; AI Agent Memory Management
+            </div>
+
+            <h1>AI Agent Memory Management: How to Give Claude Code Persistent Context</h1>
+            <p class="meta">February 10, 2026 &middot; 6 min read</p>
+
+            <p>Every time you start a new Claude Code session, it has no idea what your project is about. It doesn't know your architecture, your conventions, your build system, or the decisions you made yesterday. You end up repeating yourself, re-explaining your codebase, and losing time on context that should already be there.</p>
+
+            <p>This is the <strong>memory problem</strong> &mdash; and it's the biggest friction point in AI-assisted development today. Beam v2.1.0 solves it.</p>
+
+            <h2>The Problem: AI Amnesia</h2>
+
+            <p>If you use Claude Code, OpenAI Codex, or any terminal-based AI agent, you've felt this pain:</p>
+
+            <ul>
+                <li><strong>Session 1:</strong> You spend 10 minutes explaining your project structure, tech stack, and naming conventions. Claude builds exactly what you want.</li>
+                <li><strong>Session 2:</strong> Claude has no memory of Session 1. You start over. "We're using Swift with SwiftUI, the main files are..."</li>
+                <li><strong>Session 3:</strong> Same thing. Again.</li>
+            </ul>
+
+            <p>The agents themselves support reading files for context &mdash; but there's no automated system to <strong>create, maintain, and inject</strong> that context. Until now.</p>
+
+            <h2>The Solution: Beam Memory Management</h2>
+
+            <p>Beam v2.1.0 introduces <strong>AI Agent Memory Management</strong> &mdash; a system that gives every AI agent session persistent project context with zero manual effort.</p>
+
+            <p>Here's how it works:</p>
+
+            <h3>Step 1: Start an agent from Beam</h3>
+
+            <p>Right-click any terminal pane and select <strong>Start AI Agent</strong>, or use the toolbar button. The moment the agent launches, Beam automatically copies a <strong>memory prompt</strong> to your clipboard.</p>
+
+            <figure class="blog-screenshot">
+                <img src="../memory-select.png" alt="Right-click context menu in Beam showing Paste Memory Prompt option">
+                <figcaption>Right-click any terminal to paste the memory prompt or start an AI agent.</figcaption>
+            </figure>
+
+            <p>A toast notification confirms: <em>"Memory prompt copied! Paste it as your first message."</em></p>
+
+            <h3>Step 2: Paste the prompt</h3>
+
+            <p>When the agent is ready for input, paste the memory prompt with <span class="kbd">&#8984;V</span>. The prompt tells the agent:</p>
+
+            <pre><code>Before starting, read and reference the memory bank at
+~/ProjectName.md for project context, conventions, and
+decisions. Update this file as you make significant changes
+or learn new information about the project.</code></pre>
+
+            <p>That's it. The agent now reads your project memory file and has full context.</p>
+
+            <h3>Step 3: The agent learns and remembers</h3>
+
+            <p>As the agent works, it updates the memory file with new information &mdash; architecture decisions, file paths, conventions, bug fixes, and lessons learned. The next session starts with all of that context baked in.</p>
+
+            <figure class="blog-screenshot">
+                <img src="../memory-example.png" alt="AI agent reading project memory bank showing full project context">
+                <figcaption>The agent reads ~/Beam.md on startup, instantly loading project architecture, build commands, and conventions.</figcaption>
+            </figure>
+
+            <div class="tip">
+                <strong>Key insight:</strong> The memory file lives at <code>~/ProjectName.md</code> on your filesystem. It's a plain Markdown file that both you and the AI agent can read and edit. No proprietary format, no lock-in.
+            </div>
+
+            <h2>The Memory Manager</h2>
+
+            <p>Beam includes a <strong>Memory Manager</strong> (accessible from the toolbar or right-click menu) that lets you view and manage memory files across all your projects.</p>
+
+            <figure class="blog-screenshot">
+                <img src="../memory-menu.png" alt="Beam Memory Prompts manager showing projects and their memory files">
+                <figcaption>The Memory Manager shows all projects with their memory file paths and status indicators.</figcaption>
+            </figure>
+
+            <p>From the Memory Manager, you can:</p>
+
+            <ul>
+                <li><strong>See all projects</strong> and their associated memory files</li>
+                <li><strong>Edit file names</strong> &mdash; customize which memory file each project uses</li>
+                <li><strong>View and edit content</strong> &mdash; open the raw memory file and make changes directly</li>
+                <li><strong>Check status</strong> &mdash; green dot means the file exists, orange means it will be created on first use</li>
+            </ul>
+
+            <figure class="blog-screenshot">
+                <img src="../memory-update.png" alt="Beam memory content editor showing editable markdown">
+                <figcaption>Edit memory file content directly in Beam &mdash; add project notes, conventions, or architecture details.</figcaption>
+            </figure>
+
+            <h2>Why This Matters</h2>
+
+            <p>Memory management isn't just a convenience feature. It fundamentally changes the AI-assisted development experience:</p>
+
+            <div class="highlight">
+                <h3>Without memory</h3>
+                <ul>
+                    <li>Every session starts cold &mdash; no context</li>
+                    <li>You repeat yourself constantly</li>
+                    <li>The agent makes mistakes because it doesn't know your conventions</li>
+                    <li>Context window is wasted on re-explaining basics</li>
+                </ul>
+            </div>
+
+            <div class="highlight">
+                <h3>With Beam memory</h3>
+                <ul>
+                    <li>Every session starts warm &mdash; full project context loaded</li>
+                    <li>The agent knows your architecture, conventions, and past decisions</li>
+                    <li>Context window is used for actual work, not re-orientation</li>
+                    <li>Knowledge accumulates over time &mdash; each session is smarter than the last</li>
+                </ul>
+            </div>
+
+            <h2>How to Get Started</h2>
+
+            <p><span class="step-number">1</span><strong>Download Beam v2.1.0</strong> from <a href="../">getbeam.dev</a></p>
+
+            <p><span class="step-number">2</span><strong>Create a project</strong> &mdash; save your workspace layout with <span class="kbd">&#8984;S</span> and give it a name (e.g., "MyApp")</p>
+
+            <p><span class="step-number">3</span><strong>Start an AI agent</strong> &mdash; right-click any terminal and select an agent from the Start AI Agent submenu</p>
+
+            <p><span class="step-number">4</span><strong>Paste the memory prompt</strong> &mdash; press <span class="kbd">&#8984;V</span> when the agent is ready</p>
+
+            <p><span class="step-number">5</span><strong>Work normally</strong> &mdash; the agent reads your memory file and updates it as it works</p>
+
+            <p>That's it. Every future session with that project will have full context from day one.</p>
+
+            <div class="tip">
+                <strong>Pro tip:</strong> You can also right-click any terminal and select <strong>Paste Memory Prompt</strong> at any time to re-inject context into a running session. Use the Memory Manager (toolbar button) to view and customize memory files for all your projects.
+            </div>
+
+            <h2>The Bigger Picture</h2>
+
+            <p>We believe the terminal is becoming the primary interface for AI-assisted development. Claude Code, Codex, and OpenClaw all run in the terminal. But terminal workflows are still primitive &mdash; no project organization, no persistent context, no visual management.</p>
+
+            <p>Beam is building the workspace layer that these agents need. One-click installs. Project-based organization. And now, persistent memory across sessions.</p>
+
+            <p><strong>Your AI agents should get smarter over time, not start from scratch every session.</strong></p>
+
+            <div class="cta-box">
+                <h3>Give Your AI Agents Memory</h3>
+                <p>Download Beam v2.1.0 and start building with persistent context. Free to try, $10/month for Pro.</p>
+                <a href="../" class="btn">Download Beam Free</a>
+            </div>
+
+            <div class="related-articles">
+                <h2>Related Articles</h2>
+                <div class="related-grid">
+                    <a href="beam-claude-code-setup.html" class="related-card">
+                        <h4>Setting Up Beam for Claude Code</h4>
+                        <p>Complete guide to organizing your Claude Code sessions with Beam.</p>
+                    </a>
+                    <a href="organizing-claude-code-sessions.html" class="related-card">
+                        <h4>Organizing Claude Code Sessions</h4>
+                        <p>Tips for managing multiple Claude Code instances across projects.</p>
+                    </a>
+                    <a href="best-terminal-app-ai-coding-2026.html" class="related-card">
+                        <h4>Best Terminal App for AI Coding in 2026</h4>
+                        <p>Terminal.app, iTerm2, Warp, Ghostty, and Beam compared.</p>
+                    </a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>
+                <a href="../">Beam</a> &middot; Built by <a href="https://nextuptechnologies.co">NextUp Technologies</a>
+            </p>
+        </div>
+    </footer>
+</body>
+</html>

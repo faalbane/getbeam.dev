@@ -1110,6 +1110,226 @@
             color: var(--text-muted);
         }
 
+        /* ── AI MEMORY SECTION ── */
+        .memory-section {
+            padding: 140px 0 120px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .memory-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.6), transparent);
+        }
+
+        .memory-section::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 1200px;
+            height: 1200px;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.05) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .memory-section .container {
+            text-align: center;
+        }
+
+        .memory-problem {
+            max-width: 700px;
+            margin: 0 auto 80px;
+        }
+
+        .memory-problem-text {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.95rem;
+            line-height: 1.8;
+            color: var(--text-muted);
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px 32px;
+            text-align: left;
+            position: relative;
+        }
+
+        .memory-problem-text::before {
+            content: '>';
+            position: absolute;
+            left: 16px;
+            top: 26px;
+            color: var(--text-muted);
+            opacity: 0.4;
+        }
+
+        .memory-problem-text .strike {
+            text-decoration: line-through;
+            opacity: 0.4;
+        }
+
+        .memory-problem-text .fix {
+            color: var(--success);
+        }
+
+        .memory-flow {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            background: var(--border);
+            margin-bottom: 64px;
+        }
+
+        .memory-flow-step {
+            background: var(--bg-secondary);
+            padding: 40px 32px;
+            text-align: left;
+            position: relative;
+        }
+
+        .memory-flow-step:hover {
+            background: var(--bg-tertiary);
+        }
+
+        .memory-flow-num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: rgba(139, 92, 246, 0.12);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            color: #a78bfa;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .memory-flow-step h3 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .memory-flow-step p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .memory-flow-step .memory-flow-kbd {
+            display: inline-block;
+            margin-top: 12px;
+            padding: 4px 12px;
+            background: rgba(139, 92, 246, 0.08);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            border-radius: 6px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            color: #a78bfa;
+        }
+
+        .memory-showcase {
+            display: grid;
+            grid-template-columns: 1.4fr 1fr;
+            gap: 24px;
+            align-items: start;
+        }
+
+        .memory-showcase-main {
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            position: relative;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s;
+        }
+
+        .memory-showcase-main:hover {
+            transform: translateY(-4px);
+            border-color: rgba(139, 92, 246, 0.3);
+        }
+
+        .memory-showcase-main img {
+            width: 100%;
+            display: block;
+        }
+
+        .memory-showcase-main .memory-showcase-caption {
+            padding: 16px 20px;
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border);
+        }
+
+        .memory-showcase-caption h4 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+
+        .memory-showcase-caption p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .memory-showcase-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .memory-showcase-card {
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            background: var(--bg-secondary);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s;
+        }
+
+        .memory-showcase-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(139, 92, 246, 0.3);
+        }
+
+        .memory-showcase-card img {
+            width: 100%;
+            display: block;
+        }
+
+        .memory-showcase-card .memory-showcase-caption {
+            padding: 14px 18px;
+            border-top: 1px solid var(--border);
+        }
+
+        .memory-showcase-card .memory-showcase-caption h4 {
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+
+        .memory-showcase-card .memory-showcase-caption p {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+        }
+
+        @media (max-width: 768px) {
+            .memory-section { padding: 80px 0 60px; }
+            .memory-flow { grid-template-columns: 1fr; }
+            .memory-showcase { grid-template-columns: 1fr; }
+            .memory-problem-text { font-size: 0.85rem; padding: 20px 24px; }
+        }
+
         /* ── MANIFESTO BANNER ── */
         .manifesto {
             padding: 100px 0;
@@ -2398,7 +2618,7 @@
                 <a href="#features">Features</a>
                 <a href="#guides">Guides</a>
                 <a href="#pricing">Pricing</a>
-                <a href="Beam-v2.0.0.dmg" onclick="trackDownload()" class="btn btn-primary">Download</a>
+                <a href="Beam-v2.1.0.dmg" onclick="trackDownload()" class="btn btn-primary">Download</a>
             </nav>
         </div>
     </header>
@@ -2409,14 +2629,14 @@
                 <div class="hero-content">
                     <div class="badge">
                         <span class="badge-dot"></span>
-                        v2.0.0 now available
+                        v2.1.0 — AI Memory Management
                     </div>
-                    <h1>1-Click AI Agent Installs.<br><span>Just right-click and go.</span></h1>
+                    <h1>1-Click AI Agents.<br><span>Memory that persists.</span></h1>
                     <p class="hero-subtitle">
-                        Start Claude Code, OpenAI Codex, and OpenClaw without touching the command line. Beam handles installation, organizes your sessions into subwindows, and saves your layouts.
+                        Start Claude Code, OpenAI Codex, and OpenClaw without touching the command line. Beam handles installation, organizes your sessions into projects, and gives every AI agent persistent memory across sessions.
                     </p>
                     <div class="hero-buttons">
-                        <a href="Beam-v2.0.0.dmg" onclick="trackDownload()" class="btn btn-primary">
+                        <a href="Beam-v2.1.0.dmg" onclick="trackDownload()" class="btn btn-primary">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
                             </svg>
@@ -2490,6 +2710,79 @@
                             <p>Compare outputs across agents.</p>
                         </div>
                     </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ AI MEMORY MANAGEMENT ═══ -->
+        <section class="memory-section" id="memory">
+            <div class="container">
+                <div class="reveal">
+                    <span class="section-eyebrow">AI Memory</span>
+                    <h2 class="section-heading">Your agents forget everything.<br>Beam fixes that.</h2>
+                    <p class="section-subtitle center" style="margin: 0 auto;">Every time you start Claude Code or Codex, it starts from scratch. No context, no history, no idea what your project is about. Beam gives every AI agent persistent memory across sessions.</p>
+                </div>
+
+                <div class="memory-problem reveal reveal-delay-1">
+                    <div class="memory-problem-text">
+                        <span class="strike">"Wait, what framework are we using again?"</span><br>
+                        <span class="strike">"I don't have context on your project architecture..."</span><br>
+                        <span class="fix">~/Beam.md loaded. I'm up to speed on the project context.</span>
+                    </div>
+                </div>
+
+                <div class="memory-flow reveal reveal-delay-2">
+                    <div class="memory-flow-step">
+                        <div class="memory-flow-num">1</div>
+                        <h3>Start any agent</h3>
+                        <p>Right-click and launch Claude Code, Codex, or OpenClaw. Beam automatically copies a memory prompt to your clipboard.</p>
+                        <span class="memory-flow-kbd">Right-click &rarr; Start AI Agent</span>
+                    </div>
+                    <div class="memory-flow-step">
+                        <div class="memory-flow-num">2</div>
+                        <h3>Paste the prompt</h3>
+                        <p>Paste it as the agent's first message. It tells the agent to read your project memory file at <code style="color:var(--accent);font-family:'JetBrains Mono',monospace;font-size:0.85rem;">~/ProjectName.md</code></p>
+                        <span class="memory-flow-kbd">⌘V to paste</span>
+                    </div>
+                    <div class="memory-flow-step">
+                        <div class="memory-flow-num">3</div>
+                        <h3>Full context, instantly</h3>
+                        <p>The agent reads your architecture, conventions, key files, and past decisions. It updates the memory as it works, so the next session is even smarter.</p>
+                        <span class="memory-flow-kbd">Persistent across sessions</span>
+                    </div>
+                </div>
+
+                <div class="memory-showcase reveal reveal-delay-3">
+                    <div class="memory-showcase-main">
+                        <img src="memory-example.png" alt="AI agent reading project memory bank in Beam">
+                        <div class="memory-showcase-caption">
+                            <h4>Agent reads project memory on startup</h4>
+                            <p>Architecture, conventions, build commands — all loaded automatically.</p>
+                        </div>
+                    </div>
+                    <div class="memory-showcase-stack">
+                        <div class="memory-showcase-card">
+                            <img src="memory-menu.png" alt="Memory Prompts manager in Beam">
+                            <div class="memory-showcase-caption">
+                                <h4>Memory Manager</h4>
+                                <p>View and edit memory files for all projects.</p>
+                            </div>
+                        </div>
+                        <div class="memory-showcase-card">
+                            <img src="memory-select.png" alt="Right-click Paste Memory Prompt in Beam">
+                            <div class="memory-showcase-caption">
+                                <h4>One-click memory paste</h4>
+                                <p>Right-click any terminal to paste the memory prompt.</p>
+                            </div>
+                        </div>
+                        <div class="memory-showcase-card">
+                            <img src="memory-update.png" alt="Editable memory content in Beam">
+                            <div class="memory-showcase-caption">
+                                <h4>Edit memory inline</h4>
+                                <p>View and edit the raw memory file directly in Beam.</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -2839,7 +3132,7 @@
                             <li><span class="check-icon">✓</span> Search & jump to anything</li>
                             <li><span class="check-icon">✓</span> All keyboard shortcuts</li>
                         </ul>
-                        <a href="Beam-v2.0.0.dmg" onclick="trackDownload()" class="btn btn-secondary">Download Free</a>
+                        <a href="Beam-v2.1.0.dmg" onclick="trackDownload()" class="btn btn-secondary">Download Free</a>
                     </div>
                     <div class="pricing-tier pro">
                         <div class="pricing-tier-badge">Beam Pro</div>
@@ -2851,6 +3144,7 @@
                             <li><span class="check-icon">✓</span> <strong>Side-by-side views</strong> in any tab</li>
                             <li><span class="check-icon">✓</span> <strong>1-click AI agents</strong> (Claude, Codex, OpenClaw)</li>
                             <li><span class="check-icon">✓</span> <strong>Ready-made templates</strong> to start instantly</li>
+                            <li><span class="check-icon">✓</span> <strong>AI memory management</strong> across sessions</li>
                             <li><span class="check-icon">✓</span> Unlimited tabs</li>
                             <li><span class="check-icon">✓</span> Search & jump to anything</li>
                             <li><span class="check-icon">✓</span> Support indie development</li>
@@ -2902,14 +3196,14 @@
                 </div>
 
                 <!-- Featured article -->
-                <a href="blog/terminal-is-the-new-ide.html" class="editorial-featured reveal reveal-delay-1">
+                <a href="blog/ai-agent-memory-management.html" class="editorial-featured reveal reveal-delay-1">
                     <div class="editorial-featured-visual">
-                        <div class="blog-icon-large">💡</div>
+                        <div class="blog-icon-large">🧠</div>
                     </div>
                     <div class="editorial-featured-body">
-                        <div class="editorial-tag">Thought Leadership</div>
-                        <h3>Why Your Terminal is the New IDE</h3>
-                        <p>AI coding tools like Claude Code, Cursor, and Codex are changing everything. When AI writes your code, the traditional IDE becomes optional — and your terminal becomes your workspace.</p>
+                        <div class="editorial-tag">New in v2.1.0</div>
+                        <h3>AI Agent Memory Management: Persistent Context for Every Session</h3>
+                        <p>AI agents forget everything between sessions. Beam v2.1.0 gives every agent persistent project memory &mdash; architecture, conventions, and decisions loaded automatically on startup.</p>
                     </div>
                 </a>
 
