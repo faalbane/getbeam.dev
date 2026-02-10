@@ -1145,7 +1145,7 @@
 
         .memory-problem {
             max-width: 700px;
-            margin: 0 auto 80px;
+            margin: 48px auto 80px;
         }
 
         .memory-problem-text {
@@ -1243,32 +1243,31 @@
 
         .memory-showcase {
             display: grid;
-            grid-template-columns: 1.4fr 1fr;
+            grid-template-columns: 1fr 1fr;
             gap: 24px;
-            align-items: start;
         }
 
-        .memory-showcase-main {
+        .memory-showcase-card {
             border-radius: 16px;
             overflow: hidden;
             border: 1px solid var(--border);
-            position: relative;
-            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s;
+            background: var(--bg-secondary);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s, box-shadow 0.4s;
         }
 
-        .memory-showcase-main:hover {
-            transform: translateY(-4px);
+        .memory-showcase-card:hover {
+            transform: translateY(-6px);
             border-color: rgba(139, 92, 246, 0.3);
+            box-shadow: 0 24px 60px -12px rgba(0, 0, 0, 0.6);
         }
 
-        .memory-showcase-main img {
+        .memory-showcase-card img {
             width: 100%;
             display: block;
         }
 
-        .memory-showcase-main .memory-showcase-caption {
+        .memory-showcase-caption {
             padding: 16px 20px;
-            background: var(--bg-secondary);
             border-top: 1px solid var(--border);
         }
 
@@ -1283,51 +1282,188 @@
             color: var(--text-muted);
         }
 
-        .memory-showcase-stack {
-            display: flex;
-            flex-direction: column;
-            gap: 24px;
-        }
-
-        .memory-showcase-card {
-            border-radius: 16px;
-            overflow: hidden;
-            border: 1px solid var(--border);
-            background: var(--bg-secondary);
-            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s;
-        }
-
-        .memory-showcase-card:hover {
-            transform: translateY(-4px);
-            border-color: rgba(139, 92, 246, 0.3);
-        }
-
-        .memory-showcase-card img {
-            width: 100%;
-            display: block;
-        }
-
-        .memory-showcase-card .memory-showcase-caption {
-            padding: 14px 18px;
-            border-top: 1px solid var(--border);
-        }
-
-        .memory-showcase-card .memory-showcase-caption h4 {
-            font-size: 0.9rem;
-            font-weight: 600;
-            margin-bottom: 2px;
-        }
-
-        .memory-showcase-card .memory-showcase-caption p {
-            font-size: 0.78rem;
-            color: var(--text-muted);
-        }
-
         @media (max-width: 768px) {
             .memory-section { padding: 80px 0 60px; }
             .memory-flow { grid-template-columns: 1fr; }
             .memory-showcase { grid-template-columns: 1fr; }
             .memory-problem-text { font-size: 0.85rem; padding: 20px 24px; }
+        }
+
+        /* ── INTEROPERABLE MEMORY ── */
+        .interop-section {
+            padding: 140px 0 120px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .interop-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(34, 197, 94, 0.5), transparent);
+        }
+
+        .interop-section .container {
+            text-align: center;
+        }
+
+        .interop-hub {
+            max-width: 700px;
+            margin: 64px auto;
+            position: relative;
+        }
+
+        .interop-file {
+            width: 200px;
+            margin: 0 auto;
+            padding: 20px 24px;
+            background: var(--bg-secondary);
+            border: 2px solid var(--success);
+            border-radius: 12px;
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 0 40px rgba(34, 197, 94, 0.15);
+        }
+
+        .interop-file-icon {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--success);
+            margin-bottom: 4px;
+        }
+
+        .interop-file-name {
+            font-weight: 700;
+            font-size: 1.05rem;
+        }
+
+        .interop-file-desc {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        .interop-spokes {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 48px;
+            position: relative;
+        }
+
+        .interop-spokes::before {
+            content: '';
+            position: absolute;
+            top: -24px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            height: 1px;
+            background: linear-gradient(90deg, rgba(217, 119, 6, 0.4), rgba(34, 197, 94, 0.4), rgba(244, 63, 94, 0.4));
+        }
+
+        .interop-agent {
+            flex: 1;
+            text-align: center;
+            position: relative;
+        }
+
+        .interop-agent::before {
+            content: '';
+            position: absolute;
+            top: -24px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 1px;
+            height: 24px;
+            background: var(--border);
+        }
+
+        .interop-agent-dot {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 12px;
+            border: 1px solid var(--border);
+        }
+
+        .interop-agent-dot.claude {
+            background: rgba(217, 119, 6, 0.1);
+            border-color: rgba(217, 119, 6, 0.3);
+        }
+
+        .interop-agent-dot.codex {
+            background: rgba(16, 163, 127, 0.1);
+            border-color: rgba(16, 163, 127, 0.3);
+        }
+
+        .interop-agent-dot.openclaw {
+            background: rgba(244, 63, 94, 0.1);
+            border-color: rgba(244, 63, 94, 0.3);
+        }
+
+        .interop-agent-name {
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 4px;
+        }
+
+        .interop-agent-action {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .interop-benefits {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            background: var(--border);
+            margin-top: 64px;
+        }
+
+        .interop-benefit {
+            background: var(--bg-secondary);
+            padding: 36px 28px;
+            text-align: left;
+            transition: background 0.3s;
+        }
+
+        .interop-benefit:hover {
+            background: var(--bg-tertiary);
+        }
+
+        .interop-benefit-icon {
+            font-size: 1.4rem;
+            margin-bottom: 16px;
+        }
+
+        .interop-benefit h3 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .interop-benefit p {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .interop-section { padding: 80px 0 60px; }
+            .interop-benefits { grid-template-columns: 1fr; }
+            .interop-spokes { flex-direction: column; gap: 24px; }
+            .interop-spokes::before { display: none; }
+            .interop-agent::before { display: none; }
         }
 
         /* ── MANIFESTO BANNER ── */
@@ -2753,35 +2889,94 @@
                 </div>
 
                 <div class="memory-showcase reveal reveal-delay-3">
-                    <div class="memory-showcase-main">
+                    <div class="memory-showcase-card">
                         <img src="memory-example.png" alt="AI agent reading project memory bank in Beam">
                         <div class="memory-showcase-caption">
                             <h4>Agent reads project memory on startup</h4>
                             <p>Architecture, conventions, build commands — all loaded automatically.</p>
                         </div>
                     </div>
-                    <div class="memory-showcase-stack">
-                        <div class="memory-showcase-card">
-                            <img src="memory-menu.png" alt="Memory Prompts manager in Beam">
-                            <div class="memory-showcase-caption">
-                                <h4>Memory Manager</h4>
-                                <p>View and edit memory files for all projects.</p>
-                            </div>
+                    <div class="memory-showcase-card">
+                        <img src="memory-menu.png" alt="Memory Prompts manager in Beam">
+                        <div class="memory-showcase-caption">
+                            <h4>Memory Manager</h4>
+                            <p>View and edit memory files for all projects.</p>
                         </div>
-                        <div class="memory-showcase-card">
-                            <img src="memory-select.png" alt="Right-click Paste Memory Prompt in Beam">
-                            <div class="memory-showcase-caption">
-                                <h4>One-click memory paste</h4>
-                                <p>Right-click any terminal to paste the memory prompt.</p>
-                            </div>
+                    </div>
+                    <div class="memory-showcase-card">
+                        <img src="memory-select.png" alt="Right-click Paste Memory Prompt in Beam">
+                        <div class="memory-showcase-caption">
+                            <h4>One-click memory paste</h4>
+                            <p>Right-click any terminal to paste the memory prompt.</p>
                         </div>
-                        <div class="memory-showcase-card">
-                            <img src="memory-update.png" alt="Editable memory content in Beam">
-                            <div class="memory-showcase-caption">
-                                <h4>Edit memory inline</h4>
-                                <p>View and edit the raw memory file directly in Beam.</p>
-                            </div>
+                    </div>
+                    <div class="memory-showcase-card">
+                        <img src="memory-update.png" alt="Editable memory content in Beam">
+                        <div class="memory-showcase-caption">
+                            <h4>Edit memory inline</h4>
+                            <p>View and edit the raw memory file directly in Beam.</p>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ INTEROPERABLE MEMORY ═══ -->
+        <section class="interop-section">
+            <div class="container">
+                <div class="reveal">
+                    <span class="section-eyebrow">Interoperable Memory</span>
+                    <h2 class="section-heading">One memory file.<br>Every agent.</h2>
+                    <p class="section-subtitle center" style="margin: 0 auto;">Beam stores memory as plain Markdown on your filesystem. Claude Code, Codex, and OpenClaw all read and write the same file. Switch agents mid-project without losing context.</p>
+                </div>
+
+                <div class="interop-hub reveal reveal-delay-1">
+                    <div class="interop-file">
+                        <div class="interop-file-icon">~/</div>
+                        <div class="interop-file-name">ProjectName.md</div>
+                        <div class="interop-file-desc">Plain Markdown on disk</div>
+                    </div>
+
+                    <div class="interop-spokes">
+                        <div class="interop-agent">
+                            <div class="interop-agent-dot claude">
+                                <svg viewBox="0 0 24 24" fill="none" width="24" height="24"><path d="M12 2L2 7v10l10 5 10-5V7L12 2z" fill="#D97706"/></svg>
+                            </div>
+                            <div class="interop-agent-name">Claude Code</div>
+                            <div class="interop-agent-action">reads &amp; writes</div>
+                        </div>
+                        <div class="interop-agent">
+                            <div class="interop-agent-dot codex">
+                                <svg viewBox="0 0 24 24" fill="none" width="24" height="24"><path d="M12 2L2 7v10l10 5 10-5V7L12 2z" fill="#10A37F"/></svg>
+                            </div>
+                            <div class="interop-agent-name">OpenAI Codex</div>
+                            <div class="interop-agent-action">reads &amp; writes</div>
+                        </div>
+                        <div class="interop-agent">
+                            <div class="interop-agent-dot openclaw">
+                                <svg viewBox="0 0 24 24" fill="none" width="24" height="24"><path d="M12 2L2 7v10l10 5 10-5V7L12 2z" fill="#F43F5E"/></svg>
+                            </div>
+                            <div class="interop-agent-name">OpenClaw</div>
+                            <div class="interop-agent-action">reads &amp; writes</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="interop-benefits reveal reveal-delay-2">
+                    <div class="interop-benefit">
+                        <div class="interop-benefit-icon">🔄</div>
+                        <h3>Switch agents freely</h3>
+                        <p>Start with Claude Code, finish with Codex. The memory file carries all context forward regardless of which agent you use.</p>
+                    </div>
+                    <div class="interop-benefit">
+                        <div class="interop-benefit-icon">📂</div>
+                        <h3>Just a file on disk</h3>
+                        <p>No cloud sync, no proprietary format, no vendor lock-in. It's a Markdown file in your home directory that you own and control.</p>
+                    </div>
+                    <div class="interop-benefit">
+                        <div class="interop-benefit-icon">🧱</div>
+                        <h3>Stable &amp; portable</h3>
+                        <p>Works offline. Survives app updates. Copy it to a new machine, share it with teammates, or version it in git.</p>
                     </div>
                 </div>
             </div>
@@ -3221,16 +3416,22 @@
                         <p>One subwindow per project. Frontend Claude Code in one place, backend in another. Save and restore instantly.</p>
                         <div class="editorial-card-tags"><span>Claude Code</span><span>Productivity</span></div>
                     </a>
+                    <a href="blog/interoperable-ai-agent-memory.html" class="editorial-card">
+                        <div class="editorial-icon">🔄</div>
+                        <h3>Interoperable Memory Across AI Agents</h3>
+                        <p>One Markdown file. Every agent reads and writes it. Switch between Claude Code, Codex, and OpenClaw without losing context.</p>
+                        <div class="editorial-card-tags"><span>Memory</span><span>Multi-Agent</span></div>
+                    </a>
+                </div>
+
+                <!-- Article grid — row 2 -->
+                <div class="editorial-grid reveal reveal-delay-3" style="margin-bottom:20px;">
                     <a href="blog/vibe-coding-setup.html" class="editorial-card">
                         <div class="editorial-icon">🎨</div>
                         <h3>The Perfect Vibe Coding Setup</h3>
                         <p>Stay in the zone. Split panes for dev server + AI agent. Quick switcher means you never break flow.</p>
                         <div class="editorial-card-tags"><span>Vibe Coding</span><span>Flow State</span></div>
                     </a>
-                </div>
-
-                <!-- Article grid — row 2 -->
-                <div class="editorial-grid reveal reveal-delay-3" style="margin-bottom:20px;">
                     <a href="blog/how-to-rename-terminal-windows-macos.html" class="editorial-card">
                         <div class="editorial-icon">✏️</div>
                         <h3>How to Rename Terminal Windows on macOS</h3>

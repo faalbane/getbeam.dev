@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D0XH8B0RKL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-D0XH8B0RKL');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interoperable Memory Across AI Agents: One File, Every Agent | Beam</title>
+    <meta name="description" content="AI agents like Claude Code, OpenAI Codex, and OpenClaw each have their own memory systems. Beam unifies them with one plain Markdown file on disk that any agent can read and write.">
+    <meta name="keywords" content="AI agent memory, interoperable memory, Claude Code memory, OpenAI Codex memory, persistent context, AI agent context sharing, Beam memory management, cross-agent memory, AI coding workflow">
+    <meta name="author" content="NextUp Technologies">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://getbeam.dev/blog/interoperable-ai-agent-memory.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://getbeam.dev/blog/interoperable-ai-agent-memory.html">
+    <meta property="og:title" content="Interoperable Memory Across AI Agents: One File, Every Agent">
+    <meta property="og:description" content="AI agents each have their own memory systems. Beam unifies them with one plain Markdown file that any agent can read and write.">
+    <meta property="og:image" content="https://getbeam.dev/memory-menu.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Interoperable Memory Across AI Agents: One File, Every Agent">
+    <meta name="twitter:description" content="AI agents each have their own memory systems. Beam unifies them with one plain Markdown file that any agent can read and write.">
+    <meta name="twitter:image" content="https://getbeam.dev/memory-menu.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Interoperable Memory Across AI Agents: One File, Every Agent",
+        "description": "AI agents like Claude Code, OpenAI Codex, and OpenClaw each have their own memory systems. Beam unifies them with one plain Markdown file on disk.",
+        "author": {
+            "@type": "Organization",
+            "name": "NextUp Technologies"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Beam"
+        },
+        "datePublished": "2026-02-10",
+        "keywords": "AI agent memory, interoperable, Claude Code, OpenAI Codex, OpenClaw, persistent context"
+    }
+    </script>
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #111113;
+            --bg-tertiary: #1a1a1d;
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.4);
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --border: #27272a;
+            --success: #22c55e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+
+        .container { max-width: 800px; margin: 0 auto; padding: 0 24px; }
+
+        header {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 60px;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1.5rem;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            background: var(--accent);
+            color: white;
+            transition: all 0.2s;
+        }
+
+        .btn:hover { background: #2563eb; transform: translateY(-2px); }
+
+        article { padding-bottom: 80px; }
+
+        .breadcrumb {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+        }
+
+        .breadcrumb a { color: var(--accent); text-decoration: none; }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .meta {
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            font-size: 0.95rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 48px 0 20px;
+            color: var(--text-primary);
+        }
+
+        h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 32px 0 16px;
+            color: var(--text-primary);
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        ul, ol {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            padding-left: 24px;
+        }
+
+        li { margin-bottom: 12px; }
+
+        strong { color: var(--text-primary); }
+
+        a { color: var(--accent); }
+
+        .highlight {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 32px 0;
+        }
+
+        .highlight h3 {
+            font-size: 1.1rem;
+            margin: 0 0 12px 0;
+            color: var(--text-primary);
+        }
+
+        .highlight p:last-child, .highlight ul:last-child {
+            margin-bottom: 0;
+        }
+
+        code {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 2px 6px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+        }
+
+        pre {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 20px;
+            overflow-x: auto;
+            margin: 24px 0;
+        }
+
+        pre code {
+            background: none;
+            border: none;
+            padding: 0;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .tip {
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 24px 0;
+        }
+
+        .tip strong {
+            color: var(--success);
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            margin: 32px 0;
+        }
+
+        .comparison-table thead {
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .comparison-table th {
+            padding: 14px 20px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-muted);
+            border-bottom: 1px solid var(--border);
+            text-align: left;
+        }
+
+        .comparison-table td {
+            padding: 14px 20px;
+            font-size: 0.95rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            color: var(--text-secondary);
+            background: var(--bg-secondary);
+        }
+
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .comparison-table .beam-row {
+            background: rgba(34, 197, 94, 0.06);
+        }
+
+        .comparison-table .beam-row td {
+            color: var(--text-primary);
+            font-weight: 600;
+            background: rgba(34, 197, 94, 0.06);
+        }
+
+        .blog-screenshot {
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            margin: 32px 0;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .blog-screenshot img {
+            width: 100%;
+            display: block;
+        }
+
+        .blog-screenshot figcaption {
+            padding: 12px 16px;
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border);
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-align: center;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .cta-box h3 { font-size: 1.5rem; margin-bottom: 12px; color: white; }
+        .cta-box p { color: rgba(255,255,255,0.8); margin-bottom: 24px; }
+        .cta-box .btn { background: white; color: var(--accent); }
+
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer a { color: var(--text-secondary); text-decoration: none; }
+
+        .related-articles { margin-top: 60px; padding-top: 40px; border-top: 1px solid var(--border); }
+        .related-articles h2 { font-size: 1.5rem; margin-bottom: 24px; }
+        .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .related-card { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-decoration: none; transition: border-color 0.2s; }
+        .related-card:hover { border-color: var(--accent); }
+        .related-card h4 { color: white; font-size: 1rem; margin: 0 0 8px 0; }
+        .related-card p { color: var(--text-muted); font-size: 0.85rem; margin: 0; }
+        @media (max-width: 600px) { .related-grid { grid-template-columns: 1fr; } h1 { font-size: 1.8rem; } }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="../" class="logo">
+                <div class="logo-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round">
+                        <path d="M4 17l6-6-6-6M12 19h8"/>
+                    </svg>
+                </div>
+                Beam
+            </a>
+            <a href="../" class="btn">Download Beam</a>
+        </div>
+    </header>
+
+    <main class="container">
+        <article>
+            <div class="breadcrumb">
+                <a href="../">Home</a> &rarr; <a href="../#guides">Blog</a> &rarr; Interoperable AI Agent Memory
+            </div>
+
+            <h1>Interoperable Memory Persistent Across Varieties of AI Agents</h1>
+            <p class="meta">February 10, 2026 &middot; 7 min read</p>
+
+            <p>You use Claude Code for complex refactors. OpenAI Codex for quick edits. Maybe OpenClaw for experimentation. Each agent has its strengths &mdash; but they all share the same fatal flaw: <strong>none of them remember what the others did.</strong></p>
+
+            <p>Every time you switch agents, you start from zero. The architecture your Claude Code session documented? Gone when Codex starts. The conventions Codex established? Invisible to OpenClaw. You end up as the human bridge between agents that can't talk to each other.</p>
+
+            <p>Beam v2.1.0 fixes this with <strong>interoperable memory</strong> &mdash; a single Markdown file on disk that every agent reads and writes.</p>
+
+            <h2>The Fragmentation Problem</h2>
+
+            <p>Today's AI coding agents each have their own approach to memory:</p>
+
+            <ul>
+                <li><strong>Claude Code</strong> uses <code>CLAUDE.md</code> files and a <code>.claude/</code> directory for project-specific memory</li>
+                <li><strong>OpenAI Codex</strong> relies on the conversation context window &mdash; no persistent memory between sessions</li>
+                <li><strong>OpenClaw</strong> has no built-in memory system at all</li>
+            </ul>
+
+            <p>Even within agents that do support memory, the format is proprietary. Claude Code's memory files aren't designed for Codex to read. There's no standard, no interoperability, and no way to share context across agents.</p>
+
+            <p>This means if you use multiple agents &mdash; which most serious developers do &mdash; you're maintaining separate mental models for each one. Or worse, you're re-explaining your project architecture every single session.</p>
+
+            <h2>Beam's Approach: One File, Any Agent</h2>
+
+            <p>Beam takes a radically simple approach: <strong>store project memory as a plain Markdown file at <code>~/ProjectName.md</code></strong>.</p>
+
+            <p>That's it. No database. No cloud sync. No proprietary format. Just a <code>.md</code> file in your home directory.</p>
+
+            <p>When you start any AI agent from Beam, it copies a memory prompt to your clipboard. You paste it as the agent's first message, and the prompt tells the agent:</p>
+
+            <pre><code>Before starting, read and reference the memory bank at
+~/ProjectName.md for project context, conventions, and
+decisions. Update this file as you make significant changes
+or learn new information about the project.</code></pre>
+
+            <p>Because every agent can read files and write to disk, this works universally. Claude Code reads the file. Codex reads the file. OpenClaw reads the file. <strong>They all write back to the same file.</strong></p>
+
+            <figure class="blog-screenshot">
+                <img src="../memory-menu.png" alt="Beam Memory Manager showing projects with memory files">
+                <figcaption>The Memory Manager shows all projects and their shared memory files.</figcaption>
+            </figure>
+
+            <h2>How It Works in Practice</h2>
+
+            <h3>Day 1: Start with Claude Code</h3>
+
+            <p>You create a new project called "MyApp" in Beam. Right-click, start Claude Code. Beam copies the memory prompt. You paste it.</p>
+
+            <p>Claude Code reads <code>~/MyApp.md</code> (which is empty or has a template). As you work, Claude documents your architecture, tech stack, key files, build commands, and design decisions in the file.</p>
+
+            <p>At the end of the session, <code>~/MyApp.md</code> might contain:</p>
+
+            <pre><code># MyApp
+
+## Architecture
+- Next.js 15 with App Router
+- PostgreSQL via Prisma ORM
+- Tailwind CSS for styling
+
+## Key Files
+- src/app/layout.tsx - Root layout
+- src/lib/db.ts - Database connection
+- prisma/schema.prisma - Data model
+
+## Conventions
+- Use server components by default
+- API routes in src/app/api/
+- Environment variables in .env.local
+
+## Decisions
+- Chose Prisma over Drizzle for type safety
+- Using shadcn/ui component library</code></pre>
+
+            <h3>Day 2: Switch to OpenAI Codex</h3>
+
+            <p>Next day, you want to use Codex for some quick API work. Right-click, start Codex. Paste the memory prompt.</p>
+
+            <p>Codex reads <code>~/MyApp.md</code> and <strong>immediately knows</strong> your tech stack, file structure, and conventions &mdash; all context that Claude Code wrote yesterday. No re-explanation needed.</p>
+
+            <p>Codex adds a new API endpoint, and updates the memory file with what it built:</p>
+
+            <pre><code>## API Endpoints
+- POST /api/users - Create user (added Feb 10)
+- GET /api/users/:id - Get user by ID (added Feb 10)</code></pre>
+
+            <h3>Day 3: Back to Claude Code</h3>
+
+            <p>When you return to Claude Code, it reads the updated <code>~/MyApp.md</code> and sees everything &mdash; including the API endpoints that Codex created. Full continuity. Zero effort.</p>
+
+            <h2>Why Plain Markdown?</h2>
+
+            <p>We chose Markdown deliberately. Here's why:</p>
+
+            <div class="highlight">
+                <h3>Universal readability</h3>
+                <p>Every AI agent can read and write Markdown. It's the lingua franca of LLMs. No special parsing needed.</p>
+            </div>
+
+            <div class="highlight">
+                <h3>Human-editable</h3>
+                <p>You can open <code>~/ProjectName.md</code> in any text editor and read it, modify it, or add notes. It's not a binary blob or a database &mdash; it's a file you own.</p>
+            </div>
+
+            <div class="highlight">
+                <h3>Git-friendly</h3>
+                <p>Want to version your project memory? <code>git add ~/MyApp.md</code>. Want to share it with your team? Push it to the repo. Markdown diffs are clean and readable.</p>
+            </div>
+
+            <div class="highlight">
+                <h3>Offline &amp; stable</h3>
+                <p>No internet connection needed. No API calls. No server downtime. The file is on your disk and available instantly, every time.</p>
+            </div>
+
+            <h2>Compared to Other Approaches</h2>
+
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Approach</th>
+                        <th>Cross-Agent</th>
+                        <th>Persistent</th>
+                        <th>Editable</th>
+                        <th>Offline</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Claude CLAUDE.md</td>
+                        <td>No</td>
+                        <td>Yes</td>
+                        <td>Yes</td>
+                        <td>Yes</td>
+                    </tr>
+                    <tr>
+                        <td>Codex context window</td>
+                        <td>No</td>
+                        <td>No</td>
+                        <td>No</td>
+                        <td>N/A</td>
+                    </tr>
+                    <tr>
+                        <td>Custom system prompts</td>
+                        <td>Manual</td>
+                        <td>Sort of</td>
+                        <td>Yes</td>
+                        <td>Yes</td>
+                    </tr>
+                    <tr class="beam-row">
+                        <td>Beam memory file</td>
+                        <td>Yes</td>
+                        <td>Yes</td>
+                        <td>Yes</td>
+                        <td>Yes</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p>The key differentiator is <strong>cross-agent interoperability</strong>. No other approach gives you a single source of truth that every agent can use. Beam's memory files are the first system designed for a multi-agent workflow.</p>
+
+            <h2>Managing Memory in Beam</h2>
+
+            <p>Beam doesn't just create the files &mdash; it gives you tools to manage them:</p>
+
+            <ul>
+                <li><strong>Memory Manager</strong> (toolbar button or right-click &rarr; Manage Memory Prompts) shows all projects and their memory files</li>
+                <li><strong>Custom file names</strong> &mdash; use different memory files for different contexts within the same project</li>
+                <li><strong>Inline editor</strong> &mdash; view and edit the raw memory content directly in Beam, no need to open a separate editor</li>
+                <li><strong>Status indicators</strong> &mdash; green dot means the file exists and has content, orange means it will be created on first use</li>
+            </ul>
+
+            <figure class="blog-screenshot">
+                <img src="../memory-update.png" alt="Beam inline memory editor">
+                <figcaption>Edit memory content directly in Beam with the inline editor.</figcaption>
+            </figure>
+
+            <div class="tip">
+                <strong>Pro tip:</strong> Seed your memory file before starting an agent. Add your project's architecture, conventions, and key files. The more context you provide upfront, the better every agent will perform from the first message.
+            </div>
+
+            <h2>The Future: Memory as Infrastructure</h2>
+
+            <p>We think about memory as <strong>infrastructure</strong>, not a feature. Just like your filesystem, your git history, and your environment variables, project memory should be a stable, persistent layer that all tools can access.</p>
+
+            <p>Today, Beam provides this for AI coding agents. But the same pattern applies to any tool that needs project context: linters, build systems, documentation generators, CI/CD pipelines. A plain Markdown file on disk is the most interoperable, stable, and future-proof way to store it.</p>
+
+            <p>AI agents are getting more capable every month. New agents launch every week. The one constant is that they all need project context &mdash; and the simplest way to give it to them is a file they can all read.</p>
+
+            <p><strong>One file. Every agent. That's interoperable memory.</strong></p>
+
+            <div class="cta-box">
+                <h3>Unify Your AI Agent Memory</h3>
+                <p>Download Beam v2.1.0 and give every AI agent the same persistent project context. Works with Claude Code, Codex, OpenClaw, and more.</p>
+                <a href="../" class="btn">Download Beam Free</a>
+            </div>
+
+            <div class="related-articles">
+                <h2>Related Articles</h2>
+                <div class="related-grid">
+                    <a href="ai-agent-memory-management.html" class="related-card">
+                        <h4>AI Agent Memory Management</h4>
+                        <p>How to give Claude Code persistent context with Beam's memory system.</p>
+                    </a>
+                    <a href="beam-claude-code-setup.html" class="related-card">
+                        <h4>Setting Up Beam for Claude Code</h4>
+                        <p>Complete guide to organizing your Claude Code sessions with Beam.</p>
+                    </a>
+                    <a href="claude-code-vs-cursor-vs-codex.html" class="related-card">
+                        <h4>Claude Code vs Cursor vs Codex</h4>
+                        <p>Compare the top AI coding tools and find the right one for you.</p>
+                    </a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>
+                <a href="../">Beam</a> &middot; Built by <a href="https://nextuptechnologies.co">NextUp Technologies</a>
+            </p>
+        </div>
+    </footer>
+</body>
+</html>
