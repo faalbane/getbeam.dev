@@ -322,48 +322,16 @@
             background-clip: text;
         }
 
-        /* Build Anything — animated builder agents */
+        /* Build Anything — SVG text with circuit pattern fill */
         .build-anything-line {
-            display: flex;
-            align-items: center;
-            gap: 16px;
             margin-bottom: 20px;
         }
 
-        .build-text {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 700;
-            letter-spacing: -0.03em;
-            line-height: 1.1;
-            color: var(--text-primary);
-        }
-
-        .builder-agents {
-            display: flex;
-            align-items: flex-end;
-            gap: 2px;
-        }
-
-        .builder-agent {
-            animation: agent-bob 2.4s ease-in-out infinite;
-            filter: drop-shadow(0 2px 8px rgba(98, 60, 234, 0.3));
-            cursor: default;
-            transition: transform 0.2s ease;
-        }
-
-        .builder-agent:hover {
-            transform: scale(1.2) rotate(-5deg);
-        }
-
-        .agent-1 { animation-delay: 0s; }
-        .agent-2 { animation-delay: 0.15s; }
-        .agent-3 { animation-delay: 0.3s; }
-        .agent-4 { animation-delay: 0.45s; }
-        .agent-5 { animation-delay: 0.6s; }
-
-        @keyframes agent-bob {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-6px); }
+        .build-svg {
+            width: 100%;
+            max-width: 520px;
+            height: auto;
+            display: block;
         }
 
         .hero-subtitle {
@@ -2436,17 +2404,8 @@
                 font-size: 2.2rem;
             }
 
-            .build-text {
-                font-size: 2.2rem;
-            }
-
-            .builder-agent {
-                width: 22px;
-                height: 22px;
-            }
-
-            .build-anything-line {
-                gap: 10px;
+            .build-svg {
+                max-width: 320px;
             }
 
             .hero-subtitle {
@@ -2767,17 +2726,8 @@
                 font-size: 2.2rem;
             }
 
-            .build-text {
-                font-size: 2.2rem;
-            }
-
-            .builder-agent {
-                width: 22px;
-                height: 22px;
-            }
-
-            .build-anything-line {
-                gap: 10px;
+            .build-svg {
+                max-width: 320px;
             }
 
             .hero-subtitle {
@@ -2839,44 +2789,94 @@
                     </div>
                     <h1>1-Click AI Agents.<br><span>Memory that persists.</span></h1>
                     <div class="build-anything-line">
-                        <div class="builder-agents">
-                            <svg class="builder-agent agent-1" width="28" height="28" viewBox="0 0 28 28" fill="none">
-                                <rect x="4" y="8" width="20" height="16" rx="4" fill="#623CEA" opacity="0.9"/>
-                                <rect x="8" y="2" width="12" height="8" rx="3" fill="#8B5CF6" opacity="0.8"/>
-                                <circle cx="11" cy="15" r="2" fill="white" opacity="0.9"/>
-                                <circle cx="17" cy="15" r="2" fill="white" opacity="0.9"/>
-                                <rect x="10" y="19" width="8" height="2" rx="1" fill="white" opacity="0.5"/>
-                            </svg>
-                            <svg class="builder-agent agent-2" width="28" height="28" viewBox="0 0 28 28" fill="none">
-                                <rect x="4" y="8" width="20" height="16" rx="4" fill="#3b82f6" opacity="0.9"/>
-                                <rect x="8" y="2" width="12" height="8" rx="3" fill="#60a5fa" opacity="0.8"/>
-                                <circle cx="11" cy="15" r="2" fill="white" opacity="0.9"/>
-                                <circle cx="17" cy="15" r="2" fill="white" opacity="0.9"/>
-                                <rect x="10" y="19" width="8" height="2" rx="1" fill="white" opacity="0.5"/>
-                            </svg>
-                            <svg class="builder-agent agent-3" width="28" height="28" viewBox="0 0 28 28" fill="none">
-                                <rect x="4" y="8" width="20" height="16" rx="4" fill="#ec4899" opacity="0.9"/>
-                                <rect x="8" y="2" width="12" height="8" rx="3" fill="#f472b6" opacity="0.8"/>
-                                <circle cx="11" cy="15" r="2" fill="white" opacity="0.9"/>
-                                <circle cx="17" cy="15" r="2" fill="white" opacity="0.9"/>
-                                <rect x="10" y="19" width="8" height="2" rx="1" fill="white" opacity="0.5"/>
-                            </svg>
-                            <svg class="builder-agent agent-4" width="28" height="28" viewBox="0 0 28 28" fill="none">
-                                <rect x="4" y="8" width="20" height="16" rx="4" fill="#10b981" opacity="0.9"/>
-                                <rect x="8" y="2" width="12" height="8" rx="3" fill="#34d399" opacity="0.8"/>
-                                <circle cx="11" cy="15" r="2" fill="white" opacity="0.9"/>
-                                <circle cx="17" cy="15" r="2" fill="white" opacity="0.9"/>
-                                <rect x="10" y="19" width="8" height="2" rx="1" fill="white" opacity="0.5"/>
-                            </svg>
-                            <svg class="builder-agent agent-5" width="28" height="28" viewBox="0 0 28 28" fill="none">
-                                <rect x="4" y="8" width="20" height="16" rx="4" fill="#f59e0b" opacity="0.9"/>
-                                <rect x="8" y="2" width="12" height="8" rx="3" fill="#fbbf24" opacity="0.8"/>
-                                <circle cx="11" cy="15" r="2" fill="white" opacity="0.9"/>
-                                <circle cx="17" cy="15" r="2" fill="white" opacity="0.9"/>
-                                <rect x="10" y="19" width="8" height="2" rx="1" fill="white" opacity="0.5"/>
-                            </svg>
-                        </div>
-                        <div class="build-text">Build anything.</div>
+                        <svg class="build-svg" viewBox="0 0 620 72" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <!-- Circuit board pattern that fills the letters -->
+                                <pattern id="circuit" patternUnits="userSpaceOnUse" width="24" height="24">
+                                    <!-- Grid nodes -->
+                                    <circle cx="4" cy="4" r="1.2" fill="#623CEA" opacity="0.6"/>
+                                    <circle cx="16" cy="4" r="1.2" fill="#8B5CF6" opacity="0.5"/>
+                                    <circle cx="4" cy="16" r="1.2" fill="#3b82f6" opacity="0.5"/>
+                                    <circle cx="16" cy="16" r="1.2" fill="#ec4899" opacity="0.4"/>
+                                    <circle cx="10" cy="10" r="1.5" fill="#623CEA" opacity="0.7"/>
+                                    <circle cx="22" cy="10" r="1" fill="#10b981" opacity="0.5"/>
+                                    <circle cx="10" cy="22" r="1" fill="#f59e0b" opacity="0.4"/>
+                                    <circle cx="22" cy="22" r="1.2" fill="#623CEA" opacity="0.6"/>
+                                    <!-- Traces -->
+                                    <line x1="4" y1="4" x2="10" y2="10" stroke="#623CEA" stroke-width="0.5" opacity="0.3"/>
+                                    <line x1="16" y1="4" x2="10" y2="10" stroke="#8B5CF6" stroke-width="0.5" opacity="0.25"/>
+                                    <line x1="10" y1="10" x2="4" y2="16" stroke="#3b82f6" stroke-width="0.5" opacity="0.25"/>
+                                    <line x1="10" y1="10" x2="16" y2="16" stroke="#ec4899" stroke-width="0.5" opacity="0.2"/>
+                                    <line x1="10" y1="10" x2="22" y2="10" stroke="#623CEA" stroke-width="0.5" opacity="0.2"/>
+                                    <line x1="10" y1="10" x2="10" y2="22" stroke="#623CEA" stroke-width="0.5" opacity="0.2"/>
+                                    <!-- Tiny agent faces at intersections -->
+                                    <rect x="7.5" y="7.5" width="5" height="5" rx="1.5" fill="none" stroke="#623CEA" stroke-width="0.4" opacity="0.35"/>
+                                    <circle cx="9" cy="9.5" r="0.5" fill="#a78bfa" opacity="0.6"/>
+                                    <circle cx="11" cy="9.5" r="0.5" fill="#a78bfa" opacity="0.6"/>
+                                </pattern>
+                                <!-- Animated gradient overlay -->
+                                <linearGradient id="build-shimmer" x1="0%" y1="0%" x2="100%" y2="0%">
+                                    <stop offset="0%" stop-color="#623CEA" stop-opacity="0">
+                                        <animate attributeName="stop-opacity" values="0;0.6;0" dur="3s" repeatCount="indefinite"/>
+                                    </stop>
+                                    <stop offset="30%" stop-color="#3b82f6" stop-opacity="0.4">
+                                        <animate attributeName="stop-opacity" values="0.4;0.8;0.4" dur="3s" repeatCount="indefinite"/>
+                                    </stop>
+                                    <stop offset="50%" stop-color="#8B5CF6" stop-opacity="0.6">
+                                        <animate attributeName="stop-opacity" values="0.6;1;0.6" dur="3s" repeatCount="indefinite"/>
+                                    </stop>
+                                    <stop offset="70%" stop-color="#ec4899" stop-opacity="0.4">
+                                        <animate attributeName="stop-opacity" values="0.4;0.8;0.4" dur="3s" repeatCount="indefinite"/>
+                                    </stop>
+                                    <stop offset="100%" stop-color="#10b981" stop-opacity="0">
+                                        <animate attributeName="stop-opacity" values="0;0.6;0" dur="3s" repeatCount="indefinite"/>
+                                    </stop>
+                                    <animateTransform attributeName="gradientTransform" type="translate" values="-1 0;1 0;-1 0" dur="4s" repeatCount="indefinite"/>
+                                </linearGradient>
+                                <!-- Glow filter -->
+                                <filter id="build-glow">
+                                    <feGaussianBlur stdDeviation="2" result="blur"/>
+                                    <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+                                </filter>
+                            </defs>
+                            <!-- Background glow text -->
+                            <text x="0" y="56" font-family="'Space Grotesk', system-ui, sans-serif" font-size="64" font-weight="700" letter-spacing="-2" fill="#623CEA" opacity="0.08" filter="url(#build-glow)">Build anything.</text>
+                            <!-- Circuit pattern text -->
+                            <text x="0" y="56" font-family="'Space Grotesk', system-ui, sans-serif" font-size="64" font-weight="700" letter-spacing="-2" fill="url(#circuit)">Build anything.</text>
+                            <!-- Shimmer overlay text -->
+                            <text x="0" y="56" font-family="'Space Grotesk', system-ui, sans-serif" font-size="64" font-weight="700" letter-spacing="-2" fill="url(#build-shimmer)">Build anything.</text>
+                            <!-- Outline for definition -->
+                            <text x="0" y="56" font-family="'Space Grotesk', system-ui, sans-serif" font-size="64" font-weight="700" letter-spacing="-2" fill="none" stroke="#623CEA" stroke-width="0.5" opacity="0.3">Build anything.</text>
+                            <!-- Sparkle particles floating above letters -->
+                            <circle cx="45" cy="18" r="1.5" fill="#623CEA" opacity="0.8">
+                                <animate attributeName="cy" values="18;12;18" dur="2.5s" repeatCount="indefinite"/>
+                                <animate attributeName="opacity" values="0.8;0.2;0.8" dur="2.5s" repeatCount="indefinite"/>
+                            </circle>
+                            <circle cx="130" cy="14" r="1" fill="#3b82f6" opacity="0.6">
+                                <animate attributeName="cy" values="14;8;14" dur="3s" begin="0.3s" repeatCount="indefinite"/>
+                                <animate attributeName="opacity" values="0.6;0.1;0.6" dur="3s" begin="0.3s" repeatCount="indefinite"/>
+                            </circle>
+                            <circle cx="220" cy="20" r="1.2" fill="#ec4899" opacity="0.7">
+                                <animate attributeName="cy" values="20;13;20" dur="2.8s" begin="0.6s" repeatCount="indefinite"/>
+                                <animate attributeName="opacity" values="0.7;0.15;0.7" dur="2.8s" begin="0.6s" repeatCount="indefinite"/>
+                            </circle>
+                            <circle cx="320" cy="16" r="1.3" fill="#8B5CF6" opacity="0.7">
+                                <animate attributeName="cy" values="16;10;16" dur="2.6s" begin="0.9s" repeatCount="indefinite"/>
+                                <animate attributeName="opacity" values="0.7;0.2;0.7" dur="2.6s" begin="0.9s" repeatCount="indefinite"/>
+                            </circle>
+                            <circle cx="410" cy="12" r="1" fill="#10b981" opacity="0.5">
+                                <animate attributeName="cy" values="12;6;12" dur="3.2s" begin="1.2s" repeatCount="indefinite"/>
+                                <animate attributeName="opacity" values="0.5;0.1;0.5" dur="3.2s" begin="1.2s" repeatCount="indefinite"/>
+                            </circle>
+                            <circle cx="500" cy="18" r="1.4" fill="#f59e0b" opacity="0.6">
+                                <animate attributeName="cy" values="18;11;18" dur="2.4s" begin="0.5s" repeatCount="indefinite"/>
+                                <animate attributeName="opacity" values="0.6;0.15;0.6" dur="2.4s" begin="0.5s" repeatCount="indefinite"/>
+                            </circle>
+                            <circle cx="570" cy="15" r="1.1" fill="#623CEA" opacity="0.7">
+                                <animate attributeName="cy" values="15;9;15" dur="2.9s" begin="1.5s" repeatCount="indefinite"/>
+                                <animate attributeName="opacity" values="0.7;0.2;0.7" dur="2.9s" begin="1.5s" repeatCount="indefinite"/>
+                            </circle>
+                        </svg>
                     </div>
                     <p class="hero-subtitle">
                         Install Claude Code, Codex, and OpenClaw in one click. Persistent memory across every session. All your projects organized in one place.
@@ -2901,64 +2901,7 @@
             </div>
         </section>
 
-        <!-- ═══ COMMAND CENTER — AI Agents ═══ -->
-        <section class="command-center">
-            <div class="container">
-                <div class="reveal">
-                    <span class="section-eyebrow">AI Command Center</span>
-                    <h2 class="section-heading">Start AI agents in one click</h2>
-                    <p class="section-subtitle center" style="margin: 0 auto;">No setup guides. No install commands. Just right-click and go. Beam auto-installs and launches your agent so you can start building in seconds.</p>
-                </div>
-
-                <div class="agent-trio reveal reveal-delay-1">
-                    <a href="blog/beam-claude-code-setup.html" class="agent-panel">
-                        <div class="agent-panel-logo brand-claude"><svg viewBox="0 0 48 48" fill="none"><path d="M24 4C12.95 4 4 12.95 4 24s8.95 20 20 20 20-8.95 20-20S35.05 4 24 4z" fill="rgba(217,119,6,0.15)"/><path d="M30.5 18.5L24 14l-6.5 4.5V28L24 32.5l6.5-4.5V18.5z" stroke="#D97706" stroke-width="2.5" stroke-linejoin="round"/><path d="M24 14v4.5M24 28v4.5M17.5 18.5L21 21M27 25l3.5 2.5M30.5 18.5L27 21M21 25l-3.5 2.5" stroke="#D97706" stroke-width="2" stroke-linecap="round"/><circle cx="24" cy="24" r="3" fill="#D97706"/></svg></div>
-                        <h3>Claude Code</h3>
-                        <div class="agent-panel-tag">One-click launch</div>
-                        <p>Right-click any terminal, select Claude Code, and start building with AI. Beam auto-installs it if needed. No setup, no config.</p>
-                        <span class="agent-panel-arrow">Setup guide <span>&rarr;</span></span>
-                    </a>
-                    <a href="blog/how-to-use-openai-codex-mac.html" class="agent-panel">
-                        <div class="agent-panel-logo brand-openai"><svg viewBox="0 0 48 48" fill="none"><path d="M24 4C12.95 4 4 12.95 4 24s8.95 20 20 20 20-8.95 20-20S35.05 4 24 4z" fill="rgba(16,163,127,0.15)"/><path d="M24 13l9.5 5.5v11L24 35l-9.5-5.5v-11L24 13z" stroke="#10A37F" stroke-width="2.2" stroke-linejoin="round"/><path d="M24 13v7.5M24 27.5V35M14.5 18.5l6.5 3.75M27 22.25l6.5-3.75M33.5 29.5L27 25.75M21 25.75l-6.5 3.75" stroke="#10A37F" stroke-width="1.8" stroke-linecap="round"/><circle cx="24" cy="24" r="2.5" fill="#10A37F"/></svg></div>
-                        <h3>OpenAI Codex</h3>
-                        <div class="agent-panel-tag">One-click launch</div>
-                        <p>Launch OpenAI Codex the same way — one click. Beam handles installation and setup so you go from zero to coding in seconds.</p>
-                        <span class="agent-panel-arrow">Setup guide <span>&rarr;</span></span>
-                    </a>
-                    <a href="blog/how-to-install-openclaw-setup-guide.html" class="agent-panel">
-                        <div class="agent-panel-logo brand-openclaw"><svg viewBox="0 0 48 48" fill="none"><path d="M24 4C12.95 4 4 12.95 4 24s8.95 20 20 20 20-8.95 20-20S35.05 4 24 4z" fill="rgba(244,63,94,0.15)"/><path d="M16 20c0-4.4 3.6-8 8-8s8 3.6 8 8" stroke="#F43F5E" stroke-width="2.5" stroke-linecap="round"/><path d="M14 26l3-6M24 26v-7M34 26l-3-6" stroke="#F43F5E" stroke-width="2.5" stroke-linecap="round"/><path d="M14 26c0 5.5 4.5 10 10 10s10-4.5 10-10" stroke="#F43F5E" stroke-width="2.5" stroke-linecap="round"/><circle cx="20" cy="24" r="1.5" fill="#F43F5E"/><circle cx="28" cy="24" r="1.5" fill="#F43F5E"/></svg></div>
-                        <h3>OpenClaw</h3>
-                        <div class="agent-panel-tag">One-click launch</div>
-                        <p>Start OpenClaw instantly from the AI Agents menu. No npm commands, no PATH setup. If you can click a menu, you can run OpenClaw.</p>
-                        <span class="agent-panel-arrow">Setup guide <span>&rarr;</span></span>
-                    </a>
-                </div>
-
-                <div class="agent-showcase reveal reveal-delay-2">
-                    <a href="blog/beam-claude-code-setup.html" class="agent-showcase-card">
-                        <img src="start-ai-agent.png" alt="Right-click to start AI agents in Beam">
-                        <div class="agent-showcase-card-body">
-                            <h4>Right-click. Pick an agent. Done.</h4>
-                            <p>No terminal commands to memorize.</p>
-                        </div>
-                    </a>
-                    <a href="blog/how-to-install-openclaw-setup-guide.html" class="agent-showcase-card">
-                        <img src="quick-templates.png" alt="Beam workspace templates">
-                        <div class="agent-showcase-card-body">
-                            <h4>Pre-built workspace templates</h4>
-                            <p>One click to a full dev environment.</p>
-                        </div>
-                    </a>
-                    <a href="blog/organizing-claude-code-sessions.html" class="agent-showcase-card">
-                        <img src="3-agents.png" alt="Claude Code, OpenAI Codex, and OpenClaw side by side">
-                        <div class="agent-showcase-card-body">
-                            <h4>All agents, one screen</h4>
-                            <p>Compare outputs across agents.</p>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </section>
+        <!-- AI Command Center removed — covered in hero subtitle -->
 
         <!-- ═══ AI MEMORY MANAGEMENT ═══ -->
         <section class="memory-section" id="memory">
