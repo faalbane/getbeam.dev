@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D0XH8B0RKL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-D0XH8B0RKL');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beam vs iTerm2: Which macOS Terminal is Right for You?</title>
+    <meta name="description" content="Comparing Beam and iTerm2 for macOS. Learn the key differences between these terminal emulators and which one fits your workflow better.">
+    <meta name="keywords" content="Beam vs iTerm2, iTerm2 alternative, macOS terminal, Ghostty alternative, terminal comparison, best macOS terminal">
+    <meta name="author" content="NextUp Technologies">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://getbeam.dev/blog/beam-vs-iterm2.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://getbeam.dev/blog/beam-vs-iterm2.html">
+    <meta property="og:title" content="Beam vs iTerm2: Which macOS Terminal is Right for You?">
+    <meta property="og:description" content="Comparing Beam and iTerm2 for macOS. Learn the key differences and which one fits your workflow.">
+    <meta property="og:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Beam vs iTerm2: Which macOS Terminal is Right for You?">
+    <meta name="twitter:description" content="Comparing Beam and iTerm2 for macOS. Learn the key differences and which one fits your workflow.">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Beam vs iTerm2: Which macOS Terminal is Right for You?",
+        "description": "Comparing Beam and iTerm2 for macOS. Learn the key differences between these terminal emulators and which one fits your workflow better.",
+        "author": {
+            "@type": "Organization",
+            "name": "NextUp Technologies"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "NextUp Technologies"
+        },
+        "datePublished": "2026-02-06",
+        "dateModified": "2026-02-06"
+    }
+    </script>
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #111113;
+            --bg-tertiary: #1a1a1d;
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.4);
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --border: #27272a;
+            --success: #22c55e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        header {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 60px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1.5rem;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-icon svg { width: 20px; height: 20px; }
+
+        .breadcrumb {
+            margin-bottom: 32px;
+            font-size: 0.9rem;
+        }
+
+        .breadcrumb a {
+            color: var(--text-muted);
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover { color: var(--accent); }
+        .breadcrumb span { color: var(--text-muted); margin: 0 8px; }
+
+        article h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .meta {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 48px;
+        }
+
+        article h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 48px 0 20px;
+            color: var(--text-primary);
+        }
+
+        article h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 32px 0 16px;
+            color: var(--text-primary);
+        }
+
+        article p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        article ul, article ol {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            padding-left: 24px;
+        }
+
+        article li { margin-bottom: 12px; }
+
+        article strong { color: var(--text-primary); }
+
+        article a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        article a:hover { text-decoration: underline; }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 32px 0;
+            font-size: 0.95rem;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 16px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .comparison-table th {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .comparison-table td {
+            color: var(--text-secondary);
+        }
+
+        .comparison-table tr:hover td {
+            background: var(--bg-secondary);
+        }
+
+        .highlight-box {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 32px 0;
+        }
+
+        .highlight-box h4 {
+            color: var(--text-primary);
+            margin-bottom: 12px;
+            font-size: 1.1rem;
+        }
+
+        .highlight-box p {
+            margin-bottom: 0;
+        }
+
+        code {
+            font-family: 'JetBrains Mono', monospace;
+            background: var(--bg-tertiary);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+
+        .kbd {
+            display: inline-block;
+            padding: 2px 8px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .cta-box h3 {
+            color: white;
+            margin-bottom: 12px;
+        }
+
+        .cta-box p {
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 24px;
+        }
+
+        .cta-box .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            background: white;
+            color: var(--accent);
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: transform 0.2s;
+        }
+
+        .cta-box .btn:hover {
+            transform: translateY(-2px);
+            text-decoration: none;
+        }
+
+        footer {
+            padding: 60px 0;
+            border-top: 1px solid var(--border);
+            margin-top: 80px;
+            text-align: center;
+        }
+
+        footer p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+
+        footer a:hover { color: var(--text-primary); }
+
+        .related-articles { margin-top: 60px; padding-top: 40px; border-top: 1px solid var(--border); }
+        .related-articles h2 { font-size: 1.5rem; margin-bottom: 24px; }
+        .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .related-card { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-decoration: none; transition: border-color 0.2s; }
+        .related-card:hover { border-color: var(--accent); }
+        .related-card h4 { color: white; font-size: 1rem; margin: 0 0 8px 0; }
+        .related-card p { color: var(--text-muted); font-size: 0.85rem; margin: 0; }
+        @media (max-width: 600px) { .related-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="../" class="logo">
+                <div class="logo-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round">
+                        <path d="M4 17l6-6-6-6M12 19h8"/>
+                    </svg>
+                </div>
+                Beam
+            </a>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="breadcrumb">
+            <a href="../">Home</a>
+            <span>/</span>
+            <a href="../#guides">Guides</a>
+            <span>/</span>
+            Beam vs iTerm2
+        </div>
+
+        <article>
+            <h1>Beam vs iTerm2: Which macOS Terminal is Right for You?</h1>
+            <p class="meta">February 2026 &bull; 5 min read</p>
+
+            <p>iTerm2 has been the go-to terminal replacement for macOS developers for over a decade. It's powerful, highly configurable, and free. So why would you consider Beam instead?</p>
+
+            <p>Both are full terminal emulators. Both have tabs and split panes. The difference is in <strong>how they approach workspace organization</strong>.</p>
+
+            <h2>The key difference: Subwindows</h2>
+
+            <p>In iTerm2, you have one window (or multiple separate windows), and within each window you have tabs and splits. It's a familiar model.</p>
+
+            <p>Beam introduces <strong>subwindows</strong> – floating windows <em>within</em> the main app window. Think of them as lightweight, project-specific workspaces that you can:</p>
+
+            <ul>
+                <li>Drag and position anywhere within Beam</li>
+                <li>Overlap, minimize, or tile however you want</li>
+                <li>Each contains its own tabs and splits</li>
+                <li>Save the entire arrangement as a "layout"</li>
+            </ul>
+
+            <p>This lets you organize by project: one subwindow for your frontend, one for your backend API, one for your database tools. When you're done for the day, save the layout. Tomorrow, restore it and pick up exactly where you left off.</p>
+
+            <div class="highlight-box">
+                <h4>Think of it this way</h4>
+                <p>iTerm2 is a terminal with great tab/split management. Beam is a terminal with workspace management built on top – like having a window manager inside your terminal app.</p>
+            </div>
+
+            <h2>Feature comparison</h2>
+
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>iTerm2</th>
+                        <th>Beam</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Terminal emulation</strong></td>
+                        <td>Full (proprietary)</td>
+                        <td>Full (SwiftTerm)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Tabs</strong></td>
+                        <td>Yes</td>
+                        <td>Yes</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Split panes</strong></td>
+                        <td>Yes</td>
+                        <td>Yes (Pro)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Subwindows</strong></td>
+                        <td>No (use separate windows)</td>
+                        <td>Yes – floating windows within app</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Saveable layouts</strong></td>
+                        <td>Window arrangements only</td>
+                        <td>Full workspace layouts with names</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Quick switcher</strong></td>
+                        <td>Requires scripting/plugins</td>
+                        <td>Built-in (<span class="kbd">⌘P</span>)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Rename tabs easily</strong></td>
+                        <td>Possible but not obvious</td>
+                        <td>Double-click or <span class="kbd">⌘⇧I</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Undo close</strong></td>
+                        <td>No</td>
+                        <td>Yes (<span class="kbd">⌘Z</span>)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Configuration</strong></td>
+                        <td>Extensive preferences panel</td>
+                        <td>Minimal (opinionated defaults)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Price</strong></td>
+                        <td>Free</td>
+                        <td>Free tier / $10/mo Pro</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>When iTerm2 is the better choice</h2>
+
+            <ul>
+                <li><strong>You need extensive customization</strong> – iTerm2's preferences are legendary. If you want to tweak every detail, it's unmatched.</li>
+                <li><strong>You use iTerm2-specific features</strong> – shell integration, Triggers, Automatic Profile Switching, etc.</li>
+                <li><strong>You want free with no limitations</strong> – iTerm2 is 100% free. Beam's free tier limits subwindows and layouts.</li>
+                <li><strong>You're already happy with your setup</strong> – if it ain't broke, don't fix it.</li>
+            </ul>
+
+            <h2>When Beam is the better choice</h2>
+
+            <ul>
+                <li><strong>You juggle multiple projects</strong> – subwindows let you group terminals by project and switch contexts with <span class="kbd">⌘P</span></li>
+                <li><strong>You want saveable workspaces</strong> – save your "day job" layout separately from your "side project" layout</li>
+                <li><strong>You prefer simplicity</strong> – Beam has opinionated defaults; less configuration means less friction</li>
+                <li><strong>You close things accidentally</strong> – <span class="kbd">⌘Z</span> to undo close is a lifesaver</li>
+                <li><strong>You use Claude Code or similar AI tools</strong> – Beam's organization shines when running multiple AI sessions</li>
+            </ul>
+
+            <h2>What about Ghostty?</h2>
+
+            <p>Ghostty is a newer terminal focused on speed and correctness. It's excellent, but like iTerm2, it's a traditional terminal emulator – tabs and splits within windows.</p>
+
+            <p>The same distinction applies: Ghostty is a fast, minimal terminal; Beam is a terminal with workspace management. Different tools for different needs. If raw speed is your priority and you don't need the organizational features, Ghostty (or Alacritty, or Kitty) might be better fits.</p>
+
+            <h2>Can I migrate from iTerm2?</h2>
+
+            <p>Beam doesn't import iTerm2 profiles or configurations. But there's not much to migrate:</p>
+
+            <ol>
+                <li>Download Beam and open it</li>
+                <li>Create subwindows for your projects (<span class="kbd">⌘N</span>)</li>
+                <li>Rename them by double-clicking the title bar</li>
+                <li>Save your layout (<span class="kbd">⌘S</span>)</li>
+                <li>That's it – you're organized</li>
+            </ol>
+
+            <p>Your shell, aliases, and dotfiles work the same way. Beam is just a different container for your terminal sessions.</p>
+
+            <h2>The bottom line</h2>
+
+            <p>iTerm2 is a powerful, mature terminal with deep customization options. If you've invested time configuring it and you're happy, there's no pressing reason to switch.</p>
+
+            <p>Beam is for developers who want <strong>workspace organization without configuration</strong>. If you find yourself with too many terminal windows and tabs, losing track of what's running where, Beam's subwindows and layouts can help.</p>
+
+            <p>The easiest way to decide? Try Beam for a day. The free tier is functional enough to test the workflow. If it clicks, great. If not, iTerm2 will still be there.</p>
+
+            <div class="cta-box">
+                <h3>Try Beam free</h3>
+                <p>See if subwindows and layouts improve your workflow.</p>
+                <a href="../Beam-v1.9.5-alpha.dmg" class="btn">Download for macOS</a>
+            </div>
+
+            <div class="related-articles">
+                <h2>Related Articles</h2>
+                <div class="related-grid">
+                    <a href="beam-vs-tmux.html" class="related-card">
+                        <h4>Beam vs tmux</h4>
+                        <p>Compare Beam with tmux for terminal multiplexing.</p>
+                    </a>
+                    <a href="best-terminal-app-ai-coding-2026.html" class="related-card">
+                        <h4>Best Terminal App for AI Coding in 2026</h4>
+                        <p>Full comparison of 6 terminal apps for AI development.</p>
+                    </a>
+                    <a href="how-to-rename-terminal-windows-macos.html" class="related-card">
+                        <h4>How to Rename Terminal Windows on macOS</h4>
+                        <p>Name your terminals for better organization.</p>
+                    </a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>
+                <a href="../">Beam</a> &bull;
+                Built by <a href="https://github.com/faalbane">@faalbane</a> &bull;
+                <a href="mailto:frank@nextuptechnologies.co">Contact</a>
+            </p>
+        </div>
+    </footer>
+</body>
+</html>

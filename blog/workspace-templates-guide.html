@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D0XH8B0RKL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-D0XH8B0RKL');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workspace Templates: Instant Multi-Agent Setups in Beam | Beam Terminal Organizer</title>
+    <meta name="description" content="Learn how Beam's Workspace Templates let you spin up entire multi-agent development environments in one keystroke. Built-in templates for Claude Code, Full Stack, and OpenClaw workflows.">
+    <meta name="keywords" content="workspace templates, terminal templates, development environment setup, Claude Code workspace, multi-agent coding, Beam terminal, developer productivity, AI workspace, terminal organizer">
+    <meta name="author" content="NextUp Technologies">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://getbeam.dev/blog/workspace-templates-guide.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://getbeam.dev/blog/workspace-templates-guide.html">
+    <meta property="og:title" content="Workspace Templates: Instant Multi-Agent Setups in Beam">
+    <meta property="og:description" content="Spin up entire multi-agent development environments in one keystroke with Beam's Workspace Templates.">
+    <meta property="og:image" content="https://getbeam.dev/beam-screenshot-1.9.8.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Workspace Templates: Instant Multi-Agent Setups in Beam">
+    <meta name="twitter:description" content="Spin up entire multi-agent development environments in one keystroke with Beam's Workspace Templates.">
+    <meta name="twitter:image" content="https://getbeam.dev/beam-screenshot-1.9.8.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Workspace Templates: Instant Multi-Agent Setups in Beam",
+        "description": "Learn how Beam's Workspace Templates let you spin up entire multi-agent development environments in one keystroke.",
+        "author": {
+            "@type": "Organization",
+            "name": "NextUp Technologies"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Beam"
+        },
+        "datePublished": "2026-02-08",
+        "keywords": "workspace templates, multi-agent coding, developer productivity"
+    }
+    </script>
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #111113;
+            --bg-tertiary: #1a1a1d;
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.4);
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --border: #27272a;
+            --success: #22c55e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+
+        .container { max-width: 800px; margin: 0 auto; padding: 0 24px; }
+
+        header {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 60px;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1.5rem;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            background: var(--accent);
+            color: white;
+            transition: all 0.2s;
+        }
+
+        .btn:hover { background: #2563eb; transform: translateY(-2px); }
+
+        article { padding-bottom: 80px; }
+
+        .breadcrumb {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+        }
+
+        .breadcrumb a { color: var(--accent); text-decoration: none; }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .meta {
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            font-size: 0.95rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 48px 0 20px;
+            color: var(--text-primary);
+        }
+
+        h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 32px 0 16px;
+            color: var(--text-primary);
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        ul, ol {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            padding-left: 24px;
+        }
+
+        li { margin-bottom: 12px; }
+
+        .highlight {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 32px 0;
+        }
+
+        .highlight h3 {
+            font-size: 1.1rem;
+            margin: 0 0 12px 0;
+            color: var(--text-primary);
+        }
+
+        .highlight p:last-child { margin-bottom: 0; }
+
+        .kbd {
+            display: inline-block;
+            padding: 2px 8px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+        }
+
+        code {
+            font-family: 'JetBrains Mono', monospace;
+            background: var(--bg-tertiary);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            color: var(--accent);
+        }
+
+        .template-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 28px;
+            margin: 16px 0;
+            transition: border-color 0.2s;
+        }
+
+        .template-card:hover { border-color: var(--accent); }
+
+        .template-card h4 {
+            font-size: 1.05rem;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+        }
+
+        .template-card p { margin-bottom: 0; font-size: 0.95rem; }
+
+        .template-card .template-detail {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-top: 12px;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .cta-box h3 { font-size: 1.5rem; margin-bottom: 12px; }
+        .cta-box p { color: rgba(255,255,255,0.8); margin-bottom: 24px; }
+        .cta-box .btn { background: white; color: var(--accent); }
+
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer a { color: var(--text-secondary); text-decoration: none; }
+
+        .related-articles { margin-top: 60px; padding-top: 40px; border-top: 1px solid var(--border); }
+        .related-articles h2 { font-size: 1.5rem; margin-bottom: 24px; }
+        .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .related-card { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-decoration: none; transition: border-color 0.2s; }
+        .related-card:hover { border-color: var(--accent); }
+        .related-card h4 { color: white; font-size: 1rem; margin: 0 0 8px 0; }
+        .related-card p { color: var(--text-muted); font-size: 0.85rem; margin: 0; }
+        @media (max-width: 600px) {
+            h1 { font-size: 1.8rem; }
+            .related-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="../" class="logo">
+                <div class="logo-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round">
+                        <path d="M4 17l6-6-6-6M12 19h8"/>
+                    </svg>
+                </div>
+                Beam
+            </a>
+            <a href="../" class="btn">Download Beam</a>
+        </div>
+    </header>
+
+    <main>
+        <article class="container">
+            <div class="breadcrumb">
+                <a href="../">Beam</a> / <a href="../#guides">Guides</a> / Workspace Templates
+            </div>
+
+            <h1>Workspace Templates: Spin Up Multi-Agent Environments in One Keystroke</h1>
+            <p class="meta">February 2026 &bull; 5 min read</p>
+
+            <p>You sit down to work. You need Claude Code in one pane, a dev server in another, and a git log running on the side. So you open three terminals, cd into the right directories, type in commands, arrange windows, resize panes... and by the time you're ready to actually code, ten minutes have evaporated and your momentum is gone.</p>
+
+            <p><strong>Workspace Templates</strong> solve this. One keystroke, and your entire multi-agent development environment materializes &mdash; panes arranged, commands running, everything exactly where it should be.</p>
+
+            <h2>What Are Workspace Templates?</h2>
+
+            <p>A Workspace Template is a saved configuration that defines:</p>
+
+            <ul>
+                <li><strong>How many panes</strong> to create and how to arrange them</li>
+                <li><strong>What commands</strong> to auto-run in each pane (like launching Claude Code or starting a dev server)</li>
+                <li><strong>The workspace name</strong> for quick identification</li>
+            </ul>
+
+            <p>Think of it like a snapshot of your ideal work setup that you can deploy instantly, every time you start a session.</p>
+
+            <h2>Built-in Templates</h2>
+
+            <p>Beam ships with three built-in templates designed for the most common AI-assisted development workflows:</p>
+
+            <div class="template-card">
+                <h4>Claude Code</h4>
+                <p>A focused workspace for conversational AI development. Opens with Claude Code ready to go in the main pane, with a secondary pane for running commands, tests, or watching output.</p>
+                <div class="template-detail">2 panes &middot; Auto-launches Claude Code</div>
+            </div>
+
+            <div class="template-card">
+                <h4>Full Stack</h4>
+                <p>The heavy-hitter. Sets up a multi-pane workspace with separate areas for your frontend dev server, backend server, and an AI agent. Perfect for full-stack projects where you're juggling multiple processes.</p>
+                <div class="template-detail">3 panes &middot; Frontend + Backend + AI Agent</div>
+            </div>
+
+            <div class="template-card">
+                <h4>OpenClaw</h4>
+                <p>Tailored for OpenClaw workflows. Launches OpenClaw in the primary pane with a companion pane for testing and iteration.</p>
+                <div class="template-detail">2 panes &middot; Auto-launches OpenClaw</div>
+            </div>
+
+            <h2>How to Use Templates</h2>
+
+            <h3>Method 1: Template Picker</h3>
+
+            <p>Press <span class="kbd">&#8984;&#8679;N</span> to open the Template Picker. You'll see all available templates listed with their descriptions. Click one, and Beam instantly creates a new subwindow with the template's layout and runs the configured commands.</p>
+
+            <h3>Method 2: Quick Switcher</h3>
+
+            <p>Press <span class="kbd">&#8984;P</span> to open the Quick Switcher. Start typing a template name &mdash; like "Full Stack" &mdash; and it appears in the results. Hit Enter and you're working. This is the fastest path from zero to coding.</p>
+
+            <div class="highlight">
+                <h3>Speed Comparison</h3>
+                <p><strong>Without templates:</strong> Open terminals. cd to directories. Type commands. Arrange panes. Resize. Start working. (~2-5 minutes)</p>
+                <p><strong>With templates:</strong> Press <span class="kbd">&#8984;&#8679;N</span>. Click. Start working. (~3 seconds)</p>
+            </div>
+
+            <h2>Real-World Workflows</h2>
+
+            <h3>The Solo Full-Stack Developer</h3>
+
+            <p>You're building a web app with a React frontend and a Node API. Every morning, you hit <span class="kbd">&#8984;&#8679;N</span> &rarr; <strong>Full Stack</strong>, and Beam gives you:</p>
+
+            <ul>
+                <li>Pane 1: Claude Code, ready for instructions</li>
+                <li>Pane 2: Your frontend dev server</li>
+                <li>Pane 3: Your backend API server</li>
+            </ul>
+
+            <p>You tell Claude to build a new feature, watch the frontend hot-reload in real time, and check the API logs &mdash; all visible at once, no switching.</p>
+
+            <h3>The AI-First Prototyper</h3>
+
+            <p>You're rapidly prototyping ideas. Use the <strong>Claude Code</strong> template to get a clean two-pane setup: Claude in the left pane, a shell for testing in the right. Iterate fast, then spin up a new template when you're ready to build out the full stack.</p>
+
+            <h3>The Multi-Agent Power User</h3>
+
+            <p>You're using Claude Code for architecture, OpenAI Codex for boilerplate, and OpenClaw for code review. Create a subwindow from each agent's template, and use <span class="kbd">&#8984;&#8997;&#8592;&#8594;</span> to fly between agent workspaces. Each agent gets its own organized space.</p>
+
+            <h2>Templates + Other Beam Features</h2>
+
+            <p>Templates become even more powerful when combined with Beam's other capabilities:</p>
+
+            <ul>
+                <li><strong>Saved Layouts</strong> &mdash; Once you tweak a template to your liking, save the entire layout with <span class="kbd">&#8984;S</span>. Next time, restore the exact arrangement instantly.</li>
+                <li><strong>Resizable Panes</strong> &mdash; Templates set up the initial layout, but you can drag dividers to resize panes. Give Claude Code 70% of the screen when you're deep in conversation, or shrink it when you need to focus on output.</li>
+                <li><strong>Quick Switcher</strong> &mdash; With <span class="kbd">&#8984;P</span>, you can jump between template-created subwindows, other subwindows, and saved layouts. Everything is one search away.</li>
+                <li><strong>Named Tabs</strong> &mdash; After a template creates your panes, double-click tab names to label them: "Claude: API", "Dev Server", "Tests". This makes the Quick Switcher even faster.</li>
+            </ul>
+
+            <h2>Pro Feature</h2>
+
+            <p>Workspace Templates are part of <strong>Beam Pro</strong> ($10/month). The free tier gives you a great single-subwindow experience, but templates &mdash; along with unlimited subwindows, split panes, and AI agent quick-start &mdash; unlock the full multi-agent workflow that makes Beam special.</p>
+
+            <div class="highlight">
+                <h3>Why Subscribe?</h3>
+                <p>$10/month keeps Beam growing with new features, templates, and updates. Cancel anytime &mdash; the free tier is always available.</p>
+            </div>
+
+            <div class="cta-box">
+                <h3>Set Up Your Workspace in Seconds</h3>
+                <p>Stop wasting time arranging terminals. Workspace Templates get you coding instantly.</p>
+                <a href="../" class="btn">Download Beam for macOS</a>
+            </div>
+
+            <h2>Summary</h2>
+
+            <ul>
+                <li>Workspace Templates create pre-configured multi-pane environments instantly</li>
+                <li>Built-in templates for Claude Code, Full Stack, and OpenClaw workflows</li>
+                <li>Access via <span class="kbd">&#8984;&#8679;N</span> (Template Picker) or <span class="kbd">&#8984;P</span> (Quick Switcher)</li>
+                <li>Templates auto-run commands in each pane &mdash; no manual setup</li>
+                <li>Combine with saved layouts, resizable panes, and named tabs for the ultimate workflow</li>
+            </ul>
+
+            <div class="related-articles">
+                <h2>Related Articles</h2>
+                <div class="related-grid">
+                    <a href="vibe-coding-setup.html" class="related-card">
+                        <h4>The Perfect Vibe Coding Setup</h4>
+                        <p>Stay in flow state with organized terminals and instant workspace switching.</p>
+                    </a>
+                    <a href="beam-claude-code-setup.html" class="related-card">
+                        <h4>Setting Up Beam for Claude Code</h4>
+                        <p>Subwindows, saved layouts, and keyboard shortcuts for Claude Code.</p>
+                    </a>
+                    <a href="terminal-is-the-new-ide.html" class="related-card">
+                        <h4>Why Your Terminal is the New IDE</h4>
+                        <p>AI tools are making the terminal the center of development.</p>
+                    </a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>
+                <a href="../">Beam</a> &bull; Terminal Organizer for macOS &bull;
+                <a href="mailto:frank@nextuptechnologies.co">Contact</a>
+            </p>
+        </div>
+    </footer>
+</body>
+</html>

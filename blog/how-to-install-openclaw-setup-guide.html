@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D0XH8B0RKL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-D0XH8B0RKL');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Install OpenClaw: Complete Setup Guide 2026 | Beam</title>
+    <meta name="description" content="Step-by-step guide to install and set up OpenClaw, the open-source AI assistant. Learn how to install OpenClaw on Mac, configure it with WhatsApp, Telegram, and use Beam for the best OpenClaw experience.">
+    <meta name="keywords" content="how to install OpenClaw, OpenClaw setup, OpenClaw tutorial, install OpenClaw Mac, OpenClaw installation guide, OpenClaw AI assistant, set up OpenClaw, OpenClaw terminal, OpenClaw WhatsApp, OpenClaw Telegram, OpenClaw guide 2026">
+    <meta name="author" content="NextUp Technologies">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://getbeam.dev/blog/how-to-install-openclaw-setup-guide.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://getbeam.dev/blog/how-to-install-openclaw-setup-guide.html">
+    <meta property="og:title" content="How to Install OpenClaw: Complete Setup Guide 2026">
+    <meta property="og:description" content="Step-by-step guide to install and set up OpenClaw, the open-source AI assistant.">
+    <meta property="og:image" content="https://getbeam.dev/beam-screenshot-1.9.8.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="How to Install OpenClaw: Complete Setup Guide 2026">
+    <meta name="twitter:description" content="Step-by-step guide to install and set up OpenClaw, the open-source AI assistant.">
+    <meta name="twitter:image" content="https://getbeam.dev/beam-screenshot-1.9.8.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "HowTo",
+        "name": "How to Install OpenClaw",
+        "description": "Complete guide to installing and setting up OpenClaw using Beam terminal organizer",
+        "step": [
+            {
+                "@type": "HowToStep",
+                "name": "Download Beam",
+                "text": "Download Beam from getbeam.dev to organize your OpenClaw sessions"
+            },
+            {
+                "@type": "HowToStep",
+                "name": "Set Up Beam Workspace",
+                "text": "Create subwindows and tabs for Gateway, Agent, and Logs"
+            },
+            {
+                "@type": "HowToStep",
+                "name": "Install OpenClaw",
+                "text": "Run npm install -g openclaw@latest in Beam terminal"
+            },
+            {
+                "@type": "HowToStep",
+                "name": "Run Onboarding",
+                "text": "Execute openclaw onboard --install-daemon to configure"
+            },
+            {
+                "@type": "HowToStep",
+                "name": "Connect Messaging Apps",
+                "text": "Link WhatsApp, Telegram, or other messaging platforms"
+            }
+        ],
+        "author": {
+            "@type": "Organization",
+            "name": "NextUp Technologies"
+        },
+        "datePublished": "2026-02-07"
+    }
+    </script>
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #111113;
+            --bg-tertiary: #1a1a1d;
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.4);
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --border: #27272a;
+            --success: #22c55e;
+            --warning: #f59e0b;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+
+        .container { max-width: 800px; margin: 0 auto; padding: 0 24px; }
+
+        header {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 60px;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1.5rem;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            background: var(--accent);
+            color: white;
+            transition: all 0.2s;
+        }
+
+        .btn:hover { background: #2563eb; transform: translateY(-2px); }
+
+        article { padding-bottom: 80px; }
+
+        .breadcrumb {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+        }
+
+        .breadcrumb a { color: var(--accent); text-decoration: none; }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .meta {
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            font-size: 0.95rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 48px 0 20px;
+            color: var(--text-primary);
+        }
+
+        h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 32px 0 16px;
+            color: var(--text-primary);
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        ul, ol {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            padding-left: 24px;
+        }
+
+        li { margin-bottom: 12px; }
+
+        strong { color: var(--text-primary); }
+
+        a { color: var(--accent); }
+
+        .highlight {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 32px 0;
+        }
+
+        .highlight h3 {
+            font-size: 1.1rem;
+            margin: 0 0 12px 0;
+            color: var(--text-primary);
+        }
+
+        .highlight p:last-child, .highlight ul:last-child {
+            margin-bottom: 0;
+        }
+
+        .kbd {
+            display: inline-block;
+            padding: 2px 8px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+        }
+
+        code {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 2px 6px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+        }
+
+        pre {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 20px;
+            overflow-x: auto;
+            margin: 24px 0;
+        }
+
+        pre code {
+            background: none;
+            border: none;
+            padding: 0;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            background: var(--accent);
+            color: white;
+            border-radius: 50%;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-right: 12px;
+        }
+
+        .tip {
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 24px 0;
+        }
+
+        .tip strong {
+            color: var(--success);
+        }
+
+        .warning {
+            background: rgba(245, 158, 11, 0.1);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 24px 0;
+        }
+
+        .warning strong {
+            color: var(--warning);
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin: 24px 0;
+        }
+
+        .feature-item {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 16px;
+        }
+
+        .feature-item strong {
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .feature-item span {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .cta-box h3 { font-size: 1.5rem; margin-bottom: 12px; color: white; }
+        .cta-box p { color: rgba(255,255,255,0.8); margin-bottom: 24px; }
+        .cta-box .btn { background: white; color: var(--accent); }
+
+        .toc {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 32px 0;
+        }
+
+        .toc h3 {
+            margin: 0 0 16px 0;
+            font-size: 1rem;
+        }
+
+        .toc ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .toc li {
+            margin-bottom: 8px;
+        }
+
+        .toc a {
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+
+        .toc a:hover {
+            color: var(--accent);
+        }
+
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer a { color: var(--text-secondary); text-decoration: none; }
+
+        .related-articles { margin-top: 60px; padding-top: 40px; border-top: 1px solid var(--border); }
+        .related-articles h2 { font-size: 1.5rem; margin-bottom: 24px; }
+        .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .related-card { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-decoration: none; transition: border-color 0.2s; }
+        .related-card:hover { border-color: var(--accent); }
+        .related-card h4 { color: white; font-size: 1rem; margin: 0 0 8px 0; }
+        .related-card p { color: var(--text-muted); font-size: 0.85rem; margin: 0; }
+        @media (max-width: 600px) { .related-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="../" class="logo">
+                <div class="logo-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round">
+                        <path d="M4 17l6-6-6-6M12 19h8"/>
+                    </svg>
+                </div>
+                Beam
+            </a>
+            <a href="../" class="btn">Download Beam</a>
+        </div>
+    </header>
+
+    <main class="container">
+        <article>
+            <div class="breadcrumb">
+                <a href="../">Home</a> → <a href="../#guides">Blog</a> → How to Install OpenClaw
+            </div>
+
+            <h1>How to Install OpenClaw: Complete Setup Guide 2026</h1>
+            <p class="meta">February 7, 2026 · 12 min read</p>
+
+            <p><strong>OpenClaw</strong> is the open-source AI assistant everyone's talking about. It runs locally on your machine, connects to your messaging apps, and handles everything from email management to browser automation — all while keeping your data private.</p>
+
+            <p>The best way to install and manage OpenClaw is with <strong>Beam</strong> — a terminal organizer for macOS. With Beam, you can run your OpenClaw Gateway, Agent, and logs in organized subwindows, save your setup as a layout, and switch between sessions with keyboard shortcuts.</p>
+
+            <p>This guide walks you through the complete setup: install Beam first, then install OpenClaw inside Beam's terminal.</p>
+
+            <div class="cta-box" style="margin: 32px 0;">
+                <h3>Step 0: Download Beam</h3>
+                <p>Get Beam first — you'll install OpenClaw inside it.</p>
+                <a href="../Beam-v1.9.12-alpha.dmg" class="btn">Download Beam Free</a>
+            </div>
+
+            <div class="toc">
+                <h3>Table of Contents</h3>
+                <ul>
+                    <li><a href="#what-is-openclaw">What is OpenClaw?</a></li>
+                    <li><a href="#requirements">System Requirements</a></li>
+                    <li><a href="#beam-setup">Setting Up Beam for OpenClaw</a></li>
+                    <li><a href="#install-openclaw">Installing OpenClaw in Beam</a></li>
+                    <li><a href="#onboarding">Running the Onboarding Wizard</a></li>
+                    <li><a href="#connect-apps">Connecting Messaging Apps</a></li>
+                    <li><a href="#first-chat">Your First OpenClaw Chat</a></li>
+                    <li><a href="#troubleshooting">Troubleshooting Common Issues</a></li>
+                </ul>
+            </div>
+
+            <h2 id="what-is-openclaw">What is OpenClaw?</h2>
+
+            <p>OpenClaw is an <strong>open-source personal AI assistant</strong> that runs entirely on your device. Unlike cloud-based assistants, OpenClaw keeps your data local by default — your conversations, files, and personal information never leave your machine unless you explicitly allow it.</p>
+
+            <p>Originally known as Clawdbot (and briefly Moltbot), OpenClaw exploded in popularity in early 2026 for its ability to:</p>
+
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <strong>Manage Your Inbox</strong>
+                    <span>Auto-sort, draft replies, schedule emails</span>
+                </div>
+                <div class="feature-item">
+                    <strong>Control Your Calendar</strong>
+                    <span>Schedule meetings, set reminders, check-in to flights</span>
+                </div>
+                <div class="feature-item">
+                    <strong>Browse the Web</strong>
+                    <span>Research, fill forms, automate repetitive tasks</span>
+                </div>
+                <div class="feature-item">
+                    <strong>Run Shell Commands</strong>
+                    <span>Execute scripts, manage files, control your system</span>
+                </div>
+                <div class="feature-item">
+                    <strong>Connect to 50+ Services</strong>
+                    <span>Spotify, GitHub, Obsidian, smart home devices</span>
+                </div>
+                <div class="feature-item">
+                    <strong>Chat via Messaging Apps</strong>
+                    <span>WhatsApp, Telegram, Discord, Slack, iMessage</span>
+                </div>
+            </div>
+
+            <p>The key differentiator is <strong>privacy</strong>. OpenClaw's Gateway runs locally on port 18789, and all AI processing can be configured to use local models or privacy-respecting APIs.</p>
+
+            <h2 id="requirements">System Requirements for OpenClaw</h2>
+
+            <p>Before you install OpenClaw, make sure your system meets these requirements:</p>
+
+            <div class="highlight">
+                <h3>Minimum Requirements</h3>
+                <ul>
+                    <li><strong>Beam:</strong> <a href="../">Download here</a> (free)</li>
+                    <li><strong>Node.js:</strong> Version 22 or higher</li>
+                    <li><strong>Operating System:</strong> macOS, Linux, or Windows (WSL2 recommended)</li>
+                    <li><strong>RAM:</strong> 8GB minimum, 16GB recommended</li>
+                    <li><strong>Storage:</strong> 2GB free space for OpenClaw + models</li>
+                </ul>
+            </div>
+
+            <h2 id="beam-setup">Setting Up Beam for OpenClaw</h2>
+
+            <p>First, let's set up Beam — this is where you'll run all your OpenClaw commands.</p>
+
+            <ol>
+                <li><strong>Download Beam</strong> from <a href="../">getbeam.dev</a> and drag it to your Applications folder</li>
+                <li><strong>Open Beam</strong> — you'll see your first terminal subwindow</li>
+                <li><strong>Create a subwindow</strong> (<span class="kbd">⌘N</span>) and rename it "OpenClaw" (<span class="kbd">⌘I</span>)</li>
+                <li><strong>Create tabs</strong> (<span class="kbd">⌘T</span>) for: Gateway, Agent, and Logs</li>
+            </ol>
+
+            <p>Your Beam workspace should look like this:</p>
+
+            <div class="highlight">
+                <h3>Subwindow: "OpenClaw"</h3>
+                <ul>
+                    <li><strong>Tab 1: "Gateway"</strong> — Will run the OpenClaw daemon</li>
+                    <li><strong>Tab 2: "Agent"</strong> — Interactive chat with OpenClaw</li>
+                    <li><strong>Tab 3: "Logs"</strong> — Monitor what's happening</li>
+                </ul>
+            </div>
+
+            <p>Save this layout with <span class="kbd">⌘S</span> so you can restore it anytime with <span class="kbd">⌘⇧L</span>.</p>
+
+            <div class="tip">
+                <strong>Tip:</strong> Use Beam's split panes (<span class="kbd">⌘⌥⌃T</span>) to see your Gateway logs while chatting with the agent side by side!
+            </div>
+
+            <h2 id="install-openclaw">Installing OpenClaw in Beam</h2>
+
+            <p>Now let's install OpenClaw. In your Beam terminal (the "Gateway" tab), first check your Node.js version:</p>
+
+            <pre><code>node --version</code></pre>
+
+            <p>If you see <code>v22.0.0</code> or higher, you're good. If not, install the latest Node.js:</p>
+
+            <pre><code># Install nvm (if you don't have it)
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
+
+# Install and use Node 22
+nvm install 22
+nvm use 22</code></pre>
+
+            <p>Now install OpenClaw. There are three methods — choose one:</p>
+
+            <h3>Method 1: Quick Install (Recommended)</h3>
+
+            <p>There are three ways to install OpenClaw. Choose the one that fits your needs:</p>
+
+            <h3>Method 1: Quick Install (Recommended)</h3>
+
+            <p>The fastest way to get started. Run this one-liner in your terminal:</p>
+
+            <pre><code>curl -fsSL https://openclaw.ai/install.sh | bash</code></pre>
+
+            <p>This script automatically detects your OS, installs dependencies, and sets up OpenClaw.</p>
+
+            <h3>Method 2: npm Install</h3>
+
+            <p>If you prefer using npm directly:</p>
+
+            <pre><code># Install OpenClaw globally
+npm install -g openclaw@latest
+
+# Or use pnpm
+pnpm add -g openclaw@latest
+
+# Or use bun
+bun add -g openclaw@latest</code></pre>
+
+            <h3>Method 3: Install from Source (For Developers)</h3>
+
+            <p>Want to hack on OpenClaw or contribute? Clone the repo:</p>
+
+            <pre><code># Clone the repository
+git clone https://github.com/openclaw/openclaw.git
+cd openclaw
+
+# Install dependencies
+pnpm install
+
+# Build the UI and core
+pnpm ui:build
+pnpm build
+
+# Run onboarding
+pnpm openclaw onboard --install-daemon</code></pre>
+
+            <div class="tip">
+                <strong>Tip:</strong> The source install is great for contributing to OpenClaw or building custom skills. For most users, the npm install is the way to go.
+            </div>
+
+            <h2 id="onboarding">Running the OpenClaw Onboarding Wizard</h2>
+
+            <p>After installation, run the onboarding wizard to configure OpenClaw:</p>
+
+            <pre><code>openclaw onboard --install-daemon</code></pre>
+
+            <p>This wizard will:</p>
+
+            <ol>
+                <li><strong>Install the Gateway daemon</strong> — A background service that handles all OpenClaw communications</li>
+                <li><strong>Configure your AI provider</strong> — Connect to Anthropic Claude, OpenAI, or local models</li>
+                <li><strong>Set up security defaults</strong> — Configure sandboxing and permissions</li>
+                <li><strong>Create your first profile</strong> — Personalize OpenClaw with your preferences</li>
+            </ol>
+
+            <p>Select <strong>QuickStart</strong> when prompted to use sensible defaults, or choose <strong>Custom</strong> for full control over every setting.</p>
+
+            <h3>Verify the Installation</h3>
+
+            <p>After onboarding, verify OpenClaw is running:</p>
+
+            <pre><code># Check the Gateway status
+openclaw gateway --status
+
+# Or start it manually with verbose output
+openclaw gateway --port 18789 --verbose</code></pre>
+
+            <p>You should see the Gateway running on <code>ws://127.0.0.1:18789</code>.</p>
+
+            <div class="tip">
+                <strong>Beam Tip:</strong> Keep your Gateway running in one Beam tab, then switch to your "Agent" tab (<span class="kbd">⌘⇧→</span>) to start chatting. Use <span class="kbd">⌘P</span> to quickly jump between tabs.
+            </div>
+
+            <h2 id="connect-apps">Connecting Messaging Apps to OpenClaw</h2>
+
+            <p>One of OpenClaw's killer features is accessing your AI assistant through apps you already use. Here's how to connect the most popular ones:</p>
+
+            <h3>WhatsApp</h3>
+
+            <pre><code>openclaw connect whatsapp</code></pre>
+
+            <p>A QR code will appear. Scan it with WhatsApp on your phone (Settings → Linked Devices → Link a Device).</p>
+
+            <h3>Telegram</h3>
+
+            <pre><code>openclaw connect telegram</code></pre>
+
+            <p>You'll need to create a bot via <a href="https://t.me/BotFather" target="_blank">@BotFather</a> and enter the token when prompted.</p>
+
+            <h3>Discord</h3>
+
+            <pre><code>openclaw connect discord</code></pre>
+
+            <p>Create a Discord application at the <a href="https://discord.com/developers/applications" target="_blank">Discord Developer Portal</a>, add a bot, and enter the token.</p>
+
+            <h3>Slack</h3>
+
+            <pre><code>openclaw connect slack</code></pre>
+
+            <p>Follow the OAuth flow to authorize OpenClaw for your workspace.</p>
+
+            <h3>iMessage (macOS only)</h3>
+
+            <pre><code>openclaw connect imessage</code></pre>
+
+            <p>Requires Full Disk Access permission in System Settings → Privacy & Security.</p>
+
+            <div class="warning">
+                <strong>Security Note:</strong> By default, OpenClaw has full host access for personal sessions. For group chats or shared channels, enable sandboxing in your config to isolate sessions in Docker containers.
+            </div>
+
+            <h2 id="first-chat">Your First OpenClaw Chat</h2>
+
+            <p>Now let's talk to your AI assistant! Switch to your "Agent" tab in Beam and try these commands:</p>
+
+            <h3>Via Beam Terminal</h3>
+
+            <pre><code># Quick message
+openclaw agent --message "What's on my calendar today?"
+
+# Interactive chat with extended thinking
+openclaw agent --message "Help me plan my week" --thinking high</code></pre>
+
+            <h3>Via Messaging App</h3>
+
+            <p>Simply send a message to your connected app. For WhatsApp, message yourself or the linked number. For Telegram, message your bot.</p>
+
+            <h3>Example Commands to Try</h3>
+
+            <div class="highlight">
+                <h3>Productivity</h3>
+                <ul>
+                    <li>"Summarize my unread emails and draft replies"</li>
+                    <li>"Schedule a meeting with John for next Tuesday at 2pm"</li>
+                    <li>"Check me in for my flight tomorrow"</li>
+                </ul>
+            </div>
+
+            <div class="highlight">
+                <h3>Development</h3>
+                <ul>
+                    <li>"Run the test suite and tell me what failed"</li>
+                    <li>"Create a new React component for user authentication"</li>
+                    <li>"Find all TODO comments in the codebase"</li>
+                </ul>
+            </div>
+
+            <div class="highlight">
+                <h3>Personal</h3>
+                <ul>
+                    <li>"Play my Discover Weekly playlist on Spotify"</li>
+                    <li>"Turn off the living room lights" (with smart home integration)</li>
+                    <li>"What's the weather like this weekend?"</li>
+                </ul>
+            </div>
+
+            <h2 id="troubleshooting">Troubleshooting Common OpenClaw Issues</h2>
+
+            <h3>"Command not found: openclaw"</h3>
+
+            <p>Your PATH might not include npm global binaries. Add this to your shell config:</p>
+
+            <pre><code># For zsh (~/.zshrc)
+export PATH="$PATH:$(npm config get prefix)/bin"
+
+# Then reload
+source ~/.zshrc</code></pre>
+
+            <h3>"Gateway failed to start"</h3>
+
+            <p>Port 18789 might be in use. Check with:</p>
+
+            <pre><code>lsof -i :18789</code></pre>
+
+            <p>Kill the process or use a different port:</p>
+
+            <pre><code>openclaw gateway --port 18790</code></pre>
+
+            <h3>"WhatsApp connection dropped"</h3>
+
+            <p>WhatsApp Web sessions expire. Re-run:</p>
+
+            <pre><code>openclaw connect whatsapp --force</code></pre>
+
+            <h3>"Permission denied" errors on macOS</h3>
+
+            <p>OpenClaw needs permissions for certain features. Go to System Settings → Privacy & Security and grant:</p>
+
+            <ul>
+                <li><strong>Full Disk Access</strong> — For iMessage and file operations</li>
+                <li><strong>Accessibility</strong> — For browser control</li>
+                <li><strong>Automation</strong> — For app integrations</li>
+            </ul>
+
+            <h2>Conclusion</h2>
+
+            <p>You now have OpenClaw installed and running inside Beam. Here's a quick recap:</p>
+
+            <ol>
+                <li><strong>Download Beam</strong> from <a href="../">getbeam.dev</a></li>
+                <li><strong>Set up your OpenClaw workspace</strong> with subwindows for Gateway, Agent, and Logs</li>
+                <li><strong>Install OpenClaw</strong> with <code>npm install -g openclaw@latest</code></li>
+                <li><strong>Run onboarding</strong> with <code>openclaw onboard --install-daemon</code></li>
+                <li><strong>Connect your messaging apps</strong> and start chatting</li>
+                <li><strong>Save your layout</strong> with <span class="kbd">⌘S</span> to restore anytime</li>
+            </ol>
+
+            <p>Using Beam with OpenClaw gives you the best experience: organized terminals, saved layouts, keyboard shortcuts, and Quick Switcher (<span class="kbd">⌘P</span>) to jump between sessions instantly.</p>
+
+            <p>Welcome to the future of personal AI assistants — running locally, respecting your privacy, and organized beautifully in Beam.</p>
+
+            <div class="cta-box">
+                <h3>Organize Your OpenClaw Workflow with Beam</h3>
+                <p>Download Beam free and set up the perfect terminal environment for OpenClaw. Subwindows, layouts, and keyboard navigation — everything you need.</p>
+                <a href="../" class="btn">Download Beam Free</a>
+            </div>
+
+            <hr style="border: none; border-top: 1px solid var(--border); margin: 40px 0;">
+
+            <p style="font-size: 0.9rem; color: var(--text-muted);">
+                <strong>Sources:</strong>
+                <a href="https://openclaw.ai/">OpenClaw Official Site</a> ·
+                <a href="https://github.com/openclaw/openclaw">OpenClaw GitHub</a> ·
+                <a href="https://www.digitalocean.com/resources/articles/what-is-openclaw">DigitalOcean Guide</a>
+            </p>
+
+            <div class="related-articles">
+                <h2>Related Articles</h2>
+                <div class="related-grid">
+                    <a href="best-terminal-app-ai-coding-2026.html" class="related-card">
+                        <h4>Best Terminal App for AI Coding in 2026</h4>
+                        <p>Find the best terminal for running AI agents like OpenClaw.</p>
+                    </a>
+                    <a href="claude-code-vs-cursor-vs-codex.html" class="related-card">
+                        <h4>Claude Code vs Cursor vs Codex</h4>
+                        <p>Compare the top AI coding tools side by side.</p>
+                    </a>
+                    <a href="beam-claude-code-setup.html" class="related-card">
+                        <h4>Setting Up Beam for Claude Code</h4>
+                        <p>Organize your AI sessions with subwindows and layouts.</p>
+                    </a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>
+                <a href="../">Beam</a> · Built by <a href="https://nextuptechnologies.co">NextUp Technologies</a>
+            </p>
+        </div>
+    </footer>
+</body>
+</html>

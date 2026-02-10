@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D0XH8B0RKL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-D0XH8B0RKL');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Perfect Vibe Coding Setup | Beam Terminal Organizer</title>
+    <meta name="description" content="Set up the perfect vibe coding environment with Beam. Stay in flow state with organized terminals, split panes, and instant workspace switching. The ultimate setup for AI-assisted development.">
+    <meta name="keywords" content="vibe coding, vibe coding setup, flow state coding, AI coding workflow, terminal setup, developer productivity, coding environment, programming flow">
+    <meta name="author" content="NextUp Technologies">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://getbeam.dev/blog/vibe-coding-setup.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://getbeam.dev/blog/vibe-coding-setup.html">
+    <meta property="og:title" content="The Perfect Vibe Coding Setup">
+    <meta property="og:description" content="Stay in flow state with organized terminals, split panes, and instant workspace switching.">
+    <meta property="og:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="The Perfect Vibe Coding Setup">
+    <meta name="twitter:description" content="Stay in flow state with organized terminals, split panes, and instant workspace switching.">
+    <meta name="twitter:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "The Perfect Vibe Coding Setup",
+        "description": "Set up the perfect vibe coding environment with organized terminals and AI-assisted development tools.",
+        "author": {
+            "@type": "Organization",
+            "name": "NextUp Technologies"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Beam"
+        },
+        "datePublished": "2026-02-06",
+        "keywords": "vibe coding, flow state, developer productivity"
+    }
+    </script>
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #111113;
+            --bg-tertiary: #1a1a1d;
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.4);
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --border: #27272a;
+            --success: #22c55e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+
+        .container { max-width: 800px; margin: 0 auto; padding: 0 24px; }
+
+        header {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 60px;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1.5rem;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            background: var(--accent);
+            color: white;
+            transition: all 0.2s;
+        }
+
+        .btn:hover { background: #2563eb; transform: translateY(-2px); }
+
+        article { padding-bottom: 80px; }
+
+        .breadcrumb {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+        }
+
+        .breadcrumb a { color: var(--accent); text-decoration: none; }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .meta {
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            font-size: 0.95rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 48px 0 20px;
+            color: var(--text-primary);
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        ul, ol {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            padding-left: 24px;
+        }
+
+        li { margin-bottom: 12px; }
+
+        .highlight {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 32px 0;
+        }
+
+        .highlight h3 {
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .kbd {
+            display: inline-block;
+            padding: 2px 8px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .cta-box h3 { font-size: 1.5rem; margin-bottom: 12px; }
+        .cta-box p { color: rgba(255,255,255,0.8); margin-bottom: 24px; }
+        .cta-box .btn { background: white; color: var(--accent); }
+
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer a { color: var(--text-secondary); text-decoration: none; }
+
+        .related-articles { margin-top: 60px; padding-top: 40px; border-top: 1px solid var(--border); }
+        .related-articles h2 { font-size: 1.5rem; margin-bottom: 24px; }
+        .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .related-card { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-decoration: none; transition: border-color 0.2s; }
+        .related-card:hover { border-color: var(--accent); }
+        .related-card h4 { color: white; font-size: 1rem; margin: 0 0 8px 0; }
+        .related-card p { color: var(--text-muted); font-size: 0.85rem; margin: 0; }
+        @media (max-width: 600px) { .related-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="../" class="logo">
+                <div class="logo-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round">
+                        <path d="M4 17l6-6-6-6M12 19h8"/>
+                    </svg>
+                </div>
+                Beam
+            </a>
+            <a href="../" class="btn">Download Beam</a>
+        </div>
+    </header>
+
+    <main>
+        <article class="container">
+            <div class="breadcrumb">
+                <a href="../">Beam</a> / <a href="../#guides">Guides</a> / Vibe Coding Setup
+            </div>
+
+            <h1>The Perfect Vibe Coding Setup for Flow State Development</h1>
+            <p class="meta">February 2026 &bull; 6 min read</p>
+
+            <p><strong>Vibe coding</strong> is the art of coding in a state of flow – where you're so locked in that hours pass like minutes. It's you, your AI assistant, and pure creative momentum. But nothing kills the vibe faster than terminal chaos.</p>
+
+            <p>This guide shows you how to set up your terminal environment to protect your flow state and maximize your vibe coding sessions.</p>
+
+            <h2>What is Vibe Coding?</h2>
+
+            <p>Vibe coding has emerged as a term for the new way developers work with AI assistants like Claude Code, Cursor, and GitHub Copilot. It's characterized by:</p>
+
+            <ul>
+                <li><strong>Conversational development</strong> – You describe what you want, the AI writes code, you iterate together</li>
+                <li><strong>Rapid prototyping</strong> – Ideas go from concept to working code in minutes, not hours</li>
+                <li><strong>Flow state</strong> – When it's working well, you lose track of time entirely</li>
+                <li><strong>Multiple contexts</strong> – You might have AI helping with frontend, backend, and devops simultaneously</li>
+            </ul>
+
+            <p>The challenge? All these AI conversations and terminal sessions can quickly become a disorganized mess.</p>
+
+            <h2>The Flow State Killer: Context Switching</h2>
+
+            <p>Research shows it takes an average of 23 minutes to regain focus after an interruption. In vibe coding, these interruptions often come from:</p>
+
+            <ul>
+                <li>Hunting for the right terminal window</li>
+                <li>Trying to remember which Claude Code session was working on what</li>
+                <li>Accidentally running commands in the wrong terminal</li>
+                <li>Losing your mental model of what's running where</li>
+            </ul>
+
+            <p>The solution isn't to use fewer terminals – it's to organize them so well that switching contexts becomes instant and intuitive.</p>
+
+            <h2>Setting Up Your Vibe Coding Environment</h2>
+
+            <p>Here's my battle-tested setup using Beam:</p>
+
+            <h3>Step 1: One Subwindow Per Vibe</h3>
+
+            <p>Create separate subwindows for different contexts. Each subwindow is its own self-contained workspace:</p>
+
+            <ul>
+                <li><strong>"Frontend Vibe"</strong> – Claude Code + dev server + browser tools</li>
+                <li><strong>"Backend Vibe"</strong> – Claude Code + API server + database</li>
+                <li><strong>"Exploration"</strong> – For when you're just playing around with ideas</li>
+            </ul>
+
+            <p>Press <span class="kbd">⌘N</span> to create a new subwindow, then double-click to give it a meaningful name.</p>
+
+            <h3>Step 2: Strategic Split Panes</h3>
+
+            <p>Split panes let you see multiple terminals at once without switching. The best vibe coding splits:</p>
+
+            <ul>
+                <li><strong>Claude Code | Output</strong> – Watch your changes take effect in real-time</li>
+                <li><strong>Claude Code | Logs</strong> – See errors as they happen</li>
+                <li><strong>Tests | Implementation</strong> – TDD with instant feedback</li>
+            </ul>
+
+            <p>Press <span class="kbd">⌘⌥⌃T</span> to split the current pane.</p>
+
+            <div class="highlight">
+                <h3>The 60/40 Split</h3>
+                <p>For vibe coding, I like giving Claude Code about 60% of the screen width, with logs or output taking 40%. This keeps focus on the conversation while maintaining awareness of what's happening.</p>
+            </div>
+
+            <h3>Step 3: Keyboard-First Navigation</h3>
+
+            <p>The fastest context switch is one that doesn't break your typing flow. Memorize these:</p>
+
+            <ul>
+                <li><span class="kbd">⌘⌥←→</span> – Switch between subwindows (between vibes)</li>
+                <li><span class="kbd">⌘⇧←→</span> – Switch between tabs within a subwindow</li>
+                <li><span class="kbd">⌘P</span> – Quick switcher to jump anywhere instantly</li>
+                <li><span class="kbd">⌘⌥⌃←→↑↓</span> – Navigate between split panes</li>
+            </ul>
+
+            <p>Your hands never leave the keyboard. Your flow never breaks.</p>
+
+            <h3>Step 4: Save Your Vibe</h3>
+
+            <p>Found the perfect arrangement? Save it as a layout with <span class="kbd">⌘S</span>.</p>
+
+            <p>I have layouts saved for different types of work:</p>
+
+            <ul>
+                <li><strong>"Deep Work"</strong> – Minimal setup, just Claude Code and one output pane</li>
+                <li><strong>"Full Stack"</strong> – Frontend and backend subwindows with all the supporting terminals</li>
+                <li><strong>"Debugging"</strong> – Logs everywhere, multiple split panes for different services</li>
+            </ul>
+
+            <p>Switching between layouts is instant. Different vibe, different setup, zero friction.</p>
+
+            <h2>Vibe Coding Tips & Tricks</h2>
+
+            <h3>Name Your Terminals</h3>
+
+            <p>Don't leave tabs named "zsh". Double-click to rename them: "Claude: API", "Dev Server", "Git". When you're deep in flow, you'll thank yourself.</p>
+
+            <h3>Use the Quick Switcher Aggressively</h3>
+
+            <p>The Quick Switcher (<span class="kbd">⌘P</span>) searches across everything – subwindows, tabs, even other layouts. Type a few characters, hit Enter, you're there. It's faster than any mouse movement.</p>
+
+            <h3>Undo Accidents Instantly</h3>
+
+            <p>Closed a tab by accident? <span class="kbd">⌘Z</span> brings it back. Closed an entire subwindow? <span class="kbd">⌘Z</span> brings that back too. Don't let accidents kill your vibe.</p>
+
+            <div class="cta-box">
+                <h3>Ready to Level Up Your Vibe Coding?</h3>
+                <p>Download Beam and set up your perfect flow state environment.</p>
+                <a href="../" class="btn">Download Beam for macOS</a>
+            </div>
+
+            <h2>Summary: The Vibe Coding Checklist</h2>
+
+            <ul>
+                <li>✓ One subwindow per project/context</li>
+                <li>✓ Strategic split panes for Claude Code + output</li>
+                <li>✓ Meaningful names on all tabs</li>
+                <li>✓ Keyboard shortcuts memorized</li>
+                <li>✓ Layouts saved for different work modes</li>
+                <li>✓ Quick Switcher for instant jumps</li>
+            </ul>
+
+            <p>Now go forth and vibe. 🎨</p>
+
+            <div class="related-articles">
+                <h2>Related Articles</h2>
+                <div class="related-grid">
+                    <a href="terminal-is-the-new-ide.html" class="related-card">
+                        <h4>Why Your Terminal is the New IDE</h4>
+                        <p>AI tools are making the terminal the center of development.</p>
+                    </a>
+                    <a href="wispr-flow-claude-code-beam.html" class="related-card">
+                        <h4>Voice-Controlled Coding with Wispr Flow</h4>
+                        <p>Combine voice dictation with AI coding for hands-free development.</p>
+                    </a>
+                    <a href="best-terminal-app-ai-coding-2026.html" class="related-card">
+                        <h4>Best Terminal App for AI Coding in 2026</h4>
+                        <p>Find the best terminal for your AI-powered workflow.</p>
+                    </a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>
+                <a href="../">Beam</a> &bull; Terminal Organizer for macOS &bull;
+                <a href="mailto:frank@nextuptechnologies.co">Contact</a>
+            </p>
+        </div>
+    </footer>
+</body>
+</html>

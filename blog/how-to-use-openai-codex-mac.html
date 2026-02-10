@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D0XH8B0RKL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-D0XH8B0RKL');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Use OpenAI Codex on Mac: Complete Setup Guide 2026 | Beam</title>
+    <meta name="description" content="Step-by-step guide to installing and using OpenAI Codex on Mac. Learn how to set up Codex, configure your API key, and use Beam for one-click AI coding sessions.">
+    <meta name="keywords" content="OpenAI Codex Mac, Codex setup guide, install Codex Mac, OpenAI Codex terminal, Codex CLI, AI coding Mac, Codex tutorial 2026, Beam Codex, OpenAI Codex macOS, Codex configuration">
+    <meta name="author" content="NextUp Technologies">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://getbeam.dev/blog/how-to-use-openai-codex-mac.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://getbeam.dev/blog/how-to-use-openai-codex-mac.html">
+    <meta property="og:title" content="How to Use OpenAI Codex on Mac: Complete Setup Guide 2026">
+    <meta property="og:description" content="Step-by-step guide to installing and using OpenAI Codex on Mac.">
+    <meta property="og:image" content="https://getbeam.dev/beam-screenshot-1.9.8.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="How to Use OpenAI Codex on Mac: Complete Setup Guide 2026">
+    <meta name="twitter:description" content="Step-by-step guide to installing and using OpenAI Codex on Mac.">
+    <meta name="twitter:image" content="https://getbeam.dev/beam-screenshot-1.9.8.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "How to Use OpenAI Codex on Mac: Complete Setup Guide 2026",
+        "description": "Step-by-step guide to installing and using OpenAI Codex on Mac with Beam terminal organizer.",
+        "author": {
+            "@type": "Organization",
+            "name": "NextUp Technologies"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Beam"
+        },
+        "datePublished": "2026-02-08",
+        "keywords": "OpenAI Codex, Mac, AI coding, terminal, Beam, setup guide"
+    }
+    </script>
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #111113;
+            --bg-tertiary: #1a1a1d;
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.4);
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --border: #27272a;
+            --success: #22c55e;
+            --warning: #f59e0b;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+
+        .container { max-width: 800px; margin: 0 auto; padding: 0 24px; }
+
+        header {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 60px;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1.5rem;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            background: var(--accent);
+            color: white;
+            transition: all 0.2s;
+        }
+
+        .btn:hover { background: #2563eb; transform: translateY(-2px); }
+
+        article { padding-bottom: 80px; }
+
+        .breadcrumb {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+        }
+
+        .breadcrumb a { color: var(--accent); text-decoration: none; }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .meta {
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            font-size: 0.95rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 48px 0 20px;
+            color: var(--text-primary);
+        }
+
+        h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 32px 0 16px;
+            color: var(--text-primary);
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        ul, ol {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            padding-left: 24px;
+        }
+
+        li { margin-bottom: 12px; }
+
+        strong { color: var(--text-primary); }
+
+        a { color: var(--accent); }
+
+        .highlight {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 32px 0;
+        }
+
+        .highlight h3 {
+            font-size: 1.1rem;
+            margin: 0 0 12px 0;
+            color: var(--text-primary);
+        }
+
+        .highlight p:last-child, .highlight ul:last-child {
+            margin-bottom: 0;
+        }
+
+        .kbd {
+            display: inline-block;
+            padding: 2px 8px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+        }
+
+        code {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 2px 6px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+        }
+
+        pre {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 20px;
+            overflow-x: auto;
+            margin: 24px 0;
+        }
+
+        pre code {
+            background: none;
+            border: none;
+            padding: 0;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            background: var(--accent);
+            color: white;
+            border-radius: 50%;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-right: 12px;
+        }
+
+        .tip {
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 24px 0;
+        }
+
+        .tip strong {
+            color: var(--success);
+        }
+
+        .warning {
+            background: rgba(245, 158, 11, 0.1);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 24px 0;
+        }
+
+        .warning strong {
+            color: var(--warning);
+        }
+
+        .toc {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 32px 0;
+        }
+
+        .toc h3 {
+            margin: 0 0 16px 0;
+            font-size: 1rem;
+        }
+
+        .toc ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .toc li {
+            margin-bottom: 8px;
+        }
+
+        .toc a {
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+
+        .toc a:hover {
+            color: var(--accent);
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .cta-box h3 { font-size: 1.5rem; margin-bottom: 12px; color: white; }
+        .cta-box p { color: rgba(255,255,255,0.8); margin-bottom: 24px; }
+        .cta-box .btn { background: white; color: var(--accent); }
+
+        .related-articles {
+            border-top: 1px solid var(--border);
+            padding-top: 40px;
+            margin-top: 20px;
+        }
+
+        .related-articles h3 {
+            font-size: 1.3rem;
+            margin-bottom: 24px;
+        }
+
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+        }
+
+        .related-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .related-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .related-card h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+
+        .related-card p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin: 0;
+        }
+
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer a { color: var(--text-secondary); text-decoration: none; }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="../" class="logo">
+                <div class="logo-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round">
+                        <path d="M4 17l6-6-6-6M12 19h8"/>
+                    </svg>
+                </div>
+                Beam
+            </a>
+            <a href="../" class="btn">Download Beam</a>
+        </div>
+    </header>
+
+    <main class="container">
+        <article>
+            <div class="breadcrumb">
+                <a href="../">Home</a> → <a href="../#guides">Blog</a> → How to Use OpenAI Codex on Mac
+            </div>
+
+            <h1>How to Use OpenAI Codex on Mac: Complete Setup Guide 2026</h1>
+            <p class="meta">February 8, 2026 · 7 min read</p>
+
+            <p>OpenAI Codex is a powerful AI coding agent that runs directly in your terminal. Instead of switching between a chat window and your editor, you describe what you want in plain English and Codex writes the code, edits files, and runs commands right where you work. Whether you are building a new feature, debugging a tricky issue, or scaffolding an entire project, Codex brings the full power of OpenAI's models to your command line.</p>
+
+            <p>This guide walks you through everything you need to install, configure, and start using OpenAI Codex on your Mac -- from the initial npm install to advanced workflow tips. If you want to skip the manual setup entirely, we will also show you how Beam can launch Codex in one click with zero configuration.</p>
+
+            <div class="toc">
+                <h3>Table of Contents</h3>
+                <ul>
+                    <li><a href="#what-is-codex">What is OpenAI Codex?</a></li>
+                    <li><a href="#prerequisites">Prerequisites</a></li>
+                    <li><a href="#install-codex">Step 1: Install Codex</a></li>
+                    <li><a href="#configure-api-key">Step 2: Configure Your API Key</a></li>
+                    <li><a href="#launch-codex">Step 3: Launch Codex</a></li>
+                    <li><a href="#beam-easy-way">The Easy Way: Use Beam</a></li>
+                    <li><a href="#organize-sessions">Organizing Codex Sessions with Beam</a></li>
+                    <li><a href="#tips">Tips for Getting the Most Out of Codex</a></li>
+                    <li><a href="#conclusion">Conclusion</a></li>
+                </ul>
+            </div>
+
+            <h2 id="what-is-codex">What is OpenAI Codex?</h2>
+
+            <p><strong>OpenAI Codex</strong> is OpenAI's official command-line coding assistant. It is a CLI tool that connects to OpenAI's latest models -- including GPT-5.3-Codex and GPT-5.2-Codex -- and translates natural language instructions into real code changes. You type a request like "add input validation to the signup form" or "refactor this function to use async/await," and Codex reads your project files, generates the code, and applies the changes directly.</p>
+
+            <p>What sets Codex apart from browser-based AI tools is that it operates inside your terminal, right next to your existing workflow. It can read your project structure, understand your codebase context, and execute shell commands to test its own output. There is no copy-pasting between a chat window and your editor. Codex works with the files on your disk, runs your test suite, and iterates until things pass.</p>
+
+            <p>Codex also supports multiple autonomy levels. You can run it in <strong>suggest</strong> mode where it proposes changes for your approval, <strong>auto-edit</strong> mode where it writes files but asks before running commands, or <strong>full-auto</strong> mode where it handles everything end-to-end inside a sandbox. This makes it suitable for everything from careful refactoring to rapid prototyping.</p>
+
+            <h2 id="prerequisites">Prerequisites</h2>
+
+            <p>Before installing Codex, make sure you have the following ready on your Mac:</p>
+
+            <div class="highlight">
+                <h3>System Requirements</h3>
+                <ul>
+                    <li><strong>macOS 13 (Ventura) or later</strong> -- Codex requires a modern macOS version</li>
+                    <li><strong>Node.js 18 or higher</strong> -- Codex is distributed as an npm package</li>
+                    <li><strong>npm</strong> -- Comes bundled with Node.js</li>
+                    <li><strong>An OpenAI API key</strong> -- You need an active API account with credits at <a href="https://platform.openai.com" target="_blank">platform.openai.com</a></li>
+                </ul>
+            </div>
+
+            <p>To check your Node.js version, open a terminal and run:</p>
+
+            <pre><code>node --version</code></pre>
+
+            <p>If you see <code>v18.0.0</code> or higher, you are ready. If Node.js is not installed or you have an older version, the easiest way to install it on Mac is with Homebrew:</p>
+
+            <pre><code># Install Homebrew if you don't have it
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+# Install Node.js
+brew install node</code></pre>
+
+            <h2 id="install-codex">Step 1: Install Codex</h2>
+
+            <p>With Node.js ready, installing Codex is a single command. Open your terminal and run:</p>
+
+            <pre><code>npm install -g @openai/codex</code></pre>
+
+            <p>This installs the <code>codex</code> command globally on your system so you can run it from any directory. The installation typically takes under a minute. Once complete, verify it worked:</p>
+
+            <pre><code>codex --version</code></pre>
+
+            <p>You should see a version number printed to the terminal, confirming that Codex is installed and available on your PATH.</p>
+
+            <div class="tip">
+                <strong>Tip:</strong> If you get a permission error during installation, you may need to fix your npm global directory permissions. Run <code>sudo npm install -g @openai/codex</code> or configure npm to use a user-owned directory with <code>npm config set prefix ~/.npm-global</code>.
+            </div>
+
+            <h2 id="configure-api-key">Step 2: Configure Your API Key</h2>
+
+            <p>Codex needs your OpenAI API key to communicate with OpenAI's models. If you do not have an API key yet, go to <a href="https://platform.openai.com/api-keys" target="_blank">platform.openai.com/api-keys</a> and create one. Make sure your account has billing enabled and some credits loaded.</p>
+
+            <p>The simplest way to configure your key is to add it as an environment variable in your shell profile. Since macOS uses zsh by default, open your <code>~/.zshrc</code> file and add this line:</p>
+
+            <pre><code># Add to ~/.zshrc
+export OPENAI_API_KEY="sk-your-api-key-here"</code></pre>
+
+            <p>Then reload your shell configuration:</p>
+
+            <pre><code>source ~/.zshrc</code></pre>
+
+            <p>You can verify the key is set correctly by running:</p>
+
+            <pre><code>echo $OPENAI_API_KEY</code></pre>
+
+            <div class="warning">
+                <strong>Security Note:</strong> Never commit your API key to a git repository or share it publicly. The <code>~/.zshrc</code> approach keeps it local to your machine. For teams, consider using a secrets manager or project-specific <code>.env</code> files added to your <code>.gitignore</code>.
+            </div>
+
+            <h2 id="launch-codex">Step 3: Launch Codex</h2>
+
+            <p>Navigate to your project directory and start Codex:</p>
+
+            <pre><code>cd ~/Projects/my-app
+codex</code></pre>
+
+            <p>Codex starts an interactive session in your terminal. You will see a prompt where you can type natural language instructions. Codex reads your project files to understand the codebase context, then generates and applies changes based on your requests.</p>
+
+            <p>Here are some example prompts to try in your first session:</p>
+
+            <div class="highlight">
+                <h3>Example Codex Prompts</h3>
+                <ul>
+                    <li><code>codex "explain what this project does"</code> -- Get a high-level overview of your codebase</li>
+                    <li><code>codex "add a health check endpoint to the Express server"</code> -- Generate new code</li>
+                    <li><code>codex "find and fix any TypeScript errors"</code> -- Debug and repair</li>
+                    <li><code>codex "write tests for the auth module"</code> -- Scaffold test files</li>
+                    <li><code>codex "refactor the database layer to use connection pooling"</code> -- Restructure existing code</li>
+                </ul>
+            </div>
+
+            <p>When you pass a prompt directly as an argument, Codex runs in a one-shot mode -- it processes your request and exits. If you run <code>codex</code> without a prompt, it opens an interactive session where you can have a back-and-forth conversation, similar to a chat interface but right inside your terminal.</p>
+
+            <p>Codex defaults to <strong>GPT-5.3-Codex</strong>, OpenAI's most capable agentic coding model. You can specify a different model when launching:</p>
+
+            <pre><code># Use GPT-5.3-Codex (default, most capable)
+codex --model gpt-5.3-codex
+
+# Use GPT-5.1-Codex-Mini for quick, lightweight tasks
+codex --model gpt-5.1-codex-mini</code></pre>
+
+            <h2 id="beam-easy-way">The Easy Way: Use Beam</h2>
+
+            <p>If the command-line setup feels like too many steps, <strong>Beam</strong> makes it dramatically simpler. Beam is a terminal organizer for macOS that includes one-click AI agent launching -- including OpenAI Codex.</p>
+
+            <p>Here is how it works:</p>
+
+            <p><span class="step-number">1</span><strong>Download Beam</strong> from <a href="../">getbeam.dev</a> and open it.</p>
+
+            <p><span class="step-number">2</span><strong>Right-click</strong> inside any terminal window to open the context menu.</p>
+
+            <p><span class="step-number">3</span>Select <strong>Start AI Agent</strong> → <strong>OpenAI Codex</strong>.</p>
+
+            <p>That is it. Beam checks if Codex is installed on your system. If it is not, Beam automatically installs it for you via npm, then launches it in the current terminal. No manual npm commands, no editing shell config files, no troubleshooting PATH issues.</p>
+
+            <div class="tip">
+                <strong>Tip:</strong> Beam's AI Agent launcher also supports <strong>Claude Code</strong> and <strong>OpenClaw</strong>. You can switch between different AI coding tools depending on the task without remembering different install commands or configurations.
+            </div>
+
+            <p>This is especially valuable for developers who are new to terminal-based AI tools. Instead of reading through documentation and debugging environment issues, you get a working Codex session in seconds. Beam handles the plumbing so you can focus on the coding.</p>
+
+            <div class="highlight">
+                <h3>What Beam Does Behind the Scenes</h3>
+                <ul>
+                    <li>Checks if <code>codex</code> is available on your PATH</li>
+                    <li>If not found, runs <code>npm install -g @openai/codex</code> automatically</li>
+                    <li>Launches Codex in the current terminal pane</li>
+                    <li>You will still need your <code>OPENAI_API_KEY</code> environment variable set</li>
+                </ul>
+            </div>
+
+            <h2 id="organize-sessions">Organizing Codex Sessions with Beam</h2>
+
+            <p>Once you start using Codex regularly, you will quickly find yourself running multiple sessions across different projects. One Codex instance for the backend, another for the frontend, maybe a third for writing tests. Without organization, your terminal becomes a mess of unnamed tabs with no way to find anything.</p>
+
+            <p>Beam solves this with <strong>subwindows</strong> -- separate, named terminal windows that group related terminals together. Each subwindow can contain multiple tabs and split panes, giving you a complete workspace for each project.</p>
+
+            <h3>Setting Up a Codex Workspace</h3>
+
+            <p>Here is a practical setup for full-stack development with Codex:</p>
+
+            <div class="highlight">
+                <h3>Subwindow 1: "Backend" (<span class="kbd">⌘1</span>)</h3>
+                <ul>
+                    <li><strong>Tab 1: "Codex"</strong> -- Codex session pointed at your API codebase</li>
+                    <li><strong>Tab 2: "Server"</strong> -- Dev server running (<code>npm run dev</code>)</li>
+                    <li><strong>Tab 3: "Tests"</strong> -- Run test suite to verify Codex changes</li>
+                </ul>
+            </div>
+
+            <div class="highlight">
+                <h3>Subwindow 2: "Frontend" (<span class="kbd">⌘2</span>)</h3>
+                <ul>
+                    <li><strong>Tab 1: "Codex"</strong> -- Codex session for your React/Vue/Next.js app</li>
+                    <li><strong>Tab 2: "Dev Server"</strong> -- Frontend dev server with hot reload</li>
+                    <li><strong>Tab 3: "Git"</strong> -- Commit and push changes</li>
+                </ul>
+            </div>
+
+            <p>With this layout, you can jump between your backend Codex session and your frontend Codex session instantly using <span class="kbd">⌘1</span> and <span class="kbd">⌘2</span>. No hunting through a dozen unnamed tabs.</p>
+
+            <h3>Save and Restore Your Layout</h3>
+
+            <p>Once you have your subwindows and tabs arranged, press <span class="kbd">⌘S</span> to save the layout. Give it a name like "Codex Full Stack." Tomorrow, when you sit down to work, press <span class="kbd">⌘⇧L</span> and select your saved layout. Everything is restored exactly as you left it.</p>
+
+            <h3>Use the Full Stack Dev Template</h3>
+
+            <p>Beam includes built-in workspace templates that set up common layouts automatically. The <strong>Full Stack Dev</strong> template creates subwindows for frontend, backend, and infrastructure -- each pre-configured with useful tabs. Press <span class="kbd">⌘⇧N</span> to open the template picker, or use the Quick Switcher (<span class="kbd">⌘P</span>) and search for "Full Stack."</p>
+
+            <p>Templates can even auto-run commands when they load. You could create a custom template that launches Codex in one pane and starts your dev server in another, giving you a complete AI-assisted development environment with a single keyboard shortcut.</p>
+
+            <h2 id="tips">Tips for Getting the Most Out of Codex</h2>
+
+            <p>Codex is a powerful tool, but like any AI assistant, the quality of your output depends heavily on how you use it. Here are practical tips to get the best results.</p>
+
+            <h3>Be Specific with Your Prompts</h3>
+
+            <p>Vague prompts produce vague results. Instead of "fix the bug," tell Codex exactly what is happening: "the /api/users endpoint returns a 500 error when the email field is missing -- add input validation that returns a 400 with a descriptive error message." The more context you provide, the better Codex can target its changes.</p>
+
+            <h3>Keep Your Context Focused</h3>
+
+            <p>Codex reads your project directory to understand context. If you are working on a monorepo, navigate into the specific package or module you want Codex to focus on rather than running it from the repo root. A smaller, more focused context leads to faster and more accurate responses.</p>
+
+            <pre><code># Instead of this:
+cd ~/Projects/monorepo
+codex "fix the auth bug"
+
+# Do this:
+cd ~/Projects/monorepo/packages/auth-service
+codex "fix the email validation in signup handler"</code></pre>
+
+            <h3>Use Different Models for Different Tasks</h3>
+
+            <p>Not every task needs the most powerful model. Use <strong>GPT-5.1-Codex-Mini</strong> for quick edits, explanations, and straightforward code generation. Switch to <strong>GPT-5.3-Codex</strong> for complex refactoring, architectural decisions, or when you need Codex to reason across multiple files. You can change models mid-session with the <code>/model</code> command.</p>
+
+            <pre><code># Switch models during an interactive session
+/model gpt-5.3-codex</code></pre>
+
+            <h3>Choose the Right Autonomy Level</h3>
+
+            <p>Codex supports three modes that control how much it does without asking:</p>
+
+            <ul>
+                <li><strong>Suggest</strong> -- Codex proposes changes but does not apply them until you approve. Best for learning what Codex can do and for sensitive codebases.</li>
+                <li><strong>Auto-edit</strong> -- Codex writes and edits files automatically but asks before running shell commands. A good balance for daily use.</li>
+                <li><strong>Full-auto</strong> -- Codex handles everything, including running commands, in a sandboxed environment. Best for rapid prototyping and greenfield projects.</li>
+            </ul>
+
+            <p>Start with <strong>suggest</strong> mode until you are comfortable, then graduate to <strong>auto-edit</strong> for productivity.</p>
+
+            <h3>Combine Codex with Split Panes</h3>
+
+            <p>In Beam, use split panes (<span class="kbd">⌘D</span> for vertical, <span class="kbd">⌘⇧D</span> for horizontal) to run Codex on one side and your dev server or test runner on the other. This way you can watch Codex make changes and immediately see the results without switching tabs.</p>
+
+            <h2 id="conclusion">Conclusion</h2>
+
+            <p>OpenAI Codex brings the intelligence of GPT models directly into your terminal workflow. It reads your codebase, understands natural language instructions, and applies changes right where you work -- no copy-pasting, no context switching. Combined with Beam, you get a complete AI-powered development environment: organized subwindows for each project, one-click Codex launching, saved layouts you can restore in seconds, and keyboard shortcuts that keep you in flow.</p>
+
+            <p>The setup is straightforward: install Node.js, install Codex via npm, set your API key, and start coding. Or skip all of that and let Beam handle the installation with a single right-click. Either way, you will be writing code with AI assistance in minutes.</p>
+
+            <div class="cta-box">
+                <h3>Start Using Codex in One Click</h3>
+                <p>Download Beam and launch OpenAI Codex instantly -- no setup commands needed. Right-click, select OpenAI Codex, and start coding with AI.</p>
+                <a href="../" class="btn">Download Beam Free</a>
+            </div>
+
+            <div class="related-articles">
+                <h3>Related Articles</h3>
+                <div class="related-grid">
+                    <a href="beam-claude-code-setup.html" class="related-card">
+                        <h4>Setting Up Beam for Claude Code Development</h4>
+                        <p>Organize your Claude Code sessions with subwindows, layouts, and keyboard shortcuts.</p>
+                    </a>
+                    <a href="claude-code-vs-cursor-vs-codex.html" class="related-card">
+                        <h4>Claude Code vs Cursor vs Codex: Which AI Coding Tool is Best?</h4>
+                        <p>A detailed comparison of the top AI coding assistants in 2026.</p>
+                    </a>
+                    <a href="best-terminal-app-ai-coding-2026.html" class="related-card">
+                        <h4>Best Terminal App for AI Coding in 2026</h4>
+                        <p>Why terminal-based AI tools are replacing traditional IDEs and which terminal app works best.</p>
+                    </a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>
+                <a href="../">Beam</a> · Built by <a href="https://nextuptechnologies.co">NextUp Technologies</a>
+            </p>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D0XH8B0RKL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-D0XH8B0RKL');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voice-Controlled Coding: Using Wispr Flow with Claude Code and Beam</title>
+    <meta name="description" content="Learn how to combine Wispr Flow dictation, Claude Code AI, and Beam terminal organizer for a seamless voice-controlled coding workflow on macOS.">
+    <meta name="keywords" content="Wispr Flow, Claude Code, Beam, voice coding, dictation, AI coding, macOS development, voice to code, hands-free coding">
+    <meta name="author" content="NextUp Technologies">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://getbeam.dev/blog/wispr-flow-claude-code-beam.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://getbeam.dev/blog/wispr-flow-claude-code-beam.html">
+    <meta property="og:title" content="Voice-Controlled Coding: Using Wispr Flow with Claude Code and Beam">
+    <meta property="og:description" content="Combine voice dictation, AI coding, and terminal organization for the ultimate hands-free development workflow.">
+    <meta property="og:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Voice-Controlled Coding: Wispr Flow + Claude Code + Beam">
+    <meta name="twitter:description" content="Combine voice dictation, AI coding, and terminal organization for the ultimate hands-free development workflow.">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Voice-Controlled Coding: Using Wispr Flow with Claude Code and Beam",
+        "description": "Learn how to combine Wispr Flow dictation, Claude Code AI, and Beam terminal organizer for a seamless voice-controlled coding workflow.",
+        "author": {
+            "@type": "Organization",
+            "name": "NextUp Technologies"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "NextUp Technologies"
+        },
+        "datePublished": "2026-02-06",
+        "dateModified": "2026-02-06"
+    }
+    </script>
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #111113;
+            --bg-tertiary: #1a1a1d;
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.4);
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --border: #27272a;
+            --success: #22c55e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        header {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 60px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1.5rem;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-icon svg { width: 20px; height: 20px; }
+
+        .breadcrumb {
+            margin-bottom: 32px;
+            font-size: 0.9rem;
+        }
+
+        .breadcrumb a {
+            color: var(--text-muted);
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover { color: var(--accent); }
+        .breadcrumb span { color: var(--text-muted); margin: 0 8px; }
+
+        article h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .meta {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 48px;
+        }
+
+        article h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 48px 0 20px;
+            color: var(--text-primary);
+        }
+
+        article h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 32px 0 16px;
+            color: var(--text-primary);
+        }
+
+        article p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        article ul, article ol {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            padding-left: 24px;
+        }
+
+        article li { margin-bottom: 12px; }
+
+        article strong { color: var(--text-primary); }
+
+        article a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        article a:hover { text-decoration: underline; }
+
+        .highlight-box {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 32px 0;
+        }
+
+        .highlight-box h4 {
+            color: var(--text-primary);
+            margin-bottom: 12px;
+            font-size: 1.1rem;
+        }
+
+        .highlight-box p {
+            margin-bottom: 0;
+        }
+
+        .tool-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 16px 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+        }
+
+        .tool-icon {
+            font-size: 2rem;
+            flex-shrink: 0;
+        }
+
+        .tool-card h4 {
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .tool-card p {
+            margin-bottom: 0;
+            font-size: 0.95rem;
+        }
+
+        code {
+            font-family: 'JetBrains Mono', monospace;
+            background: var(--bg-tertiary);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+
+        pre {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 20px;
+            overflow-x: auto;
+            margin: 24px 0;
+        }
+
+        pre code {
+            background: none;
+            padding: 0;
+        }
+
+        .kbd {
+            display: inline-block;
+            padding: 2px 8px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+        }
+
+        .workflow-step {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 16px 0;
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        .step-number {
+            width: 32px;
+            height: 32px;
+            background: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .workflow-step h4 {
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .workflow-step p {
+            margin-bottom: 0;
+            font-size: 0.95rem;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .cta-box h3 {
+            color: white;
+            margin-bottom: 12px;
+        }
+
+        .cta-box p {
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 24px;
+        }
+
+        .cta-box .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            background: white;
+            color: var(--accent);
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: transform 0.2s;
+        }
+
+        .cta-box .btn:hover {
+            transform: translateY(-2px);
+            text-decoration: none;
+        }
+
+        footer {
+            padding: 60px 0;
+            border-top: 1px solid var(--border);
+            margin-top: 80px;
+            text-align: center;
+        }
+
+        footer p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+
+        footer a:hover { color: var(--text-primary); }
+
+        .related-articles { margin-top: 60px; padding-top: 40px; border-top: 1px solid var(--border); }
+        .related-articles h2 { font-size: 1.5rem; margin-bottom: 24px; }
+        .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .related-card { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-decoration: none; transition: border-color 0.2s; }
+        .related-card:hover { border-color: var(--accent); }
+        .related-card h4 { color: white; font-size: 1rem; margin: 0 0 8px 0; }
+        .related-card p { color: var(--text-muted); font-size: 0.85rem; margin: 0; }
+        @media (max-width: 600px) { .related-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="../" class="logo">
+                <div class="logo-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round">
+                        <path d="M4 17l6-6-6-6M12 19h8"/>
+                    </svg>
+                </div>
+                Beam
+            </a>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="breadcrumb">
+            <a href="../">Home</a>
+            <span>/</span>
+            <a href="../#guides">Guides</a>
+            <span>/</span>
+            Wispr Flow + Claude Code + Beam
+        </div>
+
+        <article>
+            <h1>Voice-Controlled Coding: Using Wispr Flow with Claude Code and Beam</h1>
+            <p class="meta">February 2026 &bull; 5 min read</p>
+
+            <p>What if you could build software by just talking? With the right tool stack, you can. This guide shows you how to combine <strong>Wispr Flow</strong> (voice dictation), <strong>Claude Code</strong> (AI coding assistant), and <strong>Beam</strong> (terminal organizer) for a seamless, hands-free development workflow.</p>
+
+            <h2>The tool stack</h2>
+
+            <div class="tool-card">
+                <div class="tool-icon">🎙️</div>
+                <div>
+                    <h4>Wispr Flow</h4>
+                    <p>Voice-to-text for macOS that works anywhere you can type. Speak naturally and it transcribes in real-time. Perfect for dictating prompts to Claude Code.</p>
+                </div>
+            </div>
+
+            <div class="tool-card">
+                <div class="tool-icon">🤖</div>
+                <div>
+                    <h4>Claude Code</h4>
+                    <p>Anthropic's CLI for Claude. It can read your codebase, write code, run commands, and iterate on changes – all from your terminal.</p>
+                </div>
+            </div>
+
+            <div class="tool-card">
+                <div class="tool-icon">⚡</div>
+                <div>
+                    <h4>Beam</h4>
+                    <p>Terminal organizer that lets you run multiple Claude Code sessions in separate subwindows. One for frontend, one for backend, one for tests – all organized and searchable.</p>
+                </div>
+            </div>
+
+            <h2>Why this combination works</h2>
+
+            <p>Each tool solves a different problem:</p>
+
+            <ul>
+                <li><strong>Wispr Flow</strong> eliminates typing – you just speak your intent</li>
+                <li><strong>Claude Code</strong> translates your intent into actual code changes</li>
+                <li><strong>Beam</strong> keeps multiple AI sessions organized so you don't lose track</li>
+            </ul>
+
+            <p>Together, you get a workflow where you can say "add a logout button to the navbar that clears the session and redirects to the login page" and watch it happen – while keeping your hands free for coffee, notes, or just thinking.</p>
+
+            <h2>Setting it up</h2>
+
+            <h3>1. Install the tools</h3>
+
+            <ul>
+                <li><strong>Wispr Flow:</strong> Download from <a href="https://wisprflow.com">wisprflow.com</a></li>
+                <li><strong>Claude Code:</strong> <code>npm install -g @anthropic-ai/claude-code</code></li>
+                <li><strong>Beam:</strong> Download from <a href="https://getbeam.dev">getbeam.dev</a></li>
+            </ul>
+
+            <h3>2. Organize your workspaces in Beam</h3>
+
+            <p>Create a subwindow for each part of your project:</p>
+
+            <ul>
+                <li><span class="kbd">⌘N</span> to create a new subwindow</li>
+                <li>Double-click the title bar to rename it (e.g., "Frontend Claude", "Backend Claude")</li>
+                <li>Run <code>claude</code> in each subwindow to start a session</li>
+                <li><span class="kbd">⌘S</span> to save your layout for next time</li>
+            </ul>
+
+            <h3>3. Configure Wispr Flow</h3>
+
+            <p>Wispr Flow works anywhere you can type, including the terminal. A few tips:</p>
+
+            <ul>
+                <li>Use the default hotkey (usually Option twice) to start/stop dictation</li>
+                <li>Speak naturally – Wispr handles punctuation and formatting</li>
+                <li>For code-specific terms, you may need to spell out unusual variable names</li>
+            </ul>
+
+            <h2>The workflow in action</h2>
+
+            <div class="workflow-step">
+                <div class="step-number">1</div>
+                <div>
+                    <h4>Open Beam and restore your layout</h4>
+                    <p>Hit <span class="kbd">⌘P</span> to open the quick switcher, type the name of your saved layout, and restore your workspace instantly.</p>
+                </div>
+            </div>
+
+            <div class="workflow-step">
+                <div class="step-number">2</div>
+                <div>
+                    <h4>Navigate to the right Claude session</h4>
+                    <p>Use <span class="kbd">⌘P</span> again to jump to "Frontend Claude" or "Backend Claude" – wherever you need to make changes.</p>
+                </div>
+            </div>
+
+            <div class="workflow-step">
+                <div class="step-number">3</div>
+                <div>
+                    <h4>Activate Wispr Flow and speak your intent</h4>
+                    <p>Press your Wispr hotkey and say something like: "Add form validation to the email field. It should check for a valid email format and show an error message below the input if invalid."</p>
+                </div>
+            </div>
+
+            <div class="workflow-step">
+                <div class="step-number">4</div>
+                <div>
+                    <h4>Let Claude Code do its thing</h4>
+                    <p>Claude reads your codebase, finds the right files, and makes the changes. Review what it did, approve or ask for adjustments – all by voice if you want.</p>
+                </div>
+            </div>
+
+            <div class="workflow-step">
+                <div class="step-number">5</div>
+                <div>
+                    <h4>Switch contexts seamlessly</h4>
+                    <p>Need to work on the backend now? <span class="kbd">⌘P</span> → "Backend Claude" → speak your next request. Each session maintains its own context.</p>
+                </div>
+            </div>
+
+            <h2>Tips for voice-controlled coding</h2>
+
+            <div class="highlight-box">
+                <h4>Be specific with your requests</h4>
+                <p>Instead of "fix the bug", say "fix the null pointer exception in the user authentication function when the email field is empty". Claude Code works better with context.</p>
+            </div>
+
+            <div class="highlight-box">
+                <h4>Use Beam's subwindows for different concerns</h4>
+                <p>Keep your frontend Claude session separate from backend. When you switch contexts, you don't have to re-explain the project structure – each session remembers.</p>
+            </div>
+
+            <div class="highlight-box">
+                <h4>Save your layout</h4>
+                <p>Once you have your Claude Code sessions organized in Beam, save the layout (<span class="kbd">⌘S</span>). Tomorrow you can restore it instantly and pick up where you left off.</p>
+            </div>
+
+            <h2>Who is this for?</h2>
+
+            <p>This workflow is ideal for:</p>
+
+            <ul>
+                <li><strong>Developers with RSI or carpal tunnel</strong> – reduce typing strain while staying productive</li>
+                <li><strong>Multitaskers</strong> – dictate code changes while reviewing designs or documentation</li>
+                <li><strong>Fast thinkers</strong> – speaking is often faster than typing, especially for complex requests</li>
+                <li><strong>Anyone who wants to try a new way of coding</strong> – it's surprisingly fun once you get used to it</li>
+            </ul>
+
+            <h2>Limitations to know about</h2>
+
+            <p>Voice coding isn't perfect for everything:</p>
+
+            <ul>
+                <li><strong>Unusual variable names</strong> may require spelling out or correction</li>
+                <li><strong>Complex code review</strong> is still easier with eyes on the screen and hands on keyboard</li>
+                <li><strong>Noisy environments</strong> can affect dictation accuracy</li>
+            </ul>
+
+            <p>That said, for high-level direction ("add this feature", "refactor this function", "write tests for this module"), voice + Claude Code is remarkably effective.</p>
+
+            <h2>Try it yourself</h2>
+
+            <p>The beauty of this stack is that each tool is useful on its own. You don't have to go all-in on voice coding immediately. Start by organizing your Claude Code sessions in Beam. Then try dictating a few prompts with Wispr Flow. See if it clicks for you.</p>
+
+            <p>Many developers are surprised how natural it feels after a few days. And once you've experienced asking for a feature and watching it get built while your hands are free? It's hard to go back.</p>
+
+            <div class="cta-box">
+                <h3>Get Beam free</h3>
+                <p>Organize your Claude Code sessions with subwindows and layouts.</p>
+                <a href="../Beam-v1.9.5-alpha.dmg" class="btn">Download for macOS</a>
+            </div>
+
+            <div class="related-articles">
+                <h2>Related Articles</h2>
+                <div class="related-grid">
+                    <a href="beam-claude-code-setup.html" class="related-card">
+                        <h4>Setting Up Beam for Claude Code</h4>
+                        <p>Complete guide to organizing Claude Code sessions with Beam.</p>
+                    </a>
+                    <a href="vibe-coding-setup.html" class="related-card">
+                        <h4>The Perfect Vibe Coding Setup</h4>
+                        <p>Achieve flow state with the right terminal organization.</p>
+                    </a>
+                    <a href="terminal-is-the-new-ide.html" class="related-card">
+                        <h4>Why Your Terminal is the New IDE</h4>
+                        <p>AI tools are making the terminal the center of development.</p>
+                    </a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>
+                <a href="../">Beam</a> &bull;
+                Built by <a href="https://nextuptechnologies.co">NextUp</a> &bull;
+                <a href="mailto:frank@nextuptechnologies.co">Contact</a>
+            </p>
+        </div>
+    </footer>
+</body>
+</html>

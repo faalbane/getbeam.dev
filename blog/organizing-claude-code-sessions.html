@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D0XH8B0RKL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-D0XH8B0RKL');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Organize Claude Code Sessions | Beam Terminal Organizer</title>
+    <meta name="description" content="Learn how to organize multiple Claude Code terminal sessions across different projects using Beam. Keep your AI coding workflow clean with subwindows, tabs, and saveable layouts.">
+    <meta name="keywords" content="Claude Code, Claude Code terminal, organize Claude Code, AI coding workflow, terminal organizer, Claude Code sessions, Anthropic Claude">
+    <meta name="author" content="NextUp Technologies">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://getbeam.dev/blog/organizing-claude-code-sessions.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://getbeam.dev/blog/organizing-claude-code-sessions.html">
+    <meta property="og:title" content="How to Organize Claude Code Sessions">
+    <meta property="og:description" content="Keep your AI coding workflow clean with subwindows, tabs, and saveable layouts.">
+    <meta property="og:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="How to Organize Claude Code Sessions">
+    <meta name="twitter:description" content="Keep your AI coding workflow clean with subwindows, tabs, and saveable layouts.">
+    <meta name="twitter:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "How to Organize Claude Code Sessions",
+        "description": "Learn how to organize multiple Claude Code terminal sessions across different projects using Beam.",
+        "author": {
+            "@type": "Organization",
+            "name": "NextUp Technologies"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Beam"
+        },
+        "datePublished": "2026-02-06",
+        "keywords": "Claude Code, terminal organizer, AI coding"
+    }
+    </script>
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #111113;
+            --bg-tertiary: #1a1a1d;
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.4);
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --border: #27272a;
+            --success: #22c55e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        header {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 60px;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1.5rem;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            background: var(--accent);
+            color: white;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+        }
+
+        article {
+            padding-bottom: 80px;
+        }
+
+        .breadcrumb {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+        }
+
+        .breadcrumb a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .meta {
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            font-size: 0.95rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 48px 0 20px;
+            color: var(--text-primary);
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        ul, ol {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            padding-left: 24px;
+        }
+
+        li {
+            margin-bottom: 12px;
+        }
+
+        .highlight {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 32px 0;
+        }
+
+        .highlight h3 {
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .kbd {
+            display: inline-block;
+            padding: 2px 8px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .cta-box h3 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+        }
+
+        .cta-box p {
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 24px;
+        }
+
+        .cta-box .btn {
+            background: white;
+            color: var(--accent);
+        }
+
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+
+        .related-articles { margin-top: 60px; padding-top: 40px; border-top: 1px solid var(--border); }
+        .related-articles h2 { font-size: 1.5rem; margin-bottom: 24px; }
+        .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .related-card { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-decoration: none; transition: border-color 0.2s; }
+        .related-card:hover { border-color: var(--accent); }
+        .related-card h4 { color: white; font-size: 1rem; margin: 0 0 8px 0; }
+        .related-card p { color: var(--text-muted); font-size: 0.85rem; margin: 0; }
+        @media (max-width: 600px) { .related-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="../" class="logo">
+                <div class="logo-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round">
+                        <path d="M4 17l6-6-6-6M12 19h8"/>
+                    </svg>
+                </div>
+                Beam
+            </a>
+            <a href="../" class="btn">Download Beam</a>
+        </div>
+    </header>
+
+    <main>
+        <article class="container">
+            <div class="breadcrumb">
+                <a href="../">Beam</a> / <a href="../#guides">Guides</a> / Organizing Claude Code Sessions
+            </div>
+
+            <h1>How to Organize Claude Code Sessions Like a Pro</h1>
+            <p class="meta">February 2026 &bull; 5 min read</p>
+
+            <p>If you're using Claude Code for AI-assisted development, you've probably run into the terminal chaos problem: multiple Claude Code sessions running across different projects, mixed in with your regular terminals, and no easy way to keep track of what's where.</p>
+
+            <p>This guide shows you how to use Beam to organize your Claude Code workflow so you can focus on coding instead of hunting for the right terminal.</p>
+
+            <h2>The Problem with Multiple Claude Code Sessions</h2>
+
+            <p>Claude Code is incredibly powerful for AI-assisted development. But power users quickly run into organizational challenges:</p>
+
+            <ul>
+                <li><strong>Multiple projects</strong> – You're working on a frontend and backend simultaneously, each with its own Claude Code session</li>
+                <li><strong>Context switching</strong> – You need to jump between projects but lose track of which terminal is which</li>
+                <li><strong>Mixed terminals</strong> – Claude Code sessions get mixed up with your dev servers, git operations, and other terminal tasks</li>
+                <li><strong>Lost conversations</strong> – You accidentally close a Claude Code session mid-conversation</li>
+            </ul>
+
+            <h2>The Solution: Subwindows for Project Isolation</h2>
+
+            <p>Beam's killer feature for Claude Code users is <strong>subwindows</strong>. Think of them as virtual desktops, but just for your terminals.</p>
+
+            <p>Here's how to set it up:</p>
+
+            <ol>
+                <li><strong>Create a subwindow per project</strong> – Press <span class="kbd">⌘N</span> to create a new subwindow. Name it after your project (double-click to rename).</li>
+                <li><strong>Put Claude Code in the first tab</strong> – Start your Claude Code session here. This is your AI coding companion for this project.</li>
+                <li><strong>Add supporting terminals as tabs</strong> – Press <span class="kbd">⌘T</span> to add tabs for your dev server, git operations, or logs.</li>
+                <li><strong>Use split panes for side-by-side work</strong> – Press <span class="kbd">⌘⌥⌃T</span> to split. Watch your dev server output while Claude Code makes changes.</li>
+            </ol>
+
+            <div class="highlight">
+                <h3>Pro Tip: Save Your Claude Code Layout</h3>
+                <p>Once you have your perfect Claude Code setup, press <span class="kbd">⌘S</span> to save it as a layout. Next time you start working on this project, restore the layout and your entire workspace is back – subwindows, tabs, splits, and all.</p>
+            </div>
+
+            <h2>Workflow Example: Full-Stack Development</h2>
+
+            <p>Here's how I organize my Claude Code sessions for a typical full-stack project:</p>
+
+            <p><strong>Subwindow 1: "Frontend"</strong></p>
+            <ul>
+                <li>Tab 1: Claude Code (for React/Vue/etc. work)</li>
+                <li>Tab 2: npm run dev (dev server)</li>
+                <li>Tab 3: Git operations</li>
+            </ul>
+
+            <p><strong>Subwindow 2: "Backend"</strong></p>
+            <ul>
+                <li>Tab 1: Claude Code (for API work)</li>
+                <li>Tab 2: Server logs</li>
+                <li>Tab 3: Database CLI</li>
+            </ul>
+
+            <p><strong>Subwindow 3: "DevOps"</strong></p>
+            <ul>
+                <li>Tab 1: Claude Code (for infrastructure)</li>
+                <li>Tab 2: Docker/K8s commands</li>
+            </ul>
+
+            <p>Switch between subwindows with <span class="kbd">⌘⌥←→</span>. Each context is completely isolated.</p>
+
+            <h2>Quick Switcher: Find Any Claude Code Session Instantly</h2>
+
+            <p>Even with good organization, sometimes you just need to jump to a specific terminal fast. Press <span class="kbd">⌘P</span> to open the Quick Switcher.</p>
+
+            <p>Type a few characters to fuzzy-search across all your subwindows, tabs, and even different layouts. Found your Claude Code session? Hit Enter and you're there.</p>
+
+            <h2>Never Lose a Claude Code Conversation Again</h2>
+
+            <p>We've all done it – accidentally closed a terminal mid-conversation with Claude Code. In Beam, just press <span class="kbd">⌘Z</span> to undo. Your subwindow comes back with all tabs and shell history intact.</p>
+
+            <div class="cta-box">
+                <h3>Ready to Organize Your Claude Code Workflow?</h3>
+                <p>Download Beam free and see how much cleaner AI-assisted development can be.</p>
+                <a href="../" class="btn">Download Beam for macOS</a>
+            </div>
+
+            <h2>Summary</h2>
+
+            <p>Claude Code is an incredible tool, but it's even better when you can stay organized. With Beam:</p>
+
+            <ul>
+                <li>Use <strong>subwindows</strong> to isolate Claude Code sessions by project</li>
+                <li>Use <strong>tabs and splits</strong> to keep related terminals together</li>
+                <li>Use <strong>layouts</strong> to save and restore your entire workspace</li>
+                <li>Use <strong>Quick Switcher</strong> (<span class="kbd">⌘P</span>) to jump anywhere instantly</li>
+                <li>Use <strong>Undo Close</strong> (<span class="kbd">⌘Z</span>) to recover from accidents</li>
+            </ul>
+
+            <p>Happy coding!</p>
+
+            <div class="related-articles">
+                <h2>Related Articles</h2>
+                <div class="related-grid">
+                    <a href="beam-claude-code-setup.html" class="related-card">
+                        <h4>Setting Up Beam for Claude Code</h4>
+                        <p>Step-by-step guide to setting up Beam for Claude Code development.</p>
+                    </a>
+                    <a href="vibe-coding-setup.html" class="related-card">
+                        <h4>The Perfect Vibe Coding Setup</h4>
+                        <p>Achieve flow state with the right terminal organization.</p>
+                    </a>
+                    <a href="best-terminal-app-ai-coding-2026.html" class="related-card">
+                        <h4>Best Terminal App for AI Coding in 2026</h4>
+                        <p>Why your choice of terminal matters for AI-assisted development.</p>
+                    </a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>
+                <a href="../">Beam</a> &bull; Terminal Organizer for macOS &bull;
+                <a href="mailto:frank@nextuptechnologies.co">Contact</a>
+            </p>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D0XH8B0RKL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-D0XH8B0RKL');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Why Your Terminal is the New IDE | Beam</title>
+    <meta name="description" content="The rise of AI coding tools like Claude Code, Cursor, and Codex is changing how we develop software. Your terminal is becoming your IDE — here's why, and how to set it up.">
+    <meta name="keywords" content="terminal IDE, Claude Code, AI coding, vibe coding, terminal development, command line IDE, developer productivity, Cursor, Codex, AI-assisted development">
+    <meta name="author" content="NextUp Technologies">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://getbeam.dev/blog/terminal-is-the-new-ide.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://getbeam.dev/blog/terminal-is-the-new-ide.html">
+    <meta property="og:title" content="Why Your Terminal is the New IDE">
+    <meta property="og:description" content="AI coding tools are changing everything. Your terminal is becoming your IDE.">
+    <meta property="og:image" content="https://getbeam.dev/beam-screenshot-1.9.6.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Why Your Terminal is the New IDE">
+    <meta name="twitter:description" content="AI coding tools are changing everything. Your terminal is becoming your IDE.">
+    <meta name="twitter:image" content="https://getbeam.dev/beam-screenshot-1.9.6.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Why Your Terminal is the New IDE",
+        "description": "The rise of AI coding tools is transforming the terminal into a complete development environment.",
+        "author": {
+            "@type": "Organization",
+            "name": "NextUp Technologies"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Beam"
+        },
+        "datePublished": "2026-02-07",
+        "keywords": "terminal IDE, Claude Code, AI coding, developer productivity"
+    }
+    </script>
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #111113;
+            --bg-tertiary: #1a1a1d;
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.4);
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --border: #27272a;
+            --success: #22c55e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+
+        .container { max-width: 800px; margin: 0 auto; padding: 0 24px; }
+
+        header {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 60px;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1.5rem;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            background: var(--accent);
+            color: white;
+            transition: all 0.2s;
+        }
+
+        .btn:hover { background: #2563eb; transform: translateY(-2px); }
+
+        article { padding-bottom: 80px; }
+
+        .breadcrumb {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+        }
+
+        .breadcrumb a { color: var(--accent); text-decoration: none; }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .meta {
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            font-size: 0.95rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 48px 0 20px;
+            color: var(--text-primary);
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        ul, ol {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            padding-left: 24px;
+        }
+
+        li { margin-bottom: 12px; }
+
+        strong { color: var(--text-primary); }
+
+        .highlight {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 32px 0;
+        }
+
+        .highlight h3 {
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .highlight p:last-child {
+            margin-bottom: 0;
+        }
+
+        .kbd {
+            display: inline-block;
+            padding: 2px 8px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+        }
+
+        code {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 2px 6px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+        }
+
+        blockquote {
+            border-left: 3px solid var(--accent);
+            padding-left: 20px;
+            margin: 32px 0;
+            font-style: italic;
+            color: var(--text-secondary);
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .cta-box h3 { font-size: 1.5rem; margin-bottom: 12px; color: white; }
+        .cta-box p { color: rgba(255,255,255,0.8); margin-bottom: 24px; }
+        .cta-box .btn { background: white; color: var(--accent); }
+
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer a { color: var(--text-secondary); text-decoration: none; }
+
+        .related-articles { margin-top: 60px; padding-top: 40px; border-top: 1px solid var(--border); }
+        .related-articles h2 { font-size: 1.5rem; margin-bottom: 24px; }
+        .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .related-card { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-decoration: none; transition: border-color 0.2s; }
+        .related-card:hover { border-color: var(--accent); }
+        .related-card h4 { color: white; font-size: 1rem; margin: 0 0 8px 0; }
+        .related-card p { color: var(--text-muted); font-size: 0.85rem; margin: 0; }
+        @media (max-width: 600px) { .related-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="../" class="logo">
+                <div class="logo-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round">
+                        <path d="M4 17l6-6-6-6M12 19h8"/>
+                    </svg>
+                </div>
+                Beam
+            </a>
+            <a href="../" class="btn">Download Beam</a>
+        </div>
+    </header>
+
+    <main class="container">
+        <article>
+            <div class="breadcrumb">
+                <a href="../">Home</a> → <a href="../#guides">Blog</a> → Why Your Terminal is the New IDE
+            </div>
+
+            <h1>Why Your Terminal is the New IDE</h1>
+            <p class="meta">February 7, 2026 · 6 min read</p>
+
+            <p>Something fundamental is changing in how we write software. The GUI-based IDE — VS Code, IntelliJ, Xcode — is no longer the obvious default. For a growing number of developers, <strong>the terminal has become the IDE</strong>.</p>
+
+            <p>This isn't about being a minimalist or a vim purist. It's about AI.</p>
+
+            <h2>The AI Coding Revolution</h2>
+
+            <p>Tools like <strong>Claude Code</strong>, <strong>Cursor</strong>, <strong>GitHub Copilot CLI</strong>, and <strong>OpenAI Codex</strong> have changed the equation. When AI can write, refactor, and debug code through natural language, the traditional IDE interface becomes... optional.</p>
+
+            <p>Think about it: Why do you need a file tree, syntax highlighting, and 47 toolbar buttons when you can just say:</p>
+
+            <blockquote>"Refactor this function to use async/await and add error handling"</blockquote>
+
+            <p>The AI reads your codebase, understands the context, makes the changes, and runs the tests. Your job shifts from <em>typing code</em> to <em>directing code</em>.</p>
+
+            <p>And where does this conversation happen? <strong>In the terminal.</strong></p>
+
+            <h2>The Terminal Era</h2>
+
+            <p>We're entering what might be called the "terminal era" of development. Here's what it looks like:</p>
+
+            <ul>
+                <li><strong>Claude Code</strong> runs in your terminal, writing and modifying files based on your instructions</li>
+                <li><strong>Cursor's terminal mode</strong> brings AI coding to the command line</li>
+                <li><strong>Codex CLI</strong> lets you build features with plain English</li>
+                <li><strong>Aider</strong>, <strong>Continue</strong>, and dozens of other tools follow the same pattern</li>
+            </ul>
+
+            <p>These aren't toys. Developers are shipping production code this way. Entire features, written by describing what you want.</p>
+
+            <div class="highlight">
+                <h3>The New Workflow</h3>
+                <p>1. Open terminal → 2. Start AI coding session → 3. Describe what you want → 4. Review changes → 5. Commit</p>
+                <p>Notice what's missing? Opening an IDE. Navigating file trees. Manual typing. The terminal IS the development environment.</p>
+            </div>
+
+            <h2>The Problem: Terminal Chaos</h2>
+
+            <p>Here's the catch: If you're running Claude Code sessions across multiple projects, plus build processes, plus servers, plus SSH connections — your terminal situation gets messy fast.</p>
+
+            <p>You end up with:</p>
+            <ul>
+                <li>20+ terminal tabs with names like "zsh" and "bash"</li>
+                <li>No idea which tab has your Claude Code session for the API project</li>
+                <li>Constant context-switching pain when jumping between projects</li>
+                <li>Lost sessions when you accidentally close the wrong tab</li>
+            </ul>
+
+            <p>Traditional terminal apps (Terminal.app, iTerm2) were designed for a world where the terminal was a supporting tool, not the main event. They give you tabs, maybe split panes. But they don't give you <strong>workspaces</strong>.</p>
+
+            <h2>The IDE Metaphor for Terminals</h2>
+
+            <p>What made IDEs powerful wasn't syntax highlighting — it was <strong>organization</strong>. Projects. Workspaces. The ability to save your entire setup and restore it tomorrow.</p>
+
+            <p>The terminal era needs the same thing: <strong>IDE-level organization for terminal-based workflows</strong>.</p>
+
+            <p>This means:</p>
+            <ul>
+                <li><strong>Projects as first-class concepts</strong> — group related terminals together</li>
+                <li><strong>Saveable layouts</strong> — restore your entire setup with one click</li>
+                <li><strong>Fast navigation</strong> — jump to any terminal instantly, not hunt through tabs</li>
+                <li><strong>Context preservation</strong> — never lose a session, never forget where you were</li>
+            </ul>
+
+            <h2>What This Looks Like in Practice</h2>
+
+            <p>Imagine this setup for a full-stack developer using AI coding tools:</p>
+
+            <div class="highlight">
+                <h3>Subwindow 1: Backend API</h3>
+                <p>Tab 1: Claude Code session (working on new endpoints)<br>
+                Tab 2: Server running locally<br>
+                Tab 3: Database CLI</p>
+            </div>
+
+            <div class="highlight">
+                <h3>Subwindow 2: Frontend</h3>
+                <p>Tab 1: Claude Code session (building UI components)<br>
+                Tab 2: Dev server with hot reload<br>
+                Tab 3: Test runner</p>
+            </div>
+
+            <div class="highlight">
+                <h3>Subwindow 3: DevOps</h3>
+                <p>Tab 1: SSH to production<br>
+                Tab 2: Logs streaming<br>
+                Tab 3: Deployment scripts</p>
+            </div>
+
+            <p>Each subwindow is a separate floating window you can arrange on your screen. Save this as a layout called "Full Stack Dev" and restore it anytime.</p>
+
+            <p>Press <span class="kbd">⌘1</span> to jump to Backend. <span class="kbd">⌘2</span> for Frontend. <span class="kbd">⌘P</span> to fuzzy-search across everything.</p>
+
+            <p>This is what "IDE for the terminal era" means.</p>
+
+            <h2>The Shift is Happening Now</h2>
+
+            <p>Look at the trends:</p>
+
+            <ul>
+                <li><strong>Claude Code</strong> is one of the most-discussed tools in developer communities</li>
+                <li><strong>"Vibe coding"</strong> — using AI to code in a flow state — is becoming mainstream</li>
+                <li>Developers are questioning whether they need VS Code at all</li>
+                <li>Terminal-native tools are exploding in popularity</li>
+            </ul>
+
+            <p>The developers who figure out how to organize this new workflow will have a massive productivity advantage. Those who don't will drown in terminal tabs.</p>
+
+            <h2>Getting Started</h2>
+
+            <p>If you're ready to embrace terminal-native development, here's how to set yourself up:</p>
+
+            <ol>
+                <li><strong>Pick your AI coding tool</strong> — Claude Code, Cursor, Aider, or similar</li>
+                <li><strong>Organize by project</strong> — Keep related terminals grouped together</li>
+                <li><strong>Learn keyboard navigation</strong> — Mouse-clicking through tabs doesn't scale</li>
+                <li><strong>Save your layouts</strong> — Don't rebuild your workspace every morning</li>
+                <li><strong>Use a terminal organizer</strong> — Something built for this workflow, not adapted from 2010</li>
+            </ol>
+
+            <p>The terminal era is here. Your workflow should match it.</p>
+
+            <div class="cta-box">
+                <h3>Beam: The IDE for the Terminal Era</h3>
+                <p>Organize your Claude Code sessions, AI workflows, and projects. Subwindows, saveable layouts, and keyboard navigation. Your terminal is your workspace — Beam organizes it.</p>
+                <a href="../" class="btn">Download Beam Free</a>
+            </div>
+
+            <div class="related-articles">
+                <h2>Related Articles</h2>
+                <div class="related-grid">
+                    <a href="claude-code-vs-cursor-vs-codex.html" class="related-card">
+                        <h4>Claude Code vs Cursor vs Codex</h4>
+                        <p>Which AI coding tool fits your workflow? A detailed comparison.</p>
+                    </a>
+                    <a href="best-terminal-app-ai-coding-2026.html" class="related-card">
+                        <h4>Best Terminal App for AI Coding in 2026</h4>
+                        <p>We compared 6 terminals to find the best for AI development.</p>
+                    </a>
+                    <a href="beam-claude-code-setup.html" class="related-card">
+                        <h4>Setting Up Beam for Claude Code</h4>
+                        <p>Complete guide to organizing Claude Code sessions with Beam.</p>
+                    </a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>
+                <a href="../">Beam</a> · Built by <a href="https://nextuptechnologies.co">NextUp Technologies</a>
+            </p>
+        </div>
+    </footer>
+</body>
+</html>

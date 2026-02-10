@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D0XH8B0RKL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-D0XH8B0RKL');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Rename Terminal Windows on macOS | Beam Terminal Organizer</title>
+    <meta name="description" content="Learn how to rename terminal windows, tabs, and panes on macOS. Stop seeing 'zsh' everywhere. Give your terminals meaningful names with Beam.">
+    <meta name="keywords" content="rename terminal windows, rename terminal tabs, macOS terminal, terminal tab names, zsh rename, iTerm rename tab, terminal organizer, macOS tips">
+    <meta name="author" content="NextUp Technologies">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://getbeam.dev/blog/how-to-rename-terminal-windows-macos.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://getbeam.dev/blog/how-to-rename-terminal-windows-macos.html">
+    <meta property="og:title" content="How to Rename Terminal Windows on macOS">
+    <meta property="og:description" content="Stop seeing 'zsh' everywhere. Give your terminals meaningful names.">
+    <meta property="og:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="How to Rename Terminal Windows on macOS">
+    <meta name="twitter:description" content="Stop seeing 'zsh' everywhere. Give your terminals meaningful names.">
+    <meta name="twitter:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "HowTo",
+        "name": "How to Rename Terminal Windows on macOS",
+        "description": "Learn how to rename terminal windows and tabs on macOS using Beam.",
+        "step": [
+            {
+                "@type": "HowToStep",
+                "name": "Double-click the tab",
+                "text": "Double-click on any tab name to enter edit mode"
+            },
+            {
+                "@type": "HowToStep",
+                "name": "Type the new name",
+                "text": "Enter a meaningful name like 'Dev Server' or 'API Logs'"
+            },
+            {
+                "@type": "HowToStep",
+                "name": "Press Enter",
+                "text": "Press Enter to save the new name"
+            }
+        ],
+        "tool": {
+            "@type": "SoftwareApplication",
+            "name": "Beam"
+        }
+    }
+    </script>
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #111113;
+            --bg-tertiary: #1a1a1d;
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.4);
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --border: #27272a;
+            --success: #22c55e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+
+        .container { max-width: 800px; margin: 0 auto; padding: 0 24px; }
+
+        header {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 60px;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1.5rem;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            background: var(--accent);
+            color: white;
+            transition: all 0.2s;
+        }
+
+        .btn:hover { background: #2563eb; transform: translateY(-2px); }
+
+        article { padding-bottom: 80px; }
+
+        .breadcrumb {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+        }
+
+        .breadcrumb a { color: var(--accent); text-decoration: none; }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .meta {
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            font-size: 0.95rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 48px 0 20px;
+            color: var(--text-primary);
+        }
+
+        h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 32px 0 16px;
+            color: var(--text-primary);
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        ul, ol {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            padding-left: 24px;
+        }
+
+        li { margin-bottom: 12px; }
+
+        .highlight {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 32px 0;
+        }
+
+        .highlight h3 {
+            margin-top: 0;
+        }
+
+        .kbd {
+            display: inline-block;
+            padding: 2px 8px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 24px 0;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        th {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        td {
+            color: var(--text-secondary);
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .cta-box h3 { font-size: 1.5rem; margin-bottom: 12px; margin-top: 0; }
+        .cta-box p { color: rgba(255,255,255,0.8); margin-bottom: 24px; }
+        .cta-box .btn { background: white; color: var(--accent); }
+
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer a { color: var(--text-secondary); text-decoration: none; }
+
+        .related-articles { margin-top: 60px; padding-top: 40px; border-top: 1px solid var(--border); }
+        .related-articles h2 { font-size: 1.5rem; margin-bottom: 24px; }
+        .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .related-card { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-decoration: none; transition: border-color 0.2s; }
+        .related-card:hover { border-color: var(--accent); }
+        .related-card h4 { color: white; font-size: 1rem; margin: 0 0 8px 0; }
+        .related-card p { color: var(--text-muted); font-size: 0.85rem; margin: 0; }
+        @media (max-width: 600px) { .related-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="../" class="logo">
+                <div class="logo-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round">
+                        <path d="M4 17l6-6-6-6M12 19h8"/>
+                    </svg>
+                </div>
+                Beam
+            </a>
+            <a href="../" class="btn">Download Beam</a>
+        </div>
+    </header>
+
+    <main>
+        <article class="container">
+            <div class="breadcrumb">
+                <a href="../">Beam</a> / <a href="../#guides">Guides</a> / How to Rename Terminal Windows
+            </div>
+
+            <h1>How to Rename Terminal Windows and Tabs on macOS</h1>
+            <p class="meta">February 2026 &bull; 4 min read</p>
+
+            <p>If you've ever stared at a row of terminal tabs all named "zsh" or "bash" trying to remember which one is running your dev server, you're not alone. This is one of the most common frustrations for developers on macOS.</p>
+
+            <p>This guide covers how to rename terminal windows and tabs so you can actually find what you're looking for.</p>
+
+            <h2>The Problem with Default Terminal Names</h2>
+
+            <p>By default, most terminal apps on macOS name tabs after the running shell (zsh, bash) or the current directory. When you have 10+ terminals open, they all look the same:</p>
+
+            <ul>
+                <li>zsh</li>
+                <li>zsh</li>
+                <li>zsh</li>
+                <li>~/projects/frontend</li>
+                <li>~/projects/backend</li>
+                <li>zsh</li>
+            </ul>
+
+            <p>Good luck finding your API server in that mess.</p>
+
+            <h2>Option 1: Terminal.app (Built-in macOS Terminal)</h2>
+
+            <p>The default macOS Terminal has limited renaming options:</p>
+
+            <ol>
+                <li>Click <strong>Shell → Edit Title</strong> in the menu bar</li>
+                <li>Or use the escape sequence: <code>echo -ne "\033]0;Your Title\007"</code></li>
+            </ol>
+
+            <p>The problem? The title often gets overwritten when you run commands or change directories. It's not persistent.</p>
+
+            <h2>Option 2: iTerm2</h2>
+
+            <p>iTerm2 handles this better:</p>
+
+            <ol>
+                <li>Double-click the tab to rename it</li>
+                <li>Or right-click → Edit Session Name</li>
+                <li>Or use <span class="kbd">⌘⇧I</span> to edit</li>
+            </ol>
+
+            <p>iTerm2 names are persistent within a session, but you'll need to rename everything again when you restart.</p>
+
+            <h2>Option 3: Beam (Recommended)</h2>
+
+            <p>Beam was built with naming as a first-class feature. Here's how it works:</p>
+
+            <h3>Rename Tabs</h3>
+            <ul>
+                <li><strong>Double-click</strong> any tab to rename it</li>
+                <li>Or press <span class="kbd">⌘⇧I</span> to rename the current tab</li>
+            </ul>
+
+            <h3>Rename Subwindows</h3>
+            <ul>
+                <li><strong>Double-click</strong> the subwindow name</li>
+                <li>Or press <span class="kbd">⌘⌥I</span> to rename</li>
+            </ul>
+
+            <h3>Rename Split Panes</h3>
+            <ul>
+                <li><strong>Double-click</strong> the pane label</li>
+                <li>Or press <span class="kbd">⌘⌥⌃I</span> to rename the current pane</li>
+            </ul>
+
+            <div class="highlight">
+                <h3>The Best Part: Names Persist in Layouts</h3>
+                <p>When you save a layout in Beam, all your names are saved too. Restore a layout and everything comes back exactly as you named it. No more re-naming terminals every time you start work.</p>
+            </div>
+
+            <h2>Keyboard Shortcuts Summary</h2>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Action</th>
+                        <th>Shortcut</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Rename current tab</td>
+                        <td><span class="kbd">⌘⇧I</span></td>
+                    </tr>
+                    <tr>
+                        <td>Rename current subwindow</td>
+                        <td><span class="kbd">⌘⌥I</span></td>
+                    </tr>
+                    <tr>
+                        <td>Rename current split pane</td>
+                        <td><span class="kbd">⌘⌥⌃I</span></td>
+                    </tr>
+                    <tr>
+                        <td>Save layout (with names)</td>
+                        <td><span class="kbd">⌘S</span></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>Naming Best Practices</h2>
+
+            <p>Here are some tips for naming terminals effectively:</p>
+
+            <h3>Use Descriptive Names</h3>
+            <ul>
+                <li>❌ "zsh"</li>
+                <li>✓ "Frontend Dev Server"</li>
+                <li>✓ "API Logs"</li>
+                <li>✓ "Claude Code - Backend"</li>
+            </ul>
+
+            <h3>Use Consistent Prefixes</h3>
+            <p>If you have multiple related terminals, use prefixes:</p>
+            <ul>
+                <li>"FE: Dev Server"</li>
+                <li>"FE: Tests"</li>
+                <li>"BE: API"</li>
+                <li>"BE: Workers"</li>
+            </ul>
+
+            <h3>Include the Action</h3>
+            <p>What is this terminal <em>doing</em>?</p>
+            <ul>
+                <li>"Running: Vite Dev"</li>
+                <li>"Watching: Jest Tests"</li>
+                <li>"SSH: Production Server"</li>
+            </ul>
+
+            <h2>Why This Matters</h2>
+
+            <p>Good terminal naming isn't just about aesthetics. It's about:</p>
+
+            <ul>
+                <li><strong>Speed</strong> – Find the right terminal instantly instead of clicking through tabs</li>
+                <li><strong>Safety</strong> – Never accidentally run a production command in the wrong terminal</li>
+                <li><strong>Focus</strong> – Less cognitive overhead means more brain power for actual coding</li>
+                <li><strong>Collaboration</strong> – If you share your screen, others can follow along</li>
+            </ul>
+
+            <div class="cta-box">
+                <h3>Stop Hunting Through "zsh" Tabs</h3>
+                <p>Download Beam and give your terminals the names they deserve.</p>
+                <a href="../" class="btn">Download Beam for macOS</a>
+            </div>
+
+            <h2>Summary</h2>
+
+            <p>Renaming terminal windows on macOS is possible in most apps, but Beam makes it easiest with:</p>
+
+            <ul>
+                <li>Double-click to rename anything</li>
+                <li>Keyboard shortcuts for power users</li>
+                <li>Names that persist across sessions via layouts</li>
+                <li>Three levels of naming: subwindows, tabs, and split panes</li>
+            </ul>
+
+            <p>Your future self (trying to find that one terminal at 2am) will thank you.</p>
+
+            <div class="related-articles">
+                <h2>Related Articles</h2>
+                <div class="related-grid">
+                    <a href="beam-vs-iterm2.html" class="related-card">
+                        <h4>Beam vs iTerm2</h4>
+                        <p>See how Beam's organization features compare to iTerm2.</p>
+                    </a>
+                    <a href="beam-vs-tmux.html" class="related-card">
+                        <h4>Beam vs tmux</h4>
+                        <p>A comparison of Beam and tmux for terminal management.</p>
+                    </a>
+                    <a href="vibe-coding-setup.html" class="related-card">
+                        <h4>The Perfect Vibe Coding Setup</h4>
+                        <p>Organize your terminals for maximum flow state productivity.</p>
+                    </a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>
+                <a href="../">Beam</a> &bull; Terminal Organizer for macOS &bull;
+                <a href="mailto:frank@nextuptechnologies.co">Contact</a>
+            </p>
+        </div>
+    </footer>
+</body>
+</html>

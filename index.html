@@ -20,9 +20,9 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Beam - Terminal Organizer for macOS | Best for Claude Code & Vibe Coding</title>
-    <meta name="description" content="Organize your Claude Code sessions, vibe coding projects, and terminal windows with Beam. Subwindows, tabs, split panes, layouts, and easy renaming. The best terminal organizer for macOS developers. $29 one-time.">
-    <meta name="keywords" content="Claude Code, vibe coding, terminal organizer, rename terminal windows, macOS terminal, terminal tabs, terminal manager, split panes, iTerm alternative, developer tools, AI coding, terminal sessions">
+    <title>Beam — 1-Click AI Agent Installs | Start Claude Code, Codex & OpenClaw Instantly</title>
+    <meta name="description" content="1-click AI agent installs. Start Claude Code, OpenAI Codex, and OpenClaw without touching the command line. Beam handles installation, organizes sessions into subwindows, and saves your layouts. Just right-click and go. $10/month.">
+    <meta name="keywords" content="Claude Code, OpenAI Codex, OpenClaw, AI coding, vibe coding, terminal organizer, macOS terminal, IDE for AI, start AI agent, terminal tabs, split panes, iTerm alternative, developer tools, AI workflow, terminal sessions">
     <meta name="author" content="NextUp Technologies">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://getbeam.dev/">
@@ -30,16 +30,16 @@
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://getbeam.dev/">
-    <meta property="og:title" content="Beam - Terminal Organizer for macOS | Perfect for Claude Code">
-    <meta property="og:description" content="Organize Claude Code sessions and vibe coding projects. Subwindows, tabs, split panes, and layouts. The terminal organizer developers love.">
+    <meta property="og:title" content="Beam — 1-Click AI Agent Installs | Claude Code, Codex & OpenClaw">
+    <meta property="og:description" content="1-click AI agent installs. Start Claude Code, OpenAI Codex, and OpenClaw without touching the command line. Just right-click and go.">
     <meta property="og:image" content="https://getbeam.dev/beam-screenshot-1.9.8.png">
     <meta property="og:site_name" content="Beam">
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:url" content="https://getbeam.dev/">
-    <meta name="twitter:title" content="Beam - Terminal Organizer for macOS | Perfect for Claude Code">
-    <meta name="twitter:description" content="Organize Claude Code sessions and vibe coding projects. Subwindows, tabs, split panes, and layouts.">
+    <meta name="twitter:title" content="Beam — 1-Click AI Agent Installs | Claude Code, Codex & OpenClaw">
+    <meta name="twitter:description" content="1-click AI agent installs. Start Claude Code, OpenAI Codex, and OpenClaw without touching the command line. Just right-click and go.">
     <meta name="twitter:image" content="https://getbeam.dev/beam-screenshot-1.9.8.png">
 
     <!-- Structured Data -->
@@ -48,14 +48,15 @@
         "@context": "https://schema.org",
         "@type": "SoftwareApplication",
         "name": "Beam",
-        "description": "Terminal organizer for macOS with subwindows, tabs, split panes, and layouts. Perfect for organizing Claude Code sessions and vibe coding projects.",
+        "description": "1-click AI agent installs. Start Claude Code, OpenAI Codex, and OpenClaw without touching the command line. Beam handles installation, organizes sessions into subwindows, and saves your layouts on macOS.",
         "url": "https://getbeam.dev",
         "applicationCategory": "DeveloperApplication",
         "operatingSystem": "macOS",
         "offers": {
             "@type": "Offer",
-            "price": "29.00",
-            "priceCurrency": "USD"
+            "price": "10.00",
+            "priceCurrency": "USD",
+            "billingDuration": "P1M"
         },
         "aggregateRating": {
             "@type": "AggregateRating",
@@ -66,7 +67,7 @@
             "@type": "Organization",
             "name": "NextUp Technologies"
         },
-        "keywords": "Claude Code, vibe coding, terminal organizer, rename terminal windows, macOS terminal"
+        "keywords": "Claude Code, OpenAI Codex, OpenClaw, AI coding, vibe coding, IDE for AI, terminal organizer, macOS terminal"
     }
     </script>
 
@@ -542,68 +543,71 @@
             white-space: nowrap;
         }
 
-        /* Features */
-        .features {
-            padding: 100px 0;
+        /* ═══════════════════════════════════════════════════
+           COMMAND CINEMA — Redesigned sections
+           ═══════════════════════════════════════════════════ */
+
+        /* Scroll reveal animation */
+        @keyframes reveal-up {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        .section-title {
-            text-align: center;
-            margin-bottom: 64px;
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        .section-title h2 {
-            font-size: 2.5rem;
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+        .reveal-delay-4 { transition-delay: 0.4s; }
+
+        /* Section titles — cinematic */
+        .section-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--accent);
+            margin-bottom: 20px;
+        }
+
+        .section-eyebrow::before {
+            content: '';
+            display: block;
+            width: 24px;
+            height: 1px;
+            background: var(--accent);
+        }
+
+        .section-heading {
+            font-size: clamp(2rem, 4vw, 3.2rem);
             font-weight: 700;
-            letter-spacing: -0.02em;
-            margin-bottom: 16px;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+            margin-bottom: 20px;
         }
 
-        .section-title p {
+        .section-subtitle {
             color: var(--text-secondary);
             font-size: 1.1rem;
+            line-height: 1.7;
+            max-width: 600px;
         }
 
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 24px;
-        }
-
-        .feature-card {
-            background: var(--bg-secondary);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 32px;
-            transition: all 0.3s;
-        }
-
-        .feature-card:hover {
-            border-color: var(--accent);
-            transform: translateY(-4px);
-        }
-
-        .feature-icon {
-            width: 48px;
-            height: 48px;
-            background: var(--bg-tertiary);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 20px;
-            font-size: 1.5rem;
-        }
-
-        .feature-card h3 {
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: 12px;
-        }
-
-        .feature-card p {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
+        .section-subtitle.center {
+            margin: 0 auto;
         }
 
         .kbd {
@@ -616,283 +620,1341 @@
             font-size: 0.8rem;
         }
 
-        /* Works With Carousel */
-        .works-with {
-            padding: 80px 0;
-            overflow: hidden;
-        }
-
-        .works-with-label {
-            text-align: center;
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin-bottom: 40px;
-        }
-
-        .tools-carousel {
+        /* ── SOCIAL PROOF ── */
+        .social-proof {
+            padding: 120px 0 100px;
             position: relative;
-            width: 100%;
             overflow: hidden;
-            mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
-            -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
         }
 
-        .tools-track {
-            display: flex;
-            gap: 32px;
-            animation: scroll 40s linear infinite;
-            width: max-content;
+        .social-proof::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--border), transparent);
         }
 
-        .tools-track:hover {
-            animation-play-state: paused;
+        .social-proof::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--border), transparent);
         }
 
-        @keyframes scroll {
-            0% {
-                transform: translateX(0);
-            }
-            100% {
-                transform: translateX(calc(-50% - 16px));
-            }
+        .proof-pullquote {
+            max-width: 900px;
+            margin: 0 auto 56px;
+            text-align: center;
+            position: relative;
         }
 
-        .tool-item {
+        .proof-pullquote::before {
+            content: '\201C';
+            position: absolute;
+            top: -60px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 8rem;
+            font-weight: 700;
+            line-height: 1;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.25), rgba(139, 92, 246, 0.15));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            pointer-events: none;
+        }
+
+        .proof-pullquote blockquote {
+            font-size: 2.2rem;
+            font-weight: 600;
+            letter-spacing: -0.03em;
+            line-height: 1.3;
+            color: var(--text-primary);
+        }
+
+        .proof-pullquote blockquote .proof-highlight {
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .proof-attribution {
+            margin-top: 24px;
             display: flex;
             align-items: center;
-            gap: 14px;
-            padding: 16px 28px;
+            justify-content: center;
+            gap: 10px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .proof-verified {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 16px;
+            height: 16px;
+            background: #1d9bf0;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .proof-verified svg {
+            width: 10px;
+            height: 10px;
+        }
+
+        .proof-connector {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px 0;
+            color: var(--text-muted);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            gap: 12px;
+        }
+
+        .proof-connector::before,
+        .proof-connector::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--border));
+        }
+
+        .proof-connector::after {
+            background: linear-gradient(90deg, var(--border), transparent);
+        }
+
+        .proof-voices {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+            max-width: 900px;
+            margin: 0 auto;
+            align-items: start;
+        }
+
+        .proof-voice-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.65rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+        }
+
+        /* Tweet thread */
+        .proof-thread {
+            max-width: 640px;
+            margin: 0 auto;
+        }
+
+        .proof-tweet {
+            padding: 28px 32px;
             background: var(--bg-secondary);
             border: 1px solid var(--border);
-            border-radius: 100px;
-            transition: all 0.3s ease;
-            cursor: default;
+            position: relative;
         }
 
-        .tool-item:hover {
-            border-color: var(--accent);
+        .proof-tweet:first-child {
+            border-radius: 16px 16px 0 0;
+            border-bottom: none;
+        }
+
+        .proof-tweet:last-child {
+            border-radius: 0 0 16px 16px;
+        }
+
+        .proof-tweet:only-child {
+            border-radius: 16px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .proof-tweet:first-child::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 32px;
+            right: 32px;
+            height: 1px;
+            background: var(--border);
+        }
+
+        .proof-tweet:only-child::after {
+            display: none;
+        }
+
+        .proof-tweet-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .proof-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
             background: var(--bg-tertiary);
-            transform: scale(1.02);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            flex-shrink: 0;
         }
 
-        .tool-logo {
+        .proof-avatar.avatar-charles {
+            background: linear-gradient(135deg, #1a3a5c, #2a5a8c);
+            color: #7db8e8;
+        }
+
+        .proof-avatar.avatar-frank {
+            background: linear-gradient(135deg, #3a2a1a, #5c4a2a);
+            color: #d4a574;
+        }
+
+        .proof-tweet-name {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .proof-tweet-name strong {
+            font-size: 0.9rem;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .proof-tweet-name span {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .proof-tweet-body {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .proof-tweet-body strong {
+            color: var(--text-primary);
+        }
+
+        .proof-tweet .proof-x-logo {
+            position: absolute;
+            top: 28px;
+            right: 32px;
+            color: var(--text-muted);
+            opacity: 0.4;
+        }
+
+        /* Reddit cards */
+        .proof-reddit-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .proof-reddit {
+            padding: 24px 28px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            position: relative;
+        }
+
+        .proof-reddit .proof-reddit-logo {
+            position: absolute;
+            top: 24px;
+            right: 28px;
+            opacity: 0.4;
+        }
+
+        .proof-reddit-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .proof-reddit-avatar {
             width: 28px;
             height: 28px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ff4500, #ff6834);
             display: flex;
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
         }
 
-        .tool-logo svg {
-            width: 100%;
-            height: 100%;
+        .proof-reddit-avatar svg {
+            width: 16px;
+            height: 16px;
         }
 
-        .tool-item span {
+        .proof-reddit-user {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .proof-reddit-body {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.7;
+        }
+
+        .proof-reddit-body strong {
             color: var(--text-primary);
-            font-size: 0.95rem;
-            font-weight: 500;
-            white-space: nowrap;
         }
 
-        /* Pricing */
-        .pricing {
-            padding: 100px 0;
+        @media (max-width: 768px) {
+            .social-proof { padding: 80px 0 60px; }
+            .proof-pullquote blockquote { font-size: 1.5rem; }
+            .proof-pullquote::before { font-size: 5rem; top: -40px; }
+            .proof-tweet { padding: 20px 24px; }
+            .proof-tweet .proof-x-logo { top: 20px; right: 24px; }
+            .proof-voices { grid-template-columns: 1fr; }
+            .proof-reddit { padding: 20px 24px; }
+            .proof-reddit .proof-reddit-logo { top: 20px; right: 24px; }
         }
 
-        .pricing-cards {
+        /* ── AI COMMAND CENTER ── */
+        .command-center {
+            padding: 140px 0 100px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .command-center::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            opacity: 0.4;
+        }
+
+        .command-center::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 1000px;
+            height: 1000px;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.06) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .command-center .container {
+            text-align: center;
+        }
+
+        .agent-trio {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 32px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+            margin-top: 64px;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            background: var(--border);
+        }
+
+        .agent-panel {
+            background: var(--bg-secondary);
+            padding: 48px 36px 40px;
+            text-decoration: none;
+            color: inherit;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            transition: background 0.4s;
+        }
+
+        .agent-panel:hover {
+            background: var(--bg-tertiary);
+        }
+
+        .agent-panel-logo {
+            width: 64px;
+            height: 64px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+            border: 1px solid var(--border);
+            background: var(--bg-primary);
+        }
+
+        .agent-panel-logo svg {
+            width: 36px;
+            height: 36px;
+        }
+
+        /* Branded tints */
+        .agent-panel-logo.brand-claude {
+            background: rgba(217, 119, 6, 0.08);
+            border-color: rgba(217, 119, 6, 0.2);
+        }
+
+        .agent-panel-logo.brand-openai {
+            background: rgba(16, 163, 127, 0.08);
+            border-color: rgba(16, 163, 127, 0.2);
+        }
+
+        .agent-panel-logo.brand-openclaw {
+            background: rgba(244, 63, 94, 0.08);
+            border-color: rgba(244, 63, 94, 0.2);
+        }
+
+        .agent-panel h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .agent-panel-tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 16px;
+        }
+
+        .agent-panel p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            flex: 1;
+        }
+
+        .agent-panel-arrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            transition: color 0.3s, gap 0.3s;
+        }
+
+        .agent-panel:hover .agent-panel-arrow {
+            color: var(--accent);
+            gap: 12px;
+        }
+
+        /* Agent showcase screenshots */
+        .agent-showcase {
+            margin-top: 80px;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 24px;
+        }
+
+        .agent-showcase-card {
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            background: var(--bg-secondary);
+            text-decoration: none;
+            color: inherit;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s, box-shadow 0.4s;
+        }
+
+        .agent-showcase-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(59, 130, 246, 0.3);
+            box-shadow: 0 24px 60px -12px rgba(0, 0, 0, 0.6);
+        }
+
+        .agent-showcase-card img {
+            width: 100%;
+            display: block;
+        }
+
+        .agent-showcase-card-body {
+            padding: 20px 24px;
+        }
+
+        .agent-showcase-card-body h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .agent-showcase-card-body p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* ── MANIFESTO BANNER ── */
+        .manifesto {
+            padding: 100px 0;
+            position: relative;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .manifesto::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(180deg, transparent 0%, rgba(59, 130, 246, 0.03) 50%, transparent 100%);
+            pointer-events: none;
+        }
+
+        .manifesto-text {
+            font-size: clamp(1.6rem, 3.5vw, 2.8rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            line-height: 1.3;
             max-width: 800px;
             margin: 0 auto;
+            color: var(--text-secondary);
         }
 
-        .pricing-card {
-            background: var(--bg-secondary);
+        .manifesto-text em {
+            font-style: normal;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* ── WORKS WITH MARQUEE ── */
+        .marquee-section {
+            padding: 60px 0;
+            overflow: hidden;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .marquee-label {
+            text-align: center;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--text-muted);
+            margin-bottom: 32px;
+        }
+
+        .marquee-track-wrapper {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+            -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+        }
+
+        .marquee-track {
+            display: flex;
+            gap: 24px;
+            animation: marquee-scroll 35s linear infinite;
+            width: max-content;
+        }
+
+        .marquee-track:hover {
+            animation-play-state: paused;
+        }
+
+        @keyframes marquee-scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(calc(-50% - 12px)); }
+        }
+
+        .marquee-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 22px;
+            background: transparent;
             border: 1px solid var(--border);
-            border-radius: 20px;
-            padding: 40px;
+            border-radius: 8px;
+            white-space: nowrap;
+            transition: border-color 0.3s, background 0.3s;
+        }
+
+        .marquee-item:hover {
+            border-color: var(--accent);
+            background: rgba(59, 130, 246, 0.05);
+        }
+
+        .marquee-item svg {
+            width: 20px;
+            height: 20px;
+            flex-shrink: 0;
+        }
+
+        .marquee-item span {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        /* ── FEATURES GRID ── */
+        .features-section {
+            padding: 140px 0 100px;
             position: relative;
         }
 
-        .pricing-card.featured {
-            border-color: var(--accent);
-            box-shadow: 0 0 40px var(--accent-glow);
+        .features-section .container {
+            max-width: 1200px;
         }
 
-        .pricing-card.featured::before {
-            content: 'RECOMMENDED';
-            position: absolute;
-            top: -12px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--accent);
-            color: white;
-            padding: 4px 16px;
-            border-radius: 100px;
-            font-size: 0.75rem;
+        .features-header {
+            margin-bottom: 80px;
+        }
+
+        .features-bento {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 16px;
+        }
+
+        .bento-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px;
+            position: relative;
+            overflow: hidden;
+            transition: border-color 0.4s, transform 0.4s;
+        }
+
+        .bento-card:hover {
+            border-color: rgba(255, 255, 255, 0.1);
+            transform: translateY(-4px);
+        }
+
+        .bento-card.span-8 { grid-column: span 8; }
+        .bento-card.span-6 { grid-column: span 6; }
+        .bento-card.span-4 { grid-column: span 4; }
+        .bento-card.span-3 { grid-column: span 3; }
+
+        .bento-icon {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        .bento-card h3 {
+            font-size: 1.15rem;
             font-weight: 700;
-            letter-spacing: 0.05em;
+            margin-bottom: 10px;
         }
 
-        .pricing-card h3 {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-
-        .pricing-card .price {
-            font-size: 3rem;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-
-        .pricing-card .price span {
-            font-size: 1rem;
-            color: var(--text-muted);
-            font-weight: 400;
-        }
-
-        .pricing-card .price-note {
-            color: var(--text-muted);
+        .bento-card p {
+            color: var(--text-secondary);
             font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .bento-card.featured-bento {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.08), rgba(139, 92, 246, 0.05));
+            border-color: rgba(59, 130, 246, 0.2);
+        }
+
+        .bento-card.featured-bento:hover {
+            border-color: rgba(59, 130, 246, 0.4);
+        }
+
+        /* ── FOUNDER STORY ── */
+        .founder-section {
+            padding: 120px 0;
+            position: relative;
+        }
+
+        .founder-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--border), transparent);
+        }
+
+        .founder-card {
+            max-width: 720px;
+            margin: 0 auto;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 48px;
+            position: relative;
+        }
+
+        .founder-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 40px;
+            right: 40px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.3), transparent);
+        }
+
+        .founder-quote {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
             margin-bottom: 32px;
         }
 
-        .pricing-card ul {
-            list-style: none;
-            margin-bottom: 32px;
+        .founder-quote em {
+            color: var(--text-primary);
+            font-style: normal;
         }
 
-        .pricing-card li {
+        .founder-info {
             display: flex;
             align-items: center;
-            gap: 12px;
-            padding: 12px 0;
-            border-bottom: 1px solid var(--border);
-            font-size: 0.95rem;
+            gap: 16px;
         }
 
-        .pricing-card li:last-child {
+        .founder-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            overflow: hidden;
+            flex-shrink: 0;
+            border: 2px solid var(--border);
+        }
+
+        .founder-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .founder-details h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+
+        .founder-details h4 a {
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .founder-details h4 a:hover {
+            color: var(--accent);
+        }
+
+        .founder-details p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .founder-details p a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .founder-details p a:hover {
+            color: var(--accent);
+        }
+
+        .founder-badges {
+            display: flex;
+            gap: 8px;
+            margin-top: 8px;
+            flex-wrap: wrap;
+        }
+
+        .founder-badge {
+            display: inline-block;
+            padding: 3px 10px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            letter-spacing: 0.02em;
+        }
+
+        .founder-social {
+            display: flex;
+            gap: 12px;
+            margin-left: auto;
+        }
+
+        .founder-social a {
+            color: var(--text-muted);
+            transition: color 0.2s;
+        }
+
+        .founder-social a:hover {
+            color: var(--accent);
+        }
+
+        @media (max-width: 768px) {
+            .founder-card {
+                padding: 32px 24px;
+            }
+
+            .founder-info {
+                flex-wrap: wrap;
+            }
+
+            .founder-social {
+                margin-left: 0;
+                margin-top: 8px;
+                width: 100%;
+                padding-left: 64px;
+            }
+        }
+
+        /* ── PRICING CINEMA ── */
+        .pricing-section {
+            padding: 140px 0 100px;
+            position: relative;
+        }
+
+        .pricing-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--border), transparent);
+        }
+
+        .pricing-header {
+            text-align: center;
+            margin-bottom: 72px;
+        }
+
+        .pricing-duo {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2px;
+            max-width: 860px;
+            margin: 0 auto;
+            border-radius: 24px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            background: var(--border);
+        }
+
+        .pricing-tier {
+            background: var(--bg-secondary);
+            padding: 48px 40px;
+            position: relative;
+        }
+
+        .pricing-tier.pro {
+            background: linear-gradient(180deg, rgba(59, 130, 246, 0.06) 0%, var(--bg-secondary) 100%);
+        }
+
+        .pricing-tier.pro::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent), #8b5cf6);
+        }
+
+        .pricing-tier-badge {
+            display: inline-block;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+        }
+
+        .pricing-tier.pro .pricing-tier-badge {
+            color: var(--accent);
+        }
+
+        .pricing-amount {
+            font-size: 3.5rem;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            margin-bottom: 4px;
+        }
+
+        .pricing-amount small {
+            font-size: 1rem;
+            font-weight: 400;
+            color: var(--text-muted);
+        }
+
+        .pricing-note {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-bottom: 32px;
+        }
+
+        .pricing-list {
+            list-style: none;
+            margin-bottom: 36px;
+        }
+
+        .pricing-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 10px 0;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        .pricing-list li:last-child {
             border-bottom: none;
         }
 
-        .check {
+        .pricing-list .check-icon {
             color: var(--success);
+            font-size: 1rem;
+            flex-shrink: 0;
+            margin-top: 1px;
         }
 
-        .pricing-card .btn {
+        .pricing-list li strong {
+            color: var(--text-primary);
+        }
+
+        .pricing-tier .btn {
             width: 100%;
             justify-content: center;
         }
 
-        /* Blog/Guides */
-        .blog {
-            padding: 100px 0;
+        /* Pricing comparison — dramatic */
+        .pricing-versus {
+            max-width: 720px;
+            margin: 80px auto 0;
+            text-align: center;
+        }
+
+        .pricing-versus h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 8px;
+        }
+
+        .pricing-versus > p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 36px;
+        }
+
+        .versus-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        .versus-table thead {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .versus-table th {
+            padding: 16px 24px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+            border-bottom: 1px solid var(--border);
+            text-align: left;
+        }
+
+        .versus-table td {
+            padding: 16px 24px;
+            font-size: 0.95rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            color: var(--text-secondary);
             background: var(--bg-secondary);
         }
 
-        .blog-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 24px;
+        .versus-table tr:last-child td {
+            border-bottom: none;
         }
 
-        .blog-card {
-            display: block;
-            background: var(--bg-primary);
+        .versus-table .beam-winner {
+            background: rgba(59, 130, 246, 0.06);
+        }
+
+        .versus-table .beam-winner td {
+            color: var(--text-primary);
+            font-weight: 700;
+            background: rgba(59, 130, 246, 0.06);
+        }
+
+        .versus-table .annual-cost {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+        }
+
+        .versus-table .beam-winner .annual-cost {
+            color: var(--success);
+            font-weight: 700;
+        }
+
+        /* ── EDITORIAL GUIDES ── */
+        .editorial {
+            padding: 140px 0 100px;
+            position: relative;
+        }
+
+        .editorial::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--border), transparent);
+        }
+
+        .editorial-header {
+            text-align: center;
+            margin-bottom: 72px;
+        }
+
+        /* Featured article — full width cinematic */
+        .editorial-featured {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 2px;
+            border-radius: 20px;
+            overflow: hidden;
             border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 32px;
-            transition: all 0.3s;
+            background: var(--border);
+            margin-bottom: 20px;
             text-decoration: none;
             color: inherit;
+            transition: border-color 0.4s, box-shadow 0.4s;
         }
 
-        .blog-card:hover {
-            border-color: var(--accent);
-            transform: translateY(-4px);
+        .editorial-featured:hover {
+            border-color: rgba(59, 130, 246, 0.3);
+            box-shadow: 0 20px 60px -15px rgba(0, 0, 0, 0.5);
         }
 
-        .blog-icon {
-            font-size: 2rem;
+        .editorial-featured-visual {
+            background: var(--bg-secondary);
+            padding: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .editorial-featured-visual .blog-icon-large {
+            font-size: 5rem;
+        }
+
+        .editorial-featured-body {
+            background: var(--bg-secondary);
+            padding: 48px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .editorial-featured-body .editorial-tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--accent);
             margin-bottom: 16px;
         }
 
-        .blog-card h3 {
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 12px;
-            color: var(--text-primary);
+        .editorial-featured-body h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+            line-height: 1.2;
         }
 
-        .blog-card p {
+        .editorial-featured-body p {
             color: var(--text-secondary);
             font-size: 0.95rem;
             line-height: 1.7;
-            margin-bottom: 16px;
         }
 
-        .blog-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
-
-        .blog-tags span {
-            background: var(--bg-tertiary);
+        /* Article grid */
+        .editorial-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+            border-radius: 20px;
+            overflow: hidden;
             border: 1px solid var(--border);
-            padding: 4px 12px;
-            border-radius: 100px;
-            font-size: 0.75rem;
+            background: var(--border);
+        }
+
+        .editorial-card {
+            background: var(--bg-secondary);
+            padding: 36px 32px;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            transition: background 0.3s;
+        }
+
+        .editorial-card:hover {
+            background: var(--bg-tertiary);
+        }
+
+        .editorial-card .editorial-icon {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        .editorial-card .editorial-icon svg {
+            width: 32px;
+            height: 32px;
+        }
+
+        .editorial-card h3 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            line-height: 1.3;
+        }
+
+        .editorial-card p {
             color: var(--text-muted);
+            font-size: 0.85rem;
+            line-height: 1.6;
+            flex: 1;
         }
 
-        /* FAQ */
-        .faq {
-            padding: 100px 0;
+        .editorial-card .editorial-card-tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 16px;
         }
 
-        .faq-list {
-            max-width: 800px;
+        .editorial-card .editorial-card-tags span {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-muted);
+            padding: 3px 10px;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+        }
+
+        /* ── FAQ ACCORDION ── */
+        .faq-section {
+            padding: 140px 0 100px;
+            position: relative;
+        }
+
+        .faq-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--border), transparent);
+        }
+
+        .faq-header {
+            text-align: center;
+            margin-bottom: 72px;
+        }
+
+        .faq-accordion {
+            max-width: 780px;
             margin: 0 auto;
         }
 
-        .faq-item {
-            background: var(--bg-secondary);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 24px 32px;
-            margin-bottom: 16px;
+        .faq-entry {
+            border-bottom: 1px solid var(--border);
         }
 
-        .faq-item h3 {
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 12px;
+        .faq-entry:first-child {
+            border-top: 1px solid var(--border);
+        }
+
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px 0;
+            cursor: pointer;
+            gap: 24px;
+            background: none;
+            border: none;
             color: var(--text-primary);
+            font-family: inherit;
+            font-size: 1.05rem;
+            font-weight: 600;
+            text-align: left;
+            width: 100%;
+            transition: color 0.3s;
         }
 
-        .faq-item p {
+        .faq-question:hover {
+            color: var(--accent);
+        }
+
+        .faq-question .faq-chevron {
+            flex-shrink: 0;
+            width: 20px;
+            height: 20px;
+            color: var(--text-muted);
+            transition: transform 0.3s, color 0.3s;
+        }
+
+        .faq-entry.open .faq-question .faq-chevron {
+            transform: rotate(45deg);
+            color: var(--accent);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1), padding 0.4s;
+        }
+
+        .faq-entry.open .faq-answer {
+            max-height: 600px;
+            padding-bottom: 24px;
+        }
+
+        .faq-answer-inner {
             color: var(--text-secondary);
             font-size: 0.95rem;
             line-height: 1.7;
         }
 
-        .faq-item a {
+        .faq-answer-inner a {
             color: var(--accent);
             text-decoration: none;
         }
 
-        .faq-item a:hover {
+        .faq-answer-inner a:hover {
             text-decoration: underline;
         }
 
-        /* Footer */
+        /* ── NEWSLETTER CTA ── */
+        .newsletter-section {
+            padding: 100px 0;
+        }
+
+        .newsletter-card {
+            max-width: 640px;
+            margin: 0 auto;
+            text-align: center;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 56px 48px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .newsletter-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent), #8b5cf6, #ec4899);
+        }
+
+        .newsletter-card h2 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .newsletter-card > p {
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+        }
+
+        .newsletter-card .newsletter-form {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .newsletter-card .newsletter-form input[type="email"] {
+            flex: 1;
+            min-width: 240px;
+            max-width: 320px;
+            padding: 14px 20px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            font-size: 1rem;
+            font-family: inherit;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .newsletter-card .newsletter-form input[type="email"]:focus {
+            border-color: var(--accent);
+        }
+
+        .newsletter-card .newsletter-form input[type="email"]::placeholder {
+            color: var(--text-muted);
+        }
+
+        .thank-you {
+            color: var(--success);
+            font-weight: 500;
+            margin-top: 8px;
+        }
+
+        /* ── FOOTER ── */
         footer {
             padding: 60px 0;
             border-top: 1px solid var(--border);
@@ -913,66 +1975,112 @@
             color: var(--text-primary);
         }
 
-        /* Newsletter */
-        .newsletter {
-            padding: 80px 0;
+        /* ── RESPONSIVE ── */
+        @media (max-width: 1024px) {
+            .hero .container {
+                grid-template-columns: 1fr;
+                gap: 48px;
+            }
+
+            .hero-content {
+                text-align: center;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .hero-screenshot .screenshot {
+                transform: none;
+            }
+
+            .hero-screenshot:hover .screenshot {
+                transform: none;
+            }
+
+            .hero::before {
+                top: 30%;
+                right: 50%;
+                transform: translate(50%, -50%);
+            }
+
+            .agent-trio {
+                grid-template-columns: 1fr;
+            }
+
+            .agent-showcase {
+                grid-template-columns: 1fr;
+                max-width: 500px;
+                margin: 80px auto 0;
+            }
+
+            .features-bento {
+                grid-template-columns: repeat(6, 1fr);
+            }
+
+            .bento-card.span-8 { grid-column: span 6; }
+            .bento-card.span-4 { grid-column: span 6; }
+            .bento-card.span-3 { grid-column: span 3; }
+
+            .editorial-featured {
+                grid-template-columns: 1fr;
+            }
+
+            .editorial-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
-        .newsletter-box {
-            background: var(--bg-secondary);
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            padding: 48px;
-            text-align: center;
-            max-width: 600px;
-            margin: 0 auto;
+        @media (max-width: 768px) {
+            nav {
+                display: none;
+            }
+
+            .hero {
+                min-height: auto;
+                padding: 120px 0 40px;
+            }
+
+            h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .command-center {
+                padding: 100px 0 60px;
+            }
+
+            .features-bento {
+                grid-template-columns: 1fr;
+            }
+
+            .bento-card.span-8,
+            .bento-card.span-6,
+            .bento-card.span-4,
+            .bento-card.span-3 { grid-column: span 1; }
+
+            .pricing-duo {
+                grid-template-columns: 1fr;
+            }
+
+            .section-heading {
+                font-size: 1.8rem;
+            }
         }
 
-        .newsletter-content h2 {
-            font-size: 1.75rem;
-            font-weight: 700;
-            margin-bottom: 12px;
-        }
-
-        .newsletter-content p {
-            color: var(--text-secondary);
-            margin-bottom: 32px;
-        }
-
-        .newsletter-form {
-            display: flex;
-            gap: 12px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .newsletter-form input[type="email"] {
-            flex: 1;
-            min-width: 240px;
-            max-width: 320px;
-            padding: 14px 20px;
-            border-radius: 8px;
-            border: 1px solid var(--border);
-            background: var(--bg-tertiary);
-            color: var(--text-primary);
-            font-size: 1rem;
-            font-family: inherit;
-            outline: none;
-            transition: border-color 0.2s;
-        }
-
-        .newsletter-form input[type="email"]:focus {
-            border-color: var(--accent);
-        }
-
-        .newsletter-form input[type="email"]::placeholder {
-            color: var(--text-muted);
-        }
-
-        .thank-you {
-            color: var(--success);
-            font-weight: 500;
-            margin-top: 8px;
+        @media (max-width: 600px) {
+            .versus-table th, .versus-table td {
+                padding: 12px 14px;
+                font-size: 0.85rem;
+            }
         }
 
         /* Modal */
@@ -1077,6 +2185,134 @@
             font-size: 0.85em;
         }
 
+        /* AI Agents Showcase */
+        .ai-showcase {
+            padding: 100px 0 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ai-showcase::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+            opacity: 0.15;
+            pointer-events: none;
+        }
+
+        .ai-showcase .section-title h2 {
+            background: linear-gradient(135deg, #fff 0%, #3b82f6 50%, #8b5cf6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .ai-showcase .section-title p {
+            max-width: 640px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        .ai-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+            margin-bottom: 56px;
+        }
+
+        .ai-card {
+            display: block;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            cursor: pointer;
+        }
+
+        .ai-card::before {
+            content: '';
+            position: absolute;
+            inset: -1px;
+            border-radius: 16px;
+            padding: 1px;
+            background: linear-gradient(135deg, transparent, var(--accent), transparent);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .ai-card:hover::before {
+            opacity: 1;
+        }
+
+        .ai-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 60px rgba(59, 130, 246, 0.15);
+        }
+
+        .ai-card-img {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ai-card-img img {
+            width: 100%;
+            display: block;
+            transition: transform 0.4s;
+        }
+
+        .ai-card:hover .ai-card-img img {
+            transform: scale(1.02);
+        }
+
+        .ai-card-body {
+            padding: 24px;
+        }
+
+        .ai-card-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 12px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin-bottom: 12px;
+        }
+
+        .ai-card-body h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .ai-card-body p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .ai-showcase-cta {
+            text-align: center;
+        }
+
+        .ai-showcase-cta p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-top: 12px;
+        }
+
         /* Responsive */
         @media (max-width: 1024px) {
             .hero .container {
@@ -1105,6 +2341,12 @@
                 right: 50%;
                 transform: translate(50%, -50%);
             }
+
+            .ai-cards {
+                grid-template-columns: 1fr;
+                max-width: 500px;
+                margin: 0 auto 56px;
+            }
         }
 
         @media (max-width: 768px) {
@@ -1130,7 +2372,15 @@
                 align-items: center;
             }
 
+            .agent-cards {
+                grid-template-columns: 1fr;
+            }
+
             .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .ai-cards {
                 grid-template-columns: 1fr;
             }
 
@@ -1157,7 +2407,7 @@
                 <a href="#features">Features</a>
                 <a href="#guides">Guides</a>
                 <a href="#pricing">Pricing</a>
-                <a href="Beam-v1.9.14-alpha.dmg" onclick="trackDownload()" class="btn btn-primary">Download</a>
+                <a href="Beam-v1.9.15-alpha.dmg" onclick="trackDownload()" class="btn btn-primary">Download</a>
             </nav>
         </div>
     </header>
@@ -1168,14 +2418,14 @@
                 <div class="hero-content">
                     <div class="badge">
                         <span class="badge-dot"></span>
-                        v1.9.14 now available
+                        v1.9.15 now available
                     </div>
-                    <h1>The IDE for the<br><span>AI era</span></h1>
+                    <h1>1-Click AI Agent Installs.<br><span>Just right-click and go.</span></h1>
                     <p class="hero-subtitle">
-                        Organize your AI workflows, projects, and sessions. Subwindows, saveable layouts, and keyboard navigation. Your terminal is your workspace — Beam organizes it.
+                        Start Claude Code, OpenAI Codex, and OpenClaw without touching the command line. Beam handles installation, organizes your sessions into subwindows, and saves your layouts.
                     </p>
                     <div class="hero-buttons">
-                        <a href="Beam-v1.9.14-alpha.dmg" onclick="trackDownload()" class="btn btn-primary">
+                        <a href="Beam-v1.9.15-alpha.dmg" onclick="trackDownload()" class="btn btn-primary">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
                             </svg>
@@ -1185,24 +2435,170 @@
                             See Features
                         </a>
                     </div>
-                    <p class="price-tag" style="margin-top: 24px;">Free to try &bull; Pro $29 one-time</p>
+                    <p class="price-tag" style="margin-top: 24px;">Free to try &bull; Pro $10/month &bull; No lock-in, no telemetry</p>
                 </div>
                 <div class="hero-screenshot">
                     <div class="screenshot">
-                        <img src="beam-screenshot-1.9.8.png" alt="Beam v1.9.14 - Terminal organizer with sidebar, subwindows, tabs, and split panes">
+                        <img src="beam-screenshot-1.9.8.png" alt="Beam v1.9.15 - Terminal organizer with sidebar, subwindows, tabs, and split panes">
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Works With Section -->
-        <section class="works-with">
+        <!-- ═══ COMMAND CENTER — AI Agents ═══ -->
+        <section class="command-center">
             <div class="container">
-                <p class="works-with-label">Works seamlessly with</p>
-                <div class="tools-carousel">
-                    <div class="tools-track">
+                <div class="reveal">
+                    <span class="section-eyebrow">AI Command Center</span>
+                    <h2 class="section-heading">Start AI agents in one click</h2>
+                    <p class="section-subtitle center" style="margin: 0 auto;">No setup guides. No install commands. Just right-click and go. Beam auto-installs and launches your agent so you can start building in seconds.</p>
+                </div>
+
+                <div class="agent-trio reveal reveal-delay-1">
+                    <a href="blog/beam-claude-code-setup.html" class="agent-panel">
+                        <div class="agent-panel-logo brand-claude"><svg viewBox="0 0 48 48" fill="none"><path d="M24 4C12.95 4 4 12.95 4 24s8.95 20 20 20 20-8.95 20-20S35.05 4 24 4z" fill="rgba(217,119,6,0.15)"/><path d="M30.5 18.5L24 14l-6.5 4.5V28L24 32.5l6.5-4.5V18.5z" stroke="#D97706" stroke-width="2.5" stroke-linejoin="round"/><path d="M24 14v4.5M24 28v4.5M17.5 18.5L21 21M27 25l3.5 2.5M30.5 18.5L27 21M21 25l-3.5 2.5" stroke="#D97706" stroke-width="2" stroke-linecap="round"/><circle cx="24" cy="24" r="3" fill="#D97706"/></svg></div>
+                        <h3>Claude Code</h3>
+                        <div class="agent-panel-tag">One-click launch</div>
+                        <p>Right-click any terminal, select Claude Code, and start building with AI. Beam auto-installs it if needed. No setup, no config.</p>
+                        <span class="agent-panel-arrow">Setup guide <span>&rarr;</span></span>
+                    </a>
+                    <a href="blog/how-to-use-openai-codex-mac.html" class="agent-panel">
+                        <div class="agent-panel-logo brand-openai"><svg viewBox="0 0 48 48" fill="none"><path d="M24 4C12.95 4 4 12.95 4 24s8.95 20 20 20 20-8.95 20-20S35.05 4 24 4z" fill="rgba(16,163,127,0.15)"/><path d="M24 13l9.5 5.5v11L24 35l-9.5-5.5v-11L24 13z" stroke="#10A37F" stroke-width="2.2" stroke-linejoin="round"/><path d="M24 13v7.5M24 27.5V35M14.5 18.5l6.5 3.75M27 22.25l6.5-3.75M33.5 29.5L27 25.75M21 25.75l-6.5 3.75" stroke="#10A37F" stroke-width="1.8" stroke-linecap="round"/><circle cx="24" cy="24" r="2.5" fill="#10A37F"/></svg></div>
+                        <h3>OpenAI Codex</h3>
+                        <div class="agent-panel-tag">One-click launch</div>
+                        <p>Launch OpenAI Codex the same way — one click. Beam handles installation and setup so you go from zero to coding in seconds.</p>
+                        <span class="agent-panel-arrow">Setup guide <span>&rarr;</span></span>
+                    </a>
+                    <a href="blog/how-to-install-openclaw-setup-guide.html" class="agent-panel">
+                        <div class="agent-panel-logo brand-openclaw"><svg viewBox="0 0 48 48" fill="none"><path d="M24 4C12.95 4 4 12.95 4 24s8.95 20 20 20 20-8.95 20-20S35.05 4 24 4z" fill="rgba(244,63,94,0.15)"/><path d="M16 20c0-4.4 3.6-8 8-8s8 3.6 8 8" stroke="#F43F5E" stroke-width="2.5" stroke-linecap="round"/><path d="M14 26l3-6M24 26v-7M34 26l-3-6" stroke="#F43F5E" stroke-width="2.5" stroke-linecap="round"/><path d="M14 26c0 5.5 4.5 10 10 10s10-4.5 10-10" stroke="#F43F5E" stroke-width="2.5" stroke-linecap="round"/><circle cx="20" cy="24" r="1.5" fill="#F43F5E"/><circle cx="28" cy="24" r="1.5" fill="#F43F5E"/></svg></div>
+                        <h3>OpenClaw</h3>
+                        <div class="agent-panel-tag">One-click launch</div>
+                        <p>Start OpenClaw instantly from the AI Agents menu. No npm commands, no PATH setup. If you can click a menu, you can run OpenClaw.</p>
+                        <span class="agent-panel-arrow">Setup guide <span>&rarr;</span></span>
+                    </a>
+                </div>
+
+                <div class="agent-showcase reveal reveal-delay-2">
+                    <a href="blog/beam-claude-code-setup.html" class="agent-showcase-card">
+                        <img src="start-ai-agent.png" alt="Right-click to start AI agents in Beam">
+                        <div class="agent-showcase-card-body">
+                            <h4>Right-click. Pick an agent. Done.</h4>
+                            <p>No terminal commands to memorize.</p>
+                        </div>
+                    </a>
+                    <a href="blog/how-to-install-openclaw-setup-guide.html" class="agent-showcase-card">
+                        <img src="quick-templates.png" alt="Beam workspace templates">
+                        <div class="agent-showcase-card-body">
+                            <h4>Pre-built workspace templates</h4>
+                            <p>One click to a full dev environment.</p>
+                        </div>
+                    </a>
+                    <a href="blog/organizing-claude-code-sessions.html" class="agent-showcase-card">
+                        <img src="3-agents.png" alt="Claude Code, OpenAI Codex, and OpenClaw side by side">
+                        <div class="agent-showcase-card-body">
+                            <h4>All agents, one screen</h4>
+                            <p>Compare outputs across agents.</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ SOCIAL PROOF ═══ -->
+        <section class="social-proof">
+            <div class="container">
+                <div class="reveal">
+                    <span class="section-eyebrow">The Problem We Solve</span>
+                </div>
+
+                <div class="proof-pullquote reveal reveal-delay-1">
+                    <blockquote>Making AI tools actually easy for beginners is <span class="proof-highlight">such a game-changer</span></blockquote>
+                    <div class="proof-attribution">
+                        <span>u/PositionSalty7411 on Reddit</span>
+                    </div>
+                </div>
+
+                <div class="proof-connector reveal reveal-delay-2">what people are saying</div>
+
+                <div class="proof-voices reveal reveal-delay-2">
+                    <div>
+                        <div class="proof-voice-label">on X / Twitter</div>
+                        <div class="proof-thread" style="max-width:none;">
+                            <div class="proof-tweet">
+                                <svg class="proof-x-logo" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                                <div class="proof-tweet-header">
+                                    <div class="proof-avatar avatar-charles">CM</div>
+                                    <div class="proof-tweet-name">
+                                        <strong>Charles McDowell IV <span class="proof-verified"><svg viewBox="0 0 24 24" fill="white"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg></span></strong>
+                                        <span>@charlesmcdowell</span>
+                                    </div>
+                                </div>
+                                <div class="proof-tweet-body">The setup friction is real. <strong>Most non-technical people bounce before they even see what agents can do for them.</strong></div>
+                            </div>
+                            <div class="proof-tweet">
+                                <div class="proof-tweet-header">
+                                    <div class="proof-avatar avatar-frank">FA</div>
+                                    <div class="proof-tweet-name">
+                                        <strong>Frank Albanese</strong>
+                                        <span>@faalbane</span>
+                                    </div>
+                                </div>
+                                <div class="proof-tweet-body">Yes, definitely! I didn't realize this until I helped a friend recently (non-technical) start chatting with Claude Code. They had a lot of questions and were seemingly close to not going through all the steps because they weren't familiar with the terminal.</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="proof-voice-label">on Reddit</div>
+                        <div class="proof-reddit-stack">
+                            <div class="proof-reddit">
+                                <svg class="proof-reddit-logo" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style="color:var(--text-muted);"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm6.066 13.71c.147.047.28.128.39.236a1.154 1.154 0 0 1-.39 1.898 3.18 3.18 0 0 1-.735 1.348c-1.07 1.07-3.056 1.708-5.331 1.708s-4.26-.638-5.331-1.708a3.18 3.18 0 0 1-.735-1.348 1.154 1.154 0 0 1-.39-1.898c.11-.108.243-.189.39-.236a3.632 3.632 0 0 1-.052-.603c0-2.485 2.74-4.504 6.118-4.504s6.118 2.019 6.118 4.504c0 .206-.018.407-.052.603z"/></svg>
+                                <div class="proof-reddit-header">
+                                    <div class="proof-reddit-avatar"><svg viewBox="0 0 24 24" fill="white"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm6.066 13.71c.147.047.28.128.39.236a1.154 1.154 0 0 1-.39 1.898 3.18 3.18 0 0 1-.735 1.348c-1.07 1.07-3.056 1.708-5.331 1.708s-4.26-.638-5.331-1.708a3.18 3.18 0 0 1-.735-1.348 1.154 1.154 0 0 1-.39-1.898c.11-.108.243-.189.39-.236a3.632 3.632 0 0 1-.052-.603c0-2.485 2.74-4.504 6.118-4.504s6.118 2.019 6.118 4.504c0 .206-.018.407-.052.603z"/></svg></div>
+                                    <div class="proof-reddit-user">u/rjyo</div>
+                                </div>
+                                <div class="proof-reddit-body">The thesis is spot on. I have been living in terminal-first workflows for AI coding and <strong>the session management problem is real. Twenty tabs named zsh is exactly what happens</strong> when you run Claude Code agents across a few projects.</div>
+                            </div>
+                            <div class="proof-reddit">
+                                <svg class="proof-reddit-logo" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style="color:var(--text-muted);"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm6.066 13.71c.147.047.28.128.39.236a1.154 1.154 0 0 1-.39 1.898 3.18 3.18 0 0 1-.735 1.348c-1.07 1.07-3.056 1.708-5.331 1.708s-4.26-.638-5.331-1.708a3.18 3.18 0 0 1-.735-1.348 1.154 1.154 0 0 1-.39-1.898c.11-.108.243-.189.39-.236a3.632 3.632 0 0 1-.052-.603c0-2.485 2.74-4.504 6.118-4.504s6.118 2.019 6.118 4.504c0 .206-.018.407-.052.603z"/></svg>
+                                <div class="proof-reddit-header">
+                                    <div class="proof-reddit-avatar"><svg viewBox="0 0 24 24" fill="white"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm6.066 13.71c.147.047.28.128.39.236a1.154 1.154 0 0 1-.39 1.898 3.18 3.18 0 0 1-.735 1.348c-1.07 1.07-3.056 1.708-5.331 1.708s-4.26-.638-5.331-1.708a3.18 3.18 0 0 1-.735-1.348 1.154 1.154 0 0 1-.39-1.898c.11-.108.243-.189.39-.236a3.632 3.632 0 0 1-.052-.603c0-2.485 2.74-4.504 6.118-4.504s6.118 2.019 6.118 4.504c0 .206-.018.407-.052.603z"/></svg></div>
+                                    <div class="proof-reddit-user">u/Lazy_Firefighter5353</div>
+                                </div>
+                                <div class="proof-reddit-body"><strong>Turning a support conversation into a product is usually a good signal that the pain is real.</strong></div>
+                            </div>
+                            <div class="proof-reddit">
+                                <svg class="proof-reddit-logo" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style="color:var(--text-muted);"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm6.066 13.71c.147.047.28.128.39.236a1.154 1.154 0 0 1-.39 1.898 3.18 3.18 0 0 1-.735 1.348c-1.07 1.07-3.056 1.708-5.331 1.708s-4.26-.638-5.331-1.708a3.18 3.18 0 0 1-.735-1.348 1.154 1.154 0 0 1-.39-1.898c.11-.108.243-.189.39-.236a3.632 3.632 0 0 1-.052-.603c0-2.485 2.74-4.504 6.118-4.504s6.118 2.019 6.118 4.504c0 .206-.018.407-.052.603z"/></svg>
+                                <div class="proof-reddit-header">
+                                    <div class="proof-reddit-avatar"><svg viewBox="0 0 24 24" fill="white"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm6.066 13.71c.147.047.28.128.39.236a1.154 1.154 0 0 1-.39 1.898 3.18 3.18 0 0 1-.735 1.348c-1.07 1.07-3.056 1.708-5.331 1.708s-4.26-.638-5.331-1.708a3.18 3.18 0 0 1-.735-1.348 1.154 1.154 0 0 1-.39-1.898c.11-.108.243-.189.39-.236a3.632 3.632 0 0 1-.052-.603c0-2.485 2.74-4.504 6.118-4.504s6.118 2.019 6.118 4.504c0 .206-.018.407-.052.603z"/></svg></div>
+                                    <div class="proof-reddit-user">u/PositionSalty7411</div>
+                                </div>
+                                <div class="proof-reddit-body">This looks awesome! <strong>Making AI tools actually easy for beginners is such a game-changer</strong> definitely bookmarking Beam.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ MANIFESTO ═══ -->
+        <section class="manifesto">
+            <div class="container">
+                <p class="manifesto-text reveal">
+                    If you have an idea, you're ready to build with AI.<br>
+                    <em>Beam makes the first step easy.</em>
+                </p>
+            </div>
+        </section>
+
+        <!-- ═══ WORKS WITH MARQUEE ═══ -->
+        <section class="marquee-section">
+            <div class="container">
+                <p class="marquee-label">Works seamlessly with</p>
+            </div>
+            <div class="marquee-track-wrapper">
+                <div class="marquee-track">
                         <!-- Claude Code - Anthropic orange -->
-                        <div class="tool-item">
+                        <div class="marquee-item">
                             <div class="tool-logo">
                                 <svg viewBox="0 0 24 24" fill="none">
                                     <path d="M12 2L2 7v10l10 5 10-5V7L12 2z" fill="#D97706"/>
@@ -1212,7 +2608,7 @@
                             <span>Claude Code</span>
                         </div>
                         <!-- Wispr Flow - Purple wave -->
-                        <div class="tool-item">
+                        <div class="marquee-item">
                             <div class="tool-logo">
                                 <svg viewBox="0 0 24 24" fill="none">
                                     <circle cx="12" cy="12" r="10" fill="#7C3AED"/>
@@ -1223,7 +2619,7 @@
                             <span>Wispr Flow</span>
                         </div>
                         <!-- OpenAI - Green -->
-                        <div class="tool-item">
+                        <div class="marquee-item">
                             <div class="tool-logo">
                                 <svg viewBox="0 0 24 24" fill="#10A37F">
                                     <path d="M22.2819 9.8211a5.9847 5.9847 0 0 0-.5157-4.9108 6.0462 6.0462 0 0 0-6.5098-2.9A6.0651 6.0651 0 0 0 4.9807 4.1818a5.9847 5.9847 0 0 0-3.9977 2.9 6.0462 6.0462 0 0 0 .7427 7.0966 5.98 5.98 0 0 0 .511 4.9107 6.051 6.051 0 0 0 6.5146 2.9001A5.9847 5.9847 0 0 0 13.2599 24a6.0557 6.0557 0 0 0 5.7718-4.2058 5.9894 5.9894 0 0 0 3.9977-2.9001 6.0557 6.0557 0 0 0-.7475-7.0729zm-9.022 12.6081a4.4755 4.4755 0 0 1-2.8764-1.0408l.1419-.0804 4.7783-2.7582a.7948.7948 0 0 0 .3927-.6813v-6.7369l2.02 1.1686a.071.071 0 0 1 .038.052v5.5826a4.504 4.504 0 0 1-4.4945 4.4944zm-9.6607-4.1254a4.4708 4.4708 0 0 1-.5346-3.0137l.142.0852 4.783 2.7582a.7712.7712 0 0 0 .7806 0l5.8428-3.3685v2.3324a.0804.0804 0 0 1-.0332.0615L9.74 19.9502a4.4992 4.4992 0 0 1-6.1408-1.6464zM2.3408 7.8956a4.485 4.4850 0 0 1 2.3655-1.9728V11.6a.7664.7664 0 0 0 .3879.6765l5.8144 3.3543-2.0201 1.1685a.0757.0757 0 0 1-.071 0l-4.8303-2.7865A4.504 4.504 0 0 1 2.3408 7.8956zm16.0993 3.8558L12.6 8.3829l2.02-1.1638a.0757.0757 0 0 1 .071 0l4.8303 2.7913a4.4944 4.4944 0 0 1-.6765 8.1042v-5.6772a.79.79 0 0 0-.407-.667zm2.0107-3.0231l-.142-.0852-4.7735-2.7818a.7759.7759 0 0 0-.7854 0L9.409 9.2297V6.8974a.0662.0662 0 0 1 .0284-.0615l4.8303-2.7866a4.4992 4.4992 0 0 1 6.6802 4.66zM8.3065 12.863l-2.02-1.1638a.0804.0804 0 0 1-.038-.0567V6.0742a4.4992 4.4992 0 0 1 7.3757-3.4537l-.142.0805L8.704 5.459a.7948.7948 0 0 0-.3927.6813zm1.0976-2.3654l2.602-1.4998 2.6069 1.4998v2.9994l-2.5974 1.5056-2.6067-1.4998z"/>
@@ -1232,7 +2628,7 @@
                             <span>OpenAI CLI</span>
                         </div>
                         <!-- GitHub CLI -->
-                        <div class="tool-item">
+                        <div class="marquee-item">
                             <div class="tool-logo">
                                 <svg viewBox="0 0 24 24" fill="white">
                                     <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
@@ -1241,7 +2637,7 @@
                             <span>GitHub CLI</span>
                         </div>
                         <!-- npm -->
-                        <div class="tool-item">
+                        <div class="marquee-item">
                             <div class="tool-logo">
                                 <svg viewBox="0 0 24 24" fill="#CB3837">
                                     <path d="M0 7.334v8h6.666v1.332H12v-1.332h12v-8H0zm6.666 6.664H5.334v-4H3.999v4H1.335V8.667h5.331v5.331zm4 0v1.336H8.001V8.667h5.334v5.332h-2.669v-.001zm12.001 0h-1.33v-4h-1.336v4h-1.335v-4h-1.33v4h-2.671V8.667h8.002v5.331z"/>
@@ -1250,7 +2646,7 @@
                             <span>npm</span>
                         </div>
                         <!-- Docker -->
-                        <div class="tool-item">
+                        <div class="marquee-item">
                             <div class="tool-logo">
                                 <svg viewBox="0 0 24 24" fill="#2496ED">
                                     <path d="M13.983 11.078h2.119a.186.186 0 00.186-.185V9.006a.186.186 0 00-.186-.186h-2.119a.185.185 0 00-.185.185v1.888c0 .102.083.185.185.185m-2.954-5.43h2.118a.186.186 0 00.186-.186V3.574a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.888c0 .102.082.185.185.186m0 2.716h2.118a.187.187 0 00.186-.186V6.29a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.887c0 .102.082.185.185.186m-2.93 0h2.12a.186.186 0 00.184-.186V6.29a.185.185 0 00-.185-.185H8.1a.185.185 0 00-.185.185v1.887c0 .102.083.185.185.186m-2.964 0h2.119a.186.186 0 00.185-.186V6.29a.185.185 0 00-.185-.185H5.136a.186.186 0 00-.186.185v1.887c0 .102.084.185.186.186m5.893 2.715h2.118a.186.186 0 00.186-.185V9.006a.186.186 0 00-.186-.186h-2.118a.185.185 0 00-.185.185v1.888c0 .102.082.185.185.185m-2.93 0h2.12a.185.185 0 00.184-.185V9.006a.185.185 0 00-.184-.186h-2.12a.185.185 0 00-.184.185v1.888c0 .102.083.185.185.185m-2.964 0h2.119a.185.185 0 00.185-.185V9.006a.185.185 0 00-.184-.186h-2.12a.186.186 0 00-.186.186v1.887c0 .102.084.185.186.185m-2.92 0h2.12a.185.185 0 00.184-.185V9.006a.185.185 0 00-.184-.186h-2.12a.185.185 0 00-.184.185v1.888c0 .102.082.185.185.185M23.763 9.89c-.065-.051-.672-.51-1.954-.51-.338.001-.676.03-1.01.087-.248-1.7-1.653-2.53-1.716-2.566l-.344-.199-.226.327c-.284.438-.49.922-.612 1.43-.23.97-.09 1.882.403 2.661-.595.332-1.55.413-1.744.42H.751a.751.751 0 00-.75.748 11.376 11.376 0 00.692 4.062c.545 1.428 1.355 2.48 2.41 3.124 1.18.723 3.1 1.137 5.275 1.137.983.003 1.963-.086 2.93-.266a12.248 12.248 0 003.823-1.389c.98-.567 1.86-1.288 2.61-2.136 1.252-1.418 1.998-2.997 2.553-4.4h.221c1.372 0 2.215-.549 2.68-1.009.309-.293.55-.65.707-1.046l.098-.288z"/>
@@ -1259,7 +2655,7 @@
                             <span>Docker</span>
                         </div>
                         <!-- Kubernetes -->
-                        <div class="tool-item">
+                        <div class="marquee-item">
                             <div class="tool-logo">
                                 <svg viewBox="0 0 24 24" fill="#326CE5">
                                     <path d="M10.204 14.35l.007.01-.999 2.413a5.171 5.171 0 0 1-2.075-2.597l2.578-.437.004.005a.44.44 0 0 1 .484.606zm-.833-2.129a.44.44 0 0 0 .173-.756l.002-.011L7.585 9.7a5.143 5.143 0 0 0-.73 3.255l2.514-.725.002-.009zm1.145-1.98a.44.44 0 0 0 .699-.337l.01-.005.15-2.62a5.144 5.144 0 0 0-3.01 1.442l2.147 1.523.004-.002zm.76 2.75l.723.349.722-.347.18-.78-.5-.623h-.804l-.5.623.179.778zm1.5-2.095a.44.44 0 0 0 .7.336l.008.003 2.134-1.513a5.188 5.188 0 0 0-2.992-1.442l.148 2.615.002.001zm10.876 5.97l-5.773 7.181a1.6 1.6 0 0 1-1.248.594H9.261a1.6 1.6 0 0 1-1.247-.594l-5.776-7.181a1.583 1.583 0 0 1-.307-1.34L3.823 5.98a1.6 1.6 0 0 1 .947-1.152l7.286-3.128a1.601 1.601 0 0 1 1.272 0l7.285 3.128a1.6 1.6 0 0 1 .947 1.152l1.892 7.951c.09.46-.014.94-.307 1.34zm-3.289-6.345a6.77 6.77 0 0 0-.065-.054l.925-2.643-3.143-1.35-.007.007-2.132 1.51a1.983 1.983 0 0 0-1.99-.043l-2.15-1.523-.006-.006-3.14 1.348.92 2.648-.042.03a1.987 1.987 0 0 0-.395 1.635l-.004.004-2.63.754.343 3.407 2.59-.44.009.014a1.979 1.979 0 0 0 1.534 1.2l.003.006.994 2.405 3.257-.423v-.011a1.975 1.975 0 0 0 1.456-.829l.003-.002 3.257.423.994-2.405.003-.005a1.983 1.983 0 0 0 1.533-1.2l.009-.015 2.59.44.343-3.406-2.63-.755-.004-.003a1.982 1.982 0 0 0-.393-1.637zm-4.155 2.029a.44.44 0 0 0-.486.607l-.007.009.999 2.413a5.168 5.168 0 0 0 2.075-2.597l-2.578-.437-.003.005zm.173-1.373a.44.44 0 0 0-.174-.756l-.002-.011 1.962-1.754a5.142 5.142 0 0 1 .73 3.255l-2.514-.725-.002-.009z"/>
@@ -1268,7 +2664,7 @@
                             <span>kubectl</span>
                         </div>
                         <!-- Any CLI -->
-                        <div class="tool-item">
+                        <div class="marquee-item">
                             <div class="tool-logo">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="#a1a1aa" stroke-width="2" stroke-linecap="round">
                                     <path d="M4 17l6-6-6-6"/>
@@ -1278,7 +2674,7 @@
                             <span>Any CLI</span>
                         </div>
                         <!-- Duplicate set for seamless loop -->
-                        <div class="tool-item">
+                        <div class="marquee-item">
                             <div class="tool-logo">
                                 <svg viewBox="0 0 24 24" fill="none">
                                     <path d="M12 2L2 7v10l10 5 10-5V7L12 2z" fill="#D97706"/>
@@ -1287,7 +2683,7 @@
                             </div>
                             <span>Claude Code</span>
                         </div>
-                        <div class="tool-item">
+                        <div class="marquee-item">
                             <div class="tool-logo">
                                 <svg viewBox="0 0 24 24" fill="none">
                                     <circle cx="12" cy="12" r="10" fill="#7C3AED"/>
@@ -1297,7 +2693,7 @@
                             </div>
                             <span>Wispr Flow</span>
                         </div>
-                        <div class="tool-item">
+                        <div class="marquee-item">
                             <div class="tool-logo">
                                 <svg viewBox="0 0 24 24" fill="#10A37F">
                                     <path d="M22.2819 9.8211a5.9847 5.9847 0 0 0-.5157-4.9108 6.0462 6.0462 0 0 0-6.5098-2.9A6.0651 6.0651 0 0 0 4.9807 4.1818a5.9847 5.9847 0 0 0-3.9977 2.9 6.0462 6.0462 0 0 0 .7427 7.0966 5.98 5.98 0 0 0 .511 4.9107 6.051 6.051 0 0 0 6.5146 2.9001A5.9847 5.9847 0 0 0 13.2599 24a6.0557 6.0557 0 0 0 5.7718-4.2058 5.9894 5.9894 0 0 0 3.9977-2.9001 6.0557 6.0557 0 0 0-.7475-7.0729zm-9.022 12.6081a4.4755 4.4755 0 0 1-2.8764-1.0408l.1419-.0804 4.7783-2.7582a.7948.7948 0 0 0 .3927-.6813v-6.7369l2.02 1.1686a.071.071 0 0 1 .038.052v5.5826a4.504 4.504 0 0 1-4.4945 4.4944zm-9.6607-4.1254a4.4708 4.4708 0 0 1-.5346-3.0137l.142.0852 4.783 2.7582a.7712.7712 0 0 0 .7806 0l5.8428-3.3685v2.3324a.0804.0804 0 0 1-.0332.0615L9.74 19.9502a4.4992 4.4992 0 0 1-6.1408-1.6464zM2.3408 7.8956a4.485 4.4850 0 0 1 2.3655-1.9728V11.6a.7664.7664 0 0 0 .3879.6765l5.8144 3.3543-2.0201 1.1685a.0757.0757 0 0 1-.071 0l-4.8303-2.7865A4.504 4.504 0 0 1 2.3408 7.8956zm16.0993 3.8558L12.6 8.3829l2.02-1.1638a.0757.0757 0 0 1 .071 0l4.8303 2.7913a4.4944 4.4944 0 0 1-.6765 8.1042v-5.6772a.79.79 0 0 0-.407-.667zm2.0107-3.0231l-.142-.0852-4.7735-2.7818a.7759.7759 0 0 0-.7854 0L9.409 9.2297V6.8974a.0662.0662 0 0 1 .0284-.0615l4.8303-2.7866a4.4992 4.4992 0 0 1 6.6802 4.66zM8.3065 12.863l-2.02-1.1638a.0804.0804 0 0 1-.038-.0567V6.0742a4.4992 4.4992 0 0 1 7.3757-3.4537l-.142.0805L8.704 5.459a.7948.7948 0 0 0-.3927.6813zm1.0976-2.3654l2.602-1.4998 2.6069 1.4998v2.9994l-2.5974 1.5056-2.6067-1.4998z"/>
@@ -1305,7 +2701,7 @@
                             </div>
                             <span>OpenAI CLI</span>
                         </div>
-                        <div class="tool-item">
+                        <div class="marquee-item">
                             <div class="tool-logo">
                                 <svg viewBox="0 0 24 24" fill="white">
                                     <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
@@ -1313,7 +2709,7 @@
                             </div>
                             <span>GitHub CLI</span>
                         </div>
-                        <div class="tool-item">
+                        <div class="marquee-item">
                             <div class="tool-logo">
                                 <svg viewBox="0 0 24 24" fill="#CB3837">
                                     <path d="M0 7.334v8h6.666v1.332H12v-1.332h12v-8H0zm6.666 6.664H5.334v-4H3.999v4H1.335V8.667h5.331v5.331zm4 0v1.336H8.001V8.667h5.334v5.332h-2.669v-.001zm12.001 0h-1.33v-4h-1.336v4h-1.335v-4h-1.33v4h-2.671V8.667h8.002v5.331z"/>
@@ -1321,7 +2717,7 @@
                             </div>
                             <span>npm</span>
                         </div>
-                        <div class="tool-item">
+                        <div class="marquee-item">
                             <div class="tool-logo">
                                 <svg viewBox="0 0 24 24" fill="#2496ED">
                                     <path d="M13.983 11.078h2.119a.186.186 0 00.186-.185V9.006a.186.186 0 00-.186-.186h-2.119a.185.185 0 00-.185.185v1.888c0 .102.083.185.185.185m-2.954-5.43h2.118a.186.186 0 00.186-.186V3.574a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.888c0 .102.082.185.185.186m0 2.716h2.118a.187.187 0 00.186-.186V6.29a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.887c0 .102.082.185.185.186m-2.93 0h2.12a.186.186 0 00.184-.186V6.29a.185.185 0 00-.185-.185H8.1a.185.185 0 00-.185.185v1.887c0 .102.083.185.185.186m-2.964 0h2.119a.186.186 0 00.185-.186V6.29a.185.185 0 00-.185-.185H5.136a.186.186 0 00-.186.185v1.887c0 .102.084.185.186.186m5.893 2.715h2.118a.186.186 0 00.186-.185V9.006a.186.186 0 00-.186-.186h-2.118a.185.185 0 00-.185.185v1.888c0 .102.082.185.185.185m-2.93 0h2.12a.185.185 0 00.184-.185V9.006a.185.185 0 00-.184-.186h-2.12a.185.185 0 00-.184.185v1.888c0 .102.083.185.185.185m-2.964 0h2.119a.185.185 0 00.185-.185V9.006a.185.185 0 00-.184-.186h-2.12a.186.186 0 00-.186.186v1.887c0 .102.084.185.186.185m-2.92 0h2.12a.185.185 0 00.184-.185V9.006a.185.185 0 00-.184-.186h-2.12a.185.185 0 00-.184.185v1.888c0 .102.082.185.185.185M23.763 9.89c-.065-.051-.672-.51-1.954-.51-.338.001-.676.03-1.01.087-.248-1.7-1.653-2.53-1.716-2.566l-.344-.199-.226.327c-.284.438-.49.922-.612 1.43-.23.97-.09 1.882.403 2.661-.595.332-1.55.413-1.744.42H.751a.751.751 0 00-.75.748 11.376 11.376 0 00.692 4.062c.545 1.428 1.355 2.48 2.41 3.124 1.18.723 3.1 1.137 5.275 1.137.983.003 1.963-.086 2.93-.266a12.248 12.248 0 003.823-1.389c.98-.567 1.86-1.288 2.61-2.136 1.252-1.418 1.998-2.997 2.553-4.4h.221c1.372 0 2.215-.549 2.68-1.009.309-.293.55-.65.707-1.046l.098-.288z"/>
@@ -1329,7 +2725,7 @@
                             </div>
                             <span>Docker</span>
                         </div>
-                        <div class="tool-item">
+                        <div class="marquee-item">
                             <div class="tool-logo">
                                 <svg viewBox="0 0 24 24" fill="#326CE5">
                                     <path d="M10.204 14.35l.007.01-.999 2.413a5.171 5.171 0 0 1-2.075-2.597l2.578-.437.004.005a.44.44 0 0 1 .484.606zm-.833-2.129a.44.44 0 0 0 .173-.756l.002-.011L7.585 9.7a5.143 5.143 0 0 0-.73 3.255l2.514-.725.002-.009zm1.145-1.98a.44.44 0 0 0 .699-.337l.01-.005.15-2.62a5.144 5.144 0 0 0-3.01 1.442l2.147 1.523.004-.002zm.76 2.75l.723.349.722-.347.18-.78-.5-.623h-.804l-.5.623.179.778zm1.5-2.095a.44.44 0 0 0 .7.336l.008.003 2.134-1.513a5.188 5.188 0 0 0-2.992-1.442l.148 2.615.002.001zm10.876 5.97l-5.773 7.181a1.6 1.6 0 0 1-1.248.594H9.261a1.6 1.6 0 0 1-1.247-.594l-5.776-7.181a1.583 1.583 0 0 1-.307-1.34L3.823 5.98a1.6 1.6 0 0 1 .947-1.152l7.286-3.128a1.601 1.601 0 0 1 1.272 0l7.285 3.128a1.6 1.6 0 0 1 .947 1.152l1.892 7.951c.09.46-.014.94-.307 1.34zm-3.289-6.345a6.77 6.77 0 0 0-.065-.054l.925-2.643-3.143-1.35-.007.007-2.132 1.51a1.983 1.983 0 0 0-1.99-.043l-2.15-1.523-.006-.006-3.14 1.348.92 2.648-.042.03a1.987 1.987 0 0 0-.395 1.635l-.004.004-2.63.754.343 3.407 2.59-.44.009.014a1.979 1.979 0 0 0 1.534 1.2l.003.006.994 2.405 3.257-.423v-.011a1.975 1.975 0 0 0 1.456-.829l.003-.002 3.257.423.994-2.405.003-.005a1.983 1.983 0 0 0 1.533-1.2l.009-.015 2.59.44.343-3.406-2.63-.755-.004-.003a1.982 1.982 0 0 0-.393-1.637zm-4.155 2.029a.44.44 0 0 0-.486.607l-.007.009.999 2.413a5.168 5.168 0 0 0 2.075-2.597l-2.578-.437-.003.005zm.173-1.373a.44.44 0 0 0-.174-.756l-.002-.011 1.962-1.754a5.142 5.142 0 0 1 .73 3.255l-2.514-.725-.002-.009z"/>
@@ -1337,7 +2733,7 @@
                             </div>
                             <span>kubectl</span>
                         </div>
-                        <div class="tool-item">
+                        <div class="marquee-item">
                             <div class="tool-logo">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="#a1a1aa" stroke-width="2" stroke-linecap="round">
                                     <path d="M4 17l6-6-6-6"/>
@@ -1348,243 +2744,383 @@
                         </div>
                     </div>
                 </div>
-            </div>
         </section>
 
-        <section class="features" id="features">
+        <!-- ═══ FEATURES BENTO ═══ -->
+        <section class="features-section" id="features">
             <div class="container">
-                <div class="section-title">
-                    <h2>Imagination moves fast. Your workspace should too.</h2>
-                    <p>Smart shortcuts, seamless navigation, and a design built for flow.</p>
+                <div class="features-header reveal">
+                    <span class="section-eyebrow">Workspace</span>
+                    <h2 class="section-heading">Imagination moves fast.<br>Your workspace should too.</h2>
+                    <p class="section-subtitle">Smart shortcuts, seamless navigation, and a design built for flow.</p>
                 </div>
-                <div class="features-grid">
-                    <div class="feature-card">
-                        <div class="feature-icon">🪟</div>
+
+                <div class="features-bento">
+                    <div class="bento-card span-8 featured-bento reveal">
+                        <div class="bento-icon">🚀</div>
+                        <h3>Workspace Templates</h3>
+                        <p>Pick a template like "Full Stack" or "Claude Code" and get an entire multi-agent workspace in seconds. <span class="kbd">⌘⇧N</span></p>
+                    </div>
+                    <div class="bento-card span-4 reveal reveal-delay-1">
+                        <div class="bento-icon">🔓</div>
+                        <h3>Full Terminal Freedom</h3>
+                        <p>Run any CLI tool — git, docker, vim, ssh, tmux, cargo, npm — anything. No restrictions.</p>
+                    </div>
+                    <div class="bento-card span-4 reveal reveal-delay-1">
+                        <div class="bento-icon">🪟</div>
                         <h3>Subwindows</h3>
-                        <p>Organize your terminals by project. Each subwindow is a self-contained workspace with its own tabs. <span class="kbd">⌘N</span> to create.</p>
+                        <p>Organize terminals by project. Each subwindow is a self-contained workspace with its own tabs. <span class="kbd">⌘N</span></p>
                     </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">📑</div>
-                        <h3>Tabs & Splits</h3>
-                        <p>Multiple tabs per subwindow, plus vertical and horizontal split panes within each tab. <span class="kbd">⌘T</span> for tabs, <span class="kbd">⌘D</span> for splits.</p>
+                    <div class="bento-card span-4 reveal reveal-delay-2">
+                        <div class="bento-icon">💾</div>
+                        <h3>Save & Restore Layouts</h3>
+                        <p>Save your entire workspace and restore it tomorrow. <span class="kbd">⌘S</span> to save, <span class="kbd">⌘⇧L</span> to load.</p>
                     </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">💾</div>
-                        <h3>Layouts</h3>
-                        <p>Save your entire workspace arrangement and restore it instantly. Perfect for context switching between projects. <span class="kbd">⌘S</span> to save.</p>
+                    <div class="bento-card span-4 reveal reveal-delay-3">
+                        <div class="bento-icon">📑</div>
+                        <h3>Tabs & Split Panes</h3>
+                        <p>Multiple tabs per subwindow, plus vertical and horizontal splits. <span class="kbd">⌘T</span> / <span class="kbd">⌘D</span></p>
                     </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">🔍</div>
+                    <div class="bento-card span-6 reveal reveal-delay-2">
+                        <div class="bento-icon">🔍</div>
                         <h3>Quick Switcher</h3>
-                        <p>Fuzzy search across all your subwindows, tabs, and layouts. Jump anywhere instantly. <span class="kbd">⌘P</span></p>
+                        <p>Fuzzy search across all subwindows, tabs, and layouts. Jump anywhere instantly. <span class="kbd">⌘P</span></p>
                     </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">⌨️</div>
+                    <div class="bento-card span-6 featured-bento reveal reveal-delay-3">
+                        <div class="bento-icon">⌨️</div>
                         <h3>Keyboard First</h3>
-                        <p>Jump to any subwindow with <span class="kbd">⌘1-9</span>, navigate with <span class="kbd">⌘⌥←→</span>, switch tabs with <span class="kbd">⌘⇧←→</span>. Everything is a keystroke away.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">↩️</div>
-                        <h3>Undo Close</h3>
-                        <p>Accidentally closed a subwindow? <span class="kbd">⌘Z</span> brings it back with all tabs and shell history intact.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">🖥️</div>
-                        <h3>Native macOS App</h3>
-                        <p>Built with Swift and SwiftUI, not Electron. Full terminal emulator that works with tmux, vim, ssh, and all your favorite CLI tools.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">🖱️</div>
-                        <h3>Context Menu</h3>
-                        <p>Right-click for Copy, Paste, Clear, New Tab, Split Panes – plus Look Up, Search Google, and Run as Command when text is selected. Mouse users welcome.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">📂</div>
-                        <h3>Working Directory</h3>
-                        <p>Set a default directory per subwindow. New tabs automatically start there. Perfect for project-specific workspaces. Right-click any subwindow to set.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">♿</div>
-                        <h3>Accessible</h3>
-                        <p>VoiceOver support, Speak Selection, and proper accessibility labels. Beam works for everyone, not just keyboard warriors.</p>
+                        <p>Jump to any subwindow with <span class="kbd">⌘1-9</span>, navigate with <span class="kbd">⌘⌥←→</span>, switch tabs with <span class="kbd">⌘⇧←→</span>.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="pricing" id="pricing">
+        <!-- ═══ FOUNDER STORY ═══ -->
+        <section class="founder-section">
             <div class="container">
-                <div class="section-title">
-                    <h2>Simple pricing</h2>
-                    <p>Try everything free. Pay once when you're ready.</p>
+                <div class="reveal" style="text-align: center; margin-bottom: 48px;">
+                    <span class="section-eyebrow">Why I built this</span>
                 </div>
-                <div class="pricing-cards">
-                    <div class="pricing-card">
-                        <h3>Free</h3>
-                        <div class="price">$0</div>
-                        <p class="price-note">Try before you buy</p>
-                        <ul>
-                            <li><span class="check">✓</span> 1 subwindow</li>
-                            <li><span class="check">✓</span> 1 saved layout</li>
-                            <li><span class="check">✓</span> Unlimited tabs</li>
-                            <li><span class="check">✓</span> Quick switcher</li>
-                            <li><span class="check">✓</span> All keyboard shortcuts</li>
-                        </ul>
-                        <a href="Beam-v1.9.14-alpha.dmg" onclick="trackDownload()" class="btn btn-secondary">Download Free</a>
-                    </div>
-                    <div class="pricing-card featured">
-                        <h3>Beam Pro</h3>
-                        <div class="price">$29 <span>one-time</span></div>
-                        <p class="price-note">Pay once, use forever</p>
-                        <ul>
-                            <li><span class="check">✓</span> <strong>Unlimited</strong> subwindows</li>
-                            <li><span class="check">✓</span> <strong>Unlimited</strong> saved layouts</li>
-                            <li><span class="check">✓</span> <strong>Split panes</strong></li>
-                            <li><span class="check">✓</span> Unlimited tabs</li>
-                            <li><span class="check">✓</span> Quick switcher</li>
-                            <li><span class="check">✓</span> Support indie development</li>
-                        </ul>
-                        <a href="https://buy.stripe.com/bJe8wQ3mY9Jp8J17VM4Rq02" class="btn btn-primary">Get Beam Pro</a>
+                <div class="founder-card reveal">
+                    <p class="founder-quote">
+                        I was helping a friend get up and running with Claude Code. She had a lot of questions and <em>didn't know what the terminal was</em> or how to use it. After that conversation, I decided to make a tool to help <em>anyone</em> easily use Claude Code, and other agents. That's how Beam was born. I use it every day myself.
+                    </p>
+                    <div class="founder-info">
+                        <div class="founder-avatar"><img src="frank.jpeg" alt="Frank Albanese"></div>
+                        <div class="founder-details">
+                            <h4><a href="https://www.linkedin.com/in/frank-albanese-a8b17885/" target="_blank" rel="noopener">Frank Albanese</a></h4>
+                            <p>Cofounder/CTO @ <a href="https://www.taverncommunity.com" target="_blank" rel="noopener">Tavern Community</a> & <a href="https://copycatch.ai" target="_blank" rel="noopener">CopyCatch.ai</a></p>
+                            <div class="founder-badges">
+                                <span class="founder-badge">YC W21</span>
+                                <span class="founder-badge">Antler S23</span>
+                            </div>
+                        </div>
+                        <div class="founder-social">
+                            <a href="https://www.linkedin.com/in/frank-albanese-a8b17885/" target="_blank" rel="noopener" title="LinkedIn">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                            </a>
+                            <a href="https://www.instagram.com/faalbane" target="_blank" rel="noopener" title="Instagram">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="blog" id="guides">
+        <!-- ═══ PRICING ═══ -->
+        <section class="pricing-section" id="pricing">
             <div class="container">
-                <div class="section-title">
-                    <h2>Guides & Use Cases</h2>
-                    <p>How developers use Beam to level up their terminal workflow</p>
+                <div class="pricing-header reveal">
+                    <span class="section-eyebrow">Pricing</span>
+                    <h2 class="section-heading">Simple pricing</h2>
+                    <p class="section-subtitle center" style="margin:0 auto;">Try everything free. Subscribe when you're ready.</p>
                 </div>
-                <div class="blog-grid">
-                    <a href="blog/terminal-is-the-new-ide.html" class="blog-card">
-                        <div class="blog-icon">💡</div>
+
+                <div class="pricing-duo reveal reveal-delay-1">
+                    <div class="pricing-tier">
+                        <div class="pricing-tier-badge">Free</div>
+                        <div class="pricing-amount">$0</div>
+                        <p class="pricing-note">Try before you buy</p>
+                        <ul class="pricing-list">
+                            <li><span class="check-icon">✓</span> 1 project workspace</li>
+                            <li><span class="check-icon">✓</span> 1 saved setup</li>
+                            <li><span class="check-icon">✓</span> Unlimited tabs</li>
+                            <li><span class="check-icon">✓</span> Search & jump to anything</li>
+                            <li><span class="check-icon">✓</span> All keyboard shortcuts</li>
+                        </ul>
+                        <a href="Beam-v1.9.15-alpha.dmg" onclick="trackDownload()" class="btn btn-secondary">Download Free</a>
+                    </div>
+                    <div class="pricing-tier pro">
+                        <div class="pricing-tier-badge">Beam Pro</div>
+                        <div class="pricing-amount">$10 <small>/month</small></div>
+                        <p class="pricing-note">Cancel anytime</p>
+                        <ul class="pricing-list">
+                            <li><span class="check-icon">✓</span> <strong>Unlimited</strong> project workspaces</li>
+                            <li><span class="check-icon">✓</span> <strong>Unlimited</strong> saved setups</li>
+                            <li><span class="check-icon">✓</span> <strong>Side-by-side views</strong> in any tab</li>
+                            <li><span class="check-icon">✓</span> <strong>1-click AI agents</strong> (Claude, Codex, OpenClaw)</li>
+                            <li><span class="check-icon">✓</span> <strong>Ready-made templates</strong> to start instantly</li>
+                            <li><span class="check-icon">✓</span> Unlimited tabs</li>
+                            <li><span class="check-icon">✓</span> Search & jump to anything</li>
+                            <li><span class="check-icon">✓</span> Support indie development</li>
+                        </ul>
+                        <a href="https://buy.stripe.com/28E28scXy9Jp5wP1xo4Rq03" class="btn btn-primary">Get Beam Pro</a>
+                    </div>
+                </div>
+
+                <div class="pricing-versus reveal reveal-delay-2">
+                    <h3>How Beam compares</h3>
+                    <p>See how Beam Pro compares to other dev tools.</p>
+                    <table class="versus-table">
+                        <thead>
+                            <tr>
+                                <th>Tool</th>
+                                <th>Price</th>
+                                <th>Annual Cost</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Cursor Pro</td>
+                                <td>$20/mo</td>
+                                <td class="annual-cost">$240/yr</td>
+                            </tr>
+                            <tr>
+                                <td>Windsurf Pro</td>
+                                <td>$15/mo</td>
+                                <td class="annual-cost">$180/yr</td>
+                            </tr>
+                            <tr>
+                                <td>Warp Build</td>
+                                <td>$20/mo</td>
+                                <td class="annual-cost">$240/yr</td>
+                            </tr>
+                            <tr class="beam-winner">
+                                <td>Beam Pro</td>
+                                <td>$10/mo</td>
+                                <td class="annual-cost">$120/yr</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ EDITORIAL GUIDES ═══ -->
+        <section class="editorial" id="guides">
+            <div class="container">
+                <div class="editorial-header reveal">
+                    <span class="section-eyebrow">Guides & Use Cases</span>
+                    <h2 class="section-heading">How developers use Beam</h2>
+                    <p class="section-subtitle center" style="margin:0 auto;">Level up your terminal workflow with these guides.</p>
+                </div>
+
+                <!-- Featured article -->
+                <a href="blog/terminal-is-the-new-ide.html" class="editorial-featured reveal reveal-delay-1">
+                    <div class="editorial-featured-visual">
+                        <div class="blog-icon-large">💡</div>
+                    </div>
+                    <div class="editorial-featured-body">
+                        <div class="editorial-tag">Thought Leadership</div>
                         <h3>Why Your Terminal is the New IDE</h3>
-                        <p>AI coding tools like Claude Code, Cursor, and Codex are changing everything. When AI writes your code, the traditional IDE becomes optional — and your terminal becomes your workspace. Here's why, and how to set it up.</p>
-                        <div class="blog-tags">
-                            <span>Terminal Era</span>
-                            <span>AI Coding</span>
-                            <span>Thought Leadership</span>
-                        </div>
-                    </a>
-                    <a href="blog/beam-claude-code-setup.html" class="blog-card">
-                        <div class="blog-icon">🛠️</div>
+                        <p>AI coding tools like Claude Code, Cursor, and Codex are changing everything. When AI writes your code, the traditional IDE becomes optional — and your terminal becomes your workspace.</p>
+                    </div>
+                </a>
+
+                <!-- Article grid — row 1 -->
+                <div class="editorial-grid reveal reveal-delay-2" style="margin-bottom:20px;">
+                    <a href="blog/beam-claude-code-setup.html" class="editorial-card">
+                        <div class="editorial-icon"><svg viewBox="0 0 48 48" fill="none" width="32" height="32"><path d="M30.5 18.5L24 14l-6.5 4.5V28L24 32.5l6.5-4.5V18.5z" stroke="#D97706" stroke-width="2.5" stroke-linejoin="round"/><path d="M24 14v4.5M24 28v4.5M17.5 18.5L21 21M27 25l3.5 2.5M30.5 18.5L27 21M21 25l-3.5 2.5" stroke="#D97706" stroke-width="2" stroke-linecap="round"/><circle cx="24" cy="24" r="3" fill="#D97706"/></svg></div>
                         <h3>Setting Up Beam for Claude Code</h3>
-                        <p>A complete guide to organizing your Claude Code sessions. Learn how to use subwindows for each project, save layouts for instant restoration, and master keyboard shortcuts for maximum AI coding productivity.</p>
-                        <div class="blog-tags">
-                            <span>Tutorial</span>
-                            <span>Claude Code</span>
-                            <span>Setup Guide</span>
-                        </div>
+                        <p>Subwindows for each project, saved layouts for instant restoration, and keyboard shortcuts for maximum productivity.</p>
+                        <div class="editorial-card-tags"><span>Tutorial</span><span>Claude Code</span></div>
                     </a>
-                    <a href="blog/organizing-claude-code-sessions.html" class="blog-card">
-                        <div class="blog-icon">🤖</div>
+                    <a href="blog/organizing-claude-code-sessions.html" class="editorial-card">
+                        <div class="editorial-icon"><svg viewBox="0 0 48 48" fill="none" width="32" height="32"><path d="M30.5 18.5L24 14l-6.5 4.5V28L24 32.5l6.5-4.5V18.5z" stroke="#D97706" stroke-width="2.5" stroke-linejoin="round"/><path d="M24 14v4.5M24 28v4.5M17.5 18.5L21 21M27 25l3.5 2.5M30.5 18.5L27 21M21 25l-3.5 2.5" stroke="#D97706" stroke-width="2" stroke-linecap="round"/><circle cx="24" cy="24" r="3" fill="#D97706"/></svg></div>
                         <h3>Organizing Claude Code Sessions</h3>
-                        <p>Running multiple Claude Code instances across different projects? Use Beam's subwindows to keep each AI coding session organized. One subwindow per project – your frontend Claude Code in one place, backend in another. Save layouts to instantly restore your Claude Code workspace.</p>
-                        <div class="blog-tags">
-                            <span>Claude Code</span>
-                            <span>AI Coding</span>
-                            <span>Productivity</span>
-                        </div>
+                        <p>One subwindow per project. Frontend Claude Code in one place, backend in another. Save and restore instantly.</p>
+                        <div class="editorial-card-tags"><span>Claude Code</span><span>Productivity</span></div>
                     </a>
-                    <a href="blog/vibe-coding-setup.html" class="blog-card">
-                        <div class="blog-icon">🎨</div>
+                    <a href="blog/vibe-coding-setup.html" class="editorial-card">
+                        <div class="editorial-icon">🎨</div>
                         <h3>The Perfect Vibe Coding Setup</h3>
-                        <p>Vibe coding is all about flow state. Beam helps you stay in the zone by organizing your terminals so you never lose track of what's running where. Split panes let you watch your dev server while coding. Quick switcher (⌘P) means you never break flow searching for the right terminal.</p>
-                        <div class="blog-tags">
-                            <span>Vibe Coding</span>
-                            <span>Flow State</span>
-                            <span>Developer Experience</span>
-                        </div>
+                        <p>Stay in the zone. Split panes for dev server + AI agent. Quick switcher means you never break flow.</p>
+                        <div class="editorial-card-tags"><span>Vibe Coding</span><span>Flow State</span></div>
                     </a>
-                    <a href="blog/how-to-rename-terminal-windows-macos.html" class="blog-card">
-                        <div class="blog-icon">✏️</div>
+                </div>
+
+                <!-- Article grid — row 2 -->
+                <div class="editorial-grid reveal reveal-delay-3" style="margin-bottom:20px;">
+                    <a href="blog/how-to-rename-terminal-windows-macos.html" class="editorial-card">
+                        <div class="editorial-icon">✏️</div>
                         <h3>How to Rename Terminal Windows on macOS</h3>
-                        <p>Tired of terminal tabs all named "zsh"? In Beam, double-click any tab or subwindow to rename it. Use ⌘⇧I to rename the current tab, or ⌘⌥⌃I to rename a split pane. Give your terminals meaningful names like "API Server", "Frontend Dev", or "Database" – and actually find them again.</p>
-                        <div class="blog-tags">
-                            <span>macOS Tips</span>
-                            <span>Terminal</span>
-                            <span>Workflow</span>
-                        </div>
+                        <p>Double-click to rename. Give terminals meaningful names like "API Server" or "Frontend Dev."</p>
+                        <div class="editorial-card-tags"><span>macOS Tips</span><span>Workflow</span></div>
                     </a>
-                    <a href="blog/wispr-flow-claude-code-beam.html" class="blog-card">
-                        <div class="blog-icon">🎙️</div>
+                    <a href="blog/wispr-flow-claude-code-beam.html" class="editorial-card">
+                        <div class="editorial-icon"><svg viewBox="0 0 48 48" fill="none" width="32" height="32"><path d="M30.5 18.5L24 14l-6.5 4.5V28L24 32.5l6.5-4.5V18.5z" stroke="#D97706" stroke-width="2.5" stroke-linejoin="round"/><path d="M24 14v4.5M24 28v4.5M17.5 18.5L21 21M27 25l3.5 2.5M30.5 18.5L27 21M21 25l-3.5 2.5" stroke="#D97706" stroke-width="2" stroke-linecap="round"/><circle cx="24" cy="24" r="3" fill="#D97706"/></svg></div>
                         <h3>Voice-Controlled Coding with Wispr Flow</h3>
-                        <p>Combine Wispr Flow dictation, Claude Code AI, and Beam for a hands-free coding workflow. Speak your intent, let Claude write the code, and keep everything organized in separate subwindows. The future of coding is here.</p>
-                        <div class="blog-tags">
-                            <span>Wispr Flow</span>
-                            <span>Claude Code</span>
-                            <span>Voice Coding</span>
-                        </div>
+                        <p>Speak your intent, let Claude write the code, keep everything organized in separate subwindows.</p>
+                        <div class="editorial-card-tags"><span>Wispr Flow</span><span>Voice Coding</span></div>
                     </a>
-                    <a href="blog/how-to-install-openclaw-setup-guide.html" class="blog-card">
-                        <div class="blog-icon">🦀</div>
-                        <h3>How to Install OpenClaw: Complete Setup Guide</h3>
-                        <p>OpenClaw is a powerful unified messaging AI assistant that connects all your messaging apps. This complete guide covers installation, setup, and how to use Beam for managing multiple OpenClaw sessions across different accounts.</p>
-                        <div class="blog-tags">
-                            <span>OpenClaw</span>
-                            <span>AI Assistant</span>
-                            <span>Setup Guide</span>
-                        </div>
+                    <a href="blog/how-to-install-openclaw-setup-guide.html" class="editorial-card">
+                        <div class="editorial-icon"><svg viewBox="0 0 48 48" fill="none" width="32" height="32"><path d="M16 20c0-4.4 3.6-8 8-8s8 3.6 8 8" stroke="#F43F5E" stroke-width="2.5" stroke-linecap="round"/><path d="M14 26l3-6M24 26v-7M34 26l-3-6" stroke="#F43F5E" stroke-width="2.5" stroke-linecap="round"/><path d="M14 26c0 5.5 4.5 10 10 10s10-4.5 10-10" stroke="#F43F5E" stroke-width="2.5" stroke-linecap="round"/><circle cx="20" cy="24" r="1.5" fill="#F43F5E"/><circle cx="28" cy="24" r="1.5" fill="#F43F5E"/></svg></div>
+                        <h3>How to Install OpenClaw</h3>
+                        <p>Complete guide: installation, setup, and managing multiple OpenClaw sessions across accounts.</p>
+                        <div class="editorial-card-tags"><span>OpenClaw</span><span>Setup Guide</span></div>
                     </a>
+                </div>
+
+                <!-- Article grid — row 3 -->
+                <div class="editorial-grid reveal reveal-delay-4">
+                    <a href="blog/how-to-use-openai-codex-mac.html" class="editorial-card">
+                        <div class="editorial-icon"><svg viewBox="0 0 48 48" fill="none" width="32" height="32"><path d="M24 13l9.5 5.5v11L24 35l-9.5-5.5v-11L24 13z" stroke="#10A37F" stroke-width="2.2" stroke-linejoin="round"/><path d="M24 13v7.5M24 27.5V35M14.5 18.5l6.5 3.75M27 22.25l6.5-3.75M33.5 29.5L27 25.75M21 25.75l-6.5 3.75" stroke="#10A37F" stroke-width="1.8" stroke-linecap="round"/><circle cx="24" cy="24" r="2.5" fill="#10A37F"/></svg></div>
+                        <h3>How to Use OpenAI Codex on Mac</h3>
+                        <p>Install Codex CLI, configure it, and use Beam to organize multiple sessions side by side.</p>
+                        <div class="editorial-card-tags"><span>OpenAI Codex</span><span>macOS</span></div>
+                    </a>
+                    <a href="blog/best-terminal-app-ai-coding-2026.html" class="editorial-card">
+                        <div class="editorial-icon">🏆</div>
+                        <h3>Best Terminal App for AI Coding in 2026</h3>
+                        <p>Terminal.app, iTerm2, Warp, Ghostty, tmux, and Beam compared for AI-powered development.</p>
+                        <div class="editorial-card-tags"><span>Comparison</span><span>Best of 2026</span></div>
+                    </a>
+                    <a href="blog/claude-code-vs-cursor-vs-codex.html" class="editorial-card">
+                        <div class="editorial-icon">⚔️</div>
+                        <h3>Claude Code vs Cursor vs Codex</h3>
+                        <p>Strengths, weaknesses, pricing, and ideal workflows — pick the best tool or use all three.</p>
+                        <div class="editorial-card-tags"><span>Comparison</span><span>Claude Code</span></div>
+                    </a>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ═══ FAQ ACCORDION ═══ -->
+        <section class="faq-section" id="faq">
+            <div class="container">
+                <div class="faq-header reveal">
+                    <span class="section-eyebrow">FAQ</span>
+                    <h2 class="section-heading">Common questions</h2>
+                </div>
+
+                <div class="faq-accordion reveal reveal-delay-1">
+                    <div class="faq-entry">
+                        <button class="faq-question" onclick="toggleFaq(this)">
+                            Is Beam a terminal emulator or just a window manager?
+                            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+                        </button>
+                        <div class="faq-answer"><div class="faq-answer-inner">Beam is a <strong>full terminal emulator</strong> – it runs your shell (zsh, bash, fish) directly, just like Terminal.app or iTerm2. It uses SwiftTerm for terminal emulation. The "organizer" part refers to features layered on top: subwindows, tabs, split panes, and layouts that help you manage multiple terminal sessions. You don't need another terminal app – Beam replaces Terminal.app entirely.</div></div>
+                    </div>
+                    <div class="faq-entry">
+                        <button class="faq-question" onclick="toggleFaq(this)">
+                            Does it work with tmux, vim, ssh, etc.?
+                            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+                        </button>
+                        <div class="faq-answer"><div class="faq-answer-inner">Yes! Since Beam is a full terminal emulator, you can run anything you'd run in Terminal.app or iTerm – tmux, vim, ssh, and all your favorite CLI tools work out of the box.</div></div>
+                    </div>
+                    <div class="faq-entry">
+                        <button class="faq-question" onclick="toggleFaq(this)">
+                            How is Beam different from Warp?
+                            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+                        </button>
+                        <div class="faq-answer"><div class="faq-answer-inner">Warp is a feature-rich modern terminal with AI, blocks, and collaboration. Beam is a lightweight organizer focused on one thing: managing lots of terminal sessions across projects. Beam's "subwindows" let you group terminals by project, and layouts let you save/restore your entire workspace. Beam Pro is $10/month — less than most dev tool subscriptions.</div></div>
+                    </div>
+                    <div class="faq-entry">
+                        <button class="faq-question" onclick="toggleFaq(this)">
+                            How is Beam different from iTerm2 or Ghostty?
+                            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+                        </button>
+                        <div class="faq-answer"><div class="faq-answer-inner">iTerm2 and Ghostty are excellent terminals with tabs and split panes. Beam adds a layer above that: <strong>subwindows</strong> – separate floating windows within the app that you can organize by project. Save your entire arrangement as a layout, then restore it instantly when switching contexts. The quick switcher (<span class="kbd">⌘P</span>) searches across all subwindows, tabs, and layouts. <a href="blog/beam-vs-iterm2.html">Read the full comparison →</a></div></div>
+                    </div>
+                    <div class="faq-entry">
+                        <button class="faq-question" onclick="toggleFaq(this)">
+                            Why would I use Beam instead of tmux or zellij?
+                            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+                        </button>
+                        <div class="faq-answer"><div class="faq-answer-inner">If you have tmux/zellij configured just right, you might not need Beam. But if you want similar organization without the config overhead: Beam works out of the box with native macOS UI. No prefix keys, no .tmux.conf, no learning curve. Actual floating windows you can drag and resize. <a href="blog/beam-vs-tmux.html">Read the full comparison →</a></div></div>
+                    </div>
+                    <div class="faq-entry">
+                        <button class="faq-question" onclick="toggleFaq(this)">
+                            Do I need to know how to code to use Beam?
+                            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+                        </button>
+                        <div class="faq-answer"><div class="faq-answer-inner">Not at all. With one-click AI agent launching, you can start Claude Code, OpenAI Codex, or OpenClaw without any setup. Just right-click, pick an agent, and start describing what you want to build in plain English. The AI writes the code for you.</div></div>
+                    </div>
+                    <div class="faq-entry">
+                        <button class="faq-question" onclick="toggleFaq(this)">
+                            Can I use Claude Code with Beam?
+                            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+                        </button>
+                        <div class="faq-answer"><div class="faq-answer-inner">Yes — it's a first-class experience. Right-click any terminal and select Claude Code from the AI Agents menu. Beam auto-detects whether Claude Code is installed and sets it up for you if it isn't. <a href="blog/beam-claude-code-setup.html">Read the full setup guide →</a></div></div>
+                    </div>
+                    <div class="faq-entry">
+                        <button class="faq-question" onclick="toggleFaq(this)">
+                            Can I use OpenAI Codex with Beam?
+                            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+                        </button>
+                        <div class="faq-answer"><div class="faq-answer-inner">Yes — same one-click experience. Right-click, select OpenAI Codex, and Beam handles the rest. You can run Codex and Claude Code side by side in separate subwindows. <a href="blog/how-to-use-openai-codex-mac.html">Read the Codex setup guide →</a></div></div>
+                    </div>
+                    <div class="faq-entry">
+                        <button class="faq-question" onclick="toggleFaq(this)">
+                            Can I start OpenClaw without being technical?
+                            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+                        </button>
+                        <div class="faq-answer"><div class="faq-answer-inner">Yes. Just right-click a terminal, select OpenClaw from the AI Agents menu, and you're running. No npm commands, no config files, no PATH setup. <a href="blog/how-to-install-openclaw-setup-guide.html">Read the OpenClaw guide →</a></div></div>
+                    </div>
+                    <div class="faq-entry">
+                        <button class="faq-question" onclick="toggleFaq(this)">
+                            Can I run any command in Beam's terminal?
+                            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+                        </button>
+                        <div class="faq-answer"><div class="faq-answer-inner">Yes — anything you can run in Terminal.app or iTerm2, you can run in Beam. SSH into servers, run Docker containers, compile code, use vim, pipe commands — it's your terminal, with no guardrails.</div></div>
+                    </div>
+                    <div class="faq-entry">
+                        <button class="faq-question" onclick="toggleFaq(this)">
+                            Is Beam locked down, or do I have full control?
+                            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+                        </button>
+                        <div class="faq-answer"><div class="faq-answer-inner">Full control. Beam doesn't intercept your commands, modify your shell, or inject anything into your workflow. The AI agent features are optional — if you just want a well-organized terminal with subwindows and layouts, that's what you get.</div></div>
+                    </div>
+                    <div class="faq-entry">
+                        <button class="faq-question" onclick="toggleFaq(this)">
+                            Will Beam be on the App Store?
+                            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+                        </button>
+                        <div class="faq-answer"><div class="faq-answer-inner">Not currently. Terminal apps need unsandboxed access to be useful, which Apple doesn't allow in the App Store. Beam has a built-in update checker that notifies you when new versions are available.</div></div>
+                    </div>
+                    <div class="faq-entry">
+                        <button class="faq-question" onclick="toggleFaq(this)">
+                            Why isn't Beam open source?
+                            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+                        </button>
+                        <div class="faq-answer"><div class="faq-answer-inner">Beam is a paid product, and keeping it closed source is how I sustain development as a solo developer. That said, Beam stays completely out of your way – no telemetry, no phoning home, and experienced developers have full freedom to use it however they like alongside their existing tools and workflows. If you prefer open-source terminal tools, <a href="https://github.com/tmux/tmux">tmux</a> and <a href="https://github.com/zellij-org/zellij">zellij</a> are excellent options.</div></div>
+                    </div>
+                    <div class="faq-entry">
+                        <button class="faq-question" onclick="toggleFaq(this)">
+                            Why $10/month?
+                            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+                        </button>
+                        <div class="faq-answer"><div class="faq-answer-inner">A <strong>native macOS app</strong> built with Swift and SwiftUI (not Electron), priced to sustain ongoing development and new features. $10/month is less than most dev tool subscriptions, and you can cancel anytime. The free tier is fully functional – 1 subwindow, 1 layout, unlimited tabs – so you can use Beam without paying.</div></div>
+                    </div>
+                    <div class="faq-entry">
+                        <button class="faq-question" onclick="toggleFaq(this)">
+                            How do I report bugs or request features?
+                            <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+                        </button>
+                        <div class="faq-answer"><div class="faq-answer-inner"><a href="mailto:frank@nextuptechnologies.co">Email us</a> – we read everything and respond quickly.</div></div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section class="faq" id="faq">
+        <!-- ═══ NEWSLETTER ═══ -->
+        <section class="newsletter-section" id="newsletter">
             <div class="container">
-                <div class="section-title">
-                    <h2>FAQ</h2>
-                    <p>Common questions about Beam</p>
-                </div>
-                <div class="faq-list">
-                    <div class="faq-item">
-                        <h3>Is Beam a terminal emulator or just a window manager?</h3>
-                        <p>Beam is a <strong>full terminal emulator</strong> – it runs your shell (zsh, bash, fish) directly, just like Terminal.app or iTerm2. It uses SwiftTerm for terminal emulation. The "organizer" part refers to features layered on top: subwindows, tabs, split panes, and layouts that help you manage multiple terminal sessions. You don't need another terminal app – Beam replaces Terminal.app entirely.</p>
-                    </div>
-                    <div class="faq-item">
-                        <h3>Does it work with tmux, vim, ssh, etc.?</h3>
-                        <p>Yes! Since Beam is a full terminal emulator, you can run anything you'd run in Terminal.app or iTerm – tmux, vim, ssh, and all your favorite CLI tools work out of the box.</p>
-                    </div>
-                    <div class="faq-item">
-                        <h3>How is Beam different from Warp?</h3>
-                        <p>Warp is a feature-rich modern terminal with AI, blocks, and collaboration. Beam is a lightweight organizer focused on one thing: managing lots of terminal sessions across projects. Beam's "subwindows" let you group terminals by project, and layouts let you save/restore your entire workspace. Also: $29 one-time vs subscription.</p>
-                    </div>
-                    <div class="faq-item">
-                        <h3>How is Beam different from iTerm2 or Ghostty?</h3>
-                        <p>iTerm2 and Ghostty are excellent terminals with tabs and split panes. Beam adds a layer above that: <strong>subwindows</strong> – separate floating windows within the app that you can organize by project. Save your entire arrangement as a layout, then restore it instantly when switching contexts. The quick switcher (<span class="kbd">⌘P</span>) searches across all subwindows, tabs, and layouts. Think of it as workspace management built into the terminal. <a href="blog/beam-vs-iterm2.html">Read the full comparison →</a></p>
-                    </div>
-                    <div class="faq-item">
-                        <h3>Why would I use Beam instead of tmux or zellij?</h3>
-                        <p>If you have tmux/zellij configured just right, you might not need Beam. But if you want similar organization without the config overhead: Beam works out of the box with native macOS UI. No prefix keys, no .tmux.conf, no learning curve. Actual floating windows you can drag and resize. And you can still run tmux inside Beam if you want both – some people use Beam for visual organization and tmux for SSH session persistence. <a href="blog/beam-vs-tmux.html">Read the full comparison →</a></p>
-                    </div>
-                    <div class="faq-item">
-                        <h3>Will Beam be on the App Store?</h3>
-                        <p>Not currently. Terminal apps need unsandboxed access to be useful, which Apple doesn't allow in the App Store. Beam has a built-in update checker that notifies you when new versions are available.</p>
-                    </div>
-                    <div class="faq-item">
-                        <h3>Why isn't Beam open source?</h3>
-                        <p>Beam is a paid product, and keeping it closed source is how I sustain development as a solo developer. If you prefer open-source terminal tools, <a href="https://github.com/tmux/tmux">tmux</a> and <a href="https://github.com/zellij-org/zellij">zellij</a> are excellent options. Beam is for people who want the convenience of a native app without configuration overhead and are willing to pay for that.</p>
-                    </div>
-                    <div class="faq-item">
-                        <h3>Why $29?</h3>
-                        <p>A few reasons: it's a <strong>native macOS app</strong> built with Swift and SwiftUI (not Electron), it's <strong>one-time payment</strong> (no subscription), and it sustains ongoing development. The free tier is fully functional – 1 subwindow, 1 layout, unlimited tabs – so you can use Beam without paying. Pro is for people who want unlimited subwindows, layouts, and split panes.</p>
-                    </div>
-                    <div class="faq-item">
-                        <h3>How do I report bugs or request features?</h3>
-                        <p><a href="mailto:frank@nextuptechnologies.co">Email us</a> – we read everything and respond quickly.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="newsletter" id="newsletter">
-            <div class="container">
-                <div class="newsletter-box">
-                    <div class="newsletter-content">
-                        <h2>Stay in the loop</h2>
-                        <p>Get notified about new features, updates, and tips. No spam, unsubscribe anytime.</p>
-                    </div>
+                <div class="newsletter-card reveal">
+                    <h2>Stay in the loop</h2>
+                    <p>Get notified about new features, updates, and tips. No spam, unsubscribe anytime.</p>
                     <form class="newsletter-form" action="https://docs.google.com/forms/d/e/1FAIpQLSflaouHSQicJBIhg73yXh64T67lIrXpVto25jaFv05kmd9eRQ/formResponse" method="POST" target="hidden_iframe" onsubmit="showThankYou()">
                         <input type="email" name="entry.2078450205" placeholder="you@example.com" required>
                         <button type="submit" class="btn btn-primary">Subscribe</button>
@@ -1599,7 +3135,7 @@
         <div id="changelogModal" class="modal" onclick="hideChangelog(event)">
             <div class="modal-content" onclick="event.stopPropagation()">
                 <div class="modal-header">
-                    <h2>What's New in v1.9.14</h2>
+                    <h2>What's New in v1.9.15</h2>
                     <button class="modal-close" onclick="hideChangelog()">&times;</button>
                 </div>
                 <div class="modal-body">
@@ -1677,7 +3213,7 @@
                     </svg>
                     Close
                 </button>
-                <img src="beam-screenshot-1.9.8.png" alt="Beam v1.9.14 - Full resolution preview">
+                <img src="beam-screenshot-1.9.8.png" alt="Beam v1.9.15 - Full resolution preview">
                 <p class="lightbox-hint">Click anywhere or press Esc to close</p>
             </div>
         </div>
@@ -1737,6 +3273,28 @@
                 heroScreenshot.addEventListener('click', showLightbox);
             }
         });
+
+        // FAQ accordion
+        function toggleFaq(btn) {
+            const entry = btn.parentElement;
+            const wasOpen = entry.classList.contains('open');
+            // Close all
+            document.querySelectorAll('.faq-entry.open').forEach(e => e.classList.remove('open'));
+            // Open clicked (if it was closed)
+            if (!wasOpen) entry.classList.add('open');
+        }
+
+        // Scroll reveal (Intersection Observer)
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+        document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
     </script>
 
     <footer>

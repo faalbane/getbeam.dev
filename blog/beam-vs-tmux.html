@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D0XH8B0RKL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-D0XH8B0RKL');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beam vs tmux: When to Use Each | Terminal Organization Comparison</title>
+    <meta name="description" content="Comparing Beam and tmux for terminal organization. Learn when to use each tool, key differences, and how they can work together for the ultimate terminal setup.">
+    <meta name="keywords" content="Beam vs tmux, tmux alternative, terminal multiplexer, macOS terminal, zellij alternative, terminal organization">
+    <meta name="author" content="NextUp Technologies">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://getbeam.dev/blog/beam-vs-tmux.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://getbeam.dev/blog/beam-vs-tmux.html">
+    <meta property="og:title" content="Beam vs tmux: When to Use Each">
+    <meta property="og:description" content="Comparing Beam and tmux for terminal organization. Learn when to use each tool and how they can work together.">
+    <meta property="og:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Beam vs tmux: When to Use Each">
+    <meta name="twitter:description" content="Comparing Beam and tmux for terminal organization. Learn when to use each tool and how they can work together.">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Beam vs tmux: When to Use Each",
+        "description": "Comparing Beam and tmux for terminal organization. Learn when to use each tool, key differences, and how they can work together.",
+        "author": {
+            "@type": "Organization",
+            "name": "NextUp Technologies"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "NextUp Technologies"
+        },
+        "datePublished": "2026-02-06",
+        "dateModified": "2026-02-06"
+    }
+    </script>
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #111113;
+            --bg-tertiary: #1a1a1d;
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.4);
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --border: #27272a;
+            --success: #22c55e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        header {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 60px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1.5rem;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-icon svg { width: 20px; height: 20px; }
+
+        .breadcrumb {
+            margin-bottom: 32px;
+            font-size: 0.9rem;
+        }
+
+        .breadcrumb a {
+            color: var(--text-muted);
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover { color: var(--accent); }
+        .breadcrumb span { color: var(--text-muted); margin: 0 8px; }
+
+        article h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .meta {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 48px;
+        }
+
+        article h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 48px 0 20px;
+            color: var(--text-primary);
+        }
+
+        article h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 32px 0 16px;
+            color: var(--text-primary);
+        }
+
+        article p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        article ul, article ol {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            padding-left: 24px;
+        }
+
+        article li { margin-bottom: 12px; }
+
+        article strong { color: var(--text-primary); }
+
+        article a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        article a:hover { text-decoration: underline; }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 32px 0;
+            font-size: 0.95rem;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 16px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .comparison-table th {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .comparison-table td {
+            color: var(--text-secondary);
+        }
+
+        .comparison-table tr:hover td {
+            background: var(--bg-secondary);
+        }
+
+        .highlight-box {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 32px 0;
+        }
+
+        .highlight-box h4 {
+            color: var(--text-primary);
+            margin-bottom: 12px;
+            font-size: 1.1rem;
+        }
+
+        .highlight-box p {
+            margin-bottom: 0;
+        }
+
+        code {
+            font-family: 'JetBrains Mono', monospace;
+            background: var(--bg-tertiary);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+
+        .kbd {
+            display: inline-block;
+            padding: 2px 8px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .cta-box h3 {
+            color: white;
+            margin-bottom: 12px;
+        }
+
+        .cta-box p {
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 24px;
+        }
+
+        .cta-box .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            background: white;
+            color: var(--accent);
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: transform 0.2s;
+        }
+
+        .cta-box .btn:hover {
+            transform: translateY(-2px);
+            text-decoration: none;
+        }
+
+        footer {
+            padding: 60px 0;
+            border-top: 1px solid var(--border);
+            margin-top: 80px;
+            text-align: center;
+        }
+
+        footer p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+
+        footer a:hover { color: var(--text-primary); }
+
+        .related-articles { margin-top: 60px; padding-top: 40px; border-top: 1px solid var(--border); }
+        .related-articles h2 { font-size: 1.5rem; margin-bottom: 24px; }
+        .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .related-card { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-decoration: none; transition: border-color 0.2s; }
+        .related-card:hover { border-color: var(--accent); }
+        .related-card h4 { color: white; font-size: 1rem; margin: 0 0 8px 0; }
+        .related-card p { color: var(--text-muted); font-size: 0.85rem; margin: 0; }
+        @media (max-width: 600px) { .related-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="../" class="logo">
+                <div class="logo-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round">
+                        <path d="M4 17l6-6-6-6M12 19h8"/>
+                    </svg>
+                </div>
+                Beam
+            </a>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="breadcrumb">
+            <a href="../">Home</a>
+            <span>/</span>
+            <a href="../#guides">Guides</a>
+            <span>/</span>
+            Beam vs tmux
+        </div>
+
+        <article>
+            <h1>Beam vs tmux: When to Use Each</h1>
+            <p class="meta">February 2026 &bull; 6 min read</p>
+
+            <p>If you've spent time in the terminal, you've probably heard of tmux. It's the gold standard for terminal multiplexing – managing multiple terminal sessions within a single window. So when you see Beam described as a "terminal organizer," a natural question is: <strong>why would I use this instead of tmux?</strong></p>
+
+            <p>The short answer: they solve similar problems in fundamentally different ways. Let's break it down.</p>
+
+            <h2>What tmux does well</h2>
+
+            <p>tmux is a <strong>terminal multiplexer</strong> that runs inside your terminal emulator. It lets you:</p>
+
+            <ul>
+                <li>Create multiple "windows" (like tabs) within a single terminal</li>
+                <li>Split windows into panes</li>
+                <li>Detach sessions and reattach later (even after disconnecting from SSH)</li>
+                <li>Run sessions persistently on remote servers</li>
+            </ul>
+
+            <p>tmux is powerful, battle-tested, and runs everywhere – including on remote servers over SSH. If you're managing long-running processes on a server, tmux (or screen) is essential.</p>
+
+            <h2>What Beam does differently</h2>
+
+            <p>Beam is a <strong>native macOS terminal emulator</strong> with workspace organization built in. Instead of text-based panes inside a single terminal window, you get:</p>
+
+            <ul>
+                <li><strong>Subwindows</strong> – actual floating windows within the app that you can drag, resize, and overlap</li>
+                <li><strong>Native tabs and splits</strong> – standard macOS UI, not prefix-key combos</li>
+                <li><strong>Saveable layouts</strong> – save your entire workspace arrangement and restore it instantly</li>
+                <li><strong>Quick switcher</strong> – fuzzy search across all subwindows, tabs, and layouts with <span class="kbd">⌘P</span></li>
+            </ul>
+
+            <h2>Side-by-side comparison</h2>
+
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>tmux</th>
+                        <th>Beam</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Runs on</strong></td>
+                        <td>Any terminal (including remote)</td>
+                        <td>macOS only (native app)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Setup required</strong></td>
+                        <td>Config file (.tmux.conf), learn keybindings</td>
+                        <td>None – works out of the box</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Window management</strong></td>
+                        <td>Text-based panes in single window</td>
+                        <td>Native floating windows (subwindows)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Navigation</strong></td>
+                        <td>Prefix key + shortcuts (e.g., Ctrl-b c)</td>
+                        <td>Standard macOS shortcuts (⌘N, ⌘T, ⌘P)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Session persistence</strong></td>
+                        <td>Sessions survive terminal close/SSH disconnect</td>
+                        <td>Layouts save arrangement, but shells restart</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Remote server use</strong></td>
+                        <td>Excellent – runs on the server</td>
+                        <td>N/A – local app only</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Quick search</strong></td>
+                        <td>Requires plugins or scripting</td>
+                        <td>Built-in fuzzy finder (⌘P)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Price</strong></td>
+                        <td>Free</td>
+                        <td>Free tier / $10/mo Pro</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>When to use tmux</h2>
+
+            <p>tmux is the right choice when:</p>
+
+            <ul>
+                <li><strong>You work on remote servers</strong> – tmux sessions persist on the server even if your SSH connection drops</li>
+                <li><strong>You need session persistence</strong> – close your laptop, reopen tomorrow, reattach to exactly where you left off</li>
+                <li><strong>You want maximum portability</strong> – same workflow on macOS, Linux, remote servers, containers</li>
+                <li><strong>You've already invested in your config</strong> – if you have a tuned .tmux.conf and muscle memory, switching has a cost</li>
+            </ul>
+
+            <h2>When to use Beam</h2>
+
+            <p>Beam is the right choice when:</p>
+
+            <ul>
+                <li><strong>You want zero configuration</strong> – no .tmux.conf, no prefix keys to learn</li>
+                <li><strong>You prefer native macOS UI</strong> – drag windows, resize with your mouse, use familiar shortcuts</li>
+                <li><strong>You manage multiple local projects</strong> – one subwindow per project, switch contexts with ⌘P</li>
+                <li><strong>You want saveable workspaces</strong> – save your "frontend dev" layout separately from your "backend" layout</li>
+                <li><strong>You're new to terminal organization</strong> – tmux has a learning curve; Beam doesn't</li>
+            </ul>
+
+            <div class="highlight-box">
+                <h4>You can use both</h4>
+                <p>Beam and tmux aren't mutually exclusive. Many developers use Beam for local organization (subwindows for different projects) and run tmux inside Beam when SSH'd into servers. You get the best of both worlds: native macOS workspace management locally, and tmux session persistence remotely.</p>
+            </div>
+
+            <h2>The learning curve factor</h2>
+
+            <p>Let's be honest: tmux has a steep learning curve. The default keybindings are awkward (<code>Ctrl-b</code> prefix, really?), and getting a comfortable setup requires editing config files, installing plugins, and building muscle memory.</p>
+
+            <p>That investment pays off if you're power user who lives in the terminal across multiple machines. But if you primarily work locally on a Mac and just want your terminals organized, that's a lot of overhead for what Beam gives you out of the box.</p>
+
+            <p>Beam uses shortcuts you already know:</p>
+
+            <ul>
+                <li><span class="kbd">⌘N</span> – new subwindow</li>
+                <li><span class="kbd">⌘T</span> – new tab</li>
+                <li><span class="kbd">⌘P</span> – quick switcher</li>
+                <li><span class="kbd">⌘S</span> – save layout</li>
+                <li><span class="kbd">⌘Z</span> – undo close</li>
+            </ul>
+
+            <p>No documentation required. No config files. Just download and go.</p>
+
+            <h2>A note on zellij</h2>
+
+            <p>zellij is a modern alternative to tmux with better defaults and a friendlier UI. If you want a tmux-style multiplexer but find tmux's defaults frustrating, zellij is worth a look.</p>
+
+            <p>The Beam vs zellij comparison is similar to Beam vs tmux: zellij is a multiplexer that runs inside a terminal; Beam is a native terminal app with organization built in. Same trade-offs apply.</p>
+
+            <h2>The bottom line</h2>
+
+            <p>tmux is a powerful tool that's essential for certain workflows (remote servers, session persistence). If that's you, keep using it.</p>
+
+            <p>Beam is for developers who want workspace organization on their Mac without the configuration overhead. If you've tried tmux and bounced off, or if you just want something that works immediately, give Beam a try.</p>
+
+            <p>And remember: you can always use both.</p>
+
+            <div class="cta-box">
+                <h3>Try Beam free</h3>
+                <p>See if Beam fits your workflow. No config required.</p>
+                <a href="../Beam-v1.9.5-alpha.dmg" class="btn">Download for macOS</a>
+            </div>
+
+            <div class="related-articles">
+                <h2>Related Articles</h2>
+                <div class="related-grid">
+                    <a href="beam-vs-iterm2.html" class="related-card">
+                        <h4>Beam vs iTerm2</h4>
+                        <p>Compare Beam with iTerm2 for macOS terminal management.</p>
+                    </a>
+                    <a href="best-terminal-app-ai-coding-2026.html" class="related-card">
+                        <h4>Best Terminal App for AI Coding in 2026</h4>
+                        <p>Full comparison of 6 terminal apps for AI development.</p>
+                    </a>
+                    <a href="terminal-is-the-new-ide.html" class="related-card">
+                        <h4>Why Your Terminal is the New IDE</h4>
+                        <p>Why the terminal is becoming the center of AI development.</p>
+                    </a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>
+                <a href="../">Beam</a> &bull;
+                Built by <a href="https://github.com/faalbane">@faalbane</a> &bull;
+                <a href="mailto:frank@nextuptechnologies.co">Contact</a>
+            </p>
+        </div>
+    </footer>
+</body>
+</html>
