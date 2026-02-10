@@ -322,6 +322,50 @@
             background-clip: text;
         }
 
+        /* Build Anything — animated builder agents */
+        .build-anything-line {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .build-text {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+            color: var(--text-primary);
+        }
+
+        .builder-agents {
+            display: flex;
+            align-items: flex-end;
+            gap: 2px;
+        }
+
+        .builder-agent {
+            animation: agent-bob 2.4s ease-in-out infinite;
+            filter: drop-shadow(0 2px 8px rgba(98, 60, 234, 0.3));
+            cursor: default;
+            transition: transform 0.2s ease;
+        }
+
+        .builder-agent:hover {
+            transform: scale(1.2) rotate(-5deg);
+        }
+
+        .agent-1 { animation-delay: 0s; }
+        .agent-2 { animation-delay: 0.15s; }
+        .agent-3 { animation-delay: 0.3s; }
+        .agent-4 { animation-delay: 0.45s; }
+        .agent-5 { animation-delay: 0.6s; }
+
+        @keyframes agent-bob {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-6px); }
+        }
+
         .hero-subtitle {
             font-size: 1.15rem;
             color: var(--text-secondary);
@@ -2392,6 +2436,19 @@
                 font-size: 2.2rem;
             }
 
+            .build-text {
+                font-size: 2.2rem;
+            }
+
+            .builder-agent {
+                width: 22px;
+                height: 22px;
+            }
+
+            .build-anything-line {
+                gap: 10px;
+            }
+
             .hero-subtitle {
                 font-size: 1rem;
             }
@@ -2710,6 +2767,19 @@
                 font-size: 2.2rem;
             }
 
+            .build-text {
+                font-size: 2.2rem;
+            }
+
+            .builder-agent {
+                width: 22px;
+                height: 22px;
+            }
+
+            .build-anything-line {
+                gap: 10px;
+            }
+
             .hero-subtitle {
                 font-size: 1rem;
             }
@@ -2767,7 +2837,47 @@
                         <span class="badge-dot"></span>
                         v2.5.0 — Toolbar Color Customization
                     </div>
-                    <h1>1-Click AI Agents.<br>Memory that persists.<br><span>Build anything.</span></h1>
+                    <h1>1-Click AI Agents.<br><span>Memory that persists.</span></h1>
+                    <div class="build-anything-line">
+                        <div class="builder-agents">
+                            <svg class="builder-agent agent-1" width="28" height="28" viewBox="0 0 28 28" fill="none">
+                                <rect x="4" y="8" width="20" height="16" rx="4" fill="#623CEA" opacity="0.9"/>
+                                <rect x="8" y="2" width="12" height="8" rx="3" fill="#8B5CF6" opacity="0.8"/>
+                                <circle cx="11" cy="15" r="2" fill="white" opacity="0.9"/>
+                                <circle cx="17" cy="15" r="2" fill="white" opacity="0.9"/>
+                                <rect x="10" y="19" width="8" height="2" rx="1" fill="white" opacity="0.5"/>
+                            </svg>
+                            <svg class="builder-agent agent-2" width="28" height="28" viewBox="0 0 28 28" fill="none">
+                                <rect x="4" y="8" width="20" height="16" rx="4" fill="#3b82f6" opacity="0.9"/>
+                                <rect x="8" y="2" width="12" height="8" rx="3" fill="#60a5fa" opacity="0.8"/>
+                                <circle cx="11" cy="15" r="2" fill="white" opacity="0.9"/>
+                                <circle cx="17" cy="15" r="2" fill="white" opacity="0.9"/>
+                                <rect x="10" y="19" width="8" height="2" rx="1" fill="white" opacity="0.5"/>
+                            </svg>
+                            <svg class="builder-agent agent-3" width="28" height="28" viewBox="0 0 28 28" fill="none">
+                                <rect x="4" y="8" width="20" height="16" rx="4" fill="#ec4899" opacity="0.9"/>
+                                <rect x="8" y="2" width="12" height="8" rx="3" fill="#f472b6" opacity="0.8"/>
+                                <circle cx="11" cy="15" r="2" fill="white" opacity="0.9"/>
+                                <circle cx="17" cy="15" r="2" fill="white" opacity="0.9"/>
+                                <rect x="10" y="19" width="8" height="2" rx="1" fill="white" opacity="0.5"/>
+                            </svg>
+                            <svg class="builder-agent agent-4" width="28" height="28" viewBox="0 0 28 28" fill="none">
+                                <rect x="4" y="8" width="20" height="16" rx="4" fill="#10b981" opacity="0.9"/>
+                                <rect x="8" y="2" width="12" height="8" rx="3" fill="#34d399" opacity="0.8"/>
+                                <circle cx="11" cy="15" r="2" fill="white" opacity="0.9"/>
+                                <circle cx="17" cy="15" r="2" fill="white" opacity="0.9"/>
+                                <rect x="10" y="19" width="8" height="2" rx="1" fill="white" opacity="0.5"/>
+                            </svg>
+                            <svg class="builder-agent agent-5" width="28" height="28" viewBox="0 0 28 28" fill="none">
+                                <rect x="4" y="8" width="20" height="16" rx="4" fill="#f59e0b" opacity="0.9"/>
+                                <rect x="8" y="2" width="12" height="8" rx="3" fill="#fbbf24" opacity="0.8"/>
+                                <circle cx="11" cy="15" r="2" fill="white" opacity="0.9"/>
+                                <circle cx="17" cy="15" r="2" fill="white" opacity="0.9"/>
+                                <rect x="10" y="19" width="8" height="2" rx="1" fill="white" opacity="0.5"/>
+                            </svg>
+                        </div>
+                        <div class="build-text">Build anything.</div>
+                    </div>
                     <p class="hero-subtitle">
                         Install Claude Code, Codex, and OpenClaw in one click. Persistent memory across every session. All your projects organized in one place.
                     </p>
