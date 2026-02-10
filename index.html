@@ -2941,7 +2941,49 @@
 
                 <div class="features-bento">
                     <div class="bento-card span-8 featured-bento reveal">
-                        <div class="bento-icon">🚀</div>
+                        <div class="bento-icon">
+                            <svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <defs>
+                                    <linearGradient id="tmpl-grad" x1="0" y1="0" x2="44" y2="44" gradientUnits="userSpaceOnUse">
+                                        <stop offset="0%" stop-color="#623CEA"/>
+                                        <stop offset="100%" stop-color="#8B5CF6"/>
+                                    </linearGradient>
+                                    <linearGradient id="tmpl-fill" x1="8" y1="8" x2="36" y2="36" gradientUnits="userSpaceOnUse">
+                                        <stop offset="0%" stop-color="#623CEA" stop-opacity="0.2"/>
+                                        <stop offset="100%" stop-color="#8B5CF6" stop-opacity="0.05"/>
+                                    </linearGradient>
+                                </defs>
+                                <!-- Outer frame -->
+                                <rect x="2" y="2" width="40" height="40" rx="8" stroke="url(#tmpl-grad)" stroke-width="1.5" fill="url(#tmpl-fill)"/>
+                                <!-- Title bar -->
+                                <rect x="6" y="6" width="32" height="5" rx="1.5" fill="#623CEA" opacity="0.3"/>
+                                <circle cx="9" cy="8.5" r="1" fill="#623CEA" opacity="0.8"/>
+                                <circle cx="12.5" cy="8.5" r="1" fill="#8B5CF6" opacity="0.6"/>
+                                <circle cx="16" cy="8.5" r="1" fill="#a78bfa" opacity="0.4"/>
+                                <!-- Left pane (tall) -->
+                                <rect x="6" y="14" width="14" height="24" rx="2" stroke="#623CEA" stroke-width="1" fill="#623CEA" fill-opacity="0.1"/>
+                                <!-- Right top pane -->
+                                <rect x="23" y="14" width="15" height="10" rx="2" stroke="#8B5CF6" stroke-width="1" fill="#8B5CF6" fill-opacity="0.07"/>
+                                <!-- Right bottom pane -->
+                                <rect x="23" y="27" width="15" height="11" rx="2" stroke="#8B5CF6" stroke-width="1" fill="#8B5CF6" fill-opacity="0.07"/>
+                                <!-- Left pane text lines -->
+                                <rect x="9" y="18" width="8" height="1.2" rx="0.6" fill="#623CEA" opacity="0.5"/>
+                                <rect x="9" y="21" width="6" height="1.2" rx="0.6" fill="#623CEA" opacity="0.35"/>
+                                <rect x="9" y="24" width="7" height="1.2" rx="0.6" fill="#623CEA" opacity="0.25"/>
+                                <!-- Right top pane text lines -->
+                                <rect x="26" y="17.5" width="9" height="1.2" rx="0.6" fill="#8B5CF6" opacity="0.4"/>
+                                <rect x="26" y="20.5" width="6" height="1.2" rx="0.6" fill="#8B5CF6" opacity="0.25"/>
+                                <!-- Blinking cursor in right bottom pane -->
+                                <rect x="26" y="30.5" width="5" height="1.2" rx="0.6" fill="#a78bfa" opacity="0.5"/>
+                                <rect x="33" y="30.5" width="1.2" height="4" rx="0.6" fill="#623CEA" opacity="0.7">
+                                    <animate attributeName="opacity" values="0.7;0.15;0.7" dur="1.2s" repeatCount="indefinite"/>
+                                </rect>
+                                <!-- Plus badge -->
+                                <circle cx="37" cy="37" r="5" fill="#623CEA"/>
+                                <rect x="35" y="36.25" width="4" height="1.5" rx="0.75" fill="white"/>
+                                <rect x="36.25" y="35" width="1.5" height="4" rx="0.75" fill="white"/>
+                            </svg>
+                        </div>
                         <h3>Workspace Templates</h3>
                         <p>Pick a template like "Full Stack" or "Claude Code" and get an entire multi-agent workspace in seconds. <span class="kbd">⌘⇧N</span></p>
                     </div>
