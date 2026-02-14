@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D0XH8B0RKL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-D0XH8B0RKL');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zig Development Workflow: Build System, Tests, and AI — All in Your Terminal | Beam Terminal Organizer</title>
+    <meta name="description" content="Master the Zig programming language workflow in your terminal. Learn how to use Zig's built-in build system, testing, and Claude Code AI assistance inside Beam workspaces.">
+    <meta name="keywords" content="Zig programming, Zig development workflow, Zig build system, Zig terminal setup, Zig programming language 2026, Zig build.zig, Zig comptime, Claude Code Zig, Zig C interop">
+    <meta name="author" content="NextUp Technologies">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://getbeam.dev/blog/zig-development-terminal-workflow.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://getbeam.dev/blog/zig-development-terminal-workflow.html">
+    <meta property="og:title" content="Zig Development Workflow: Build System, Tests, and AI — All in Your Terminal">
+    <meta property="og:description" content="Master the Zig programming language workflow with its built-in build system, testing, and Claude Code AI — organized in Beam workspaces.">
+    <meta property="og:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Zig Development Workflow: Build System, Tests, and AI — All in Your Terminal">
+    <meta name="twitter:description" content="Master the Zig programming language workflow with its built-in build system, testing, and Claude Code AI — organized in Beam workspaces.">
+    <meta name="twitter:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Zig Development Workflow: Build System, Tests, and AI — All in Your Terminal",
+        "description": "Master the Zig programming language workflow in your terminal. Learn how to use Zig's built-in build system, testing, and Claude Code AI assistance inside Beam workspaces.",
+        "author": {
+            "@type": "Organization",
+            "name": "NextUp Technologies"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Beam"
+        },
+        "datePublished": "2026-02-11",
+        "keywords": "Zig programming, Zig development workflow, Zig build system, Zig terminal setup, Zig programming language 2026"
+    }
+    </script>
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #111113;
+            --bg-tertiary: #1a1a1d;
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.4);
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --border: #27272a;
+            --success: #22c55e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        header {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 60px;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1.5rem;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            background: var(--accent);
+            color: white;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+        }
+
+        article {
+            padding-bottom: 80px;
+        }
+
+        .breadcrumb {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+        }
+
+        .breadcrumb a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .meta {
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            font-size: 0.95rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 48px 0 20px;
+            color: var(--text-primary);
+        }
+
+        h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 32px 0 14px;
+            color: var(--text-primary);
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        ul, ol {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            padding-left: 24px;
+        }
+
+        li {
+            margin-bottom: 12px;
+        }
+
+        .highlight {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 32px 0;
+        }
+
+        .highlight h3 {
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            margin-top: 0;
+            color: var(--text-primary);
+        }
+
+        .kbd {
+            display: inline-block;
+            padding: 2px 8px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+        }
+
+        code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            background: var(--bg-tertiary);
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: #e2e8f0;
+        }
+
+        pre {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            overflow-x: auto;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            line-height: 1.7;
+            color: var(--text-secondary);
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .cta-box h3 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+            margin-top: 0;
+        }
+
+        .cta-box p {
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 24px;
+        }
+
+        .cta-box .btn {
+            background: white;
+            color: var(--accent);
+        }
+
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+
+        .related-articles { margin-top: 60px; padding-top: 40px; border-top: 1px solid var(--border); }
+        .related-articles h2 { font-size: 1.5rem; margin-bottom: 24px; }
+        .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .related-card { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-decoration: none; transition: border-color 0.2s; }
+        .related-card:hover { border-color: var(--accent); }
+        .related-card h4 { color: white; font-size: 1rem; margin: 0 0 8px 0; }
+        .related-card p { color: var(--text-muted); font-size: 0.85rem; margin: 0; }
+        @media (max-width: 600px) { .related-grid { grid-template-columns: 1fr; } h1 { font-size: 1.8rem; } }
+
+        .workspace-svg {
+            margin: 32px 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .workspace-svg svg {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="../" class="logo">
+                <div class="logo-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round">
+                        <path d="M4 17l6-6-6-6M12 19h8"/>
+                    </svg>
+                </div>
+                Beam
+            </a>
+            <a href="../" class="btn">Download Beam</a>
+        </div>
+    </header>
+
+    <main>
+        <article class="container">
+            <div class="breadcrumb">
+                <a href="../">Beam</a> / <a href="../#guides">Guides</a> / Zig Development Workflow
+            </div>
+
+            <h1>Zig Development Workflow: Build System, Tests, and AI &mdash; All in Your Terminal</h1>
+            <p class="meta">February 2026 &bull; 10 min read</p>
+
+            <p>Zig jumped 19 positions in the TIOBE index in 2025, making it one of the fastest-rising programming languages in the world. And unlike many languages gaining popularity through IDE integrations and visual tooling, Zig is 100% terminal-native. There is no official IDE. There is no GUI build configurator. The entire language, its build system, its test runner, and its package manager all live in a single binary you run from the command line: <code>zig</code>.</p>
+
+            <p>This makes Zig a perfect fit for a terminal-first development workflow. Combined with <strong>Claude Code</strong> for AI-assisted development and <strong>Beam</strong> for workspace organization, you get a development environment that is fast, focused, and entirely self-contained. No CMake. No Make. No Ninja. Just <code>zig build</code>.</p>
+
+            <p>This guide walks through setting up a complete Zig development workflow in the terminal &mdash; from project scaffolding to testing, debugging, and C interop &mdash; all organized in Beam workspaces.</p>
+
+            <!-- Custom Workspace SVG -->
+            <div class="workspace-svg">
+                <svg width="720" height="340" viewBox="0 0 720 340" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Window frame -->
+                    <rect x="0.5" y="0.5" width="719" height="339" rx="11.5" fill="#111113" stroke="#27272a"/>
+                    <!-- Title bar -->
+                    <rect x="1" y="1" width="718" height="36" rx="11" fill="#1a1a1d"/>
+                    <circle cx="20" cy="19" r="6" fill="#ef4444" opacity="0.8"/>
+                    <circle cx="40" cy="19" r="6" fill="#eab308" opacity="0.8"/>
+                    <circle cx="60" cy="19" r="6" fill="#22c55e" opacity="0.8"/>
+                    <text x="360" y="23" text-anchor="middle" fill="#a1a1aa" font-family="Space Grotesk, sans-serif" font-size="12" font-weight="500">Beam &mdash; MyZigProject</text>
+                    <!-- Tab bar -->
+                    <rect x="1" y="37" width="718" height="30" fill="#0a0a0b"/>
+                    <rect x="1" y="37" width="120" height="30" fill="#111113" rx="0"/>
+                    <rect x="1" y="37" width="120" height="2" fill="#3b82f6"/>
+                    <text x="60" y="56" text-anchor="middle" fill="#fafafa" font-family="JetBrains Mono, monospace" font-size="11">zig build</text>
+                    <text x="190" y="56" text-anchor="middle" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="11">zig test</text>
+                    <text x="300" y="56" text-anchor="middle" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="11">zig run</text>
+                    <text x="415" y="56" text-anchor="middle" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="11">Claude Code</text>
+                    <text x="545" y="56" text-anchor="middle" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="11">lldb</text>
+                    <!-- Divider -->
+                    <line x1="360" y1="67" x2="360" y2="339" stroke="#27272a" stroke-width="1"/>
+                    <!-- Left pane: zig build output -->
+                    <text x="20" y="95" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="11">$</text>
+                    <text x="36" y="95" fill="#f0a030" font-family="JetBrains Mono, monospace" font-size="11">zig</text>
+                    <text x="60" y="95" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="11">build</text>
+                    <text x="20" y="125" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="10.5">Compiling src/main.zig...</text>
+                    <text x="20" y="145" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="10.5">Compiling src/parser.zig...</text>
+                    <text x="20" y="165" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="10.5">Linking...</text>
+                    <text x="20" y="195" fill="#22c55e" font-family="JetBrains Mono, monospace" font-size="10.5" font-weight="600">Build succeeded.</text>
+                    <text x="20" y="215" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="10.5">zig-out/bin/myapp</text>
+                    <text x="20" y="245" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="11">$</text>
+                    <text x="36" y="245" fill="#f0a030" font-family="JetBrains Mono, monospace" font-size="11">zig</text>
+                    <text x="60" y="245" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="11">build test</text>
+                    <text x="20" y="275" fill="#22c55e" font-family="JetBrains Mono, monospace" font-size="10.5">All 14 tests passed.</text>
+                    <!-- Right pane: Claude Code -->
+                    <text x="376" y="95" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="11">$</text>
+                    <text x="392" y="95" fill="#3b82f6" font-family="JetBrains Mono, monospace" font-size="11">claude</text>
+                    <text x="376" y="118" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="10.5">&gt; Write a comptime function</text>
+                    <text x="376" y="135" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="10.5">  that generates a lookup</text>
+                    <text x="376" y="152" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="10.5">  table for CRC32</text>
+                    <text x="376" y="178" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="10.5">I'll generate a compile-time</text>
+                    <text x="376" y="195" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="10.5">CRC32 table using comptime.</text>
+                    <text x="376" y="215" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="10.5">No runtime cost...</text>
+                    <text x="376" y="245" fill="#22c55e" font-family="JetBrains Mono, monospace" font-size="10.5">+ const crc_table = comptime</text>
+                    <text x="376" y="262" fill="#22c55e" font-family="JetBrains Mono, monospace" font-size="10.5">+   blk: { var t: [256]u32</text>
+                    <text x="376" y="279" fill="#22c55e" font-family="JetBrains Mono, monospace" font-size="10.5">+   = undefined; ... };</text>
+                    <text x="376" y="300" fill="#f0a030" font-family="JetBrains Mono, monospace" font-size="10.5" font-weight="600">// Zig</text>
+                    <text x="420" y="300" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="10.5">src/crc.zig</text>
+                    <!-- Beam workspace indicator -->
+                    <rect x="560" y="250" width="140" height="60" rx="8" fill="rgba(59,130,246,0.1)" stroke="#3b82f6" stroke-opacity="0.3"/>
+                    <text x="630" y="275" text-anchor="middle" fill="#3b82f6" font-family="Space Grotesk, sans-serif" font-size="11" font-weight="500">MyZigProject</text>
+                    <text x="630" y="298" text-anchor="middle" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="10">5 tabs &bull; 2 panes</text>
+                </svg>
+            </div>
+
+            <h2>Why Zig: The Language Built for the Terminal</h2>
+
+            <p>Zig is not just another systems language. It was designed from the ground up with a philosophy that aligns perfectly with terminal-centric development. Here is what makes Zig different:</p>
+
+            <ul>
+                <li><strong>No hidden control flow</strong> &mdash; No operator overloading, no hidden function calls, no implicit conversions. What you read is what the machine executes. This makes debugging in the terminal straightforward because the code you see is the code that runs.</li>
+                <li><strong>No hidden allocators</strong> &mdash; Every allocation is explicit. You pass allocators as parameters, which means you always know where memory comes from and when it is freed. No garbage collector, no runtime surprises.</li>
+                <li><strong>Comptime</strong> &mdash; Zig's compile-time execution is its killer feature. Instead of macros or code generation tools, you write ordinary Zig code that runs at compile time. Generic programming, lookup table generation, serialization &mdash; all done with the same language, evaluated by the compiler.</li>
+                <li><strong>Built-in build system</strong> &mdash; No Make, no CMake, no Meson, no Ninja. Zig ships with its own build system written in Zig. Your build configuration is a <code>build.zig</code> file &mdash; actual Zig code, not a DSL.</li>
+                <li><strong>Seamless C interop</strong> &mdash; Zig can import C headers directly with <code>@cImport</code>. No bindings generation, no FFI boilerplate. You can call libc, link against any C library, and even compile C code with the Zig toolchain.</li>
+                <li><strong>Cross-compilation out of the box</strong> &mdash; <code>zig build -Dtarget=x86_64-linux-gnu</code> cross-compiles from macOS to Linux with zero additional setup. No cross-compilation toolchain to install.</li>
+            </ul>
+
+            <h2>The All-Terminal Zig Workflow</h2>
+
+            <p>Everything in Zig happens through the <code>zig</code> CLI. There is no separate build tool, no separate test runner, no separate formatter. One binary does it all:</p>
+
+            <pre>$ zig build              # Build your project using build.zig
+$ zig build test         # Run all tests
+$ zig build run          # Build and execute
+$ zig test src/main.zig  # Run tests in a single file
+$ zig run src/main.zig   # Compile and run a single file
+$ zig fmt src/           # Format all Zig files
+$ zig cc                 # Use Zig as a C compiler
+$ zig translate-c        # Translate C headers to Zig</pre>
+
+            <p>This unified CLI is why Zig feels so natural in the terminal. There is no toolchain fragmentation, no version mismatches between tools, no "which build command do I use" confusion. You learn one tool and it handles everything.</p>
+
+            <h2>Zig's Built-In Build System: No Make, No CMake</h2>
+
+            <p>The build system is one of Zig's most distinctive features. Instead of a domain-specific language like CMake or a general-purpose tool like Make, Zig's build system is written in Zig itself. Your <code>build.zig</code> file is real, executable Zig code.</p>
+
+            <p>Here is a typical <code>build.zig</code> for a project with a library and an executable:</p>
+
+            <pre>const std = @import("std");
+
+pub fn build(b: *std.Build) void {
+    const target = b.standardTargetOptions(.{});
+    const optimize = b.standardOptimizeOption(.{});
+
+    // Library
+    const lib = b.addStaticLibrary(.{
+        .name = "mylib",
+        .root_source_file = b.path("src/lib.zig"),
+        .target = target,
+        .optimize = optimize,
+    });
+    b.installArtifact(lib);
+
+    // Executable
+    const exe = b.addExecutable(.{
+        .name = "myapp",
+        .root_source_file = b.path("src/main.zig"),
+        .target = target,
+        .optimize = optimize,
+    });
+    exe.linkLibrary(lib);
+    b.installArtifact(exe);
+
+    // Tests
+    const tests = b.addTest(.{
+        .root_source_file = b.path("src/lib.zig"),
+        .target = target,
+        .optimize = optimize,
+    });
+    const run_tests = b.addRunArtifact(tests);
+    const test_step = b.step("test", "Run unit tests");
+    test_step.dependOn(&amp;run_tests.step);
+
+    // Run step
+    const run_cmd = b.addRunArtifact(exe);
+    const run_step = b.step("run", "Run the application");
+    run_step.dependOn(&amp;run_cmd.step);
+}</pre>
+
+            <p>Because <code>build.zig</code> is real Zig code, you get full IDE-style tooling in the terminal: Claude Code can read it, modify it, add build steps, link C libraries, and configure cross-compilation targets. There is no separate DSL to learn.</p>
+
+            <div class="highlight">
+                <h3>Why build.zig Matters</h3>
+                <p>Traditional build systems like CMake use their own language that no AI model understands deeply. Zig's build system uses the same language as the rest of your project. This means Claude Code can reason about your build configuration with the same depth it reasons about your application code &mdash; adding dependencies, configuring optimization flags, or setting up cross-compilation targets.</p>
+            </div>
+
+            <h2>Beam Workspace Setup for Zig Development</h2>
+
+            <p>A well-organized terminal workspace is essential for Zig development. Beam lets you create a dedicated environment where every tab has a clear purpose.</p>
+
+            <p><strong>Workspace: "MyZigProject"</strong></p>
+
+            <ul>
+                <li><strong>Tab 1: <code>zig build</code></strong> &mdash; Compilation. Run <code>zig build</code> after every change. Zig's compiler is fast enough that incremental builds often complete in under a second.</li>
+                <li><strong>Tab 2: <code>zig build test</code></strong> &mdash; Test runner. Use <code>zig build test -- --summary all</code> for verbose output showing every test name and result.</li>
+                <li><strong>Tab 3: <code>zig build run</code></strong> &mdash; Execute your application. Pass runtime arguments after <code>--</code>: <code>zig build run -- --input data.json</code>.</li>
+                <li><strong>Tab 4: Claude Code</strong> &mdash; Your AI pair programmer for Zig. Ask it about comptime patterns, allocator strategies, build.zig configuration, and C interop.</li>
+                <li><strong>Tab 5: <code>lldb</code></strong> &mdash; Debugging. Zig produces standard DWARF debug info, so lldb works out of the box: <code>lldb zig-out/bin/myapp</code>.</li>
+            </ul>
+
+            <p>For maximum productivity, use Beam's split panes. Press <span class="kbd">&#8984;&#8997;&#8963;T</span> to split your Claude Code tab: AI assistance on the left, build output on the right. Every time Claude Code modifies your Zig source, rebuild in the adjacent pane and see the results instantly.</p>
+
+            <div class="highlight">
+                <h3>Pro Tip: Save Your Zig Layout</h3>
+                <p>Once your five-tab workspace is configured, press <span class="kbd">&#8984;S</span> to save it as a layout. Name it "Zig Dev." The next time you start a Zig project, restore the layout and you are immediately productive &mdash; no setup required. Switch between Zig projects with <span class="kbd">&#8984;&#8997;&#8592;&#8594;</span>.</p>
+            </div>
+
+            <h3>Split Pane Workflows</h3>
+
+            <p>Zig's fast compilation makes split panes especially effective. Here are two layouts that work well:</p>
+
+            <p><strong>Layout 1: Build + Test</strong></p>
+            <ul>
+                <li>Left pane: <code>zig build</code> output</li>
+                <li>Right pane: <code>zig build test -- --summary all</code></li>
+            </ul>
+
+            <p>Build and test in parallel. When the build succeeds, tests run automatically. You see both results at once.</p>
+
+            <p><strong>Layout 2: Source + Compilation</strong></p>
+            <ul>
+                <li>Left pane: Claude Code editing source files</li>
+                <li>Right pane: <code>zig build 2>&1</code> showing compiler diagnostics</li>
+            </ul>
+
+            <p>Watch Claude Code write Zig code and immediately verify it compiles. Zig's compiler error messages are excellent &mdash; they show exactly where the problem is and often suggest the fix.</p>
+
+            <h2>Claude Code for Zig Development</h2>
+
+            <p>Claude Code understands Zig's unique features and can generate idiomatic code that leverages them. Here are the areas where AI assistance makes the biggest difference.</p>
+
+            <h3>Comptime Patterns</h3>
+
+            <p>Comptime is Zig's most powerful and most confusing feature. Claude Code can generate comptime code for common patterns:</p>
+
+            <pre>&gt; Write a comptime function that generates a perfect hash table
+  for a known set of string keys. The keys are: "GET", "POST",
+  "PUT", "DELETE", "PATCH", "HEAD", "OPTIONS".</pre>
+
+            <p>Claude Code will generate a comptime block that computes the hash function parameters at compile time, producing a lookup table with zero runtime overhead. It understands the distinction between <code>comptime</code> parameters, <code>comptime</code> blocks, and <code>comptime</code> variables, and uses each appropriately.</p>
+
+            <p>Other comptime patterns Claude Code handles well:</p>
+
+            <ul>
+                <li><strong>Type-level programming</strong> &mdash; Generating struct types at compile time based on configuration</li>
+                <li><strong>Compile-time validation</strong> &mdash; Asserting invariants with <code>@compileError</code></li>
+                <li><strong>Generic data structures</strong> &mdash; Writing a <code>HashMap</code> or <code>ArrayList</code> that works with any type via comptime type parameters</li>
+                <li><strong>Serialization</strong> &mdash; Generating serialization code by reflecting on struct fields at comptime</li>
+            </ul>
+
+            <h3>Allocator-Safe Code</h3>
+
+            <p>Zig's explicit allocator model means every function that allocates must accept an <code>std.mem.Allocator</code>. Claude Code generates code that follows this pattern correctly:</p>
+
+            <pre>&gt; Write a JSON parser that takes an allocator parameter. It should
+  parse a JSON string into a tree of Value nodes. Handle all JSON
+  types: null, bool, number, string, array, object. Return errors
+  for malformed input.</pre>
+
+            <p>Claude Code will thread the allocator through every function that needs it, use <code>defer</code> for cleanup, handle <code>error.OutOfMemory</code> properly, and return error unions rather than panicking. It knows the difference between <code>std.heap.page_allocator</code>, <code>std.heap.GeneralPurposeAllocator</code>, and <code>std.testing.allocator</code> and when to use each.</p>
+
+            <h3>Writing Tests</h3>
+
+            <p>Zig has testing built into the language. Tests live alongside the code they verify, using the <code>test</code> keyword:</p>
+
+            <pre>&gt; Write comprehensive tests for the JSON parser. Cover valid
+  JSON (objects, arrays, nested structures, unicode strings,
+  numbers with exponents), invalid JSON (unclosed brackets,
+  trailing commas, invalid escape sequences), and edge cases
+  (empty objects, deeply nested structures, very long strings).
+  Use std.testing.allocator to detect memory leaks.</pre>
+
+            <p>Claude Code generates test blocks that follow Zig conventions:</p>
+
+            <pre>const std = @import("std");
+const json = @import("json.zig");
+
+test "parse simple object" {
+    const allocator = std.testing.allocator;
+    const result = try json.parse(allocator, "{\"key\": \"value\"}");
+    defer result.deinit(allocator);
+
+    try std.testing.expectEqualStrings(
+        "value",
+        result.object.get("key").?.string,
+    );
+}
+
+test "parse rejects trailing comma" {
+    const allocator = std.testing.allocator;
+    const result = json.parse(allocator, "{\"key\": 1,}");
+    try std.testing.expectError(error.InvalidJson, result);
+}</pre>
+
+            <p>The <code>std.testing.allocator</code> is crucial &mdash; it detects memory leaks in tests. If your code allocates memory and forgets to free it, the test fails. Claude Code knows to use it and to add <code>defer</code> statements for cleanup.</p>
+
+            <p>Run the tests in your dedicated Beam tab:</p>
+
+            <pre>$ zig build test -- --summary all
+14/14 passed in 0.003s</pre>
+
+            <h2>C Interop Workflows</h2>
+
+            <p>One of Zig's strongest selling points is its seamless C interoperability. You can import C headers directly, link against C libraries, and even compile C source files with the Zig toolchain. This is a terminal-native workflow through and through.</p>
+
+            <h3>Importing C Libraries</h3>
+
+            <p>Ask Claude Code to set up C library integration:</p>
+
+            <pre>&gt; Add SQLite as a C dependency to my Zig project. Import the
+  sqlite3.h header, link the library, and write a wrapper module
+  that provides a Zig-idiomatic API with proper error handling
+  and allocator support.</pre>
+
+            <p>Claude Code will modify your <code>build.zig</code> to link the C library, create a Zig wrapper using <code>@cImport</code>, and translate C error codes into Zig error unions:</p>
+
+            <pre>const c = @cImport({
+    @cInclude("sqlite3.h");
+});
+
+pub const Database = struct {
+    handle: *c.sqlite3,
+
+    pub fn open(path: [*:0]const u8) !Database {
+        var db: ?*c.sqlite3 = null;
+        const rc = c.sqlite3_open(path, &amp;db);
+        if (rc != c.SQLITE_OK) return error.SqliteError;
+        return .{ .handle = db.? };
+    }
+
+    pub fn close(self: *Database) void {
+        _ = c.sqlite3_close(self.handle);
+    }
+};</pre>
+
+            <h3>Managing Zig + C in the Same Project</h3>
+
+            <p>For projects that mix Zig and C code, create a Beam workspace with dedicated tabs:</p>
+
+            <p><strong>Workspace: "ZigWithC"</strong></p>
+            <ul>
+                <li>Tab 1: Claude Code &mdash; working on Zig wrappers and C integration</li>
+                <li>Tab 2: <code>zig build</code> &mdash; compiles both Zig and C sources</li>
+                <li>Tab 3: <code>zig translate-c</code> &mdash; inspecting how C headers translate to Zig</li>
+                <li>Tab 4: <code>zig build test</code> &mdash; running tests that exercise the C bindings</li>
+            </ul>
+
+            <p>The <code>zig translate-c</code> command is invaluable for understanding how Zig represents C types. When you need to understand a C API, translate its header and read the Zig output:</p>
+
+            <pre>$ zig translate-c /usr/include/zlib.h > zlib_translated.zig</pre>
+
+            <h2>Who Is Using Zig: Real-World Adoption</h2>
+
+            <p>Zig is not just an academic language. It is used in production by organizations solving hard systems problems:</p>
+
+            <ul>
+                <li><strong>Bun</strong> &mdash; The JavaScript runtime that competes with Node.js and Deno is written primarily in Zig. Bun chose Zig for its manual memory control, comptime metaprogramming, and ability to interface with C libraries (JavaScriptCore) without overhead.</li>
+                <li><strong>TigerBeetle</strong> &mdash; A financial transactions database designed for mission-critical accounting. Written in Zig for its deterministic memory management and ability to reason about every allocation.</li>
+                <li><strong>Uber</strong> &mdash; Uses Zig in their build toolchain for cross-compilation. Zig's ability to cross-compile C and C++ code makes it a drop-in replacement for platform-specific toolchains.</li>
+                <li><strong>Mach Engine</strong> &mdash; A game engine written in Zig, leveraging comptime for zero-cost abstractions in graphics programming.</li>
+                <li><strong>Roc Language</strong> &mdash; Uses Zig for its compiler backend and runtime, benefiting from Zig's precise control over memory layout and alignment.</li>
+            </ul>
+
+            <p>These projects chose Zig for the same reasons it works well as a terminal-first language: transparency, control, and a toolchain that stays out of your way.</p>
+
+            <h2>Project Memory: Teaching Claude Code Your Zig Conventions</h2>
+
+            <p>Claude Code uses project memory files to maintain context across sessions. For a Zig project, your memory file can include your conventions, build configuration, and architectural decisions.</p>
+
+            <p>Create a <code>CLAUDE.md</code> file in your project root:</p>
+
+            <pre># Project: MyZigProject
+
+## Build
+- Build: `zig build`
+- Test: `zig build test -- --summary all`
+- Run: `zig build run`
+- Target: ReleaseSafe for production, Debug for development
+
+## Conventions
+- Use GeneralPurposeAllocator in main, pass allocator to all functions
+- Error handling: return error unions, never @panic in library code
+- Tests: one test block per public function, use std.testing.allocator
+- Naming: camelCase for functions, PascalCase for types, snake_case for files
+
+## Dependencies
+- C libraries linked via build.zig (sqlite3, zlib)
+- No external Zig packages yet
+
+## Architecture
+- src/main.zig: entry point and CLI argument parsing
+- src/lib.zig: public library API
+- src/parser.zig: JSON/config parsing
+- src/db.zig: SQLite wrapper</pre>
+
+            <p>Claude Code reads this file automatically at the start of every session. It will follow your naming conventions, use the right allocator pattern, and understand your project structure without you having to re-explain it.</p>
+
+            <div class="highlight">
+                <h3>Beam + Project Memory</h3>
+                <p>Beam's "Install Project Memory" and "Save Project Memory" toolbar buttons make managing these files easy. Install your project memory once, and every Claude Code session in that workspace picks it up. When you make architectural changes, save the updated memory so future sessions stay current.</p>
+            </div>
+
+            <h2>Quick Switcher: Jumping Between Zig Projects</h2>
+
+            <p>If you work on multiple Zig projects &mdash; or a Zig project with dependencies you are developing locally &mdash; Beam's Quick Switcher is indispensable. Press <span class="kbd">&#8984;P</span> to fuzzy-search across all workspaces, tabs, and layouts.</p>
+
+            <p>Type "test" to jump to any test runner tab. Type a project name to switch workspaces. Type "claude" to find your AI session. The Quick Switcher works across all open workspaces, so you can jump from your main Zig project to a dependency library and back in seconds.</p>
+
+            <p>For projects that use Zig packages from the <code>build.zig.zon</code> manifest, create a separate Beam workspace for each dependency you are actively developing. Switch between them with <span class="kbd">&#8984;&#8997;&#8592;&#8594;</span> to keep each context isolated.</p>
+
+            <h2>The Zig Community: Small but Growing Fast</h2>
+
+            <p>Zig's community is small compared to Rust or Go, but it is passionate and growing rapidly. The language is still pre-1.0 (currently at 0.13.x), which means things change between releases. Claude Code helps here by generating code that targets your specific Zig version and flagging patterns that have changed between releases.</p>
+
+            <p>Key community resources, all accessible from the terminal:</p>
+
+            <ul>
+                <li><strong>Zig Package Manager</strong> &mdash; <code>build.zig.zon</code> for dependency management, fetched by <code>zig build</code></li>
+                <li><strong>Standard Library Source</strong> &mdash; Zig's stdlib is readable and well-documented; <code>zig env</code> shows you where it lives on disk</li>
+                <li><strong>Zig News</strong> &mdash; The community aggregator at ziglang.org/news</li>
+                <li><strong>GitHub</strong> &mdash; Use <code>gh</code> to interact with Zig issues, PRs, and community packages from the terminal</li>
+            </ul>
+
+            <p>Ask Claude Code about Zig idioms and it draws from the standard library patterns, community best practices, and real-world projects like Bun and TigerBeetle. As Zig matures toward 1.0, having an AI assistant that understands the evolving language is a significant advantage.</p>
+
+            <div class="cta-box">
+                <h3>Build Zig Projects in an Organized Terminal</h3>
+                <p>Zig is built for the terminal. Beam organizes it with workspaces, tabs, and split panes designed for multi-session workflows like Claude Code + zig build.</p>
+                <a href="../" class="btn">Download Beam for macOS</a>
+            </div>
+
+            <h2>Summary</h2>
+
+            <p>Zig is a language designed for developers who want complete control without hidden complexity. Its all-in-one CLI, built-in build system, and seamless C interop make it a natural fit for terminal-first development. When you add Claude Code for AI-assisted comptime patterns, allocator management, and test generation, and Beam for workspace organization, you get a development environment that matches Zig's philosophy: explicit, fast, and entirely under your control.</p>
+
+            <ul>
+                <li><strong>One binary</strong> &mdash; <code>zig build</code>, <code>zig test</code>, <code>zig run</code>, <code>zig fmt</code>, <code>zig cc</code> all from a single CLI</li>
+                <li><strong>build.zig</strong> &mdash; Your build system is real Zig code, readable by Claude Code and editable in the terminal</li>
+                <li><strong>Beam workspaces</strong> &mdash; Five tabs for build, test, run, Claude Code, and debugging, saved as a reusable layout</li>
+                <li><strong>Split panes</strong> &mdash; Claude Code + build output side by side for instant feedback</li>
+                <li><strong>Project memory</strong> &mdash; Teach Claude Code your Zig conventions, allocator choices, and project architecture</li>
+                <li><strong>Quick Switcher</strong> (<span class="kbd">&#8984;P</span>) &mdash; Jump between Zig projects and dependencies instantly</li>
+                <li><strong>C interop</strong> &mdash; Manage Zig + C code in the same workspace with <code>@cImport</code> and <code>zig translate-c</code></li>
+            </ul>
+
+            <p>Zig is rising fast for a reason. If you are ready to try it, the terminal is the only environment you need. Claude Code for the intelligence. Beam for the organization. Zig for everything else.</p>
+
+            <div class="related-articles">
+                <h2>Related Articles</h2>
+                <div class="related-grid">
+                    <a href="claude-code-rust-development.html" class="related-card">
+                        <h4>Claude Code for Rust Development</h4>
+                        <p>The complete workflow for Rust development with Claude Code and Beam.</p>
+                    </a>
+                    <a href="best-terminal-app-ai-coding-2026.html" class="related-card">
+                        <h4>Best Terminal App for AI Coding in 2026</h4>
+                        <p>Why your choice of terminal matters for AI-assisted development.</p>
+                    </a>
+                    <a href="beam-claude-code-setup.html" class="related-card">
+                        <h4>Setting Up Beam for Claude Code</h4>
+                        <p>Step-by-step guide to setting up Beam for Claude Code development.</p>
+                    </a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>
+                <a href="../">Beam</a> &bull; Terminal Organizer for macOS &bull;
+                <a href="mailto:frank@nextuptechnologies.co">Contact</a>
+            </p>
+
+            <p style="margin-top: 12px; font-size: 0.8rem;">
+                <a href="/privacy.html" style="color: #71717a; text-decoration: none;">Privacy Policy</a> &bull;
+                <a href="/terms.html" style="color: #71717a; text-decoration: none;">Terms of Service</a>
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>

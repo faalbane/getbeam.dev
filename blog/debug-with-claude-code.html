@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D0XH8B0RKL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-D0XH8B0RKL');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Debug with Claude Code: A Practical Guide | Beam Terminal Organizer</title>
+    <meta name="description" content="Debug faster with Claude Code as your AI debugging partner. Stack traces, runtime errors, logic bugs — learn the workflow for solving any bug with AI assistance, organized in Beam.">
+    <meta name="keywords" content="debug with Claude Code, Claude Code debugging, AI debugging, Claude Code error fixing, debug AI agent, Claude Code stack trace">
+    <meta name="author" content="NextUp Technologies">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://getbeam.dev/blog/debug-with-claude-code.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://getbeam.dev/blog/debug-with-claude-code.html">
+    <meta property="og:title" content="How to Debug with Claude Code: A Practical Guide">
+    <meta property="og:description" content="Debug faster with Claude Code as your AI debugging partner. Stack traces, runtime errors, logic bugs — learn the workflow for solving any bug with AI assistance.">
+    <meta property="og:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="How to Debug with Claude Code: A Practical Guide">
+    <meta name="twitter:description" content="Debug faster with Claude Code as your AI debugging partner. Stack traces, runtime errors, logic bugs — learn the workflow for solving any bug with AI assistance.">
+    <meta name="twitter:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "How to Debug with Claude Code: A Practical Guide",
+        "description": "Debug faster with Claude Code as your AI debugging partner. Stack traces, runtime errors, logic bugs — learn the workflow for solving any bug with AI assistance, organized in Beam.",
+        "author": {
+            "@type": "Organization",
+            "name": "NextUp Technologies"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Beam"
+        },
+        "datePublished": "2026-02-11",
+        "keywords": "debug with Claude Code, Claude Code debugging, AI debugging, Claude Code error fixing"
+    }
+    </script>
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #111113;
+            --bg-tertiary: #1a1a1d;
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.4);
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --border: #27272a;
+            --success: #22c55e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        header {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 60px;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1.5rem;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            background: var(--accent);
+            color: white;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+        }
+
+        article {
+            padding-bottom: 80px;
+        }
+
+        .breadcrumb {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+        }
+
+        .breadcrumb a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .meta {
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            font-size: 0.95rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 48px 0 20px;
+            color: var(--text-primary);
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        ul, ol {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            padding-left: 24px;
+        }
+
+        li {
+            margin-bottom: 12px;
+        }
+
+        .highlight {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 32px 0;
+        }
+
+        .highlight h3 {
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .kbd {
+            display: inline-block;
+            padding: 2px 8px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .cta-box h3 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+        }
+
+        .cta-box p {
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 24px;
+        }
+
+        .cta-box .btn {
+            background: white;
+            color: var(--accent);
+        }
+
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+
+        .blog-visual {
+            margin: 40px 0;
+        }
+
+        .blog-visual svg {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+        }
+
+        .related-articles { margin-top: 60px; padding-top: 40px; border-top: 1px solid var(--border); }
+        .related-articles h2 { font-size: 1.5rem; margin-bottom: 24px; }
+        .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .related-card { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-decoration: none; transition: border-color 0.2s; }
+        .related-card:hover { border-color: var(--accent); }
+        .related-card h4 { color: white; font-size: 1rem; margin: 0 0 8px 0; }
+        .related-card p { color: var(--text-muted); font-size: 0.85rem; margin: 0; }
+        @media (max-width: 600px) { .related-grid { grid-template-columns: 1fr; } h1 { font-size: 1.8rem; } }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="../" class="logo">
+                <div class="logo-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round">
+                        <path d="M4 17l6-6-6-6M12 19h8"/>
+                    </svg>
+                </div>
+                Beam
+            </a>
+            <a href="../" class="btn">Download Beam</a>
+        </div>
+    </header>
+
+    <main>
+        <article class="container">
+            <div class="breadcrumb">
+                <a href="../">Beam</a> / <a href="../#guides">Guides</a> / Debug with Claude Code
+            </div>
+
+            <h1>How to Debug with Claude Code: A Practical Guide</h1>
+            <p class="meta">February 2026 &bull; 7 min read</p>
+
+            <p>Debugging is where AI coding agents earn their keep. A stack trace that would take you 20 minutes to unravel? Claude Code traces it in seconds. A logic bug hiding across three files? Claude reads all three and spots the issue. This guide shows you how to set up a debugging workflow with Claude Code and Beam that turns "what's wrong?" into "fixed" as fast as possible.</p>
+
+            <!-- Debugging Split-Pane Visual -->
+            <div class="blog-visual">
+                <svg viewBox="0 0 800 520" xmlns="http://www.w3.org/2000/svg" fill="none">
+                    <!-- Background -->
+                    <rect width="800" height="520" rx="12" fill="#0a0a0b"/>
+                    <rect x="1" y="1" width="798" height="518" rx="11" stroke="#27272a" stroke-width="1" fill="none"/>
+
+                    <!-- Left Pane: Claude Code -->
+                    <rect x="16" y="16" width="374" height="380" rx="8" fill="#111113" stroke="#27272a"/>
+                    <!-- Left pane header -->
+                    <rect x="16" y="16" width="374" height="36" rx="8" fill="#1a1a1d"/>
+                    <rect x="16" y="44" width="374" height="8" fill="#1a1a1d"/>
+                    <circle cx="34" cy="34" r="5" fill="#ef4444" opacity="0.7"/>
+                    <circle cx="50" cy="34" r="5" fill="#eab308" opacity="0.7"/>
+                    <circle cx="66" cy="34" r="5" fill="#22c55e" opacity="0.7"/>
+                    <text x="203" y="38" font-family="JetBrains Mono, monospace" font-size="12" fill="#D97706" text-anchor="middle" font-weight="600">Claude Code</text>
+
+                    <!-- Claude prompt -->
+                    <text x="32" y="76" font-family="JetBrains Mono, monospace" font-size="10" fill="#D97706">$</text>
+                    <text x="44" y="76" font-family="JetBrains Mono, monospace" font-size="10" fill="#a1a1aa">Fix this TypeError in middleware:</text>
+
+                    <!-- Claude response -->
+                    <text x="32" y="104" font-family="JetBrains Mono, monospace" font-size="10" fill="#D97706">Claude:</text>
+                    <text x="32" y="120" font-family="JetBrains Mono, monospace" font-size="10" fill="#a1a1aa">Found it. The `user` object can be</text>
+                    <text x="32" y="134" font-family="JetBrains Mono, monospace" font-size="10" fill="#a1a1aa">null when auth middleware skips.</text>
+                    <text x="32" y="148" font-family="JetBrains Mono, monospace" font-size="10" fill="#a1a1aa">Adding null check in getUserRole().</text>
+
+                    <!-- Diff header -->
+                    <text x="32" y="176" font-family="JetBrains Mono, monospace" font-size="10" fill="#71717a">--- src/middleware/auth.ts</text>
+                    <text x="32" y="190" font-family="JetBrains Mono, monospace" font-size="10" fill="#71717a">+++ src/middleware/auth.ts</text>
+
+                    <!-- Diff lines - removed -->
+                    <rect x="28" y="198" width="350" height="16" rx="2" fill="#ef4444" opacity="0.1"/>
+                    <text x="32" y="210" font-family="JetBrains Mono, monospace" font-size="10" fill="#ef4444">- const role = user.role;</text>
+
+                    <rect x="28" y="216" width="350" height="16" rx="2" fill="#ef4444" opacity="0.1"/>
+                    <text x="32" y="228" font-family="JetBrains Mono, monospace" font-size="10" fill="#ef4444">- return role === 'admin';</text>
+
+                    <!-- Diff lines - added -->
+                    <rect x="28" y="238" width="350" height="16" rx="2" fill="#22c55e" opacity="0.1"/>
+                    <text x="32" y="250" font-family="JetBrains Mono, monospace" font-size="10" fill="#22c55e">+ if (!user) return false;</text>
+
+                    <rect x="28" y="256" width="350" height="16" rx="2" fill="#22c55e" opacity="0.1"/>
+                    <text x="32" y="268" font-family="JetBrains Mono, monospace" font-size="10" fill="#22c55e">+ const role = user.role ?? 'guest';</text>
+
+                    <rect x="28" y="274" width="350" height="16" rx="2" fill="#22c55e" opacity="0.1"/>
+                    <text x="32" y="286" font-family="JetBrains Mono, monospace" font-size="10" fill="#22c55e">+ return role === 'admin';</text>
+
+                    <!-- Accept prompt -->
+                    <rect x="28" y="310" width="180" height="26" rx="6" fill="#22c55e" opacity="0.15" stroke="#22c55e" stroke-width="0.5"/>
+                    <text x="40" y="327" font-family="JetBrains Mono, monospace" font-size="10" fill="#22c55e" font-weight="600">Accept fix? [Y/n]</text>
+
+                    <!-- Divider -->
+                    <line x1="400" y1="24" x2="400" y2="388" stroke="#27272a" stroke-width="1"/>
+
+                    <!-- Right Pane: Error Logs -->
+                    <rect x="410" y="16" width="374" height="380" rx="8" fill="#111113" stroke="#27272a"/>
+                    <!-- Right pane header -->
+                    <rect x="410" y="16" width="374" height="36" rx="8" fill="#1a1a1d"/>
+                    <rect x="410" y="44" width="374" height="8" fill="#1a1a1d"/>
+                    <circle cx="428" cy="34" r="5" fill="#ef4444" opacity="0.7"/>
+                    <circle cx="444" cy="34" r="5" fill="#eab308" opacity="0.7"/>
+                    <circle cx="460" cy="34" r="5" fill="#22c55e" opacity="0.7"/>
+                    <text x="597" y="38" font-family="JetBrains Mono, monospace" font-size="12" fill="#ef4444" text-anchor="middle" font-weight="600">Error Logs</text>
+
+                    <!-- Stack trace -->
+                    <text x="426" y="76" font-family="JetBrains Mono, monospace" font-size="10" fill="#ef4444">TypeError: Cannot read properties</text>
+                    <text x="426" y="90" font-family="JetBrains Mono, monospace" font-size="10" fill="#ef4444">of null (reading 'role')</text>
+                    <text x="426" y="112" font-family="JetBrains Mono, monospace" font-size="10" fill="#71717a">at getUserRole (auth.ts:24:18)</text>
+                    <text x="426" y="126" font-family="JetBrains Mono, monospace" font-size="10" fill="#71717a">at authMiddleware (auth.ts:31:5)</text>
+                    <text x="426" y="140" font-family="JetBrains Mono, monospace" font-size="10" fill="#71717a">at Layer.handle (router/layer.js:95)</text>
+                    <text x="426" y="154" font-family="JetBrains Mono, monospace" font-size="10" fill="#71717a">at next (router/route.js:144)</text>
+                    <text x="426" y="168" font-family="JetBrains Mono, monospace" font-size="10" fill="#71717a">at cors (node_modules/cors:21)</text>
+                    <text x="426" y="182" font-family="JetBrains Mono, monospace" font-size="10" fill="#71717a">at expressInit (express.js:43)</text>
+
+                    <text x="426" y="210" font-family="JetBrains Mono, monospace" font-size="10" fill="#ef4444">[ERROR] 14:23:07 POST /api/users</text>
+                    <text x="426" y="224" font-family="JetBrains Mono, monospace" font-size="10" fill="#ef4444">Status: 500 Internal Server Error</text>
+
+                    <text x="426" y="252" font-family="JetBrains Mono, monospace" font-size="10" fill="#71717a">Request headers:</text>
+                    <text x="426" y="266" font-family="JetBrains Mono, monospace" font-size="10" fill="#71717a">  Authorization: Bearer eyJhb...</text>
+                    <text x="426" y="280" font-family="JetBrains Mono, monospace" font-size="10" fill="#71717a">  Content-Type: application/json</text>
+
+                    <!-- Arrow from right to left -->
+                    <defs>
+                        <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+                            <polygon points="0 0, 8 3, 0 6" fill="#D97706"/>
+                        </marker>
+                    </defs>
+                    <path d="M 540 340 C 540 370, 460 370, 310 370 L 260 340" stroke="#D97706" stroke-width="1.5" stroke-dasharray="6 3" fill="none" marker-end="url(#arrowhead)"/>
+                    <rect x="430" y="330" width="220" height="22" rx="4" fill="#D97706" opacity="0.12"/>
+                    <text x="540" y="345" font-family="Space Grotesk, sans-serif" font-size="10" fill="#D97706" text-anchor="middle" font-weight="500">copy error &rarr; paste to Claude</text>
+
+                    <!-- Bottom: Test Results -->
+                    <rect x="16" y="412" width="768" height="92" rx="8" fill="#111113" stroke="#27272a"/>
+                    <rect x="16" y="412" width="768" height="32" rx="8" fill="#1a1a1d"/>
+                    <rect x="16" y="436" width="768" height="8" fill="#1a1a1d"/>
+                    <text x="400" y="432" font-family="JetBrains Mono, monospace" font-size="12" fill="#22c55e" text-anchor="middle" font-weight="600">Test Results (after fix)</text>
+
+                    <!-- Test checkmarks -->
+                    <text x="40" y="470" font-family="JetBrains Mono, monospace" font-size="11" fill="#22c55e">&#x2713; auth middleware handles null user</text>
+                    <text x="40" y="488" font-family="JetBrains Mono, monospace" font-size="11" fill="#22c55e">&#x2713; getUserRole returns false for unauthenticated</text>
+                    <text x="460" y="470" font-family="JetBrains Mono, monospace" font-size="11" fill="#22c55e">&#x2713; POST /api/users returns 403</text>
+                    <text x="460" y="488" font-family="JetBrains Mono, monospace" font-size="11" fill="#22c55e">&#x2713; 4 passing (42ms)</text>
+                </svg>
+            </div>
+
+            <h2>Why Claude Code Is Great at Debugging</h2>
+
+            <p>Most debugging tools show you where the error happened. Claude Code shows you <em>why</em>. The difference matters because the line that throws the error is rarely the line that caused it. The real bug is usually three function calls away, in a completely different file, where someone forgot to handle an edge case.</p>
+
+            <p>Claude Code can read your entire codebase, not just the file with the error. When you hand it a stack trace, it does not just parse the top frame and call it a day. It opens the function that threw the exception, reads the caller, traces the data flow backward, and identifies the actual root cause. It understands stack traces, error messages, and runtime exceptions natively because it has seen millions of them.</p>
+
+            <p>The correlation ability is what sets it apart from pasting an error into a chat window. Claude Code sees the error, reads the function, checks what called it, examines the data types flowing through, and identifies where the assumption broke down. Then it suggests a fix and applies it directly to your file. No copy-pasting snippets from a web UI. No manually translating suggestions into actual code changes. And after applying the fix, it can run your tests to verify that the solution actually works.</p>
+
+            <h2>The Debugging Workspace</h2>
+
+            <p>Before you start debugging, set up a Beam workspace specifically designed for it. The right layout makes the difference between a two-minute fix and a twenty-minute ordeal spent switching between windows and losing your place.</p>
+
+            <p>Here is how to structure your debugging workspace in Beam:</p>
+
+            <ul>
+                <li><strong>Tab 1: Claude Code</strong> -- your debugging partner. This is where you paste errors, ask questions, and accept fixes.</li>
+                <li><strong>Tab 2: App/Server</strong> -- the running application that has the bug. You need to see it respond after fixes are applied.</li>
+                <li><strong>Tab 3: Logs</strong> -- tailing error logs, console output, or whatever stream is producing the error messages.</li>
+                <li><strong>Tab 4: Tests</strong> -- running test suites to verify that fixes work and nothing else broke.</li>
+            </ul>
+
+            <p>The critical piece is the split pane. Press <span class="kbd">&#8984;&#8997;&#8963;T</span> to split your view, then put Claude Code on the left and your logs or error output on the right. You need to see the error and Claude's response simultaneously. When you are watching an error scroll by in real time and can immediately paste it into Claude Code without switching windows, your debugging loop drops from minutes to seconds.</p>
+
+            <h2>Debugging Stack Traces</h2>
+
+            <p>Stack traces are the most common debugging starting point, and they are where Claude Code shines brightest. The workflow is straightforward: copy the stack trace from your logs tab, switch to your Claude Code pane, and paste it with a simple prompt like "Here's a stack trace from my Express app. What's causing this and how do I fix it?"</p>
+
+            <p>Claude reads the trace from top to bottom. It opens the file referenced in the top frame, reads the function, then follows the call chain down. It does not just look at the line that threw -- it examines the entire path that led to the error. Within seconds, it identifies the root cause and proposes a fix as a diff that you can accept with a single keystroke.</p>
+
+            <p>Consider a common scenario: a <code>TypeError: Cannot read properties of null</code> somewhere deep in an Express middleware chain. A human developer would open the file, look at the line, realize the variable might be null, then wonder where it comes from. Claude Code does the same thing, but it does it in seconds. It traces the null back through three function calls to a missing guard clause in an authentication check, proposes the null check, and the error disappears from your logs tab on the right.</p>
+
+            <h2>Debugging Runtime Errors</h2>
+
+            <p>Runtime errors that only appear under specific conditions are Claude Code's specialty. These are the bugs that work fine in your tests but break in production with certain inputs. They are maddening to debug manually because you need to reproduce the exact conditions, then step through the code path that triggers them.</p>
+
+            <p>Instead of setting breakpoints and stepping through code, describe the condition to Claude: "My API returns 500 on POST /users when the email contains a plus sign." Claude reads the route handler, the validation logic, and the database query. It does not need you to point it at the right file because it can navigate the codebase itself. Within moments, it finds the issue: the email validation regex does not account for the <code>+</code> character, which is valid in email addresses but gets URL-decoded incorrectly before hitting the regex.</p>
+
+            <p>Claude applies the fix to your validation logic, then writes a test case specifically for the plus-sign scenario. You run the test in Tab 4, it passes, and you now have a regression test that prevents this exact bug from returning. The entire interaction takes less time than it would to set up a debugger breakpoint at the right location.</p>
+
+            <h2>Debugging Logic Bugs</h2>
+
+            <p>Logic bugs are the hardest category. The code runs without errors, no exceptions are thrown, but the output is wrong. These are the bugs that make you stare at code for an hour, convinced it should work, until you finally spot the subtle mistake. Claude Code dramatically shortens that stare.</p>
+
+            <p>Take a real-world example: "The shopping cart total is sometimes wrong when there are more than 3 items with discounts." This is the kind of bug that can hide for weeks because it only manifests under specific combinations of items and discount rules. A human developer would need to trace through the calculation logic with a pen and paper, tracking values at each step.</p>
+
+            <p>Claude Code reads the cart calculation logic, the discount application functions, and the checkout flow. It traces the order of operations and finds the issue: discounts are applied before tax calculation, but the final total pulls from a pre-discount subtotal field that was cached earlier in the pipeline. The cart model, the discount logic, and the checkout flow are all in different files, but Claude sees them simultaneously. This multi-file awareness is exactly where AI debugging outperforms the "one file open at a time" approach most developers use.</p>
+
+            <div class="highlight">
+                <h3>The Copy-Paste Debugging Loop</h3>
+                <p>The fastest debugging workflow is deceptively simple. With Beam's split panes, it becomes almost reflexive:</p>
+                <ol>
+                    <li>Error appears in your logs tab (right pane)</li>
+                    <li>Copy it</li>
+                    <li>Paste into Claude Code (left pane): "Fix this: [error]"</li>
+                    <li>Claude reads, diagnoses, and fixes the code</li>
+                    <li>Check the logs tab -- error resolved</li>
+                    <li>Run tests in Tab 4 to verify nothing else broke</li>
+                </ol>
+                <p>Total time: usually under 2 minutes for common errors. For harder bugs, maybe 5. Beam's split panes make this loop seamless because you never switch windows. The error is on the right, the fix is on the left, and your eyes just move back and forth.</p>
+            </div>
+
+            <h2>Debugging with Context: Project Memory</h2>
+
+            <p>Raw debugging ability is one thing, but Claude Code gets dramatically better at debugging when it has project context. This is where <code>CLAUDE.md</code> -- the project memory file -- earns its place in your workflow.</p>
+
+            <p>Document the things that would trip up any new developer on the project: known gotchas like "the ORM auto-pluralizes table names" or "auth tokens expire after 1 hour in dev mode." Document the architecture: "Requests flow through middleware, then the router, then the handler, then the service layer, then the repository." These seem obvious when you have been working on the project for months, but they are exactly the kind of context that makes debugging faster.</p>
+
+            <p>When Claude Code encounters a bug, it reads <code>CLAUDE.md</code> first. Instead of exploring the entire codebase to understand the architecture, it already knows that the bug is probably in the repository layer because the error involves a database query and the architecture notes say that is where all database access lives. This focused search means faster diagnosis. "The bug is in the repository layer" is a much better starting point than "the bug is somewhere in these 200 files."</p>
+
+            <h2>Advanced: Let Claude Write the Test First</h2>
+
+            <p>For hard-to-reproduce bugs, flip the debugging workflow on its head: ask Claude Code to write a failing test before writing the fix. This is test-driven debugging, and it is remarkably effective.</p>
+
+            <p>Start with a description of the bug: "Write a test that reproduces this -- when a user with role=admin tries to delete a project they don't own, it should return 403 but currently returns 200." Claude writes the test, you run it in your tests tab, and it fails. That failing test is confirmation that you have accurately described the bug and that the test correctly captures the expected behavior.</p>
+
+            <p>Now ask Claude to fix the code. It reads the test to understand exactly what needs to change, then modifies the authorization logic. You run the test again and it passes. The entire debugging cycle is captured in a test that now lives in your test suite permanently. Every future change to the authorization logic will be checked against this scenario. You walked in with a bug and walked out with a bug fix and a regression test, all in a single Claude Code session.</p>
+
+            <div class="cta-box">
+                <h3>Debug Faster with AI</h3>
+                <p>Download Beam and set up the perfect debugging workspace for Claude Code.</p>
+                <a href="../" class="btn">Download Beam for macOS</a>
+            </div>
+
+            <h2>Summary</h2>
+
+            <p>Debugging with Claude Code is not about replacing your debugging skills -- it is about amplifying them. Here are the key workflow steps to internalize:</p>
+
+            <ul>
+                <li>Set up a <strong>dedicated debugging workspace</strong> in Beam with Claude Code, your app, logs, and tests in separate tabs</li>
+                <li>Use <strong>split panes</strong> (<span class="kbd">&#8984;&#8997;&#8963;T</span>) to see errors and Claude's fixes side by side</li>
+                <li>For <strong>stack traces</strong>, paste the full trace and let Claude follow the call chain to the root cause</li>
+                <li>For <strong>runtime errors</strong>, describe the conditions that trigger the bug and let Claude navigate the codebase</li>
+                <li>For <strong>logic bugs</strong>, describe the wrong output and let Claude trace multi-file data flow</li>
+                <li>Use the <strong>copy-paste debugging loop</strong>: error in right pane, fix in left pane, verify in test tab</li>
+                <li>Maintain <strong>CLAUDE.md</strong> with architecture notes and known gotchas to accelerate diagnosis</li>
+                <li>For hard bugs, ask Claude to <strong>write a failing test first</strong>, then fix the code to make it pass</li>
+            </ul>
+
+            <p>Every bug is an opportunity to make your codebase more resilient. With Claude Code handling the tedious trace-reading and multi-file correlation, you can focus on understanding the <em>why</em> and preventing the next bug before it happens.</p>
+
+            <div class="related-articles">
+                <h2>Related Articles</h2>
+                <div class="related-grid">
+                    <a href="claude-code-api-development.html" class="related-card">
+                        <h4>Claude Code for API Development</h4>
+                        <p>Build, test, and iterate on APIs faster with AI-assisted development.</p>
+                    </a>
+                    <a href="claude-code-keyboard-shortcuts.html" class="related-card">
+                        <h4>Claude Code Keyboard Shortcuts & Tips</h4>
+                        <p>Master the shortcuts that make Claude Code faster and more efficient.</p>
+                    </a>
+                    <a href="organizing-claude-code-sessions.html" class="related-card">
+                        <h4>Organizing Claude Code Sessions</h4>
+                        <p>Keep your AI coding workflow clean with workspaces, tabs, and layouts.</p>
+                    </a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>
+                <a href="../">Beam</a> &bull; Terminal Organizer for macOS &bull;
+                <a href="mailto:frank@nextuptechnologies.co">Contact</a>
+            </p>
+
+            <p style="margin-top: 12px; font-size: 0.8rem;">
+                <a href="/privacy.html" style="color: #71717a; text-decoration: none;">Privacy Policy</a> &bull;
+                <a href="/terms.html" style="color: #71717a; text-decoration: none;">Terms of Service</a>
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>

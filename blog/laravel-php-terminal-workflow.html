@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D0XH8B0RKL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-D0XH8B0RKL');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laravel Artisan Power User: Organize Your PHP Development Terminal | Beam</title>
+    <meta name="description" content="Master your Laravel terminal workflow with organized Artisan commands, Vite dev server, queue workers, Tinker REPL, and AI coding agents -- all in one Beam workspace.">
+    <meta name="keywords" content="Laravel terminal workflow, PHP Artisan terminal, Laravel developer setup, Laravel development environment 2026, PHP terminal management">
+    <meta name="author" content="NextUp Technologies">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://getbeam.dev/blog/laravel-php-terminal-workflow.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://getbeam.dev/blog/laravel-php-terminal-workflow.html">
+    <meta property="og:title" content="Laravel Artisan Power User: Organize Your PHP Development Terminal">
+    <meta property="og:description" content="Master your Laravel terminal workflow with organized Artisan commands, Vite dev server, queue workers, and AI coding agents.">
+    <meta property="og:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Laravel Artisan Power User: Organize Your PHP Development Terminal">
+    <meta name="twitter:description" content="Master your Laravel terminal workflow with organized Artisan commands, Vite dev server, queue workers, and AI coding agents.">
+    <meta name="twitter:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Laravel Artisan Power User: Organize Your PHP Development Terminal",
+        "description": "Master your Laravel terminal workflow with organized Artisan commands, Vite dev server, queue workers, Tinker REPL, and AI coding agents in one Beam workspace.",
+        "author": {
+            "@type": "Organization",
+            "name": "NextUp Technologies"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Beam"
+        },
+        "datePublished": "2026-02-11",
+        "keywords": "Laravel terminal workflow, PHP Artisan terminal, Laravel developer setup, Laravel development environment 2026, PHP terminal management"
+    }
+    </script>
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #111113;
+            --bg-tertiary: #1a1a1d;
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.4);
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --border: #27272a;
+            --success: #22c55e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        header {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 60px;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1.5rem;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            background: var(--accent);
+            color: white;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+        }
+
+        article {
+            padding-bottom: 80px;
+        }
+
+        .breadcrumb {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+        }
+
+        .breadcrumb a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .meta {
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            font-size: 0.95rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 48px 0 20px;
+            color: var(--text-primary);
+        }
+
+        h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 32px 0 12px;
+            color: var(--text-primary);
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        ul, ol {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            padding-left: 24px;
+        }
+
+        li {
+            margin-bottom: 12px;
+        }
+
+        code {
+            font-family: 'JetBrains Mono', monospace;
+            background: var(--bg-tertiary);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            border: 1px solid var(--border);
+        }
+
+        pre {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px 24px;
+            margin: 24px 0;
+            overflow-x: auto;
+            line-height: 1.6;
+        }
+
+        pre code {
+            background: none;
+            border: none;
+            padding: 0;
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+        }
+
+        .highlight {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 32px 0;
+        }
+
+        .highlight h3 {
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            margin-top: 0;
+            color: var(--text-primary);
+        }
+
+        .tip {
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 24px 0;
+        }
+
+        .tip strong {
+            color: var(--success);
+        }
+
+        .kbd {
+            display: inline-block;
+            padding: 2px 8px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .cta-box h3 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+            margin-top: 0;
+        }
+
+        .cta-box p {
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 24px;
+        }
+
+        .cta-box .btn {
+            background: white;
+            color: var(--accent);
+        }
+
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+
+        .related-articles { margin-top: 60px; padding-top: 40px; border-top: 1px solid var(--border); }
+        .related-articles h2 { font-size: 1.5rem; margin-bottom: 24px; }
+        .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .related-card { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-decoration: none; transition: border-color 0.2s; }
+        .related-card:hover { border-color: var(--accent); }
+        .related-card h4 { color: white; font-size: 1rem; margin: 0 0 8px 0; }
+        .related-card p { color: var(--text-muted); font-size: 0.85rem; margin: 0; }
+        @media (max-width: 600px) { .related-grid { grid-template-columns: 1fr; } h1 { font-size: 1.8rem; } }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="../" class="logo">
+                <div class="logo-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round">
+                        <path d="M4 17l6-6-6-6M12 19h8"/>
+                    </svg>
+                </div>
+                Beam
+            </a>
+            <a href="../" class="btn">Download Beam</a>
+        </div>
+    </header>
+
+    <main>
+        <article class="container">
+            <div class="breadcrumb">
+                <a href="../">Beam</a> / <a href="../#guides">Guides</a> / Laravel PHP Terminal Workflow
+            </div>
+
+            <h1>Laravel Artisan Power User: Organize Your PHP Development Terminal</h1>
+            <p class="meta">February 11, 2026 &bull; 9 min read</p>
+
+            <p>Laravel dominates PHP development. According to the 2025 JetBrains developer survey, 61% of PHP developers use Laravel as their primary framework. And at the center of every Laravel project is Artisan, the command-line interface that handles everything from spinning up a local server to running database migrations, processing queued jobs, and generating boilerplate code.</p>
+
+            <p>The problem is that a real Laravel development session does not live in one terminal. You need <code>php artisan serve</code> running in the background. You need <code>npm run dev</code> for Vite. You need a queue worker. You probably have Tinker open for quick queries. Maybe a test watcher. And now, with AI-assisted coding tools like Claude Code becoming essential to the workflow, you need yet another terminal for your AI agent. That is six terminals minimum, and most developers end up with a tangled mess of tabs with no clear organization.</p>
+
+            <p>This guide shows you how to set up a structured Laravel terminal workflow using Beam that keeps every process visible, every command accessible, and your entire development environment restorable with a single click.</p>
+
+            <h2>The Multi-Terminal Reality of Laravel Development</h2>
+
+            <p>Let's be honest about what a typical Laravel development session looks like. You open your terminal and start <code>php artisan serve</code>. Then you realize you need Vite for your frontend assets, so you open another tab and run <code>npm run dev</code>. A few minutes later you need to process a queued job, so you open a third tab for <code>php artisan queue:work</code>. Then you want to check a model's attributes quickly, so you open Tinker. Before you know it, you have half a dozen terminals open and you are constantly hunting for the right one.</p>
+
+            <p>Here is what is actually running during active Laravel development:</p>
+
+            <ul>
+                <li><strong><code>php artisan serve</code></strong> &mdash; The built-in development server on port 8000</li>
+                <li><strong><code>npm run dev</code></strong> &mdash; Vite dev server with hot module replacement for Blade, Vue, or React assets</li>
+                <li><strong><code>php artisan queue:work</code></strong> &mdash; Processing queued jobs (emails, notifications, file processing)</li>
+                <li><strong><code>php artisan tinker</code></strong> &mdash; The PsySH REPL for inspecting models, running queries, testing logic</li>
+                <li><strong><code>php artisan test</code></strong> or <strong><code>./vendor/bin/pest</code></strong> &mdash; Your test runner</li>
+                <li><strong><code>claude</code></strong> &mdash; Claude Code for AI-assisted development, refactoring, and code generation</li>
+            </ul>
+
+            <p>That is six concurrent processes. Each one needs to stay running. Each one produces output you may need to check at any moment. And switching between them by clicking through a flat list of identical-looking tabs is a constant source of friction.</p>
+
+            <h2>The Beam Workspace Setup for Laravel</h2>
+
+            <p>The solution is to organize all of these processes into a single named workspace with clearly labeled tabs. In Beam, press <span class="kbd">&#8984;N</span> to create a new workspace and name it after your Laravel project.</p>
+
+            <p>Here is the workspace layout that works for most Laravel projects:</p>
+
+            <div class="highlight">
+                <h3>Workspace: "MyLaravelApp"</h3>
+                <ul>
+                    <li><strong>Tab 1: Artisan Serve</strong> &mdash; <code>php artisan serve</code></li>
+                    <li><strong>Tab 2: Vite</strong> &mdash; <code>npm run dev</code></li>
+                    <li><strong>Tab 3: Queue Worker</strong> &mdash; <code>php artisan queue:work</code></li>
+                    <li><strong>Tab 4: Tinker</strong> &mdash; <code>php artisan tinker</code></li>
+                    <li><strong>Tab 5: Tests</strong> &mdash; <code>php artisan test</code> or <code>./vendor/bin/pest</code></li>
+                    <li><strong>Tab 6: Claude Code</strong> &mdash; <code>claude</code> for AI-assisted Laravel development</li>
+                </ul>
+            </div>
+
+            <p>Press <span class="kbd">&#8984;T</span> to add each new tab. Double-click the tab label to rename it so you can identify every process at a glance. No more guessing which tab is which.</p>
+
+            <p>The key insight is that each tab has a dedicated purpose. Your server output never gets mixed up with your test results. Your queue worker logs never scroll past your Tinker session. Everything has a home.</p>
+
+            <h2>Split Pane Workflows for Laravel</h2>
+
+            <p>Some processes are closely related and benefit from being visible at the same time. Beam's split panes let you view two terminals side by side within a single tab. Press <span class="kbd">&#8984;&#8997;&#8963;T</span> to split the current tab.</p>
+
+            <h3>Server + Vite Side by Side</h3>
+
+            <p>Split Tab 1 so you can see <code>php artisan serve</code> and <code>npm run dev</code> output simultaneously. When you make a Blade or Vue component change, you see both the backend response and Vite's HMR update at the same time. This is especially useful when debugging asset compilation errors or tracking down 500 errors that only appear when both servers are running.</p>
+
+            <pre><code># Left pane
+php artisan serve
+
+# Right pane
+npm run dev</code></pre>
+
+            <h3>Tinker + Test Runner Side by Side</h3>
+
+            <p>Split another tab to have Tinker on the left and your test runner on the right. Use Tinker to experiment with Eloquent queries and model relationships, then immediately verify your assumptions by running the relevant test:</p>
+
+            <pre><code># Left pane: Tinker
+php artisan tinker
+>>> User::where('email', 'like', '%@example.com')->count()
+=> 42
+>>> Order::with('items')->find(1)->total
+=> 129.99
+
+# Right pane: Run specific test
+php artisan test --filter=OrderTotalTest</code></pre>
+
+            <div class="tip">
+                <p><strong>Tip:</strong> Use <span class="kbd">&#8984;&#8997;&larr;&rarr;</span> to switch between workspaces if you are working on multiple Laravel projects simultaneously. Each workspace is completely isolated, so your e-commerce backend workspace will never interfere with your SaaS dashboard workspace.</p>
+            </div>
+
+            <h2>Laravel Sail Users: Docker Alongside Artisan</h2>
+
+            <p>If you are using Laravel Sail, your workflow is Docker-based rather than running Artisan directly. Sail wraps everything in Docker Compose, so your commands change slightly but the organizational principle remains the same.</p>
+
+            <pre><code># Start Sail (replaces artisan serve + mysql + redis + etc.)
+./vendor/bin/sail up
+
+# Run Artisan commands through Sail
+./vendor/bin/sail artisan queue:work
+./vendor/bin/sail artisan tinker
+./vendor/bin/sail artisan test
+
+# Vite through Sail
+./vendor/bin/sail npm run dev</code></pre>
+
+            <p>The advantage of the Beam workspace approach is that you can dedicate one tab to the main <code>sail up</code> output, which shows logs from all Docker containers, and then have separate tabs for individual Sail commands. When a Redis connection drops or MySQL crashes, you see it immediately in the Sail tab without hunting through mixed output.</p>
+
+            <div class="highlight">
+                <h3>Sail Workspace Layout</h3>
+                <ul>
+                    <li><strong>Tab 1: Sail Up</strong> &mdash; <code>./vendor/bin/sail up</code> (all container logs)</li>
+                    <li><strong>Tab 2: Vite</strong> &mdash; <code>./vendor/bin/sail npm run dev</code></li>
+                    <li><strong>Tab 3: Queue</strong> &mdash; <code>./vendor/bin/sail artisan queue:work</code></li>
+                    <li><strong>Tab 4: Tinker</strong> &mdash; <code>./vendor/bin/sail artisan tinker</code></li>
+                    <li><strong>Tab 5: Tests</strong> &mdash; <code>./vendor/bin/sail artisan test</code></li>
+                    <li><strong>Tab 6: Claude Code</strong> &mdash; <code>claude</code></li>
+                </ul>
+            </div>
+
+            <h2>Artisan Command Reference by Workflow</h2>
+
+            <p>Artisan has hundreds of commands. Here are the ones you will use daily, organized by the workflow phase they belong to.</p>
+
+            <h3>Development Server &amp; Environment</h3>
+            <pre><code># Start the development server
+php artisan serve
+
+# Start on a custom port
+php artisan serve --port=8080
+
+# Clear all caches (config, route, view, application)
+php artisan optimize:clear
+
+# Rebuild all caches for performance
+php artisan optimize</code></pre>
+
+            <h3>Database &amp; Migrations</h3>
+            <pre><code># Run pending migrations
+php artisan migrate
+
+# Roll back the last migration batch
+php artisan migrate:rollback
+
+# Reset and re-run all migrations + seeders
+php artisan migrate:fresh --seed
+
+# Check migration status
+php artisan migrate:status
+
+# Generate a new migration
+php artisan make:migration create_orders_table</code></pre>
+
+            <h3>Code Generation</h3>
+            <pre><code># Generate a model with migration, factory, seeder, and controller
+php artisan make:model Product -mfsc
+
+# Generate a form request for validation
+php artisan make:request StoreProductRequest
+
+# Generate a resource controller
+php artisan make:controller ProductController --resource
+
+# Generate a middleware
+php artisan make:middleware EnsureApiKeyIsValid
+
+# Generate an event and listener
+php artisan make:event OrderPlaced
+php artisan make:listener SendOrderConfirmation --event=OrderPlaced</code></pre>
+
+            <h3>Queues &amp; Jobs</h3>
+            <pre><code># Start the queue worker
+php artisan queue:work
+
+# Process a single job and stop
+php artisan queue:work --once
+
+# Work with a specific queue
+php artisan queue:work --queue=emails,default
+
+# Restart all queue workers (after code changes)
+php artisan queue:restart
+
+# List failed jobs
+php artisan queue:failed
+
+# Retry a failed job
+php artisan queue:retry 5</code></pre>
+
+            <h3>Debugging &amp; Inspection</h3>
+            <pre><code># List all registered routes
+php artisan route:list
+
+# Filter routes by name or URI
+php artisan route:list --name=api
+php artisan route:list --path=users
+
+# Show application environment info
+php artisan about
+
+# Open Tinker REPL
+php artisan tinker</code></pre>
+
+            <div class="tip">
+                <p><strong>Tip:</strong> Keep a dedicated Tinker tab open at all times. It is the fastest way to test Eloquent queries, check model relationships, and verify business logic without writing a full test. Use <code>Artisan::call('migrate:status')</code> inside Tinker to check migration state without switching tabs.</p>
+            </div>
+
+            <h2>Project Memory: Teaching Claude Code Your Laravel Conventions</h2>
+
+            <p>Claude Code becomes dramatically more useful when it understands your specific Laravel project. Instead of giving it generic instructions every session, use a <code>CLAUDE.md</code> project memory file in your Laravel project root to teach it your codebase conventions once.</p>
+
+            <p>Here is an example memory file for a Laravel project:</p>
+
+            <pre><code># Project Memory: MyLaravelApp
+
+## Stack
+- Laravel 11, PHP 8.3, MySQL 8, Redis
+- Frontend: Blade + Livewire 3, Tailwind CSS
+- Testing: Pest PHP with parallel execution
+
+## Architecture
+- Domain-driven structure: app/Domain/{Feature}/
+- Actions pattern: single-purpose action classes
+- Form Requests for all validation
+- API resources for all JSON responses
+
+## Models & Relationships
+- User hasMany Orders, hasOne Profile
+- Order belongsTo User, hasMany OrderItems
+- Product belongsToMany Category (pivot: category_product)
+
+## Conventions
+- Route model binding everywhere
+- Gate-based authorization (no policies)
+- Queue all emails via ShouldQueue
+- Money stored as integers (cents), cast with MoneyCast
+- Dates use Carbon, stored as UTC
+
+## Commands
+- php artisan test --parallel (always run parallel)
+- php artisan pint (code style before commit)
+- ./vendor/bin/pest --filter={test} (run specific test)</code></pre>
+
+            <p>With this memory in place, Claude Code knows your models, your patterns, and your conventions. When you ask it to create a new feature, it follows your project's existing architecture instead of defaulting to generic Laravel scaffolding.</p>
+
+            <h2>Quick Switcher: Jumping Between Laravel Projects</h2>
+
+            <p>Most Laravel developers work on more than one project. You might have a client's e-commerce site, an internal admin panel, and a personal SaaS product all in various stages of development. Each one gets its own Beam workspace with its own set of tabs.</p>
+
+            <p>Press <span class="kbd">&#8984;P</span> to open the Quick Switcher. Type a few characters from the workspace name, tab name, or even the command running in that tab, and Beam fuzzy-matches across everything. Type "tinker" and it finds your Tinker session regardless of which workspace it is in. Type "queue" and you jump straight to the queue worker tab for whichever project you need.</p>
+
+            <p>This is transformative when you are context-switching between projects. Instead of mentally tracking which window belongs to which project and which tab is running which command, you just search and jump.</p>
+
+            <h2>Save Layouts: One-Click Workspace Restoration</h2>
+
+            <p>Setting up six tabs with the right commands in the right working directories takes a few minutes. You only want to do it once. Beam's layout saving lets you capture your entire workspace configuration and restore it instantly.</p>
+
+            <ol>
+                <li>Set up your workspace with all six tabs, split panes, and working directories</li>
+                <li>Press <span class="kbd">&#8984;S</span> to save the layout</li>
+                <li>Name it "Laravel - MyApp"</li>
+                <li>Tomorrow, restore the layout and your entire development environment is back exactly as you left it</li>
+            </ol>
+
+            <p>This is especially powerful if you work on multiple Laravel projects. Save a layout for each one. Monday morning, you open Beam, restore the layout for whichever project you are focusing on, and you are coding within seconds. No setup. No remembering which commands to run. No checking which port is free.</p>
+
+            <div class="highlight">
+                <h3>Layout Tip: Multiple Environments</h3>
+                <p>Save separate layouts for different development modes. One layout for full-stack work (server, Vite, queue, Tinker, tests, Claude Code). Another for API-only work (server, queue, tests, Claude Code). Another for frontend-focused work (Vite, tests, Claude Code). Switch between them depending on what you are building that day.</p>
+            </div>
+
+            <h2>Testing with Pest: Parallel Runner in Its Own Tab</h2>
+
+            <p>Pest has become the preferred testing framework in the Laravel ecosystem. Its expressive syntax, architectural testing, and parallel execution make it a significant upgrade over PHPUnit. Give it a dedicated tab in your workspace so you can run tests continuously without interrupting anything else.</p>
+
+            <pre><code># Run the full test suite in parallel
+php artisan test --parallel
+
+# Run a specific test file
+./vendor/bin/pest tests/Feature/OrderTest.php
+
+# Run tests matching a filter
+./vendor/bin/pest --filter="can place order"
+
+# Run only tests that failed last time
+./vendor/bin/pest --retry
+
+# Run with coverage report
+./vendor/bin/pest --coverage --min=80
+
+# Run architectural tests only
+./vendor/bin/pest tests/Architecture/</code></pre>
+
+            <p>With Pest running in its own tab and Claude Code in another, you get a tight feedback loop. Ask Claude Code to generate a feature, switch to the test tab with <span class="kbd">&#8984;P</span>, run the tests, and if something fails, paste the error back into Claude Code. The entire cycle takes seconds, not minutes.</p>
+
+            <div class="tip">
+                <p><strong>Tip:</strong> Use Pest's <code>--retry</code> flag to re-run only the tests that failed on the last run. Combined with a dedicated test tab, this gives you the fastest possible feedback loop when fixing broken tests.</p>
+            </div>
+
+            <h2>Bringing It All Together</h2>
+
+            <p>Laravel development in 2026 involves more concurrent terminal processes than ever before. Between Artisan commands, Vite, queue workers, Tinker, Pest, and AI coding agents, your terminal is the nerve center of your entire workflow. Treating it as an afterthought leads to constant friction and lost context.</p>
+
+            <p>With Beam, you get a structured system that scales with your workflow:</p>
+
+            <ul>
+                <li><strong>Named workspaces</strong> isolate each Laravel project completely</li>
+                <li><strong>Labeled tabs</strong> give every process a permanent, identifiable home</li>
+                <li><strong>Split panes</strong> let you monitor related processes side by side</li>
+                <li><strong>Quick Switcher</strong> (<span class="kbd">&#8984;P</span>) gets you to any terminal in any project instantly</li>
+                <li><strong>Saved layouts</strong> (<span class="kbd">&#8984;S</span>) restore your entire environment with one click</li>
+                <li><strong>Project memory</strong> makes Claude Code understand your specific codebase conventions</li>
+                <li><strong>Undo Close</strong> (<span class="kbd">&#8984;Z</span>) recovers accidentally closed tabs</li>
+            </ul>
+
+            <p>Stop hunting for terminals. Start building features.</p>
+
+            <div class="cta-box">
+                <h3>Ready to Organize Your Laravel Workflow?</h3>
+                <p>Download Beam free and set up your perfect Laravel development environment in minutes.</p>
+                <a href="../" class="btn">Download Beam for macOS</a>
+            </div>
+
+            <div class="related-articles">
+                <h2>Related Articles</h2>
+                <div class="related-grid">
+                    <a href="beam-claude-code-setup.html" class="related-card">
+                        <h4>Setting Up Beam for Claude Code</h4>
+                        <p>Step-by-step guide to integrating Claude Code with Beam workspaces.</p>
+                    </a>
+                    <a href="best-terminal-app-ai-coding-2026.html" class="related-card">
+                        <h4>Best Terminal App for AI Coding in 2026</h4>
+                        <p>Why your choice of terminal matters for AI-assisted development.</p>
+                    </a>
+                    <a href="complete-guide-beam-workspaces.html" class="related-card">
+                        <h4>Complete Guide to Beam Workspaces</h4>
+                        <p>Master workspaces, tabs, splits, and layouts for any development workflow.</p>
+                    </a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>
+                <a href="../">Beam</a> &bull; Built by <a href="https://nextuptechnologies.co">NextUp</a> &bull;
+                <a href="mailto:frank@nextuptechnologies.co">Contact</a>
+            </p>
+
+            <p style="margin-top: 12px; font-size: 0.8rem;">
+                <a href="/privacy.html" style="color: #71717a; text-decoration: none;">Privacy Policy</a> &bull;
+                <a href="/terms.html" style="color: #71717a; text-decoration: none;">Terms of Service</a>
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>

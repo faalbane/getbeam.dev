@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D0XH8B0RKL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-D0XH8B0RKL');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Use Claude Code for Go Development: The Complete Workflow | Beam</title>
+    <meta name="description" content="Master Go development with Claude Code and Beam. Learn how to scaffold Go projects, generate idiomatic tests, handle concurrency patterns, and manage microservices — all from the terminal.">
+    <meta name="keywords" content="Claude Code Go, Claude Code Golang, AI coding Go development, Go developer AI workflow, Golang Claude Code, vibe coding Go, Go microservices Claude Code, Go testing AI, terminal Go development">
+    <meta name="author" content="NextUp Technologies">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://getbeam.dev/blog/claude-code-go-development.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://getbeam.dev/blog/claude-code-go-development.html">
+    <meta property="og:title" content="How to Use Claude Code for Go Development: The Complete Workflow">
+    <meta property="og:description" content="Master Go development with Claude Code and Beam. Scaffold projects, generate idiomatic tests, handle concurrency, and manage microservices from the terminal.">
+    <meta property="og:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="How to Use Claude Code for Go Development: The Complete Workflow">
+    <meta name="twitter:description" content="Master Go development with Claude Code and Beam. Scaffold projects, generate idiomatic tests, handle concurrency, and manage microservices from the terminal.">
+    <meta name="twitter:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "How to Use Claude Code for Go Development: The Complete Workflow",
+        "description": "Master Go development with Claude Code and Beam. Learn how to scaffold Go projects, generate idiomatic tests, handle concurrency patterns, and manage microservices from the terminal.",
+        "author": {
+            "@type": "Organization",
+            "name": "NextUp Technologies"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Beam"
+        },
+        "datePublished": "2026-02-11",
+        "keywords": "Claude Code Go, Claude Code Golang, AI coding Go development, Go developer AI workflow, Golang Claude Code, vibe coding Go"
+    }
+    </script>
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #111113;
+            --bg-tertiary: #1a1a1d;
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.4);
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --border: #27272a;
+            --success: #22c55e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        header {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 60px;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1.5rem;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            background: var(--accent);
+            color: white;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+        }
+
+        article {
+            padding-bottom: 80px;
+        }
+
+        .breadcrumb {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+        }
+
+        .breadcrumb a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .meta {
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            font-size: 0.95rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 48px 0 20px;
+            color: var(--text-primary);
+        }
+
+        h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 32px 0 12px;
+            color: var(--text-primary);
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        ul, ol {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            padding-left: 24px;
+        }
+
+        li {
+            margin-bottom: 12px;
+        }
+
+        .highlight {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 32px 0;
+        }
+
+        .highlight h3 {
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            margin-top: 0;
+            color: var(--text-primary);
+        }
+
+        code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            background: var(--bg-tertiary);
+            padding: 2px 6px;
+            border-radius: 4px;
+            border: 1px solid var(--border);
+        }
+
+        pre {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px 24px;
+            margin: 24px 0;
+            overflow-x: auto;
+            line-height: 1.6;
+        }
+
+        pre code {
+            background: none;
+            border: none;
+            padding: 0;
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+        }
+
+        .kbd {
+            display: inline-block;
+            padding: 2px 8px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+        }
+
+        .prompt-example {
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--accent);
+            border-radius: 0 12px 12px 0;
+            padding: 16px 24px;
+            margin: 20px 0;
+            font-style: italic;
+            color: var(--text-secondary);
+        }
+
+        .prompt-example::before {
+            content: "Prompt: ";
+            font-style: normal;
+            font-weight: 600;
+            color: var(--accent);
+        }
+
+        .go-accent {
+            color: #00ADD8;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .cta-box h3 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+            margin-top: 0;
+        }
+
+        .cta-box p {
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 24px;
+        }
+
+        .cta-box .btn {
+            background: white;
+            color: var(--accent);
+        }
+
+        .workspace-diagram {
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        .workspace-diagram svg {
+            max-width: 100%;
+            height: auto;
+        }
+
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+
+        .related-articles { margin-top: 60px; padding-top: 40px; border-top: 1px solid var(--border); }
+        .related-articles h2 { font-size: 1.5rem; margin-bottom: 24px; }
+        .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .related-card { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-decoration: none; transition: border-color 0.2s; }
+        .related-card:hover { border-color: var(--accent); }
+        .related-card h4 { color: white; font-size: 1rem; margin: 0 0 8px 0; }
+        .related-card p { color: var(--text-muted); font-size: 0.85rem; margin: 0; }
+        @media (max-width: 600px) {
+            .related-grid { grid-template-columns: 1fr; }
+            h1 { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="../" class="logo">
+                <div class="logo-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round">
+                        <path d="M4 17l6-6-6-6M12 19h8"/>
+                    </svg>
+                </div>
+                Beam
+            </a>
+            <a href="../" class="btn">Download Beam</a>
+        </div>
+    </header>
+
+    <main>
+        <article class="container">
+            <div class="breadcrumb">
+                <a href="../">Beam</a> / <a href="../#guides">Guides</a> / Claude Code for Go Development
+            </div>
+
+            <h1>How to Use Claude Code for Go Development: The Complete Workflow</h1>
+            <p class="meta">February 2026 &bull; 12 min read</p>
+
+            <p>Go developers live in the terminal. Every fundamental Go workflow is CLI-first: <code>go build</code>, <code>go test</code>, <code>go run</code>, <code>go vet</code>, <code>air</code>, <code>delve</code>. There is no mandatory IDE, no required GUI. The terminal is where Go code is written, compiled, tested, and shipped.</p>
+
+            <p>That makes Go the ideal language for <strong>Claude Code</strong> &mdash; Anthropic's AI coding agent that runs entirely in your terminal. And when you pair Claude Code with <strong>Beam</strong> for terminal organization, you get a Go development workflow that is faster, cleaner, and more powerful than any traditional IDE setup.</p>
+
+            <p>This guide walks through the complete workflow: setting up your Beam workspaces for Go, scaffolding projects, generating idiomatic code, running tests in split panes, managing microservices, and integrating with every tool in the Go ecosystem.</p>
+
+            <!-- Workspace Diagram SVG -->
+            <div class="workspace-diagram">
+                <svg width="720" height="340" viewBox="0 0 720 340" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Background -->
+                    <rect width="720" height="340" rx="16" fill="#0a0a0b"/>
+                    <rect x="1" y="1" width="718" height="338" rx="15" stroke="#27272a" stroke-width="1"/>
+
+                    <!-- Title bar -->
+                    <rect x="1" y="1" width="718" height="40" rx="15" fill="#111113"/>
+                    <rect x="1" y="30" width="718" height="11" fill="#111113"/>
+                    <line x1="1" y1="41" x2="719" y2="41" stroke="#27272a" stroke-width="1"/>
+
+                    <!-- Window controls -->
+                    <circle cx="24" cy="21" r="6" fill="#ef4444"/>
+                    <circle cx="44" cy="21" r="6" fill="#eab308"/>
+                    <circle cx="64" cy="21" r="6" fill="#22c55e"/>
+
+                    <!-- Workspace title -->
+                    <text x="360" y="26" fill="#fafafa" font-family="Space Grotesk, sans-serif" font-size="13" font-weight="600" text-anchor="middle">Beam &mdash; Go API Service</text>
+
+                    <!-- Workspace tabs bar -->
+                    <rect x="1" y="41" width="718" height="36" fill="#111113"/>
+                    <line x1="1" y1="77" x2="719" y2="77" stroke="#27272a" stroke-width="1"/>
+
+                    <!-- Workspace indicators -->
+                    <rect x="12" y="49" width="90" height="22" rx="4" fill="#3b82f6" fill-opacity="0.2" stroke="#3b82f6" stroke-width="1"/>
+                    <text x="57" y="64" fill="#3b82f6" font-family="Space Grotesk, sans-serif" font-size="11" font-weight="500" text-anchor="middle">API Service</text>
+
+                    <rect x="110" y="49" width="105" height="22" rx="4" fill="transparent" stroke="#27272a" stroke-width="1"/>
+                    <text x="162" y="64" fill="#71717a" font-family="Space Grotesk, sans-serif" font-size="11" font-weight="500" text-anchor="middle">Worker Service</text>
+
+                    <rect x="223" y="49" width="75" height="22" rx="4" fill="transparent" stroke="#27272a" stroke-width="1"/>
+                    <text x="260" y="64" fill="#71717a" font-family="Space Grotesk, sans-serif" font-size="11" font-weight="500" text-anchor="middle">Gateway</text>
+
+                    <!-- Tab bar -->
+                    <rect x="1" y="77" width="718" height="32" fill="#0a0a0b"/>
+                    <line x1="1" y1="109" x2="719" y2="109" stroke="#27272a" stroke-width="1"/>
+
+                    <!-- Tabs -->
+                    <rect x="12" y="83" width="110" height="22" rx="4" fill="#1a1a1d" stroke="#3b82f6" stroke-width="1"/>
+                    <text x="67" y="98" fill="#fafafa" font-family="JetBrains Mono, monospace" font-size="10" font-weight="500" text-anchor="middle">Claude Code</text>
+
+                    <rect x="130" y="83" width="80" height="22" rx="4" fill="transparent" stroke="#27272a" stroke-width="1"/>
+                    <text x="170" y="98" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="10" text-anchor="middle">go run</text>
+
+                    <rect x="218" y="83" width="80" height="22" rx="4" fill="transparent" stroke="#27272a" stroke-width="1"/>
+                    <text x="258" y="98" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="10" text-anchor="middle">go test</text>
+
+                    <!-- Split pane divider -->
+                    <line x1="400" y1="109" x2="400" y2="340" stroke="#27272a" stroke-width="2"/>
+
+                    <!-- Left pane: Claude Code -->
+                    <rect x="1" y="109" width="399" height="230" fill="#0a0a0b"/>
+
+                    <!-- Claude Code content -->
+                    <text x="20" y="136" fill="#3b82f6" font-family="JetBrains Mono, monospace" font-size="11" font-weight="500">Claude Code</text>
+                    <text x="20" y="160" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="10">&gt; Generate a REST API with Chi router,</text>
+                    <text x="20" y="176" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="10">  health check, CRUD for users, JWT</text>
+                    <text x="20" y="192" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="10">  auth middleware, and structured logging</text>
+
+                    <text x="20" y="220" fill="#22c55e" font-family="JetBrains Mono, monospace" font-size="10">&#10003; Created cmd/api/main.go</text>
+                    <text x="20" y="238" fill="#22c55e" font-family="JetBrains Mono, monospace" font-size="10">&#10003; Created internal/handlers/user.go</text>
+                    <text x="20" y="256" fill="#22c55e" font-family="JetBrains Mono, monospace" font-size="10">&#10003; Created internal/middleware/auth.go</text>
+                    <text x="20" y="274" fill="#22c55e" font-family="JetBrains Mono, monospace" font-size="10">&#10003; Created internal/repository/user.go</text>
+                    <text x="20" y="292" fill="#00ADD8" font-family="JetBrains Mono, monospace" font-size="10">&#9654; Running go mod tidy...</text>
+
+                    <!-- Blinking cursor -->
+                    <rect x="20" y="308" width="8" height="14" fill="#3b82f6" opacity="0.8">
+                        <animate attributeName="opacity" values="0.8;0;0.8" dur="1.2s" repeatCount="indefinite"/>
+                    </rect>
+
+                    <!-- Right pane: go test output -->
+                    <rect x="400" y="109" width="319" height="230" fill="#0a0a0b"/>
+
+                    <text x="416" y="136" fill="#00ADD8" font-family="JetBrains Mono, monospace" font-size="11" font-weight="500">go test -v ./...</text>
+                    <text x="416" y="160" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="10">=== RUN   TestCreateUser</text>
+                    <text x="416" y="176" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="10">=== RUN   TestCreateUser/valid_input</text>
+                    <text x="416" y="192" fill="#22c55e" font-family="JetBrains Mono, monospace" font-size="10">--- PASS: TestCreateUser/valid_input</text>
+                    <text x="416" y="208" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="10">=== RUN   TestCreateUser/missing_email</text>
+                    <text x="416" y="224" fill="#22c55e" font-family="JetBrains Mono, monospace" font-size="10">--- PASS: TestCreateUser/missing_email</text>
+                    <text x="416" y="240" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="10">=== RUN   TestGetUser</text>
+                    <text x="416" y="256" fill="#22c55e" font-family="JetBrains Mono, monospace" font-size="10">--- PASS: TestGetUser (0.02s)</text>
+                    <text x="416" y="280" fill="#22c55e" font-family="JetBrains Mono, monospace" font-size="10" font-weight="500">PASS</text>
+                    <text x="416" y="296" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="10">ok  myapp/internal/handlers  0.34s</text>
+
+                    <!-- Go gopher accent stripe -->
+                    <rect x="1" y="335" width="718" height="4" rx="0" fill="#00ADD8" fill-opacity="0.3"/>
+                </svg>
+            </div>
+
+            <p style="text-align: center; color: var(--text-muted); font-size: 0.9rem; margin-top: -16px;">A typical Beam workspace for Go development: Claude Code on the left, test output on the right.</p>
+
+
+            <!-- Section 1: Setting Up Your Go Workspace in Beam -->
+            <h2>Setting Up Your Go Workspace in Beam</h2>
+
+            <p>The key to an efficient Go development workflow is having the right terminals in the right places. Beam's workspaces let you create a purpose-built environment for each Go service or project you are working on.</p>
+
+            <h3>Workspace 1: "API Service"</h3>
+
+            <p>Your primary Go service gets its own workspace with three tabs, each dedicated to a specific task:</p>
+
+            <ul>
+                <li><strong>Tab 1: Claude Code</strong> &mdash; Your AI coding agent. This is where you prompt Claude to generate handlers, write tests, refactor code, and debug issues. Start it by typing <code>claude</code> in the terminal.</li>
+                <li><strong>Tab 2: <code>go run</code> / <code>air</code></strong> &mdash; Your running server. Use <code>air</code> for hot reloading so every file change Claude makes is immediately reflected without manually restarting. Install it with <code>go install github.com/air-verse/air@latest</code>.</li>
+                <li><strong>Tab 3: <code>go test</code></strong> &mdash; A dedicated tab for running your test suite. Use <code>go test -v ./...</code> to watch all tests, or scope to a specific package when debugging a single feature.</li>
+            </ul>
+
+            <h3>Workspace 2: "Worker Service"</h3>
+
+            <p>If you are building microservices (and most Go developers are), create the same three-tab pattern for each service. Your worker service gets its own isolated workspace:</p>
+
+            <ul>
+                <li><strong>Tab 1: Claude Code</strong> &mdash; Separate Claude Code instance with its own context for this service's codebase</li>
+                <li><strong>Tab 2: <code>go run</code></strong> &mdash; The worker process running and consuming from your message queue</li>
+                <li><strong>Tab 3: <code>go test</code></strong> &mdash; Tests specific to the worker logic</li>
+            </ul>
+
+            <h3>Split Panes: Claude Code + Live Test Output</h3>
+
+            <p>This is where Beam's workflow becomes powerful. Press <span class="kbd">&#8984;&#8997;&#8963;T</span> to split your terminal pane. Put Claude Code on the left and <code>go test -v ./...</code> on the right. Now you can:</p>
+
+            <ol>
+                <li>Ask Claude Code to modify a handler or fix a bug on the left</li>
+                <li>Watch the test output update in real-time on the right</li>
+                <li>See failing tests turn green as Claude applies fixes</li>
+            </ol>
+
+            <p>This side-by-side feedback loop is significantly faster than switching between tabs or windows.</p>
+
+            <h3>Save Your Layout for Instant Restoration</h3>
+
+            <p>Once you have your Go workspace dialed in &mdash; workspaces named, tabs arranged, splits positioned &mdash; press <span class="kbd">&#8984;S</span> to save the entire layout. Tomorrow when you sit down to code, restore it with a single action. Every workspace, tab, and split is back exactly where you left it.</p>
+
+            <div class="highlight">
+                <h3>Pro Tip: Use Beam's Quick Switcher for Go Microservices</h3>
+                <p>When you are managing multiple Go services, press <span class="kbd">&#8984;P</span> to open the Quick Switcher. Type the service name to instantly jump to that workspace. No more hunting through tabs trying to find which terminal has your <code>user-service</code> versus your <code>payment-service</code>.</p>
+            </div>
+
+
+            <!-- Section 2: Scaffolding Go Projects with Claude Code -->
+            <h2>Scaffolding Go Projects with Claude Code</h2>
+
+            <p>Starting a new Go project from scratch is where Claude Code immediately proves its value. Instead of manually creating directories, writing boilerplate, and copying patterns from old projects, you describe what you want and Claude generates the entire scaffolding.</p>
+
+            <div class="prompt-example">
+                Create a new Go REST API project with the following structure: cmd/api/main.go as the entrypoint, internal/handlers for HTTP handlers, internal/repository for the data layer, internal/middleware for auth and logging, and internal/models for structs. Use the Chi router, structured logging with slog, and PostgreSQL with sqlx. Include a health check endpoint, CRUD endpoints for a User resource, and a Makefile with build, test, run, and lint targets.
+            </div>
+
+            <p>Claude Code will generate the entire project tree:</p>
+
+            <pre><code>myapp/
+  cmd/
+    api/
+      main.go           # Entrypoint, router setup, graceful shutdown
+  internal/
+    handlers/
+      user.go           # CreateUser, GetUser, UpdateUser, DeleteUser
+      health.go         # Health check handler
+    middleware/
+      auth.go           # JWT validation middleware
+      logging.go        # Request/response logging with slog
+    repository/
+      user.go           # PostgreSQL CRUD with sqlx
+    models/
+      user.go           # User struct with JSON + DB tags
+  go.mod
+  go.sum
+  Makefile
+  .air.toml             # Hot reload configuration</code></pre>
+
+            <p>Every file is idiomatic Go. Claude Code understands Go conventions deeply: proper package naming, interface-based design, error wrapping with <code>fmt.Errorf</code> and <code>%w</code>, context propagation, and the standard project layout.</p>
+
+            <div class="prompt-example">
+                Initialize go.mod for module github.com/myorg/myapp with Go 1.22, then run go mod tidy to fetch all dependencies.
+            </div>
+
+            <p>Claude Code handles the full lifecycle: generating code, initializing the module, and resolving dependencies. You stay in the terminal the entire time.</p>
+
+
+            <!-- Section 3: Go-Specific Claude Code Workflows -->
+            <h2>Go-Specific Claude Code Workflows</h2>
+
+            <p>Claude Code is not just a generic code generator. It understands Go's idioms, patterns, and conventions at a deep level. Here are the workflows that Go developers use most.</p>
+
+            <h3>Struct and Interface Generation</h3>
+
+            <p>Go's type system revolves around structs and interfaces. Claude Code generates them with the correct tags, methods, and documentation:</p>
+
+            <div class="prompt-example">
+                Generate a User struct with fields for ID (uuid), Email, Name, PasswordHash, CreatedAt, and UpdatedAt. Include json tags (omit password hash), db tags for sqlx, and validate tags for go-playground/validator. Then generate a UserRepository interface with Create, GetByID, GetByEmail, Update, Delete, and List methods that all accept context.Context as the first parameter and return appropriate errors.
+            </div>
+
+            <p>Claude Code will produce clean, idiomatic Go:</p>
+
+            <pre><code>type User struct {
+    ID           uuid.UUID `json:"id" db:"id"`
+    Email        string    `json:"email" db:"email" validate:"required,email"`
+    Name         string    `json:"name" db:"name" validate:"required,min=2,max=100"`
+    PasswordHash string    `json:"-" db:"password_hash"`
+    CreatedAt    time.Time `json:"created_at" db:"created_at"`
+    UpdatedAt    time.Time `json:"updated_at" db:"updated_at"`
+}
+
+type UserRepository interface {
+    Create(ctx context.Context, user *User) error
+    GetByID(ctx context.Context, id uuid.UUID) (*User, error)
+    GetByEmail(ctx context.Context, email string) (*User, error)
+    Update(ctx context.Context, user *User) error
+    Delete(ctx context.Context, id uuid.UUID) error
+    List(ctx context.Context, offset, limit int) ([]User, int, error)
+}</code></pre>
+
+            <p>Notice the details: the password hash is omitted from JSON serialization with <code>json:"-"</code>, List returns a total count alongside the slice for pagination, and every method takes <code>context.Context</code> as its first argument &mdash; exactly as the Go community expects.</p>
+
+            <h3>Error Handling Patterns</h3>
+
+            <p>Go's explicit error handling is one of its defining characteristics. Claude Code understands this and generates proper error wrapping, sentinel errors, and custom error types:</p>
+
+            <div class="prompt-example">
+                Wrap all errors in the user handler with fmt.Errorf using %w for error wrapping. Add sentinel errors for ErrUserNotFound and ErrDuplicateEmail. Create a custom AppError type that includes an HTTP status code and a user-facing message separate from the internal error detail.
+            </div>
+
+            <pre><code>var (
+    ErrUserNotFound   = errors.New("user not found")
+    ErrDuplicateEmail = errors.New("email already exists")
+)
+
+type AppError struct {
+    Code    int    `json:"-"`
+    Message string `json:"message"`
+    Err     error  `json:"-"`
+}
+
+func (e *AppError) Error() string { return e.Err.Error() }
+func (e *AppError) Unwrap() error { return e.Err }
+
+func (h *UserHandler) GetUser(w http.ResponseWriter, r *http.Request) {
+    id, err := uuid.Parse(chi.URLParam(r, "id"))
+    if err != nil {
+        respondError(w, &AppError{
+            Code:    http.StatusBadRequest,
+            Message: "invalid user ID format",
+            Err:     fmt.Errorf("parsing user ID: %w", err),
+        })
+        return
+    }
+
+    user, err := h.repo.GetByID(r.Context(), id)
+    if err != nil {
+        if errors.Is(err, ErrUserNotFound) {
+            respondError(w, &AppError{
+                Code:    http.StatusNotFound,
+                Message: "user not found",
+                Err:     fmt.Errorf("getting user %s: %w", id, err),
+            })
+            return
+        }
+        respondError(w, &AppError{
+            Code:    http.StatusInternalServerError,
+            Message: "internal server error",
+            Err:     fmt.Errorf("getting user %s: %w", id, err),
+        })
+        return
+    }
+
+    respondJSON(w, http.StatusOK, user)
+}</code></pre>
+
+            <p>Claude Code produces the kind of error handling that passes code review: errors are wrapped with context at every level, sentinel errors enable <code>errors.Is</code> checks, and the <code>AppError</code> type keeps internal details separate from user-facing messages.</p>
+
+            <h3>Table-Driven Test Generation</h3>
+
+            <p>Go's testing culture emphasizes table-driven tests with subtests. Claude Code generates them naturally:</p>
+
+            <div class="prompt-example">
+                Write table-driven tests for the CreateUser handler. Cover cases: valid input returns 201, missing email returns 400, duplicate email returns 409, invalid JSON body returns 400, and a repository error returns 500. Use httptest and a mock repository.
+            </div>
+
+            <pre><code>func TestCreateUser(t *testing.T) {
+    tests := []struct {
+        name       string
+        body       string
+        setupMock  func(*MockUserRepo)
+        wantStatus int
+        wantBody   string
+    }{
+        {
+            name: "valid input returns 201",
+            body: `{"email":"test@example.com","name":"Test User","password":"securepass123"}`,
+            setupMock: func(m *MockUserRepo) {
+                m.CreateFunc = func(ctx context.Context, u *models.User) error {
+                    return nil
+                }
+            },
+            wantStatus: http.StatusCreated,
+        },
+        {
+            name:       "missing email returns 400",
+            body:       `{"name":"Test User","password":"securepass123"}`,
+            setupMock:  func(m *MockUserRepo) {},
+            wantStatus: http.StatusBadRequest,
+            wantBody:   "email is required",
+        },
+        {
+            name: "duplicate email returns 409",
+            body: `{"email":"taken@example.com","name":"Test","password":"securepass123"}`,
+            setupMock: func(m *MockUserRepo) {
+                m.CreateFunc = func(ctx context.Context, u *models.User) error {
+                    return ErrDuplicateEmail
+                }
+            },
+            wantStatus: http.StatusConflict,
+        },
+        {
+            name:       "invalid JSON returns 400",
+            body:       `{not json}`,
+            setupMock:  func(m *MockUserRepo) {},
+            wantStatus: http.StatusBadRequest,
+        },
+        {
+            name: "repository error returns 500",
+            body: `{"email":"test@example.com","name":"Test","password":"securepass123"}`,
+            setupMock: func(m *MockUserRepo) {
+                m.CreateFunc = func(ctx context.Context, u *models.User) error {
+                    return errors.New("database connection lost")
+                }
+            },
+            wantStatus: http.StatusInternalServerError,
+        },
+    }
+
+    for _, tt := range tests {
+        t.Run(tt.name, func(t *testing.T) {
+            mock := &MockUserRepo{}
+            tt.setupMock(mock)
+            handler := NewUserHandler(mock)
+
+            req := httptest.NewRequest(http.MethodPost, "/users", strings.NewReader(tt.body))
+            req.Header.Set("Content-Type", "application/json")
+            rec := httptest.NewRecorder()
+
+            handler.CreateUser(rec, req)
+
+            if rec.Code != tt.wantStatus {
+                t.Errorf("status = %d, want %d", rec.Code, tt.wantStatus)
+            }
+        })
+    }
+}</code></pre>
+
+            <p>Every test case is a struct in the table. Each has a descriptive name that shows up in <code>go test -v</code> output. The mock is configured per test case. This is exactly the pattern the Go community recommends.</p>
+
+            <h3>Concurrency Patterns</h3>
+
+            <p>Concurrency is where Go excels, and Claude Code can generate goroutine patterns, worker pools, channels, and context-aware cancellation:</p>
+
+            <div class="prompt-example">
+                Add a worker pool that processes jobs from a channel using 10 goroutines. Each worker should respect context cancellation, log errors with slog, and report results back through a results channel. Include graceful shutdown that waits for in-flight jobs to complete.
+            </div>
+
+            <pre><code>type Job struct {
+    ID      string
+    Payload []byte
+}
+
+type Result struct {
+    JobID string
+    Err   error
+}
+
+func RunWorkerPool(ctx context.Context, jobs <-chan Job, numWorkers int) <-chan Result {
+    results := make(chan Result, numWorkers)
+    var wg sync.WaitGroup
+
+    for i := 0; i < numWorkers; i++ {
+        wg.Add(1)
+        go func(workerID int) {
+            defer wg.Done()
+            for {
+                select {
+                case job, ok := <-jobs:
+                    if !ok {
+                        return
+                    }
+                    err := processJob(ctx, job)
+                    if err != nil {
+                        slog.Error("job failed",
+                            "worker", workerID,
+                            "job_id", job.ID,
+                            "error", err,
+                        )
+                    }
+                    results <- Result{JobID: job.ID, Err: err}
+                case <-ctx.Done():
+                    slog.Info("worker shutting down", "worker", workerID)
+                    return
+                }
+            }
+        }(i)
+    }
+
+    go func() {
+        wg.Wait()
+        close(results)
+    }()
+
+    return results
+}</code></pre>
+
+            <p>Claude Code produces correct concurrent Go: the worker pool respects context cancellation, uses a <code>sync.WaitGroup</code> to track in-flight work, closes the results channel only after all workers have exited, and uses structured logging. This is production-ready code.</p>
+
+            <h3>Database Layer Generation</h3>
+
+            <p>Generating the repository implementation against an interface is one of the highest-leverage Claude Code workflows for Go developers:</p>
+
+            <div class="prompt-example">
+                Generate a PostgreSQL implementation of the UserRepository interface using sqlx. Include proper transaction support for Create and Update, parameterized queries to prevent SQL injection, and a List method with pagination using LIMIT/OFFSET and a COUNT query for the total.
+            </div>
+
+            <p>Claude Code generates the full implementation, including the SQL queries, the scanning logic, error mapping from PostgreSQL error codes to your domain errors, and the transaction management. You can review and iterate on it immediately in the same terminal.</p>
+
+            <div class="highlight">
+                <h3>Why This Works Better Than an IDE</h3>
+                <p>In a traditional IDE, you would use code generation tools or snippets for these patterns. But those tools are rigid &mdash; they generate a fixed template. Claude Code generates code that is <strong>contextually aware</strong>. It knows your struct fields, your interface signatures, your error types, and your project conventions. Every generated file fits your codebase like it was hand-written.</p>
+            </div>
+
+
+            <!-- Section 4: Running Tests in Split Panes -->
+            <h2>Running Tests in Split Panes</h2>
+
+            <p>The split-pane workflow is the single biggest productivity boost for Go developers using Claude Code and Beam together. Here is how it works in practice.</p>
+
+            <h3>The Live Feedback Loop</h3>
+
+            <ol>
+                <li><strong>Split your terminal</strong> &mdash; Press <span class="kbd">&#8984;&#8997;&#8963;T</span> to create a horizontal split in your current tab.</li>
+                <li><strong>Left pane: Claude Code</strong> &mdash; This is where you prompt Claude and watch it edit files.</li>
+                <li><strong>Right pane: <code>go test -v -count=1 ./...</code></strong> &mdash; Run this on repeat (or use <code>watchexec</code> or <code>air</code> to auto-run on file changes).</li>
+            </ol>
+
+            <p>Now the workflow becomes a tight loop:</p>
+
+            <ol>
+                <li>You tell Claude Code: "The TestCreateUser/duplicate_email test is failing because the handler returns 500 instead of 409. Fix the error handling in CreateUser to check for ErrDuplicateEmail."</li>
+                <li>Claude Code edits <code>internal/handlers/user.go</code> and adds the <code>errors.Is</code> check.</li>
+                <li>In the right pane, the test re-runs automatically. You see the failing test go from <span style="color: #ef4444;">FAIL</span> to <span style="color: #22c55e;">PASS</span> in real-time.</li>
+                <li>Move on to the next failing test.</li>
+            </ol>
+
+            <p>This feedback loop collapses the typical edit-save-switch-run-switch-back cycle into a single visual flow. You never leave the terminal. You never switch windows. You see Claude's changes and their test results simultaneously.</p>
+
+            <h3>Watch Mode with Air or Watchexec</h3>
+
+            <p>For automatic test re-runs, use one of these tools in the right pane:</p>
+
+            <pre><code># Using air (if you already have it for hot reload)
+# Configure .air.toml to run tests instead of the binary
+air -c .air-test.toml
+
+# Using watchexec (more flexible)
+watchexec -e go -- go test -v -count=1 ./...
+
+# Using entr (simpler)
+find . -name '*.go' | entr -c go test -v ./...</code></pre>
+
+            <p>Every time Claude Code saves a file, the right pane picks up the change and re-runs the tests. Zero manual intervention required.</p>
+
+
+            <!-- Section 5: Managing Go Microservices -->
+            <h2>Managing Go Microservices with Beam Workspaces</h2>
+
+            <p>Go is the dominant language for microservices. If you are building a distributed system, you likely have multiple Go services running simultaneously during development. Beam's workspace model is built for exactly this scenario.</p>
+
+            <h3>One Workspace Per Service</h3>
+
+            <p>Create a dedicated workspace for each Go microservice:</p>
+
+            <ul>
+                <li><strong>"API Gateway"</strong> &mdash; Tabs: Claude Code, <code>go run cmd/gateway/main.go</code>, <code>go test</code></li>
+                <li><strong>"User Service"</strong> &mdash; Tabs: Claude Code, <code>go run cmd/user/main.go</code>, <code>go test</code></li>
+                <li><strong>"Payment Service"</strong> &mdash; Tabs: Claude Code, <code>go run cmd/payment/main.go</code>, <code>go test</code></li>
+                <li><strong>"Notification Worker"</strong> &mdash; Tabs: Claude Code, <code>go run cmd/worker/main.go</code>, worker logs</li>
+                <li><strong>"Infrastructure"</strong> &mdash; Tabs: Docker Compose, database CLI, message queue monitoring</li>
+            </ul>
+
+            <h3>Quick Switching Between Services</h3>
+
+            <p>Press <span class="kbd">&#8984;P</span> to open the Quick Switcher and type the service name. You jump instantly to that workspace with its own Claude Code context. No mental overhead of figuring out which terminal belongs to which service.</p>
+
+            <p>Switch between workspaces with <span class="kbd">&#8984;&#8997;&#8592;&#8594;</span> to cycle through adjacent workspaces. This is ideal when you are actively working across two related services.</p>
+
+            <h3>Project Memory Files for Each Service</h3>
+
+            <p>Give each service's Claude Code instance its own project memory file. Create a <code>CLAUDE.md</code> in each service root:</p>
+
+            <pre><code># user-service/CLAUDE.md
+
+## Architecture
+- Chi router with middleware chain
+- PostgreSQL via sqlx for persistence
+- Redis for session caching
+- gRPC server for inter-service communication
+- Runs on port 8081
+
+## Key Patterns
+- Repository pattern for data access
+- All handlers return AppError for consistent error responses
+- Use slog for structured logging
+- Database migrations in /migrations using goose
+
+## Testing
+- Table-driven tests with httptest
+- Mocks generated with mockery
+- Integration tests use testcontainers-go</code></pre>
+
+            <p>When Claude Code starts in that directory, it reads the memory file and immediately understands the service's architecture, patterns, and conventions. Every service gets a tailored AI coding experience.</p>
+
+
+            <!-- Section 6: Go Tooling Integration -->
+            <h2>Go Tooling Integration</h2>
+
+            <p>Go has a rich ecosystem of CLI tools. Claude Code works with all of them because it runs in the same terminal environment as your toolchain. Here is how Claude Code integrates with the most important Go tools.</p>
+
+            <h3><code>go vet</code> and <code>staticcheck</code> for Linting</h3>
+
+            <p>Ask Claude Code to run your linters and fix the issues it finds:</p>
+
+            <div class="prompt-example">
+                Run go vet ./... and staticcheck ./... and fix every issue found. Show me what you changed.
+            </div>
+
+            <p>Claude Code executes the linters, parses the output, identifies the exact lines with issues, and applies fixes. Common fixes include removing unused variables, fixing printf format strings, and correcting error-handling patterns flagged by <code>staticcheck</code>.</p>
+
+            <h3><code>go mod tidy</code> for Dependency Management</h3>
+
+            <p>After generating code that imports new packages, Claude Code knows to run <code>go mod tidy</code> to resolve dependencies. It can also help you audit your dependency tree:</p>
+
+            <div class="prompt-example">
+                Check our go.sum for any indirect dependencies we can remove. Run go mod tidy and go mod verify, then show me any changes to go.mod.
+            </div>
+
+            <h3><code>pprof</code> for Profiling</h3>
+
+            <p>Claude Code can help you set up profiling endpoints and analyze the output:</p>
+
+            <div class="prompt-example">
+                Add a pprof endpoint to the API server on /debug/pprof. Then take a 30-second CPU profile and explain the hotspots.
+            </div>
+
+            <p>Claude Code will add the <code>net/http/pprof</code> import, register the debug routes, and walk you through interpreting the profile output. Use a split pane: Claude Code on the left analyzing the profile, the pprof web UI or CLI output on the right.</p>
+
+            <h3><code>delve</code> for Debugging</h3>
+
+            <p>While Claude Code cannot directly control a Delve debugging session interactively, it can help in powerful ways:</p>
+
+            <ul>
+                <li>Generate the correct <code>dlv</code> commands to set breakpoints and inspect variables</li>
+                <li>Read stack traces and error output from a Delve session you paste in, then suggest fixes</li>
+                <li>Add strategic debug logging with <code>slog.Debug</code> that you can enable with a log level flag</li>
+                <li>Write regression tests that reproduce the bug, so you never need the debugger for that issue again</li>
+            </ul>
+
+            <h3><code>air</code> for Hot Reloading</h3>
+
+            <p>Claude Code can generate and configure your <code>.air.toml</code> file for optimal hot reload behavior:</p>
+
+            <div class="prompt-example">
+                Create an .air.toml configuration that watches all .go files, rebuilds cmd/api/main.go, excludes the vendor and tmp directories, and uses a colored log output.
+            </div>
+
+            <pre><code># .air.toml
+root = "."
+tmp_dir = "tmp"
+
+[build]
+  bin = "./tmp/main"
+  cmd = "go build -o ./tmp/main ./cmd/api"
+  delay = 1000
+  exclude_dir = ["assets", "tmp", "vendor", "testdata"]
+  exclude_regex = ["_test.go"]
+  include_ext = ["go", "tpl", "tmpl", "html"]
+  kill_delay = "0s"
+  log = "build-errors.log"
+  send_interrupt = false
+  stop_on_error = true
+
+[color]
+  app = ""
+  build = "yellow"
+  main = "magenta"
+  runner = "green"
+  watcher = "cyan"
+
+[log]
+  time = false</code></pre>
+
+            <p>Run <code>air</code> in the second tab of your Beam workspace. Every time Claude Code saves a file, your server automatically rebuilds and restarts.</p>
+
+            <div class="highlight">
+                <h3>The Complete Go Toolchain in One Terminal</h3>
+                <p>This is what makes Go and Claude Code a natural pairing. Every Go tool is a CLI command. Claude Code can execute any of them directly: <code>go build</code>, <code>go test</code>, <code>go vet</code>, <code>go mod tidy</code>, <code>golangci-lint run</code>, <code>mockery</code>, <code>sqlc generate</code>, <code>buf generate</code> for protobuf, <code>goose up</code> for migrations. No plugins needed, no IDE extensions to configure. It all just works in the terminal.</p>
+            </div>
+
+
+            <!-- Section 7: Advanced Workflows -->
+            <h2>Advanced Go Workflows with Claude Code</h2>
+
+            <p>Beyond the basics, there are several advanced patterns where Claude Code and Beam together unlock workflows that are difficult or impossible in traditional setups.</p>
+
+            <h3>Generating Mocks from Interfaces</h3>
+
+            <p>Instead of running a separate mock generation tool, you can ask Claude Code to generate mocks directly from your interfaces:</p>
+
+            <div class="prompt-example">
+                Generate a mock implementation of the UserRepository interface for testing. Include helper methods to set up return values for each method and to assert that methods were called with the expected arguments.
+            </div>
+
+            <p>Claude Code generates a mock that matches your interface exactly, with configurable return values and call recording. This works for any interface, no matter how complex.</p>
+
+            <h3>Refactoring Large Go Codebases</h3>
+
+            <p>Claude Code can perform codebase-wide refactors that respect Go's type system:</p>
+
+            <div class="prompt-example">
+                Refactor all handler functions to accept a dependency container struct instead of individual repository parameters. Create the container in main.go and thread it through the router setup. Update all tests to use the new signature.
+            </div>
+
+            <p>Because Claude Code has access to your entire codebase via the terminal, it can trace the dependency graph, update every call site, and ensure the refactor compiles cleanly with <code>go build ./...</code> before finishing.</p>
+
+            <h3>Generating gRPC Services</h3>
+
+            <p>For inter-service communication, Claude Code can generate protobuf definitions and the corresponding Go implementations:</p>
+
+            <div class="prompt-example">
+                Create a protobuf definition for a UserService with GetUser, CreateUser, and ListUsers RPCs. Then generate the Go server implementation that delegates to our existing UserRepository interface.
+            </div>
+
+            <h3>Database Migration Workflows</h3>
+
+            <p>Claude Code handles the full migration lifecycle:</p>
+
+            <div class="prompt-example">
+                Create a new goose migration that adds an "organizations" table with id, name, created_at, and a foreign key from users to organizations. Then update the User model and repository to include the organization_id field.
+            </div>
+
+            <p>Claude Code creates the migration SQL, updates the Go models, modifies the repository queries, and updates the tests &mdash; all in one prompt. In your split pane, you can run <code>goose up</code> on the right while Claude edits on the left.</p>
+
+
+            <!-- CTA Box -->
+            <div class="cta-box">
+                <h3>Ready to Supercharge Your Go Development?</h3>
+                <p>Download Beam free and build the ultimate terminal workspace for Go + Claude Code. Workspaces, split panes, layout saving, and Quick Switcher &mdash; everything you need to stay in the terminal and stay productive.</p>
+                <a href="../" class="btn">Download Beam for macOS</a>
+            </div>
+
+
+            <!-- Summary -->
+            <h2>Summary</h2>
+
+            <p>Go's terminal-first nature makes it the ideal language for the Claude Code + Beam workflow. There is no gap between your tools and your AI coding agent &mdash; everything runs in the same environment, speaks the same CLI language, and produces the same output formats.</p>
+
+            <p>Here is what we covered:</p>
+
+            <ul>
+                <li><strong>Beam workspaces</strong> give each Go service its own isolated environment with Claude Code, a running server, and test output</li>
+                <li><strong>Split panes</strong> create a live feedback loop where you watch tests pass as Claude Code edits your code</li>
+                <li><strong>Project scaffolding</strong> with Claude Code generates entire Go project structures with idiomatic patterns in seconds</li>
+                <li><strong>Go-specific workflows</strong> cover structs, interfaces, error handling, table-driven tests, concurrency patterns, and database layers</li>
+                <li><strong>Microservice management</strong> scales naturally with one workspace per service and project memory files for context</li>
+                <li><strong>Go tooling integration</strong> works seamlessly because every Go tool is a CLI command that Claude Code can execute directly</li>
+                <li><strong>Advanced patterns</strong> like mock generation, codebase refactoring, gRPC services, and database migrations are all accessible through simple prompts</li>
+            </ul>
+
+            <p>The combination of Go's simplicity, Claude Code's intelligence, and Beam's organization creates a development workflow that is faster, cleaner, and more enjoyable than any IDE-based setup. Everything you need is already in your terminal.</p>
+
+            <p>Happy coding.</p>
+
+            <div class="related-articles">
+                <h2>Related Articles</h2>
+                <div class="related-grid">
+                    <a href="claude-code-api-development.html" class="related-card">
+                        <h4>Building APIs with Claude Code</h4>
+                        <p>How to use Claude Code for API development, from REST endpoints to authentication.</p>
+                    </a>
+                    <a href="write-tests-with-claude-code.html" class="related-card">
+                        <h4>Writing Tests with Claude Code</h4>
+                        <p>Generate comprehensive test suites with AI-assisted test-driven development.</p>
+                    </a>
+                    <a href="beam-claude-code-setup.html" class="related-card">
+                        <h4>Setting Up Beam for Claude Code</h4>
+                        <p>Step-by-step guide to setting up Beam for Claude Code development.</p>
+                    </a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>
+                <a href="../">Beam</a> &bull; Terminal Organizer for macOS &bull;
+                <a href="mailto:frank@nextuptechnologies.co">Contact</a>
+            </p>
+
+            <p style="margin-top: 12px; font-size: 0.8rem;">
+                <a href="/privacy.html" style="color: #71717a; text-decoration: none;">Privacy Policy</a> &bull;
+                <a href="/terms.html" style="color: #71717a; text-decoration: none;">Terms of Service</a>
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>

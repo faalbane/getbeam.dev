@@ -469,7 +469,7 @@
 
             <div class="highlight">
                 <h3>Claude Code + Beam</h3>
-                <p>Claude Code works especially well inside <strong>Beam</strong>. Launch it in a subwindow alongside your dev server, tests, and git &mdash; all visible at once. Save the layout and restore your entire AI-assisted workspace tomorrow with a single shortcut. Right-click any terminal in Beam and select "Claude Code" from the AI Agents menu to auto-launch it in seconds.</p>
+                <p>Claude Code works especially well inside <strong>Beam</strong>. Launch it in a workspace alongside your dev server, tests, and git &mdash; all visible at once. Save the layout and restore your entire AI-assisted workspace tomorrow with a single shortcut. Right-click any terminal in Beam and select "Claude Code" from the AI Agents menu to auto-launch it in seconds.</p>
             </div>
 
             <h2>When to Use Cursor</h2>
@@ -496,10 +496,10 @@
 
             <p>A common power-user workflow looks like this: use Cursor as your primary editor for day-to-day coding, with its tab completion and inline edits handling the fast, small tasks. When you hit a complex problem that requires deep reasoning across many files &mdash; a major refactor, a tricky bug, an architecture decision &mdash; switch to Claude Code in the terminal and let it analyze the full codebase. Use Codex for quick scripts, one-off generations, or tasks where you want a second opinion from a different model.</p>
 
-            <p>With <strong>Beam</strong>, running multiple AI agents at once is trivial. Open Claude Code in one subwindow and Codex in another. Give them the same prompt and compare the outputs side by side. Use the better result. This is not theoretical &mdash; it takes about ten seconds to set up, and it is genuinely useful when you want to validate an approach or see alternative implementations.</p>
+            <p>With <strong>Beam</strong>, running multiple AI agents at once is trivial. Open Claude Code in one workspace and Codex in another. Give them the same prompt and compare the outputs side by side. Use the better result. This is not theoretical &mdash; it takes about ten seconds to set up, and it is genuinely useful when you want to validate an approach or see alternative implementations.</p>
 
             <div class="tip">
-                <strong>Pro tip:</strong> Save a Beam layout called "AI Compare" with Claude Code in the left subwindow and Codex in the right. When you need a second opinion on a tricky task, load the layout and run both agents simultaneously.
+                <strong>Pro tip:</strong> Save a Beam layout called "AI Compare" with Claude Code in the left workspace and Codex in the right. When you need a second opinion on a tricky task, load the layout and run both agents simultaneously.
             </div>
 
             <h2>The Beam Advantage</h2>
@@ -508,7 +508,7 @@
 
             <p><strong>One-click agent launch.</strong> Right-click any terminal in Beam and select your AI agent from the menu. Claude Code, Codex, OpenClaw &mdash; Beam detects whether the tool is installed, auto-installs it if needed, and launches it immediately. No fumbling with <code>npm install -g</code> or <code>pip install</code> commands.</p>
 
-            <p><strong>Organized sessions.</strong> Each AI session gets its own subwindow with a clear name. Your Claude Code session for the backend API is in one subwindow, your Codex session for the frontend is in another, and your dev servers are in a third. Press <span class="kbd">&#8984;P</span> to jump to any of them instantly.</p>
+            <p><strong>Organized sessions.</strong> Each AI session gets its own workspace with a clear name. Your Claude Code session for the backend API is in one workspace, your Codex session for the frontend is in another, and your dev servers are in a third. Press <span class="kbd">&#8984;P</span> to jump to any of them instantly.</p>
 
             <p><strong>Saved layouts.</strong> Spent twenty minutes setting up the perfect arrangement of terminals, AI agents, and dev servers? Save it as a layout. Tomorrow morning, one shortcut restores everything exactly as it was. No re-launching agents, no re-navigating to project directories, no re-running dev servers.</p>
 
@@ -519,10 +519,10 @@
             <div class="highlight">
                 <h3>Example Beam Setup for Multi-Agent Development</h3>
                 <ul>
-                    <li><strong>Subwindow 1: "Claude Code &mdash; Backend"</strong> &mdash; Claude Code session for your API</li>
-                    <li><strong>Subwindow 2: "Codex &mdash; Frontend"</strong> &mdash; Codex session for your React app</li>
-                    <li><strong>Subwindow 3: "Dev Servers"</strong> &mdash; Backend and frontend servers running side by side in split panes</li>
-                    <li><strong>Subwindow 4: "Git &amp; Deploy"</strong> &mdash; Git operations, CI status, deployment scripts</li>
+                    <li><strong>Workspace 1: "Claude Code &mdash; Backend"</strong> &mdash; Claude Code session for your API</li>
+                    <li><strong>Workspace 2: "Codex &mdash; Frontend"</strong> &mdash; Codex session for your React app</li>
+                    <li><strong>Workspace 3: "Dev Servers"</strong> &mdash; Backend and frontend servers running side by side in split panes</li>
+                    <li><strong>Workspace 4: "Git &amp; Deploy"</strong> &mdash; Git operations, CI status, deployment scripts</li>
                 </ul>
             </div>
 
@@ -553,7 +553,7 @@
 
             <div class="cta-box">
                 <h3>Run Any AI Agent in One Click</h3>
-                <p>Download Beam and start Claude Code, Codex, or OpenClaw instantly. No setup needed. Organize your AI sessions with subwindows, layouts, and keyboard shortcuts.</p>
+                <p>Download Beam and start Claude Code, Codex, or OpenClaw instantly. No setup needed. Organize your AI sessions with workspaces, layouts, and keyboard shortcuts.</p>
                 <a href="../" class="btn">Download Beam Free</a>
             </div>
 
@@ -562,7 +562,7 @@
                 <div class="related-grid">
                     <a href="beam-claude-code-setup.html" class="related-card">
                         <h4>Setting Up Beam for Claude Code Development</h4>
-                        <p>Complete guide to organizing your Claude Code sessions with subwindows and layouts.</p>
+                        <p>Complete guide to organizing your Claude Code sessions with workspaces and layouts.</p>
                     </a>
                     <a href="how-to-use-openai-codex-mac.html" class="related-card">
                         <h4>How to Use OpenAI Codex on Mac</h4>
@@ -579,8 +579,14 @@
 
     <footer>
         <div class="container">
-            <p><a href="../">Beam</a> &middot; Built by <a href="https://nextuptechnologies.co">NextUp Technologies</a></p>
+            <p><a href="../">Beam</a> &middot; Built by NextUp Technologies</p>
+
+            <p style="margin-top: 12px; font-size: 0.8rem;">
+                <a href="/privacy.html" style="color: #71717a; text-decoration: none;">Privacy Policy</a> &bull;
+                <a href="/terms.html" style="color: #71717a; text-decoration: none;">Terms of Service</a>
+            </p>
         </div>
     </footer>
+
 </body>
 </html>

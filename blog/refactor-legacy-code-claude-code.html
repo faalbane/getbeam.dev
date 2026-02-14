@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D0XH8B0RKL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-D0XH8B0RKL');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Refactor Legacy Code with Claude Code | Beam Terminal Organizer</title>
+    <meta name="description" content="Tackle legacy code with Claude Code as your refactoring partner. Break apart monoliths, modernize patterns, add types, and improve test coverage — safely and systematically.">
+    <meta name="keywords" content="refactor legacy code AI, Claude Code refactoring, legacy code modernization, AI code refactoring, refactor with Claude Code, technical debt AI">
+    <meta name="author" content="NextUp Technologies">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://getbeam.dev/blog/refactor-legacy-code-claude-code.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://getbeam.dev/blog/refactor-legacy-code-claude-code.html">
+    <meta property="og:title" content="How to Refactor Legacy Code with Claude Code">
+    <meta property="og:description" content="Tackle legacy code with Claude Code as your refactoring partner. Break apart monoliths, modernize patterns, add types, and improve test coverage — safely and systematically.">
+    <meta property="og:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="How to Refactor Legacy Code with Claude Code">
+    <meta name="twitter:description" content="Tackle legacy code with Claude Code as your refactoring partner. Break apart monoliths, modernize patterns, add types, and improve test coverage.">
+    <meta name="twitter:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "How to Refactor Legacy Code with Claude Code",
+        "description": "Tackle legacy code with Claude Code as your refactoring partner. Break apart monoliths, modernize patterns, add types, and improve test coverage — safely and systematically.",
+        "author": {
+            "@type": "Organization",
+            "name": "NextUp Technologies"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Beam"
+        },
+        "datePublished": "2026-02-11",
+        "keywords": "refactor legacy code AI, Claude Code refactoring, legacy code modernization, AI code refactoring, refactor with Claude Code, technical debt AI"
+    }
+    </script>
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #111113;
+            --bg-tertiary: #1a1a1d;
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.4);
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --border: #27272a;
+            --success: #22c55e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        header {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 60px;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1.5rem;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            background: var(--accent);
+            color: white;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+        }
+
+        article {
+            padding-bottom: 80px;
+        }
+
+        .breadcrumb {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+        }
+
+        .breadcrumb a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .meta {
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            font-size: 0.95rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 48px 0 20px;
+            color: var(--text-primary);
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        ul, ol {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            padding-left: 24px;
+        }
+
+        li {
+            margin-bottom: 12px;
+        }
+
+        .highlight {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 32px 0;
+        }
+
+        .highlight h3 {
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .kbd {
+            display: inline-block;
+            padding: 2px 8px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+        }
+
+        code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            background: var(--bg-tertiary);
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: #f59e0b;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .cta-box h3 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+        }
+
+        .cta-box p {
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 24px;
+        }
+
+        .cta-box .btn {
+            background: white;
+            color: var(--accent);
+        }
+
+        .blog-visual {
+            margin: 40px 0;
+        }
+
+        .blog-visual svg {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+        }
+
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+
+        .related-articles { margin-top: 60px; padding-top: 40px; border-top: 1px solid var(--border); }
+        .related-articles h2 { font-size: 1.5rem; margin-bottom: 24px; }
+        .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .related-card { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-decoration: none; transition: border-color 0.2s; }
+        .related-card:hover { border-color: var(--accent); }
+        .related-card h4 { color: white; font-size: 1rem; margin: 0 0 8px 0; }
+        .related-card p { color: var(--text-muted); font-size: 0.85rem; margin: 0; }
+        @media (max-width: 600px) { .related-grid { grid-template-columns: 1fr; } h1 { font-size: 1.8rem; } }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="../" class="logo">
+                <div class="logo-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round">
+                        <path d="M4 17l6-6-6-6M12 19h8"/>
+                    </svg>
+                </div>
+                Beam
+            </a>
+            <a href="../" class="btn">Download Beam</a>
+        </div>
+    </header>
+
+    <main>
+        <article class="container">
+            <div class="breadcrumb">
+                <a href="../">Beam</a> / <a href="../#guides">Guides</a> / Refactor Legacy Code with Claude Code
+            </div>
+
+            <h1>How to Refactor Legacy Code with Claude Code</h1>
+            <p class="meta">February 2026 &bull; 8 min read</p>
+
+            <p>Legacy code is the tax every growing project pays. Functions that grew to 500 lines because no one had time to split them. Modules with zero tests because they were written "temporarily" three years ago. Patterns from framework versions that have long since been deprecated. Refactoring it manually is slow, risky, and soul-crushing -- you spend hours tracing call paths, terrified of breaking something invisible. Claude Code changes the equation entirely. It can read an entire legacy module, understand the intent behind tangled logic, and systematically modernize the code while preserving behavior. Here is how to tackle legacy code refactoring safely with AI as your partner.</p>
+
+            <!-- Refactoring Workflow Visual -->
+            <div class="blog-visual">
+                <svg viewBox="0 0 800 480" xmlns="http://www.w3.org/2000/svg" fill="none">
+                    <!-- Background -->
+                    <rect width="800" height="480" rx="12" fill="#0a0a0b"/>
+                    <rect x="1" y="1" width="798" height="478" rx="11" stroke="#27272a" stroke-width="1"/>
+
+                    <!-- Title -->
+                    <text x="400" y="36" fill="#71717a" font-family="Space Grotesk, sans-serif" font-size="13" text-anchor="middle" font-weight="500">REFACTORING WITH CLAUDE CODE</text>
+
+                    <!-- LEFT PANEL: Legacy Code -->
+                    <rect x="30" y="56" width="340" height="300" rx="8" fill="#111113" stroke="#ef4444" stroke-width="1" stroke-opacity="0.4"/>
+                    <!-- Legacy panel header -->
+                    <rect x="30" y="56" width="340" height="32" rx="8" fill="#1a1a1d"/>
+                    <rect x="30" y="80" width="340" height="8" fill="#1a1a1d"/>
+                    <circle cx="48" cy="72" r="5" fill="#ef4444"/>
+                    <circle cx="64" cy="72" r="5" fill="#f59e0b"/>
+                    <circle cx="80" cy="72" r="5" fill="#22c55e"/>
+                    <text x="200" y="76" fill="#ef4444" font-family="JetBrains Mono, monospace" font-size="11" text-anchor="middle" font-weight="500">BEFORE</text>
+
+                    <!-- Legacy code lines (messy, long, nested) -->
+                    <text x="46" y="108" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="10">class UserService {</text>
+                    <text x="46" y="123" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="10">  handleUser(data) {</text>
+                    <text x="46" y="138" fill="#ef4444" font-family="JetBrains Mono, monospace" font-size="10" opacity="0.8">    // 500 lines of mixed logic</text>
+                    <text x="46" y="153" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="10">    if (data.email) {</text>
+                    <text x="46" y="168" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="10">      if (data.verified) {</text>
+                    <text x="46" y="183" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="10">        if (data.role) {</text>
+                    <text x="46" y="198" fill="#ef4444" font-family="JetBrains Mono, monospace" font-size="10" opacity="0.8">          // validation here</text>
+                    <text x="46" y="213" fill="#ef4444" font-family="JetBrains Mono, monospace" font-size="10" opacity="0.8">          // email sending here</text>
+                    <text x="46" y="228" fill="#ef4444" font-family="JetBrains Mono, monospace" font-size="10" opacity="0.8">          // db queries here</text>
+                    <text x="46" y="243" fill="#ef4444" font-family="JetBrains Mono, monospace" font-size="10" opacity="0.8">          // logging here</text>
+                    <text x="46" y="258" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="10">        }</text>
+                    <text x="46" y="273" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="10">      }</text>
+                    <text x="46" y="288" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="10">    }</text>
+                    <text x="46" y="303" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="10">    // ...400 more lines</text>
+                    <text x="46" y="318" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="10">  }</text>
+                    <text x="46" y="333" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="10">}</text>
+
+                    <!-- Red annotations on legacy side -->
+                    <rect x="280" y="130" width="80" height="18" rx="4" fill="#ef4444" fill-opacity="0.15"/>
+                    <text x="320" y="143" fill="#ef4444" font-family="Space Grotesk, sans-serif" font-size="9" text-anchor="middle" font-weight="600">GOD CLASS</text>
+                    <rect x="280" y="172" width="80" height="18" rx="4" fill="#ef4444" fill-opacity="0.15"/>
+                    <text x="320" y="185" fill="#ef4444" font-family="Space Grotesk, sans-serif" font-size="9" text-anchor="middle" font-weight="600">DEEP NESTING</text>
+                    <rect x="280" y="234" width="80" height="18" rx="4" fill="#ef4444" fill-opacity="0.15"/>
+                    <text x="320" y="247" fill="#ef4444" font-family="Space Grotesk, sans-serif" font-size="9" text-anchor="middle" font-weight="600">NO TESTS</text>
+
+                    <!-- CENTER: Arrow with Claude Code amber dot -->
+                    <line x1="385" y1="206" x2="415" y2="206" stroke="#f59e0b" stroke-width="2" stroke-dasharray="4 3"/>
+                    <circle cx="400" cy="206" r="14" fill="#f59e0b" fill-opacity="0.15" stroke="#f59e0b" stroke-width="1.5"/>
+                    <circle cx="400" cy="206" r="6" fill="#f59e0b"/>
+                    <text x="400" y="234" fill="#f59e0b" font-family="Space Grotesk, sans-serif" font-size="9" text-anchor="middle" font-weight="600">CLAUDE CODE</text>
+                    <!-- Arrow head -->
+                    <polygon points="418,206 410,200 410,212" fill="#f59e0b"/>
+
+                    <!-- RIGHT PANEL: Refactored Code -->
+                    <rect x="430" y="56" width="340" height="300" rx="8" fill="#111113" stroke="#22c55e" stroke-width="1" stroke-opacity="0.4"/>
+                    <!-- Refactored panel header -->
+                    <rect x="430" y="56" width="340" height="32" rx="8" fill="#1a1a1d"/>
+                    <rect x="430" y="80" width="340" height="8" fill="#1a1a1d"/>
+                    <circle cx="448" cy="72" r="5" fill="#ef4444"/>
+                    <circle cx="464" cy="72" r="5" fill="#f59e0b"/>
+                    <circle cx="480" cy="72" r="5" fill="#22c55e"/>
+                    <text x="600" y="76" fill="#22c55e" font-family="JetBrains Mono, monospace" font-size="11" text-anchor="middle" font-weight="500">AFTER</text>
+
+                    <!-- Refactored code lines (clean, modular) -->
+                    <text x="446" y="108" fill="#22c55e" font-family="JetBrains Mono, monospace" font-size="10" opacity="0.9">// UserService.ts</text>
+                    <text x="446" y="123" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="10">class UserService {</text>
+                    <text x="446" y="138" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="10">  constructor(</text>
+                    <text x="446" y="153" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="10">    validator, emailSvc</text>
+                    <text x="446" y="168" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="10">  ) {}</text>
+                    <text x="446" y="183" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="10">  async createUser(data) {</text>
+                    <text x="446" y="198" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="10">    await this.validator</text>
+                    <text x="446" y="213" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="10">      .validate(data);</text>
+                    <text x="446" y="228" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="10">    const user = await</text>
+                    <text x="446" y="243" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="10">      this.repo.save(data);</text>
+                    <text x="446" y="258" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="10">    await this.emailSvc</text>
+                    <text x="446" y="273" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="10">      .sendWelcome(user);</text>
+                    <text x="446" y="288" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="10">    return user;</text>
+                    <text x="446" y="303" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="10">  }</text>
+                    <text x="446" y="318" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="10">}</text>
+
+                    <!-- Green annotations on clean side -->
+                    <rect x="680" y="100" width="80" height="18" rx="4" fill="#22c55e" fill-opacity="0.15"/>
+                    <text x="720" y="113" fill="#22c55e" font-family="Space Grotesk, sans-serif" font-size="9" text-anchor="middle" font-weight="600">TYPED</text>
+                    <rect x="680" y="136" width="80" height="18" rx="4" fill="#22c55e" fill-opacity="0.15"/>
+                    <text x="720" y="149" fill="#22c55e" font-family="Space Grotesk, sans-serif" font-size="9" text-anchor="middle" font-weight="600">MODULAR</text>
+                    <rect x="680" y="190" width="80" height="18" rx="4" fill="#22c55e" fill-opacity="0.15"/>
+                    <text x="720" y="203" fill="#22c55e" font-family="Space Grotesk, sans-serif" font-size="9" text-anchor="middle" font-weight="600">ASYNC/AWAIT</text>
+                    <rect x="680" y="258" width="80" height="18" rx="4" fill="#22c55e" fill-opacity="0.15"/>
+                    <text x="720" y="271" fill="#22c55e" font-family="Space Grotesk, sans-serif" font-size="9" text-anchor="middle" font-weight="600">CLEAN</text>
+
+                    <!-- BOTTOM: Test Results Bar -->
+                    <rect x="30" y="380" width="740" height="72" rx="8" fill="#111113" stroke="#22c55e" stroke-width="1" stroke-opacity="0.3"/>
+                    <!-- Test bar header -->
+                    <rect x="30" y="380" width="740" height="28" rx="8" fill="#1a1a1d"/>
+                    <rect x="30" y="400" width="740" height="8" fill="#1a1a1d"/>
+                    <text x="54" y="398" fill="#22c55e" font-family="JetBrains Mono, monospace" font-size="11" font-weight="500">TEST RESULTS</text>
+                    <!-- Progress bar background -->
+                    <rect x="46" y="418" width="708" height="8" rx="4" fill="#1a1a1d"/>
+                    <!-- Progress bar fill (green) -->
+                    <rect x="46" y="418" width="708" height="8" rx="4" fill="#22c55e" fill-opacity="0.7"/>
+                    <!-- Test results text -->
+                    <circle cx="56" cy="440" r="6" fill="#22c55e"/>
+                    <text x="70" y="444" fill="#22c55e" font-family="JetBrains Mono, monospace" font-size="11" font-weight="500">All 47 tests passing</text>
+                    <text x="280" y="444" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="10">UserService: 18</text>
+                    <text x="440" y="444" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="10">EmailService: 14</text>
+                    <text x="610" y="444" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="10">UserValidator: 15</text>
+                </svg>
+            </div>
+
+            <h2>Why Claude Code Is Perfect for Refactoring</h2>
+
+            <p>Refactoring demands two things that rarely coexist: understanding the big picture and executing tedious mechanical changes without mistakes. Claude Code delivers both. It reads entire files -- and multiple files at once -- so it grasps the full context of how a legacy module fits into the broader codebase. It does not just see one function in isolation; it sees the callers, the dependencies, and the downstream effects.</p>
+
+            <p>Claude Code can identify code smells that you have gone nose-blind to: functions that do too many things, deep nesting that obscures control flow, god classes that have absorbed responsibilities from every corner of the application, and repeated patterns that should have been abstracted long ago. More importantly, it can preserve behavior while changing structure -- the core promise of refactoring. It is not rewriting your code from scratch; it is restructuring what already works.</p>
+
+            <p>A 2000-line file does not intimidate Claude Code the way it intimidates a developer at 4pm on a Friday. It processes the entire thing with the same attention to detail whether it is 50 lines or 5000. And perhaps most powerfully, it can add tests before refactoring even begins -- building the safety net that makes everything else possible.</p>
+
+            <h2>The Refactoring Workspace</h2>
+
+            <p>Before you touch a single line of legacy code, set up a workspace in Beam that supports the refactoring workflow. Create a workspace called "Legacy Refactor" with four tabs, each serving a distinct purpose in the process.</p>
+
+            <p><strong>Tab 1: Claude Code</strong> -- your refactoring partner. This is where you have the conversation about what to change and how. Tab 2 runs your <strong>test suite continuously</strong>, providing instant feedback on whether your changes preserve behavior. Tab 3 is your <strong>Git tab</strong>, where you make frequent commits -- one per refactoring step, so you can always roll back. Tab 4 runs the <strong>application itself</strong>, so you can verify that nothing breaks at the integration level beyond what unit tests catch.</p>
+
+            <p>The most powerful configuration is a split pane with Claude Code on one side and your test output on the other. You refactor and verify simultaneously -- no switching back and forth, no forgetting to run the tests. The feedback loop is immediate: Claude makes a change, you see whether the tests still pass, and you move on or course-correct.</p>
+
+            <h2>Step 1: Add Tests First (The Safety Net)</h2>
+
+            <p>This is the step most people want to skip, and it is the step that matters most. Before changing a single line of legacy code, ask Claude Code to write tests for it. Give it a prompt like: "Write tests for this UserService class. Cover all public methods, edge cases, and error paths." Claude reads the legacy code, understands what it does (even if it is messy), and generates a comprehensive test suite.</p>
+
+            <p>Run those tests immediately. Every single one should pass against the current code, because you are not testing what the code should do -- you are testing what it actually does. These tests are your safety net. Any refactoring step that changes behavior instead of just structure will trip a test and tell you exactly where you went wrong.</p>
+
+            <p>This is also where Claude Code shines compared to writing tests manually. Testing legacy code is painful because you need to understand the code to test it, but the code is hard to understand because it is legacy. Claude bridges that gap -- it reads the messy code, infers the contracts, and produces tests that capture the real behavior.</p>
+
+            <div class="highlight">
+                <h3>Golden Rule of Refactoring</h3>
+                <p>Never refactor without tests. Always add tests first, verify they pass against the current code, commit, then start refactoring. If you skip this step, you are flying blind -- you will not know whether your changes preserved behavior or subtly broke something until it hits production.</p>
+            </div>
+
+            <h2>Step 2: Understand Before You Change</h2>
+
+            <p>Resist the urge to start extracting and renaming immediately. First, ask Claude Code to explain the legacy code: "Explain what this module does, identify the main responsibilities, and list any code smells." What you get back is a clear breakdown that would have taken you an hour of careful reading to assemble yourself.</p>
+
+            <p>Claude identifies the distinct responsibilities tangled together inside the monolith: business logic, data access, email sending, validation, logging, error handling -- all woven into a single class or function. It flags the problematic patterns: callbacks nested six levels deep, mutable state shared across methods, implicit dependencies hidden behind global variables. This becomes your refactoring roadmap.</p>
+
+            <p>Ask follow-up questions to pressure-test your plan: "What would break if I split this into three classes?" or "Are there any hidden dependencies between the email logic and the validation logic?" Claude traces the connections and warns you about coupling you might have missed. This conversation costs minutes and saves hours of debugging later.</p>
+
+            <h2>Step 3: Extract and Decompose</h2>
+
+            <p>Now the real work begins, but Claude Code handles the tedious parts. Start with the clearest extraction: "Extract the email-sending logic from UserService into a separate EmailService class." Claude creates the new class, moves the relevant methods and their helper functions, updates all references in the original class, and adjusts imports across the codebase.</p>
+
+            <p>Run your tests. They should all still pass -- the behavior is identical, only the structure changed. Commit this step with a clear message like "Extract EmailService from UserService." Then move to the next extraction: "Now extract the validation logic into a UserValidator class." Same process: extract, test, commit.</p>
+
+            <p>Each extraction is a small, safe, reversible step. Claude handles the mechanical work of moving code, updating references, and ensuring nothing falls through the cracks. You stay focused on the architectural decisions -- which responsibilities belong together, what the boundaries should be, how the new classes should interact. This division of labor is where AI-assisted refactoring truly excels.</p>
+
+            <h2>Step 4: Modernize Patterns</h2>
+
+            <p>With the code decomposed into clean, focused modules, it is time to modernize the patterns within each one. This is where Claude Code's mechanical precision pays off the most. Ask it to "convert these callback-based functions to async/await" and it rewrites every function in the chain, handling the subtle differences between error handling in callbacks versus try/catch blocks.</p>
+
+            <p>Ask it to "replace this class-based React component with a functional component and hooks" and it maps lifecycle methods to useEffect calls, class state to useState, and instance methods to regular functions -- preserving every behavior while adopting the modern idiom. Ask it to "add TypeScript types to this JavaScript module" and it infers types from usage, adds interfaces for function signatures, and flags the ambiguous cases for your review.</p>
+
+            <p>Each modernization step gets its own commit and its own test verification. You are not doing all of this at once -- you are layering improvements one at a time, with the safety net of tests catching any behavioral drift. The codebase gets progressively better, and at every point you have a clean, working commit to fall back to.</p>
+
+            <h2>Step 5: Clean Up</h2>
+
+            <p>The final pass is about polish. Ask Claude Code to "remove dead code in this module -- anything not called from outside." It traces the call graph, identifies the functions and variables that exist only as leftovers from previous iterations, and removes them. Less code means less to maintain and less to confuse the next developer.</p>
+
+            <p>Ask it to "simplify this nested conditional logic" and it flattens deeply nested if/else chains into early returns or guard clauses, making the control flow readable at a glance. Ask it to "rename variables to follow the project's naming conventions" and it applies consistent naming across the refactored modules, replacing cryptic abbreviations with descriptive names.</p>
+
+            <p>Run the full test suite one final time. Every test should pass. The code now does exactly what it did before, but it is structured, typed, modern, and readable. Commit this final polish step and you are done.</p>
+
+            <h2>The Commit-Per-Step Strategy</h2>
+
+            <div class="highlight">
+                <h3>Why One Commit Per Refactoring Step Matters</h3>
+                <p>Every refactoring step gets its own commit. This is not just good hygiene -- it is your escape hatch. If something breaks in production three weeks later, you can <code>git bisect</code> to the exact refactoring step that introduced the issue. Your git log tells the refactoring story: "Add tests for UserService", "Extract EmailService", "Extract UserValidator", "Convert to async/await", "Add TypeScript types", "Remove dead code."</p>
+                <p>If a step goes wrong during refactoring, revert just that commit -- not the whole refactor. You keep the progress from every successful step. Beam's Git tab makes this workflow natural: refactor in the Claude Code pane, verify in the test pane, commit in the Git tab, repeat.</p>
+            </div>
+
+            <h2>Memory File: Refactoring Targets</h2>
+
+            <p>Legacy refactoring rarely fits in a single session. Use your project's <code>CLAUDE.md</code> file to document the refactoring plan so Claude Code can pick up where you left off. Record which modules need refactoring and why, what the target architecture looks like after the refactoring is complete, and which patterns you are migrating from and to.</p>
+
+            <p>A good refactoring memory entry looks like this: "The UserService (src/services/user.ts) should be split into UserService, EmailService, and UserValidator. UserService keeps only user CRUD operations. EmailService owns all email templates and sending logic. UserValidator handles input validation and sanitization. Current status: EmailService extracted, UserValidator next."</p>
+
+            <p>With this context in <code>CLAUDE.md</code>, you can close your laptop, come back the next day, start a new Claude Code session, and say "continue the UserService refactoring." Claude reads the memory file, understands the plan and the current progress, and picks up exactly where you stopped. No re-explaining, no lost context, no starting over.</p>
+
+            <div class="cta-box">
+                <h3>Tame Your Legacy Code</h3>
+                <p>Download Beam and set up a safe, organized refactoring workflow with Claude Code. Workspaces, split panes, and saveable layouts make the refactor-test-commit cycle effortless.</p>
+                <a href="../" class="btn">Download Beam for macOS</a>
+            </div>
+
+            <h2>Summary</h2>
+
+            <p>Refactoring legacy code does not have to be a white-knuckle exercise in hope. With Claude Code as your refactoring partner and Beam as your workspace, you get a systematic, safe process:</p>
+
+            <ul>
+                <li><strong>Add tests first</strong> to create a safety net before touching anything</li>
+                <li><strong>Understand the code</strong> by asking Claude to explain it and identify code smells</li>
+                <li><strong>Extract and decompose</strong> one responsibility at a time, testing after each step</li>
+                <li><strong>Modernize patterns</strong> -- async/await, hooks, TypeScript -- with Claude handling the mechanical conversion</li>
+                <li><strong>Clean up</strong> dead code, simplify logic, and enforce naming conventions</li>
+                <li><strong>Commit per step</strong> so you can bisect, revert, and track the refactoring story</li>
+                <li><strong>Document in CLAUDE.md</strong> so multi-session refactoring never loses context</li>
+            </ul>
+
+            <p>The legacy code is not going to refactor itself. But with the right tools and the right process, you can turn it into code your team is proud of -- one safe, tested step at a time.</p>
+
+            <div class="related-articles">
+                <h2>Related Articles</h2>
+                <div class="related-grid">
+                    <a href="write-tests-with-claude-code.html" class="related-card">
+                        <h4>How to Write Tests with Claude Code</h4>
+                        <p>Generate comprehensive test suites with AI and catch regressions before they ship.</p>
+                    </a>
+                    <a href="debug-with-claude-code.html" class="related-card">
+                        <h4>Debug with Claude Code</h4>
+                        <p>Trace bugs across files, decode stack traces, and fix issues faster with AI.</p>
+                    </a>
+                    <a href="ai-coding-solo-developer.html" class="related-card">
+                        <h4>AI Coding for Solo Developers</h4>
+                        <p>How solo developers use Claude Code to ship faster without a team.</p>
+                    </a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>
+                <a href="../">Beam</a> &bull; Terminal Organizer for macOS &bull;
+                <a href="mailto:frank@nextuptechnologies.co">Contact</a>
+            </p>
+
+            <p style="margin-top: 12px; font-size: 0.8rem;">
+                <a href="/privacy.html" style="color: #71717a; text-decoration: none;">Privacy Policy</a> &bull;
+                <a href="/terms.html" style="color: #71717a; text-decoration: none;">Terms of Service</a>
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>

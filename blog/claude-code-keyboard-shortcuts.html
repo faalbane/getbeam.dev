@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D0XH8B0RKL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-D0XH8B0RKL');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claude Code Keyboard Shortcuts & Tips: The 2026 Cheat Sheet | Beam</title>
+    <meta name="description" content="Every Claude Code keyboard shortcut and power-user tip in one place. Plus Beam shortcuts for managing multiple sessions. The complete 2026 cheat sheet.">
+    <meta name="keywords" content="Claude Code keyboard shortcuts, Claude Code tips, Claude Code cheat sheet, Claude Code commands, Claude Code productivity tips">
+    <meta name="author" content="NextUp Technologies">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://getbeam.dev/blog/claude-code-keyboard-shortcuts.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://getbeam.dev/blog/claude-code-keyboard-shortcuts.html">
+    <meta property="og:title" content="Claude Code Keyboard Shortcuts & Tips: The 2026 Cheat Sheet">
+    <meta property="og:description" content="Every Claude Code keyboard shortcut and power-user tip in one place. Plus Beam shortcuts for managing multiple sessions.">
+    <meta property="og:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Claude Code Keyboard Shortcuts & Tips: The 2026 Cheat Sheet">
+    <meta name="twitter:description" content="Every Claude Code keyboard shortcut and power-user tip in one place. Plus Beam shortcuts for managing multiple sessions.">
+    <meta name="twitter:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Claude Code Keyboard Shortcuts & Tips: The 2026 Cheat Sheet",
+        "description": "Every Claude Code keyboard shortcut and power-user tip in one place. Plus Beam shortcuts for managing multiple sessions. The complete 2026 cheat sheet.",
+        "author": {
+            "@type": "Organization",
+            "name": "NextUp Technologies"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Beam"
+        },
+        "datePublished": "2026-02-11",
+        "keywords": "Claude Code keyboard shortcuts, Claude Code tips, Claude Code cheat sheet, Claude Code commands, Claude Code productivity tips"
+    }
+    </script>
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #111113;
+            --bg-tertiary: #1a1a1d;
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.4);
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --border: #27272a;
+            --success: #22c55e;
+            --amber: #D97706;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        header {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 60px;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1.5rem;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            background: var(--accent);
+            color: white;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+        }
+
+        article {
+            padding-bottom: 80px;
+        }
+
+        .breadcrumb {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+        }
+
+        .breadcrumb a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .meta {
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            font-size: 0.95rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 48px 0 20px;
+            color: var(--text-primary);
+        }
+
+        h3 {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        ul, ol {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            padding-left: 24px;
+        }
+
+        li {
+            margin-bottom: 12px;
+        }
+
+        .highlight {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 32px 0;
+        }
+
+        .highlight h3 {
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .kbd {
+            display: inline-block;
+            padding: 2px 8px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+        }
+
+        code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 2px 6px;
+        }
+
+        .shortcut-row {
+            display: flex;
+            align-items: baseline;
+            gap: 16px;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(39, 39, 42, 0.5);
+        }
+
+        .shortcut-row:last-child {
+            border-bottom: none;
+        }
+
+        .shortcut-key {
+            flex-shrink: 0;
+            min-width: 200px;
+        }
+
+        .shortcut-desc {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .highlight.amber-border {
+            border-color: rgba(217, 119, 6, 0.3);
+        }
+
+        .highlight.blue-border {
+            border-color: rgba(59, 130, 246, 0.3);
+        }
+
+        .section-label {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            padding: 4px 10px;
+            border-radius: 4px;
+            margin-bottom: 16px;
+        }
+
+        .section-label.amber {
+            background: rgba(217, 119, 6, 0.15);
+            color: var(--amber);
+        }
+
+        .section-label.blue {
+            background: rgba(59, 130, 246, 0.15);
+            color: var(--accent);
+        }
+
+        .code-block {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 20px 24px;
+            margin: 24px 0;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.88rem;
+            line-height: 1.7;
+            color: var(--text-secondary);
+            overflow-x: auto;
+        }
+
+        .code-block .comment {
+            color: var(--text-muted);
+        }
+
+        .code-block .key {
+            color: var(--accent);
+        }
+
+        .code-block .value {
+            color: var(--success);
+        }
+
+        .tip-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin: 24px 0;
+        }
+
+        .tip-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        .tip-card h4 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+        }
+
+        .tip-card p {
+            font-size: 0.9rem;
+            margin-bottom: 0;
+            color: var(--text-secondary);
+        }
+
+        .workflow-step {
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+            margin-bottom: 16px;
+        }
+
+        .step-num {
+            flex-shrink: 0;
+            width: 28px;
+            height: 28px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--accent);
+            margin-top: 2px;
+        }
+
+        .step-text {
+            color: var(--text-secondary);
+            font-size: 1rem;
+        }
+
+        .step-text .kbd {
+            font-size: 0.8rem;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .cta-box h3 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+        }
+
+        .cta-box p {
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 24px;
+        }
+
+        .cta-box .btn {
+            background: white;
+            color: var(--accent);
+        }
+
+        .blog-visual {
+            margin: 40px 0;
+        }
+
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+
+        .related-articles { margin-top: 60px; padding-top: 40px; border-top: 1px solid var(--border); }
+        .related-articles h2 { font-size: 1.5rem; margin-bottom: 24px; }
+        .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .related-card { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-decoration: none; transition: border-color 0.2s; }
+        .related-card:hover { border-color: var(--accent); }
+        .related-card h4 { color: white; font-size: 1rem; margin: 0 0 8px 0; }
+        .related-card p { color: var(--text-muted); font-size: 0.85rem; margin: 0; }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 1.8rem; }
+            .related-grid { grid-template-columns: 1fr; }
+            .tip-grid { grid-template-columns: 1fr; }
+            .shortcut-key { min-width: 140px; }
+            .blog-visual svg { width: 100%; height: auto; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="../" class="logo">
+                <div class="logo-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round">
+                        <path d="M4 17l6-6-6-6M12 19h8"/>
+                    </svg>
+                </div>
+                Beam
+            </a>
+            <a href="../" class="btn">Download Beam</a>
+        </div>
+    </header>
+
+    <main>
+        <article class="container">
+            <div class="breadcrumb">
+                <a href="../">Beam</a> / <a href="../#guides">Guides</a> / Claude Code Keyboard Shortcuts
+            </div>
+
+            <h1>Claude Code Keyboard Shortcuts &amp; Tips: The 2026 Cheat Sheet</h1>
+            <p class="meta">February 2026 &bull; 6 min read</p>
+
+            <p>Claude Code is fast. But it is even faster when you know the shortcuts. Whether you are a first-time user or someone who has been shipping code with Claude for months, having every essential shortcut committed to muscle memory makes a real difference in your day-to-day output. This cheat sheet covers every essential Claude Code shortcut, slash command, and power-user tip -- plus the Beam shortcuts that make managing multiple sessions effortless. Bookmark this one.</p>
+
+            <!-- SVG Visual: Keyboard Shortcut Reference Card -->
+            <div class="blog-visual">
+                <svg viewBox="0 0 720 420" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;border-radius:16px;">
+                    <!-- Card background -->
+                    <rect width="720" height="420" rx="16" fill="#111113"/>
+                    <rect width="720" height="420" rx="16" stroke="#27272a" stroke-width="1"/>
+
+                    <!-- Title -->
+                    <text x="360" y="38" text-anchor="middle" fill="#fafafa" font-family="Space Grotesk, sans-serif" font-size="16" font-weight="600">Quick Reference Card</text>
+
+                    <!-- Divider line -->
+                    <line x1="360" y1="56" x2="360" y2="400" stroke="#27272a" stroke-width="1"/>
+                    <line x1="40" y1="56" x2="680" y2="56" stroke="#27272a" stroke-width="1"/>
+
+                    <!-- Left column header: Claude Code -->
+                    <rect x="120" y="70" width="120" height="24" rx="4" fill="rgba(217,119,6,0.15)"/>
+                    <text x="180" y="87" text-anchor="middle" fill="#D97706" font-family="Space Grotesk, sans-serif" font-size="12" font-weight="600">CLAUDE CODE</text>
+
+                    <!-- Left column shortcuts -->
+                    <!-- 1: claude -r -->
+                    <rect x="50" y="112" width="90" height="28" rx="6" fill="#1a1a1d" stroke="#27272a" stroke-width="1"/>
+                    <text x="95" y="131" text-anchor="middle" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="11">claude -r</text>
+                    <text x="152" y="131" fill="#71717a" font-family="Space Grotesk, sans-serif" font-size="12">Resume session</text>
+
+                    <!-- 2: Ctrl+C -->
+                    <rect x="50" y="156" width="90" height="28" rx="6" fill="#1a1a1d" stroke="#27272a" stroke-width="1"/>
+                    <text x="95" y="175" text-anchor="middle" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="11">Ctrl+C</text>
+                    <text x="152" y="175" fill="#71717a" font-family="Space Grotesk, sans-serif" font-size="12">Interrupt response</text>
+
+                    <!-- 3: /compact -->
+                    <rect x="50" y="200" width="90" height="28" rx="6" fill="#1a1a1d" stroke="#27272a" stroke-width="1"/>
+                    <text x="95" y="219" text-anchor="middle" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="11">/compact</text>
+                    <text x="152" y="219" fill="#71717a" font-family="Space Grotesk, sans-serif" font-size="12">Save context window</text>
+
+                    <!-- 4: /clear -->
+                    <rect x="50" y="244" width="90" height="28" rx="6" fill="#1a1a1d" stroke="#27272a" stroke-width="1"/>
+                    <text x="95" y="263" text-anchor="middle" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="11">/clear</text>
+                    <text x="152" y="263" fill="#71717a" font-family="Space Grotesk, sans-serif" font-size="12">Fresh conversation</text>
+
+                    <!-- 5: /init -->
+                    <rect x="50" y="288" width="90" height="28" rx="6" fill="#1a1a1d" stroke="#27272a" stroke-width="1"/>
+                    <text x="95" y="307" text-anchor="middle" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="11">/init</text>
+                    <text x="152" y="307" fill="#71717a" font-family="Space Grotesk, sans-serif" font-size="12">Create CLAUDE.md</text>
+
+                    <!-- Right column header: Beam -->
+                    <rect x="480" y="70" width="68" height="24" rx="4" fill="rgba(59,130,246,0.15)"/>
+                    <text x="514" y="87" text-anchor="middle" fill="#3b82f6" font-family="Space Grotesk, sans-serif" font-size="12" font-weight="600">BEAM</text>
+
+                    <!-- Right column shortcuts -->
+                    <!-- 1 -->
+                    <rect x="400" y="112" width="68" height="28" rx="6" fill="#1a1a1d" stroke="#27272a" stroke-width="1"/>
+                    <text x="434" y="131" text-anchor="middle" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="11">\u2318N</text>
+                    <text x="480" y="131" fill="#71717a" font-family="Space Grotesk, sans-serif" font-size="12">New workspace</text>
+
+                    <!-- 2 -->
+                    <rect x="400" y="156" width="68" height="28" rx="6" fill="#1a1a1d" stroke="#27272a" stroke-width="1"/>
+                    <text x="434" y="175" text-anchor="middle" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="11">\u2318T</text>
+                    <text x="480" y="175" fill="#71717a" font-family="Space Grotesk, sans-serif" font-size="12">New tab</text>
+
+                    <!-- 3 -->
+                    <rect x="400" y="200" width="68" height="28" rx="6" fill="#1a1a1d" stroke="#27272a" stroke-width="1"/>
+                    <text x="434" y="219" text-anchor="middle" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="11">\u2318P</text>
+                    <text x="480" y="219" fill="#71717a" font-family="Space Grotesk, sans-serif" font-size="12">Quick Switcher</text>
+
+                    <!-- 4 -->
+                    <rect x="400" y="244" width="68" height="28" rx="6" fill="#1a1a1d" stroke="#27272a" stroke-width="1"/>
+                    <text x="434" y="263" text-anchor="middle" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="11">\u2318S</text>
+                    <text x="480" y="263" fill="#71717a" font-family="Space Grotesk, sans-serif" font-size="12">Save layout</text>
+
+                    <!-- 5 -->
+                    <rect x="400" y="288" width="68" height="28" rx="6" fill="#1a1a1d" stroke="#27272a" stroke-width="1"/>
+                    <text x="434" y="307" text-anchor="middle" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="11">\u2318Z</text>
+                    <text x="480" y="307" fill="#71717a" font-family="Space Grotesk, sans-serif" font-size="12">Undo close</text>
+
+                    <!-- Bottom tagline -->
+                    <text x="360" y="380" text-anchor="middle" fill="#3b82f6" font-family="Space Grotesk, sans-serif" font-size="11" font-weight="500">getbeam.dev</text>
+                    <text x="360" y="400" text-anchor="middle" fill="#71717a" font-family="Space Grotesk, sans-serif" font-size="10">Terminal Organizer for Claude Code</text>
+                </svg>
+            </div>
+
+            <!-- Section 2: Claude Code Essential Shortcuts -->
+            <h2>Claude Code Essential Shortcuts</h2>
+
+            <p>These are the commands and shortcuts you will use constantly while working with Claude Code. They break down into two groups: commands for launching and quitting sessions, and slash commands you run inside a live session.</p>
+
+            <div class="highlight amber-border">
+                <span class="section-label amber">Starting &amp; Stopping</span>
+
+                <div class="shortcut-row">
+                    <span class="shortcut-key"><code>claude</code></span>
+                    <span class="shortcut-desc">Start a new Claude Code session in your current directory</span>
+                </div>
+                <div class="shortcut-row">
+                    <span class="shortcut-key"><code>claude -r</code></span>
+                    <span class="shortcut-desc">Resume your last session (keeps full conversation context)</span>
+                </div>
+                <div class="shortcut-row">
+                    <span class="shortcut-key"><code>claude "prompt here"</code></span>
+                    <span class="shortcut-desc">Start a session with a specific prompt inline</span>
+                </div>
+                <div class="shortcut-row">
+                    <span class="shortcut-key"><span class="kbd">Ctrl+C</span></span>
+                    <span class="shortcut-desc">Interrupt Claude mid-response (stops generation immediately)</span>
+                </div>
+                <div class="shortcut-row">
+                    <span class="shortcut-key"><span class="kbd">Ctrl+D</span> or <code>/exit</code></span>
+                    <span class="shortcut-desc">Exit Claude Code and return to your shell</span>
+                </div>
+            </div>
+
+            <div class="highlight amber-border">
+                <span class="section-label amber">During a Session</span>
+
+                <div class="shortcut-row">
+                    <span class="shortcut-key"><code>/clear</code></span>
+                    <span class="shortcut-desc">Clear conversation history and start fresh without exiting</span>
+                </div>
+                <div class="shortcut-row">
+                    <span class="shortcut-key"><code>/compact</code></span>
+                    <span class="shortcut-desc">Compress the conversation to save context window space</span>
+                </div>
+                <div class="shortcut-row">
+                    <span class="shortcut-key"><code>/cost</code></span>
+                    <span class="shortcut-desc">Show token usage and cost for the current session</span>
+                </div>
+                <div class="shortcut-row">
+                    <span class="shortcut-key"><code>/doctor</code></span>
+                    <span class="shortcut-desc">Diagnose configuration issues and check your setup</span>
+                </div>
+                <div class="shortcut-row">
+                    <span class="shortcut-key"><code>/help</code></span>
+                    <span class="shortcut-desc">Show all available slash commands</span>
+                </div>
+                <div class="shortcut-row">
+                    <span class="shortcut-key"><code>/init</code></span>
+                    <span class="shortcut-desc">Create a CLAUDE.md project memory file in your repo</span>
+                </div>
+                <div class="shortcut-row">
+                    <span class="shortcut-key"><code>/model</code></span>
+                    <span class="shortcut-desc">Switch to a different model mid-session</span>
+                </div>
+            </div>
+
+            <!-- Section 3: Power User Tips -->
+            <h2>Power User Tips</h2>
+
+            <p>Knowing the shortcuts is only half the battle. How you use Claude Code in practice determines whether it saves you minutes or hours every day. These are the habits that separate casual users from people who genuinely ship faster with AI.</p>
+
+            <div class="tip-grid">
+                <div class="tip-card">
+                    <h4>Resume Sessions</h4>
+                    <p><code>claude -r</code> picks up exactly where you left off. Do not lose context by starting fresh every time -- resume and keep building on what Claude already knows about your codebase.</p>
+                </div>
+                <div class="tip-card">
+                    <h4>Pipe Input Directly</h4>
+                    <p>Use <code>cat error.log | claude "explain this error"</code> to pipe files or command output straight into Claude. No copy-paste needed.</p>
+                </div>
+                <div class="tip-card">
+                    <h4>Project Memory</h4>
+                    <p><code>/init</code> creates a CLAUDE.md file in your project root. Claude reads this automatically every session, giving it persistent context about your stack, conventions, and preferences.</p>
+                </div>
+                <div class="tip-card">
+                    <h4>Work Across Multiple Files</h4>
+                    <p>Claude can read and modify multiple files in a single operation. Do not limit yourself to one file at a time -- describe the full scope of the change and let Claude handle it.</p>
+                </div>
+                <div class="tip-card">
+                    <h4>Let Claude Run Commands</h4>
+                    <p>Claude can execute shell commands for you -- building, testing, installing packages, running migrations. Tell it what you need done and it will handle the terminal side.</p>
+                </div>
+                <div class="tip-card">
+                    <h4>Use /compact Proactively</h4>
+                    <p>When conversations get long, <code>/compact</code> preserves the important context while freeing up the context window. Run it before you hit the limit, not after.</p>
+                </div>
+            </div>
+
+            <div class="highlight">
+                <h3>Write Better Prompts</h3>
+                <p>Specificity is everything. <em>"Refactor the auth module to use JWT with refresh tokens, update the middleware, and add tests"</em> will get you dramatically better results than <em>"improve the auth."</em> The more precisely you describe the outcome you want, the fewer iterations you will need. Include file paths, function names, and expected behavior when you can.</p>
+            </div>
+
+            <!-- Section 4: Beam Shortcuts for Claude Code Sessions -->
+            <h2>Beam Shortcuts for Claude Code Sessions</h2>
+
+            <p>Claude Code runs in the terminal, which means your terminal app matters. Beam is built specifically for managing multiple terminal sessions. Here are the shortcuts that make the biggest difference when you are juggling several Claude Code instances across projects.</p>
+
+            <div class="highlight blue-border">
+                <span class="section-label blue">Workspace Management</span>
+
+                <div class="shortcut-row">
+                    <span class="shortcut-key"><span class="kbd">&#8984;N</span></span>
+                    <span class="shortcut-desc">New workspace -- create one per project to keep sessions isolated</span>
+                </div>
+                <div class="shortcut-row">
+                    <span class="shortcut-key"><span class="kbd">&#8984;&#8997;&#8592;&#8594;</span></span>
+                    <span class="shortcut-desc">Switch between workspaces instantly</span>
+                </div>
+                <div class="shortcut-row">
+                    <span class="shortcut-key">Double-click name</span>
+                    <span class="shortcut-desc">Rename a workspace to match your project</span>
+                </div>
+            </div>
+
+            <div class="highlight blue-border">
+                <span class="section-label blue">Tab Management</span>
+
+                <div class="shortcut-row">
+                    <span class="shortcut-key"><span class="kbd">&#8984;T</span></span>
+                    <span class="shortcut-desc">New tab within the current workspace</span>
+                </div>
+                <div class="shortcut-row">
+                    <span class="shortcut-key"><span class="kbd">&#8984;W</span></span>
+                    <span class="shortcut-desc">Close the current tab</span>
+                </div>
+                <div class="shortcut-row">
+                    <span class="shortcut-key"><span class="kbd">&#8984;1</span>&#8211;<span class="kbd">&#8984;9</span></span>
+                    <span class="shortcut-desc">Jump to a specific tab by number</span>
+                </div>
+                <div class="shortcut-row">
+                    <span class="shortcut-key">Double-click tab</span>
+                    <span class="shortcut-desc">Rename a tab (e.g. "Claude Code", "Dev Server")</span>
+                </div>
+            </div>
+
+            <div class="highlight blue-border">
+                <span class="section-label blue">Split Panes</span>
+
+                <div class="shortcut-row">
+                    <span class="shortcut-key"><span class="kbd">&#8984;&#8997;&#8963;T</span></span>
+                    <span class="shortcut-desc">Split the current tab into side-by-side panes</span>
+                </div>
+                <div class="shortcut-row">
+                    <span class="shortcut-key"></span>
+                    <span class="shortcut-desc">Run Claude Code in one pane, your dev server or tests in the other</span>
+                </div>
+            </div>
+
+            <div class="highlight blue-border">
+                <span class="section-label blue">Navigation</span>
+
+                <div class="shortcut-row">
+                    <span class="shortcut-key"><span class="kbd">&#8984;P</span></span>
+                    <span class="shortcut-desc">Quick Switcher -- fuzzy search across all workspaces and tabs</span>
+                </div>
+                <div class="shortcut-row">
+                    <span class="shortcut-key"><span class="kbd">&#8984;S</span></span>
+                    <span class="shortcut-desc">Save your current layout (workspaces, tabs, splits)</span>
+                </div>
+                <div class="shortcut-row">
+                    <span class="shortcut-key"><span class="kbd">&#8984;Z</span></span>
+                    <span class="shortcut-desc">Undo close -- recover accidentally closed tabs</span>
+                </div>
+            </div>
+
+            <!-- Section 5: The Speed Workflow -->
+            <h2>The Speed Workflow: Combining Both</h2>
+
+            <p>The real productivity gain comes from combining Claude Code's commands with Beam's session management. Here is what a keyboard-only workflow looks like in practice -- from opening Beam to shipping code, without touching the mouse once.</p>
+
+            <div class="workflow-step">
+                <div class="step-num">1</div>
+                <div class="step-text">Start Beam and restore your saved layout. All your workspaces, tabs, and splits come back exactly as you left them.</div>
+            </div>
+            <div class="workflow-step">
+                <div class="step-num">2</div>
+                <div class="step-text">Jump to your project workspace with <span class="kbd">&#8984;&#8997;&#8594;</span>.</div>
+            </div>
+            <div class="workflow-step">
+                <div class="step-num">3</div>
+                <div class="step-text">Resume your Claude Code session: <code>claude -r</code>. You are back in the conversation with full context.</div>
+            </div>
+            <div class="workflow-step">
+                <div class="step-num">4</div>
+                <div class="step-text">Split the pane with <span class="kbd">&#8984;&#8997;&#8963;T</span>. Claude on the left, dev server on the right.</div>
+            </div>
+            <div class="workflow-step">
+                <div class="step-num">5</div>
+                <div class="step-text">Work with Claude using natural language. Ask it to implement features, fix bugs, refactor code, write tests.</div>
+            </div>
+            <div class="workflow-step">
+                <div class="step-num">6</div>
+                <div class="step-text">Need to check another project? <span class="kbd">&#8984;P</span>, type the project name, hit Enter. You are there instantly.</div>
+            </div>
+            <div class="workflow-step">
+                <div class="step-num">7</div>
+                <div class="step-text">Need to see container logs? <span class="kbd">&#8984;3</span> to jump to tab 3.</div>
+            </div>
+            <div class="workflow-step">
+                <div class="step-num">8</div>
+                <div class="step-text">All of this without touching the mouse. Keyboard-driven development at its best.</div>
+            </div>
+
+            <!-- Section 6: Customizing Claude Code -->
+            <h2>Customizing Claude Code</h2>
+
+            <p>One of Claude Code's most powerful features is project memory. Claude automatically reads a file called CLAUDE.md from your project root at the start of every session. This gives it persistent context about your codebase, your conventions, and the way you like things done -- without you repeating yourself.</p>
+
+            <p>Use it to define your stack, set coding conventions, and provide project-specific instructions that Claude should follow in every interaction. The more detailed your CLAUDE.md, the less time you spend correcting Claude's assumptions.</p>
+
+            <div class="code-block">
+<span class="comment"># Project: My SaaS App</span>
+<span class="comment">## Stack: Next.js 14, Prisma, PostgreSQL</span>
+<span class="comment">## Conventions:</span>
+<span class="key">-</span> <span class="value">Use server actions for mutations</span>
+<span class="key">-</span> <span class="value">Error responses: { error: string, code: number }</span>
+<span class="key">-</span> <span class="value">All API routes in app/api/</span>
+<span class="key">-</span> <span class="value">Use Zod for input validation</span>
+<span class="key">-</span> <span class="value">Tests go in __tests__/ directories</span>
+            </div>
+
+            <p>If you are using Beam, you do not even need to create this file manually. Beam's "Install Project Memory" toolbar button generates a CLAUDE.md tailored to your project and drops it into your working directory. It is one click to give Claude persistent context about what you are building.</p>
+
+            <!-- Section 7: CTA -->
+            <div class="cta-box">
+                <h3>Master Your AI Coding Workflow</h3>
+                <p>Download Beam for the terminal shortcuts that make Claude Code even more powerful. Workspaces, tabs, splits, and a Quick Switcher -- all keyboard-driven.</p>
+                <a href="../" class="btn">Download Beam for macOS</a>
+            </div>
+
+            <!-- Section 8: Summary -->
+            <h2>Summary</h2>
+
+            <p>Here are the essential shortcuts to commit to memory. Once these are second nature, you will never go back to clicking around terminals or restarting conversations from scratch.</p>
+
+            <div class="highlight">
+                <h3>Claude Code Essentials</h3>
+                <ul>
+                    <li><code>claude -r</code> -- resume your last session with full context</li>
+                    <li><code>/compact</code> -- compress conversation to save the context window</li>
+                    <li><code>/clear</code> -- start a fresh conversation without exiting</li>
+                    <li><code>/init</code> -- create a CLAUDE.md for project memory</li>
+                    <li><code>/cost</code> -- check your token usage and cost</li>
+                    <li><span class="kbd">Ctrl+C</span> -- interrupt a response</li>
+                    <li><span class="kbd">Ctrl+D</span> -- exit Claude Code</li>
+                </ul>
+            </div>
+
+            <div class="highlight">
+                <h3>Beam Essentials</h3>
+                <ul>
+                    <li><span class="kbd">&#8984;N</span> -- new workspace per project</li>
+                    <li><span class="kbd">&#8984;T</span> -- new tab</li>
+                    <li><span class="kbd">&#8984;&#8997;&#8963;T</span> -- split pane</li>
+                    <li><span class="kbd">&#8984;P</span> -- Quick Switcher to find any session</li>
+                    <li><span class="kbd">&#8984;S</span> -- save your layout</li>
+                    <li><span class="kbd">&#8984;Z</span> -- undo close</li>
+                    <li><span class="kbd">&#8984;1</span>&#8211;<span class="kbd">&#8984;9</span> -- jump to tab by number</li>
+                </ul>
+            </div>
+
+            <p>Happy coding.</p>
+
+            <!-- Section 9: Related Articles -->
+            <div class="related-articles">
+                <h2>Related Articles</h2>
+                <div class="related-grid">
+                    <a href="beam-claude-code-setup.html" class="related-card">
+                        <h4>Setting Up Beam for Claude Code</h4>
+                        <p>Step-by-step guide to configuring Beam for Claude Code development.</p>
+                    </a>
+                    <a href="organizing-claude-code-sessions.html" class="related-card">
+                        <h4>Organizing Claude Code Sessions</h4>
+                        <p>Keep your AI coding workflow clean with workspaces, tabs, and layouts.</p>
+                    </a>
+                    <a href="vibe-coding-setup.html" class="related-card">
+                        <h4>The Perfect Vibe Coding Setup</h4>
+                        <p>Achieve flow state with the right terminal organization.</p>
+                    </a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>
+                <a href="../">Beam</a> &bull; Terminal Organizer for macOS &bull;
+                <a href="mailto:frank@nextuptechnologies.co">Contact</a>
+            </p>
+
+            <p style="margin-top: 12px; font-size: 0.8rem;">
+                <a href="/privacy.html" style="color: #71717a; text-decoration: none;">Privacy Policy</a> &bull;
+                <a href="/terms.html" style="color: #71717a; text-decoration: none;">Terms of Service</a>
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>

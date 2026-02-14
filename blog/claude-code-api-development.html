@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D0XH8B0RKL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-D0XH8B0RKL');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Use Claude Code for API Development: A Complete Guide | Beam Terminal Organizer</title>
+    <meta name="description" content="Build REST APIs faster with Claude Code as your AI pair programmer. Step-by-step guide covering endpoint design, route generation, testing, and deployment — organized with Beam workspaces.">
+    <meta name="keywords" content="Claude Code API development, build API with Claude Code, Claude Code REST API, AI API development, Claude Code backend development">
+    <meta name="author" content="NextUp Technologies">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://getbeam.dev/blog/claude-code-api-development.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://getbeam.dev/blog/claude-code-api-development.html">
+    <meta property="og:title" content="How to Use Claude Code for API Development: A Complete Guide">
+    <meta property="og:description" content="Build REST APIs faster with Claude Code as your AI pair programmer. Step-by-step guide covering endpoint design, route generation, testing, and deployment.">
+    <meta property="og:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="How to Use Claude Code for API Development: A Complete Guide">
+    <meta name="twitter:description" content="Build REST APIs faster with Claude Code as your AI pair programmer. Step-by-step guide covering endpoint design, route generation, testing, and deployment.">
+    <meta name="twitter:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "How to Use Claude Code for API Development: A Complete Guide",
+        "description": "Build REST APIs faster with Claude Code as your AI pair programmer. Step-by-step guide covering endpoint design, route generation, testing, and deployment.",
+        "author": {
+            "@type": "Organization",
+            "name": "NextUp Technologies"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Beam"
+        },
+        "datePublished": "2026-02-11",
+        "keywords": "Claude Code API development, build API with Claude Code, Claude Code REST API, AI API development, Claude Code backend development"
+    }
+    </script>
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #111113;
+            --bg-tertiary: #1a1a1d;
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.4);
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --border: #27272a;
+            --success: #22c55e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        header {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 60px;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1.5rem;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            background: var(--accent);
+            color: white;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+        }
+
+        article {
+            padding-bottom: 80px;
+        }
+
+        .breadcrumb {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+        }
+
+        .breadcrumb a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .meta {
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            font-size: 0.95rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 48px 0 20px;
+            color: var(--text-primary);
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        ul, ol {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            padding-left: 24px;
+        }
+
+        li {
+            margin-bottom: 12px;
+        }
+
+        .highlight {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 32px 0;
+        }
+
+        .highlight h3 {
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .highlight p {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.92rem;
+            line-height: 1.7;
+        }
+
+        .kbd {
+            display: inline-block;
+            padding: 2px 8px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .cta-box h3 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+        }
+
+        .cta-box p {
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 24px;
+        }
+
+        .cta-box .btn {
+            background: white;
+            color: var(--accent);
+        }
+
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+
+        .blog-visual { margin: 40px 0; text-align: center; }
+        .blog-visual svg { max-width: 100%; height: auto; border-radius: 12px; }
+
+        .related-articles { margin-top: 60px; padding-top: 40px; border-top: 1px solid var(--border); }
+        .related-articles h2 { font-size: 1.5rem; margin-bottom: 24px; }
+        .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .related-card { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-decoration: none; transition: border-color 0.2s; }
+        .related-card:hover { border-color: var(--accent); }
+        .related-card h4 { color: white; font-size: 1rem; margin: 0 0 8px 0; }
+        .related-card p { color: var(--text-muted); font-size: 0.85rem; margin: 0; }
+        @media (max-width: 600px) { .related-grid { grid-template-columns: 1fr; } h1 { font-size: 1.8rem; } }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="../" class="logo">
+                <div class="logo-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round">
+                        <path d="M4 17l6-6-6-6M12 19h8"/>
+                    </svg>
+                </div>
+                Beam
+            </a>
+            <a href="../" class="btn">Download Beam</a>
+        </div>
+    </header>
+
+    <main>
+        <article class="container">
+            <div class="breadcrumb">
+                <a href="../">Beam</a> / <a href="../#guides">Guides</a> / Claude Code API Development
+            </div>
+
+            <h1>How to Use Claude Code for API Development: A Complete Guide</h1>
+            <p class="meta">February 2026 &bull; 8 min read</p>
+
+            <p>API development is one of Claude Code's strongest use cases. It excels at understanding data relationships, generating consistent route patterns, writing middleware, and creating comprehensive test suites. The structured, convention-driven nature of REST APIs plays directly to Claude's strengths as an AI pair programmer. This guide walks you through building a complete REST API from scratch, with Beam keeping your development environment organized so you can move fast without losing context.</p>
+
+            <div class="blog-visual">
+                <svg width="720" height="420" viewBox="0 0 720 420" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Window frame -->
+                    <rect x="0" y="0" width="720" height="420" rx="12" fill="#0a0a0b" stroke="#27272a" stroke-width="1.5"/>
+                    <!-- Title bar -->
+                    <rect x="0" y="0" width="720" height="36" rx="12" fill="#111113"/>
+                    <rect x="0" y="12" width="720" height="24" fill="#111113"/>
+                    <!-- Window controls -->
+                    <circle cx="20" cy="18" r="6" fill="#ef4444"/>
+                    <circle cx="40" cy="18" r="6" fill="#eab308"/>
+                    <circle cx="60" cy="18" r="6" fill="#22c55e"/>
+                    <!-- Window title -->
+                    <text x="360" y="22" text-anchor="middle" fill="#a1a1aa" font-family="Space Grotesk, sans-serif" font-size="12" font-weight="500">Beam - API Project</text>
+                    <!-- Divider below title bar -->
+                    <line x1="0" y1="36" x2="720" y2="36" stroke="#27272a" stroke-width="1"/>
+
+                    <!-- Split pane divider (vertical) -->
+                    <line x1="380" y1="36" x2="380" y2="380" stroke="#27272a" stroke-width="1.5"/>
+
+                    <!-- LEFT PANE: Claude Code -->
+                    <!-- Pane label -->
+                    <rect x="8" y="42" width="100" height="22" rx="4" fill="#D97706" opacity="0.15"/>
+                    <text x="58" y="57" text-anchor="middle" fill="#D97706" font-family="JetBrains Mono, monospace" font-size="10" font-weight="500">Claude Code</text>
+
+                    <!-- Claude prompt indicator -->
+                    <text x="16" y="88" fill="#D97706" font-family="JetBrains Mono, monospace" font-size="11" font-weight="500">claude&gt;</text>
+                    <text x="72" y="88" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="11">Create CRUD routes for Task</text>
+
+                    <!-- Generated code -->
+                    <text x="16" y="114" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="10">// routes/tasks.ts</text>
+                    <text x="16" y="130" fill="#c084fc" font-family="JetBrains Mono, monospace" font-size="10">import</text>
+                    <text x="56" y="130" fill="#fafafa" font-family="JetBrains Mono, monospace" font-size="10">{ Router } </text>
+                    <text x="124" y="130" fill="#c084fc" font-family="JetBrains Mono, monospace" font-size="10">from</text>
+                    <text x="152" y="130" fill="#22c55e" font-family="JetBrains Mono, monospace" font-size="10">'express'</text>
+
+                    <text x="16" y="150" fill="#c084fc" font-family="JetBrains Mono, monospace" font-size="10">const</text>
+                    <text x="50" y="150" fill="#3b82f6" font-family="JetBrains Mono, monospace" font-size="10">router</text>
+                    <text x="92" y="150" fill="#fafafa" font-family="JetBrains Mono, monospace" font-size="10">= Router()</text>
+
+                    <text x="16" y="174" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="10">// GET /api/tasks</text>
+                    <text x="16" y="190" fill="#3b82f6" font-family="JetBrains Mono, monospace" font-size="10">router</text>
+                    <text x="52" y="190" fill="#fafafa" font-family="JetBrains Mono, monospace" font-size="10">.get(</text>
+                    <text x="82" y="190" fill="#22c55e" font-family="JetBrains Mono, monospace" font-size="10">'/'</text>
+                    <text x="96" y="190" fill="#fafafa" font-family="JetBrains Mono, monospace" font-size="10">, async (req, res) =&gt; {</text>
+
+                    <text x="28" y="206" fill="#c084fc" font-family="JetBrains Mono, monospace" font-size="10">const</text>
+                    <text x="62" y="206" fill="#fafafa" font-family="JetBrains Mono, monospace" font-size="10">tasks =</text>
+                    <text x="108" y="206" fill="#c084fc" font-family="JetBrains Mono, monospace" font-size="10">await</text>
+                    <text x="142" y="206" fill="#fafafa" font-family="JetBrains Mono, monospace" font-size="10">Task.findAll()</text>
+
+                    <text x="28" y="222" fill="#fafafa" font-family="JetBrains Mono, monospace" font-size="10">res.json({ data: tasks })</text>
+                    <text x="16" y="238" fill="#fafafa" font-family="JetBrains Mono, monospace" font-size="10">})</text>
+
+                    <text x="16" y="262" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="10">// POST /api/tasks</text>
+                    <text x="16" y="278" fill="#3b82f6" font-family="JetBrains Mono, monospace" font-size="10">router</text>
+                    <text x="52" y="278" fill="#fafafa" font-family="JetBrains Mono, monospace" font-size="10">.post(</text>
+                    <text x="86" y="278" fill="#22c55e" font-family="JetBrains Mono, monospace" font-size="10">'/'</text>
+                    <text x="100" y="278" fill="#fafafa" font-family="JetBrains Mono, monospace" font-size="10">, validate, async ...</text>
+
+                    <!-- Cursor blink line -->
+                    <rect x="16" y="296" width="8" height="14" rx="1" fill="#D97706" opacity="0.8"/>
+
+                    <!-- File creation status -->
+                    <text x="16" y="330" fill="#22c55e" font-family="JetBrains Mono, monospace" font-size="10">+ Created routes/tasks.ts</text>
+                    <text x="16" y="346" fill="#22c55e" font-family="JetBrains Mono, monospace" font-size="10">+ Created routes/projects.ts</text>
+                    <text x="16" y="362" fill="#D97706" font-family="JetBrains Mono, monospace" font-size="10">  Writing routes/users.ts...</text>
+
+                    <!-- RIGHT PANE: Server -->
+                    <!-- Pane label -->
+                    <rect x="388" y="42" width="64" height="22" rx="4" fill="#22c55e" opacity="0.15"/>
+                    <text x="420" y="57" text-anchor="middle" fill="#22c55e" font-family="JetBrains Mono, monospace" font-size="10" font-weight="500">Server</text>
+
+                    <!-- Server output -->
+                    <text x="396" y="88" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="10">[nodemon] restarting...</text>
+                    <text x="396" y="108" fill="#3b82f6" font-family="JetBrains Mono, monospace" font-size="10">Server running on :3000</text>
+
+                    <text x="396" y="136" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="10">14:32:01</text>
+                    <text x="460" y="136" fill="#22c55e" font-family="JetBrains Mono, monospace" font-size="10" font-weight="600">GET</text>
+                    <text x="490" y="136" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="10">/api/tasks</text>
+                    <text x="580" y="136" fill="#22c55e" font-family="JetBrains Mono, monospace" font-size="10">200</text>
+                    <text x="604" y="136" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="10">12ms</text>
+
+                    <text x="396" y="156" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="10">14:32:03</text>
+                    <text x="460" y="156" fill="#eab308" font-family="JetBrains Mono, monospace" font-size="10" font-weight="600">POST</text>
+                    <text x="496" y="156" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="10">/api/tasks</text>
+                    <text x="580" y="156" fill="#22c55e" font-family="JetBrains Mono, monospace" font-size="10">201</text>
+                    <text x="604" y="156" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="10">28ms</text>
+
+                    <text x="396" y="176" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="10">14:32:05</text>
+                    <text x="460" y="176" fill="#22c55e" font-family="JetBrains Mono, monospace" font-size="10" font-weight="600">GET</text>
+                    <text x="490" y="176" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="10">/api/tasks/1</text>
+                    <text x="580" y="176" fill="#22c55e" font-family="JetBrains Mono, monospace" font-size="10">200</text>
+                    <text x="604" y="176" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="10">8ms</text>
+
+                    <text x="396" y="196" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="10">14:32:07</text>
+                    <text x="460" y="196" fill="#c084fc" font-family="JetBrains Mono, monospace" font-size="10" font-weight="600">PUT</text>
+                    <text x="490" y="196" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="10">/api/tasks/1</text>
+                    <text x="580" y="196" fill="#22c55e" font-family="JetBrains Mono, monospace" font-size="10">200</text>
+                    <text x="604" y="196" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="10">15ms</text>
+
+                    <text x="396" y="216" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="10">14:32:09</text>
+                    <text x="460" y="216" fill="#ef4444" font-family="JetBrains Mono, monospace" font-size="10" font-weight="600">DEL</text>
+                    <text x="490" y="216" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="10">/api/tasks/1</text>
+                    <text x="580" y="216" fill="#22c55e" font-family="JetBrains Mono, monospace" font-size="10">204</text>
+                    <text x="604" y="216" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="10">6ms</text>
+
+                    <text x="396" y="244" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="10">14:32:12</text>
+                    <text x="460" y="244" fill="#22c55e" font-family="JetBrains Mono, monospace" font-size="10" font-weight="600">GET</text>
+                    <text x="490" y="244" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="10">/api/projects</text>
+                    <text x="580" y="244" fill="#22c55e" font-family="JetBrains Mono, monospace" font-size="10">200</text>
+                    <text x="604" y="244" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="10">10ms</text>
+
+                    <text x="396" y="264" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="10">14:32:15</text>
+                    <text x="460" y="264" fill="#eab308" font-family="JetBrains Mono, monospace" font-size="10" font-weight="600">POST</text>
+                    <text x="496" y="264" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="10">/auth/login</text>
+                    <text x="580" y="264" fill="#22c55e" font-family="JetBrains Mono, monospace" font-size="10">200</text>
+                    <text x="604" y="264" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="10">45ms</text>
+
+                    <!-- JSON response preview -->
+                    <rect x="388" y="282" width="324" height="88" rx="6" fill="#0a0a0b" stroke="#27272a" stroke-width="1"/>
+                    <text x="396" y="300" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="9">Response body:</text>
+                    <text x="396" y="316" fill="#fafafa" font-family="JetBrains Mono, monospace" font-size="9">{</text>
+                    <text x="410" y="330" fill="#3b82f6" font-family="JetBrains Mono, monospace" font-size="9">"token"</text>
+                    <text x="458" y="330" fill="#fafafa" font-family="JetBrains Mono, monospace" font-size="9">:</text>
+                    <text x="466" y="330" fill="#22c55e" font-family="JetBrains Mono, monospace" font-size="9">"eyJhbGciOiJIUzI1NiIs..."</text>
+                    <text x="410" y="344" fill="#3b82f6" font-family="JetBrains Mono, monospace" font-size="9">"user"</text>
+                    <text x="452" y="344" fill="#fafafa" font-family="JetBrains Mono, monospace" font-size="9">: { </text>
+                    <text x="474" y="344" fill="#3b82f6" font-family="JetBrains Mono, monospace" font-size="9">"id"</text>
+                    <text x="498" y="344" fill="#fafafa" font-family="JetBrains Mono, monospace" font-size="9">: 1, </text>
+                    <text x="524" y="344" fill="#3b82f6" font-family="JetBrains Mono, monospace" font-size="9">"name"</text>
+                    <text x="560" y="344" fill="#fafafa" font-family="JetBrains Mono, monospace" font-size="9">: </text>
+                    <text x="568" y="344" fill="#22c55e" font-family="JetBrains Mono, monospace" font-size="9">"Alice"</text>
+                    <text x="610" y="344" fill="#fafafa" font-family="JetBrains Mono, monospace" font-size="9">}</text>
+                    <text x="396" y="358" fill="#fafafa" font-family="JetBrains Mono, monospace" font-size="9">}</text>
+
+                    <!-- Bottom tab bar -->
+                    <rect x="0" y="380" width="720" height="40" rx="0" fill="#111113"/>
+                    <rect x="0" y="408" width="720" height="12" rx="12" fill="#111113"/>
+                    <line x1="0" y1="380" x2="720" y2="380" stroke="#27272a" stroke-width="1"/>
+
+                    <!-- Tab 1: Claude Code (active) -->
+                    <rect x="8" y="388" width="120" height="26" rx="6" fill="#D97706" opacity="0.2"/>
+                    <rect x="8" y="388" width="120" height="2" rx="1" fill="#D97706"/>
+                    <circle cx="24" cy="401" r="4" fill="#D97706"/>
+                    <text x="34" y="405" fill="#D97706" font-family="JetBrains Mono, monospace" font-size="10" font-weight="500">Claude Code</text>
+
+                    <!-- Tab 2: Server -->
+                    <rect x="140" y="388" width="90" height="26" rx="6" fill="transparent"/>
+                    <circle cx="156" cy="401" r="4" fill="#22c55e"/>
+                    <text x="166" y="405" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="10">Server</text>
+
+                    <!-- Tab 3: Tests -->
+                    <rect x="242" y="388" width="80" height="26" rx="6" fill="transparent"/>
+                    <circle cx="258" cy="401" r="4" fill="#3b82f6"/>
+                    <text x="268" y="405" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="10">Tests</text>
+
+                    <!-- Tab 4: Git -->
+                    <rect x="334" y="388" width="70" height="26" rx="6" fill="transparent"/>
+                    <circle cx="350" cy="401" r="4" fill="#c084fc"/>
+                    <text x="360" y="405" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="10">Git</text>
+                </svg>
+            </div>
+
+            <h2>Why Claude Code Excels at API Work</h2>
+
+            <p>APIs are fundamentally pattern-driven. Every REST API follows the same conventions: CRUD operations map to HTTP methods, resources map to URL paths, validation guards every input, and error handling wraps every response. Claude Code internalizes these patterns deeply, which means it can generate entire route files, middleware chains, and error handlers that are consistent and production-ready from the first pass.</p>
+
+            <p>Claude understands REST conventions at a level that goes beyond simple code completion. It knows that a POST endpoint should return a 201 status code, that a DELETE should return 204 with no body, that pagination belongs in query parameters, and that nested resources use hierarchical paths. When you describe a data model, Claude doesn't just generate boilerplate -- it generates idiomatic, well-structured code that follows the conventions your team would agree on.</p>
+
+            <p>Perhaps most importantly, Claude Code has multi-file awareness. It sees your models, routes, middleware, and tests together as a cohesive system. When you add a field to a model, Claude can update the validation schema, the route handler, the test fixtures, and the API documentation in a single pass. This holistic understanding of your codebase is what makes it a genuine pair programmer rather than a glorified snippet generator.</p>
+
+            <h2>Setting Up Your API Development Workspace</h2>
+
+            <p>Before writing any code, set up a Beam workspace that keeps your API development workflow organized. Create a new workspace called "API Project" and configure it with four tabs, each serving a distinct purpose in your development loop.</p>
+
+            <ul>
+                <li><strong>Tab 1: Claude Code</strong> -- This is your AI pair programmer. You'll describe models, request route generation, and iterate on your API design here.</li>
+                <li><strong>Tab 2: Server</strong> -- Run your API with hot reload (<span class="kbd">npx nodemon</span> or <span class="kbd">npm run dev</span>) so you can see changes take effect immediately.</li>
+                <li><strong>Tab 3: Testing</strong> -- Use curl, httpie, or the Postman CLI to test endpoints as you build them. Keep a running history of your test commands.</li>
+                <li><strong>Tab 4: Git</strong> -- Version control. Commit after each working feature so you always have a clean rollback point.</li>
+            </ul>
+
+            <p>The real power comes from split panes. Press <span class="kbd">&#8984;&#8997;&#8963;T</span> to split your view: Claude Code on the left, server output on the right. This way you can watch Claude generate route code in one pane while the server hot-reloads and confirms everything compiles in the other. No tab switching, no context loss -- just a continuous feedback loop.</p>
+
+            <h2>Step 1: Describe Your Data Model</h2>
+
+            <p>Every good API starts with a clear data model. Instead of writing schemas by hand, describe what your API manages to Claude Code in natural language. Be specific about the entities, their fields, and the relationships between them. The more detail you provide upfront, the more consistent the generated code will be across your entire project.</p>
+
+            <div class="highlight">
+                <h3>Example Prompt</h3>
+                <p>"Create a REST API for a task management app. Models: User (id, name, email), Project (id, name, ownerId), Task (id, title, description, status, projectId, assigneeId). Use Express with TypeScript. Include proper validation and error handling."</p>
+            </div>
+
+            <p>From a single prompt like this, Claude generates the full project structure: TypeScript interfaces for each model, database schema definitions, route files organized by resource, shared middleware for validation and error handling, and a configuration file that ties everything together. It understands the foreign key relationships -- that <code>ownerId</code> references a User, that <code>projectId</code> references a Project -- and reflects those relationships in the generated code with proper joins, cascading deletes, and referential integrity checks.</p>
+
+            <h2>Step 2: Generate CRUD Endpoints</h2>
+
+            <p>With the data model in place, Claude creates consistent route handlers for each resource. For the Tasks model, you get five endpoints out of the box: <code>GET /api/tasks</code> to list all tasks with pagination and filtering, <code>POST /api/tasks</code> to create a new task with validation, <code>GET /api/tasks/:id</code> to fetch a single task with its relationships, <code>PUT /api/tasks/:id</code> to update a task with partial update support, and <code>DELETE /api/tasks/:id</code> to remove a task with proper cleanup.</p>
+
+            <p>What makes Claude's output stand out is the consistency. Every route handler follows the same structure: validate input, perform the operation, handle errors, return a consistently shaped response. Status codes are correct by default -- 200 for successful reads, 201 for creates, 204 for deletes, 400 for validation failures, 404 for missing resources, and 500 for unexpected errors. This kind of consistency is tedious to maintain by hand across dozens of endpoints, but Claude produces it effortlessly.</p>
+
+            <p>Watch the server tab in your split pane as Claude creates each file. With hot reload running, you'll see the server restart after every new route file is written, confirming that everything compiles and the new endpoints are registered. If something breaks, you'll know immediately -- no need to stop and run manual checks.</p>
+
+            <h2>Step 3: Add Authentication and Middleware</h2>
+
+            <p>Once your CRUD endpoints are working, the next step is securing them. Ask Claude to add authentication with a specific prompt that defines which routes should be protected and which should remain public.</p>
+
+            <div class="highlight">
+                <h3>Example Prompt</h3>
+                <p>"Add JWT authentication. Protect all routes except POST /auth/login and POST /auth/register. Include token refresh, password hashing with bcrypt, and role-based access control."</p>
+            </div>
+
+            <p>Claude generates the complete authentication layer: an auth middleware that validates JWT tokens on every protected request, login and register routes with password hashing, a token utility module for signing and verifying JWTs, and updates to every existing route file to apply the auth middleware. It wires everything together so that the middleware runs before your route handlers, extracting the user from the token and attaching it to the request object for downstream use.</p>
+
+            <p>Test the flow in your testing tab. First, hit the register endpoint to create a user. Then hit the login endpoint to get a token. Copy the token and use it in the Authorization header to access protected routes. Try hitting a protected route without the token and verify you get a 401. This immediate test-as-you-build cycle is what makes the split-pane workflow so effective -- you never have to leave your development environment to verify that auth is working.</p>
+
+            <h2>Step 4: Write Tests</h2>
+
+            <p>This is where Claude Code truly shines. Writing integration tests is one of the most tedious parts of API development -- you need to cover happy paths, edge cases, validation failures, authentication errors, and resource-not-found scenarios for every single endpoint. Multiply that by the number of resources in your API and you're looking at hundreds of test cases that are important but deeply boring to write by hand.</p>
+
+            <div class="highlight">
+                <h3>Example Prompt</h3>
+                <p>"Write integration tests for all API endpoints using Jest and Supertest. Cover happy paths, validation errors, auth failures, and edge cases. Include setup and teardown for a test database."</p>
+            </div>
+
+            <p>Claude generates comprehensive test files covering every endpoint. For the Tasks resource alone, you get tests for creating a task with valid data, creating with missing required fields, creating with an invalid project ID, fetching all tasks with pagination, fetching a single task that exists, fetching a task that doesn't exist, updating a task as the assignee, updating a task as a non-assignee, deleting a task with proper authorization, and attempting to delete someone else's task. It sets up a test database, seeds it with fixtures, and tears it down after each test suite.</p>
+
+            <p>Run the tests in your testing tab or add a split pane dedicated to test output. Having test results visible alongside your Claude Code session means you can ask Claude to fix failing tests immediately -- just say "the test for PUT /api/tasks/:id is failing with a 403, can you check the auth middleware?" and Claude will trace the issue and apply the fix.</p>
+
+            <h2>Step 5: Add Documentation</h2>
+
+            <p>A well-documented API is a usable API. Ask Claude to generate OpenAPI documentation for every endpoint, and it will produce a complete specification with request schemas, response examples, authentication requirements, and error descriptions. This isn't a rough outline -- it's a fully valid OpenAPI 3.0 spec that tools like Swagger UI can render into interactive documentation.</p>
+
+            <div class="highlight">
+                <h3>Example Prompt</h3>
+                <p>"Generate OpenAPI/Swagger docs for all endpoints. Add a /docs route that serves Swagger UI. Include request/response examples for every endpoint."</p>
+            </div>
+
+            <p>Claude creates the OpenAPI spec file, installs the swagger-ui-express package, and adds a <code>/docs</code> route to your Express app that serves the interactive documentation. Your API is now self-documenting. Any developer who needs to integrate with your API can visit <code>/docs</code> and see every endpoint, try requests in the browser, and read the schemas without ever opening your source code. This is the kind of deliverable that would take hours to write manually but takes Claude minutes to generate from your existing route definitions.</p>
+
+            <h2>Iterate Fast: The Split-Pane Workflow</h2>
+
+            <div class="highlight">
+                <h3>The Real Power of Beam + Claude Code</h3>
+                <p>Claude Code in one pane. Server output in the other. Make a change, see the server reload, test immediately. No context switching between IDE and terminal. No hunting for the right window. Just a continuous loop: describe, generate, verify, repeat.</p>
+            </div>
+
+            <p>The split-pane workflow turns API development into a conversation. You describe what you want -- "add rate limiting to all endpoints" -- and Claude implements it while you watch the server reload in the adjacent pane. You see the new middleware take effect, test it with a rapid burst of requests in your testing tab, and move on to the next feature. The feedback loop is measured in seconds, not minutes.</p>
+
+            <p>This workflow scales to any API enhancement. Need to add caching headers? Ask Claude and watch the response headers change in your test output. Want to add request logging with structured JSON? Claude writes the middleware, the server restarts, and you see the log lines appear immediately. Want to add a health check endpoint for your load balancer? It's a thirty-second conversation. The split-pane layout means you never lose sight of what your server is actually doing while Claude makes changes to the code.</p>
+
+            <h2>Memory File: Your API Conventions</h2>
+
+            <p>Every engineering team has conventions -- naming patterns for routes, a specific error response format, a preferred authentication strategy, database naming conventions. Without documentation, these conventions live in people's heads and drift over time. With Beam's Install Project Memory feature, you can persist these conventions in a memory file that Claude reads at the start of every session.</p>
+
+            <p>Your API memory file might include rules like: all response bodies use the shape <code>{ data, error, meta }</code>, all list endpoints support <code>?page</code> and <code>?limit</code> query parameters, all error responses include a machine-readable <code>code</code> field alongside the human-readable <code>message</code>, and the database uses snake_case while the API uses camelCase with automatic conversion. When you start a new Claude Code session tomorrow, it reads these conventions and follows them from the first line of code it generates. No re-explaining, no inconsistency, no drift.</p>
+
+            <p>Use Beam's Save Project Memory toolbar button to update the file as your conventions evolve. As your API matures and you settle on patterns for pagination, filtering, sorting, and error handling, document them once and benefit from Claude's adherence to those patterns in every future session.</p>
+
+            <div class="cta-box">
+                <h3>Ready to Build APIs Faster?</h3>
+                <p>Download Beam and pair Claude Code with an organized workspace for backend development.</p>
+                <a href="../" class="btn">Download Beam for macOS</a>
+            </div>
+
+            <h2>Summary</h2>
+
+            <p>Building a REST API with Claude Code and Beam is a streamlined, fast workflow. Here are the key steps:</p>
+
+            <ul>
+                <li><strong>Set up your workspace</strong> with four tabs: Claude Code, Server, Testing, and Git -- and use split panes for a continuous feedback loop</li>
+                <li><strong>Describe your data model</strong> in natural language and let Claude generate the full project structure</li>
+                <li><strong>Generate CRUD endpoints</strong> with consistent validation, error handling, and status codes</li>
+                <li><strong>Add authentication</strong> by describing your auth requirements and watching Claude wire up JWT middleware across all routes</li>
+                <li><strong>Write tests</strong> -- let Claude handle the tedious work of comprehensive integration tests</li>
+                <li><strong>Generate documentation</strong> with a self-serving Swagger UI at <code>/docs</code></li>
+                <li><strong>Persist conventions</strong> in a memory file so every future session starts with your team's standards baked in</li>
+            </ul>
+
+            <p>The combination of Claude Code's pattern understanding and Beam's workspace organization means you spend more time designing your API and less time fighting your tooling. Happy building.</p>
+
+            <div class="related-articles">
+                <h2>Related Articles</h2>
+                <div class="related-grid">
+                    <a href="beam-claude-code-setup.html" class="related-card">
+                        <h4>Setting Up Beam for Claude Code</h4>
+                        <p>Step-by-step guide to setting up Beam for Claude Code development.</p>
+                    </a>
+                    <a href="build-website-with-claude-code.html" class="related-card">
+                        <h4>Build a Website with Claude Code</h4>
+                        <p>Use Claude Code and Beam to build and deploy a website from scratch.</p>
+                    </a>
+                    <a href="debug-with-claude-code.html" class="related-card">
+                        <h4>How to Debug with Claude Code</h4>
+                        <p>Systematic debugging workflows with Claude Code as your AI assistant.</p>
+                    </a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>
+                <a href="../">Beam</a> &bull; Terminal Organizer for macOS &bull;
+                <a href="mailto:frank@nextuptechnologies.co">Contact</a>
+            </p>
+
+            <p style="margin-top: 12px; font-size: 0.8rem;">
+                <a href="/privacy.html" style="color: #71717a; text-decoration: none;">Privacy Policy</a> &bull;
+                <a href="/terms.html" style="color: #71717a; text-decoration: none;">Terms of Service</a>
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>

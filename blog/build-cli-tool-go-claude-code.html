@@ -1,0 +1,1663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D0XH8B0RKL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-D0XH8B0RKL');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Build a CLI Tool with Claude Code and Go | Beam Terminal Organizer</title>
+    <meta name="description" content="Learn how to build a CLI tool with Go and Claude Code using Cobra, Viper, and Lipgloss. From scaffolding to cross-compilation and Homebrew distribution, organized with Beam workspaces.">
+    <meta name="keywords" content="build CLI tool Go, Go CLI tutorial, cobra CLI Go, Claude Code Go CLI, Go command line tool, build CLI with AI, Go CLI development, cobra viper Go, Go cross compilation, bubbletea TUI Go">
+    <meta name="author" content="NextUp Technologies">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://getbeam.dev/blog/build-cli-tool-go-claude-code.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://getbeam.dev/blog/build-cli-tool-go-claude-code.html">
+    <meta property="og:title" content="How to Build a CLI Tool with Claude Code and Go">
+    <meta property="og:description" content="Build a complete Go CLI tool from scratch using Cobra, Claude Code, and Beam. Covers scaffolding, commands, testing, cross-compilation, and Homebrew distribution.">
+    <meta property="og:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="How to Build a CLI Tool with Claude Code and Go">
+    <meta name="twitter:description" content="Build a complete Go CLI tool from scratch using Cobra, Claude Code, and Beam. Covers scaffolding, commands, testing, cross-compilation, and Homebrew distribution.">
+    <meta name="twitter:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "How to Build a CLI Tool with Claude Code and Go",
+        "description": "Learn how to build a CLI tool with Go and Claude Code using Cobra, Viper, and Lipgloss. From scaffolding to cross-compilation and Homebrew distribution.",
+        "author": {
+            "@type": "Organization",
+            "name": "NextUp Technologies"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Beam"
+        },
+        "datePublished": "2026-02-11",
+        "keywords": "build CLI tool Go, Go CLI tutorial, cobra CLI Go, Claude Code Go CLI, Go command line tool, build CLI with AI"
+    }
+    </script>
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #111113;
+            --bg-tertiary: #1a1a1d;
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.4);
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --border: #27272a;
+            --success: #22c55e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        header {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 60px;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1.5rem;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            background: var(--accent);
+            color: white;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+        }
+
+        article {
+            padding-bottom: 80px;
+        }
+
+        .breadcrumb {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+        }
+
+        .breadcrumb a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .meta {
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            font-size: 0.95rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 48px 0 20px;
+            color: var(--text-primary);
+        }
+
+        h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 32px 0 12px;
+            color: var(--text-primary);
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        ul, ol {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            padding-left: 24px;
+        }
+
+        li {
+            margin-bottom: 12px;
+        }
+
+        .highlight {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 32px 0;
+        }
+
+        .highlight h3 {
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            margin-top: 0;
+            color: var(--text-primary);
+        }
+
+        code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            background: var(--bg-tertiary);
+            padding: 2px 6px;
+            border-radius: 4px;
+            border: 1px solid var(--border);
+        }
+
+        pre {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px 24px;
+            margin: 24px 0;
+            overflow-x: auto;
+            line-height: 1.6;
+        }
+
+        pre code {
+            background: none;
+            border: none;
+            padding: 0;
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+        }
+
+        .kbd {
+            display: inline-block;
+            padding: 2px 8px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+        }
+
+        .prompt-example {
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--accent);
+            border-radius: 0 12px 12px 0;
+            padding: 16px 24px;
+            margin: 20px 0;
+            font-style: italic;
+            color: var(--text-secondary);
+        }
+
+        .prompt-example::before {
+            content: "Prompt: ";
+            font-style: normal;
+            font-weight: 600;
+            color: var(--accent);
+        }
+
+        .go-accent {
+            color: #00ADD8;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .cta-box h3 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+            margin-top: 0;
+        }
+
+        .cta-box p {
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 24px;
+        }
+
+        .cta-box .btn {
+            background: white;
+            color: var(--accent);
+        }
+
+        .workspace-diagram {
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        .workspace-diagram svg {
+            max-width: 100%;
+            height: auto;
+        }
+
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+
+        .related-articles { margin-top: 60px; padding-top: 40px; border-top: 1px solid var(--border); }
+        .related-articles h2 { font-size: 1.5rem; margin-bottom: 24px; }
+        .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .related-card { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-decoration: none; transition: border-color 0.2s; }
+        .related-card:hover { border-color: var(--accent); }
+        .related-card h4 { color: white; font-size: 1rem; margin: 0 0 8px 0; }
+        .related-card p { color: var(--text-muted); font-size: 0.85rem; margin: 0; }
+        @media (max-width: 600px) {
+            .related-grid { grid-template-columns: 1fr; }
+            h1 { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="../" class="logo">
+                <div class="logo-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round">
+                        <path d="M4 17l6-6-6-6M12 19h8"/>
+                    </svg>
+                </div>
+                Beam
+            </a>
+            <a href="../" class="btn">Download Beam</a>
+        </div>
+    </header>
+
+    <main>
+        <article class="container">
+            <div class="breadcrumb">
+                <a href="../">Beam</a> / <a href="../#guides">Guides</a> / Build a CLI Tool with Go
+            </div>
+
+            <h1>How to Build a CLI Tool with Claude Code and Go</h1>
+            <p class="meta">February 2026 &bull; 14 min read</p>
+
+            <p>Go is the language behind Docker, Kubernetes, Terraform, Hugo, and <code>gh</code>. It is the number one choice for building CLI tools, and for good reason: fast compilation, single binary distribution with zero runtime dependencies, excellent flag and argument parsing, and a rich ecosystem of libraries purpose-built for command-line applications.</p>
+
+            <p>Claude Code makes building Go CLIs even faster. Instead of manually wiring up command trees, writing flag parsing boilerplate, and setting up project structure from scratch, you describe what you want and Claude generates it. And when you organize the workflow with <strong>Beam</strong>, you get a development environment where building, testing, and iterating on your CLI happens in a single, clean workspace.</p>
+
+            <p>This guide walks through the entire process: scaffolding a Cobra-based CLI project, building commands one by one, adding polish with colored output and config files, writing table-driven tests, cross-compiling for every platform, and distributing via Homebrew &mdash; all driven by Claude Code prompts and organized in Beam.</p>
+
+            <!-- Terminal SVG Diagram -->
+            <div class="workspace-diagram">
+                <svg width="720" height="380" viewBox="0 0 720 380" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Background -->
+                    <rect width="720" height="380" rx="16" fill="#0a0a0b"/>
+                    <rect x="1" y="1" width="718" height="378" rx="15" stroke="#27272a" stroke-width="1"/>
+
+                    <!-- Title bar -->
+                    <rect x="1" y="1" width="718" height="40" rx="15" fill="#111113"/>
+                    <rect x="1" y="30" width="718" height="11" fill="#111113"/>
+                    <line x1="1" y1="41" x2="719" y2="41" stroke="#27272a" stroke-width="1"/>
+
+                    <!-- Window controls -->
+                    <circle cx="24" cy="21" r="6" fill="#ef4444"/>
+                    <circle cx="44" cy="21" r="6" fill="#eab308"/>
+                    <circle cx="64" cy="21" r="6" fill="#22c55e"/>
+
+                    <!-- Workspace title -->
+                    <text x="360" y="26" fill="#fafafa" font-family="Space Grotesk, sans-serif" font-size="13" font-weight="600" text-anchor="middle">Beam &mdash; taskr CLI</text>
+
+                    <!-- Tab bar -->
+                    <rect x="1" y="41" width="718" height="32" fill="#0a0a0b"/>
+                    <line x1="1" y1="73" x2="719" y2="73" stroke="#27272a" stroke-width="1"/>
+
+                    <!-- Tabs -->
+                    <rect x="12" y="47" width="110" height="22" rx="4" fill="#1a1a1d" stroke="#3b82f6" stroke-width="1"/>
+                    <text x="67" y="62" fill="#fafafa" font-family="JetBrains Mono, monospace" font-size="10" font-weight="500" text-anchor="middle">Claude Code</text>
+
+                    <rect x="130" y="47" width="90" height="22" rx="4" fill="transparent" stroke="#27272a" stroke-width="1"/>
+                    <text x="175" y="62" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="10" text-anchor="middle">go build</text>
+
+                    <rect x="228" y="47" width="80" height="22" rx="4" fill="transparent" stroke="#27272a" stroke-width="1"/>
+                    <text x="268" y="62" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="10" text-anchor="middle">go test</text>
+
+                    <!-- Terminal content area -->
+                    <rect x="1" y="73" width="718" height="306" fill="#0a0a0b"/>
+
+                    <!-- Prompt line -->
+                    <text x="20" y="100" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="11">$</text>
+                    <text x="34" y="100" fill="#00ADD8" font-family="JetBrains Mono, monospace" font-size="11" font-weight="500">taskr list</text>
+
+                    <!-- Table header -->
+                    <text x="20" y="128" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="10">ID    TASK                    PRIORITY   DUE          STATUS</text>
+                    <line x1="20" y1="134" x2="620" y2="134" stroke="#27272a" stroke-width="1"/>
+
+                    <!-- Task rows with colored output -->
+                    <text x="20" y="152" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="10">1     </text>
+                    <text x="68" y="152" fill="#fafafa" font-family="JetBrains Mono, monospace" font-size="10">Set up CI pipeline      </text>
+                    <text x="296" y="152" fill="#ef4444" font-family="JetBrains Mono, monospace" font-size="10" font-weight="500">high       </text>
+                    <text x="390" y="152" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="10">2026-02-14   </text>
+                    <text x="516" y="152" fill="#eab308" font-family="JetBrains Mono, monospace" font-size="10">pending</text>
+
+                    <text x="20" y="172" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="10">2     </text>
+                    <text x="68" y="172" fill="#fafafa" font-family="JetBrains Mono, monospace" font-size="10">Write API docs          </text>
+                    <text x="296" y="172" fill="#eab308" font-family="JetBrains Mono, monospace" font-size="10">medium     </text>
+                    <text x="390" y="172" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="10">2026-02-18   </text>
+                    <text x="516" y="172" fill="#eab308" font-family="JetBrains Mono, monospace" font-size="10">pending</text>
+
+                    <text x="20" y="192" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="10">3     </text>
+                    <text x="68" y="192" fill="#fafafa" font-family="JetBrains Mono, monospace" font-size="10">Refactor auth module    </text>
+                    <text x="296" y="192" fill="#ef4444" font-family="JetBrains Mono, monospace" font-size="10">high       </text>
+                    <text x="390" y="192" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="10">2026-02-12   </text>
+                    <text x="516" y="192" fill="#22c55e" font-family="JetBrains Mono, monospace" font-size="10">done</text>
+
+                    <text x="20" y="212" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="10">4     </text>
+                    <text x="68" y="212" fill="#fafafa" font-family="JetBrains Mono, monospace" font-size="10">Add unit tests          </text>
+                    <text x="296" y="212" fill="#3b82f6" font-family="JetBrains Mono, monospace" font-size="10">low        </text>
+                    <text x="390" y="212" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="10">2026-02-20   </text>
+                    <text x="516" y="212" fill="#eab308" font-family="JetBrains Mono, monospace" font-size="10">pending</text>
+
+                    <text x="20" y="232" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="10">5     </text>
+                    <text x="68" y="232" fill="#fafafa" font-family="JetBrains Mono, monospace" font-size="10">Deploy to staging        </text>
+                    <text x="296" y="232" fill="#eab308" font-family="JetBrains Mono, monospace" font-size="10">medium     </text>
+                    <text x="390" y="232" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="10">2026-02-15   </text>
+                    <text x="516" y="232" fill="#eab308" font-family="JetBrains Mono, monospace" font-size="10">pending</text>
+
+                    <!-- Summary line -->
+                    <line x1="20" y1="244" x2="620" y2="244" stroke="#27272a" stroke-width="1"/>
+                    <text x="20" y="262" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="10">5 tasks: </text>
+                    <text x="92" y="262" fill="#22c55e" font-family="JetBrains Mono, monospace" font-size="10">1 done</text>
+                    <text x="158" y="262" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="10">, </text>
+                    <text x="170" y="262" fill="#eab308" font-family="JetBrains Mono, monospace" font-size="10">4 pending</text>
+
+                    <!-- Next prompt -->
+                    <text x="20" y="292" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="11">$</text>
+                    <text x="34" y="292" fill="#00ADD8" font-family="JetBrains Mono, monospace" font-size="11" font-weight="500">taskr add "Review PR #42" --priority high --due 2026-02-13</text>
+
+                    <text x="20" y="314" fill="#22c55e" font-family="JetBrains Mono, monospace" font-size="10">&#10003; Task added: "Review PR #42" (id: 6)</text>
+
+                    <!-- Next prompt with cursor -->
+                    <text x="20" y="344" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="11">$</text>
+                    <rect x="34" y="332" width="8" height="14" fill="#00ADD8" opacity="0.8">
+                        <animate attributeName="opacity" values="0.8;0;0.8" dur="1.2s" repeatCount="indefinite"/>
+                    </rect>
+
+                    <!-- Go cyan accent stripe -->
+                    <rect x="1" y="375" width="718" height="4" rx="0" fill="#00ADD8" fill-opacity="0.3"/>
+                </svg>
+            </div>
+
+            <p style="text-align: center; color: var(--text-muted); font-size: 0.9rem; margin-top: -16px;">The finished CLI: <code>taskr</code> &mdash; a task manager built with Go, Cobra, and Claude Code.</p>
+
+
+            <!-- Section 1: Why Go for CLI Tools -->
+            <h2>Why Go Is the Best Language for CLI Tools</h2>
+
+            <p>Before we start building, it is worth understanding why Go dominates the CLI tool landscape. The reasons are practical and compound on each other.</p>
+
+            <p><strong>Single binary distribution.</strong> When you run <code>go build</code>, you get a single statically-linked binary with zero runtime dependencies. No Python virtual environments, no Node.js installations, no Java runtimes. Your users download one file, put it in their PATH, and it works. This is why Docker, Kubernetes, Terraform, Hugo, and GitHub's own <code>gh</code> CLI are all written in Go.</p>
+
+            <p><strong>Cross-compilation is built in.</strong> Go can compile for any operating system and architecture from any machine. A single command &mdash; <code>GOOS=linux GOARCH=amd64 go build</code> &mdash; produces a Linux binary from your Mac. No cross-compilation toolchains, no Docker containers for building. You set two environment variables and the compiler does the rest.</p>
+
+            <p><strong>Fast startup time.</strong> Go binaries start in milliseconds. Users expect CLI tools to feel instant. A Python CLI has a noticeable pause as the interpreter loads. A Go binary is running before the user's finger lifts from the Enter key.</p>
+
+            <p><strong>Excellent standard library.</strong> Go ships with <code>flag</code> for argument parsing, <code>os</code> and <code>io</code> for file system and stream operations, <code>encoding/json</code> for data serialization, <code>net/http</code> for making API calls, and <code>text/tabwriter</code> for formatted output. You can build a useful CLI with nothing beyond the standard library.</p>
+
+            <p><strong>Rich ecosystem for CLI development.</strong> Beyond the standard library, Go has a mature set of CLI-specific libraries:</p>
+
+            <ul>
+                <li><strong>Cobra</strong> &mdash; The industry-standard command framework. Used by Kubernetes, Hugo, and GitHub CLI. Handles subcommands, flags, argument validation, help text generation, and shell completions.</li>
+                <li><strong>Viper</strong> &mdash; Configuration management that reads from flags, environment variables, config files (YAML, TOML, JSON), and remote key-value stores. Pairs seamlessly with Cobra.</li>
+                <li><strong>Lipgloss</strong> &mdash; Styled terminal output with colors, borders, padding, and alignment. Built by the Charm team.</li>
+                <li><strong>Bubbletea</strong> &mdash; Full terminal user interfaces with the Elm architecture. Spinners, progress bars, text inputs, tables, file pickers, and more.</li>
+                <li><strong>fatih/color</strong> &mdash; Simple, no-fuss colored output for when you do not need the full Lipgloss styling system.</li>
+                <li><strong>urfave/cli</strong> &mdash; A lighter alternative to Cobra for simpler CLIs that do not need deep subcommand trees.</li>
+            </ul>
+
+            <p>Go gives you everything you need for CLI development, and Claude Code knows all of these libraries intimately.</p>
+
+
+            <!-- Section 2: Setting Up Your Beam Workspace -->
+            <h2>Setting Up Your Beam Workspace</h2>
+
+            <p>The best way to build a CLI tool with Claude Code is to organize your terminal environment so that building, running, and testing all happen side by side. Beam's workspaces make this straightforward.</p>
+
+            <h3>Create a "CLI Dev" Workspace</h3>
+
+            <p>Press <span class="kbd">&#8984;N</span> to create a new workspace in Beam. Name it after your CLI project &mdash; we will call ours "taskr". Set up three tabs:</p>
+
+            <ul>
+                <li><strong>Tab 1: Claude Code</strong> &mdash; Your AI coding agent. This is where you prompt Claude to generate commands, add flags, wire up configuration, and write tests. Start it by typing <code>claude</code>.</li>
+                <li><strong>Tab 2: <code>go run</code> / <code>go build</code></strong> &mdash; Your build and test-run tab. After Claude generates code, switch here to run <code>go build -o taskr ./cmd/taskr</code> and then <code>./taskr list</code> to see the result immediately.</li>
+                <li><strong>Tab 3: <code>go test</code></strong> &mdash; A dedicated tab for running your test suite. Use <code>go test -v ./...</code> to watch all tests, or scope to a specific package while debugging.</li>
+            </ul>
+
+            <h3>Split Panes for Live Iteration</h3>
+
+            <p>Press <span class="kbd">&#8984;&#8997;&#8963;T</span> to split Tab 1 into two panes. Put Claude Code on the left and a shell on the right where you run <code>go build &amp;&amp; ./taskr list</code>. Now you can:</p>
+
+            <ol>
+                <li>Ask Claude Code to add a new command or fix a bug on the left</li>
+                <li>Build and run the CLI on the right to see the result instantly</li>
+                <li>Iterate without ever switching tabs or windows</li>
+            </ol>
+
+            <div class="highlight">
+                <h3>Pro Tip: Save Your CLI Development Layout</h3>
+                <p>Once your workspace is set up &mdash; tabs named, panes split, working directories set &mdash; press <span class="kbd">&#8984;S</span> to save it as a layout. Tomorrow, restore the entire workspace with a single action and pick up exactly where you left off.</p>
+            </div>
+
+
+            <!-- Section 3: Scaffolding with Cobra -->
+            <h2>Scaffolding a Cobra CLI with Claude Code</h2>
+
+            <p>Cobra is the de facto standard for Go CLI tools. It powers <code>kubectl</code>, <code>hugo</code>, <code>gh</code>, and hundreds of other production CLIs. Instead of manually creating the project structure and wiring up the command tree, let Claude Code generate the entire scaffold.</p>
+
+            <div class="prompt-example">
+                Create a Go CLI called "taskr" using Cobra. It should have commands: add, list, done, and delete. Use a local JSON file (~/.taskr.json) for storage. Initialize go.mod as github.com/myorg/taskr with Go 1.22. Include a proper project structure with cmd/taskr/main.go as the entrypoint and internal/cmd/ for command files.
+            </div>
+
+            <p>Claude Code generates the entire project tree:</p>
+
+            <pre><code>taskr/
+  cmd/
+    taskr/
+      main.go               # Entrypoint, calls cmd.Execute()
+  internal/
+    cmd/
+      root.go               # Root command, persistent flags, config init
+      add.go                # Add a new task
+      list.go               # List all tasks with table output
+      done.go               # Mark a task as complete
+      delete.go             # Remove a task
+    task/
+      store.go              # JSON file read/write operations
+      task.go               # Task struct and business logic
+  go.mod
+  go.sum</code></pre>
+
+            <p>Let us look at what Claude Code generates for the key files.</p>
+
+            <h3>The Root Command</h3>
+
+            <p>Every Cobra CLI starts with a root command that defines the top-level behavior and persistent flags:</p>
+
+            <pre><code>// internal/cmd/root.go
+package cmd
+
+import (
+    "fmt"
+    "os"
+
+    "github.com/spf13/cobra"
+)
+
+var rootCmd = &cobra.Command{
+    Use:   "taskr",
+    Short: "A fast, local task manager for the command line",
+    Long: `taskr is a CLI task manager that stores tasks in a local JSON file.
+Add tasks with priorities and due dates, list them in a formatted table,
+mark them done, and delete them when you are finished.`,
+}
+
+func Execute() {
+    if err := rootCmd.Execute(); err != nil {
+        fmt.Fprintln(os.Stderr, err)
+        os.Exit(1)
+    }
+}
+
+func init() {
+    rootCmd.PersistentFlags().StringP("file", "f", "", "path to task file (default ~/.taskr.json)")
+}</code></pre>
+
+            <h3>The Task Model and Store</h3>
+
+            <p>Claude Code generates a clean data model and a file-based storage layer:</p>
+
+            <pre><code>// internal/task/task.go
+package task
+
+import "time"
+
+type Priority string
+
+const (
+    PriorityHigh   Priority = "high"
+    PriorityMedium Priority = "medium"
+    PriorityLow    Priority = "low"
+)
+
+type Status string
+
+const (
+    StatusPending Status = "pending"
+    StatusDone    Status = "done"
+)
+
+type Task struct {
+    ID        int       `json:"id"`
+    Title     string    `json:"title"`
+    Priority  Priority  `json:"priority"`
+    DueDate   string    `json:"due_date,omitempty"`
+    Status    Status    `json:"status"`
+    CreatedAt time.Time `json:"created_at"`
+}
+
+// internal/task/store.go
+package task
+
+import (
+    "encoding/json"
+    "os"
+    "path/filepath"
+)
+
+type Store struct {
+    Path  string
+    Tasks []Task
+}
+
+func NewStore(path string) (*Store, error) {
+    if path == "" {
+        home, err := os.UserHomeDir()
+        if err != nil {
+            return nil, fmt.Errorf("getting home directory: %w", err)
+        }
+        path = filepath.Join(home, ".taskr.json")
+    }
+
+    s := &Store{Path: path}
+    if err := s.load(); err != nil {
+        return nil, err
+    }
+    return s, nil
+}
+
+func (s *Store) load() error {
+    data, err := os.ReadFile(s.Path)
+    if os.IsNotExist(err) {
+        s.Tasks = []Task{}
+        return nil
+    }
+    if err != nil {
+        return fmt.Errorf("reading task file: %w", err)
+    }
+    return json.Unmarshal(data, &s.Tasks)
+}
+
+func (s *Store) save() error {
+    data, err := json.MarshalIndent(s.Tasks, "", "  ")
+    if err != nil {
+        return fmt.Errorf("marshaling tasks: %w", err)
+    }
+    return os.WriteFile(s.Path, data, 0644)
+}</code></pre>
+
+            <p>Now install the dependencies. In your build tab:</p>
+
+            <pre><code>cd taskr
+go mod tidy</code></pre>
+
+            <p>Cobra and its dependencies are fetched automatically. The project compiles on the first try.</p>
+
+
+            <!-- Section 4: Building Commands One by One -->
+            <h2>Building Commands One by One</h2>
+
+            <p>With the scaffold in place, we build out each command by prompting Claude Code. This is the core development loop: describe the behavior, review the generated code, build, and test.</p>
+
+            <h3>The Add Command</h3>
+
+            <div class="prompt-example">
+                Implement the add command. It should accept a task title as an argument and have flags for --priority (high, medium, low; default medium) and --due (date string in YYYY-MM-DD format, optional). Auto-increment the task ID. Print a success message with the task ID after adding.
+            </div>
+
+            <pre><code>// internal/cmd/add.go
+package cmd
+
+import (
+    "fmt"
+
+    "github.com/myorg/taskr/internal/task"
+    "github.com/spf13/cobra"
+)
+
+var addCmd = &cobra.Command{
+    Use:   "add [title]",
+    Short: "Add a new task",
+    Args:  cobra.ExactArgs(1),
+    RunE: func(cmd *cobra.Command, args []string) error {
+        store, err := getStore(cmd)
+        if err != nil {
+            return err
+        }
+
+        priority, _ := cmd.Flags().GetString("priority")
+        due, _ := cmd.Flags().GetString("due")
+
+        t := store.Add(args[0], task.Priority(priority), due)
+        fmt.Printf("&#10003; Task added: %q (id: %d)\n", t.Title, t.ID)
+        return nil
+    },
+}
+
+func init() {
+    addCmd.Flags().StringP("priority", "p", "medium", "task priority (high, medium, low)")
+    addCmd.Flags().StringP("due", "d", "", "due date (YYYY-MM-DD)")
+    rootCmd.AddCommand(addCmd)
+}</code></pre>
+
+            <p>Test it immediately in the build tab:</p>
+
+            <pre><code>$ go build -o taskr ./cmd/taskr
+$ ./taskr add "Set up CI pipeline" --priority high --due 2026-02-14
+&#10003; Task added: "Set up CI pipeline" (id: 1)</code></pre>
+
+            <h3>The List Command</h3>
+
+            <div class="prompt-example">
+                Implement the list command. Display tasks in a formatted table with columns for ID, Task, Priority, Due, and Status. Use text/tabwriter for alignment. Add a --all flag that includes completed tasks (by default, only show pending tasks). Add a summary line at the bottom showing total counts.
+            </div>
+
+            <pre><code>// internal/cmd/list.go
+package cmd
+
+import (
+    "fmt"
+    "os"
+    "text/tabwriter"
+
+    "github.com/myorg/taskr/internal/task"
+    "github.com/spf13/cobra"
+)
+
+var listCmd = &cobra.Command{
+    Use:   "list",
+    Short: "List all tasks",
+    Aliases: []string{"ls"},
+    RunE: func(cmd *cobra.Command, args []string) error {
+        store, err := getStore(cmd)
+        if err != nil {
+            return err
+        }
+
+        showAll, _ := cmd.Flags().GetBool("all")
+        tasks := store.List(showAll)
+
+        if len(tasks) == 0 {
+            fmt.Println("No tasks found. Use 'taskr add' to create one.")
+            return nil
+        }
+
+        w := tabwriter.NewWriter(os.Stdout, 0, 0, 4, ' ', 0)
+        fmt.Fprintln(w, "ID\tTASK\tPRIORITY\tDUE\tSTATUS")
+
+        for _, t := range tasks {
+            due := t.DueDate
+            if due == "" {
+                due = "-"
+            }
+            fmt.Fprintf(w, "%d\t%s\t%s\t%s\t%s\n",
+                t.ID, t.Title, t.Priority, due, t.Status)
+        }
+        w.Flush()
+
+        // Summary
+        done := store.CountByStatus(task.StatusDone)
+        pending := store.CountByStatus(task.StatusPending)
+        fmt.Printf("\n%d tasks: %d done, %d pending\n", done+pending, done, pending)
+
+        return nil
+    },
+}
+
+func init() {
+    listCmd.Flags().BoolP("all", "a", false, "show all tasks including completed")
+    rootCmd.AddCommand(listCmd)
+}</code></pre>
+
+            <h3>The Done Command</h3>
+
+            <div class="prompt-example">
+                Implement the done command. It accepts one or more task IDs as arguments and marks them as completed. Print a success message for each. Return an error if any ID is not found.
+            </div>
+
+            <pre><code>// internal/cmd/done.go
+package cmd
+
+import (
+    "fmt"
+    "strconv"
+
+    "github.com/spf13/cobra"
+)
+
+var doneCmd = &cobra.Command{
+    Use:   "done [id...]",
+    Short: "Mark tasks as completed",
+    Args:  cobra.MinimumNArgs(1),
+    RunE: func(cmd *cobra.Command, args []string) error {
+        store, err := getStore(cmd)
+        if err != nil {
+            return err
+        }
+
+        for _, arg := range args {
+            id, err := strconv.Atoi(arg)
+            if err != nil {
+                return fmt.Errorf("invalid task ID %q: %w", arg, err)
+            }
+
+            t, err := store.MarkDone(id)
+            if err != nil {
+                return err
+            }
+            fmt.Printf("&#10003; Completed: %q (id: %d)\n", t.Title, t.ID)
+        }
+
+        return nil
+    },
+}
+
+func init() {
+    rootCmd.AddCommand(doneCmd)
+}</code></pre>
+
+            <h3>The Delete Command</h3>
+
+            <div class="prompt-example">
+                Implement the delete command. It accepts a task ID and removes the task. Add a --force flag that skips the confirmation prompt. Without --force, ask the user to confirm deletion by typing y/n.
+            </div>
+
+            <pre><code>// internal/cmd/delete.go
+package cmd
+
+import (
+    "bufio"
+    "fmt"
+    "os"
+    "strconv"
+    "strings"
+
+    "github.com/spf13/cobra"
+)
+
+var deleteCmd = &cobra.Command{
+    Use:     "delete [id]",
+    Short:   "Delete a task",
+    Aliases: []string{"rm"},
+    Args:    cobra.ExactArgs(1),
+    RunE: func(cmd *cobra.Command, args []string) error {
+        store, err := getStore(cmd)
+        if err != nil {
+            return err
+        }
+
+        id, err := strconv.Atoi(args[0])
+        if err != nil {
+            return fmt.Errorf("invalid task ID %q: %w", args[0], err)
+        }
+
+        t, err := store.GetByID(id)
+        if err != nil {
+            return err
+        }
+
+        force, _ := cmd.Flags().GetBool("force")
+        if !force {
+            fmt.Printf("Delete task %d: %q? [y/N] ", t.ID, t.Title)
+            reader := bufio.NewReader(os.Stdin)
+            answer, _ := reader.ReadString('\n')
+            if strings.TrimSpace(strings.ToLower(answer)) != "y" {
+                fmt.Println("Cancelled.")
+                return nil
+            }
+        }
+
+        if err := store.Delete(id); err != nil {
+            return err
+        }
+        fmt.Printf("&#10003; Deleted: %q (id: %d)\n", t.Title, t.ID)
+        return nil
+    },
+}
+
+func init() {
+    deleteCmd.Flags().BoolP("force", "f", false, "skip confirmation prompt")
+    rootCmd.AddCommand(deleteCmd)
+}</code></pre>
+
+            <p>After each command, build and test in your side pane:</p>
+
+            <pre><code>$ go build -o taskr ./cmd/taskr && ./taskr add "Write API docs" -p medium -d 2026-02-18
+&#10003; Task added: "Write API docs" (id: 2)
+
+$ ./taskr list
+ID    TASK                    PRIORITY    DUE           STATUS
+1     Set up CI pipeline      high        2026-02-14    pending
+2     Write API docs          medium      2026-02-18    pending
+
+2 tasks: 0 done, 2 pending
+
+$ ./taskr done 1
+&#10003; Completed: "Set up CI pipeline" (id: 1)
+
+$ ./taskr delete 2 --force
+&#10003; Deleted: "Write API docs" (id: 2)</code></pre>
+
+            <p>Each command works in isolation, has proper error handling, and follows the Cobra conventions that users of <code>kubectl</code> and <code>gh</code> already know.</p>
+
+
+            <!-- Section 5: Adding Polish -->
+            <h2>Adding Polish: Colors, Config, and Completions</h2>
+
+            <p>A functional CLI is good. A polished CLI is what people actually enjoy using. Claude Code can add professional-grade polish in minutes.</p>
+
+            <h3>Colored Output with Lipgloss</h3>
+
+            <div class="prompt-example">
+                Add colored output to the list command using charmbracelet/lipgloss. Color priority levels: high in red, medium in yellow, low in blue. Color the status: done in green, pending in yellow. Use bold white for task titles.
+            </div>
+
+            <pre><code>import "github.com/charmbracelet/lipgloss"
+
+var (
+    titleStyle    = lipgloss.NewStyle().Bold(true).Foreground(lipgloss.Color("#fafafa"))
+    highStyle     = lipgloss.NewStyle().Foreground(lipgloss.Color("#ef4444")).Bold(true)
+    mediumStyle   = lipgloss.NewStyle().Foreground(lipgloss.Color("#eab308"))
+    lowStyle      = lipgloss.NewStyle().Foreground(lipgloss.Color("#3b82f6"))
+    doneStyle     = lipgloss.NewStyle().Foreground(lipgloss.Color("#22c55e"))
+    pendingStyle  = lipgloss.NewStyle().Foreground(lipgloss.Color("#eab308"))
+)
+
+func colorPriority(p task.Priority) string {
+    switch p {
+    case task.PriorityHigh:
+        return highStyle.Render(string(p))
+    case task.PriorityMedium:
+        return mediumStyle.Render(string(p))
+    case task.PriorityLow:
+        return lowStyle.Render(string(p))
+    default:
+        return string(p)
+    }
+}
+
+func colorStatus(s task.Status) string {
+    switch s {
+    case task.StatusDone:
+        return doneStyle.Render(string(s))
+    default:
+        return pendingStyle.Render(string(s))
+    }
+}</code></pre>
+
+            <p>Now <code>taskr list</code> produces the colorful output shown in the SVG diagram above. High-priority tasks stand out in red, completed tasks are green, and everything is easy to scan at a glance.</p>
+
+            <h3>Config File Support with Viper</h3>
+
+            <div class="prompt-example">
+                Add Viper configuration support. Read from ~/.taskr.yaml for default settings. Support config keys: default_priority (string), file_path (string for the JSON store location), and color (bool to enable/disable colored output). Config values should be overridable by flags and environment variables with prefix TASKR_.
+            </div>
+
+            <pre><code>// internal/cmd/root.go (updated init)
+import "github.com/spf13/viper"
+
+func initConfig() {
+    viper.SetConfigName(".taskr")
+    viper.SetConfigType("yaml")
+    viper.AddConfigPath("$HOME")
+    viper.SetEnvPrefix("TASKR")
+    viper.AutomaticEnv()
+
+    // Defaults
+    viper.SetDefault("default_priority", "medium")
+    viper.SetDefault("color", true)
+
+    if err := viper.ReadInConfig(); err != nil {
+        // Config file is optional, not an error if missing
+        if _, ok := err.(viper.ConfigFileNotFoundError); !ok {
+            fmt.Fprintln(os.Stderr, "Warning: error reading config:", err)
+        }
+    }
+}
+
+func init() {
+    cobra.OnInitialize(initConfig)
+    rootCmd.PersistentFlags().StringP("file", "f", "", "path to task file")
+    viper.BindPFlag("file_path", rootCmd.PersistentFlags().Lookup("file"))
+}</code></pre>
+
+            <p>Users can now create a <code>~/.taskr.yaml</code> to set their preferences:</p>
+
+            <pre><code># ~/.taskr.yaml
+default_priority: high
+file_path: ~/Documents/tasks.json
+color: true</code></pre>
+
+            <p>Environment variables also work: <code>TASKR_DEFAULT_PRIORITY=low taskr add "Quick task"</code>. The precedence is flags > environment variables > config file > defaults. Viper handles this automatically.</p>
+
+            <h3>Shell Completions</h3>
+
+            <div class="prompt-example">
+                Add a completion command that generates shell completion scripts for bash, zsh, fish, and powershell. Use Cobra's built-in completion generation. Also add custom completions for the --priority flag so it suggests high, medium, and low.
+            </div>
+
+            <pre><code>// internal/cmd/completion.go
+package cmd
+
+import (
+    "os"
+
+    "github.com/spf13/cobra"
+)
+
+var completionCmd = &cobra.Command{
+    Use:   "completion [bash|zsh|fish|powershell]",
+    Short: "Generate shell completion scripts",
+    Long: `Generate completion scripts for your shell. For example:
+
+  # Bash
+  taskr completion bash > /usr/local/etc/bash_completion.d/taskr
+
+  # Zsh
+  taskr completion zsh > "${fpath[1]}/_taskr"
+
+  # Fish
+  taskr completion fish > ~/.config/fish/completions/taskr.fish`,
+    Args:      cobra.ExactValidArgs(1),
+    ValidArgs: []string{"bash", "zsh", "fish", "powershell"},
+    RunE: func(cmd *cobra.Command, args []string) error {
+        switch args[0] {
+        case "bash":
+            return rootCmd.GenBashCompletion(os.Stdout)
+        case "zsh":
+            return rootCmd.GenZshCompletion(os.Stdout)
+        case "fish":
+            return rootCmd.GenFishCompletion(os.Stdout, true)
+        case "powershell":
+            return rootCmd.GenPowerShellCompletionWithDesc(os.Stdout)
+        }
+        return nil
+    },
+}
+
+func init() {
+    rootCmd.AddCommand(completionCmd)
+}
+
+// In add.go, register custom completion for --priority:
+func init() {
+    addCmd.Flags().StringP("priority", "p", "medium", "task priority")
+    addCmd.RegisterFlagCompletionFunc("priority", func(cmd *cobra.Command, args []string, toComplete string) ([]string, cobra.ShellCompDirective) {
+        return []string{"high", "medium", "low"}, cobra.ShellCompDirectiveNoFileComp
+    })
+    rootCmd.AddCommand(addCmd)
+}</code></pre>
+
+            <h3>Version Command with Build Info</h3>
+
+            <div class="prompt-example">
+                Add a version command that displays the version, commit hash, and build date. Use ldflags to inject these values at build time.
+            </div>
+
+            <pre><code>// internal/cmd/version.go
+package cmd
+
+import (
+    "fmt"
+    "runtime"
+
+    "github.com/spf13/cobra"
+)
+
+var (
+    version = "dev"
+    commit  = "none"
+    date    = "unknown"
+)
+
+var versionCmd = &cobra.Command{
+    Use:   "version",
+    Short: "Print version information",
+    Run: func(cmd *cobra.Command, args []string) {
+        fmt.Printf("taskr %s\n", version)
+        fmt.Printf("  commit:  %s\n", commit)
+        fmt.Printf("  built:   %s\n", date)
+        fmt.Printf("  go:      %s\n", runtime.Version())
+        fmt.Printf("  os/arch: %s/%s\n", runtime.GOOS, runtime.GOARCH)
+    },
+}
+
+func init() {
+    rootCmd.AddCommand(versionCmd)
+}</code></pre>
+
+            <p>Build with version info injected at compile time:</p>
+
+            <pre><code>go build -ldflags "-X github.com/myorg/taskr/internal/cmd.version=1.0.0 \
+  -X github.com/myorg/taskr/internal/cmd.commit=$(git rev-parse --short HEAD) \
+  -X github.com/myorg/taskr/internal/cmd.date=$(date -u +%Y-%m-%dT%H:%M:%SZ)" \
+  -o taskr ./cmd/taskr</code></pre>
+
+            <pre><code>$ ./taskr version
+taskr 1.0.0
+  commit:  a3f7c2d
+  built:   2026-02-11T14:30:00Z
+  go:      go1.22.1
+  os/arch: darwin/arm64</code></pre>
+
+            <div class="highlight">
+                <h3>Why Cobra + Viper Is the Standard</h3>
+                <p>Cobra and Viper were created by Steve Francia, who also created Hugo. They are used together in virtually every major Go CLI: Kubernetes, Docker, Hugo, GitHub CLI, HashiCorp tools, and more. When Claude Code generates Cobra + Viper scaffolding, it is generating the same architecture that powers the most widely used CLIs in the world. Your tool inherits the same UX conventions users already know.</p>
+            </div>
+
+
+            <!-- Section 6: Testing Your CLI -->
+            <h2>Testing Your CLI</h2>
+
+            <p>Go's testing culture is rigorous, and CLI tools are no exception. Claude Code generates comprehensive table-driven tests that cover every command, flag combination, and edge case.</p>
+
+            <h3>Table-Driven Tests for Commands</h3>
+
+            <div class="prompt-example">
+                Write table-driven tests for the add command. Cover cases: valid task with all flags, task with default priority, missing title argument, invalid priority value, and invalid due date format. Use a temporary file for the store so tests do not affect real data.
+            </div>
+
+            <pre><code>// internal/cmd/add_test.go
+package cmd
+
+import (
+    "encoding/json"
+    "os"
+    "path/filepath"
+    "testing"
+
+    "github.com/myorg/taskr/internal/task"
+)
+
+func TestAddCommand(t *testing.T) {
+    tests := []struct {
+        name     string
+        args     []string
+        wantErr  bool
+        wantTask *task.Task
+    }{
+        {
+            name: "valid task with all flags",
+            args: []string{"add", "Deploy to prod", "--priority", "high", "--due", "2026-03-01"},
+            wantTask: &task.Task{
+                ID:       1,
+                Title:    "Deploy to prod",
+                Priority: task.PriorityHigh,
+                DueDate:  "2026-03-01",
+                Status:   task.StatusPending,
+            },
+        },
+        {
+            name: "task with default priority",
+            args: []string{"add", "Write docs"},
+            wantTask: &task.Task{
+                ID:       1,
+                Title:    "Write docs",
+                Priority: task.PriorityMedium,
+                Status:   task.StatusPending,
+            },
+        },
+        {
+            name:    "missing title argument",
+            args:    []string{"add"},
+            wantErr: true,
+        },
+        {
+            name:    "invalid priority value",
+            args:    []string{"add", "Task", "--priority", "urgent"},
+            wantErr: true,
+        },
+        {
+            name:    "invalid due date format",
+            args:    []string{"add", "Task", "--due", "next-tuesday"},
+            wantErr: true,
+        },
+    }
+
+    for _, tt := range tests {
+        t.Run(tt.name, func(t *testing.T) {
+            // Use a temp file for each test
+            tmpDir := t.TempDir()
+            tmpFile := filepath.Join(tmpDir, "tasks.json")
+
+            // Set up root command with temp file flag
+            rootCmd.SetArgs(append(tt.args, "--file", tmpFile))
+            err := rootCmd.Execute()
+
+            if (err != nil) != tt.wantErr {
+                t.Fatalf("Execute() error = %v, wantErr %v", err, tt.wantErr)
+            }
+
+            if tt.wantTask != nil {
+                data, err := os.ReadFile(tmpFile)
+                if err != nil {
+                    t.Fatalf("reading task file: %v", err)
+                }
+
+                var tasks []task.Task
+                if err := json.Unmarshal(data, &tasks); err != nil {
+                    t.Fatalf("unmarshaling tasks: %v", err)
+                }
+
+                if len(tasks) != 1 {
+                    t.Fatalf("got %d tasks, want 1", len(tasks))
+                }
+
+                got := tasks[0]
+                if got.Title != tt.wantTask.Title {
+                    t.Errorf("title = %q, want %q", got.Title, tt.wantTask.Title)
+                }
+                if got.Priority != tt.wantTask.Priority {
+                    t.Errorf("priority = %q, want %q", got.Priority, tt.wantTask.Priority)
+                }
+                if got.Status != tt.wantTask.Status {
+                    t.Errorf("status = %q, want %q", got.Status, tt.wantTask.Status)
+                }
+            }
+        })
+    }
+}</code></pre>
+
+            <h3>Integration Tests That Run the Binary</h3>
+
+            <div class="prompt-example">
+                Write integration tests that build the binary and run it as a subprocess. Test the full workflow: add a task, list tasks (verify it appears), mark it done, list again (verify status changed), delete it, list again (verify it is gone). Use os/exec to run the binary.
+            </div>
+
+            <pre><code>// integration_test.go (build tag: integration)
+//go:build integration
+
+package main
+
+import (
+    "encoding/json"
+    "os"
+    "os/exec"
+    "path/filepath"
+    "strings"
+    "testing"
+)
+
+func TestFullWorkflow(t *testing.T) {
+    // Build the binary
+    binary := filepath.Join(t.TempDir(), "taskr")
+    build := exec.Command("go", "build", "-o", binary, "./cmd/taskr")
+    if out, err := build.CombinedOutput(); err != nil {
+        t.Fatalf("build failed: %s\n%s", err, out)
+    }
+
+    taskFile := filepath.Join(t.TempDir(), "tasks.json")
+
+    run := func(args ...string) string {
+        cmd := exec.Command(binary, append(args, "--file", taskFile)...)
+        out, err := cmd.CombinedOutput()
+        if err != nil {
+            t.Fatalf("taskr %s failed: %s\n%s", strings.Join(args, " "), err, out)
+        }
+        return string(out)
+    }
+
+    // Add a task
+    out := run("add", "Integration test task", "--priority", "high")
+    if !strings.Contains(out, "Task added") {
+        t.Errorf("add output missing confirmation: %s", out)
+    }
+
+    // List tasks
+    out = run("list")
+    if !strings.Contains(out, "Integration test task") {
+        t.Errorf("list output missing task: %s", out)
+    }
+    if !strings.Contains(out, "high") {
+        t.Errorf("list output missing priority: %s", out)
+    }
+
+    // Mark done
+    out = run("done", "1")
+    if !strings.Contains(out, "Completed") {
+        t.Errorf("done output missing confirmation: %s", out)
+    }
+
+    // List with --all to see completed task
+    out = run("list", "--all")
+    if !strings.Contains(out, "done") {
+        t.Errorf("list --all missing done status: %s", out)
+    }
+
+    // Delete
+    out = run("delete", "1", "--force")
+    if !strings.Contains(out, "Deleted") {
+        t.Errorf("delete output missing confirmation: %s", out)
+    }
+
+    // List should be empty
+    out = run("list")
+    if !strings.Contains(out, "No tasks found") {
+        t.Errorf("list after delete should be empty: %s", out)
+    }
+}</code></pre>
+
+            <p>Run the tests in your dedicated test tab using Beam split panes. On the left, Claude Code iterates on the code. On the right, you watch the tests:</p>
+
+            <pre><code># Unit tests
+$ go test -v ./internal/...
+
+# Integration tests
+$ go test -v -tags=integration ./...</code></pre>
+
+            <div class="highlight">
+                <h3>The Split-Pane Test Workflow</h3>
+                <p>This is the fastest way to develop a CLI tool. In Beam, split your Claude Code tab and run <code>watchexec -e go -- go test -v ./...</code> in the right pane. Every time Claude saves a file, the tests re-run automatically. You see failures turn green in real time without lifting a finger. This feedback loop is worth the entire setup.</p>
+            </div>
+
+
+            <!-- Section 7: Cross-Compilation and Distribution -->
+            <h2>Cross-Compilation and Distribution</h2>
+
+            <p>One of Go's greatest strengths for CLI tools is that you can compile for any platform from any machine. Claude Code can generate the entire distribution pipeline.</p>
+
+            <h3>Manual Cross-Compilation</h3>
+
+            <p>Building for multiple platforms is a single command per target:</p>
+
+            <pre><code># macOS (Apple Silicon)
+GOOS=darwin GOARCH=arm64 go build -o dist/taskr-darwin-arm64 ./cmd/taskr
+
+# macOS (Intel)
+GOOS=darwin GOARCH=amd64 go build -o dist/taskr-darwin-amd64 ./cmd/taskr
+
+# Linux (amd64)
+GOOS=linux GOARCH=amd64 go build -o dist/taskr-linux-amd64 ./cmd/taskr
+
+# Linux (arm64, for Raspberry Pi, AWS Graviton)
+GOOS=linux GOARCH=arm64 go build -o dist/taskr-linux-arm64 ./cmd/taskr
+
+# Windows
+GOOS=windows GOARCH=amd64 go build -o dist/taskr-windows-amd64.exe ./cmd/taskr</code></pre>
+
+            <p>Each binary is self-contained. No runtime, no installer. Users download one file and run it.</p>
+
+            <h3>GoReleaser for Automated Releases</h3>
+
+            <div class="prompt-example">
+                Generate a .goreleaser.yml configuration for taskr. Build for darwin/amd64, darwin/arm64, linux/amd64, linux/arm64, and windows/amd64. Include ldflags for version, commit, and date. Generate checksums. Create a Homebrew formula in a tap repository. Create archives with README and LICENSE included.
+            </div>
+
+            <pre><code># .goreleaser.yml
+version: 2
+project_name: taskr
+
+before:
+  hooks:
+    - go mod tidy
+    - go test ./...
+
+builds:
+  - main: ./cmd/taskr
+    env:
+      - CGO_ENABLED=0
+    goos:
+      - darwin
+      - linux
+      - windows
+    goarch:
+      - amd64
+      - arm64
+    ldflags:
+      - -s -w
+      - -X github.com/myorg/taskr/internal/cmd.version={{.Version}}
+      - -X github.com/myorg/taskr/internal/cmd.commit={{.Commit}}
+      - -X github.com/myorg/taskr/internal/cmd.date={{.Date}}
+
+archives:
+  - format: tar.gz
+    name_template: "{{ .ProjectName }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}"
+    format_overrides:
+      - goos: windows
+        format: zip
+    files:
+      - README.md
+      - LICENSE
+
+checksum:
+  name_template: "checksums.txt"
+
+changelog:
+  sort: asc
+  filters:
+    exclude:
+      - "^docs:"
+      - "^test:"
+
+brews:
+  - repository:
+      owner: myorg
+      name: homebrew-tap
+    homepage: "https://github.com/myorg/taskr"
+    description: "A fast, local task manager for the command line"
+    license: "MIT"
+    install: |
+      bin.install "taskr"
+    test: |
+      system "#{bin}/taskr", "version"</code></pre>
+
+            <p>Now release with a single command:</p>
+
+            <pre><code># Tag and release
+$ git tag v1.0.0
+$ git push origin v1.0.0
+
+# Run GoReleaser (locally or via GitHub Actions)
+$ goreleaser release --clean</code></pre>
+
+            <p>GoReleaser builds for all platforms, creates archives, generates checksums, publishes a GitHub release with all artifacts, and updates your Homebrew tap &mdash; all from that single command.</p>
+
+            <h3>Homebrew Tap for macOS Users</h3>
+
+            <div class="prompt-example">
+                Generate a GitHub Actions workflow that runs GoReleaser on every new tag. It should build all platform binaries, create a GitHub release, and automatically update the Homebrew tap.
+            </div>
+
+            <pre><code># .github/workflows/release.yml
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version: "1.22"
+
+      - uses: goreleaser/goreleaser-action@v6
+        with:
+          version: "~> v2"
+          args: release --clean
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          HOMEBREW_TAP_GITHUB_TOKEN: ${{ secrets.HOMEBREW_TAP_TOKEN }}</code></pre>
+
+            <p>After this is set up, your users can install with:</p>
+
+            <pre><code>$ brew tap myorg/tap
+$ brew install taskr</code></pre>
+
+            <p>Claude Code generated the GoReleaser config, the Homebrew formula, and the CI/CD workflow. The entire distribution pipeline was built from prompts.</p>
+
+
+            <!-- Section 8: Building TUIs with Bubbletea -->
+            <h2>Building TUIs with Bubbletea</h2>
+
+            <p>For CLI tools that need interactivity beyond simple flags and arguments, Go has <strong>Bubbletea</strong> &mdash; a terminal UI framework based on the Elm architecture. Claude Code can generate full TUI applications with it.</p>
+
+            <div class="prompt-example">
+                Add an interactive mode to taskr. When the user runs "taskr" with no arguments, show a Bubbletea TUI that displays the task list. Let users navigate with arrow keys, press Enter to toggle done/pending, press "a" to add a new task (with inline input), press "d" to delete, and "q" to quit. Use Lipgloss for styling.
+            </div>
+
+            <p>Claude Code generates the full TUI model with the Bubbletea architecture:</p>
+
+            <pre><code>// internal/tui/model.go
+package tui
+
+import (
+    "github.com/charmbracelet/bubbletea"
+    "github.com/charmbracelet/lipgloss"
+    "github.com/myorg/taskr/internal/task"
+)
+
+type model struct {
+    store    *task.Store
+    tasks    []task.Task
+    cursor   int
+    adding   bool
+    input    string
+    quitting bool
+}
+
+func (m model) Init() tea.Cmd {
+    return nil
+}
+
+func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
+    switch msg := msg.(type) {
+    case tea.KeyMsg:
+        if m.adding {
+            return m.handleAddInput(msg)
+        }
+
+        switch msg.String() {
+        case "q", "ctrl+c":
+            m.quitting = true
+            return m, tea.Quit
+        case "up", "k":
+            if m.cursor > 0 {
+                m.cursor--
+            }
+        case "down", "j":
+            if m.cursor < len(m.tasks)-1 {
+                m.cursor++
+            }
+        case "enter":
+            m.toggleStatus()
+        case "a":
+            m.adding = true
+        case "d":
+            m.deleteSelected()
+        }
+    }
+    return m, nil
+}
+
+func (m model) View() string {
+    if m.quitting {
+        return ""
+    }
+
+    header := lipgloss.NewStyle().
+        Bold(true).
+        Foreground(lipgloss.Color("#00ADD8")).
+        Render("taskr") + "\n\n"
+
+    var rows string
+    for i, t := range m.tasks {
+        cursor := "  "
+        if i == m.cursor {
+            cursor = "> "
+        }
+
+        status := "[ ]"
+        if t.Status == task.StatusDone {
+            status = "[x]"
+        }
+
+        row := fmt.Sprintf("%s%s %s  %s  %s",
+            cursor, status, t.Title,
+            colorPriority(t.Priority), t.DueDate)
+        rows += row + "\n"
+    }
+
+    help := "\n  j/k: navigate  enter: toggle  a: add  d: delete  q: quit"
+    return header + rows + help
+}</code></pre>
+
+            <p>Bubbletea TUIs compile to the same single binary. No additional runtime dependencies. Users get an interactive experience that feels like a native application &mdash; all from the terminal.</p>
+
+            <p>This is particularly powerful with Claude Code because the Elm architecture (Model, Update, View) maps cleanly to natural language descriptions. You describe the behavior, and Claude generates the state machine.</p>
+
+
+            <!-- Section 9: End-to-End Workflow Recap -->
+            <h2>The Complete Build Workflow in Beam</h2>
+
+            <p>Here is the full development workflow, from idea to published CLI, organized in a single Beam workspace:</p>
+
+            <ol>
+                <li><strong>Create a Beam workspace</strong> &mdash; Name it after your CLI project. Set up three tabs: Claude Code, build/run, tests.</li>
+                <li><strong>Scaffold with Claude Code</strong> &mdash; One prompt generates the full Cobra project structure, including go.mod, commands, and the storage layer.</li>
+                <li><strong>Build commands iteratively</strong> &mdash; Prompt Claude Code for each command. Build and test in the side pane after each one.</li>
+                <li><strong>Add polish</strong> &mdash; Colors, config file support, shell completions, and version info &mdash; all generated by Claude Code.</li>
+                <li><strong>Write tests</strong> &mdash; Table-driven unit tests and integration tests that run the actual binary. Watch them pass in real time.</li>
+                <li><strong>Set up distribution</strong> &mdash; GoReleaser config, GitHub Actions workflow, Homebrew tap &mdash; all generated from prompts.</li>
+                <li><strong>Release</strong> &mdash; Tag, push, and GoReleaser handles the rest. Binaries for every platform, published to GitHub and Homebrew.</li>
+            </ol>
+
+            <p>Every step happens in the terminal. Every step is accelerated by Claude Code. And Beam keeps the entire workflow organized so you never lose context.</p>
+
+
+            <!-- CTA Box -->
+            <div class="cta-box">
+                <h3>Build Your Next CLI Tool with Beam</h3>
+                <p>Download Beam free and set up the perfect workspace for Go CLI development. Claude Code on the left, your CLI output on the right, tests running in the background. Everything in one place.</p>
+                <a href="../" class="btn">Download Beam for macOS</a>
+            </div>
+
+
+            <!-- Summary -->
+            <h2>Summary</h2>
+
+            <p>Go is the dominant language for CLI tools because of single-binary distribution, cross-compilation, fast startup, and a rich ecosystem of libraries like Cobra, Viper, Lipgloss, and Bubbletea. Claude Code makes building Go CLIs dramatically faster by generating scaffolding, commands, tests, and distribution infrastructure from natural language prompts.</p>
+
+            <p>Here is what we covered:</p>
+
+            <ul>
+                <li><strong>Why Go for CLIs</strong> &mdash; Single binary, cross-compilation, fast startup, and the same architecture behind Docker, Kubernetes, and GitHub CLI</li>
+                <li><strong>Beam workspace setup</strong> &mdash; Three tabs (Claude Code, build/run, tests) with split panes for live iteration</li>
+                <li><strong>Cobra scaffolding</strong> &mdash; Claude Code generates the full project structure, root command, and module initialization in one prompt</li>
+                <li><strong>Building commands</strong> &mdash; Add, list, done, and delete commands with proper flags, argument validation, and error handling</li>
+                <li><strong>Polish</strong> &mdash; Colored output with Lipgloss, Viper config files, shell completions, and version info with ldflags</li>
+                <li><strong>Testing</strong> &mdash; Table-driven tests for every command and integration tests that exercise the real binary</li>
+                <li><strong>Distribution</strong> &mdash; Cross-compilation, GoReleaser, GitHub Actions, and Homebrew tap &mdash; all generated from prompts</li>
+                <li><strong>TUIs with Bubbletea</strong> &mdash; Interactive terminal interfaces compiled into the same single binary</li>
+            </ul>
+
+            <p>The combination of Go's compile-to-binary simplicity, Cobra's industry-standard command framework, Claude Code's ability to generate idiomatic Go from descriptions, and Beam's organized workspace creates the fastest possible path from idea to published CLI tool.</p>
+
+            <p>Happy building.</p>
+
+            <div class="related-articles">
+                <h2>Related Articles</h2>
+                <div class="related-grid">
+                    <a href="claude-code-go-development.html" class="related-card">
+                        <h4>Claude Code for Go Development</h4>
+                        <p>The complete workflow for Go development with Claude Code and Beam workspaces.</p>
+                    </a>
+                    <a href="claude-code-api-development.html" class="related-card">
+                        <h4>Building APIs with Claude Code</h4>
+                        <p>How to use Claude Code for API development, from REST endpoints to authentication.</p>
+                    </a>
+                    <a href="automate-tasks-claude-code.html" class="related-card">
+                        <h4>Automate Tasks with Claude Code</h4>
+                        <p>Use Claude Code to automate repetitive development tasks and workflows.</p>
+                    </a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>
+                <a href="../">Beam</a> &bull; Terminal Organizer for macOS &bull;
+                <a href="mailto:frank@nextuptechnologies.co">Contact</a>
+            </p>
+
+            <p style="margin-top: 12px; font-size: 0.8rem;">
+                <a href="/privacy.html" style="color: #71717a; text-decoration: none;">Privacy Policy</a> &bull;
+                <a href="/terms.html" style="color: #71717a; text-decoration: none;">Terms of Service</a>
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,556 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Beam Blog — AI Coding Guides &amp; Terminal Tips</title>
+    <link>https://getbeam.dev/blog/</link>
+    <description>Guides, tutorials, and tips for AI-assisted development with Claude Code, Codex, and more. Organized with Beam terminal.</description>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 12 Feb 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://getbeam.dev/blog/feed.xml" rel="self" type="application/rss+xml"/>
+
+    <item>
+      <title>From Vibe Coding to Agentic Engineering: What Karpathy's New Term Means for You</title>
+      <link>https://getbeam.dev/blog/vibe-coding-to-agentic-engineering.html</link>
+      <description>Karpathy declared vibe coding pass&#233; on Feb 5. Agentic engineering is the new paradigm. Here's what it means for your workflow.</description>
+      <pubDate>Wed, 12 Feb 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/vibe-coding-to-agentic-engineering.html</guid>
+    </item>
+
+    <item>
+      <title>Xcode 26.3 Agentic Coding: How Apple Just Changed iOS Development Forever</title>
+      <link>https://getbeam.dev/blog/xcode-26-3-agentic-coding.html</link>
+      <description>Apple's Xcode 26.3 integrates Claude Agent and OpenAI Codex with MCP protocol support. What it means for iOS developers.</description>
+      <pubDate>Wed, 12 Feb 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/xcode-26-3-agentic-coding.html</guid>
+    </item>
+
+    <item>
+      <title>GPT-5.3 Codex vs Claude Code: Which Agentic Coding Tool Wins in 2026?</title>
+      <link>https://getbeam.dev/blog/gpt-5-3-codex-vs-claude-code.html</link>
+      <description>OpenAI and Anthropic released competing agentic coding models on the same day. Full comparison of speed, accuracy, pricing, and workflow.</description>
+      <pubDate>Wed, 12 Feb 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/gpt-5-3-codex-vs-claude-code.html</guid>
+    </item>
+
+    <item>
+      <title>The Complete Guide to MCP Servers in 2026: Google, Apple, and 50+ Integrations</title>
+      <link>https://getbeam.dev/blog/mcp-servers-guide-2026.html</link>
+      <description>MCP is the universal standard for AI tool integrations. Google and Apple adopted it. Everything you need to know about 50+ servers.</description>
+      <pubDate>Wed, 12 Feb 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/mcp-servers-guide-2026.html</guid>
+    </item>
+
+    <item>
+      <title>Anthropic's 2026 Agentic Coding Trends Report: 8 Shifts Every Developer Needs to Know</title>
+      <link>https://getbeam.dev/blog/anthropic-agentic-coding-trends-2026.html</link>
+      <description>8 trends from Anthropic's comprehensive report reshaping how software gets built, including the Rakuten case study.</description>
+      <pubDate>Wed, 12 Feb 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/anthropic-agentic-coding-trends-2026.html</guid>
+    </item>
+
+    <item>
+      <title>Claude Code vs Cursor vs OpenCode: The Definitive 2026 Comparison</title>
+      <link>https://getbeam.dev/blog/claude-code-vs-cursor-vs-opencode-2026.html</link>
+      <description>Terminal-native, IDE-first, and open-source approaches to AI coding compared across features, pricing, and workflow.</description>
+      <pubDate>Wed, 12 Feb 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/claude-code-vs-cursor-vs-opencode-2026.html</guid>
+    </item>
+
+    <item>
+      <title>Multi-Agent Coding Workflows: How to Orchestrate AI Agents That Build Software for You</title>
+      <link>https://getbeam.dev/blog/multi-agent-coding-orchestration-guide.html</link>
+      <description>Claude Code Agent Teams, orchestration patterns, and practical steps for multi-agent coding workflows.</description>
+      <pubDate>Wed, 12 Feb 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/multi-agent-coding-orchestration-guide.html</guid>
+    </item>
+
+    <item>
+      <title>Are AI Coding Tools Getting Worse? What the Developer Backlash Actually Means</title>
+      <link>https://getbeam.dev/blog/are-ai-coding-tools-getting-worse.html</link>
+      <description>The Hacker News and Reddit backlash explained. What's really happening with AI coding tool quality and pricing.</description>
+      <pubDate>Wed, 12 Feb 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/are-ai-coding-tools-getting-worse.html</guid>
+    </item>
+
+    <item>
+      <title>Claude Code 2.1: Agent Teams, 1M Context Windows, and 16 Features You Missed</title>
+      <link>https://getbeam.dev/blog/claude-code-2-1-features.html</link>
+      <description>The biggest Claude Code release yet: 1,096 commits, Agent Teams, 1M token context, skills overhaul, and more.</description>
+      <pubDate>Wed, 12 Feb 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/claude-code-2-1-features.html</guid>
+    </item>
+
+    <item>
+      <title>How to Set Up an Agentic Coding Workflow: A Step-by-Step Guide</title>
+      <link>https://getbeam.dev/blog/agentic-coding-workflow-setup-guide.html</link>
+      <description>The practical, hands-on guide to setting up a modern agentic coding workflow with Claude Code and project memory.</description>
+      <pubDate>Wed, 12 Feb 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/agentic-coding-workflow-setup-guide.html</guid>
+    </item>
+
+    <item>
+      <title>How to Use Claude Code for Rust Development: The Complete Workflow</title>
+      <link>https://getbeam.dev/blog/claude-code-rust-development.html</link>
+      <description>Master Rust development with Claude Code and Beam. Cargo workflows, ownership patterns, async Rust, CLI tools, and testing.</description>
+      <pubDate>Wed, 11 Feb 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/claude-code-rust-development.html</guid>
+    </item>
+
+    <item>
+      <title>Managing Kubernetes Clusters in Beam: The DevOps Terminal Workflow</title>
+      <link>https://getbeam.dev/blog/kubernetes-terminal-workflow-beam.html</link>
+      <description>Organize kubectl, helm, terraform, and Claude Code across dev, staging, and production Kubernetes clusters using Beam workspaces.</description>
+      <pubDate>Wed, 11 Feb 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/kubernetes-terminal-workflow-beam.html</guid>
+    </item>
+
+    <item>
+      <title>Neovim + Claude Code + Beam: Terminal-Native AI Development</title>
+      <link>https://getbeam.dev/blog/neovim-claude-code-beam-workflow.html</link>
+      <description>Build the ultimate terminal-native AI development environment with Neovim, Claude Code, and Beam. Keyboard-first, zero GUI.</description>
+      <pubDate>Wed, 11 Feb 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/neovim-claude-code-beam-workflow.html</guid>
+    </item>
+
+    <item>
+      <title>How to Build a CLI Tool with Claude Code and Go</title>
+      <link>https://getbeam.dev/blog/build-cli-tool-go-claude-code.html</link>
+      <description>Go is the #1 language for CLI tools. Learn how to scaffold a cobra CLI, build commands, add polish, cross-compile, and distribute via Homebrew — all with Claude Code and Beam.</description>
+      <pubDate>Wed, 11 Feb 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/build-cli-tool-go-claude-code.html</guid>
+    </item>
+
+    <item>
+      <title>Managing Go Microservices in Beam: 5 Services, One Screen</title>
+      <link>https://getbeam.dev/blog/go-microservices-beam-workflow.html</link>
+      <description>Run 5 Go microservices without terminal chaos. One Beam workspace per service, Quick Switcher to jump between them, and project memory to keep Claude Code contextual per service.</description>
+      <pubDate>Wed, 11 Feb 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/go-microservices-beam-workflow.html</guid>
+    </item>
+
+    <item>
+      <title>AI-Assisted Go Testing: Table-Driven Tests, Benchmarks, and Fuzz Tests with Claude Code</title>
+      <link>https://getbeam.dev/blog/go-testing-claude-code.html</link>
+      <description>The complete Go testing workflow with Claude Code: table-driven tests, benchmarks, fuzz testing, race detection, coverage analysis, integration tests, and mock generation.</description>
+      <pubDate>Wed, 11 Feb 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/go-testing-claude-code.html</guid>
+    </item>
+
+    <item>
+      <title>How to Use Claude Code for Go Development: The Complete Workflow</title>
+      <link>https://getbeam.dev/blog/claude-code-go-development.html</link>
+      <description>The complete Go developer workflow with Claude Code and Beam. Scaffold projects, generate structs and interfaces, write table-driven tests, handle concurrency patterns, and manage microservices — all organized in Beam workspaces.</description>
+      <pubDate>Wed, 11 Feb 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/claude-code-go-development.html</guid>
+    </item>
+
+    <item>
+      <title>Agentic Engineering: The Evolution Beyond Vibe Coding</title>
+      <link>https://getbeam.dev/blog/agentic-engineering-guide.html</link>
+      <description>Agentic engineering is replacing vibe coding as the dominant AI development paradigm in 2026. Learn how Karpathy's new concept works, core patterns like ReAct and multi-agent coordination, and how to set up your agentic workflow with Beam.</description>
+      <pubDate>Wed, 11 Feb 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/agentic-engineering-guide.html</guid>
+    </item>
+
+    <item>
+      <title>From Vibe Coding to Agentic Engineering: A Developer's Guide</title>
+      <link>https://getbeam.dev/blog/vibe-coding-to-agentic-engineering.html</link>
+      <description>Vibe coding is dead. Agentic engineering is here. Learn what changed in one year, why Karpathy says vibe coding is pass&#233;, and how to make the transition from prompting AI to orchestrating agents.</description>
+      <pubDate>Wed, 11 Feb 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/vibe-coding-to-agentic-engineering.html</guid>
+    </item>
+
+    <item>
+      <title>How to Set Up Multi-Agent AI Coding Workflows</title>
+      <link>https://getbeam.dev/blog/multi-agent-ai-coding-workflows.html</link>
+      <description>Learn how to set up multi-agent AI coding workflows using Claude Code agent teams, Codex, and Copilot in parallel. Orchestrate multiple AI agents for faster full-stack development with Beam.</description>
+      <pubDate>Wed, 11 Feb 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/multi-agent-ai-coding-workflows.html</guid>
+    </item>
+
+    <item>
+      <title>Best AI Coding Tool in 2026: Claude Code vs Cursor vs Copilot</title>
+      <link>https://getbeam.dev/blog/best-ai-coding-tool-2026.html</link>
+      <description>The definitive 2026 comparison of Claude Code, Cursor, and GitHub Copilot. Pricing, features, context window, autonomy, and which AI coding tool is best for your workflow.</description>
+      <pubDate>Wed, 11 Feb 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/best-ai-coding-tool-2026.html</guid>
+    </item>
+
+    <item>
+      <title>Claude Opus 4.6 for Developers: Everything That's New</title>
+      <link>https://getbeam.dev/blog/claude-opus-4-6-developers-guide.html</link>
+      <description>Claude Opus 4.6 brings agent teams, 1M context window, 128K output tokens, adaptive thinking, and the highest Terminal-Bench 2.0 score. Here's what developers need to know.</description>
+      <pubDate>Wed, 11 Feb 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/claude-opus-4-6-developers-guide.html</guid>
+    </item>
+
+    <item>
+      <title>Should You Learn to Code in 2026? (Yes — Here's Why)</title>
+      <link>https://getbeam.dev/blog/should-you-learn-to-code-2026.html</link>
+      <description>AI writes 41% of code and 92% of developers use AI tools daily. Should you still learn to code in 2026? Absolutely. Here's why coding skills matter more than ever in the age of AI agents.</description>
+      <pubDate>Wed, 11 Feb 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/should-you-learn-to-code-2026.html</guid>
+    </item>
+
+    <item>
+      <title>How to Set Up Claude Code in Xcode 26: Complete Guide</title>
+      <link>https://getbeam.dev/blog/claude-code-xcode-setup.html</link>
+      <description>Complete guide to setting up Claude Code and the Claude Agent SDK in Xcode 26.3. Learn how to enable agentic coding, configure your Claude account, and use Beam to organize your Xcode + Claude workflow.</description>
+      <pubDate>Wed, 11 Feb 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/claude-code-xcode-setup.html</guid>
+    </item>
+
+    <item>
+      <title>How to Use Claude Code Agent Teams: Complete Setup Guide</title>
+      <link>https://getbeam.dev/blog/claude-code-agent-teams-guide.html</link>
+      <description>Learn how to set up and use Claude Code agent teams with Opus 4.6. Step-by-step guide to running parallel agents, coordinating multi-agent workflows, and organizing agent teams with Beam.</description>
+      <pubDate>Wed, 11 Feb 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/claude-code-agent-teams-guide.html</guid>
+    </item>
+
+    <item>
+      <title>The Complete Guide to Beam Workspaces: Terminal Organization Mastery</title>
+      <link>https://getbeam.dev/blog/complete-guide-beam-workspaces.html</link>
+      <description>Master Beam workspaces: create, name, organize, save, and restore terminal layouts. The complete guide to workspace-based terminal management for AI-powered development.</description>
+      <pubDate>Wed, 11 Feb 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/complete-guide-beam-workspaces.html</guid>
+    </item>
+
+    <item>
+      <title>How to Use Claude Code for DevOps &amp; CI/CD</title>
+      <link>https://getbeam.dev/blog/claude-code-devops-cicd.html</link>
+      <description>Use Claude Code for DevOps tasks: GitHub Actions workflows, Dockerfiles, infrastructure config, monitoring scripts, and deployment pipelines — organized in Beam workspaces.</description>
+      <pubDate>Wed, 11 Feb 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/claude-code-devops-cicd.html</guid>
+    </item>
+
+    <item>
+      <title>How to Use Claude Code for Open Source Contributions</title>
+      <link>https://getbeam.dev/blog/claude-code-open-source.html</link>
+      <description>Contribute to open source projects faster with Claude Code. Understand unfamiliar codebases, fix bugs, write tests, and submit quality PRs — with Beam organizing your workflow.</description>
+      <pubDate>Wed, 11 Feb 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/claude-code-open-source.html</guid>
+    </item>
+
+    <item>
+      <title>How to Write Documentation with Claude Code</title>
+      <link>https://getbeam.dev/blog/claude-code-documentation.html</link>
+      <description>Generate API docs, README files, code comments, and architecture guides with Claude Code. Stop putting off documentation — let AI write the first draft while you refine.</description>
+      <pubDate>Wed, 11 Feb 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/claude-code-documentation.html</guid>
+    </item>
+
+    <item>
+      <title>How to Automate Tasks with Claude Code: Scripts, CLIs, and Workflows</title>
+      <link>https://getbeam.dev/blog/automate-tasks-claude-code.html</link>
+      <description>Use Claude Code to build automation scripts, CLI tools, and workflow pipelines. From file processing to API integrations to cron jobs — automate the tedious work with AI.</description>
+      <pubDate>Wed, 11 Feb 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/automate-tasks-claude-code.html</guid>
+    </item>
+
+    <item>
+      <title>How to Use Claude Code with Git: Advanced Workflows</title>
+      <link>https://getbeam.dev/blog/claude-code-git-workflows.html</link>
+      <description>Master Git with Claude Code. Merge conflicts, interactive rebasing, commit message generation, branch management, and PR workflows — all organized in Beam terminal tabs.</description>
+      <pubDate>Wed, 11 Feb 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/claude-code-git-workflows.html</guid>
+    </item>
+
+    <item>
+      <title>How to Migrate to TypeScript with Claude Code</title>
+      <link>https://getbeam.dev/blog/typescript-migration-claude-code.html</link>
+      <description>Migrate your JavaScript codebase to TypeScript with Claude Code. File-by-file conversion, type inference, interface generation, and strict mode — without breaking your app.</description>
+      <pubDate>Wed, 11 Feb 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/typescript-migration-claude-code.html</guid>
+    </item>
+
+    <item>
+      <title>How to Use Claude Code for Next.js Development</title>
+      <link>https://getbeam.dev/blog/claude-code-nextjs-development.html</link>
+      <description>Build Next.js apps faster with Claude Code. Server Components, App Router, API routes, server actions, and deployment — all organized in Beam workspaces.</description>
+      <pubDate>Wed, 11 Feb 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/claude-code-nextjs-development.html</guid>
+    </item>
+
+    <item>
+      <title>AI Pair Programming: Best Practices for 2026</title>
+      <link>https://getbeam.dev/blog/ai-pair-programming-best-practices.html</link>
+      <description>Master AI pair programming in 2026. Best practices for working with Claude Code, Codex, and other AI agents — from prompt writing to session management to building persistent context.</description>
+      <pubDate>Wed, 11 Feb 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/ai-pair-programming-best-practices.html</guid>
+    </item>
+
+    <item>
+      <title>Beam vs Warp: Which Terminal for AI Coding in 2026?</title>
+      <link>https://getbeam.dev/blog/beam-vs-warp.html</link>
+      <description>Beam vs Warp — an honest comparison for AI-powered development. Session organization, workspaces, AI features, pricing, and which terminal is better for Claude Code and Codex workflows.</description>
+      <pubDate>Wed, 11 Feb 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/beam-vs-warp.html</guid>
+    </item>
+
+    <item>
+      <title>How to Do Code Review with Claude Code</title>
+      <link>https://getbeam.dev/blog/code-review-with-claude-code.html</link>
+      <description>Use Claude Code as your AI code reviewer. Catch bugs, spot anti-patterns, review PRs, and improve code quality — whether you're a solo dev or working on a team.</description>
+      <pubDate>Wed, 11 Feb 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/code-review-with-claude-code.html</guid>
+    </item>
+
+    <item>
+      <title>Claude Code vs GitHub Copilot: Which Is Better in 2026?</title>
+      <link>https://getbeam.dev/blog/claude-code-vs-github-copilot.html</link>
+      <description>Claude Code vs GitHub Copilot — a detailed comparison for 2026. Autocomplete vs agentic coding, context windows, pricing, and when to use each. Plus how Beam organizes both workflows.</description>
+      <pubDate>Wed, 11 Feb 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/claude-code-vs-github-copilot.html</guid>
+    </item>
+
+    <item>
+      <title>How to Write Tests with Claude Code: Unit, Integration, and E2E</title>
+      <link>https://getbeam.dev/blog/write-tests-with-claude-code.html</link>
+      <description>Stop dreading test writing. Claude Code generates unit tests, integration tests, and E2E tests that actually cover edge cases. Learn the workflow for comprehensive test coverage with AI.</description>
+      <pubDate>Wed, 11 Feb 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/write-tests-with-claude-code.html</guid>
+    </item>
+
+    <item>
+      <title>How to Refactor Legacy Code with Claude Code</title>
+      <link>https://getbeam.dev/blog/refactor-legacy-code-claude-code.html</link>
+      <description>Tackle legacy code with Claude Code as your refactoring partner. Break apart monoliths, modernize patterns, add types, and improve test coverage — safely and systematically.</description>
+      <pubDate>Wed, 11 Feb 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/refactor-legacy-code-claude-code.html</guid>
+    </item>
+
+    <item>
+      <title>How to Use Claude Code for Python &amp; Data Science</title>
+      <link>https://getbeam.dev/blog/claude-code-python-data-science.html</link>
+      <description>Use Claude Code for Python development and data science workflows. Generate scripts, analyze data, build pipelines, and manage experiments — all organized in Beam terminal workspaces.</description>
+      <pubDate>Wed, 11 Feb 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/claude-code-python-data-science.html</guid>
+    </item>
+
+    <item>
+      <title>How to Use Claude Code for React Development: Components, Hooks, and More</title>
+      <link>https://getbeam.dev/blog/claude-code-react-development.html</link>
+      <description>Build React apps faster with Claude Code. Learn how to generate components, write custom hooks, refactor state management, and organize your React workflow with Beam workspaces.</description>
+      <pubDate>Wed, 11 Feb 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/claude-code-react-development.html</guid>
+    </item>
+
+    <item>
+      <title>How to Give AI Agents Project Memory: The CLAUDE.md Guide</title>
+      <link>https://getbeam.dev/blog/ai-agent-project-memory-guide.html</link>
+      <description>AI agents forget everything between sessions. Learn how to create a CLAUDE.md project memory file that gives Claude Code persistent context — architecture, conventions, and decisions that carry over.</description>
+      <pubDate>Wed, 11 Feb 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/ai-agent-project-memory-guide.html</guid>
+    </item>
+
+    <item>
+      <title>AI Coding for Solo Developers: The Complete Workflow</title>
+      <link>https://getbeam.dev/blog/ai-coding-solo-developer.html</link>
+      <description>How solo developers and indie hackers use Claude Code to ship faster. The complete AI coding workflow: multiple projects, persistent memory, organized terminals, and zero overhead.</description>
+      <pubDate>Wed, 11 Feb 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/ai-coding-solo-developer.html</guid>
+    </item>
+
+    <item>
+      <title>How to Debug with Claude Code: A Practical Guide</title>
+      <link>https://getbeam.dev/blog/debug-with-claude-code.html</link>
+      <description>Debug faster with Claude Code as your AI debugging partner. Stack traces, runtime errors, logic bugs — learn the workflow for solving any bug with AI assistance, organized in Beam.</description>
+      <pubDate>Wed, 11 Feb 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/debug-with-claude-code.html</guid>
+    </item>
+
+    <item>
+      <title>Claude Code Keyboard Shortcuts &amp; Tips: The 2026 Cheat Sheet</title>
+      <link>https://getbeam.dev/blog/claude-code-keyboard-shortcuts.html</link>
+      <description>Every Claude Code keyboard shortcut and power-user tip in one place. Plus Beam shortcuts for managing multiple sessions. The complete 2026 cheat sheet.</description>
+      <pubDate>Wed, 11 Feb 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/claude-code-keyboard-shortcuts.html</guid>
+    </item>
+
+    <item>
+      <title>How to Use Claude Code with Docker: Containers + AI Workflow</title>
+      <link>https://getbeam.dev/blog/claude-code-with-docker.html</link>
+      <description>Run Claude Code alongside Docker containers with an organized workflow. Beam workspaces keep your AI agent, container logs, and compose commands in separate, labeled tabs.</description>
+      <pubDate>Wed, 11 Feb 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/claude-code-with-docker.html</guid>
+    </item>
+
+    <item>
+      <title>How to Set Up a Vibe Coding Mac in 2026: The Complete Stack</title>
+      <link>https://getbeam.dev/blog/vibe-coding-mac-setup-2026.html</link>
+      <description>The complete 2026 vibe coding Mac setup: Beam for terminal organization, Claude Code for AI development, Wispr Flow for voice coding, and the tools that tie it all together.</description>
+      <pubDate>Wed, 11 Feb 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/vibe-coding-mac-setup-2026.html</guid>
+    </item>
+
+    <item>
+      <title>How to Switch from Cursor to Claude Code (And Why You Might Want To)</title>
+      <link>https://getbeam.dev/blog/switch-from-cursor-to-claude-code.html</link>
+      <description>Thinking about switching from Cursor to Claude Code? This guide covers what you gain, what changes, and how Beam replaces Cursor's IDE organization with terminal workspaces.</description>
+      <pubDate>Wed, 11 Feb 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/switch-from-cursor-to-claude-code.html</guid>
+    </item>
+
+    <item>
+      <title>How to Use Claude Code for API Development: A Complete Guide</title>
+      <link>https://getbeam.dev/blog/claude-code-api-development.html</link>
+      <description>Build REST APIs faster with Claude Code as your AI pair programmer. Step-by-step guide covering endpoint design, route generation, testing, and deployment — organized with Beam workspaces.</description>
+      <pubDate>Wed, 11 Feb 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/claude-code-api-development.html</guid>
+    </item>
+
+    <item>
+      <title>How to Build a Website with Claude Code: Step-by-Step Guide</title>
+      <link>https://getbeam.dev/blog/build-website-with-claude-code.html</link>
+      <description>Build a complete website using Claude Code as your AI coding assistant. Step-by-step tutorial from project setup to deployment, organized with Beam workspaces.</description>
+      <pubDate>Wed, 11 Feb 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/build-website-with-claude-code.html</guid>
+    </item>
+
+    <item>
+      <title>How to Manage Multiple Claude Code Sessions Across Projects</title>
+      <link>https://getbeam.dev/blog/manage-multiple-claude-code-sessions.html</link>
+      <description>Running Claude Code across multiple projects? Learn how to manage 5+ sessions without losing track. Beam workspaces, Quick Switcher, and saved layouts keep you organized.</description>
+      <pubDate>Wed, 11 Feb 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/manage-multiple-claude-code-sessions.html</guid>
+    </item>
+
+    <item>
+      <title>How to Use Claude Code and Codex Together on One Project</title>
+      <link>https://getbeam.dev/blog/claude-code-and-codex-together.html</link>
+      <description>Learn how to run Claude Code and OpenAI Codex together on the same project using Beam. Dual-agent workflows, shared memory, and organized workspaces.</description>
+      <pubDate>Wed, 11 Feb 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/claude-code-and-codex-together.html</guid>
+    </item>
+
+    <item>
+      <title>How to Organize OpenAI Codex CLI Sessions</title>
+      <link>https://getbeam.dev/blog/organize-openai-codex-sessions.html</link>
+      <description>Learn how to organize OpenAI Codex CLI terminal sessions across projects using Beam. Workspaces, tabs, Quick Switcher, and saved layouts keep your Codex workflow clean.</description>
+      <pubDate>Wed, 11 Feb 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/organize-openai-codex-sessions.html</guid>
+    </item>
+
+    <item>
+      <title>AI Agent Memory Management: How to Give Claude Code Persistent Context</title>
+      <link>https://getbeam.dev/blog/ai-agent-memory-management.html</link>
+      <description>AI agents like Claude Code forget everything between sessions. Learn how Beam's memory management system gives every agent persistent project context with one click.</description>
+      <pubDate>Tue, 10 Feb 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/ai-agent-memory-management.html</guid>
+    </item>
+
+    <item>
+      <title>Interoperable Memory Across AI Agents: One File, Every Agent</title>
+      <link>https://getbeam.dev/blog/interoperable-ai-agent-memory.html</link>
+      <description>AI agents like Claude Code, OpenAI Codex, and OpenClaw each have their own memory systems. Beam unifies them with one plain Markdown file on disk that any agent can read and write.</description>
+      <pubDate>Tue, 10 Feb 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/interoperable-ai-agent-memory.html</guid>
+    </item>
+
+    <item>
+      <title>Workspace Templates: Instant Multi-Agent Setups in Beam</title>
+      <link>https://getbeam.dev/blog/workspace-templates-guide.html</link>
+      <description>Learn how Beam's Workspace Templates let you spin up entire multi-agent development environments in one keystroke. Built-in templates for Claude Code, Full Stack, and OpenClaw workflows.</description>
+      <pubDate>Sun, 08 Feb 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/workspace-templates-guide.html</guid>
+    </item>
+
+    <item>
+      <title>Best Terminal App for AI Coding in 2026: Why Beam Wins</title>
+      <link>https://getbeam.dev/blog/best-terminal-app-ai-coding-2026.html</link>
+      <description>We compare the top terminal apps for AI coding in 2026 — Terminal.app, iTerm2, Warp, Ghostty, tmux, and Beam — to find which one handles Claude Code, Codex, and multi-agent workflows best.</description>
+      <pubDate>Sun, 08 Feb 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/best-terminal-app-ai-coding-2026.html</guid>
+    </item>
+
+    <item>
+      <title>How to Use OpenAI Codex on Mac: Complete Setup Guide 2026</title>
+      <link>https://getbeam.dev/blog/how-to-use-openai-codex-mac.html</link>
+      <description>Step-by-step guide to installing and using OpenAI Codex on Mac. Learn how to set up Codex, configure your API key, and use Beam for one-click AI coding sessions.</description>
+      <pubDate>Sun, 08 Feb 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/how-to-use-openai-codex-mac.html</guid>
+    </item>
+
+    <item>
+      <title>Claude Code vs Cursor vs Codex: Which AI Coding Tool Should You Use in 2026?</title>
+      <link>https://getbeam.dev/blog/claude-code-vs-cursor-vs-codex.html</link>
+      <description>An in-depth comparison of Claude Code, Cursor, and OpenAI Codex. Learn which AI coding tool fits your workflow best in 2026 and how to get the most out of each one.</description>
+      <pubDate>Sun, 08 Feb 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/claude-code-vs-cursor-vs-codex.html</guid>
+    </item>
+
+    <item>
+      <title>Setting Up Beam for Claude Code Development</title>
+      <link>https://getbeam.dev/blog/beam-claude-code-setup.html</link>
+      <description>A complete guide to organizing your Claude Code sessions with Beam. Learn how to use workspaces, layouts, and keyboard shortcuts for maximum productivity with AI-assisted coding.</description>
+      <pubDate>Sat, 07 Feb 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/beam-claude-code-setup.html</guid>
+    </item>
+
+    <item>
+      <title>Why Your Terminal is the New IDE</title>
+      <link>https://getbeam.dev/blog/terminal-is-the-new-ide.html</link>
+      <description>The rise of AI coding tools like Claude Code, Cursor, and Codex is changing how we develop software. Your terminal is becoming your IDE — here's why, and how to set it up.</description>
+      <pubDate>Sat, 07 Feb 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/terminal-is-the-new-ide.html</guid>
+    </item>
+
+    <item>
+      <title>How to Install OpenClaw: Complete Setup Guide 2026</title>
+      <link>https://getbeam.dev/blog/how-to-install-openclaw-setup-guide.html</link>
+      <description>Step-by-step guide to install and set up OpenClaw, the open-source AI assistant. Learn how to install OpenClaw on Mac, configure it with WhatsApp, Telegram, and use Beam for the best OpenClaw experience.</description>
+      <pubDate>Sat, 07 Feb 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/how-to-install-openclaw-setup-guide.html</guid>
+    </item>
+
+    <item>
+      <title>Beam vs tmux: When to Use Each</title>
+      <link>https://getbeam.dev/blog/beam-vs-tmux.html</link>
+      <description>Comparing Beam and tmux for terminal organization. Learn when to use each tool, key differences, and how they can work together for the ultimate terminal setup.</description>
+      <pubDate>Fri, 06 Feb 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/beam-vs-tmux.html</guid>
+    </item>
+
+    <item>
+      <title>Beam vs iTerm2: Which macOS Terminal is Right for You?</title>
+      <link>https://getbeam.dev/blog/beam-vs-iterm2.html</link>
+      <description>Comparing Beam and iTerm2 for macOS. Learn the key differences between these terminal emulators and which one fits your workflow better.</description>
+      <pubDate>Fri, 06 Feb 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/beam-vs-iterm2.html</guid>
+    </item>
+
+    <item>
+      <title>Voice-Controlled Coding: Using Wispr Flow with Claude Code and Beam</title>
+      <link>https://getbeam.dev/blog/wispr-flow-claude-code-beam.html</link>
+      <description>Learn how to combine Wispr Flow dictation, Claude Code AI, and Beam terminal organizer for a seamless voice-controlled coding workflow on macOS.</description>
+      <pubDate>Fri, 06 Feb 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/wispr-flow-claude-code-beam.html</guid>
+    </item>
+
+    <item>
+      <title>How to Organize Claude Code Sessions</title>
+      <link>https://getbeam.dev/blog/organizing-claude-code-sessions.html</link>
+      <description>Learn how to organize multiple Claude Code terminal sessions across different projects using Beam. Keep your AI coding workflow clean with workspaces, tabs, and saveable layouts.</description>
+      <pubDate>Fri, 06 Feb 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/organizing-claude-code-sessions.html</guid>
+    </item>
+
+    <item>
+      <title>The Perfect Vibe Coding Setup</title>
+      <link>https://getbeam.dev/blog/vibe-coding-setup.html</link>
+      <description>Set up the perfect vibe coding environment with Beam. Stay in flow state with organized terminals, split panes, and instant workspace switching. The ultimate setup for AI-assisted development.</description>
+      <pubDate>Fri, 06 Feb 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/vibe-coding-setup.html</guid>
+    </item>
+
+    <item>
+      <title>How to Rename Terminal Windows on macOS</title>
+      <link>https://getbeam.dev/blog/how-to-rename-terminal-windows-macos.html</link>
+      <description>Learn how to rename terminal windows, tabs, and panes on macOS. Stop seeing 'zsh' everywhere. Give your terminals meaningful names with Beam.</description>
+      <pubDate>Fri, 06 Feb 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/how-to-rename-terminal-windows-macos.html</guid>
+    </item>
+
+  </channel>
+</rss>

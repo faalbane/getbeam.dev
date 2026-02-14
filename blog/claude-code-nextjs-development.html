@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D0XH8B0RKL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-D0XH8B0RKL');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Use Claude Code for Next.js Development | Beam Terminal Organizer</title>
+    <meta name="description" content="Build Next.js apps faster with Claude Code. Server Components, App Router, API routes, server actions, and deployment — all organized in Beam workspaces.">
+    <meta name="keywords" content="Claude Code Next.js, Next.js AI development, Claude Code App Router, Next.js server components AI, build Next.js with Claude Code">
+    <meta name="author" content="NextUp Technologies">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://getbeam.dev/blog/claude-code-nextjs-development.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://getbeam.dev/blog/claude-code-nextjs-development.html">
+    <meta property="og:title" content="How to Use Claude Code for Next.js Development">
+    <meta property="og:description" content="Build Next.js apps faster with Claude Code. Server Components, App Router, API routes, server actions, and deployment.">
+    <meta property="og:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="How to Use Claude Code for Next.js Development">
+    <meta name="twitter:description" content="Build Next.js apps faster with Claude Code. Server Components, App Router, API routes, server actions, and deployment.">
+    <meta name="twitter:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "How to Use Claude Code for Next.js Development",
+        "description": "Build Next.js apps faster with Claude Code. Server Components, App Router, API routes, server actions, and deployment — all organized in Beam workspaces.",
+        "author": {
+            "@type": "Organization",
+            "name": "NextUp Technologies"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Beam"
+        },
+        "datePublished": "2026-02-11",
+        "keywords": "Claude Code Next.js, Next.js AI development, Claude Code App Router, Next.js server components AI, build Next.js with Claude Code"
+    }
+    </script>
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #111113;
+            --bg-tertiary: #1a1a1d;
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.4);
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --border: #27272a;
+            --success: #22c55e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        header {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 60px;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1.5rem;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            background: var(--accent);
+            color: white;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+        }
+
+        article {
+            padding-bottom: 80px;
+        }
+
+        .breadcrumb {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+        }
+
+        .breadcrumb a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .meta {
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            font-size: 0.95rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 48px 0 20px;
+            color: var(--text-primary);
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        ul, ol {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            padding-left: 24px;
+        }
+
+        li {
+            margin-bottom: 12px;
+        }
+
+        .highlight {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 32px 0;
+        }
+
+        .highlight h3 {
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .kbd {
+            display: inline-block;
+            padding: 2px 8px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .cta-box h3 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+        }
+
+        .cta-box p {
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 24px;
+        }
+
+        .cta-box .btn {
+            background: white;
+            color: var(--accent);
+        }
+
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+
+        .related-articles { margin-top: 60px; padding-top: 40px; border-top: 1px solid var(--border); }
+        .related-articles h2 { font-size: 1.5rem; margin-bottom: 24px; }
+        .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .related-card { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-decoration: none; transition: border-color 0.2s; }
+        .related-card:hover { border-color: var(--accent); }
+        .related-card h4 { color: white; font-size: 1rem; margin: 0 0 8px 0; }
+        .related-card p { color: var(--text-muted); font-size: 0.85rem; margin: 0; }
+        @media (max-width: 600px) { .related-grid { grid-template-columns: 1fr; } }
+
+        .blog-visual {
+            margin: 40px 0;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        .blog-visual svg {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="../" class="logo">
+                <div class="logo-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round">
+                        <path d="M4 17l6-6-6-6M12 19h8"/>
+                    </svg>
+                </div>
+                Beam
+            </a>
+            <a href="../" class="btn">Download Beam</a>
+        </div>
+    </header>
+
+    <main>
+        <article class="container">
+            <div class="breadcrumb">
+                <a href="../">Beam</a> / <a href="../#guides">Guides</a> / Claude Code for Next.js Development
+            </div>
+
+            <h1>How to Use Claude Code for Next.js Development</h1>
+            <p class="meta">February 2026 &bull; 8 min read</p>
+
+            <p>Next.js is the most popular full-stack React framework, and it is also one of the most complex. App Router vs Pages Router, Server Components vs Client Components, server actions, middleware, API routes -- there is a lot to keep straight. Claude Code understands all of these patterns and can generate production-quality Next.js code that follows current best practices. Here is how to use it effectively, with your sessions organized in Beam workspaces.</p>
+
+            <div class="blog-visual">
+                <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Window frame -->
+                    <rect width="800" height="420" rx="12" fill="#0a0a0b"/>
+                    <rect x="0" y="0" width="800" height="42" rx="12" fill="#111113"/>
+                    <rect x="0" y="30" width="800" height="12" fill="#111113"/>
+                    <!-- Window controls -->
+                    <circle cx="20" cy="20" r="6" fill="#ff5f57"/>
+                    <circle cx="40" cy="20" r="6" fill="#febc2e"/>
+                    <circle cx="60" cy="20" r="6" fill="#28c840"/>
+                    <!-- Tab bar -->
+                    <rect x="90" y="8" width="120" height="28" rx="6" fill="#1a1a1d" stroke="#3b82f6" stroke-width="1.5"/>
+                    <text x="115" y="27" font-family="Space Grotesk, sans-serif" font-size="11" fill="#3b82f6" font-weight="600">Claude Code</text>
+                    <rect x="216" y="8" width="100" height="28" rx="6" fill="#1a1a1d" stroke="#27272a" stroke-width="1"/>
+                    <text x="232" y="27" font-family="Space Grotesk, sans-serif" font-size="11" fill="#a1a1aa">Dev Server</text>
+                    <rect x="322" y="8" width="90" height="28" rx="6" fill="#1a1a1d" stroke="#27272a" stroke-width="1"/>
+                    <text x="340" y="27" font-family="Space Grotesk, sans-serif" font-size="11" fill="#a1a1aa">Database</text>
+                    <rect x="418" y="8" width="70" height="28" rx="6" fill="#1a1a1d" stroke="#27272a" stroke-width="1"/>
+                    <text x="436" y="27" font-family="Space Grotesk, sans-serif" font-size="11" fill="#a1a1aa">Tests</text>
+                    <rect x="494" y="8" width="60" height="28" rx="6" fill="#1a1a1d" stroke="#27272a" stroke-width="1"/>
+                    <text x="514" y="27" font-family="Space Grotesk, sans-serif" font-size="11" fill="#a1a1aa">Git</text>
+                    <!-- Workspace label -->
+                    <rect x="640" y="8" width="140" height="28" rx="6" fill="#1a1a1d" stroke="#27272a" stroke-width="1"/>
+                    <text x="665" y="27" font-family="Space Grotesk, sans-serif" font-size="11" fill="#71717a">Next.js App</text>
+
+                    <!-- Divider -->
+                    <line x1="0" y1="42" x2="800" y2="42" stroke="#27272a" stroke-width="1"/>
+
+                    <!-- Left panel: file tree -->
+                    <rect x="0" y="42" width="240" height="378" fill="#0d0d0e"/>
+                    <line x1="240" y1="42" x2="240" y2="420" stroke="#27272a" stroke-width="1"/>
+
+                    <!-- File tree header -->
+                    <text x="16" y="68" font-family="JetBrains Mono, monospace" font-size="11" fill="#71717a" font-weight="500">EXPLORER</text>
+
+                    <!-- File tree items -->
+                    <text x="16" y="96" font-family="JetBrains Mono, monospace" font-size="12" fill="#a1a1aa">app/</text>
+                    <text x="32" y="116" font-family="JetBrains Mono, monospace" font-size="12" fill="#fafafa">layout.tsx</text>
+                    <rect x="110" y="106" width="6" height="6" rx="1" fill="#d4a843" opacity="0.8"/>
+                    <text x="32" y="136" font-family="JetBrains Mono, monospace" font-size="12" fill="#fafafa">page.tsx</text>
+                    <rect x="100" y="126" width="6" height="6" rx="1" fill="#d4a843" opacity="0.8"/>
+                    <text x="32" y="156" font-family="JetBrains Mono, monospace" font-size="12" fill="#fafafa">loading.tsx</text>
+                    <text x="32" y="176" font-family="JetBrains Mono, monospace" font-size="12" fill="#fafafa">error.tsx</text>
+
+                    <text x="32" y="204" font-family="JetBrains Mono, monospace" font-size="12" fill="#a1a1aa">dashboard/</text>
+                    <text x="48" y="224" font-family="JetBrains Mono, monospace" font-size="12" fill="#fafafa">layout.tsx</text>
+                    <text x="48" y="244" font-family="JetBrains Mono, monospace" font-size="12" fill="#fafafa">page.tsx</text>
+                    <rect x="116" y="234" width="6" height="6" rx="1" fill="#d4a843" opacity="0.8"/>
+
+                    <text x="32" y="272" font-family="JetBrains Mono, monospace" font-size="12" fill="#a1a1aa">api/</text>
+                    <text x="48" y="292" font-family="JetBrains Mono, monospace" font-size="12" fill="#a1a1aa">users/</text>
+                    <text x="64" y="312" font-family="JetBrains Mono, monospace" font-size="12" fill="#fafafa">route.ts</text>
+                    <rect x="132" y="302" width="6" height="6" rx="1" fill="#d4a843" opacity="0.8"/>
+
+                    <text x="16" y="340" font-family="JetBrains Mono, monospace" font-size="12" fill="#a1a1aa">components/</text>
+                    <text x="32" y="360" font-family="JetBrains Mono, monospace" font-size="12" fill="#fafafa">Sidebar.tsx</text>
+                    <text x="32" y="380" font-family="JetBrains Mono, monospace" font-size="12" fill="#fafafa">Dashboard.tsx</text>
+                    <text x="32" y="400" font-family="JetBrains Mono, monospace" font-size="12" fill="#fafafa">UserTable.tsx</text>
+
+                    <!-- Right panel: browser preview -->
+                    <rect x="240" y="42" width="560" height="378" fill="#0a0a0b"/>
+
+                    <!-- Browser chrome -->
+                    <rect x="240" y="42" width="560" height="32" fill="#111113"/>
+                    <line x1="240" y1="74" x2="800" y2="74" stroke="#27272a" stroke-width="1"/>
+                    <rect x="310" y="49" width="420" height="20" rx="4" fill="#1a1a1d" stroke="#27272a" stroke-width="1"/>
+                    <text x="440" y="63" font-family="JetBrains Mono, monospace" font-size="10" fill="#71717a">localhost:3000/dashboard</text>
+
+                    <!-- Preview: dashboard layout -->
+                    <!-- Sidebar -->
+                    <rect x="256" y="86" width="140" height="320" rx="8" fill="#111113" stroke="#27272a" stroke-width="1"/>
+                    <rect x="270" y="100" width="112" height="12" rx="3" fill="#fafafa" opacity="0.15"/>
+                    <rect x="270" y="126" width="90" height="10" rx="2" fill="#3b82f6" opacity="0.6"/>
+                    <rect x="270" y="148" width="80" height="10" rx="2" fill="#fafafa" opacity="0.08"/>
+                    <rect x="270" y="170" width="96" height="10" rx="2" fill="#fafafa" opacity="0.08"/>
+                    <rect x="270" y="192" width="72" height="10" rx="2" fill="#fafafa" opacity="0.08"/>
+                    <rect x="270" y="224" width="112" height="10" rx="3" fill="#fafafa" opacity="0.1"/>
+                    <rect x="270" y="246" width="64" height="10" rx="2" fill="#fafafa" opacity="0.08"/>
+                    <rect x="270" y="268" width="88" height="10" rx="2" fill="#fafafa" opacity="0.08"/>
+
+                    <!-- Main content area -->
+                    <rect x="410" y="86" width="374" height="320" rx="8" fill="#111113" stroke="#27272a" stroke-width="1"/>
+
+                    <!-- Dashboard title -->
+                    <rect x="426" y="102" width="160" height="16" rx="3" fill="#fafafa" opacity="0.2"/>
+                    <rect x="426" y="126" width="220" height="8" rx="2" fill="#fafafa" opacity="0.08"/>
+
+                    <!-- Stat cards row -->
+                    <rect x="426" y="150" width="108" height="64" rx="6" fill="#1a1a1d" stroke="#27272a" stroke-width="1"/>
+                    <rect x="438" y="164" width="50" height="8" rx="2" fill="#71717a" opacity="0.6"/>
+                    <rect x="438" y="182" width="70" height="14" rx="2" fill="#3b82f6" opacity="0.7"/>
+
+                    <rect x="542" y="150" width="108" height="64" rx="6" fill="#1a1a1d" stroke="#27272a" stroke-width="1"/>
+                    <rect x="554" y="164" width="50" height="8" rx="2" fill="#71717a" opacity="0.6"/>
+                    <rect x="554" y="182" width="60" height="14" rx="2" fill="#22c55e" opacity="0.7"/>
+
+                    <rect x="658" y="150" width="108" height="64" rx="6" fill="#1a1a1d" stroke="#27272a" stroke-width="1"/>
+                    <rect x="670" y="164" width="50" height="8" rx="2" fill="#71717a" opacity="0.6"/>
+                    <rect x="670" y="182" width="55" height="14" rx="2" fill="#8b5cf6" opacity="0.7"/>
+
+                    <!-- Table -->
+                    <rect x="426" y="230" width="340" height="10" rx="2" fill="#fafafa" opacity="0.1"/>
+                    <rect x="426" y="252" width="340" height="1" fill="#27272a"/>
+                    <rect x="426" y="264" width="340" height="8" rx="2" fill="#fafafa" opacity="0.06"/>
+                    <rect x="426" y="284" width="340" height="8" rx="2" fill="#fafafa" opacity="0.06"/>
+                    <rect x="426" y="304" width="340" height="8" rx="2" fill="#fafafa" opacity="0.06"/>
+                    <rect x="426" y="324" width="340" height="8" rx="2" fill="#fafafa" opacity="0.06"/>
+                    <rect x="426" y="344" width="340" height="8" rx="2" fill="#fafafa" opacity="0.06"/>
+
+                    <!-- Claude amber dots on AI-generated items -->
+                    <circle cx="254" y="96" r="3" fill="#d4a843" opacity="0.9"/>
+                    <circle cx="254" y="164" r="3" fill="#d4a843" opacity="0.9"/>
+                    <circle cx="254" y="236" r="3" fill="#d4a843" opacity="0.9"/>
+                    <circle cx="254" y="280" r="3" fill="#d4a843" opacity="0.9"/>
+                </svg>
+            </div>
+
+            <h2>Why Claude Code + Next.js Is a Perfect Match</h2>
+
+            <p>Next.js is a framework built on strong conventions. The file-system router dictates where your code lives. Server Components and Client Components have clear boundaries. Data fetching patterns, caching strategies, and rendering modes all follow documented rules. This is exactly the kind of structured environment where Claude Code excels.</p>
+
+            <p>Claude Code understands the App Router deeply -- layouts, loading states, error boundaries, route groups, parallel routes, and intercepting routes. It knows the difference between a Server Component and a Client Component and will default to Server Components unless interactivity is required. When you ask it to build a page, it generates proper TypeScript types for all the Next.js-specific APIs like <span class="kbd">generateMetadata</span>, <span class="kbd">generateStaticParams</span>, and route handler signatures.</p>
+
+            <p>Most importantly, it handles the file-system routing convention without confusion. Ask for a dashboard page and it creates the file at <span class="kbd">app/dashboard/page.tsx</span>, not in some arbitrary location. Ask for an API route and it creates <span class="kbd">app/api/[resource]/route.ts</span> with the correct HTTP method exports. This structural awareness means less time correcting file placements and more time building features.</p>
+
+            <h2>Your Next.js Development Workspace</h2>
+
+            <p>A Next.js project involves several running processes at once -- your dev server, a database connection, test runners, and Claude Code itself. Beam workspaces let you keep all of these organized in a single window with instant switching between them.</p>
+
+            <p>Here is the workspace setup I recommend for Next.js development. Create a workspace called "Next.js App" with these tabs:</p>
+
+            <ul>
+                <li><strong>Tab 1: Claude Code</strong> -- Your primary AI coding session. This is where you prompt Claude to generate components, pages, and API routes.</li>
+                <li><strong>Tab 2: Dev Server</strong> -- Run <span class="kbd">npm run dev</span> here. The Next.js dev server with hot reload lets you see changes instantly.</li>
+                <li><strong>Tab 3: Database</strong> -- Prisma Studio (<span class="kbd">npx prisma studio</span>), psql, or your database management tool of choice.</li>
+                <li><strong>Tab 4: Tests</strong> -- Run <span class="kbd">npm test -- --watch</span> to continuously validate changes as Claude Code generates them.</li>
+                <li><strong>Tab 5: Git</strong> -- Stage, commit, and push changes. Review diffs before committing AI-generated code.</li>
+            </ul>
+
+            <p>Use <span class="kbd">&#8984;&#8997;&#8963;T</span> to split your Claude Code tab into a split pane. Put Claude Code on the left and your browser preview on the right. As Claude generates code, you can watch the hot reload reflect changes in real time without switching tabs.</p>
+
+            <h2>Server Components &amp; The App Router</h2>
+
+            <p>The App Router introduced a fundamental shift in how Next.js applications are structured. Server Components are the default, Client Components are the exception, and data fetching happens directly inside components with async/await instead of <span class="kbd">useEffect</span>. Claude Code handles all of this correctly out of the box.</p>
+
+            <p>Try this prompt to see it in action:</p>
+
+            <div class="highlight">
+                <h3>Example Prompt</h3>
+                <p>"Create a dashboard page with a sidebar layout using the App Router. The sidebar should be a shared layout, the main content area should show user stats fetched server-side."</p>
+            </div>
+
+            <p>Claude Code will create the full set of files in the right directories: <span class="kbd">app/dashboard/layout.tsx</span> for the sidebar layout that wraps all dashboard pages, <span class="kbd">app/dashboard/page.tsx</span> for the main content with server-side data fetching, <span class="kbd">app/dashboard/loading.tsx</span> for a Suspense loading state, and <span class="kbd">app/dashboard/error.tsx</span> with a proper error boundary component.</p>
+
+            <p>Notice what it does not do: it does not add <span class="kbd">'use client'</span> to the page component. It fetches data with an async Server Component rather than reaching for <span class="kbd">useEffect</span> and <span class="kbd">useState</span>. It uses the layout file for shared UI instead of duplicating the sidebar across pages. These are all correct Next.js patterns, and Claude Code applies them by default without you needing to specify them.</p>
+
+            <h2>Server Actions for Mutations</h2>
+
+            <p>Server actions are the modern Next.js pattern for handling form submissions and data mutations. They replace the older pattern of creating a separate API route for every mutation. Claude Code understands this pattern thoroughly and generates server actions that follow all the conventions.</p>
+
+            <p>Here is a prompt that demonstrates this:</p>
+
+            <div class="highlight">
+                <h3>Example Prompt</h3>
+                <p>"Add a server action to create a new project. Include form validation with Zod and optimistic updates."</p>
+            </div>
+
+            <p>Claude Code will generate a server action file with the <span class="kbd">'use server'</span> directive, a Zod validation schema for the form data, a form component that calls the action, and <span class="kbd">revalidatePath</span> to refresh the page data after the mutation. It handles the <span class="kbd">formData</span> extraction correctly, validates the input before touching the database, and returns structured error responses when validation fails. For optimistic updates, it will use the <span class="kbd">useOptimistic</span> hook in a Client Component wrapper while keeping the actual mutation on the server.</p>
+
+            <div class="highlight">
+                <h3>Best Practice</h3>
+                <p>Claude Code follows Next.js best practices: server actions for mutations, Server Components for data fetching, Client Components only when you need interactivity. If you find it adding <span class="kbd">'use client'</span> to a component that does not need it, your prompt may be implying client-side behavior. Be specific about what should run on the server.</p>
+            </div>
+
+            <h2>API Routes &amp; Middleware</h2>
+
+            <p>While server actions handle most mutations, you still need API routes for webhooks, third-party integrations, and public endpoints. Claude Code generates Next.js API routes using the App Router conventions -- <span class="kbd">route.ts</span> files with named exports for each HTTP method.</p>
+
+            <p>Try this prompt:</p>
+
+            <div class="highlight">
+                <h3>Example Prompt</h3>
+                <p>"Create API routes for user CRUD at /api/users with JWT auth middleware."</p>
+            </div>
+
+            <p>Claude Code will create <span class="kbd">app/api/users/route.ts</span> with properly typed <span class="kbd">GET</span> and <span class="kbd">POST</span> handlers, and <span class="kbd">app/api/users/[id]/route.ts</span> with <span class="kbd">GET</span>, <span class="kbd">PUT</span>, and <span class="kbd">DELETE</span> handlers for individual resources. Each handler uses <span class="kbd">NextResponse</span> correctly, returns proper HTTP status codes, and handles errors gracefully.</p>
+
+            <p>For middleware, it creates a <span class="kbd">middleware.ts</span> file at the project root that intercepts requests before they reach your route handlers. It sets up JWT verification, applies rate limiting headers, configures CORS for API consumers, and uses the <span class="kbd">matcher</span> config to only run on relevant paths. When edge runtime is appropriate -- such as for lightweight auth checks or redirects -- Claude Code sets the runtime correctly instead of defaulting to Node.js.</p>
+
+            <h2>Authentication with NextAuth.js</h2>
+
+            <p>Authentication in Next.js involves multiple moving parts: providers, callbacks, session management, database adapters, and protected routes. Getting all of these pieces to work together is exactly the kind of integration task where Claude Code saves you the most time.</p>
+
+            <div class="highlight">
+                <h3>Example Prompt</h3>
+                <p>"Add NextAuth.js with Google and GitHub providers, JWT strategy, and Prisma adapter."</p>
+            </div>
+
+            <p>Claude Code will set up the entire authentication flow. It creates the NextAuth route handler at <span class="kbd">app/api/auth/[...nextauth]/route.ts</span>, configures the Google and GitHub OAuth providers with proper environment variable references, sets up the Prisma adapter so user accounts are persisted to your database, and configures the JWT strategy with custom session callbacks.</p>
+
+            <p>It also handles the TypeScript side of things, extending the default <span class="kbd">Session</span> and <span class="kbd">JWT</span> types in a <span class="kbd">types/next-auth.d.ts</span> declaration file so your IDE knows about custom session properties like <span class="kbd">user.id</span> or <span class="kbd">user.role</span>. For protected routes, it adds middleware that checks for a valid session and redirects unauthenticated users to the sign-in page, configured to only apply to routes that actually need protection.</p>
+
+            <h2>Database Integration with Prisma</h2>
+
+            <p>Prisma is the most common database toolkit in the Next.js ecosystem, and Claude Code handles it seamlessly. From schema design to type-safe queries in Server Components, it generates code that takes full advantage of the Prisma and Next.js integration.</p>
+
+            <div class="highlight">
+                <h3>Example Prompt</h3>
+                <p>"Set up Prisma with a PostgreSQL database. Models: User, Project, Task with relations."</p>
+            </div>
+
+            <p>Claude Code creates a <span class="kbd">prisma/schema.prisma</span> file with properly defined models, relations (User has many Projects, Project has many Tasks), and the correct PostgreSQL provider configuration. It generates a <span class="kbd">lib/prisma.ts</span> client singleton that avoids the common pitfall of creating multiple Prisma Client instances during development. It also creates a <span class="kbd">prisma/seed.ts</span> file with realistic sample data for local development.</p>
+
+            <p>Where this really shines is in the Server Components. Because Prisma queries are type-safe and Server Components run on the server, Claude Code generates components that query the database directly without any API layer in between. Need to add a field? Ask Claude: "Add a migration for adding a 'status' field to the Task model with an enum of TODO, IN_PROGRESS, and DONE." It will update the schema, generate the migration SQL, and update any components that display task data to include the new field.</p>
+
+            <h2>Deployment</h2>
+
+            <p>Getting a Next.js application from development to production involves configuration that varies depending on your hosting platform. Claude Code knows the specifics of each major deployment target and generates the right configuration files and optimizations.</p>
+
+            <div class="highlight">
+                <h3>Example Prompt</h3>
+                <p>"Configure this app for Vercel deployment with environment variables."</p>
+            </div>
+
+            <p>For Vercel, Claude Code creates a <span class="kbd">.env.example</span> file documenting every required environment variable, sets up <span class="kbd">vercel.json</span> if custom configuration is needed (rewrites, headers, cron jobs), and ensures your application takes advantage of Vercel-specific features like Incremental Static Regeneration, automatic image optimization via the <span class="kbd">next/image</span> component, and edge runtime for latency-sensitive routes.</p>
+
+            <p>If you prefer self-hosting, prompt Claude Code with "Set up a Dockerfile for self-hosting this Next.js app." It will generate a multi-stage Dockerfile that produces a minimal production image using the standalone output mode, properly handles the <span class="kbd">.next/static</span> assets, and configures health checks. It also knows to set <span class="kbd">output: 'standalone'</span> in <span class="kbd">next.config.js</span> so the build produces a self-contained server.</p>
+
+            <h2>Memory File: Next.js Conventions</h2>
+
+            <p>One of the most important things you can do for a long-running Next.js project is create a <span class="kbd">CLAUDE.md</span> memory file that captures your project's specific conventions. Without this, Claude Code might mix App Router and Pages Router patterns, or suggest a data fetching approach that does not match the rest of your codebase.</p>
+
+            <p>Here is what your Next.js memory file should include:</p>
+
+            <ul>
+                <li><strong>Router choice</strong> -- "This project uses the App Router exclusively. Do not use the Pages Router or getServerSideProps/getStaticProps."</li>
+                <li><strong>Data fetching pattern</strong> -- "Fetch data in Server Components using async/await. Use server actions for mutations. Do not use API routes for internal data access."</li>
+                <li><strong>Auth strategy</strong> -- "Authentication is handled by NextAuth.js v5 with JWT strategy and Prisma adapter. Session is accessed via auth() in Server Components."</li>
+                <li><strong>Styling approach</strong> -- "Use Tailwind CSS for styling. No CSS modules. Use cn() utility for conditional classes."</li>
+                <li><strong>Deployment target</strong> -- "Deployed to Vercel. Use edge runtime for middleware. ISR for marketing pages. Dynamic rendering for dashboard."</li>
+            </ul>
+
+            <p>Save this file in your project root and Claude Code will reference it automatically at the start of each session. This prevents inconsistency and keeps every generated file aligned with your architectural decisions. In Beam, you can use the "Install Project Memory" toolbar button to set this up for any project workspace.</p>
+
+            <div class="cta-box">
+                <h3>Build Next.js Apps Faster</h3>
+                <p>Download Beam and organize your Next.js + Claude Code workflow into clean workspaces with tabs, split panes, and saveable layouts.</p>
+                <a href="../" class="btn">Download Beam for macOS</a>
+            </div>
+
+            <h2>Summary</h2>
+
+            <p>Claude Code and Next.js are a powerful combination. The framework's strong conventions give Claude Code the structure it needs to generate correct, idiomatic code, and Beam keeps your development environment organized so you can move fast without losing context.</p>
+
+            <ul>
+                <li>Use <strong>Server Components</strong> for data fetching -- Claude Code defaults to these correctly</li>
+                <li>Use <strong>server actions</strong> for mutations instead of creating unnecessary API routes</li>
+                <li>Set up <strong>API routes</strong> for webhooks and third-party integrations with proper middleware</li>
+                <li>Let Claude Code handle <strong>NextAuth.js</strong> and <strong>Prisma</strong> setup -- it knows all the boilerplate</li>
+                <li>Create a <strong>CLAUDE.md</strong> memory file to lock in your project's conventions</li>
+                <li>Organize everything in a <strong>Beam workspace</strong> with dedicated tabs for each concern</li>
+            </ul>
+
+            <p>The key insight is that Next.js gives Claude Code a well-defined playbook to follow. When you combine that with a clean development environment in Beam and a memory file that captures your project's specific patterns, you get AI-generated code that actually fits your codebase from the first try.</p>
+
+            <div class="related-articles">
+                <h2>Related Articles</h2>
+                <div class="related-grid">
+                    <a href="claude-code-react-development.html" class="related-card">
+                        <h4>Claude Code for React Development</h4>
+                        <p>Build React applications faster with AI-assisted component generation and state management.</p>
+                    </a>
+                    <a href="claude-code-api-development.html" class="related-card">
+                        <h4>Claude Code for API Development</h4>
+                        <p>Design and build REST and GraphQL APIs with Claude Code handling the boilerplate.</p>
+                    </a>
+                    <a href="build-website-with-claude-code.html" class="related-card">
+                        <h4>Build a Website with Claude Code</h4>
+                        <p>From blank project to deployed site using Claude Code and Beam workspaces.</p>
+                    </a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>
+                <a href="../">Beam</a> &bull; Terminal Organizer for macOS &bull;
+                <a href="mailto:frank@nextuptechnologies.co">Contact</a>
+            </p>
+
+            <p style="margin-top: 12px; font-size: 0.8rem;">
+                <a href="/privacy.html" style="color: #71717a; text-decoration: none;">Privacy Policy</a> &bull;
+                <a href="/terms.html" style="color: #71717a; text-decoration: none;">Terms of Service</a>
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>

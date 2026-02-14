@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D0XH8B0RKL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-D0XH8B0RKL');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Switch from Cursor to Claude Code (And Why You Might Want To) | Beam</title>
+    <meta name="description" content="Thinking about switching from Cursor to Claude Code? This guide covers what you gain, what changes, and how Beam replaces Cursor's IDE organization with terminal workspaces.">
+    <meta name="keywords" content="switch from Cursor to Claude Code, Cursor vs Claude Code, Cursor alternative, Claude Code migration, leave Cursor for terminal">
+    <meta name="author" content="NextUp Technologies">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://getbeam.dev/blog/switch-from-cursor-to-claude-code.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://getbeam.dev/blog/switch-from-cursor-to-claude-code.html">
+    <meta property="og:title" content="How to Switch from Cursor to Claude Code (And Why You Might Want To)">
+    <meta property="og:description" content="Thinking about switching from Cursor to Claude Code? This guide covers what you gain, what changes, and how Beam replaces Cursor's IDE organization with terminal workspaces.">
+    <meta property="og:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="How to Switch from Cursor to Claude Code (And Why You Might Want To)">
+    <meta name="twitter:description" content="Thinking about switching from Cursor to Claude Code? This guide covers what you gain, what changes, and how Beam replaces Cursor's IDE organization with terminal workspaces.">
+    <meta name="twitter:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "How to Switch from Cursor to Claude Code (And Why You Might Want To)",
+        "description": "Thinking about switching from Cursor to Claude Code? This guide covers what you gain, what changes, and how Beam replaces Cursor's IDE organization with terminal workspaces.",
+        "author": {
+            "@type": "Organization",
+            "name": "NextUp Technologies"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Beam"
+        },
+        "datePublished": "2026-02-11",
+        "keywords": "switch from Cursor to Claude Code, Cursor vs Claude Code, Cursor alternative, Claude Code migration"
+    }
+    </script>
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #111113;
+            --bg-tertiary: #1a1a1d;
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.4);
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --border: #27272a;
+            --success: #22c55e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        header {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 60px;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1.5rem;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            background: var(--accent);
+            color: white;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+        }
+
+        article {
+            padding-bottom: 80px;
+        }
+
+        .breadcrumb {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+        }
+
+        .breadcrumb a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .meta {
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            font-size: 0.95rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 48px 0 20px;
+            color: var(--text-primary);
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        ul, ol {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            padding-left: 24px;
+        }
+
+        li {
+            margin-bottom: 12px;
+        }
+
+        .highlight {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 32px 0;
+        }
+
+        .highlight h3 {
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .kbd {
+            display: inline-block;
+            padding: 2px 8px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+        }
+
+        code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 2px 8px;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .cta-box h3 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+        }
+
+        .cta-box p {
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 24px;
+        }
+
+        .cta-box .btn {
+            background: white;
+            color: var(--accent);
+        }
+
+        .blog-visual {
+            margin: 40px 0;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        .blog-visual svg {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+
+        .related-articles { margin-top: 60px; padding-top: 40px; border-top: 1px solid var(--border); }
+        .related-articles h2 { font-size: 1.5rem; margin-bottom: 24px; }
+        .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .related-card { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-decoration: none; transition: border-color 0.2s; }
+        .related-card:hover { border-color: var(--accent); }
+        .related-card h4 { color: white; font-size: 1rem; margin: 0 0 8px 0; }
+        .related-card p { color: var(--text-muted); font-size: 0.85rem; margin: 0; }
+        @media (max-width: 600px) { .related-grid { grid-template-columns: 1fr; } h1 { font-size: 1.8rem; } }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="../" class="logo">
+                <div class="logo-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round">
+                        <path d="M4 17l6-6-6-6M12 19h8"/>
+                    </svg>
+                </div>
+                Beam
+            </a>
+            <a href="../" class="btn">Download Beam</a>
+        </div>
+    </header>
+
+    <main>
+        <article class="container">
+            <div class="breadcrumb">
+                <a href="../">Beam</a> / <a href="../#guides">Guides</a> / Switch from Cursor to Claude Code
+            </div>
+
+            <h1>How to Switch from Cursor to Claude Code (And Why You Might Want To)</h1>
+            <p class="meta">February 2026 &bull; 7 min read</p>
+
+            <p>Cursor changed how developers think about AI-assisted coding. It proved that having an AI deeply integrated into your editing workflow could fundamentally speed up development. But an increasing number of developers are moving to terminal-based agents like Claude Code, and for good reason. Claude Code gives you deeper codebase understanding, longer context windows, and direct terminal access. You write a prompt, and it modifies files, runs tests, installs dependencies, and refactors entire modules without ever leaving the command line.</p>
+
+            <p>The catch? You lose Cursor's built-in file tree, its tabbed editor interface, and the visual organization that made it feel intuitive. For many developers, that's been the barrier to switching. That's where Beam comes in. Beam gives you the project organization layer that makes a terminal-first Claude Code workflow feel just as structured as an IDE, without locking you into one.</p>
+
+            <!-- Before/After Visual: Cursor → Beam + Claude Code -->
+            <div class="blog-visual">
+                <svg viewBox="0 0 800 380" xmlns="http://www.w3.org/2000/svg" fill="none">
+                    <!-- Background -->
+                    <rect width="800" height="380" fill="#111113"/>
+
+                    <!-- LEFT SIDE: Cursor (muted) -->
+                    <!-- Label -->
+                    <text x="185" y="36" fill="#71717a" font-family="Space Grotesk, sans-serif" font-size="14" font-weight="600" text-anchor="middle">Before: Cursor</text>
+
+                    <!-- Cursor window frame -->
+                    <rect x="30" y="52" width="330" height="300" rx="10" fill="#18181b" stroke="#3f3f46" stroke-width="1" opacity="0.7"/>
+                    <!-- Title bar -->
+                    <rect x="30" y="52" width="330" height="28" rx="10" fill="#27272a" opacity="0.7"/>
+                    <rect x="30" y="70" width="330" height="10" fill="#27272a" opacity="0.7"/>
+                    <!-- Window dots -->
+                    <circle cx="48" cy="66" r="5" fill="#52525b" opacity="0.5"/>
+                    <circle cx="64" cy="66" r="5" fill="#52525b" opacity="0.5"/>
+                    <circle cx="80" cy="66" r="5" fill="#52525b" opacity="0.5"/>
+                    <text x="185" y="70" fill="#71717a" font-family="Space Grotesk, sans-serif" font-size="10" text-anchor="middle" opacity="0.6">Cursor IDE</text>
+
+                    <!-- File tree sidebar -->
+                    <rect x="30" y="80" width="80" height="272" fill="#1a1a1d" opacity="0.6"/>
+                    <text x="40" y="100" fill="#52525b" font-family="JetBrains Mono, monospace" font-size="8">src/</text>
+                    <rect x="42" y="108" width="52" height="8" rx="2" fill="#3f3f46" opacity="0.4"/>
+                    <rect x="42" y="120" width="40" height="8" rx="2" fill="#3f3f46" opacity="0.4"/>
+                    <rect x="42" y="132" width="56" height="8" rx="2" fill="#3f3f46" opacity="0.4"/>
+                    <rect x="42" y="144" width="44" height="8" rx="2" fill="#3f3f46" opacity="0.4"/>
+                    <text x="40" y="168" fill="#52525b" font-family="JetBrains Mono, monospace" font-size="8">lib/</text>
+                    <rect x="42" y="176" width="48" height="8" rx="2" fill="#3f3f46" opacity="0.4"/>
+                    <rect x="42" y="188" width="54" height="8" rx="2" fill="#3f3f46" opacity="0.4"/>
+                    <rect x="42" y="200" width="38" height="8" rx="2" fill="#3f3f46" opacity="0.4"/>
+                    <text x="40" y="224" fill="#52525b" font-family="JetBrains Mono, monospace" font-size="8">tests/</text>
+                    <rect x="42" y="232" width="50" height="8" rx="2" fill="#3f3f46" opacity="0.4"/>
+                    <rect x="42" y="244" width="42" height="8" rx="2" fill="#3f3f46" opacity="0.4"/>
+
+                    <!-- Separator -->
+                    <line x1="110" y1="80" x2="110" y2="352" stroke="#3f3f46" stroke-width="1" opacity="0.4"/>
+
+                    <!-- Editor area with tabs -->
+                    <rect x="110" y="80" width="170" height="24" fill="#1a1a1d" opacity="0.5"/>
+                    <rect x="114" y="84" width="50" height="16" rx="3" fill="#27272a" opacity="0.6"/>
+                    <text x="139" y="95" fill="#52525b" font-family="JetBrains Mono, monospace" font-size="7" text-anchor="middle">app.tsx</text>
+                    <rect x="168" y="84" width="50" height="16" rx="3" fill="#3f3f46" opacity="0.3"/>
+                    <text x="193" y="95" fill="#52525b" font-family="JetBrains Mono, monospace" font-size="7" text-anchor="middle">utils.ts</text>
+
+                    <!-- Code lines (muted) -->
+                    <rect x="118" y="114" width="100" height="7" rx="2" fill="#3f3f46" opacity="0.3"/>
+                    <rect x="118" y="126" width="130" height="7" rx="2" fill="#3f3f46" opacity="0.3"/>
+                    <rect x="130" y="138" width="80" height="7" rx="2" fill="#3f3f46" opacity="0.3"/>
+                    <rect x="130" y="150" width="110" height="7" rx="2" fill="#3f3f46" opacity="0.3"/>
+                    <rect x="130" y="162" width="60" height="7" rx="2" fill="#3f3f46" opacity="0.3"/>
+                    <rect x="118" y="174" width="90" height="7" rx="2" fill="#3f3f46" opacity="0.3"/>
+                    <rect x="118" y="186" width="140" height="7" rx="2" fill="#3f3f46" opacity="0.3"/>
+                    <rect x="130" y="198" width="70" height="7" rx="2" fill="#3f3f46" opacity="0.3"/>
+                    <rect x="118" y="210" width="120" height="7" rx="2" fill="#3f3f46" opacity="0.3"/>
+                    <rect x="118" y="222" width="85" height="7" rx="2" fill="#3f3f46" opacity="0.3"/>
+
+                    <!-- Separator -->
+                    <line x1="280" y1="80" x2="280" y2="352" stroke="#3f3f46" stroke-width="1" opacity="0.4"/>
+
+                    <!-- Chat sidebar -->
+                    <rect x="280" y="80" width="80" height="272" fill="#1a1a1d" opacity="0.5"/>
+                    <text x="320" y="100" fill="#52525b" font-family="Space Grotesk, sans-serif" font-size="8" text-anchor="middle">AI Chat</text>
+                    <!-- Chat bubbles -->
+                    <rect x="288" y="110" width="60" height="20" rx="6" fill="#3f3f46" opacity="0.3"/>
+                    <rect x="292" y="117" width="40" height="6" rx="2" fill="#52525b" opacity="0.3"/>
+                    <rect x="288" y="138" width="64" height="30" rx="6" fill="#27272a" opacity="0.4"/>
+                    <rect x="292" y="145" width="50" height="5" rx="2" fill="#52525b" opacity="0.3"/>
+                    <rect x="292" y="154" width="42" height="5" rx="2" fill="#52525b" opacity="0.3"/>
+                    <rect x="288" y="176" width="56" height="20" rx="6" fill="#3f3f46" opacity="0.3"/>
+                    <rect x="292" y="183" width="36" height="6" rx="2" fill="#52525b" opacity="0.3"/>
+                    <rect x="288" y="204" width="64" height="36" rx="6" fill="#27272a" opacity="0.4"/>
+                    <rect x="292" y="211" width="50" height="5" rx="2" fill="#52525b" opacity="0.3"/>
+                    <rect x="292" y="220" width="44" height="5" rx="2" fill="#52525b" opacity="0.3"/>
+                    <rect x="292" y="229" width="38" height="5" rx="2" fill="#52525b" opacity="0.3"/>
+
+                    <!-- "Locked in" label -->
+                    <text x="185" y="340" fill="#52525b" font-family="Space Grotesk, sans-serif" font-size="10" text-anchor="middle">One IDE, one layout, one way</text>
+
+                    <!-- CENTER: Transition arrow -->
+                    <defs>
+                        <linearGradient id="arrowGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#52525b"/>
+                            <stop offset="100%" stop-color="#3b82f6"/>
+                        </linearGradient>
+                    </defs>
+                    <path d="M380 190 L420 190" stroke="url(#arrowGrad)" stroke-width="2.5" stroke-linecap="round"/>
+                    <polygon points="418,183 432,190 418,197" fill="#3b82f6"/>
+
+                    <!-- RIGHT SIDE: Beam + Claude Code (vibrant) -->
+                    <!-- Label -->
+                    <text x="600" y="36" fill="#fafafa" font-family="Space Grotesk, sans-serif" font-size="14" font-weight="600" text-anchor="middle">After: Beam + Claude Code</text>
+
+                    <!-- Beam window frame -->
+                    <rect x="440" y="52" width="330" height="300" rx="10" fill="#18181b" stroke="#3b82f6" stroke-width="1.5" opacity="1"/>
+                    <!-- Title bar -->
+                    <rect x="440" y="52" width="330" height="28" rx="10" fill="#1a1a1d"/>
+                    <rect x="440" y="70" width="330" height="10" fill="#1a1a1d"/>
+                    <!-- Window dots -->
+                    <circle cx="458" cy="66" r="5" fill="#ef4444"/>
+                    <circle cx="474" cy="66" r="5" fill="#eab308"/>
+                    <circle cx="490" cy="66" r="5" fill="#22c55e"/>
+                    <text x="600" y="70" fill="#a1a1aa" font-family="Space Grotesk, sans-serif" font-size="10" text-anchor="middle">Beam</text>
+
+                    <!-- Workspace sidebar -->
+                    <rect x="440" y="80" width="64" height="272" fill="#111113"/>
+                    <line x1="504" y1="80" x2="504" y2="352" stroke="#27272a" stroke-width="1"/>
+                    <!-- Workspace icons -->
+                    <rect x="452" y="90" width="40" height="32" rx="6" fill="#3b82f6" opacity="0.2" stroke="#3b82f6" stroke-width="1"/>
+                    <text x="472" y="110" fill="#3b82f6" font-family="JetBrains Mono, monospace" font-size="9" text-anchor="middle" font-weight="500">API</text>
+                    <rect x="452" y="130" width="40" height="32" rx="6" fill="#27272a" stroke="#3f3f46" stroke-width="0.5"/>
+                    <text x="472" y="150" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="9" text-anchor="middle">Web</text>
+                    <rect x="452" y="170" width="40" height="32" rx="6" fill="#27272a" stroke="#3f3f46" stroke-width="0.5"/>
+                    <text x="472" y="190" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="9" text-anchor="middle">Ops</text>
+                    <!-- + button -->
+                    <rect x="456" y="214" width="32" height="24" rx="5" fill="none" stroke="#3f3f46" stroke-width="1" stroke-dasharray="3,2"/>
+                    <text x="472" y="230" fill="#52525b" font-family="Space Grotesk, sans-serif" font-size="12" text-anchor="middle">+</text>
+
+                    <!-- Tabs bar -->
+                    <rect x="504" y="80" width="266" height="26" fill="#111113"/>
+                    <line x1="504" y1="106" x2="770" y2="106" stroke="#27272a" stroke-width="1"/>
+                    <!-- Active tab -->
+                    <rect x="510" y="84" width="72" height="18" rx="4" fill="#3b82f6" opacity="0.2" stroke="#3b82f6" stroke-width="0.8"/>
+                    <text x="546" y="96" fill="#3b82f6" font-family="JetBrains Mono, monospace" font-size="8" text-anchor="middle" font-weight="500">Claude</text>
+                    <!-- Other tabs -->
+                    <rect x="588" y="84" width="56" height="18" rx="4" fill="#1a1a1d" stroke="#27272a" stroke-width="0.5"/>
+                    <text x="616" y="96" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="8" text-anchor="middle">Editor</text>
+                    <rect x="650" y="84" width="52" height="18" rx="4" fill="#1a1a1d" stroke="#27272a" stroke-width="0.5"/>
+                    <text x="676" y="96" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="8" text-anchor="middle">Server</text>
+                    <rect x="708" y="84" width="40" height="18" rx="4" fill="#1a1a1d" stroke="#27272a" stroke-width="0.5"/>
+                    <text x="728" y="96" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="8" text-anchor="middle">Git</text>
+
+                    <!-- Terminal content area -->
+                    <rect x="504" y="106" width="266" height="246" fill="#0a0a0b"/>
+
+                    <!-- Claude Code session content -->
+                    <text x="516" y="126" fill="#3b82f6" font-family="JetBrains Mono, monospace" font-size="9" font-weight="500">claude</text>
+                    <text x="554" y="126" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="9">~/api-project</text>
+
+                    <!-- Prompt -->
+                    <text x="516" y="148" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="8.5">&gt; Refactor auth module to use</text>
+                    <text x="516" y="160" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="8.5">  JWT tokens with refresh flow</text>
+
+                    <!-- Response -->
+                    <text x="516" y="182" fill="#22c55e" font-family="JetBrains Mono, monospace" font-size="8.5">Updated 6 files:</text>
+                    <text x="516" y="196" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="8">  src/auth/jwt.ts</text>
+                    <text x="516" y="208" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="8">  src/auth/refresh.ts</text>
+                    <text x="516" y="220" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="8">  src/middleware/auth.ts</text>
+                    <text x="516" y="232" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="8">  src/routes/login.ts</text>
+                    <text x="516" y="244" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="8">  src/types/auth.d.ts</text>
+                    <text x="516" y="256" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="8">  tests/auth.test.ts</text>
+
+                    <text x="516" y="276" fill="#22c55e" font-family="JetBrains Mono, monospace" font-size="8.5">All tests passing.</text>
+
+                    <!-- Cursor / prompt indicator -->
+                    <text x="516" y="296" fill="#3b82f6" font-family="JetBrains Mono, monospace" font-size="9">&gt;</text>
+                    <rect x="524" y="288" width="7" height="12" fill="#3b82f6" opacity="0.8">
+                        <animate attributeName="opacity" values="0.8;0.2;0.8" dur="1.2s" repeatCount="indefinite"/>
+                    </rect>
+
+                    <!-- "Flexible" label -->
+                    <text x="600" y="340" fill="#a1a1aa" font-family="Space Grotesk, sans-serif" font-size="10" text-anchor="middle">Any editor, any tool, fully organized</text>
+                </svg>
+            </div>
+
+            <h2>Why Developers Are Leaving Cursor</h2>
+
+            <p>Cursor deserves credit for pushing the industry forward. It proved that developers want AI deeply embedded in their workflow, not bolted on as an afterthought. But as AI coding tools have matured, a growing number of developers are discovering that the IDE-based approach comes with trade-offs they no longer want to accept.</p>
+
+            <p>The core issue is that Cursor is still an IDE. It's a very good one, but you're locked into its UI paradigm. Your AI interactions happen through Cursor's interface, your file management happens through Cursor's file tree, and your terminal is a small panel at the bottom of Cursor's window. Everything routes through one application's design decisions.</p>
+
+            <p>Claude Code flips this model entirely. It runs in any terminal, works alongside any editor you already use, and integrates with your existing tools rather than replacing them. Its context window is larger, meaning it sees more of your codebase at once and makes better architectural decisions as a result. Because it lives in the terminal, you can run multiple sessions simultaneously, automate workflows with scripts, and pipe output to other tools. There's no subscription lock-in to a specific editor. And increasingly, the terminal is becoming the primary development interface for AI-first workflows, not the IDE.</p>
+
+            <h2>What You Gain with Claude Code</h2>
+
+            <p>The most immediate difference you'll notice is full terminal access. Claude Code doesn't just edit files; it runs commands, installs packages, executes tests, manages git operations, and modifies your filesystem, all within a single conversational session. There's no context switch between "asking the AI" and "doing the work." The AI is doing the work directly.</p>
+
+            <p>Multi-file refactoring is where Claude Code truly excels. Ask it to refactor an authentication system across your entire codebase, and it will modify dozens of files in a single operation: updating imports, renaming functions, adjusting types, and fixing tests. In Cursor, this kind of cross-file operation often requires multiple prompts and manual confirmation steps. In Claude Code, it happens in one pass.</p>
+
+            <p>Claude Code is also stronger at complex reasoning tasks. Architecture decisions, debugging intricate race conditions, performing thorough code reviews across modules: these are areas where the longer context window and deeper codebase understanding make a measurable difference. It can hold your entire project structure in context while making decisions, rather than working file-by-file.</p>
+
+            <p>Perhaps most importantly, Claude Code works with your editor. VS Code, Neovim, Zed, Sublime Text: keep using whatever you already know and love. Claude Code handles the AI-driven work in the terminal while your editor handles what editors do best: syntax highlighting, navigation, and manual edits. Project memory via CLAUDE.md files gives you persistent context between sessions, and because everything is terminal-based, it's composable. Pipe Claude Code output to other tools, chain operations together, and build automation around it.</p>
+
+            <h2>What You'll Miss (And How Beam Replaces It)</h2>
+
+            <p>Let's be honest about what Cursor gives you that a raw terminal doesn't. Cursor has a file tree that lets you visually browse your project. It has tabs for keeping multiple files open. It shows inline diffs when the AI makes changes. It has a sidebar chat that feels integrated with your code. These are genuine conveniences, and losing them without a replacement would make the switch painful.</p>
+
+            <p>Beam fills each of these gaps, but for a terminal-based workflow. Where Cursor has a file tree, Beam has workspaces that group terminals by project. Where Cursor has file tabs, Beam has terminal tabs: one for Claude Code, one for your dev server, one for tests, one for git. Where Cursor shows inline diffs, Claude Code displays diffs directly in the terminal, and you can use a split pane in Beam to have your editor open alongside so you see changes appear in real-time. Where Cursor has its cmd+K quick edit shortcut, Claude Code responds to natural language right in the terminal. And where Cursor has a sidebar chat, your entire terminal is the conversation in Claude Code.</p>
+
+            <div class="highlight">
+                <h3>The Key Insight</h3>
+                <p>Beam gives you the organizational structure that Cursor's IDE provided, but for a terminal-based workflow. You don't lose organization when you leave Cursor. You just move it to a layer that works with any tool, not just one editor.</p>
+            </div>
+
+            <h2>Step-by-Step Migration</h2>
+
+            <p>Making the switch doesn't require a dramatic leap. You can do it in about ten minutes and run both side by side while you adjust.</p>
+
+            <ol>
+                <li><strong>Install Claude Code</strong> by running <code>npm install -g @anthropic-ai/claude-code</code> in your terminal. You'll need an Anthropic API key or a supported authentication method.</li>
+                <li><strong>Download Beam</strong> from <a href="https://getbeam.dev" style="color: var(--accent); text-decoration: none;">getbeam.dev</a> for terminal organization. Install it like any macOS app.</li>
+                <li><strong>Create a Beam workspace</strong> for your project by pressing <span class="kbd">&#8984;N</span>. Name it after your project by double-clicking the workspace label.</li>
+                <li><strong>Open Claude Code in Tab 1.</strong> Navigate to your project directory and run <code>claude</code> to start a session. This becomes your primary AI coding interface.</li>
+                <li><strong>Open your preferred editor in Tab 2</strong> by pressing <span class="kbd">&#8984;T</span> and launching VS Code, Neovim, or whichever editor you use. You can also use split panes with <span class="kbd">&#8984;&#8997;&#8963;T</span> for side-by-side work.</li>
+                <li><strong>Add supporting tools as additional tabs</strong>: a dev server, a git terminal, a test runner, database CLI, or anything else your workflow needs.</li>
+                <li><strong>Install Project Memory</strong> to transfer your Cursor rules and instructions to a CLAUDE.md file. This gives Claude Code the same context your Cursor setup had.</li>
+                <li><strong>Save the layout</strong> with <span class="kbd">&#8984;S</span>. Tomorrow, restore it instantly and pick up exactly where you left off.</li>
+            </ol>
+
+            <h2>Transferring Your Cursor Rules to CLAUDE.md</h2>
+
+            <p>If you've been using Cursor for a while, you've probably customized it. You may have a <code>.cursorrules</code> file with coding conventions, style preferences, and project-specific instructions that shape how Cursor's AI behaves. The good news is that all of this transfers directly to Claude Code.</p>
+
+            <div class="highlight">
+                <h3>Migration Is Simple</h3>
+                <p>Copy the contents of your <code>.cursorrules</code> file into a <code>CLAUDE.md</code> file in your project root. That's it. Claude Code reads this file automatically every time you start a session in that directory, giving it the exact same context and conventions your Cursor setup had. The format is even simpler: it's just a standard markdown file, no special syntax required. Beam's "Install Project Memory" button can create this file for you with a single click.</p>
+            </div>
+
+            <p>Your coding preferences, style guides, architectural decisions, and project-specific instructions all carry over. If you told Cursor to use functional components over class components, to prefer TypeScript strict mode, or to follow a specific naming convention, just paste those same instructions into CLAUDE.md. Claude Code will follow them consistently.</p>
+
+            <h2>The Workflow That Replaces Cursor</h2>
+
+            <p>Here's what a typical day looks like after you've made the switch. In the morning, you open Beam and restore your saved layout. All your workspaces come back exactly as you left them: project tabs, terminal positions, even scroll history. There's no "reopening the IDE and waiting for it to index."</p>
+
+            <p>You start Claude Code in your project workspace. It reads your CLAUDE.md automatically and has full context about your codebase, your conventions, and your ongoing work. In a split pane, you have your editor open on one side and Claude Code on the other. You ask Claude to refactor a module, build a new feature, or write tests. It works directly on your files, and you watch the changes appear in your editor in real time.</p>
+
+            <p>When you need to verify something, you switch to your dev server tab to check the running application. When you need to commit, you switch to your git tab. When a different project needs attention, you press <span class="kbd">&#8984;&#8997;&larr;&rarr;</span> to jump to that workspace instantly, where another Claude Code session is already running with its own context.</p>
+
+            <p>At the end of the day, you close Beam. Your layouts persist. Tomorrow morning, you'll be back in exactly the same position, across every project, in seconds.</p>
+
+            <h2>When to Keep Cursor (Honest Take)</h2>
+
+            <p>Switching tools should be a pragmatic decision, not an ideological one. Cursor is still a strong choice in several scenarios, and it's worth being honest about when it makes more sense to stay.</p>
+
+            <p>If you only work on one project at a time and prefer seeing inline diffs rendered visually in your editor, Cursor handles that well. If you rely heavily on visual git diff review inside your editor rather than terminal-based diff tools, Cursor has an edge. If you're not comfortable in the terminal at all and prefer a fully graphical interface for every interaction, Cursor's GUI is genuinely easier to start with. There's no shame in preferring that workflow.</p>
+
+            <p>But if you work across multiple projects throughout the day, if you want more control over your tools and environment, if you value being able to automate and compose your AI workflows, or if you're ready for terminal-first AI development, then Claude Code combined with Beam is the more powerful setup. It's more flexible, more composable, and it doesn't lock you into any single vendor's editor.</p>
+
+            <div class="cta-box">
+                <h3>Ready to Go Terminal-First?</h3>
+                <p>Download Beam and make the switch from Cursor to Claude Code without losing organization. Workspaces, tabs, saved layouts, and seamless terminal management.</p>
+                <a href="../" class="btn">Download Beam for macOS</a>
+            </div>
+
+            <h2>Summary</h2>
+
+            <p>Switching from Cursor to Claude Code doesn't mean giving up organization. It means upgrading to a more flexible, more powerful workflow. Here are the key takeaways:</p>
+
+            <ul>
+                <li><strong>Claude Code offers deeper codebase understanding</strong> with larger context windows and full terminal access for running commands, not just editing files</li>
+                <li><strong>You keep your preferred editor</strong>: VS Code, Neovim, Zed, or anything else. Claude Code works alongside all of them</li>
+                <li><strong>Beam replaces Cursor's organizational features</strong> with workspaces, tabs, split panes, and saveable layouts designed for terminal workflows</li>
+                <li><strong>Your Cursor rules transfer directly</strong> to CLAUDE.md with no special syntax or conversion needed</li>
+                <li><strong>The migration takes minutes</strong>, and you can run both side by side until you're fully comfortable</li>
+                <li><strong>Multi-project workflows are dramatically better</strong> with Beam's workspace switching (<span class="kbd">&#8984;&#8997;&larr;&rarr;</span>) compared to Cursor's single-window model</li>
+            </ul>
+
+            <div class="related-articles">
+                <h2>Related Articles</h2>
+                <div class="related-grid">
+                    <a href="claude-code-vs-cursor-vs-codex.html" class="related-card">
+                        <h4>Claude Code vs Cursor vs Codex</h4>
+                        <p>A detailed comparison of the three leading AI coding tools in 2026.</p>
+                    </a>
+                    <a href="best-terminal-app-ai-coding-2026.html" class="related-card">
+                        <h4>Best Terminal App for AI Coding in 2026</h4>
+                        <p>Why your choice of terminal matters for AI-assisted development.</p>
+                    </a>
+                    <a href="beam-claude-code-setup.html" class="related-card">
+                        <h4>Setting Up Beam for Claude Code</h4>
+                        <p>Step-by-step guide to the perfect Beam + Claude Code workflow.</p>
+                    </a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>
+                <a href="../">Beam</a> &bull; Terminal Organizer for macOS &bull;
+                <a href="mailto:frank@nextuptechnologies.co">Contact</a>
+            </p>
+
+            <p style="margin-top: 12px; font-size: 0.8rem;">
+                <a href="/privacy.html" style="color: #71717a; text-decoration: none;">Privacy Policy</a> &bull;
+                <a href="/terms.html" style="color: #71717a; text-decoration: none;">Terms of Service</a>
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>

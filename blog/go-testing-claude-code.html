@@ -1,0 +1,1416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D0XH8B0RKL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-D0XH8B0RKL');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Assisted Go Testing: Table-Driven Tests, Benchmarks, and Fuzz Tests with Claude Code | Beam</title>
+    <meta name="description" content="Master Go testing with Claude Code. Learn table-driven tests, benchmark tests, fuzz testing, race detection, coverage analysis, and mock generation — all AI-assisted from Beam's split-pane terminal.">
+    <meta name="keywords" content="Go testing, Go table-driven tests, Go fuzz testing, Go benchmark tests, Claude Code Go tests, AI testing Go, Go test tutorial, go test coverage, Go race detector, Go mock generation, testing package Go">
+    <meta name="author" content="NextUp Technologies">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://getbeam.dev/blog/go-testing-claude-code.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://getbeam.dev/blog/go-testing-claude-code.html">
+    <meta property="og:title" content="AI-Assisted Go Testing: Table-Driven Tests, Benchmarks, and Fuzz Tests with Claude Code">
+    <meta property="og:description" content="Master Go testing with Claude Code. Table-driven tests, benchmarks, fuzz testing, race detection, and coverage — all AI-assisted from Beam's split-pane terminal.">
+    <meta property="og:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="AI-Assisted Go Testing: Table-Driven Tests, Benchmarks, and Fuzz Tests with Claude Code">
+    <meta name="twitter:description" content="Master Go testing with Claude Code. Table-driven tests, benchmarks, fuzz testing, race detection, and coverage — all AI-assisted from Beam's split-pane terminal.">
+    <meta name="twitter:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "AI-Assisted Go Testing: Table-Driven Tests, Benchmarks, and Fuzz Tests with Claude Code",
+        "description": "Master Go testing with Claude Code. Learn table-driven tests, benchmark tests, fuzz testing, race detection, coverage analysis, and mock generation.",
+        "author": {
+            "@type": "Organization",
+            "name": "NextUp Technologies"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Beam"
+        },
+        "datePublished": "2026-02-11",
+        "keywords": "Go testing, Go table-driven tests, Go fuzz testing, Go benchmark tests, Claude Code Go tests, AI testing Go, Go test tutorial"
+    }
+    </script>
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #111113;
+            --bg-tertiary: #1a1a1d;
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.4);
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --border: #27272a;
+            --success: #22c55e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        header {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 60px;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1.5rem;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            background: var(--accent);
+            color: white;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+        }
+
+        article {
+            padding-bottom: 80px;
+        }
+
+        .breadcrumb {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+        }
+
+        .breadcrumb a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .meta {
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            font-size: 0.95rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 48px 0 20px;
+            color: var(--text-primary);
+        }
+
+        h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 32px 0 12px;
+            color: var(--text-primary);
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        ul, ol {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            padding-left: 24px;
+        }
+
+        li {
+            margin-bottom: 12px;
+        }
+
+        .highlight {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 32px 0;
+        }
+
+        .highlight h3 {
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            margin-top: 0;
+            color: var(--text-primary);
+        }
+
+        code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            background: var(--bg-tertiary);
+            padding: 2px 6px;
+            border-radius: 4px;
+            border: 1px solid var(--border);
+        }
+
+        pre {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px 24px;
+            margin: 24px 0;
+            overflow-x: auto;
+            line-height: 1.6;
+        }
+
+        pre code {
+            background: none;
+            border: none;
+            padding: 0;
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+        }
+
+        .kbd {
+            display: inline-block;
+            padding: 2px 8px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+        }
+
+        .prompt-example {
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--accent);
+            border-radius: 0 12px 12px 0;
+            padding: 16px 24px;
+            margin: 20px 0;
+            font-style: italic;
+            color: var(--text-secondary);
+        }
+
+        .prompt-example::before {
+            content: "Prompt: ";
+            font-style: normal;
+            font-weight: 600;
+            color: var(--accent);
+        }
+
+        .go-accent {
+            color: #00ADD8;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .cta-box h3 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+            margin-top: 0;
+        }
+
+        .cta-box p {
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 24px;
+        }
+
+        .cta-box .btn {
+            background: white;
+            color: var(--accent);
+        }
+
+        .test-output-diagram {
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        .test-output-diagram svg {
+            max-width: 100%;
+            height: auto;
+        }
+
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+
+        .related-articles { margin-top: 60px; padding-top: 40px; border-top: 1px solid var(--border); }
+        .related-articles h2 { font-size: 1.5rem; margin-bottom: 24px; }
+        .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .related-card { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-decoration: none; transition: border-color 0.2s; }
+        .related-card:hover { border-color: var(--accent); }
+        .related-card h4 { color: white; font-size: 1rem; margin: 0 0 8px 0; }
+        .related-card p { color: var(--text-muted); font-size: 0.85rem; margin: 0; }
+        @media (max-width: 600px) {
+            .related-grid { grid-template-columns: 1fr; }
+            h1 { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="../" class="logo">
+                <div class="logo-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round">
+                        <path d="M4 17l6-6-6-6M12 19h8"/>
+                    </svg>
+                </div>
+                Beam
+            </a>
+            <a href="../" class="btn">Download Beam</a>
+        </div>
+    </header>
+
+    <main>
+        <article class="container">
+            <div class="breadcrumb">
+                <a href="../">Beam</a> / <a href="../#guides">Guides</a> / Go Testing with Claude Code
+            </div>
+
+            <h1>AI-Assisted Go Testing: Table-Driven Tests, Benchmarks, and Fuzz Tests with Claude Code</h1>
+            <p class="meta">February 2026 &bull; 15 min read</p>
+
+            <p>Go has the best built-in testing story of any programming language. The <code>testing</code> package, <code>go test</code>, the race detector, the coverage tool, benchmarks, and fuzz testing are all first-class citizens in the standard toolchain. No third-party frameworks required. No test runner configuration files. Just write a function that starts with <code>Test</code>, run <code>go test</code>, and you're done.</p>
+
+            <p>Claude Code understands all of it. It generates idiomatic Go tests faster than you can write them by hand, covers edge cases you'd miss, and knows the difference between a table-driven test and a fuzz test without you having to explain the pattern. Pair it with Beam's split-pane terminal and you get an instant feedback loop that makes testing feel effortless.</p>
+
+            <p>This guide walks through every major Go testing pattern, shows you how to leverage Claude Code for each one, and demonstrates the Beam workspace setup that ties it all together.</p>
+
+            <!-- Custom SVG: Go Test Output Terminal -->
+            <div class="test-output-diagram">
+                <svg width="680" height="420" viewBox="0 0 680 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Terminal window -->
+                    <rect x="0" y="0" width="680" height="420" rx="12" fill="#111113" stroke="#27272a" stroke-width="1"/>
+                    <!-- Title bar -->
+                    <rect x="0" y="0" width="680" height="36" rx="12" fill="#1a1a1d"/>
+                    <rect x="0" y="24" width="680" height="12" fill="#1a1a1d"/>
+                    <circle cx="20" cy="18" r="6" fill="#ef4444" opacity="0.8"/>
+                    <circle cx="40" cy="18" r="6" fill="#eab308" opacity="0.8"/>
+                    <circle cx="60" cy="18" r="6" fill="#22c55e" opacity="0.8"/>
+                    <text x="340" y="22" text-anchor="middle" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="12">go test -v -cover -bench=. ./...</text>
+
+                    <!-- Test output lines -->
+                    <text x="20" y="62" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="12">=== RUN   TestParseURL</text>
+                    <text x="20" y="82" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="12">=== RUN   TestParseURL/valid_https_url</text>
+                    <text x="20" y="102" fill="#22c55e" font-family="JetBrains Mono, monospace" font-size="12">--- PASS: TestParseURL/valid_https_url (0.00s)</text>
+                    <text x="20" y="122" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="12">=== RUN   TestParseURL/empty_string</text>
+                    <text x="20" y="142" fill="#22c55e" font-family="JetBrains Mono, monospace" font-size="12">--- PASS: TestParseURL/empty_string (0.00s)</text>
+                    <text x="20" y="162" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="12">=== RUN   TestParseURL/unicode_path</text>
+                    <text x="20" y="182" fill="#22c55e" font-family="JetBrains Mono, monospace" font-size="12">--- PASS: TestParseURL/unicode_path (0.00s)</text>
+                    <text x="20" y="202" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="12">=== RUN   TestParseURL/missing_scheme</text>
+                    <text x="20" y="222" fill="#22c55e" font-family="JetBrains Mono, monospace" font-size="12">--- PASS: TestParseURL/missing_scheme (0.00s)</text>
+                    <text x="20" y="242" fill="#22c55e" font-family="JetBrains Mono, monospace" font-size="12">--- PASS: TestParseURL (0.00s)</text>
+
+                    <!-- Benchmark results -->
+                    <text x="20" y="272" fill="#00ADD8" font-family="JetBrains Mono, monospace" font-size="12">BenchmarkParseURL/short-10      5765414    207.3 ns/op    128 B/op   3 allocs/op</text>
+                    <text x="20" y="292" fill="#00ADD8" font-family="JetBrains Mono, monospace" font-size="12">BenchmarkParseURL/long-10       2841926    421.8 ns/op    256 B/op   5 allocs/op</text>
+
+                    <!-- Fuzz result -->
+                    <text x="20" y="322" fill="#a78bfa" font-family="JetBrains Mono, monospace" font-size="12">fuzz: elapsed: 3s, execs: 48291 (16097/sec), new interesting: 12</text>
+
+                    <!-- Coverage bar background -->
+                    <rect x="20" y="350" width="400" height="20" rx="4" fill="#1a1a1d" stroke="#27272a" stroke-width="1"/>
+                    <!-- Coverage bar fill -->
+                    <rect x="20" y="350" width="348" height="20" rx="4" fill="#22c55e" opacity="0.3"/>
+                    <rect x="20" y="350" width="348" height="20" rx="4" fill="none" stroke="#22c55e" stroke-width="1" opacity="0.6"/>
+                    <text x="220" y="365" text-anchor="middle" fill="#22c55e" font-family="JetBrains Mono, monospace" font-size="11" font-weight="bold">coverage: 87.2% of statements</text>
+
+                    <!-- Summary -->
+                    <text x="20" y="402" fill="#22c55e" font-family="JetBrains Mono, monospace" font-size="13" font-weight="bold">PASS</text>
+                    <text x="60" y="402" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="12">ok   myproject/urlparser   4.217s</text>
+                </svg>
+            </div>
+
+            <!-- Section 1: Setting Up Your Testing Workspace -->
+            <h2>Setting Up Your Testing Workspace in Beam</h2>
+
+            <p>Before writing a single test, set up a workspace in Beam that gives you an instant feedback loop. The goal: Claude Code generates tests on the left, test results appear on the right, and you never leave the terminal.</p>
+
+            <p><strong>Workspace: "Go Testing"</strong></p>
+            <ol>
+                <li><strong>Left pane: Claude Code</strong> -- This is where you ask Claude to write, modify, and analyze tests. Press <span class="kbd">&#8984;&#8997;&#8963;T</span> to split your tab into two panes.</li>
+                <li><strong>Right pane: Test watcher</strong> -- Run your tests in watch mode so they re-execute every time a file changes.</li>
+            </ol>
+
+            <p>For continuous test feedback, use <code>watchexec</code> or <code>entr</code> in the right pane:</p>
+
+<pre><code><span class="go-accent"># Using watchexec (recommended)</span>
+watchexec -e go -- go test -v -count=1 ./...
+
+<span class="go-accent"># Using entr</span>
+find . -name '*.go' | entr -c go test -v ./...
+
+<span class="go-accent"># Using a simple loop with fswatch</span>
+fswatch -o . | xargs -n1 -I{} go test -v ./...</code></pre>
+
+            <p>Every time Claude Code writes a test file on the left, the watcher on the right picks it up and runs the suite. You see results in real time without lifting a finger.</p>
+
+            <div class="highlight">
+                <h3>Pro Tip: Targeted Watch Mode</h3>
+                <p>If your project is large, scope the watcher to a single package while you work on it: <code>watchexec -e go -- go test -v -count=1 ./pkg/urlparser/...</code>. This keeps feedback under a second even on big codebases. You can always run the full suite in a third Beam tab when you're ready.</p>
+            </div>
+
+            <!-- Section 2: Table-Driven Tests -->
+            <h2>Table-Driven Tests: The Go Community's Gold Standard</h2>
+
+            <p>Table-driven tests are the idiomatic Go testing pattern. Every experienced Go developer writes them. They're concise, easy to extend, and produce clear output when a test fails. Claude Code generates them natively -- you don't need to explain the pattern.</p>
+
+            <p>Let's say you have a URL parser function you need to test:</p>
+
+<pre><code><span class="go-accent">// urlparser.go</span>
+package urlparser
+
+import (
+    "errors"
+    "net/url"
+    "strings"
+)
+
+var (
+    ErrEmptyURL    = errors.New("url cannot be empty")
+    ErrNoScheme    = errors.New("url must have a scheme")
+    ErrInvalidHost = errors.New("url must have a valid host")
+)
+
+type ParsedURL struct {
+    Scheme   string
+    Host     string
+    Port     string
+    Path     string
+    RawQuery string
+}
+
+func ParseURL(rawURL string) (*ParsedURL, error) {
+    rawURL = strings.TrimSpace(rawURL)
+    if rawURL == "" {
+        return nil, ErrEmptyURL
+    }
+
+    u, err := url.Parse(rawURL)
+    if err != nil {
+        return nil, err
+    }
+
+    if u.Scheme == "" {
+        return nil, ErrNoScheme
+    }
+
+    if u.Host == "" &amp;&amp; u.Opaque == "" {
+        return nil, ErrInvalidHost
+    }
+
+    return &amp;ParsedURL{
+        Scheme:   u.Scheme,
+        Host:     u.Hostname(),
+        Port:     u.Port(),
+        Path:     u.Path,
+        RawQuery: u.RawQuery,
+    }, nil
+}</code></pre>
+
+            <p>Now ask Claude Code to generate table-driven tests:</p>
+
+            <div class="prompt-example">Write table-driven tests for the ParseURL function in urlparser.go. Cover happy paths, empty input, malformed URLs, unicode characters, special characters, missing scheme, missing host, URLs with ports, query parameters, and boundary values.</div>
+
+            <p>Claude Code produces something like this:</p>
+
+<pre><code><span class="go-accent">// urlparser_test.go</span>
+package urlparser
+
+import (
+    "errors"
+    "testing"
+)
+
+func TestParseURL(t *testing.T) {
+    tests := []struct {
+        name    string
+        input   string
+        want    *ParsedURL
+        wantErr error
+    }{
+        {
+            name:  "valid https url",
+            input: "https://example.com/path",
+            want: &amp;ParsedURL{
+                Scheme: "https",
+                Host:   "example.com",
+                Path:   "/path",
+            },
+        },
+        {
+            name:  "url with port and query",
+            input: "http://localhost:8080/api?key=value",
+            want: &amp;ParsedURL{
+                Scheme:   "http",
+                Host:     "localhost",
+                Port:     "8080",
+                Path:     "/api",
+                RawQuery: "key=value",
+            },
+        },
+        {
+            name:  "unicode path",
+            input: "https://example.com/caf&#xe9;/m&#xfc;nchen",
+            want: &amp;ParsedURL{
+                Scheme: "https",
+                Host:   "example.com",
+                Path:   "/caf&#xe9;/m&#xfc;nchen",
+            },
+        },
+        {
+            name:  "url with special characters in query",
+            input: "https://search.com/q?term=hello+world&amp;lang=en",
+            want: &amp;ParsedURL{
+                Scheme:   "https",
+                Host:     "search.com",
+                Path:     "/q",
+                RawQuery: "term=hello+world&amp;lang=en",
+            },
+        },
+        {
+            name:    "empty string",
+            input:   "",
+            wantErr: ErrEmptyURL,
+        },
+        {
+            name:    "whitespace only",
+            input:   "   \t\n  ",
+            wantErr: ErrEmptyURL,
+        },
+        {
+            name:    "missing scheme",
+            input:   "example.com/path",
+            wantErr: ErrNoScheme,
+        },
+        {
+            name:    "scheme only",
+            input:   "https://",
+            wantErr: ErrInvalidHost,
+        },
+        {
+            name:  "ip address with port",
+            input: "http://192.168.1.1:3000/health",
+            want: &amp;ParsedURL{
+                Scheme: "http",
+                Host:   "192.168.1.1",
+                Port:   "3000",
+                Path:   "/health",
+            },
+        },
+        {
+            name:  "ftp scheme",
+            input: "ftp://files.example.com/docs/report.pdf",
+            want: &amp;ParsedURL{
+                Scheme: "ftp",
+                Host:   "files.example.com",
+                Path:   "/docs/report.pdf",
+            },
+        },
+    }
+
+    for _, tt := range tests {
+        t.Run(tt.name, func(t *testing.T) {
+            got, err := ParseURL(tt.input)
+
+            if tt.wantErr != nil {
+                if err == nil {
+                    t.Fatalf("expected error %v, got nil", tt.wantErr)
+                }
+                if !errors.Is(err, tt.wantErr) {
+                    t.Fatalf("expected error %v, got %v", tt.wantErr, err)
+                }
+                return
+            }
+
+            if err != nil {
+                t.Fatalf("unexpected error: %v", err)
+            }
+
+            if got.Scheme != tt.want.Scheme {
+                t.Errorf("Scheme = %q, want %q", got.Scheme, tt.want.Scheme)
+            }
+            if got.Host != tt.want.Host {
+                t.Errorf("Host = %q, want %q", got.Host, tt.want.Host)
+            }
+            if got.Port != tt.want.Port {
+                t.Errorf("Port = %q, want %q", got.Port, tt.want.Port)
+            }
+            if got.Path != tt.want.Path {
+                t.Errorf("Path = %q, want %q", got.Path, tt.want.Path)
+            }
+            if got.RawQuery != tt.want.RawQuery {
+                t.Errorf("RawQuery = %q, want %q", got.RawQuery, tt.want.RawQuery)
+            }
+        })
+    }
+}</code></pre>
+
+            <p>Notice the pattern. A slice of anonymous structs with <code>name</code>, <code>input</code>, <code>want</code>, and <code>wantErr</code> fields. A loop that calls <code>t.Run</code> with the test name as the subtest label. Descriptive names that read like sentences in the test output. This is exactly what the Go community expects.</p>
+
+            <h3>Why Table-Driven Tests Win</h3>
+
+            <ul>
+                <li><strong>Adding cases is trivial</strong> -- Just append another struct to the slice. No new functions, no boilerplate.</li>
+                <li><strong>Subtest names appear in output</strong> -- When a test fails, you see <code>TestParseURL/missing_scheme</code>, not a line number you have to decode.</li>
+                <li><strong>Parallel-friendly</strong> -- Add <code>t.Parallel()</code> inside the <code>t.Run</code> call and each subtest runs concurrently.</li>
+                <li><strong>Claude Code excels at them</strong> -- It generates comprehensive edge cases because the pattern is so regular. Ask for "more cases" and it adds another 10 without breaking the structure.</li>
+            </ul>
+
+            <!-- Section 3: Subtests and Test Helpers -->
+            <h2>Subtests and Test Helpers</h2>
+
+            <p>Table-driven tests are the starting point. Real-world test suites need helpers, fixtures, and organization. Claude Code handles all of these patterns.</p>
+
+            <h3>t.Helper() for Clean Stack Traces</h3>
+
+            <p>When you extract assertion logic into a helper function, call <code>t.Helper()</code> so that error messages point to the calling test, not the helper:</p>
+
+<pre><code>func assertParsedURL(t *testing.T, got, want *ParsedURL) {
+    t.Helper()
+    if got.Scheme != want.Scheme {
+        t.Errorf("Scheme = %q, want %q", got.Scheme, want.Scheme)
+    }
+    if got.Host != want.Host {
+        t.Errorf("Host = %q, want %q", got.Host, want.Host)
+    }
+    if got.Port != want.Port {
+        t.Errorf("Port = %q, want %q", got.Port, want.Port)
+    }
+    if got.Path != want.Path {
+        t.Errorf("Path = %q, want %q", got.Path, want.Path)
+    }
+}</code></pre>
+
+            <div class="prompt-example">Refactor the test assertions into a helper function with t.Helper() for cleaner error reporting.</div>
+
+            <p>Claude Code knows to add <code>t.Helper()</code> at the top of any helper function without being asked. It's part of idiomatic Go testing that the model has deeply internalized.</p>
+
+            <h3>The testdata Directory Pattern</h3>
+
+            <p>Go ignores directories named <code>testdata</code> during builds but makes them available to tests. This is the standard place for fixtures, golden files, and seed corpora:</p>
+
+<pre><code>myproject/
+  urlparser/
+    urlparser.go
+    urlparser_test.go
+    testdata/
+      golden/
+        valid_https.json
+        unicode_path.json
+      fixtures/
+        malformed_urls.txt
+        edge_cases.txt</code></pre>
+
+            <div class="prompt-example">Generate golden file tests for ParseURL. Write expected outputs as JSON files in testdata/golden/ and compare against them in the test.</div>
+
+            <p>Claude Code generates the test code that reads from <code>testdata/</code>, the golden files themselves, and an update flag (<code>-update</code>) so you can regenerate golden files when the output intentionally changes. This is a common pattern in the Go standard library itself.</p>
+
+            <h3>Organizing with Nested Subtests</h3>
+
+            <p>For complex functions with multiple categories of behavior, nest your subtests:</p>
+
+<pre><code>func TestParseURL(t *testing.T) {
+    t.Run("valid URLs", func(t *testing.T) {
+        t.Run("https", func(t *testing.T) { /* ... */ })
+        t.Run("http", func(t *testing.T) { /* ... */ })
+        t.Run("ftp", func(t *testing.T) { /* ... */ })
+    })
+
+    t.Run("invalid URLs", func(t *testing.T) {
+        t.Run("empty", func(t *testing.T) { /* ... */ })
+        t.Run("no scheme", func(t *testing.T) { /* ... */ })
+        t.Run("no host", func(t *testing.T) { /* ... */ })
+    })
+
+    t.Run("edge cases", func(t *testing.T) {
+        t.Run("unicode", func(t *testing.T) { /* ... */ })
+        t.Run("very long URL", func(t *testing.T) { /* ... */ })
+    })
+}</code></pre>
+
+            <p>You can run a specific group with <code>go test -run TestParseURL/invalid_URLs</code>. Claude Code generates this structure naturally when it sees functions with many distinct behaviors.</p>
+
+            <!-- Section 4: Benchmark Tests -->
+            <h2>Benchmark Tests: Measuring What Matters</h2>
+
+            <p>Go benchmarks are built into the <code>testing</code> package. No separate tool, no configuration. Write a function starting with <code>Benchmark</code>, and <code>go test -bench=.</code> runs it. Claude Code generates benchmarks that follow Go conventions and include the sub-benchmarks for different input sizes that make results actually useful.</p>
+
+            <h3>When to Benchmark</h3>
+
+            <p>Don't benchmark everything. Benchmark when:</p>
+
+            <ul>
+                <li>You're choosing between two implementations and need data</li>
+                <li>You're optimizing a hot path that profiling identified</li>
+                <li>You need to prevent regressions in performance-critical code</li>
+                <li>You're working with allocations and need to track <code>B/op</code> and <code>allocs/op</code></li>
+            </ul>
+
+            <p>Let's say you have two implementations of a string reversal and want to compare them:</p>
+
+<pre><code><span class="go-accent">// stringutil.go</span>
+package stringutil
+
+// ReverseRunes reverses using rune slice conversion
+func ReverseRunes(s string) string {
+    runes := []rune(s)
+    for i, j := 0, len(runes)-1; i &lt; j; i, j = i+1, j-1 {
+        runes[i], runes[j] = runes[j], runes[i]
+    }
+    return string(runes)
+}
+
+// ReverseBuilder reverses using strings.Builder
+func ReverseBuilder(s string) string {
+    runes := []rune(s)
+    var b strings.Builder
+    b.Grow(len(s))
+    for i := len(runes) - 1; i >= 0; i-- {
+        b.WriteRune(runes[i])
+    }
+    return b.String()
+}</code></pre>
+
+            <div class="prompt-example">Write benchmarks comparing ReverseRunes and ReverseBuilder with sub-benchmarks for short (10 chars), medium (100 chars), and long (10000 chars) inputs. Include allocation tracking.</div>
+
+            <p>Claude Code generates:</p>
+
+<pre><code><span class="go-accent">// stringutil_test.go</span>
+package stringutil
+
+import (
+    "strings"
+    "testing"
+)
+
+func generateInput(n int) string {
+    return strings.Repeat("a", n)
+}
+
+func BenchmarkReverseRunes(b *testing.B) {
+    sizes := []struct {
+        name string
+        size int
+    }{
+        {"short_10", 10},
+        {"medium_100", 100},
+        {"long_10000", 10000},
+    }
+
+    for _, s := range sizes {
+        input := generateInput(s.size)
+        b.Run(s.name, func(b *testing.B) {
+            b.ReportAllocs()
+            for i := 0; i &lt; b.N; i++ {
+                ReverseRunes(input)
+            }
+        })
+    }
+}
+
+func BenchmarkReverseBuilder(b *testing.B) {
+    sizes := []struct {
+        name string
+        size int
+    }{
+        {"short_10", 10},
+        {"medium_100", 100},
+        {"long_10000", 10000},
+    }
+
+    for _, s := range sizes {
+        input := generateInput(s.size)
+        b.Run(s.name, func(b *testing.B) {
+            b.ReportAllocs()
+            for i := 0; i &lt; b.N; i++ {
+                ReverseBuilder(input)
+            }
+        })
+    }
+}</code></pre>
+
+            <h3>Reading Benchmark Results</h3>
+
+            <p>Run with <code>go test -bench=. -benchmem ./...</code> and you get output like:</p>
+
+<pre><code>BenchmarkReverseRunes/short_10-10       18427634        64.93 ns/op       48 B/op     2 allocs/op
+BenchmarkReverseRunes/medium_100-10      3125678       384.2 ns/op       448 B/op     2 allocs/op
+BenchmarkReverseRunes/long_10000-10        27015     44318 ns/op     40960 B/op     2 allocs/op
+BenchmarkReverseBuilder/short_10-10     14582341        82.17 ns/op       64 B/op     2 allocs/op
+BenchmarkReverseBuilder/medium_100-10    2894721       414.6 ns/op       448 B/op     3 allocs/op
+BenchmarkReverseBuilder/long_10000-10      23892     50284 ns/op     49152 B/op     4 allocs/op</code></pre>
+
+            <p>Here's how to read each column:</p>
+
+            <ul>
+                <li><strong>18427634</strong> -- Number of iterations (<code>b.N</code>). Higher is better because the framework needs fewer iterations for stable measurements of fast code.</li>
+                <li><strong>64.93 ns/op</strong> -- Nanoseconds per operation. The metric you care about most.</li>
+                <li><strong>48 B/op</strong> -- Bytes allocated per operation. Lower means less GC pressure.</li>
+                <li><strong>2 allocs/op</strong> -- Number of heap allocations per operation. Zero is ideal for hot paths.</li>
+            </ul>
+
+            <p>In this case, <code>ReverseRunes</code> wins at every input size. The rune-slice swap avoids the Builder's extra allocation overhead. Claude Code can analyze these results for you:</p>
+
+            <div class="prompt-example">Analyze these benchmark results and tell me which implementation is faster and why. Suggest optimizations.</div>
+
+            <div class="highlight">
+                <h3>Pro Tip: Benchmark in Beam's Right Pane</h3>
+                <p>Keep benchmarks running in the right pane with <code>watchexec -e go -- go test -bench=. -benchmem ./pkg/stringutil/</code>. As Claude Code optimizes the implementation on the left, you see ns/op drop in real time. It's immensely satisfying to watch performance improve with each iteration.</p>
+            </div>
+
+            <h3>b.ResetTimer and b.StopTimer</h3>
+
+            <p>If your benchmark requires expensive setup that shouldn't be measured:</p>
+
+<pre><code>func BenchmarkParseURLFromFile(b *testing.B) {
+    data, err := os.ReadFile("testdata/urls.txt")
+    if err != nil {
+        b.Fatal(err)
+    }
+    urls := strings.Split(string(data), "\n")
+
+    b.ResetTimer() <span class="go-accent">// Don't count file reading in the benchmark</span>
+    for i := 0; i &lt; b.N; i++ {
+        for _, u := range urls {
+            ParseURL(u)
+        }
+    }
+}</code></pre>
+
+            <p>Claude Code adds <code>b.ResetTimer()</code> automatically when it sees setup code in a benchmark. It also knows when to use <code>b.StopTimer()</code> and <code>b.StartTimer()</code> for benchmarks that need mid-loop pauses for cleanup.</p>
+
+            <!-- Section 5: Fuzz Testing -->
+            <h2>Fuzz Testing: Let the Machine Find Your Bugs</h2>
+
+            <p>Go 1.18 introduced native fuzz testing. Instead of you thinking of edge cases, the fuzzer generates random inputs, runs your code, and reports any input that causes a crash, panic, or unexpected behavior. It's the most underused feature in Go's testing toolkit, and Claude Code makes it trivially easy to add.</p>
+
+            <h3>How Fuzzing Works in Go</h3>
+
+            <p>A fuzz test has two parts: a <strong>seed corpus</strong> (known inputs that exercise specific paths) and a <strong>fuzz target</strong> (the function that receives random mutations of those seeds). The fuzzer mutates the seed inputs, tracking which mutations explore new code paths, and saving any input that triggers a failure to <code>testdata/fuzz/</code>.</p>
+
+            <div class="prompt-example">Add fuzz tests for the ParseURL function. Include seed corpus entries for valid URLs, malformed URLs, and edge cases. The fuzz target should verify that ParseURL never panics on any input.</div>
+
+            <p>Claude Code generates:</p>
+
+<pre><code>func FuzzParseURL(f *testing.F) {
+    <span class="go-accent">// Seed corpus: known inputs that exercise different paths</span>
+    seeds := []string{
+        "https://example.com",
+        "http://localhost:8080/path?q=1",
+        "ftp://files.example.com/doc.pdf",
+        "",
+        "   ",
+        "not-a-url",
+        "://missing-scheme",
+        "https://",
+        "https://example.com/caf\u00e9",
+        "https://example.com/" + strings.Repeat("a", 10000),
+        "https://user:pass@example.com:443/path",
+        "https://example.com/path#fragment",
+        "https://example.com/path?q=hello+world&amp;lang=en",
+        "file:///home/user/document.txt",
+    }
+
+    for _, s := range seeds {
+        f.Add(s)
+    }
+
+    f.Fuzz(func(t *testing.T, input string) {
+        result, err := ParseURL(input)
+
+        <span class="go-accent">// ParseURL must never panic -- that's the primary assertion.</span>
+        <span class="go-accent">// If it returns an error, we're done.</span>
+        if err != nil {
+            return
+        }
+
+        <span class="go-accent">// If it succeeds, the result must be non-nil</span>
+        if result == nil {
+            t.Fatal("ParseURL returned nil result with nil error")
+        }
+
+        <span class="go-accent">// Scheme must not be empty for a valid parse</span>
+        if result.Scheme == "" {
+            t.Error("parsed URL has empty scheme")
+        }
+
+        <span class="go-accent">// Round-trip: re-parsing should not fail</span>
+        reparsed, err := ParseURL(result.Scheme + "://" + result.Host + result.Path)
+        if err != nil {
+            t.Errorf("round-trip failed: %v", err)
+        }
+        if reparsed != nil &amp;&amp; reparsed.Scheme != result.Scheme {
+            t.Errorf("round-trip scheme mismatch: got %q, want %q",
+                reparsed.Scheme, result.Scheme)
+        }
+    })
+}</code></pre>
+
+            <h3>Running Fuzz Tests</h3>
+
+<pre><code><span class="go-accent"># Run the fuzz test for 30 seconds</span>
+go test -fuzz=FuzzParseURL -fuzztime=30s ./...
+
+<span class="go-accent"># Run with more workers for faster exploration</span>
+go test -fuzz=FuzzParseURL -fuzztime=2m -parallel=8 ./...
+
+<span class="go-accent"># Run seed corpus only (like a regular test)</span>
+go test -run=FuzzParseURL ./...</code></pre>
+
+            <p>When the fuzzer finds a failing input, it saves it to <code>testdata/fuzz/FuzzParseURL/</code> as a text file. From that point on, every run of <code>go test</code> includes that input as a regression test -- no manual work required.</p>
+
+            <h3>Analyzing Fuzz Failures with Claude Code</h3>
+
+            <p>When a fuzz test discovers a crash, the output can be cryptic. This is where Claude Code shines. Paste the failure into Beam's left pane:</p>
+
+            <div class="prompt-example">The fuzz test found a crash with this input: "\xff\xfe://\x00\x01". Analyze why ParseURL panics on this input and fix it.</div>
+
+            <p>Claude Code traces the input through your code, identifies the issue (in this case, perhaps invalid UTF-8 not being handled before the <code>url.Parse</code> call), and generates both the fix and a regression test for that specific input.</p>
+
+            <div class="highlight">
+                <h3>Why Fuzz Testing Matters</h3>
+                <p>Fuzz testing finds bugs that humans don't think to test for. It's particularly valuable for parsers, encoders/decoders, serialization code, and anything that accepts untrusted input. Claude Code can add fuzz tests to any function in seconds. There's no reason not to fuzz your critical code paths.</p>
+            </div>
+
+            <!-- Section 6: Race Detection -->
+            <h2>Race Detection: Catching Concurrency Bugs</h2>
+
+            <p>Go's race detector is one of the most valuable tools in the ecosystem. It instruments your code at compile time to detect data races at runtime -- and it's as simple as adding <code>-race</code> to your test command.</p>
+
+<pre><code><span class="go-accent"># Run all tests with race detection</span>
+go test -race -v ./...
+
+<span class="go-accent"># Run specific tests with race detection</span>
+go test -race -run TestConcurrent -v ./...</code></pre>
+
+            <p>Claude Code can generate concurrent tests specifically designed to trigger race conditions:</p>
+
+            <div class="prompt-example">Write concurrent tests for this Cache struct that exercise race conditions. Use goroutines to simultaneously read and write to the cache, then run with -race to verify it's safe.</div>
+
+<pre><code>func TestCacheConcurrency(t *testing.T) {
+    c := NewCache()
+    var wg sync.WaitGroup
+
+    <span class="go-accent">// Concurrent writers</span>
+    for i := 0; i &lt; 100; i++ {
+        wg.Add(1)
+        go func(n int) {
+            defer wg.Done()
+            key := fmt.Sprintf("key-%d", n)
+            c.Set(key, n)
+        }(i)
+    }
+
+    <span class="go-accent">// Concurrent readers</span>
+    for i := 0; i &lt; 100; i++ {
+        wg.Add(1)
+        go func(n int) {
+            defer wg.Done()
+            key := fmt.Sprintf("key-%d", n%50)
+            c.Get(key)
+        }(i)
+    }
+
+    <span class="go-accent">// Concurrent deleters</span>
+    for i := 0; i &lt; 50; i++ {
+        wg.Add(1)
+        go func(n int) {
+            defer wg.Done()
+            key := fmt.Sprintf("key-%d", n)
+            c.Delete(key)
+        }(i)
+    }
+
+    wg.Wait()
+}</code></pre>
+
+            <p>If the race detector fires, the output tells you exactly which goroutines are racing and on which memory address. Claude Code can interpret race detector output and suggest the correct fix -- whether it's a <code>sync.Mutex</code>, a <code>sync.RWMutex</code>, or a redesign using channels.</p>
+
+            <div class="prompt-example">The race detector found a data race in Cache.Set and Cache.Get. Here's the output. Fix it using the most appropriate synchronization primitive.</div>
+
+            <p>Claude Code picks <code>sync.RWMutex</code> for a read-heavy cache (allowing concurrent reads) rather than a plain <code>sync.Mutex</code> (which would serialize everything). It understands the performance implications of each choice.</p>
+
+            <!-- Section 7: Test Coverage -->
+            <h2>Test Coverage: Finding the Gaps</h2>
+
+            <p>Go's coverage tool shows you exactly which lines of code are exercised by your tests. It's built into <code>go test</code> and produces both text and HTML reports.</p>
+
+<pre><code><span class="go-accent"># Quick coverage percentage</span>
+go test -cover ./...
+
+<span class="go-accent"># Generate a coverage profile</span>
+go test -coverprofile=coverage.out ./...
+
+<span class="go-accent"># View coverage as HTML (opens in browser)</span>
+go tool cover -html=coverage.out
+
+<span class="go-accent"># Show coverage by function</span>
+go tool cover -func=coverage.out</code></pre>
+
+            <p>The HTML output highlights covered lines in green and uncovered lines in red. It's the fastest way to spot gaps in your test suite.</p>
+
+            <h3>Using Claude Code to Close Coverage Gaps</h3>
+
+            <p>Here's the powerful workflow. Generate a coverage report, then ask Claude Code to fill the gaps:</p>
+
+            <div class="prompt-example">Run go test -coverprofile=coverage.out ./... and then go tool cover -func=coverage.out. Show me which functions have less than 80% coverage, then write tests to cover the uncovered lines.</div>
+
+            <p>Claude Code reads the coverage report, identifies the uncovered branches (often error paths, edge cases in switch statements, or rarely-hit conditions), and generates targeted tests for exactly those lines. It doesn't write useless tests that just inflate the number -- it writes tests that exercise the uncovered logic.</p>
+
+            <div class="highlight">
+                <h3>Coverage Target: 80% Is a Good Default</h3>
+                <p>Don't chase 100% coverage. Some code (like <code>main()</code> functions, OS-specific error handling, and panic recovery) is hard to test and not worth the effort. Aim for 80%+ on your core business logic and critical paths. Use Claude Code to close the gap efficiently rather than writing tests that don't add value.</p>
+            </div>
+
+            <h3>Coverprofile in CI</h3>
+
+            <p>Add coverage reporting to your CI pipeline so regressions are caught automatically:</p>
+
+<pre><code><span class="go-accent"># In your CI script or Makefile</span>
+go test -race -coverprofile=coverage.out -covermode=atomic ./...
+go tool cover -func=coverage.out | tail -1
+
+<span class="go-accent"># Fail if coverage drops below threshold</span>
+COVERAGE=$(go tool cover -func=coverage.out | tail -1 | awk '{print $3}' | tr -d '%')
+if [ "$(echo "$COVERAGE &lt; 80" | bc)" -eq 1 ]; then
+    echo "Coverage $COVERAGE% is below 80% threshold"
+    exit 1
+fi</code></pre>
+
+            <!-- Section 8: Integration and End-to-End Tests -->
+            <h2>Integration and End-to-End Tests</h2>
+
+            <p>Unit tests verify individual functions. Integration tests verify that components work together. Go provides excellent tools for both, and Claude Code generates idiomatic integration tests that use real HTTP servers, test databases, and proper setup/teardown.</p>
+
+            <h3>httptest for HTTP Handler Testing</h3>
+
+            <p>The <code>net/http/httptest</code> package creates real HTTP servers in-memory for testing handlers without network I/O:</p>
+
+            <div class="prompt-example">Write integration tests for my HTTP API handlers using httptest. Cover GET, POST, PUT, DELETE operations with proper request bodies, status code assertions, and response body validation.</div>
+
+<pre><code>func TestGetUserHandler(t *testing.T) {
+    <span class="go-accent">// Setup</span>
+    store := NewMemoryStore()
+    store.CreateUser(User{ID: "1", Name: "Alice", Email: "alice@example.com"})
+    handler := NewUserHandler(store)
+
+    tests := []struct {
+        name       string
+        method     string
+        path       string
+        body       string
+        wantStatus int
+        wantBody   string
+    }{
+        {
+            name:       "get existing user",
+            method:     "GET",
+            path:       "/users/1",
+            wantStatus: http.StatusOK,
+            wantBody:   `{"id":"1","name":"Alice","email":"alice@example.com"}`,
+        },
+        {
+            name:       "get nonexistent user",
+            method:     "GET",
+            path:       "/users/999",
+            wantStatus: http.StatusNotFound,
+        },
+        {
+            name:       "create user",
+            method:     "POST",
+            path:       "/users",
+            body:       `{"name":"Bob","email":"bob@example.com"}`,
+            wantStatus: http.StatusCreated,
+        },
+    }
+
+    for _, tt := range tests {
+        t.Run(tt.name, func(t *testing.T) {
+            var body io.Reader
+            if tt.body != "" {
+                body = strings.NewReader(tt.body)
+            }
+
+            req := httptest.NewRequest(tt.method, tt.path, body)
+            req.Header.Set("Content-Type", "application/json")
+            w := httptest.NewRecorder()
+
+            handler.ServeHTTP(w, req)
+
+            if w.Code != tt.wantStatus {
+                t.Errorf("status = %d, want %d", w.Code, tt.wantStatus)
+            }
+            if tt.wantBody != "" {
+                got := strings.TrimSpace(w.Body.String())
+                if got != tt.wantBody {
+                    t.Errorf("body = %s, want %s", got, tt.wantBody)
+                }
+            }
+        })
+    }
+}</code></pre>
+
+            <h3>TestMain for Setup and Teardown</h3>
+
+            <p>When your integration tests need shared setup (database connections, test containers, configuration loading), use <code>TestMain</code>:</p>
+
+<pre><code>func TestMain(m *testing.M) {
+    <span class="go-accent">// Setup: start test database</span>
+    db, cleanup := setupTestDB()
+    testDB = db
+
+    <span class="go-accent">// Run all tests in this package</span>
+    code := m.Run()
+
+    <span class="go-accent">// Teardown: clean up resources</span>
+    cleanup()
+    os.Exit(code)
+}
+
+func setupTestDB() (*sql.DB, func()) {
+    db, err := sql.Open("sqlite3", ":memory:")
+    if err != nil {
+        log.Fatalf("failed to open test db: %v", err)
+    }
+
+    <span class="go-accent">// Run migrations</span>
+    if _, err := db.Exec(schema); err != nil {
+        log.Fatalf("failed to run migrations: %v", err)
+    }
+
+    return db, func() { db.Close() }
+}</code></pre>
+
+            <div class="prompt-example">Generate a TestMain function that starts a PostgreSQL testcontainer, runs migrations, and tears down after all tests complete.</div>
+
+            <h3>testcontainers-go for Database Integration Tests</h3>
+
+            <p>For real database integration tests, <code>testcontainers-go</code> spins up Docker containers on demand:</p>
+
+<pre><code>func setupPostgresContainer(t *testing.T) (*sql.DB, func()) {
+    t.Helper()
+    ctx := context.Background()
+
+    req := testcontainers.ContainerRequest{
+        Image:        "postgres:16-alpine",
+        ExposedPorts: []string{"5432/tcp"},
+        Env: map[string]string{
+            "POSTGRES_PASSWORD": "test",
+            "POSTGRES_DB":       "testdb",
+        },
+        WaitingFor: wait.ForLog("database system is ready to accept connections").
+            WithOccurrence(2).
+            WithStartupTimeout(30 * time.Second),
+    }
+
+    container, err := testcontainers.GenericContainer(ctx,
+        testcontainers.GenericContainerRequest{
+            ContainerRequest: req,
+            Started:          true,
+        })
+    if err != nil {
+        t.Fatalf("failed to start container: %v", err)
+    }
+
+    host, _ := container.Host(ctx)
+    port, _ := container.MappedPort(ctx, "5432")
+    dsn := fmt.Sprintf("postgres://postgres:test@%s:%s/testdb?sslmode=disable",
+        host, port.Port())
+
+    db, err := sql.Open("pgx", dsn)
+    if err != nil {
+        t.Fatalf("failed to connect: %v", err)
+    }
+
+    return db, func() {
+        db.Close()
+        container.Terminate(ctx)
+    }
+}</code></pre>
+
+            <p>Claude Code generates the full testcontainers setup, including wait strategies, port mapping, and teardown functions. It knows the common container images and their configuration options.</p>
+
+            <!-- Section 9: Mock Generation -->
+            <h2>Mock Generation: Testing with Interfaces</h2>
+
+            <p>Go's interfaces enable powerful testing through dependency injection. Define a small interface, implement it for production, and create a mock for tests. Claude Code generates both the interface and the mock without external tools.</p>
+
+            <h3>The Interface Pattern</h3>
+
+<pre><code><span class="go-accent">// Define a small, focused interface</span>
+type UserStore interface {
+    GetUser(ctx context.Context, id string) (*User, error)
+    CreateUser(ctx context.Context, u *User) error
+    DeleteUser(ctx context.Context, id string) error
+}
+
+<span class="go-accent">// Your handler depends on the interface, not a concrete type</span>
+type UserHandler struct {
+    store UserStore
+}</code></pre>
+
+            <div class="prompt-example">Generate a mock implementation of the UserStore interface for testing. Include configurable return values and call tracking so I can assert which methods were called with which arguments.</div>
+
+            <p>Claude Code generates a clean, hand-written mock:</p>
+
+<pre><code>type MockUserStore struct {
+    GetUserFn    func(ctx context.Context, id string) (*User, error)
+    CreateUserFn func(ctx context.Context, u *User) error
+    DeleteUserFn func(ctx context.Context, id string) error
+
+    <span class="go-accent">// Call tracking</span>
+    GetUserCalls    []string
+    CreateUserCalls []*User
+    DeleteUserCalls []string
+}
+
+func (m *MockUserStore) GetUser(ctx context.Context, id string) (*User, error) {
+    m.GetUserCalls = append(m.GetUserCalls, id)
+    if m.GetUserFn != nil {
+        return m.GetUserFn(ctx, id)
+    }
+    return nil, errors.New("not implemented")
+}
+
+func (m *MockUserStore) CreateUser(ctx context.Context, u *User) error {
+    m.CreateUserCalls = append(m.CreateUserCalls, u)
+    if m.CreateUserFn != nil {
+        return m.CreateUserFn(ctx, u)
+    }
+    return nil
+}
+
+func (m *MockUserStore) DeleteUser(ctx context.Context, id string) error {
+    m.DeleteUserCalls = append(m.DeleteUserCalls, id)
+    if m.DeleteUserFn != nil {
+        return m.DeleteUserFn(ctx, id)
+    }
+    return nil
+}</code></pre>
+
+            <h3>Table-Driven Tests with Mocked Dependencies</h3>
+
+            <p>The real power emerges when you combine table-driven tests with mocks. Each test case configures the mock differently:</p>
+
+<pre><code>func TestUserHandler_GetUser(t *testing.T) {
+    tests := []struct {
+        name       string
+        userID     string
+        mockFn     func(ctx context.Context, id string) (*User, error)
+        wantStatus int
+    }{
+        {
+            name:   "user found",
+            userID: "1",
+            mockFn: func(ctx context.Context, id string) (*User, error) {
+                return &amp;User{ID: "1", Name: "Alice"}, nil
+            },
+            wantStatus: http.StatusOK,
+        },
+        {
+            name:   "user not found",
+            userID: "999",
+            mockFn: func(ctx context.Context, id string) (*User, error) {
+                return nil, ErrNotFound
+            },
+            wantStatus: http.StatusNotFound,
+        },
+        {
+            name:   "database error",
+            userID: "1",
+            mockFn: func(ctx context.Context, id string) (*User, error) {
+                return nil, errors.New("connection refused")
+            },
+            wantStatus: http.StatusInternalServerError,
+        },
+    }
+
+    for _, tt := range tests {
+        t.Run(tt.name, func(t *testing.T) {
+            mock := &amp;MockUserStore{GetUserFn: tt.mockFn}
+            handler := NewUserHandler(mock)
+
+            req := httptest.NewRequest("GET", "/users/"+tt.userID, nil)
+            w := httptest.NewRecorder()
+            handler.ServeHTTP(w, req)
+
+            if w.Code != tt.wantStatus {
+                t.Errorf("status = %d, want %d", w.Code, tt.wantStatus)
+            }
+
+            <span class="go-accent">// Verify the mock was called with the right ID</span>
+            if len(mock.GetUserCalls) != 1 || mock.GetUserCalls[0] != tt.userID {
+                t.Errorf("GetUser called with %v, want [%s]",
+                    mock.GetUserCalls, tt.userID)
+            }
+        })
+    }
+}</code></pre>
+
+            <p>This pattern -- table-driven tests with configurable mocks -- is the backbone of Go testing in production codebases. Claude Code generates it fluently.</p>
+
+            <h3>When to Use mockgen or moq</h3>
+
+            <p>For large interfaces or when you want compile-time safety that your mock stays in sync with the interface, tools like <code>mockgen</code> or <code>moq</code> auto-generate mock implementations:</p>
+
+<pre><code><span class="go-accent"># Using mockgen</span>
+go install go.uber.org/mock/mockgen@latest
+mockgen -source=store.go -destination=mock_store_test.go -package=mypackage
+
+<span class="go-accent"># Using moq</span>
+go install github.com/matryer/moq@latest
+moq -out mock_store_test.go . UserStore</code></pre>
+
+            <div class="prompt-example">Add a go:generate directive for mockgen to auto-generate mocks for the UserStore interface. Then write tests using the generated mock.</div>
+
+            <p>Claude Code adds the <code>//go:generate</code> comment, generates the test code using the mock's API, and knows the difference between <code>mockgen</code>'s <code>EXPECT()</code> API and <code>moq</code>'s function-field API.</p>
+
+            <!-- CTA -->
+            <div class="cta-box">
+                <h3>The Best Go Testing Workflow Starts with Beam</h3>
+                <p>Claude Code generates your tests. Beam gives you the split-pane terminal to watch them pass in real time. Download free for macOS.</p>
+                <a href="../" class="btn">Download Beam for macOS</a>
+            </div>
+
+            <!-- Section 10: Summary / Best Practices Checklist -->
+            <h2>Go Testing Best Practices Checklist</h2>
+
+            <p>Here's everything we covered, distilled into a checklist you can reference for every Go project:</p>
+
+            <ul>
+                <li><strong>Use table-driven tests</strong> -- The standard Go pattern. Claude Code generates them with comprehensive edge cases.</li>
+                <li><strong>Name your subtests descriptively</strong> -- <code>t.Run("empty_input_returns_error", ...)</code> reads better than <code>t.Run("test1", ...)</code>.</li>
+                <li><strong>Add <code>t.Helper()</code> to every helper function</strong> -- Clean stack traces save debugging time.</li>
+                <li><strong>Use the <code>testdata/</code> directory</strong> -- Golden files, fixtures, and fuzz corpora all belong here.</li>
+                <li><strong>Benchmark before optimizing</strong> -- Measure with <code>-bench</code> and <code>-benchmem</code>, don't guess. Compare with sub-benchmarks for different input sizes.</li>
+                <li><strong>Fuzz your parsers and validators</strong> -- Go's native fuzzer finds bugs you won't think of. Seed it with edge cases and let it run.</li>
+                <li><strong>Always test with <code>-race</code></strong> -- Make <code>go test -race ./...</code> part of your CI pipeline. No exceptions.</li>
+                <li><strong>Target 80%+ coverage on core logic</strong> -- Use <code>-coverprofile</code> to find gaps, then ask Claude Code to close them.</li>
+                <li><strong>Use <code>httptest</code> for HTTP handlers</strong> -- No need for real HTTP connections in unit tests.</li>
+                <li><strong>Use <code>testcontainers-go</code> for database tests</strong> -- Real databases in Docker, created and destroyed per test suite.</li>
+                <li><strong>Depend on interfaces, mock for tests</strong> -- Small interfaces + hand-written or generated mocks = testable code.</li>
+                <li><strong>Set up a Beam testing workspace</strong> -- Claude Code on the left, test watcher on the right. Instant feedback, zero friction.</li>
+            </ul>
+
+            <p>Go made testing a first-class experience. Claude Code makes it fast. Beam makes it organized. Together, they turn testing from a chore into the most productive part of your development workflow.</p>
+
+            <div class="related-articles">
+                <h2>Related Articles</h2>
+                <div class="related-grid">
+                    <a href="claude-code-go-development.html" class="related-card">
+                        <h4>Claude Code for Go Development</h4>
+                        <p>The complete workflow for Go development with Claude Code and Beam.</p>
+                    </a>
+                    <a href="write-tests-with-claude-code.html" class="related-card">
+                        <h4>Write Tests with Claude Code</h4>
+                        <p>Unit, integration, and E2E testing with AI across any language.</p>
+                    </a>
+                    <a href="debug-with-claude-code.html" class="related-card">
+                        <h4>Debug with Claude Code</h4>
+                        <p>Stack traces, runtime errors, and logic bugs solved with AI assistance.</p>
+                    </a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>
+                <a href="../">Beam</a> &bull; Terminal Organizer for macOS &bull;
+                <a href="mailto:frank@nextuptechnologies.co">Contact</a>
+            </p>
+
+            <p style="margin-top: 12px; font-size: 0.8rem;">
+                <a href="/privacy.html" style="color: #71717a; text-decoration: none;">Privacy Policy</a> &bull;
+                <a href="/terms.html" style="color: #71717a; text-decoration: none;">Terms of Service</a>
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>

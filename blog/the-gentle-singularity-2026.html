@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D0XH8B0RKL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-D0XH8B0RKL');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Gentle Singularity: Why the Future Arrives Softer Than You Think | Beam</title>
+    <meta name="description" content="Sam Altman calls it the gentle singularity. Elon Musk says 2026 is the year. But the real AI singularity isn't dramatic — it's already here, and you barely noticed. Here's what it means for developers.">
+    <meta name="keywords" content="gentle singularity, singularity 2026, AI singularity, Sam Altman singularity, future of AI 2026, AI developers 2026, intelligence abundance, agentic engineering">
+    <meta name="author" content="NextUp Technologies">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://getbeam.dev/blog/the-gentle-singularity-2026.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://getbeam.dev/blog/the-gentle-singularity-2026.html">
+    <meta property="og:title" content="The Gentle Singularity: Why the Future Arrives Softer Than You Think">
+    <meta property="og:description" content="The AI singularity isn't a dramatic event — it's a gradual transformation already underway. Here's what it means for developers in 2026.">
+    <meta property="og:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="The Gentle Singularity: Why the Future Arrives Softer Than You Think">
+    <meta name="twitter:description" content="The AI singularity isn't a dramatic event — it's a gradual transformation already underway. Here's what it means for developers in 2026.">
+    <meta name="twitter:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "The Gentle Singularity: Why the Future Arrives Softer Than You Think",
+        "description": "Sam Altman calls it the gentle singularity. The real AI singularity isn't dramatic — it's already here, and developers are living through it right now.",
+        "author": {
+            "@type": "Organization",
+            "name": "NextUp Technologies"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Beam"
+        },
+        "datePublished": "2026-02-11",
+        "keywords": "gentle singularity, singularity 2026, AI singularity, Sam Altman singularity, future of AI 2026"
+    }
+    </script>
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #111113;
+            --bg-tertiary: #1a1a1d;
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.4);
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --border: #27272a;
+            --success: #22c55e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        header {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 60px;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1.5rem;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            background: var(--accent);
+            color: white;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+        }
+
+        article {
+            padding-bottom: 80px;
+        }
+
+        .breadcrumb {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+        }
+
+        .breadcrumb a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .meta {
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            font-size: 0.95rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 48px 0 20px;
+            color: var(--text-primary);
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        ul, ol {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            padding-left: 24px;
+        }
+
+        li {
+            margin-bottom: 12px;
+        }
+
+        .highlight {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 32px 0;
+        }
+
+        .highlight h3 {
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .tip-box {
+            background: rgba(59, 130, 246, 0.08);
+            border: 1px solid rgba(59, 130, 246, 0.25);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 32px 0;
+        }
+
+        .tip-box h3 {
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            color: var(--accent);
+        }
+
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin: 32px 0;
+        }
+
+        .stat-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            text-align: center;
+        }
+
+        .stat-card .number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent);
+            display: block;
+            line-height: 1.2;
+            margin-bottom: 8px;
+        }
+
+        .stat-card .label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        @media (max-width: 600px) {
+            .stat-grid { grid-template-columns: 1fr; }
+        }
+
+        blockquote {
+            border-left: 3px solid var(--accent);
+            padding: 16px 24px;
+            margin: 32px 0;
+            background: var(--bg-secondary);
+            border-radius: 0 12px 12px 0;
+        }
+
+        blockquote p {
+            color: var(--text-primary);
+            font-style: italic;
+            margin-bottom: 8px;
+        }
+
+        blockquote cite {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            font-style: normal;
+        }
+
+        .kbd {
+            display: inline-block;
+            padding: 2px 8px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+        }
+
+        code {
+            font-family: 'JetBrains Mono', monospace;
+            background: var(--bg-tertiary);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .cta-box h3 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+        }
+
+        .cta-box p {
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 24px;
+        }
+
+        .cta-box .btn {
+            background: white;
+            color: var(--accent);
+        }
+
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+
+        .related-articles { margin-top: 60px; padding-top: 40px; border-top: 1px solid var(--border); }
+        .related-articles h2 { font-size: 1.5rem; margin-bottom: 24px; }
+        .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .related-card { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-decoration: none; transition: border-color 0.2s; }
+        .related-card:hover { border-color: var(--accent); }
+        .related-card h4 { color: white; font-size: 1rem; margin: 0 0 8px 0; }
+        .related-card p { color: var(--text-muted); font-size: 0.85rem; margin: 0; }
+        @media (max-width: 600px) { .related-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="../" class="logo">
+                <div class="logo-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round">
+                        <path d="M4 17l6-6-6-6M12 19h8"/>
+                    </svg>
+                </div>
+                Beam
+            </a>
+            <a href="../" class="btn">Download Beam</a>
+        </div>
+    </header>
+
+    <main>
+        <article class="container">
+            <div class="breadcrumb">
+                <a href="../">Beam</a> / <a href="../#guides">Blog</a> / The Gentle Singularity
+            </div>
+
+            <h1>The Gentle Singularity: Why the Future Arrives Softer Than You Think</h1>
+            <p class="meta">February 11, 2026 &bull; 9 min read &bull; NextUp Technologies</p>
+
+            <p>There is a version of the singularity that haunts the popular imagination: a hard, bright line dividing "before" from "after." Superintelligent AI wakes up on a Tuesday, stock markets collapse on Wednesday, and by Thursday we are all either uploaded to the cloud or unemployed. It makes for good cinema. It makes for terrible forecasting.</p>
+
+            <p>The reality, as we are learning in real time, is far stranger and far gentler. The singularity is not a moment. It is a season. And we are already well into it.</p>
+
+            <h2>Sam Altman's Quiet Thesis</h2>
+
+            <p>In early 2025, Sam Altman published a short essay that landed with less fanfare than it deserved. He called it <strong>"The Gentle Singularity"</strong> -- the idea that the transition to superintelligence would not arrive as a thunderclap but as a slow, continuous curve. Each month, the tools get a little smarter. Each quarter, a task that used to require a team shrinks to a single person. Each year, the boundary of what's possible shifts so gradually that the people living through it barely register the change.</p>
+
+            <blockquote>
+                <p>"I think we're past the event horizon, but it doesn't feel like science fiction. It feels like Tuesday."</p>
+                <cite>-- Sam Altman, on the pace of AI progress</cite>
+            </blockquote>
+
+            <p>Altman's core insight was not that the singularity would be small. It was that it would be <em>normalized</em>. We would absorb transformative change the way we absorbed the smartphone: not with a single gasp, but with a billion quiet adjustments to daily life. One day you have a map in your glove compartment; the next, you cannot imagine navigating without GPS. The transition was total. The experience was mundane.</p>
+
+            <p>That is exactly what is happening right now with AI and software development.</p>
+
+            <h2>Elon Musk Says 2026 Is the Year. Is He Right?</h2>
+
+            <p>On the other end of the rhetorical spectrum, Elon Musk declared 2026 "the year of the singularity." It is the kind of statement Musk makes regularly -- bold, unfalsifiable, calibrated to generate headlines. But stripped of the hyperbole, there is a kernel of something real underneath.</p>
+
+            <p>What Musk is pointing at, whether he articulates it precisely or not, is a threshold: the point at which AI systems become capable enough that they change the fundamental economics of knowledge work. Not "conscious AI" in the philosophical sense. Not Skynet. Something more practical and more immediate: the point at which the cost of generating a working piece of software, a legal brief, a financial analysis, or a medical diagnosis approaches zero.</p>
+
+            <p>We are not approaching that threshold. We are crossing it.</p>
+
+            <h2>The Numbers Tell the Story</h2>
+
+            <p>If you want to understand why the singularity feels gentle, look at the data. Not the predictions, not the thought experiments -- the actual measurable changes in how software gets built today.</p>
+
+            <div class="stat-grid">
+                <div class="stat-card">
+                    <span class="number">55%</span>
+                    <span class="label">of new code is now AI-generated across the industry</span>
+                </div>
+                <div class="stat-card">
+                    <span class="number">4%</span>
+                    <span class="label">of all GitHub commits authored by Claude Code alone</span>
+                </div>
+                <div class="stat-card">
+                    <span class="number">84%</span>
+                    <span class="label">of professional developers use AI tools daily</span>
+                </div>
+            </div>
+
+            <p>Read those numbers again. More than half of the code being written on Earth right now has an AI co-author. A single tool -- Claude Code -- accounts for one in every twenty-five commits on the world's largest code hosting platform. And the overwhelming majority of professional developers have already integrated AI into their daily workflow.</p>
+
+            <p>This did not happen through some dramatic announcement. No one flipped a switch. Developers adopted these tools one by one, project by project, because they worked. Because a task that used to take an afternoon now takes twenty minutes. Because boilerplate disappeared. Because debugging got faster. Because the friction between "I have an idea" and "it's running in production" collapsed.</p>
+
+            <p>That is what the gentle singularity looks like. Not fireworks. Shipping faster.</p>
+
+            <h2>You Didn't Notice the Revolution Because You Were Busy Shipping</h2>
+
+            <p>Here is the most telling detail about the current moment: the people living through the biggest transformation in the history of software engineering are mostly just... annoyed about token limits.</p>
+
+            <p>Developers are not marveling at the miracle of artificial intelligence writing production code. They are complaining that the model forgot the import statement on line 7. They are debating whether Cursor or Claude Code has better autocomplete. They are filing bug reports about context window sizes. The technology has become so integrated into daily work that the dominant emotion is not awe -- it is impatience for it to get even better.</p>
+
+            <p>This is exactly what Altman predicted. The revolution does not feel like a revolution. It feels like a tool upgrade. You switched from Sublime Text to VS Code and barely thought about it. You started using Copilot and the autocompletions got better. You started using Claude Code and suddenly you could describe a feature in English and have it implemented in minutes. Each step felt incremental. In aggregate, the change is seismic.</p>
+
+            <div class="highlight">
+                <h3>The Boiling Frog in Reverse</h3>
+                <p>The classic metaphor is the frog in boiling water: gradual change goes unnoticed until it is too late. But the gentle singularity is that metaphor inverted. The change is gradual and goes unnoticed -- but the outcome is overwhelmingly positive. You did not notice that your productivity tripled. You did not notice that solo developers are now shipping what used to require a team of ten. You just noticed that you are building more things, faster, with more ambition.</p>
+            </div>
+
+            <h2>From Vibe Coding to Agentic Engineering: The Karpathy Arc</h2>
+
+            <p>Andrej Karpathy's trajectory over the past year is a useful lens for understanding how quickly the field is moving. In early 2025, Karpathy popularized the term <strong>"vibe coding"</strong> -- the practice of describing what you want to an AI and letting it generate the implementation. It was playful. It was exploratory. It was, frankly, a little fragile. You'd describe a feature, the AI would take a swing at it, and you'd spend the next hour cleaning up edge cases.</p>
+
+            <p>Fast forward to 2026, and the conversation has shifted entirely. The new term is <strong>"agentic engineering"</strong> -- a disciplined practice where developers orchestrate multiple AI agents, each with defined roles, persistent memory, and structured workflows. The AI did not just get smarter; the methodology around using it matured. Developers learned to write better prompts, define clearer boundaries, maintain project memory, and structure their work in ways that let AI agents operate reliably.</p>
+
+            <p>The tools got better. But more importantly, the craft of using them got better. And that is a distinctly human kind of progress.</p>
+
+            <div class="tip-box">
+                <h3>The Shift in Practice</h3>
+                <p><strong>2025:</strong> "Hey Claude, build me a landing page" -- then manually fixing everything that went wrong.</p>
+                <p style="margin-bottom: 0;"><strong>2026:</strong> Multiple AI agents working in parallel across a structured project, each with persistent context, orchestrated through tools like <a href="../" style="color: var(--accent);">Beam</a> that keep the developer in command of the whole operation. Not vibes. Engineering.</p>
+            </div>
+
+            <h2>The Optimistic Case: Intelligence Abundance</h2>
+
+            <p>There is a strain of commentary about AI that is relentlessly pessimistic. Jobs will disappear. Inequality will deepen. Creativity will be devalued. These concerns are worth taking seriously. But they are not the only possible future, and increasingly, they are not the likely one.</p>
+
+            <p>What the gentle singularity actually produces is <strong>intelligence abundance</strong>. The cost of solving a well-defined problem is dropping toward zero. That does not mean humans become less valuable -- it means the bottleneck shifts. When implementation is cheap, ideas become more valuable. When code is abundant, taste and judgment become scarce. When any individual can build what used to require a team, the constraint is no longer technical capacity -- it is imagination.</p>
+
+            <p>We are entering an era of <strong>post-scarcity software</strong>. Not in the utopian sense that everything is free, but in the practical sense that the marginal cost of building a new tool, a new service, a new product has collapsed. The implications are profound:</p>
+
+            <ul>
+                <li><strong>More creation, not less.</strong> When the cost of building drops, more things get built. More experiments get run. More niche problems get solved. The long tail of software gets longer.</li>
+                <li><strong>Smaller teams, bigger ambitions.</strong> A three-person team with AI tools can now build what a thirty-person team built five years ago. This does not eliminate jobs -- it eliminates the barrier to starting.</li>
+                <li><strong>Global access to leverage.</strong> A developer in Lagos or Lahore with Claude Code has the same leverage as a developer in San Francisco. Intelligence abundance is democratizing by nature.</li>
+                <li><strong>More human work, not less.</strong> As AI handles implementation, developers spend more time on the parts that require human judgment: understanding user needs, making design decisions, navigating ambiguity, building trust.</li>
+            </ul>
+
+            <h2>What Developers Should Do Right Now</h2>
+
+            <p>If you are a developer reading this in February 2026, here is the honest assessment of where you stand: the ground beneath you has shifted, and the developers who thrive in the next five years will be the ones who learn to work with that shift rather than against it.</p>
+
+            <p>This does not mean "learn to code AI models." It means <strong>learn to orchestrate</strong>.</p>
+
+            <ol>
+                <li><strong>Stop thinking of AI as autocomplete.</strong> The most powerful use of AI in development is not code completion -- it is delegation. Learn to define tasks clearly, provide context effectively, and review output critically. You are not typing faster; you are managing a team of tireless junior developers.</li>
+                <li><strong>Invest in architecture skills.</strong> When AI can generate any individual component, the premium shifts to the person who knows how components should fit together. System design, API boundaries, data modeling -- these are the skills that compound.</li>
+                <li><strong>Build your orchestration workflow.</strong> The developers who are most productive right now are the ones who have invested in their tooling: managing multiple AI sessions across projects, maintaining persistent context, keeping a clear mental model of what each agent is doing. Tools like <a href="../" style="color: var(--accent);">Beam</a> exist specifically to solve this orchestration challenge -- keeping your agent sessions organized so you can focus on the work that matters.</li>
+                <li><strong>Stay close to the user.</strong> AI is excellent at generating code. It is still poor at understanding what should be built and why. The developer who spends time talking to users, understanding their pain, and translating that into well-defined problems will always have work.</li>
+                <li><strong>Ship constantly.</strong> The feedback loop between idea and production has never been shorter. Use it. Build small things. Release them. Learn from the response. The cost of experimentation has dropped by an order of magnitude -- take advantage of it.</li>
+            </ol>
+
+            <h2>The Best Time to Build Is Right Now</h2>
+
+            <p>There is a paradox at the heart of the gentle singularity: the more powerful the tools become, the more opportunity there is for individual builders. We are living through a moment where a solo developer with the right workflow can build, launch, and scale a product that would have required venture funding and a full engineering team just three years ago.</p>
+
+            <p>This is not theoretical. It is happening every week on Hacker News, on Product Hunt, on indie hacker forums. Solo founders are shipping SaaS products in weekends. Small teams are competing with established companies. The moat is no longer "we have more engineers" -- it is "we understand the problem better."</p>
+
+            <blockquote>
+                <p>"The future is already here -- it's just not evenly distributed."</p>
+                <cite>-- William Gibson</cite>
+            </blockquote>
+
+            <p>Gibson's famous line has never been more literally true. The developers who have adopted agentic workflows -- who run multiple Claude Code sessions in parallel, who maintain project memory across conversations, who use tools like <a href="../" style="color: var(--accent);">Beam</a> to orchestrate their AI-augmented development -- are operating at a fundamentally different level of productivity than those who haven't. The technology is available to everyone. The adoption is not yet evenly distributed. That gap is the opportunity.</p>
+
+            <h2>The Gentle Part Is the Point</h2>
+
+            <p>The most important word in "gentle singularity" is not "singularity." It is "gentle."</p>
+
+            <p>We have been trained by decades of science fiction to expect transformation to be violent, sudden, and binary. The AI either destroys us or saves us. The future either arrives in an explosion or not at all. But the actual experience of living through transformative change is almost always gradual, messy, and unevenly distributed.</p>
+
+            <p>The printing press did not immediately overthrow the Catholic Church. The internet did not immediately eliminate brick-and-mortar retail. The smartphone did not immediately end desktop computing. Each of these technologies transformed the world completely -- but they did it gently, over years and decades, through a million small adaptations.</p>
+
+            <p>AI is following the same pattern. The singularity is not coming. The singularity is here. And it is gentle. And that gentleness is not a weakness -- it is what makes the transformation durable. Because people are not being disrupted. They are adapting. They are learning. They are finding new ways to work, new things to build, new problems to solve.</p>
+
+            <p>The future arrived. It was softer than anyone predicted. And the builders who recognized it early are already shaping what comes next.</p>
+
+            <div class="cta-box">
+                <h3>Build in the Age of Intelligence Abundance</h3>
+                <p>Beam helps developers organize AI agent sessions, manage multiple projects, and stay in command of the agentic engineering workflow.</p>
+                <a href="../" class="btn">Download Beam for macOS</a>
+            </div>
+
+            <div class="related-articles">
+                <h2>Related Articles</h2>
+                <div class="related-grid">
+                    <a href="should-you-learn-to-code-2026.html" class="related-card">
+                        <h4>Should You Learn to Code in 2026?</h4>
+                        <p>Why learning to code still matters in the age of AI -- and how the skill is evolving.</p>
+                    </a>
+                    <a href="vibe-coding-to-agentic-engineering.html" class="related-card">
+                        <h4>From Vibe Coding to Agentic Engineering</h4>
+                        <p>How AI-assisted development matured from casual prompting to disciplined orchestration.</p>
+                    </a>
+                    <a href="agentic-engineering-guide.html" class="related-card">
+                        <h4>The Complete Guide to Agentic Engineering</h4>
+                        <p>Master the practice of orchestrating AI agents for professional software development.</p>
+                    </a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>
+                <a href="../">Beam</a> &bull; Built by <a href="https://nextuptechnologies.co">NextUp</a> &bull;
+                <a href="mailto:frank@nextuptechnologies.co">Contact</a>
+            </p>
+
+            <p style="margin-top: 12px; font-size: 0.8rem;">
+                <a href="/privacy.html" style="color: #71717a; text-decoration: none;">Privacy Policy</a> &bull;
+                <a href="/terms.html" style="color: #71717a; text-decoration: none;">Terms of Service</a>
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D0XH8B0RKL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-D0XH8B0RKL');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Use Claude Code Agent Teams: Complete Setup Guide | Beam Terminal Organizer</title>
+    <meta name="description" content="Learn how to set up and use Claude Code agent teams with Opus 4.6. Step-by-step guide to running parallel agents, coordinating multi-agent workflows, and organizing agent teams with Beam.">
+    <meta name="keywords" content="Claude Code agent teams, agent teams setup, Claude Code multi-agent, Opus 4.6 agent teams, Claude Code parallel agents, Claude Code team lead, Claude Code teammates, multi-agent coding">
+    <meta name="author" content="NextUp Technologies">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://getbeam.dev/blog/claude-code-agent-teams-guide.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://getbeam.dev/blog/claude-code-agent-teams-guide.html">
+    <meta property="og:title" content="How to Use Claude Code Agent Teams: Complete Setup Guide">
+    <meta property="og:description" content="Step-by-step guide to setting up parallel Claude Code agents with Opus 4.6 agent teams. Coordinate multi-agent workflows and organize them with Beam.">
+    <meta property="og:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="How to Use Claude Code Agent Teams: Complete Setup Guide">
+    <meta name="twitter:description" content="Step-by-step guide to setting up parallel Claude Code agents with Opus 4.6 agent teams. Coordinate multi-agent workflows and organize them with Beam.">
+    <meta name="twitter:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "How to Use Claude Code Agent Teams: Complete Setup Guide",
+        "description": "Learn how to set up and use Claude Code agent teams with Opus 4.6. Step-by-step guide to running parallel agents, coordinating multi-agent workflows, and organizing agent teams with Beam.",
+        "author": {
+            "@type": "Organization",
+            "name": "NextUp Technologies"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Beam"
+        },
+        "datePublished": "2026-02-11",
+        "keywords": "Claude Code agent teams, agent teams setup, Claude Code multi-agent, Opus 4.6 agent teams, Claude Code parallel agents"
+    }
+    </script>
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #111113;
+            --bg-tertiary: #1a1a1d;
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.4);
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --border: #27272a;
+            --success: #22c55e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        header {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 60px;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1.5rem;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            background: var(--accent);
+            color: white;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+        }
+
+        article {
+            padding-bottom: 80px;
+        }
+
+        .breadcrumb {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+        }
+
+        .breadcrumb a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .meta {
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            font-size: 0.95rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 48px 0 20px;
+            color: var(--text-primary);
+        }
+
+        h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 32px 0 12px;
+            color: var(--text-primary);
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        ul, ol {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            padding-left: 24px;
+        }
+
+        li {
+            margin-bottom: 12px;
+        }
+
+        code {
+            font-family: 'JetBrains Mono', monospace;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 2px 6px;
+            font-size: 0.88rem;
+        }
+
+        pre {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 20px;
+            overflow-x: auto;
+            margin-bottom: 24px;
+        }
+
+        pre code {
+            background: none;
+            border: none;
+            padding: 0;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .highlight {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 32px 0;
+        }
+
+        .highlight h3 {
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            margin-top: 0;
+            color: var(--text-primary);
+        }
+
+        .kbd {
+            display: inline-block;
+            padding: 2px 8px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .cta-box h3 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+            margin-top: 0;
+        }
+
+        .cta-box p {
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 24px;
+        }
+
+        .cta-box .btn {
+            background: white;
+            color: var(--accent);
+        }
+
+        .diagram-container {
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        .diagram-container svg {
+            max-width: 100%;
+            height: auto;
+        }
+
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+
+        .related-articles { margin-top: 60px; padding-top: 40px; border-top: 1px solid var(--border); }
+        .related-articles h2 { font-size: 1.5rem; margin-bottom: 24px; }
+        .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .related-card { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-decoration: none; transition: border-color 0.2s; }
+        .related-card:hover { border-color: var(--accent); }
+        .related-card h4 { color: white; font-size: 1rem; margin: 0 0 8px 0; }
+        .related-card p { color: var(--text-muted); font-size: 0.85rem; margin: 0; }
+        @media (max-width: 600px) { .related-grid { grid-template-columns: 1fr; } h1 { font-size: 1.8rem; } }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="../" class="logo">
+                <div class="logo-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round">
+                        <path d="M4 17l6-6-6-6M12 19h8"/>
+                    </svg>
+                </div>
+                Beam
+            </a>
+            <a href="../" class="btn">Download Beam</a>
+        </div>
+    </header>
+
+    <main>
+        <article class="container">
+            <div class="breadcrumb">
+                <a href="../">Beam</a> / <a href="../#guides">Guides</a> / Claude Code Agent Teams Guide
+            </div>
+
+            <h1>How to Use Claude Code Agent Teams: Complete Setup Guide</h1>
+            <p class="meta">February 2026 &bull; 10 min read</p>
+
+            <p>On February 5, 2026, Anthropic shipped Claude Opus 4.6 alongside the biggest Claude Code feature drop yet: <strong>agent teams</strong>. Instead of a single agent working through your tasks sequentially, you can now orchestrate multiple Claude Code instances that coordinate autonomously, challenge each other's findings, and tackle complex codebases in parallel.</p>
+
+            <p>This guide walks you through everything you need to know: what agent teams are, how to enable and configure them, when they make sense over a single session, and how to use Beam to keep your multi-agent workflow organized.</p>
+
+            <!-- SVG Diagram: 3 parallel agent streams converging -->
+            <div class="diagram-container">
+                <svg width="720" height="380" viewBox="0 0 720 380" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Background -->
+                    <rect width="720" height="380" rx="16" fill="#0a0a0b" stroke="#27272a" stroke-width="1"/>
+
+                    <!-- Title -->
+                    <text x="360" y="32" fill="#fafafa" font-family="Space Grotesk, sans-serif" font-size="15" font-weight="600" text-anchor="middle">Agent Teams: Parallel Coordination</text>
+
+                    <!-- Lead node -->
+                    <rect x="295" y="50" width="130" height="42" rx="8" fill="#1a1a1d" stroke="#3b82f6" stroke-width="2"/>
+                    <circle cx="320" cy="71" r="8" fill="#3b82f6" opacity="0.3"/>
+                    <circle cx="320" cy="71" r="4" fill="#3b82f6"/>
+                    <text x="360" y="76" fill="#fafafa" font-family="Space Grotesk, sans-serif" font-size="13" font-weight="600" text-anchor="middle">Team Lead</text>
+
+                    <!-- Connection lines from Lead to 3 agents -->
+                    <line x1="330" y1="92" x2="150" y2="140" stroke="#3b82f6" stroke-width="1.5" stroke-dasharray="6 4" opacity="0.6"/>
+                    <line x1="360" y1="92" x2="360" y2="140" stroke="#3b82f6" stroke-width="1.5" stroke-dasharray="6 4" opacity="0.6"/>
+                    <line x1="390" y1="92" x2="570" y2="140" stroke="#3b82f6" stroke-width="1.5" stroke-dasharray="6 4" opacity="0.6"/>
+
+                    <!-- Agent 1: Security Reviewer -->
+                    <rect x="60" y="140" width="180" height="42" rx="8" fill="#1a1a1d" stroke="#22c55e" stroke-width="1.5"/>
+                    <circle cx="86" cy="161" r="6" fill="#22c55e" opacity="0.3"/>
+                    <circle cx="86" cy="161" r="3" fill="#22c55e"/>
+                    <text x="155" y="166" fill="#a1a1aa" font-family="Space Grotesk, sans-serif" font-size="12" font-weight="500" text-anchor="middle">Agent 1: Security</text>
+
+                    <!-- Agent 2: Performance -->
+                    <rect x="270" y="140" width="180" height="42" rx="8" fill="#1a1a1d" stroke="#f59e0b" stroke-width="1.5"/>
+                    <circle cx="296" cy="161" r="6" fill="#f59e0b" opacity="0.3"/>
+                    <circle cx="296" cy="161" r="3" fill="#f59e0b"/>
+                    <text x="365" y="166" fill="#a1a1aa" font-family="Space Grotesk, sans-serif" font-size="12" font-weight="500" text-anchor="middle">Agent 2: Performance</text>
+
+                    <!-- Agent 3: Test Coverage -->
+                    <rect x="480" y="140" width="180" height="42" rx="8" fill="#1a1a1d" stroke="#8b5cf6" stroke-width="1.5"/>
+                    <circle cx="506" cy="161" r="6" fill="#8b5cf6" opacity="0.3"/>
+                    <circle cx="506" cy="161" r="3" fill="#8b5cf6"/>
+                    <text x="575" y="166" fill="#a1a1aa" font-family="Space Grotesk, sans-serif" font-size="12" font-weight="500" text-anchor="middle">Agent 3: Tests</text>
+
+                    <!-- Work streams (animated-look parallel bars) -->
+                    <!-- Agent 1 work -->
+                    <rect x="80" y="198" width="140" height="6" rx="3" fill="#1a1a1d" stroke="#27272a" stroke-width="0.5"/>
+                    <rect x="80" y="198" width="105" height="6" rx="3" fill="#22c55e" opacity="0.7"/>
+                    <rect x="80" y="212" width="140" height="6" rx="3" fill="#1a1a1d" stroke="#27272a" stroke-width="0.5"/>
+                    <rect x="80" y="212" width="85" height="6" rx="3" fill="#22c55e" opacity="0.5"/>
+                    <rect x="80" y="226" width="140" height="6" rx="3" fill="#1a1a1d" stroke="#27272a" stroke-width="0.5"/>
+                    <rect x="80" y="226" width="125" height="6" rx="3" fill="#22c55e" opacity="0.6"/>
+
+                    <!-- Agent 2 work -->
+                    <rect x="290" y="198" width="140" height="6" rx="3" fill="#1a1a1d" stroke="#27272a" stroke-width="0.5"/>
+                    <rect x="290" y="198" width="120" height="6" rx="3" fill="#f59e0b" opacity="0.7"/>
+                    <rect x="290" y="212" width="140" height="6" rx="3" fill="#1a1a1d" stroke="#27272a" stroke-width="0.5"/>
+                    <rect x="290" y="212" width="95" height="6" rx="3" fill="#f59e0b" opacity="0.5"/>
+                    <rect x="290" y="226" width="140" height="6" rx="3" fill="#1a1a1d" stroke="#27272a" stroke-width="0.5"/>
+                    <rect x="290" y="226" width="135" height="6" rx="3" fill="#f59e0b" opacity="0.6"/>
+
+                    <!-- Agent 3 work -->
+                    <rect x="500" y="198" width="140" height="6" rx="3" fill="#1a1a1d" stroke="#27272a" stroke-width="0.5"/>
+                    <rect x="500" y="198" width="110" height="6" rx="3" fill="#8b5cf6" opacity="0.7"/>
+                    <rect x="500" y="212" width="140" height="6" rx="3" fill="#1a1a1d" stroke="#27272a" stroke-width="0.5"/>
+                    <rect x="500" y="212" width="130" height="6" rx="3" fill="#8b5cf6" opacity="0.5"/>
+                    <rect x="500" y="226" width="140" height="6" rx="3" fill="#1a1a1d" stroke="#27272a" stroke-width="0.5"/>
+                    <rect x="500" y="226" width="90" height="6" rx="3" fill="#8b5cf6" opacity="0.6"/>
+
+                    <!-- Inter-agent communication arrows -->
+                    <line x1="240" y1="210" x2="270" y2="210" stroke="#71717a" stroke-width="1" stroke-dasharray="3 3" opacity="0.5"/>
+                    <polygon points="270,207 277,210 270,213" fill="#71717a" opacity="0.5"/>
+                    <line x1="480" y1="210" x2="450" y2="210" stroke="#71717a" stroke-width="1" stroke-dasharray="3 3" opacity="0.5"/>
+                    <polygon points="450,207 443,210 450,213" fill="#71717a" opacity="0.5"/>
+
+                    <text x="360" y="258" fill="#71717a" font-family="Space Grotesk, sans-serif" font-size="10" text-anchor="middle">Agents message each other directly</text>
+
+                    <!-- Convergence lines -->
+                    <line x1="150" y1="270" x2="310" y2="310" stroke="#3b82f6" stroke-width="1.5" opacity="0.5"/>
+                    <line x1="360" y1="270" x2="360" y2="310" stroke="#3b82f6" stroke-width="1.5" opacity="0.5"/>
+                    <line x1="570" y1="270" x2="410" y2="310" stroke="#3b82f6" stroke-width="1.5" opacity="0.5"/>
+
+                    <!-- Coordinated Output node -->
+                    <rect x="260" y="310" width="200" height="46" rx="10" fill="#111113" stroke="#3b82f6" stroke-width="2"/>
+                    <rect x="260" y="310" width="200" height="46" rx="10" fill="url(#outputGlow)" opacity="0.15"/>
+                    <text x="360" y="330" fill="#fafafa" font-family="Space Grotesk, sans-serif" font-size="13" font-weight="600" text-anchor="middle">Coordinated Output</text>
+                    <text x="360" y="348" fill="#71717a" font-family="Space Grotesk, sans-serif" font-size="10" text-anchor="middle">Synthesized findings from all agents</text>
+
+                    <!-- Glow gradient -->
+                    <defs>
+                        <radialGradient id="outputGlow" cx="50%" cy="50%" r="50%">
+                            <stop offset="0%" stop-color="#3b82f6" stop-opacity="0.6"/>
+                            <stop offset="100%" stop-color="#3b82f6" stop-opacity="0"/>
+                        </radialGradient>
+                    </defs>
+                </svg>
+            </div>
+
+            <h2>What Are Agent Teams?</h2>
+
+            <p>Agent teams are a new experimental feature in Claude Code that lets you coordinate multiple Claude Code instances working together on the same project. One session acts as the <strong>team lead</strong>, orchestrating the work, while separate <strong>teammates</strong> each operate in their own context window, working independently and communicating directly with each other.</p>
+
+            <p>This is fundamentally different from subagents. Subagents are lightweight helpers that report results back to a single parent session and cannot talk to each other. Agent team members, on the other hand, message directly, challenge each other's findings, and self-coordinate through a <strong>shared task list</strong>.</p>
+
+            <p>The architecture consists of four components:</p>
+
+            <ul>
+                <li><strong>Team Lead</strong> -- Your main Claude Code session that creates the team, spawns teammates, and synthesizes results</li>
+                <li><strong>Teammates</strong> -- Separate Claude Code instances, each with its own full context window and Opus 4.6-level intelligence</li>
+                <li><strong>Shared Task List</strong> -- A coordinated list of work items with dependency tracking that teammates claim and complete</li>
+                <li><strong>Mailbox</strong> -- A messaging system that lets agents communicate with each other directly, not just through the lead</li>
+            </ul>
+
+            <div class="highlight">
+                <h3>Subagents vs. Agent Teams at a Glance</h3>
+                <p><strong>Subagents:</strong> Own context window, report results back to main agent only, lower token cost. Best for focused tasks where only the result matters.</p>
+                <p><strong>Agent Teams:</strong> Own context window, teammates message each other directly, shared task list with self-coordination, higher token cost. Best for complex work requiring discussion and collaboration.</p>
+            </div>
+
+            <h2>When to Use Agent Teams</h2>
+
+            <p>Agent teams add coordination overhead and consume significantly more tokens (roughly 5x per teammate) than a single session. They are not the right tool for every task. Reserve them for work that genuinely benefits from multiple perspectives working in parallel:</p>
+
+            <ul>
+                <li><strong>Research and review</strong> -- Multiple teammates investigate different aspects of a problem simultaneously, then share and challenge each other's findings</li>
+                <li><strong>New modules or features</strong> -- Teammates each own a separate piece of the implementation without stepping on each other's files</li>
+                <li><strong>Debugging with competing hypotheses</strong> -- Teammates test different theories in parallel and converge on the root cause faster, avoiding anchoring bias</li>
+                <li><strong>Cross-layer coordination</strong> -- Changes that span frontend, backend, and tests, each owned by a different teammate</li>
+                <li><strong>Large codebase audits</strong> -- Splitting review criteria (security, performance, test coverage) across dedicated reviewers</li>
+            </ul>
+
+            <p>For sequential tasks, same-file edits, or work with many dependencies between steps, stick with a single session or subagents. Agent teams shine when teammates can operate independently.</p>
+
+            <h2>Step-by-Step Setup</h2>
+
+            <p>Agent teams are experimental and disabled by default. Here is how to enable and start using them.</p>
+
+            <h3>1. Enable the Feature Flag</h3>
+
+            <p>Set the <code>CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS</code> environment variable to <code>1</code>. You can do this in your shell profile or in your Claude Code <code>settings.json</code>:</p>
+
+            <pre><code>{
+  "env": {
+    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
+  }
+}</code></pre>
+
+            <p>Or export it directly in your terminal before launching Claude Code:</p>
+
+            <pre><code>export CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1</code></pre>
+
+            <h3>2. Choose a Display Mode</h3>
+
+            <p>Agent teams support two display modes:</p>
+
+            <ul>
+                <li><strong>In-process</strong> (default) -- All teammates run inside your main terminal. Use <span class="kbd">Shift+Up/Down</span> to select a teammate and type to message them directly. Works in any terminal.</li>
+                <li><strong>Split panes</strong> -- Each teammate gets its own pane so you can see everyone's output at once. Requires <code>tmux</code> or iTerm2.</li>
+            </ul>
+
+            <p>To set split-pane mode in your settings:</p>
+
+            <pre><code>{
+  "teammateMode": "tmux"
+}</code></pre>
+
+            <p>Or pass it as a flag when launching:</p>
+
+            <pre><code>claude --teammate-mode tmux</code></pre>
+
+            <h3>3. Create Your First Agent Team</h3>
+
+            <p>Once enabled, simply tell Claude Code to create an agent team and describe the task in natural language. Claude spawns the teammates and coordinates work based on your prompt:</p>
+
+            <pre><code>Create an agent team to review the authentication module.
+Spawn three reviewers:
+- One focused on security implications
+- One checking performance impact
+- One validating test coverage
+Have them each review and report findings.</code></pre>
+
+            <p>Claude creates the team, assigns roles, and the teammates begin working in parallel immediately.</p>
+
+            <h3>4. Interact with Teammates</h3>
+
+            <p>Each teammate is a full, independent Claude Code session. You can message any teammate directly:</p>
+
+            <ul>
+                <li><strong>In-process mode:</strong> Press <span class="kbd">Shift+Up/Down</span> to select a teammate. Press <span class="kbd">Enter</span> to view their session. Press <span class="kbd">Escape</span> to interrupt their current turn. Press <span class="kbd">Ctrl+T</span> to toggle the shared task list.</li>
+                <li><strong>Split-pane mode:</strong> Click into a teammate's pane to interact with their session directly.</li>
+            </ul>
+
+            <h3>5. Use Delegate Mode</h3>
+
+            <p>Sometimes the lead starts implementing tasks itself instead of delegating. Press <span class="kbd">Shift+Tab</span> to cycle into <strong>delegate mode</strong>, which restricts the lead to coordination-only tools: spawning, messaging, shutting down teammates, and managing tasks. This keeps the lead focused on orchestration.</p>
+
+            <h3>6. Clean Up When Done</h3>
+
+            <p>When work is complete, ask the lead to shut down teammates and clean up:</p>
+
+            <pre><code>Ask all teammates to shut down, then clean up the team.</code></pre>
+
+            <p>The lead sends shutdown requests to each teammate (they can approve or reject with an explanation), then removes shared team resources. Always clean up through the lead, never through a teammate.</p>
+
+            <div class="highlight">
+                <h3>Pro Tip: Require Plan Approval</h3>
+                <p>For risky or complex changes, you can require teammates to plan before implementing. The teammate works in read-only plan mode until the lead approves their approach. Tell the lead: <em>"Require plan approval before they make any changes."</em> You can also give the lead criteria like "only approve plans that include test coverage."</p>
+            </div>
+
+            <h2>Organizing Agent Teams with Beam</h2>
+
+            <p>Running three or more parallel Claude Code agents is powerful, but it creates an immediate organizational challenge: you need to track what each agent is doing, jump between them quickly, and keep their output separated. This is exactly the problem Beam was built to solve.</p>
+
+            <h3>One Workspace Per Agent Team</h3>
+
+            <p>Create a dedicated Beam workspace for your agent team. Press <span class="kbd">&#8984;N</span> to create a new workspace and name it after the task (e.g., "Auth Module Review"). Within this workspace:</p>
+
+            <ul>
+                <li><strong>Tab 1:</strong> Team Lead session (your main Claude Code instance)</li>
+                <li><strong>Tab 2:</strong> Agent 1 output (security reviewer)</li>
+                <li><strong>Tab 3:</strong> Agent 2 output (performance reviewer)</li>
+                <li><strong>Tab 4:</strong> Agent 3 output (test coverage reviewer)</li>
+            </ul>
+
+            <p>If you are using split-pane display mode with tmux, Beam's split panes (<span class="kbd">&#8984;&#8997;&#8963;T</span>) let you see multiple agent outputs side by side within a single tab.</p>
+
+            <h3>Quick Switcher for Agent Navigation</h3>
+
+            <p>Press <span class="kbd">&#8984;P</span> to open Beam's Quick Switcher and fuzzy-search across all your workspaces, tabs, and layouts. When you have multiple agent teams running across different projects, this is the fastest way to jump to the exact agent you need.</p>
+
+            <h3>Save Your Agent Team Layout</h3>
+
+            <p>Once you have your agent team workspace configured perfectly, press <span class="kbd">&#8984;S</span> to save it as a layout. The next time you spin up an agent team for a similar task, restore the layout and your entire workspace structure is back instantly.</p>
+
+            <h2>Real Workflow Example: Codebase Review with 3 Agents</h2>
+
+            <p>Here is a concrete example of running a parallel code review using agent teams, organized with Beam.</p>
+
+            <p><strong>Step 1: Set up your Beam workspace</strong></p>
+            <ol>
+                <li>Create a workspace named "PR Review #142"</li>
+                <li>Open 4 tabs: Lead, Security, Performance, Tests</li>
+            </ol>
+
+            <p><strong>Step 2: Launch the agent team</strong></p>
+            <pre><code>Create an agent team to review PR #142. Spawn three reviewers:
+- One focused on security implications
+- One checking performance impact
+- One validating test coverage
+Have them each review and report findings.</code></pre>
+
+            <p><strong>Step 3: Monitor parallel progress</strong></p>
+            <p>Each agent works independently in its own context window. The security reviewer examines token handling and input validation. The performance reviewer profiles database queries and memory usage. The test reviewer checks coverage gaps and edge cases. They can message each other directly -- for example, if the security reviewer finds an unvalidated input, it can alert the test reviewer to check whether that path has coverage.</p>
+
+            <p><strong>Step 4: Review synthesized findings</strong></p>
+            <p>When all agents finish, the lead synthesizes their findings into a unified report. You have three thorough, independent analyses instead of one reviewer that gravitates toward a single type of issue.</p>
+
+            <div class="highlight">
+                <h3>Why This Works Better Than Sequential Review</h3>
+                <p>A single reviewer tends to anchor on the first category of issues they find. With agent teams, each reviewer applies a dedicated lens from the start. Security, performance, and test coverage all get thorough attention simultaneously, and agents can challenge each other's findings in real time.</p>
+            </div>
+
+            <h2>Tips for Getting the Most Out of Agent Teams</h2>
+
+            <ul>
+                <li><strong>Give teammates enough context</strong> -- Teammates load project context automatically (CLAUDE.md, MCP servers, skills), but they do not inherit the lead's conversation history. Include task-specific details in the spawn prompt so each agent has the context it needs.</li>
+                <li><strong>Size tasks appropriately</strong> -- Too small and coordination overhead exceeds the benefit. Too large and teammates work too long without check-ins. Aim for self-contained units that produce a clear deliverable: a function, a test file, a review. Having 5-6 tasks per teammate keeps everyone productive.</li>
+                <li><strong>Avoid file conflicts</strong> -- Two teammates editing the same file leads to overwrites. Break the work so each teammate owns a different set of files.</li>
+                <li><strong>Start with read-heavy tasks</strong> -- If you are new to agent teams, begin with tasks that have clear boundaries and do not require writing code: reviewing a PR, researching a library, or investigating a bug. These show the value of parallel exploration without the coordination challenges of parallel implementation.</li>
+                <li><strong>Use hooks for quality gates</strong> -- The <code>TeammateIdle</code> hook runs when a teammate is about to go idle, and <code>TaskCompleted</code> runs when a task is being marked complete. Use these to enforce standards automatically.</li>
+                <li><strong>Monitor and steer</strong> -- Check in on teammates' progress, redirect approaches that are not working, and synthesize findings as they come in. Letting a team run unattended for too long increases the risk of wasted effort and tokens.</li>
+                <li><strong>Know when NOT to use teams</strong> -- Sequential tasks, same-file edits, work with many inter-step dependencies, or routine changes are all better handled by a single session or subagents. Agent teams are for parallelizable, complex work.</li>
+            </ul>
+
+            <div class="highlight">
+                <h3>Real-World Scale: The C Compiler Experiment</h3>
+                <p>To demonstrate what agent teams can do at scale, Anthropic ran an experiment where 16 parallel Claude agents wrote a 100,000-line C compiler (implemented in Rust) in just two weeks. The compiler can compile the Linux 6.9 kernel, QEMU, FFmpeg, SQLite, PostgreSQL, and Redis, achieving a 99% pass rate on the GCC test suite. While most teams will operate at a smaller scale, this shows the ceiling of what coordinated parallel agents can accomplish.</p>
+            </div>
+
+            <div class="cta-box">
+                <h3>Organize Your Agent Teams with Beam</h3>
+                <p>Running parallel Claude Code agents is powerful -- but only if you can keep track of them all. Beam gives you workspaces, tabs, Quick Switcher, and saveable layouts to keep every agent organized.</p>
+                <a href="../" class="btn">Download Beam for macOS</a>
+            </div>
+
+            <h2>Summary</h2>
+
+            <p>Claude Code agent teams, launched with Opus 4.6 on February 5, 2026, let you orchestrate multiple Claude Code instances that work in parallel, communicate directly with each other, and coordinate through a shared task list. They are the most powerful tool yet for codebase reviews, multi-module features, competing-hypothesis debugging, and cross-layer changes.</p>
+
+            <p>To get started:</p>
+
+            <ol>
+                <li>Enable the feature with <code>CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1</code></li>
+                <li>Tell Claude Code to create a team and describe your task in natural language</li>
+                <li>Use Beam to organize each agent into its own tab or pane for clean parallel tracking</li>
+                <li>Monitor, steer, and let the lead synthesize results when agents finish</li>
+            </ol>
+
+            <p>Agent teams are experimental and have known limitations around session resumption, shutdown timing, and one-team-per-session constraints. But for the right tasks, they represent a genuine step change in what a single developer can accomplish with AI-assisted coding.</p>
+
+            <div class="related-articles">
+                <h2>Related Articles</h2>
+                <div class="related-grid">
+                    <a href="manage-multiple-claude-code-sessions.html" class="related-card">
+                        <h4>Manage Multiple Claude Code Sessions</h4>
+                        <p>Techniques for running and tracking multiple Claude Code sessions across projects.</p>
+                    </a>
+                    <a href="ai-pair-programming-best-practices.html" class="related-card">
+                        <h4>AI Pair Programming Best Practices</h4>
+                        <p>Get the most out of AI-assisted development with proven workflow patterns.</p>
+                    </a>
+                    <a href="claude-code-devops-cicd.html" class="related-card">
+                        <h4>Claude Code for DevOps & CI/CD</h4>
+                        <p>Use Claude Code to automate infrastructure, pipelines, and deployment workflows.</p>
+                    </a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>
+                <a href="../">Beam</a> &bull; Terminal Organizer for macOS &bull;
+                <a href="mailto:frank@nextuptechnologies.co">Contact</a>
+            </p>
+
+            <p style="margin-top: 12px; font-size: 0.8rem;">
+                <a href="/privacy.html" style="color: #71717a; text-decoration: none;">Privacy Policy</a> &bull;
+                <a href="/terms.html" style="color: #71717a; text-decoration: none;">Terms of Service</a>
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>

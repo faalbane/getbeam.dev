@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D0XH8B0RKL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-D0XH8B0RKL');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Agent Coding Workflows: Orchestrate AI Agents That Build Software | Beam</title>
+    <meta name="description" content="Claude Code's Agent Teams, multi-agent coordination, and how to set up workflows where multiple AI agents collaborate on your codebase.">
+    <meta name="keywords" content="multi-agent coding, Agent Teams Claude Code, AI agent orchestration, multi-agent workflow, agentic coding, AI pair programming 2026">
+    <meta name="author" content="NextUp Technologies">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://getbeam.dev/blog/multi-agent-coding-orchestration-guide.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://getbeam.dev/blog/multi-agent-coding-orchestration-guide.html">
+    <meta property="og:title" content="Multi-Agent Coding Workflows: How to Orchestrate AI Agents That Build Software for You">
+    <meta property="og:description" content="Claude Code's Agent Teams, multi-agent coordination, and how to set up workflows where multiple AI agents collaborate on your codebase.">
+    <meta property="og:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Multi-Agent Coding Workflows: How to Orchestrate AI Agents That Build Software for You">
+    <meta name="twitter:description" content="Claude Code's Agent Teams, multi-agent coordination, and how to set up workflows where multiple AI agents collaborate on your codebase.">
+    <meta name="twitter:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Multi-Agent Coding Workflows: How to Orchestrate AI Agents That Build Software for You",
+        "description": "Claude Code's Agent Teams, multi-agent coordination, and how to set up workflows where multiple AI agents collaborate on your codebase.",
+        "author": {
+            "@type": "Organization",
+            "name": "NextUp Technologies"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Beam"
+        },
+        "datePublished": "2026-02-12",
+        "keywords": "multi-agent coding, Agent Teams Claude Code, AI agent orchestration, multi-agent workflow, agentic coding, AI pair programming 2026"
+    }
+    </script>
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #111113;
+            --bg-tertiary: #1a1a1d;
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.4);
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --border: #27272a;
+            --success: #22c55e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        header {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 60px;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1.5rem;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            background: var(--accent);
+            color: white;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+        }
+
+        article {
+            padding-bottom: 80px;
+        }
+
+        .breadcrumb {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+        }
+
+        .breadcrumb a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .meta {
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            font-size: 0.95rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 48px 0 20px;
+            color: var(--text-primary);
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        ul, ol {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            padding-left: 24px;
+        }
+
+        li {
+            margin-bottom: 12px;
+        }
+
+        .highlight {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 32px 0;
+        }
+
+        .highlight h3 {
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .kbd {
+            display: inline-block;
+            padding: 2px 8px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+        }
+
+        code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            background: var(--bg-tertiary);
+            padding: 2px 6px;
+            border-radius: 4px;
+            border: 1px solid var(--border);
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .cta-box h3 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+        }
+
+        .cta-box p {
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 24px;
+        }
+
+        .cta-box .btn {
+            background: white;
+            color: var(--accent);
+        }
+
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+
+        .related-articles { margin-top: 60px; padding-top: 40px; border-top: 1px solid var(--border); }
+        .related-articles h2 { font-size: 1.5rem; margin-bottom: 24px; }
+        .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .related-card { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-decoration: none; transition: border-color 0.2s; }
+        .related-card:hover { border-color: var(--accent); }
+        .related-card h4 { color: white; font-size: 1rem; margin: 0 0 8px 0; }
+        .related-card p { color: var(--text-muted); font-size: 0.85rem; margin: 0; }
+        @media (max-width: 600px) { .related-grid { grid-template-columns: 1fr; } h1 { font-size: 1.8rem; } }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="../" class="logo">
+                <div class="logo-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round">
+                        <path d="M4 17l6-6-6-6M12 19h8"/>
+                    </svg>
+                </div>
+                Beam
+            </a>
+            <a href="../" class="btn">Download Beam</a>
+        </div>
+    </header>
+
+    <main>
+        <article class="container">
+            <div class="breadcrumb">
+                <a href="../">Beam</a> / <a href="../#guides">Guides</a> / Multi-Agent Coding Orchestration
+            </div>
+
+            <h1>Multi-Agent Coding Workflows: How to Orchestrate AI Agents That Build Software for You</h1>
+            <p class="meta">February 2026 &bull; 9 min read</p>
+
+            <p>The era of one developer talking to one AI agent is ending faster than most people realize. Claude Code&rsquo;s experimental Agent Teams feature, combined with the broader industry shift toward multi-agent coordination, means the developers who figure out orchestration first will have a serious advantage. The question is no longer &ldquo;should I use AI for coding?&rdquo; -- it&rsquo;s &ldquo;how many agents should I be running, and how do I keep them from stepping on each other?&rdquo;</p>
+
+            <p>This guide breaks down multi-agent coding workflows: why they matter, the patterns that work, how to set them up with Claude Code, and the organizational discipline required to make them productive instead of chaotic.</p>
+
+            <h2>Why Multi-Agent?</h2>
+
+            <p>A single AI agent is like a single developer. Smart, capable, but fundamentally limited by the fact that it can only do one thing at a time within one context window. Ask Claude Code to architect your backend, implement the routes, write the tests, and update the docs -- it can do all of those things, but it does them sequentially, and by the time it gets to the tests, the architecture decisions from 30 minutes ago are fading from context.</p>
+
+            <p>Multi-agent workflows solve this by applying the same principle that makes engineering teams effective: <strong>specialization and parallelism</strong>.</p>
+
+            <ul>
+                <li><strong>Architecture agent</strong> -- Focuses exclusively on system design, API contracts, and high-level decisions. Never writes implementation code.</li>
+                <li><strong>Implementation agent</strong> -- Takes the architecture spec and writes the actual code. Doesn&rsquo;t second-guess the design; just builds it.</li>
+                <li><strong>Testing agent</strong> -- Reads the implementation and writes comprehensive tests. Has no emotional attachment to the code, so it&rsquo;s ruthless about edge cases.</li>
+                <li><strong>Review agent</strong> -- Examines the output of the other agents for bugs, security issues, and style violations.</li>
+            </ul>
+
+            <p>Each agent gets its own context window, its own focus area, and its own session. They can run in parallel -- cutting a 60-minute sequential task down to 20 minutes of parallel work plus 10 minutes of integration. That is a meaningful difference when you compound it across a workweek.</p>
+
+            <h2>Claude Code Agent Teams</h2>
+
+            <p>Claude Code now has a native multi-agent feature called <strong>Agent Teams</strong>. It&rsquo;s still marked as experimental, but it works well enough that serious developers are already building workflows around it.</p>
+
+            <p>Here&rsquo;s how it works: you start a single Claude Code session and give it a task that benefits from parallelism. Claude&rsquo;s lead agent analyzes the task, breaks it into subtasks, and spawns sub-agents (teammates) to handle them concurrently. Each teammate gets its own context window and can read/write files independently.</p>
+
+            <p>To enable it, set the environment variable:</p>
+
+            <p><code>CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1</code></p>
+
+            <p>Then give Claude a prompt like: &ldquo;Build a user authentication system. Have one teammate handle the database models and migrations, another handle the API routes and middleware, and another write the integration tests.&rdquo;</p>
+
+            <p>The key difference between Agent Teams and simple sub-agents is that <strong>teammates communicate with each other</strong>. They share findings, flag blockers, and coordinate on shared interfaces -- rather than just reporting back to a lead agent. This makes them significantly more effective for tasks where different components need to stay in sync.</p>
+
+            <p>A few things to know:</p>
+
+            <ul>
+                <li>Token usage scales linearly. A 3-agent team uses roughly 3x the tokens of a single agent.</li>
+                <li>Each teammate gets a full context window, which means they can go deep on their domain without crowding out the others.</li>
+                <li>Agent Teams work best for greenfield features and exploration. For surgical edits to existing code, a single agent is usually sufficient.</li>
+            </ul>
+
+            <h2>Patterns for Multi-Agent Workflows</h2>
+
+            <p>Whether you use Agent Teams or manage separate sessions manually, these four patterns cover most multi-agent coding scenarios.</p>
+
+            <p><strong>Pattern 1: Plan-Implement-Test (Sequential Pipeline)</strong></p>
+            <p>Three agents work in sequence. Agent 1 creates a detailed implementation plan with file structure, interfaces, and pseudocode. Agent 2 takes that plan and writes the actual code. Agent 3 reads the implementation and writes tests. Each agent&rsquo;s output feeds into the next. This pattern is excellent for complex features where getting the design right matters more than speed.</p>
+
+            <p><strong>Pattern 2: Parallel Feature Development (Fan-Out)</strong></p>
+            <p>Multiple agents work simultaneously on independent features or modules. One agent builds the authentication system while another builds the payment flow and a third builds the notification service. They share interface contracts but don&rsquo;t touch each other&rsquo;s code. This is the fastest pattern and works beautifully for projects with clear module boundaries.</p>
+
+            <p><strong>Pattern 3: Code Review Agent (Write + Review)</strong></p>
+            <p>One agent writes the code. A completely separate agent reviews it. The review agent has no knowledge of the prompts used to generate the code -- it just sees the output. This creates an adversarial dynamic that catches bugs, security issues, and poor design choices that a single agent would miss. Think of it as automated pair programming where your pair actually pushes back.</p>
+
+            <p><strong>Pattern 4: Cross-Stack Coordination (Specialist Agents)</strong></p>
+            <p>A frontend agent, a backend agent, and a DevOps agent each own their domain permanently across the project. They coordinate through shared API schemas and a project memory file. The backend agent updates an endpoint; the frontend agent reads the updated schema and adjusts its API calls. The DevOps agent watches for infrastructure requirements from both. This mirrors how real engineering teams operate.</p>
+
+            <h2>Setting Up Multi-Agent Workflows</h2>
+
+            <p>The practical challenge of multi-agent workflows is context management. Each agent needs to know what the others are doing without being overwhelmed by their details. Here&rsquo;s how to set it up:</p>
+
+            <ol>
+                <li><strong>Create a shared memory file</strong> -- Put a <code>CLAUDE.md</code> in your project root. Include architecture decisions, API contracts, naming conventions, and a task board showing what each agent is responsible for. Every Claude Code session reads this file automatically at startup.</li>
+                <li><strong>Define interface contracts early</strong> -- Before spawning multiple agents, agree on the interfaces between their domains. TypeScript types, API schemas, database models. Write these to shared files that all agents reference.</li>
+                <li><strong>Use separate branches</strong> -- Each agent should work on its own git branch. Merge when work is complete. This prevents the nightmare scenario of two agents editing the same file simultaneously.</li>
+                <li><strong>Establish a review checkpoint</strong> -- After each agent completes its task, review the output before letting downstream agents consume it. A bad architecture decision that propagates to three agents is three times as expensive to fix.</li>
+                <li><strong>Keep a running status log</strong> -- Add a &ldquo;Current Status&rdquo; section to your memory file. Update it as agents complete tasks. This gives every agent (and you) a clear picture of overall progress.</li>
+            </ol>
+
+            <h2>Organizing Multi-Agent Sessions</h2>
+
+            <p>This is where most multi-agent workflows fall apart. You have three or four Claude Code sessions running simultaneously, each producing output, each needing attention -- and they&rsquo;re all jumbled together in your terminal. You lose track of which session is which. You accidentally send a backend prompt to the frontend agent. You close the wrong tab.</p>
+
+            <p>Terminal organization is not optional in multi-agent workflows. It&rsquo;s load-bearing infrastructure.</p>
+
+            <p>The solution is to give each agent its own dedicated workspace. In Beam, press <span class="kbd">&#8984;N</span> to create a workspace per agent. Name them clearly: &ldquo;Architecture Agent&rdquo;, &ldquo;Backend Agent&rdquo;, &ldquo;Test Agent&rdquo;. Each workspace gets its own tabs -- the Claude Code session in tab 1, supporting tools (dev server, logs, git) in tabs 2 and 3.</p>
+
+            <p>Switch between agents with <span class="kbd">&#8984;&#8997;&#8592;&#8594;</span>. Use the Quick Switcher (<span class="kbd">&#8984;P</span>) to jump to any agent by name. Save your entire multi-agent layout with <span class="kbd">&#8984;S</span> so you can restore the same setup tomorrow without reconfiguring anything.</p>
+
+            <p>Project memory makes this even more powerful. When every agent reads from the same <code>CLAUDE.md</code>, they stay aligned on architecture and conventions. You update the memory file in one workspace, and every agent picks up the changes when it starts its next task.</p>
+
+            <div class="highlight">
+                <h3>Common Pitfalls to Avoid</h3>
+                <ul>
+                    <li><strong>Context drift</strong> -- Agents that run for too long without checking shared memory gradually develop their own assumptions about the codebase. Periodically remind agents to re-read the project memory file.</li>
+                    <li><strong>Conflicting changes</strong> -- Two agents editing the same file will create merge conflicts at best and silent overwrites at worst. Define clear file ownership boundaries before you start.</li>
+                    <li><strong>Token cost spiraling</strong> -- Three agents for 30 minutes can easily burn through $15-20 on Claude Code Max. Know your budget and use multi-agent workflows for tasks that justify the cost, not for simple edits.</li>
+                    <li><strong>Premature parallelism</strong> -- Not every task benefits from multiple agents. If the work is inherently sequential or tightly coupled, a single agent with a good plan will outperform a confused team. Start with two agents, not five.</li>
+                    <li><strong>Neglecting oversight</strong> -- Multi-agent does not mean autonomous. Check each agent&rsquo;s output every 10-15 minutes. Catching a wrong direction early is far cheaper than letting three agents build on a flawed foundation.</li>
+                </ul>
+            </div>
+
+            <div class="cta-box">
+                <h3>Built for Multi-Agent Workflows</h3>
+                <p>Beam gives each agent its own workspace with dedicated tabs, split panes, and persistent layouts. Quick Switcher lets you jump between agents instantly. Stop losing track of your AI team.</p>
+                <a href="../" class="btn">Download Beam for macOS</a>
+            </div>
+
+            <h2>Summary</h2>
+
+            <p>Multi-agent coding is the next logical step in AI-assisted development. The tools are here -- Claude Code Agent Teams, parallel sessions, shared memory files -- and the patterns are proven. What separates productive multi-agent workflows from chaotic ones is organization and discipline:</p>
+
+            <ul>
+                <li><strong>Specialize your agents</strong> -- architecture, implementation, testing, review. Each one focused on what it does best.</li>
+                <li><strong>Choose the right pattern</strong> -- sequential pipeline for complex features, fan-out for independent modules, write-review for quality, cross-stack for full applications.</li>
+                <li><strong>Share context through memory files</strong> -- a single <code>CLAUDE.md</code> keeps every agent aligned on decisions and progress.</li>
+                <li><strong>Organize your sessions</strong> -- one workspace per agent in Beam, clear naming, saved layouts for repeatability.</li>
+                <li><strong>Stay in the loop</strong> -- review frequently, catch drift early, and remember that you are the engineering lead, not a spectator.</li>
+            </ul>
+
+            <p>The developers who master orchestration will build in a day what used to take a week. The ones who don&rsquo;t will wonder why having more AI agents somehow made them slower.</p>
+
+            <div class="related-articles">
+                <h2>Related Articles</h2>
+                <div class="related-grid">
+                    <a href="multi-agent-ai-coding-workflows.html" class="related-card">
+                        <h4>How to Set Up Multi-Agent AI Coding Workflows</h4>
+                        <p>Step-by-step guide to running multiple AI agents in parallel with Beam workspaces.</p>
+                    </a>
+                    <a href="agentic-engineering-guide.html" class="related-card">
+                        <h4>Agentic Engineering: The Evolution Beyond Vibe Coding</h4>
+                        <p>How agentic engineering is replacing vibe coding as the serious approach to AI development.</p>
+                    </a>
+                    <a href="manage-multiple-claude-code-sessions.html" class="related-card">
+                        <h4>Manage Multiple Claude Code Sessions Across Projects</h4>
+                        <p>Organize and switch between multiple Claude Code sessions without losing context.</p>
+                    </a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>
+                <a href="../">Beam</a> &bull; Terminal Organizer for macOS &bull;
+                <a href="mailto:frank@nextuptechnologies.co">Contact</a>
+            </p>
+
+            <p style="margin-top: 12px; font-size: 0.8rem;">
+                <a href="/privacy.html" style="color: #71717a; text-decoration: none;">Privacy Policy</a> &bull;
+                <a href="/terms.html" style="color: #71717a; text-decoration: none;">Terms of Service</a>
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>

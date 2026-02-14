@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D0XH8B0RKL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-D0XH8B0RKL');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Coding for Solo Developers: The Complete Workflow | Beam Terminal Organizer</title>
+    <meta name="description" content="How solo developers and indie hackers use Claude Code to ship faster. The complete AI coding workflow: multiple projects, persistent memory, organized terminals, and zero overhead.">
+    <meta name="keywords" content="AI coding solo developer, indie hacker AI tools, solo developer workflow, Claude Code solo dev, one person startup AI, AI pair programming solo">
+    <meta name="author" content="NextUp Technologies">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://getbeam.dev/blog/ai-coding-solo-developer.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://getbeam.dev/blog/ai-coding-solo-developer.html">
+    <meta property="og:title" content="AI Coding for Solo Developers: The Complete Workflow">
+    <meta property="og:description" content="How solo developers and indie hackers use Claude Code to ship faster. The complete AI coding workflow.">
+    <meta property="og:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="AI Coding for Solo Developers: The Complete Workflow">
+    <meta name="twitter:description" content="How solo developers and indie hackers use Claude Code to ship faster. The complete AI coding workflow.">
+    <meta name="twitter:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "AI Coding for Solo Developers: The Complete Workflow",
+        "description": "How solo developers and indie hackers use Claude Code to ship faster. The complete AI coding workflow: multiple projects, persistent memory, organized terminals, and zero overhead.",
+        "author": {
+            "@type": "Organization",
+            "name": "NextUp Technologies"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Beam"
+        },
+        "datePublished": "2026-02-11",
+        "keywords": "AI coding solo developer, indie hacker AI tools, solo developer workflow, Claude Code solo dev"
+    }
+    </script>
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #111113;
+            --bg-tertiary: #1a1a1d;
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.4);
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --border: #27272a;
+            --success: #22c55e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        header {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 60px;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1.5rem;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            background: var(--accent);
+            color: white;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+        }
+
+        article {
+            padding-bottom: 80px;
+        }
+
+        .breadcrumb {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+        }
+
+        .breadcrumb a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .meta {
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            font-size: 0.95rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 48px 0 20px;
+            color: var(--text-primary);
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        ul, ol {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            padding-left: 24px;
+        }
+
+        li {
+            margin-bottom: 12px;
+        }
+
+        .highlight {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 32px 0;
+        }
+
+        .highlight h3 {
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .kbd {
+            display: inline-block;
+            padding: 2px 8px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+        }
+
+        code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            background: var(--bg-tertiary);
+            padding: 2px 6px;
+            border-radius: 4px;
+            border: 1px solid var(--border);
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .cta-box h3 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+        }
+
+        .cta-box p {
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 24px;
+        }
+
+        .cta-box .btn {
+            background: white;
+            color: var(--accent);
+        }
+
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+
+        .related-articles { margin-top: 60px; padding-top: 40px; border-top: 1px solid var(--border); }
+        .related-articles h2 { font-size: 1.5rem; margin-bottom: 24px; }
+        .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .related-card { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-decoration: none; transition: border-color 0.2s; }
+        .related-card:hover { border-color: var(--accent); }
+        .related-card h4 { color: white; font-size: 1rem; margin: 0 0 8px 0; }
+        .related-card p { color: var(--text-muted); font-size: 0.85rem; margin: 0; }
+        @media (max-width: 600px) { .related-grid { grid-template-columns: 1fr; } }
+
+        .blog-visual {
+            margin: 40px 0;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        .blog-visual svg {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="../" class="logo">
+                <div class="logo-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round">
+                        <path d="M4 17l6-6-6-6M12 19h8"/>
+                    </svg>
+                </div>
+                Beam
+            </a>
+            <a href="../" class="btn">Download Beam</a>
+        </div>
+    </header>
+
+    <main>
+        <article class="container">
+            <div class="breadcrumb">
+                <a href="../">Beam</a> / <a href="../#guides">Guides</a> / AI Coding for Solo Developers
+            </div>
+
+            <h1>AI Coding for Solo Developers: The Complete Workflow</h1>
+            <p class="meta">February 2026 &bull; 8 min read</p>
+
+            <p>Solo developers have always punched above their weight. But in 2026, the gap between what one person can build and what a team can build is closing fast -- thanks to AI coding agents. Claude Code doesn't just autocomplete your code. It's a reasoning partner that refactors, debugs, writes tests, and ships features while you focus on the product. The challenge is managing all of that across multiple projects without drowning in terminal chaos. Here's the complete workflow.</p>
+
+            <div class="blog-visual">
+                <svg viewBox="0 0 800 440" xmlns="http://www.w3.org/2000/svg" fill="none">
+                    <!-- Background -->
+                    <rect width="800" height="440" fill="#0a0a0b"/>
+
+                    <!-- Sidebar -->
+                    <rect x="20" y="20" width="180" height="400" rx="10" fill="#111113" stroke="#27272a" stroke-width="1"/>
+                    <text x="36" y="50" font-family="Space Grotesk, sans-serif" font-size="11" fill="#71717a" font-weight="600" letter-spacing="0.5">WORKSPACES</text>
+
+                    <!-- Workspace 1: Active -->
+                    <rect x="32" y="64" width="156" height="44" rx="8" fill="#3b82f6" fill-opacity="0.12" stroke="#3b82f6" stroke-width="1"/>
+                    <circle cx="48" cy="86" r="5" fill="#3b82f6"/>
+                    <text x="60" y="83" font-family="Space Grotesk, sans-serif" font-size="12" fill="#fafafa" font-weight="600">SaaS Product</text>
+                    <text x="60" y="98" font-family="JetBrains Mono, monospace" font-size="9" fill="#71717a">5 tabs active</text>
+
+                    <!-- Workspace 2: Muted -->
+                    <rect x="32" y="118" width="156" height="44" rx="8" fill="#111113" stroke="#27272a" stroke-width="1"/>
+                    <circle cx="48" cy="140" r="5" fill="#27272a"/>
+                    <text x="60" y="137" font-family="Space Grotesk, sans-serif" font-size="12" fill="#71717a" font-weight="500">Side Project</text>
+                    <text x="60" y="152" font-family="JetBrains Mono, monospace" font-size="9" fill="#3f3f46">3 tabs</text>
+
+                    <!-- Workspace 3: Muted -->
+                    <rect x="32" y="172" width="156" height="44" rx="8" fill="#111113" stroke="#27272a" stroke-width="1"/>
+                    <circle cx="48" cy="194" r="5" fill="#27272a"/>
+                    <text x="60" y="191" font-family="Space Grotesk, sans-serif" font-size="12" fill="#71717a" font-weight="500">Open Source</text>
+                    <text x="60" y="206" font-family="JetBrains Mono, monospace" font-size="9" fill="#3f3f46">2 tabs</text>
+
+                    <!-- Sidebar divider -->
+                    <line x1="32" y1="236" x2="188" y2="236" stroke="#27272a" stroke-width="1"/>
+
+                    <!-- Sidebar Quick Switcher hint -->
+                    <rect x="32" y="252" width="156" height="32" rx="6" fill="#1a1a1d" stroke="#27272a" stroke-width="1"/>
+                    <text x="48" y="273" font-family="JetBrains Mono, monospace" font-size="10" fill="#3f3f46">&#x2318;P Quick Switch</text>
+
+                    <!-- Layout saved hint -->
+                    <rect x="32" y="296" width="156" height="32" rx="6" fill="#1a1a1d" stroke="#27272a" stroke-width="1"/>
+                    <text x="48" y="317" font-family="JetBrains Mono, monospace" font-size="10" fill="#3f3f46">&#x2318;S Save Layout</text>
+
+                    <!-- Main Content Area -->
+                    <rect x="216" y="20" width="564" height="400" rx="10" fill="#111113" stroke="#27272a" stroke-width="1"/>
+
+                    <!-- Tab bar -->
+                    <rect x="216" y="20" width="564" height="36" rx="10" fill="#0a0a0b"/>
+                    <rect x="216" y="46" width="564" height="10" fill="#0a0a0b"/>
+
+                    <!-- Tab 1: Claude Code (active, amber) -->
+                    <rect x="224" y="26" width="100" height="26" rx="5" fill="#D97706" fill-opacity="0.15" stroke="#D97706" stroke-opacity="0.5" stroke-width="1"/>
+                    <circle cx="236" cy="39" r="3" fill="#D97706"/>
+                    <text x="244" y="43" font-family="JetBrains Mono, monospace" font-size="9.5" fill="#fafafa" font-weight="500">Claude Code</text>
+
+                    <!-- Tab 2: Dev Server -->
+                    <rect x="332" y="26" width="88" height="26" rx="5" fill="#1a1a1d" stroke="#27272a" stroke-width="1"/>
+                    <circle cx="344" cy="39" r="3" fill="#22c55e"/>
+                    <text x="352" y="43" font-family="JetBrains Mono, monospace" font-size="9.5" fill="#71717a">Dev Server</text>
+
+                    <!-- Tab 3: API -->
+                    <rect x="428" y="26" width="56" height="26" rx="5" fill="#1a1a1d" stroke="#27272a" stroke-width="1"/>
+                    <circle cx="440" cy="39" r="3" fill="#22c55e"/>
+                    <text x="448" y="43" font-family="JetBrains Mono, monospace" font-size="9.5" fill="#71717a">API</text>
+
+                    <!-- Tab 4: Tests -->
+                    <rect x="492" y="26" width="56" height="26" rx="5" fill="#1a1a1d" stroke="#27272a" stroke-width="1"/>
+                    <circle cx="504" cy="39" r="3" fill="#3b82f6"/>
+                    <text x="512" y="43" font-family="JetBrains Mono, monospace" font-size="9.5" fill="#71717a">Tests</text>
+
+                    <!-- Tab 5: Git -->
+                    <rect x="556" y="26" width="48" height="26" rx="5" fill="#1a1a1d" stroke="#27272a" stroke-width="1"/>
+                    <circle cx="568" cy="39" r="3" fill="#a855f7"/>
+                    <text x="576" y="43" font-family="JetBrains Mono, monospace" font-size="9.5" fill="#71717a">Git</text>
+
+                    <!-- Terminal content area -->
+                    <rect x="226" y="62" width="544" height="348" rx="6" fill="#0a0a0b"/>
+
+                    <!-- Split pane divider (vertical) -->
+                    <line x1="498" y1="62" x2="498" y2="410" stroke="#27272a" stroke-width="2"/>
+
+                    <!-- Left pane: Claude Code output -->
+                    <text x="240" y="88" font-family="JetBrains Mono, monospace" font-size="10" fill="#D97706" font-weight="500">claude&gt;</text>
+                    <text x="300" y="88" font-family="JetBrains Mono, monospace" font-size="10" fill="#a1a1aa">Add notification preferences</text>
+
+                    <text x="240" y="112" font-family="JetBrains Mono, monospace" font-size="10" fill="#71717a">Creating model...</text>
+                    <text x="240" y="130" font-family="JetBrains Mono, monospace" font-size="10" fill="#22c55e">+ src/models/notification.ts</text>
+                    <text x="240" y="148" font-family="JetBrains Mono, monospace" font-size="10" fill="#22c55e">+ src/routes/notifications.ts</text>
+                    <text x="240" y="166" font-family="JetBrains Mono, monospace" font-size="10" fill="#22c55e">+ src/components/NotifPrefs.tsx</text>
+                    <text x="240" y="184" font-family="JetBrains Mono, monospace" font-size="10" fill="#22c55e">+ tests/notifications.test.ts</text>
+
+                    <text x="240" y="212" font-family="JetBrains Mono, monospace" font-size="10" fill="#71717a">4 files created, 12 tests passing</text>
+
+                    <rect x="240" y="228" width="240" height="1" fill="#27272a"/>
+
+                    <text x="240" y="252" font-family="JetBrains Mono, monospace" font-size="10" fill="#D97706" font-weight="500">claude&gt;</text>
+                    <rect x="300" y="242" width="8" height="14" fill="#D97706" opacity="0.6">
+                        <animate attributeName="opacity" values="0.6;0;0.6" dur="1.2s" repeatCount="indefinite"/>
+                    </rect>
+
+                    <!-- Right pane: Dev server -->
+                    <text x="512" y="88" font-family="JetBrains Mono, monospace" font-size="10" fill="#22c55e" font-weight="500">$ npm run dev</text>
+                    <text x="512" y="112" font-family="JetBrains Mono, monospace" font-size="9.5" fill="#71717a">Local:   http://localhost:3000</text>
+                    <text x="512" y="130" font-family="JetBrains Mono, monospace" font-size="9.5" fill="#71717a">Network: http://192.168.1.42:3000</text>
+                    <text x="512" y="154" font-family="JetBrains Mono, monospace" font-size="9.5" fill="#3b82f6">Ready in 240ms</text>
+                    <text x="512" y="180" font-family="JetBrains Mono, monospace" font-size="9.5" fill="#71717a">GET /api/health 200 4ms</text>
+                    <text x="512" y="198" font-family="JetBrains Mono, monospace" font-size="9.5" fill="#71717a">GET /dashboard 200 12ms</text>
+                    <text x="512" y="216" font-family="JetBrains Mono, monospace" font-size="9.5" fill="#22c55e">HMR: Updated NotifPrefs.tsx</text>
+
+                    <!-- Stats overlay -->
+                    <rect x="592" y="362" width="168" height="44" rx="8" fill="#111113" fill-opacity="0.95" stroke="#27272a" stroke-width="1"/>
+                    <text x="604" y="382" font-family="JetBrains Mono, monospace" font-size="10" fill="#3b82f6" font-weight="500">3 projects</text>
+                    <text x="672" y="382" font-family="JetBrains Mono, monospace" font-size="10" fill="#71717a">/</text>
+                    <text x="682" y="382" font-family="JetBrains Mono, monospace" font-size="10" fill="#a1a1aa" font-weight="500">10 tabs</text>
+                    <text x="628" y="400" font-family="JetBrains Mono, monospace" font-size="11" fill="#fafafa" font-weight="600">1 developer</text>
+                </svg>
+            </div>
+
+            <h2>Why AI Coding Changes Everything for Solo Devs</h2>
+
+            <p>Think about everything you used to need a team for. Code review required a second pair of eyes. Comprehensive test coverage required dedicated QA time. Refactoring a legacy module was a multi-day affair that pulled you away from feature work. Documentation was that thing you always meant to do but never had bandwidth for. Claude Code handles all of these. You describe what you need in natural language, and it writes the implementation, the tests, the docs, and flags issues you might have missed. Your role shifts from writing every line of code to making product decisions and reviewing what the AI generates.</p>
+
+            <p>The mythical 10x developer was always just that -- a myth. But the 10x solo developer with AI? That might actually be real. When you can describe a feature in a sentence and have Claude Code produce a working implementation with tests in minutes instead of hours, the math on what one person can accomplish changes fundamentally. Indie hackers who used to ship one feature a week are shipping three or four.</p>
+
+            <p>But there's a catch. The bottleneck shifts. When coding speed is no longer the constraint, organization becomes the constraint. If you can't manage your AI sessions and project contexts across multiple codebases, you lose the speed advantage just as fast as you gained it. You end up with a dozen terminal tabs, no idea which Claude session belongs to which project, and half your time spent re-orienting the AI because it lost context. The workflow below solves that.</p>
+
+            <h2>The Solo Dev's Beam Setup</h2>
+
+            <p>Most solo developers don't work on a single project. The reality is closer to two, three, or even four concurrent codebases: your main product that pays the bills, a side project you're exploring, maybe an open source library you maintain, and occasionally client or freelance work. Each of these needs its own isolated environment where Claude Code has the right context and your terminals don't bleed into each other.</p>
+
+            <p>In Beam, you create a workspace for each project. Press <span class="kbd">&#x2318;N</span> and name it after the project. Every workspace gets its own set of tabs, its own split pane configuration, and its own Claude Code session. When you're working in your SaaS product workspace, you see only SaaS-related terminals. When you switch to your side project, it's a completely different environment. No cross-contamination, no confusion.</p>
+
+            <p>Save your layouts with <span class="kbd">&#x2318;S</span> so you can restore the entire multi-project setup in one action. The Quick Switcher (<span class="kbd">&#x2318;P</span>) becomes your project index -- type a few characters and jump to any workspace, any tab, across all your projects instantly.</p>
+
+            <h2>Project 1: Your Main Product</h2>
+
+            <p>This is where you spend 60-70% of your development time, and it deserves the most elaborate workspace setup. You want everything you need within a keystroke, with no context switching to find the right terminal.</p>
+
+            <ul>
+                <li><strong>Tab 1: Claude Code</strong> -- Your primary AI partner. This is where features get built, bugs get debugged, and refactors happen. It runs continuously throughout the day.</li>
+                <li><strong>Tab 2: Dev server</strong> -- Your frontend or full-stack dev server, running hot reload so you see changes the moment Claude writes them.</li>
+                <li><strong>Tab 3: API/Backend server</strong> -- If you're building a separated frontend and backend, this tab watches your API server logs.</li>
+                <li><strong>Tab 4: Tests</strong> -- Running your test suite continuously or on demand. When Claude generates code, you switch here to verify.</li>
+                <li><strong>Tab 5: Git</strong> -- Staging, committing, pushing. Keeping this in its own tab means your git workflow never interrupts your coding flow.</li>
+            </ul>
+
+            <p>Use split panes (<span class="kbd">&#x2318;&#x2325;&#x2303;T</span>) to put Claude Code and your dev server side by side. You describe a feature to Claude on the left, and you watch it appear in your running application on the right. This is the setup that makes AI coding feel like a superpower.</p>
+
+            <h2>Project 2: The Side Project</h2>
+
+            <p>Your side project gets a lighter workspace -- two or three tabs instead of five. Tab one is Claude Code with its own session and its own context, completely separate from your main product. Tab two is your dev server or test runner, depending on what the project needs. If the project has both, add a third tab.</p>
+
+            <p>The key to making side projects work as a solo developer is reducing the friction of context switching. You might only touch this project a few times a week, maybe for 30 minutes at a stretch. Without organized workspaces, those 30 minutes get eaten alive by re-opening terminals, navigating to the right directory, and re-explaining to Claude what this project is about. With Beam, you hit <span class="kbd">&#x2318;&#x2325;&#x2192;</span> to switch workspaces, and everything is exactly where you left it. Claude's memory file keeps it oriented even after days away from the codebase. You do your 30-minute sprint, ship a fix or a feature, and switch back to your main product in one keystroke.</p>
+
+            <h2>Project 3: Open Source / Client Work</h2>
+
+            <p>Your third workspace is minimal -- two tabs. Tab one is Claude Code, which you use for code review, contributions, bug fixes, and understanding unfamiliar codebases. Tab two is Git, where you manage upstream remotes, create pull requests, and handle the mechanics of contributing to projects you don't own.</p>
+
+            <p>Project memory is particularly powerful here. You document the project's conventions, code style, testing requirements, and contribution guidelines in a CLAUDE.md file, and Claude fits into the project immediately. It writes code that matches the existing patterns, follows the style guide, and passes the CI pipeline on the first try. You contribute like a regular team member, but the whole process takes a third of the time because Claude handles the implementation details while you focus on understanding the problem and reviewing the solution.</p>
+
+            <h2>The Daily Workflow</h2>
+
+            <p>Here's what a typical day looks like with this setup. In the morning, you open Beam and restore your saved layout. All three workspaces come back exactly as you left them -- tabs, splits, working directories, everything. You start Claude Code in your main product workspace with <code>claude -r</code> to resume yesterday's session. The conversation history is intact, Claude remembers what you were working on, and you pick up right where you stopped.</p>
+
+            <p>You describe today's feature: "Add user notification preferences with email and push options." Claude builds it -- the data model, the API route, the frontend component, the tests. You review the generated code, make refinements, and ship it. What would have been a full day of work is done by lunch.</p>
+
+            <p>After lunch, you switch to your side project with <span class="kbd">&#x2318;&#x2325;&#x2192;</span> and resume that Claude session too. A quick 30-minute sprint: "Fix the billing webhook handler that's failing on subscription renewals." Claude analyzes the issue, writes the fix, the tests pass, you commit and push. Done.</p>
+
+            <p>Late afternoon, you open your open source workspace, review a pull request from a contributor, and use Claude to understand a complex code change. You leave a detailed review with suggestions, all informed by Claude's analysis. End of day: your layouts auto-persist, and tomorrow starts exactly where today ended. No setup, no re-orientation, no wasted time.</p>
+
+            <div class="highlight">
+                <h3>Project Memory: Your AI's Onboarding Doc</h3>
+                <p>This is the solo developer's secret weapon. Each project has its own CLAUDE.md file with project-specific context that Claude reads automatically when it starts a session. For your main product, this includes the full architecture, business logic rules, API conventions, and database schema notes. For your side project, it covers the tech stack, deployment process, and key architectural decisions. For open source work, it documents contribution guidelines, code style, and testing requirements.</p>
+                <p>When you switch projects, Claude instantly has the right context. There's no re-explaining that this project uses PostgreSQL instead of MongoDB, or that the API follows a specific naming convention, or that tests need to cover error handling edge cases. It's like having a pair programmer who remembers everything about every project you've ever worked on -- because it does.</p>
+            </div>
+
+            <h2>Shipping Faster: The Compound Effect</h2>
+
+            <p>The gains from this workflow compound over time, and that's what makes it so powerful. In week one, you're learning the setup, figuring out how to prompt Claude effectively, and building your initial memory files. Even so, you're probably shipping twice as fast as you were with pure solo coding. The AI handles boilerplate, generates tests, and catches bugs you would have found in QA.</p>
+
+            <p>By week four, your memory files are rich with project context. Claude knows your patterns -- how you structure API endpoints, how you name components, what your error handling conventions are. You're operating at roughly five times your previous speed, not because you're typing faster but because entire categories of work have been automated.</p>
+
+            <p>By month three, Claude generates code that matches your style perfectly. Tests cover edge cases you might have missed on your own. The compound effect of persistent memory, organized workspaces, and AI speed is massive. Solo developers who nail this workflow consistently report that they ship like a three-person team. The difference is that the "team" costs nothing extra and never needs to sync up over a standup meeting.</p>
+
+            <h2>What NOT to Delegate to AI</h2>
+
+            <p>With all this talk about AI speed, it's worth being clear about what you should not hand off to Claude Code. Product decisions -- what to build, who it's for, what to charge -- are yours. You understand your users and your market in ways that an AI model cannot. User experience design is another area where human judgment is irreplaceable. Claude can build a notification preferences panel, but you decide whether it should be a modal, a settings page, or an inline dropdown. How it works versus how it feels are very different problems.</p>
+
+            <p>Architecture decisions benefit from Claude's suggestions, but the final call is yours. You're the one who lives with the consequences of choosing a monolith versus microservices, or SQL versus NoSQL, or server-rendered versus client-side. And security review is non-negotiable: always review AI-generated authentication, authorization, and data handling code manually. Claude is excellent at writing functional code, but security requires adversarial thinking that you need to bring yourself.</p>
+
+            <p>The rule is simple. Let Claude handle the implementation. You handle the product.</p>
+
+            <div class="cta-box">
+                <h3>Build Like a Team of Three</h3>
+                <p>Download Beam and set up the solo developer workflow that ships faster than you thought possible.</p>
+                <a href="../" class="btn">Download Beam for macOS</a>
+            </div>
+
+            <h2>Summary</h2>
+
+            <p>The solo developer workflow with AI coding comes down to a few key principles:</p>
+
+            <ul>
+                <li><strong>One workspace per project</strong> -- Isolate your contexts so Claude Code sessions, dev servers, and git operations never bleed across projects.</li>
+                <li><strong>Save and restore layouts</strong> -- Eliminate startup friction. Yesterday's setup is today's setup, restored in one action.</li>
+                <li><strong>Project memory files</strong> -- Give each project a CLAUDE.md so the AI has instant context without re-explanation.</li>
+                <li><strong>Split panes for feedback loops</strong> -- Claude Code on the left, live output on the right. Watch features appear in real time.</li>
+                <li><strong>Quick Switcher for speed</strong> -- <span class="kbd">&#x2318;P</span> to jump anywhere across all projects instantly.</li>
+                <li><strong>Focus on product, not implementation</strong> -- Delegate coding tasks to Claude. Spend your time on decisions that only you can make.</li>
+            </ul>
+
+            <p>The gap between what one developer can build and what a team can build has never been smaller. With the right workflow, it barely exists at all.</p>
+
+            <div class="related-articles">
+                <h2>Related Articles</h2>
+                <div class="related-grid">
+                    <a href="vibe-coding-setup.html" class="related-card">
+                        <h4>The Perfect Vibe Coding Setup</h4>
+                        <p>Achieve flow state with the right terminal organization for AI-assisted development.</p>
+                    </a>
+                    <a href="manage-multiple-claude-code-sessions.html" class="related-card">
+                        <h4>Manage Multiple Claude Code Sessions</h4>
+                        <p>Run parallel Claude Code sessions across projects without losing track.</p>
+                    </a>
+                    <a href="ai-agent-memory-management.html" class="related-card">
+                        <h4>AI Agent Memory Management</h4>
+                        <p>How persistent memory files make Claude Code smarter across sessions.</p>
+                    </a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>
+                <a href="../">Beam</a> &bull; Terminal Organizer for macOS &bull;
+                <a href="mailto:frank@nextuptechnologies.co">Contact</a>
+            </p>
+
+            <p style="margin-top: 12px; font-size: 0.8rem;">
+                <a href="/privacy.html" style="color: #71717a; text-decoration: none;">Privacy Policy</a> &bull;
+                <a href="/terms.html" style="color: #71717a; text-decoration: none;">Terms of Service</a>
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>

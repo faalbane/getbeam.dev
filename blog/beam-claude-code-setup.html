@@ -13,7 +13,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Setting Up Beam for Claude Code Development | Beam</title>
-    <meta name="description" content="A complete guide to organizing your Claude Code sessions with Beam. Learn how to use subwindows, layouts, and keyboard shortcuts for maximum productivity with AI-assisted coding.">
+    <meta name="description" content="A complete guide to organizing your Claude Code sessions with Beam. Learn how to use workspaces, layouts, and keyboard shortcuts for maximum productivity with AI-assisted coding.">
     <meta name="keywords" content="Claude Code setup, Claude Code terminal, Beam Claude Code, AI coding workflow, Claude Code productivity, organize Claude Code, terminal for Claude Code, Claude Code tips">
     <meta name="author" content="NextUp Technologies">
     <meta name="robots" content="index, follow">
@@ -358,21 +358,21 @@
 
             <p>In a regular terminal app, this means 15+ tabs all named "zsh" with no way to quickly find anything. You waste time hunting for the right tab instead of coding.</p>
 
-            <p>Beam fixes this with <strong>subwindows</strong> (grouped terminals by project), <strong>layouts</strong> (save and restore your entire setup), and <strong>keyboard navigation</strong> (jump anywhere instantly).</p>
+            <p>Beam fixes this with <strong>workspaces</strong> (grouped terminals by project), <strong>layouts</strong> (save and restore your entire setup), and <strong>keyboard navigation</strong> (jump anywhere instantly).</p>
 
             <h2>Step 1: Install Beam</h2>
 
-            <p>Download Beam from <a href="../">getbeam.dev</a> and drag it to your Applications folder. Launch it, and you'll see your first subwindow with a terminal ready to go.</p>
+            <p>Download Beam from <a href="../">getbeam.dev</a> and drag it to your Applications folder. Launch it, and you'll see your first workspace with a terminal ready to go.</p>
 
             <div class="tip">
-                <strong>Tip:</strong> Beam is free to try with 1 subwindow and 1 layout. Pro ($10/month) unlocks unlimited subwindows, layouts, and split panes.
+                <strong>Tip:</strong> Beam is free to try with 1 workspace and 1 layout. Pro ($10/month) unlocks unlimited workspaces, layouts, and split panes.
             </div>
 
-            <h2>Step 2: Create Subwindows for Each Project</h2>
+            <h2>Step 2: Create Workspaces for Each Project</h2>
 
-            <p>The key concept in Beam is the <strong>subwindow</strong> — a separate floating window that contains tabs for a specific project or context.</p>
+            <p>The key concept in Beam is the <strong>workspace</strong> — a separate floating window that contains tabs for a specific project or context.</p>
 
-            <p><span class="step-number">1</span>Press <span class="kbd">⌘N</span> to create a new subwindow.</p>
+            <p><span class="step-number">1</span>Press <span class="kbd">⌘N</span> to create a new workspace.</p>
 
             <p><span class="step-number">2</span>Press <span class="kbd">⌘I</span> to rename it (e.g., "Backend API").</p>
 
@@ -381,18 +381,18 @@
             <div class="highlight">
                 <h3>Example Setup</h3>
                 <ul>
-                    <li><strong>Subwindow 1: "Backend API"</strong> — Your Node/Python/Go API project</li>
-                    <li><strong>Subwindow 2: "Frontend"</strong> — Your React/Vue/Next.js app</li>
-                    <li><strong>Subwindow 3: "Infrastructure"</strong> — Docker, K8s, deployment scripts</li>
+                    <li><strong>Workspace 1: "Backend API"</strong> — Your Node/Python/Go API project</li>
+                    <li><strong>Workspace 2: "Frontend"</strong> — Your React/Vue/Next.js app</li>
+                    <li><strong>Workspace 3: "Infrastructure"</strong> — Docker, K8s, deployment scripts</li>
                 </ul>
             </div>
 
-            <h2>Step 3: Set Up Tabs Within Each Subwindow</h2>
+            <h2>Step 3: Set Up Tabs Within Each Workspace</h2>
 
-            <p>Each subwindow can have multiple tabs. For a Claude Code workflow, I recommend this structure:</p>
+            <p>Each workspace can have multiple tabs. For a Claude Code workflow, I recommend this structure:</p>
 
             <div class="highlight">
-                <h3>Backend API Subwindow</h3>
+                <h3>Backend API Workspace</h3>
                 <ul>
                     <li><strong>Tab 1: "Claude"</strong> — Your Claude Code session (<code>claude</code>)</li>
                     <li><strong>Tab 2: "Server"</strong> — Dev server running (<code>npm run dev</code>)</li>
@@ -426,13 +426,13 @@
 
             <h2>Step 5: Save Your Layout</h2>
 
-            <p>Once you have your subwindows, tabs, and splits arranged perfectly, save it as a layout:</p>
+            <p>Once you have your workspaces, tabs, and splits arranged perfectly, save it as a layout:</p>
 
             <p><span class="step-number">1</span>Press <span class="kbd">⌘S</span> to save layout.</p>
 
             <p><span class="step-number">2</span>Give it a name like "Full Stack Dev" or "Claude Code Setup".</p>
 
-            <p>Tomorrow, when you start working, press <span class="kbd">⌘⇧L</span> to load your layout. Everything is restored exactly as you left it — subwindows, tabs, positions, even the terminal history.</p>
+            <p>Tomorrow, when you start working, press <span class="kbd">⌘⇧L</span> to load your layout. Everything is restored exactly as you left it — workspaces, tabs, positions, even the terminal history.</p>
 
             <h2>Step 6: Master the Keyboard Shortcuts</h2>
 
@@ -445,7 +445,7 @@
                 </tr>
                 <tr>
                     <td><span class="kbd">⌘1</span> - <span class="kbd">⌘9</span></td>
-                    <td>Jump to subwindow 1-9</td>
+                    <td>Jump to workspace 1-9</td>
                 </tr>
                 <tr>
                     <td><span class="kbd">⌘P</span></td>
@@ -453,11 +453,11 @@
                 </tr>
                 <tr>
                     <td><span class="kbd">⌘⌥←</span> / <span class="kbd">⌘⌥→</span></td>
-                    <td>Jump between subwindows</td>
+                    <td>Jump between workspaces</td>
                 </tr>
                 <tr>
                     <td><span class="kbd">⌘⇧←</span> / <span class="kbd">⌘⇧→</span></td>
-                    <td>Switch tabs within subwindow</td>
+                    <td>Switch tabs within workspace</td>
                 </tr>
                 <tr>
                     <td><span class="kbd">⌘⌥↑</span> / <span class="kbd">⌘⌥↓</span></td>
@@ -466,7 +466,7 @@
             </table>
 
             <div class="tip">
-                <strong>The killer shortcut:</strong> <span class="kbd">⌘P</span> opens the Quick Switcher. Type a few characters to fuzzy-match any subwindow, tab, or layout. It's like Spotlight for your terminals.
+                <strong>The killer shortcut:</strong> <span class="kbd">⌘P</span> opens the Quick Switcher. Type a few characters to fuzzy-match any workspace, tab, or layout. It's like Spotlight for your terminals.
             </div>
 
             <h2>Step 7: Optimize Your Claude Code Workflow</h2>
@@ -481,11 +481,11 @@
                 <li>"Claude: Bug #142" — Fixing a specific issue</li>
             </ul>
 
-            <h3>Use Separate Subwindows for Separate Contexts</h3>
-            <p>Don't mix projects in one subwindow. When Claude is working on your backend, you don't want to accidentally run frontend commands in that terminal.</p>
+            <h3>Use Separate Workspaces for Separate Contexts</h3>
+            <p>Don't mix projects in one workspace. When Claude is working on your backend, you don't want to accidentally run frontend commands in that terminal.</p>
 
-            <h3>Keep a "Scratch" Subwindow</h3>
-            <p>Create a subwindow called "Scratch" for quick one-off commands, testing snippets, or exploring new ideas. Keep your project subwindows clean.</p>
+            <h3>Keep a "Scratch" Workspace</h3>
+            <p>Create a workspace called "Scratch" for quick one-off commands, testing snippets, or exploring new ideas. Keep your project workspaces clean.</p>
 
             <h3>Save Multiple Layouts</h3>
             <p>Create different layouts for different modes:</p>
@@ -500,27 +500,27 @@
             <p>Here's the exact setup I use for full-stack development with Claude Code:</p>
 
             <div class="highlight">
-                <h3>Subwindow 1: "API" (⌘1)</h3>
+                <h3>Workspace 1: "API" (⌘1)</h3>
                 <p>Tab 1: Claude Code session for backend work<br>
                 Tab 2: Server running (<code>npm run dev</code>)<br>
                 Tab 3: Database CLI (<code>psql</code>)</p>
             </div>
 
             <div class="highlight">
-                <h3>Subwindow 2: "Web" (⌘2)</h3>
+                <h3>Workspace 2: "Web" (⌘2)</h3>
                 <p>Tab 1: Claude Code session for frontend<br>
                 Tab 2: Next.js dev server<br>
                 Tab 3: Storybook for components</p>
             </div>
 
             <div class="highlight">
-                <h3>Subwindow 3: "Git" (⌘3)</h3>
+                <h3>Workspace 3: "Git" (⌘3)</h3>
                 <p>Tab 1: Git status and commits<br>
                 Tab 2: GitHub CLI (<code>gh pr list</code>)</p>
             </div>
 
             <div class="highlight">
-                <h3>Subwindow 4: "Deploy" (⌘4)</h3>
+                <h3>Workspace 4: "Deploy" (⌘4)</h3>
                 <p>Tab 1: Production SSH<br>
                 Tab 2: Logs streaming<br>
                 Tab 3: Deployment scripts</p>
@@ -533,7 +533,7 @@
             <p>Claude Code is powerful, but it's even better when you're not fighting your terminal setup. With Beam:</p>
 
             <ul>
-                <li><strong>Subwindows</strong> keep your projects separated</li>
+                <li><strong>Workspaces</strong> keep your projects separated</li>
                 <li><strong>Tabs</strong> organize your workflow within each project</li>
                 <li><strong>Split panes</strong> let you see Claude Code and results simultaneously</li>
                 <li><strong>Layouts</strong> save your entire setup for instant restoration</li>
@@ -544,7 +544,7 @@
 
             <div class="cta-box">
                 <h3>Ready to Level Up Your Claude Code Workflow?</h3>
-                <p>Download Beam free and organize your AI coding sessions. Subwindows, layouts, and keyboard navigation — everything you need for the terminal era.</p>
+                <p>Download Beam free and organize your AI coding sessions. Workspaces, layouts, and keyboard navigation — everything you need for the terminal era.</p>
                 <a href="../" class="btn">Download Beam Free</a>
             </div>
 
@@ -571,9 +571,15 @@
     <footer>
         <div class="container">
             <p>
-                <a href="../">Beam</a> · Built by <a href="https://nextuptechnologies.co">NextUp Technologies</a>
+                <a href="../">Beam</a> · Built by NextUp Technologies
+            </p>
+
+            <p style="margin-top: 12px; font-size: 0.8rem;">
+                <a href="/privacy.html" style="color: #71717a; text-decoration: none;">Privacy Policy</a> &bull;
+                <a href="/terms.html" style="color: #71717a; text-decoration: none;">Terms of Service</a>
             </p>
         </div>
     </footer>
+
 </body>
 </html>

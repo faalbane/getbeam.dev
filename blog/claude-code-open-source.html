@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D0XH8B0RKL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-D0XH8B0RKL');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Use Claude Code for Open Source Contributions | Beam Terminal Organizer</title>
+    <meta name="description" content="Contribute to open source projects faster with Claude Code. Understand unfamiliar codebases, fix bugs, write tests, and submit quality PRs — with Beam organizing your workflow.">
+    <meta name="keywords" content="Claude Code open source, open source contributions AI, contribute to open source with AI, Claude Code PR, understand codebase AI, first open source contribution">
+    <meta name="author" content="NextUp Technologies">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://getbeam.dev/blog/claude-code-open-source.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://getbeam.dev/blog/claude-code-open-source.html">
+    <meta property="og:title" content="How to Use Claude Code for Open Source Contributions">
+    <meta property="og:description" content="Contribute to open source projects faster with Claude Code. Understand unfamiliar codebases, fix bugs, write tests, and submit quality PRs.">
+    <meta property="og:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="How to Use Claude Code for Open Source Contributions">
+    <meta name="twitter:description" content="Contribute to open source projects faster with Claude Code. Understand unfamiliar codebases, fix bugs, write tests, and submit quality PRs.">
+    <meta name="twitter:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "How to Use Claude Code for Open Source Contributions",
+        "description": "Contribute to open source projects faster with Claude Code. Understand unfamiliar codebases, fix bugs, write tests, and submit quality PRs — with Beam organizing your workflow.",
+        "author": {
+            "@type": "Organization",
+            "name": "NextUp Technologies"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Beam"
+        },
+        "datePublished": "2026-02-11",
+        "keywords": "Claude Code open source, open source contributions AI, contribute to open source with AI, Claude Code PR, understand codebase AI"
+    }
+    </script>
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #111113;
+            --bg-tertiary: #1a1a1d;
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.4);
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --border: #27272a;
+            --success: #22c55e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        header {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 60px;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1.5rem;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            background: var(--accent);
+            color: white;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+        }
+
+        article {
+            padding-bottom: 80px;
+        }
+
+        .breadcrumb {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+        }
+
+        .breadcrumb a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .meta {
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            font-size: 0.95rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 48px 0 20px;
+            color: var(--text-primary);
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        ul, ol {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            padding-left: 24px;
+        }
+
+        li {
+            margin-bottom: 12px;
+        }
+
+        .highlight {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 32px 0;
+        }
+
+        .highlight h3 {
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .kbd {
+            display: inline-block;
+            padding: 2px 8px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+        }
+
+        code {
+            font-family: 'JetBrains Mono', monospace;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 2px 8px;
+            font-size: 0.9rem;
+            color: #e4e4e7;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .cta-box h3 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+        }
+
+        .cta-box p {
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 24px;
+        }
+
+        .cta-box .btn {
+            background: white;
+            color: var(--accent);
+        }
+
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+
+        .blog-visual {
+            margin: 40px 0;
+        }
+
+        .blog-visual svg {
+            width: 100%;
+            height: auto;
+        }
+
+        .related-articles { margin-top: 60px; padding-top: 40px; border-top: 1px solid var(--border); }
+        .related-articles h2 { font-size: 1.5rem; margin-bottom: 24px; }
+        .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .related-card { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-decoration: none; transition: border-color 0.2s; }
+        .related-card:hover { border-color: var(--accent); }
+        .related-card h4 { color: white; font-size: 1rem; margin: 0 0 8px 0; }
+        .related-card p { color: var(--text-muted); font-size: 0.85rem; margin: 0; }
+        @media (max-width: 600px) { .related-grid { grid-template-columns: 1fr; } h1 { font-size: 1.8rem; } }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="../" class="logo">
+                <div class="logo-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round">
+                        <path d="M4 17l6-6-6-6M12 19h8"/>
+                    </svg>
+                </div>
+                Beam
+            </a>
+            <a href="../" class="btn">Download Beam</a>
+        </div>
+    </header>
+
+    <main>
+        <article class="container">
+            <div class="breadcrumb">
+                <a href="../">Beam</a> / <a href="../#guides">Guides</a> / Claude Code for Open Source
+            </div>
+
+            <h1>How to Use Claude Code for Open Source Contributions</h1>
+            <p class="meta">February 2026 &bull; 7 min read</p>
+
+            <p>Contributing to open source is one of the best ways to grow as a developer, build your reputation, and give back to the tools you rely on every day. But the biggest barrier to contributing isn't skill -- it's understanding an unfamiliar codebase quickly enough to make a meaningful contribution. Most developers have the ability to fix bugs and add features, but they stall out trying to figure out where things live and how the pieces connect. Claude Code removes that barrier entirely. It can read an entire repository, explain the architecture in plain language, and guide you through making your first (or hundredth) open source contribution.</p>
+
+            <div class="blog-visual">
+                <svg viewBox="0 0 800 200" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Background -->
+                    <rect width="800" height="200" rx="16" fill="#111113" stroke="#27272a" stroke-width="1"/>
+
+                    <!-- Connection lines -->
+                    <line x1="148" y1="100" x2="232" y2="100" stroke="#d97706" stroke-width="2" stroke-dasharray="6 4" opacity="0.6"/>
+                    <line x1="308" y1="100" x2="392" y2="100" stroke="#d97706" stroke-width="2" stroke-dasharray="6 4" opacity="0.6"/>
+                    <line x1="468" y1="100" x2="532" y2="100" stroke="#d97706" stroke-width="2" stroke-dasharray="6 4" opacity="0.6"/>
+                    <line x1="608" y1="100" x2="662" y2="100" stroke="#22c55e" stroke-width="2" stroke-dasharray="6 4" opacity="0.6"/>
+
+                    <!-- Step 1: Understand -->
+                    <circle cx="110" cy="100" r="38" fill="#1a1a1d" stroke="#d97706" stroke-width="2"/>
+                    <!-- Eye icon -->
+                    <ellipse cx="110" cy="97" rx="14" ry="9" fill="none" stroke="#d97706" stroke-width="1.5"/>
+                    <circle cx="110" cy="97" r="4" fill="#d97706"/>
+                    <text x="110" y="155" text-anchor="middle" fill="#a1a1aa" font-family="Space Grotesk, sans-serif" font-size="12" font-weight="500">Understand</text>
+
+                    <!-- Step 2: Find Issue -->
+                    <circle cx="270" cy="100" r="38" fill="#1a1a1d" stroke="#d97706" stroke-width="2"/>
+                    <!-- Search icon -->
+                    <circle cx="265" cy="95" r="10" fill="none" stroke="#d97706" stroke-width="1.5"/>
+                    <line x1="273" y1="103" x2="280" y2="110" stroke="#d97706" stroke-width="1.5" stroke-linecap="round"/>
+                    <text x="270" y="155" text-anchor="middle" fill="#a1a1aa" font-family="Space Grotesk, sans-serif" font-size="12" font-weight="500">Find Issue</text>
+
+                    <!-- Step 3: Fix -->
+                    <circle cx="430" cy="100" r="38" fill="#1a1a1d" stroke="#d97706" stroke-width="2"/>
+                    <!-- Wrench icon -->
+                    <path d="M420 90 L430 100 L440 90 M430 100 L430 115" fill="none" stroke="#d97706" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <text x="430" y="155" text-anchor="middle" fill="#a1a1aa" font-family="Space Grotesk, sans-serif" font-size="12" font-weight="500">Fix</text>
+
+                    <!-- Step 4: Test -->
+                    <circle cx="570" cy="100" r="38" fill="#1a1a1d" stroke="#d97706" stroke-width="2"/>
+                    <!-- Checkmark icon -->
+                    <path d="M556 100 L566 110 L584 90" fill="none" stroke="#d97706" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <text x="570" y="155" text-anchor="middle" fill="#a1a1aa" font-family="Space Grotesk, sans-serif" font-size="12" font-weight="500">Test</text>
+
+                    <!-- Step 5: PR (GitHub style merged) -->
+                    <circle cx="710" cy="100" r="38" fill="#1a1a1d" stroke="#22c55e" stroke-width="2.5"/>
+                    <!-- Git merge icon -->
+                    <circle cx="710" cy="85" r="4" fill="#22c55e"/>
+                    <circle cx="722" cy="97" r="4" fill="#22c55e"/>
+                    <circle cx="710" cy="115" r="4" fill="#22c55e"/>
+                    <line x1="710" y1="89" x2="710" y2="111" stroke="#22c55e" stroke-width="1.5"/>
+                    <path d="M722 97 Q716 97 710 105" fill="none" stroke="#22c55e" stroke-width="1.5"/>
+                    <text x="710" y="155" text-anchor="middle" fill="#22c55e" font-family="Space Grotesk, sans-serif" font-size="12" font-weight="600">PR Merged</text>
+
+                    <!-- AI-assisted label -->
+                    <rect x="220" y="16" width="160" height="24" rx="12" fill="#d97706" opacity="0.15"/>
+                    <text x="300" y="33" text-anchor="middle" fill="#d97706" font-family="Space Grotesk, sans-serif" font-size="11" font-weight="500">Claude Code assisted</text>
+
+                    <!-- Merged badge -->
+                    <rect x="660" y="16" width="100" height="24" rx="12" fill="#22c55e" opacity="0.15"/>
+                    <text x="710" y="33" text-anchor="middle" fill="#22c55e" font-family="Space Grotesk, sans-serif" font-size="11" font-weight="500">Merged</text>
+                </svg>
+            </div>
+
+            <h2>The Open Source Contribution Barrier</h2>
+
+            <p>Every open source project you encounter presents the same challenge on day one: thousands of files organized in patterns you don't recognize, abstractions you've never seen before, and conventions that only make sense to the people who built them. The time from cloning a repo to making your first meaningful change is usually measured in hours or days, not minutes. Most of that time is spent just reading code and trying to build a mental model of how everything fits together.</p>
+
+            <p>There's also the psychological barrier. Nobody wants to submit a pull request that gets rejected because it doesn't follow the project's patterns, breaks an unwritten rule, or misunderstands how a module is supposed to be used. Maintainers are busy people -- they don't have time to hand-hold every new contributor, and their issue trackers are full of questions that already have answers somewhere in the documentation.</p>
+
+            <p>Claude Code solves all of these problems by acting as an instant, tireless guide to any codebase. It reads the code, understands the structure, and answers your questions in plain language. It's like having a senior contributor sitting next to you, except it's available on every project, at any hour, and it never gets frustrated with beginner questions.</p>
+
+            <h2>Step 1: Understand the Codebase</h2>
+
+            <p>The first thing you do after cloning a repository is start Claude Code. Open your terminal in the project directory and run <code>claude</code>. Claude Code will index the project and be ready to answer questions about it within seconds.</p>
+
+            <p>Start with the big picture. Ask Claude: "Explain the architecture of this project. What are the main modules, how do they interact, and where is the entry point?" Claude reads the codebase -- not just the README, but the actual source files, configuration, and directory structure -- and provides a clear, structured overview. It will tell you which directories contain the core logic, how the data flows between modules, and where the application starts executing.</p>
+
+            <p>Then zoom into the area you care about. If you're interested in how authentication works, ask "How does the authentication system work in this project?" Claude will trace the entire auth flow for you: from the login endpoint, through the middleware, to the session store or JWT validation. It follows imports, reads function signatures, and connects the dots across files that might be spread across a dozen directories.</p>
+
+            <p>In five minutes, you have the kind of understanding that normally takes a full day of reading code. And because Claude can answer follow-up questions, you can keep drilling down until you understand exactly the part of the codebase you need to work in.</p>
+
+            <h2>Step 2: Find and Understand an Issue</h2>
+
+            <p>Browse the project's issue tracker on GitHub and look for issues labeled "good first issue" or "help wanted." These are issues that maintainers have specifically flagged as being approachable for new contributors. Pick one that interests you, and then bring it to Claude Code.</p>
+
+            <p>Tell Claude about the issue: "Explain issue #142: 'Pagination breaks with empty results.' Where in the codebase would this bug be?" Claude will read the issue description, understand the problem, and then search the codebase for the relevant code. It will identify the pagination module, find the function that calculates page counts, and explain why the bug happens -- maybe it's dividing by zero when there are no results, or maybe it's passing undefined to a template that expects a number.</p>
+
+            <p>More importantly, Claude gives you a roadmap. It tells you which files need to change, what the fix should look like, and whether there are any related tests that need updating. You go from "I found an interesting issue" to "I know exactly what to do" in a single conversation.</p>
+
+            <h2>Step 3: Implement the Fix</h2>
+
+            <p>Now that you understand both the codebase and the issue, it's time to write the fix. Tell Claude Code exactly what you want: "Fix the pagination bug: when the results array is empty, the page count should be 0, not NaN." Claude will make the change, and it will do so in a way that matches the project's existing patterns.</p>
+
+            <p>This is one of Claude Code's strongest capabilities for open source work. It doesn't just fix the bug in isolation -- it reads the surrounding code and follows the same style, naming conventions, and error handling patterns that the rest of the project uses. If the project uses early returns, Claude uses early returns. If the project uses descriptive variable names, Claude does the same. Your contribution looks like it was written by someone who's been on the project for months, not someone who cloned it an hour ago.</p>
+
+            <p>Claude also thinks about the ripple effects of a change. If updating the pagination function affects other parts of the code, it will update those too. If there are related tests that need changes, it handles those as part of the fix.</p>
+
+            <h2>Step 4: Write Tests</h2>
+
+            <p>Most open source projects require tests with every contribution, and many new contributors stumble here. They don't know which testing framework the project uses, where tests live, or what the testing conventions are. Claude Code handles all of this automatically.</p>
+
+            <p>Ask Claude: "Write tests for the pagination fix. Follow the project's existing test patterns." Claude reads the existing test files to understand the framework (Jest, pytest, Go's testing package, whatever the project uses), the assertion style, the setup/teardown patterns, and the file organization. Then it generates tests that match perfectly -- not generic tests, but tests that look like they belong in this specific project.</p>
+
+            <p>Claude also thinks about edge cases that the original code didn't cover. It will test the empty array case (the bug you fixed), but also zero-length strings, null inputs, and boundary conditions. These extra tests often impress maintainers and make your PR more likely to be accepted quickly.</p>
+
+            <p>Run the tests in your Beam tests tab to verify everything passes before moving on.</p>
+
+            <h2>Step 5: Submit a Quality PR</h2>
+
+            <div class="highlight">
+                <h3>Let Claude Draft Your PR Description</h3>
+                <p>Ask Claude: "Draft a PR description for this fix. Follow the project's PR template if one exists." Claude reads the project's CONTRIBUTING.md and any PR templates in the .github directory, then generates a description that includes what was changed, why it was changed, how to test it, and which issue it closes. This is the kind of thorough PR description that gets maintainers to review and merge quickly.</p>
+            </div>
+
+            <p>A well-written pull request is often the difference between a quick merge and a PR that sits unreviewed for weeks. Maintainers are more likely to engage with contributions that are clearly explained, properly tested, and follow the project's conventions. Claude Code helps you hit all three marks.</p>
+
+            <p>The PR description Claude generates typically includes a summary of the change, the motivation behind it, a description of how the fix works, instructions for testing, and a reference to the related issue. If the project has a specific PR template with checkboxes or required sections, Claude fills those out too.</p>
+
+            <p>Before you submit, there's one more thing you can do: ask Claude to review your own changes. Tell it "Review my changes for anything the maintainers might flag." Claude will look at your diff with fresh eyes and point out potential issues -- maybe a variable name that doesn't match the project's conventions, a missing null check, or a test case that could be stronger. It's like having a code review before the actual code review.</p>
+
+            <h2>The Open Source Workspace in Beam</h2>
+
+            <p>Open source contributions involve more than just writing code. You're jumping between Claude Code for understanding and implementing, a terminal for running tests, and git for managing branches, remotes, and pull requests. Beam keeps all of this organized in a single workspace.</p>
+
+            <p>Set up a Beam workspace for each open source project you contribute to. The first tab is Claude Code -- your primary tool for understanding the codebase and writing changes. The second tab is for running tests, so you can verify your changes without leaving the workspace. The third tab is for git operations: managing your fork's upstream remote, creating feature branches, and pushing changes for your PR.</p>
+
+            <p>This layout means everything you need for a contribution is in one place. No hunting through a dozen terminal windows to find the right one. No accidentally running a test command in your Claude Code session. Each concern has its own tab, and they're all one click apart.</p>
+
+            <h2>Contributing to Multiple Projects</h2>
+
+            <p>Once you get comfortable with the workflow, you'll likely want to contribute to multiple open source projects. Beam makes this seamless with workspace isolation. Each project gets its own workspace with its own Claude Code session, its own test runner, and its own git context. There's no cross-contamination between projects.</p>
+
+            <p>Each workspace has its own Claude Code session with its own context window, so Claude's understanding of one project doesn't interfere with another. When you're working on a React component library in one workspace and a Python CLI tool in another, Claude maintains separate mental models for each.</p>
+
+            <p>Switch between projects instantly with <span class="kbd">⌘⌥←→</span> to move between adjacent workspaces, or press <span class="kbd">⌘P</span> to open the Quick Switcher and jump to any project by name. You can have half a dozen open source contributions in progress simultaneously and never lose your place in any of them.</p>
+
+            <h2>Memory File: Project Conventions</h2>
+
+            <p>After your first contribution to a project, take five minutes to save what you learned in a CLAUDE.md memory file. This is a simple markdown file in the project root that Claude Code reads automatically on startup. Document the things that took you time to figure out: the code style rules, the testing framework and patterns, the PR process, branch naming conventions, and commit message format.</p>
+
+            <p>The next time you come back to contribute to this project -- whether it's a week later or six months later -- Claude already knows the conventions. It doesn't need to re-discover that the project uses conventional commits, that tests go in a __tests__ directory next to the source files, or that PRs need to reference an issue number in the title. All of that context is loaded automatically from your memory file.</p>
+
+            <p>This is especially powerful for projects you contribute to regularly. Over time, your memory file becomes a personalized contributor guide that makes every subsequent contribution faster and more consistent.</p>
+
+            <div class="cta-box">
+                <h3>Start Contributing to Open Source</h3>
+                <p>Download Beam and use Claude Code to understand any codebase in minutes. Your first open source contribution is closer than you think.</p>
+                <a href="../" class="btn">Download Beam for macOS</a>
+            </div>
+
+            <h2>Summary</h2>
+
+            <p>Open source contribution doesn't have to be intimidating. With Claude Code as your guide, you can understand any codebase in minutes instead of days, find and fix issues with confidence, write tests that match the project's conventions, and submit PRs that maintainers are happy to review. Beam ties the whole workflow together by giving each project its own organized workspace.</p>
+
+            <ul>
+                <li><strong>Understand</strong> -- Clone the repo, start Claude Code, and get a full architecture overview in minutes</li>
+                <li><strong>Find issues</strong> -- Let Claude explain issues and map them to specific code locations</li>
+                <li><strong>Implement fixes</strong> -- Claude follows the project's existing patterns automatically</li>
+                <li><strong>Write tests</strong> -- Claude matches the project's testing framework and conventions</li>
+                <li><strong>Submit quality PRs</strong> -- Claude drafts descriptions using the project's PR templates</li>
+                <li><strong>Stay organized</strong> -- One Beam workspace per project, with memory files for conventions</li>
+            </ul>
+
+            <p>The open source community needs more contributors. The only thing holding most developers back is the friction of getting started with an unfamiliar codebase. Claude Code and Beam remove that friction entirely.</p>
+
+            <div class="related-articles">
+                <h2>Related Articles</h2>
+                <div class="related-grid">
+                    <a href="code-review-with-claude-code.html" class="related-card">
+                        <h4>Code Review with Claude Code</h4>
+                        <p>Use Claude Code to review your changes before submitting them for review.</p>
+                    </a>
+                    <a href="claude-code-git-workflows.html" class="related-card">
+                        <h4>Claude Code Git Workflows</h4>
+                        <p>Streamline your git workflow with Claude Code for branching, merging, and more.</p>
+                    </a>
+                    <a href="ai-coding-solo-developer.html" class="related-card">
+                        <h4>AI Coding for Solo Developers</h4>
+                        <p>How solo developers can multiply their output with AI-assisted coding.</p>
+                    </a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>
+                <a href="../">Beam</a> &bull; Terminal Organizer for macOS &bull;
+                <a href="mailto:frank@nextuptechnologies.co">Contact</a>
+            </p>
+
+            <p style="margin-top: 12px; font-size: 0.8rem;">
+                <a href="/privacy.html" style="color: #71717a; text-decoration: none;">Privacy Policy</a> &bull;
+                <a href="/terms.html" style="color: #71717a; text-decoration: none;">Terms of Service</a>
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>

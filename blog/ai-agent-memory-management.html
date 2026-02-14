@@ -344,7 +344,7 @@
 
             <p>Every time you start a new Claude Code session, it has no idea what your project is about. It doesn't know your architecture, your conventions, your build system, or the decisions you made yesterday. You end up repeating yourself, re-explaining your codebase, and losing time on context that should already be there.</p>
 
-            <p>This is the <strong>memory problem</strong> &mdash; and it's the biggest friction point in AI-assisted development today. Beam v2.1.0 solves it.</p>
+            <p>This is the <strong>memory problem</strong> &mdash; and it's the biggest friction point in AI-assisted development today. Beam v2.5.0 solves it.</p>
 
             <h2>The Problem: AI Amnesia</h2>
 
@@ -360,24 +360,22 @@
 
             <h2>The Solution: Beam Memory Management</h2>
 
-            <p>Beam v2.1.0 introduces <strong>AI Agent Memory Management</strong> &mdash; a system that gives every AI agent session persistent project context with zero manual effort.</p>
+            <p>Beam v2.5.0 introduces <strong>AI Agent Memory Management</strong> &mdash; a system that gives every AI agent session persistent project context with zero manual effort.</p>
 
             <p>Here's how it works:</p>
 
             <h3>Step 1: Start an agent from Beam</h3>
 
-            <p>Right-click any terminal pane and select <strong>Start AI Agent</strong>, or use the toolbar button. The moment the agent launches, Beam automatically copies a <strong>memory prompt</strong> to your clipboard.</p>
+            <p>Click <strong>Install Project Memory</strong> in the toolbar. Beam sends a prompt to your active agent telling it to read the project memory file.</p>
 
             <figure class="blog-screenshot">
-                <img src="../memory-select.png" alt="Right-click context menu in Beam showing Paste Memory Prompt option">
-                <figcaption>Right-click any terminal to paste the memory prompt or start an AI agent.</figcaption>
+                <img src="../memory-select.png" alt="Beam toolbar showing Install Project Memory button">
+                <figcaption>Click Install Project Memory in the toolbar to inject context into your agent.</figcaption>
             </figure>
 
-            <p>A toast notification confirms: <em>"Memory prompt copied! Paste it as your first message."</em></p>
+            <h3>Step 2: The agent receives the prompt</h3>
 
-            <h3>Step 2: Paste the prompt</h3>
-
-            <p>When the agent is ready for input, paste the memory prompt with <span class="kbd">&#8984;V</span>. The prompt tells the agent:</p>
+            <p>Beam sends the memory prompt directly to the active agent session. The prompt tells the agent:</p>
 
             <pre><code>Before starting, read and reference the memory bank at
 ~/ProjectName.md for project context, conventions, and
@@ -401,7 +399,7 @@ or learn new information about the project.</code></pre>
 
             <h2>The Memory Manager</h2>
 
-            <p>Beam includes a <strong>Memory Manager</strong> (accessible from the toolbar or right-click menu) that lets you view and manage memory files across all your projects.</p>
+            <p>Beam includes a <strong>Memory Manager</strong> (accessible from the toolbar) that lets you view and manage memory files across all your projects.</p>
 
             <figure class="blog-screenshot">
                 <img src="../memory-menu.png" alt="Beam Memory Prompts manager showing projects and their memory files">
@@ -448,20 +446,20 @@ or learn new information about the project.</code></pre>
 
             <h2>How to Get Started</h2>
 
-            <p><span class="step-number">1</span><strong>Download Beam v2.1.0</strong> from <a href="../">getbeam.dev</a></p>
+            <p><span class="step-number">1</span><strong>Download Beam v2.5.0</strong> from <a href="../">getbeam.dev</a></p>
 
             <p><span class="step-number">2</span><strong>Create a project</strong> &mdash; save your workspace layout with <span class="kbd">&#8984;S</span> and give it a name (e.g., "MyApp")</p>
 
-            <p><span class="step-number">3</span><strong>Start an AI agent</strong> &mdash; right-click any terminal and select an agent from the Start AI Agent submenu</p>
+            <p><span class="step-number">3</span><strong>Start an AI agent</strong> &mdash; use the toolbar to start an agent in your project</p>
 
-            <p><span class="step-number">4</span><strong>Paste the memory prompt</strong> &mdash; press <span class="kbd">&#8984;V</span> when the agent is ready</p>
+            <p><span class="step-number">4</span><strong>Install memory</strong> &mdash; click <strong>Install Project Memory</strong> in the toolbar</p>
 
             <p><span class="step-number">5</span><strong>Work normally</strong> &mdash; the agent reads your memory file and updates it as it works</p>
 
             <p>That's it. Every future session with that project will have full context from day one.</p>
 
             <div class="tip">
-                <strong>Pro tip:</strong> You can also right-click any terminal and select <strong>Paste Memory Prompt</strong> at any time to re-inject context into a running session. Use the Memory Manager (toolbar button) to view and customize memory files for all your projects.
+                <strong>Pro tip:</strong> Click <strong>Install Project Memory</strong> to re-inject context at any time during a running session. Use the Memory Manager (toolbar button) to view and customize memory files for all your projects.
             </div>
 
             <h2>The Bigger Picture</h2>
@@ -474,7 +472,7 @@ or learn new information about the project.</code></pre>
 
             <div class="cta-box">
                 <h3>Give Your AI Agents Memory</h3>
-                <p>Download Beam v2.1.0 and start building with persistent context. Free to try, $10/month for Pro.</p>
+                <p>Download Beam v2.5.0 and start building with persistent context. Free to try, $10/month for Pro.</p>
                 <a href="../" class="btn">Download Beam Free</a>
             </div>
 
@@ -501,9 +499,15 @@ or learn new information about the project.</code></pre>
     <footer>
         <div class="container">
             <p>
-                <a href="../">Beam</a> &middot; Built by <a href="https://nextuptechnologies.co">NextUp Technologies</a>
+                <a href="../">Beam</a> &middot; Built by NextUp Technologies
+            </p>
+
+            <p style="margin-top: 12px; font-size: 0.8rem;">
+                <a href="/privacy.html" style="color: #71717a; text-decoration: none;">Privacy Policy</a> &bull;
+                <a href="/terms.html" style="color: #71717a; text-decoration: none;">Terms of Service</a>
             </p>
         </div>
     </footer>
+
 </body>
 </html>

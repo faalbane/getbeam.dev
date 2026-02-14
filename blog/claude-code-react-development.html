@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D0XH8B0RKL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-D0XH8B0RKL');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Use Claude Code for React Development: Components, Hooks, and More | Beam</title>
+    <meta name="description" content="Build React apps faster with Claude Code. Learn how to generate components, write custom hooks, refactor state management, and organize your React workflow with Beam workspaces.">
+    <meta name="keywords" content="Claude Code React, React development AI, Claude Code components, AI React development, Claude Code hooks, build React with AI">
+    <meta name="author" content="NextUp Technologies">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://getbeam.dev/blog/claude-code-react-development.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://getbeam.dev/blog/claude-code-react-development.html">
+    <meta property="og:title" content="How to Use Claude Code for React Development: Components, Hooks, and More">
+    <meta property="og:description" content="Build React apps faster with Claude Code. Generate components, write hooks, refactor state, and organize your React workflow with Beam.">
+    <meta property="og:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="How to Use Claude Code for React Development: Components, Hooks, and More">
+    <meta name="twitter:description" content="Build React apps faster with Claude Code. Generate components, write hooks, refactor state, and organize your React workflow with Beam.">
+    <meta name="twitter:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "How to Use Claude Code for React Development: Components, Hooks, and More",
+        "description": "Build React apps faster with Claude Code. Learn how to generate components, write custom hooks, refactor state management, and organize your React workflow with Beam workspaces.",
+        "author": {
+            "@type": "Organization",
+            "name": "NextUp Technologies"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Beam"
+        },
+        "datePublished": "2026-02-11",
+        "keywords": "Claude Code React, React development AI, Claude Code components, AI React development, Claude Code hooks, build React with AI"
+    }
+    </script>
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #111113;
+            --bg-tertiary: #1a1a1d;
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.4);
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --border: #27272a;
+            --success: #22c55e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        header {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 60px;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1.5rem;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            background: var(--accent);
+            color: white;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+        }
+
+        article {
+            padding-bottom: 80px;
+        }
+
+        .breadcrumb {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+        }
+
+        .breadcrumb a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .meta {
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            font-size: 0.95rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 48px 0 20px;
+            color: var(--text-primary);
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        ul, ol {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            padding-left: 24px;
+        }
+
+        li {
+            margin-bottom: 12px;
+        }
+
+        .highlight {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 32px 0;
+        }
+
+        .highlight h3 {
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .kbd {
+            display: inline-block;
+            padding: 2px 8px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .cta-box h3 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+        }
+
+        .cta-box p {
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 24px;
+        }
+
+        .cta-box .btn {
+            background: white;
+            color: var(--accent);
+        }
+
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+
+        .related-articles { margin-top: 60px; padding-top: 40px; border-top: 1px solid var(--border); }
+        .related-articles h2 { font-size: 1.5rem; margin-bottom: 24px; }
+        .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .related-card { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-decoration: none; transition: border-color 0.2s; }
+        .related-card:hover { border-color: var(--accent); }
+        .related-card h4 { color: white; font-size: 1rem; margin: 0 0 8px 0; }
+        .related-card p { color: var(--text-muted); font-size: 0.85rem; margin: 0; }
+        @media (max-width: 600px) { .related-grid { grid-template-columns: 1fr; } }
+
+        .blog-visual {
+            margin: 40px 0;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        .blog-visual svg {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="../" class="logo">
+                <div class="logo-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round">
+                        <path d="M4 17l6-6-6-6M12 19h8"/>
+                    </svg>
+                </div>
+                Beam
+            </a>
+            <a href="../" class="btn">Download Beam</a>
+        </div>
+    </header>
+
+    <main>
+        <article class="container">
+            <div class="breadcrumb">
+                <a href="../">Beam</a> / <a href="../#guides">Guides</a> / Claude Code for React Development
+            </div>
+
+            <h1>How to Use Claude Code for React Development: Components, Hooks, and More</h1>
+            <p class="meta">February 2026 &bull; 8 min read</p>
+
+            <p>React development involves a lot of repetitive patterns. Component boilerplate, prop type definitions, state management wiring, custom hooks, context providers, form handling with validation -- the list goes on. Every React developer knows the feeling of writing the same structural code for the hundredth time. Claude Code understands all of these patterns deeply and can generate production-quality React code in seconds, not minutes. This guide shows you how to use Claude Code for every phase of React development, with Beam keeping your workspace organized so you can see your components render in real time as Claude writes them.</p>
+
+            <div class="blog-visual">
+                <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" fill="none">
+                    <!-- Background -->
+                    <rect width="800" height="420" fill="#0a0a0b"/>
+
+                    <!-- Tab bar -->
+                    <rect x="0" y="0" width="800" height="38" fill="#111113"/>
+                    <rect x="0" y="37" width="800" height="1" fill="#27272a"/>
+
+                    <!-- Tab: Claude Code (active) -->
+                    <rect x="0" y="0" width="140" height="37" fill="#1a1a1d" rx="0"/>
+                    <rect x="0" y="35" width="140" height="2" fill="#f59e0b"/>
+                    <circle cx="18" cy="18" r="5" fill="#f59e0b" opacity="0.8"/>
+                    <text x="30" y="22" font-family="JetBrains Mono, monospace" font-size="11" fill="#fafafa">Claude Code</text>
+
+                    <!-- Tab: Dev Server -->
+                    <rect x="141" y="0" width="120" height="37" fill="#111113"/>
+                    <circle cx="159" cy="18" r="5" fill="#61dafb" opacity="0.6"/>
+                    <text x="171" y="22" font-family="JetBrains Mono, monospace" font-size="11" fill="#71717a">Dev Server</text>
+
+                    <!-- Tab: Tests -->
+                    <rect x="262" y="0" width="90" height="37" fill="#111113"/>
+                    <circle cx="280" cy="18" r="5" fill="#22c55e" opacity="0.6"/>
+                    <text x="292" y="22" font-family="JetBrains Mono, monospace" font-size="11" fill="#71717a">Tests</text>
+
+                    <!-- Tab: Git -->
+                    <rect x="353" y="0" width="80" height="37" fill="#111113"/>
+                    <circle cx="371" cy="18" r="5" fill="#a78bfa" opacity="0.6"/>
+                    <text x="383" y="22" font-family="JetBrains Mono, monospace" font-size="11" fill="#71717a">Git</text>
+
+                    <!-- Divider between panes -->
+                    <rect x="399" y="38" width="2" height="382" fill="#27272a"/>
+
+                    <!-- LEFT PANE: Claude Code -->
+                    <rect x="0" y="38" width="399" height="382" fill="#0a0a0b"/>
+
+                    <!-- Claude prompt area -->
+                    <text x="16" y="68" font-family="JetBrains Mono, monospace" font-size="10" fill="#f59e0b">claude&gt;</text>
+                    <text x="70" y="68" font-family="JetBrains Mono, monospace" font-size="10" fill="#a1a1aa">Create a UserProfile card</text>
+
+                    <!-- Claude response indicator -->
+                    <rect x="16" y="82" width="3" height="280" rx="1.5" fill="#f59e0b" opacity="0.4"/>
+
+                    <!-- Generated JSX code -->
+                    <text x="28" y="100" font-family="JetBrains Mono, monospace" font-size="10" fill="#c084fc">interface</text>
+                    <text x="88" y="100" font-family="JetBrains Mono, monospace" font-size="10" fill="#61dafb">UserProfileProps</text>
+                    <text x="198" y="100" font-family="JetBrains Mono, monospace" font-size="10" fill="#fafafa">{</text>
+
+                    <text x="28" y="118" font-family="JetBrains Mono, monospace" font-size="10" fill="#a1a1aa">  name:</text>
+                    <text x="84" y="118" font-family="JetBrains Mono, monospace" font-size="10" fill="#22c55e">string</text>
+                    <text x="120" y="118" font-family="JetBrains Mono, monospace" font-size="10" fill="#fafafa">;</text>
+
+                    <text x="28" y="136" font-family="JetBrains Mono, monospace" font-size="10" fill="#a1a1aa">  email:</text>
+                    <text x="90" y="136" font-family="JetBrains Mono, monospace" font-size="10" fill="#22c55e">string</text>
+                    <text x="126" y="136" font-family="JetBrains Mono, monospace" font-size="10" fill="#fafafa">;</text>
+
+                    <text x="28" y="154" font-family="JetBrains Mono, monospace" font-size="10" fill="#a1a1aa">  avatar:</text>
+                    <text x="96" y="154" font-family="JetBrains Mono, monospace" font-size="10" fill="#22c55e">string</text>
+                    <text x="132" y="154" font-family="JetBrains Mono, monospace" font-size="10" fill="#fafafa">;</text>
+
+                    <text x="28" y="172" font-family="JetBrains Mono, monospace" font-size="10" fill="#fafafa">}</text>
+
+                    <!-- Export line -->
+                    <text x="28" y="200" font-family="JetBrains Mono, monospace" font-size="10" fill="#c084fc">export const</text>
+                    <text x="110" y="200" font-family="JetBrains Mono, monospace" font-size="10" fill="#61dafb">UserProfile</text>
+                    <text x="182" y="200" font-family="JetBrains Mono, monospace" font-size="10" fill="#fafafa">= ({</text>
+
+                    <text x="28" y="218" font-family="JetBrains Mono, monospace" font-size="10" fill="#a1a1aa">  name, email, avatar</text>
+
+                    <text x="28" y="236" font-family="JetBrains Mono, monospace" font-size="10" fill="#fafafa">}: </text>
+                    <text x="44" y="236" font-family="JetBrains Mono, monospace" font-size="10" fill="#61dafb">UserProfileProps</text>
+                    <text x="154" y="236" font-family="JetBrains Mono, monospace" font-size="10" fill="#fafafa">) => (</text>
+
+                    <text x="28" y="254" font-family="JetBrains Mono, monospace" font-size="10" fill="#fafafa">  &lt;</text>
+                    <text x="40" y="254" font-family="JetBrains Mono, monospace" font-size="10" fill="#f87171">div</text>
+                    <text x="60" y="254" font-family="JetBrains Mono, monospace" font-size="10" fill="#61dafb"> className</text>
+                    <text x="122" y="254" font-family="JetBrains Mono, monospace" font-size="10" fill="#fafafa">=</text>
+                    <text x="130" y="254" font-family="JetBrains Mono, monospace" font-size="10" fill="#22c55e">"rounded-xl p-6"</text>
+                    <text x="256" y="254" font-family="JetBrains Mono, monospace" font-size="10" fill="#fafafa">&gt;</text>
+
+                    <text x="28" y="272" font-family="JetBrains Mono, monospace" font-size="10" fill="#fafafa">    &lt;</text>
+                    <text x="46" y="272" font-family="JetBrains Mono, monospace" font-size="10" fill="#f87171">img</text>
+                    <text x="66" y="272" font-family="JetBrains Mono, monospace" font-size="10" fill="#61dafb"> src</text>
+                    <text x="88" y="272" font-family="JetBrains Mono, monospace" font-size="10" fill="#fafafa">={avatar}</text>
+
+                    <text x="28" y="290" font-family="JetBrains Mono, monospace" font-size="10" fill="#fafafa">      </text>
+                    <text x="62" y="290" font-family="JetBrains Mono, monospace" font-size="10" fill="#61dafb">className</text>
+                    <text x="124" y="290" font-family="JetBrains Mono, monospace" font-size="10" fill="#fafafa">=</text>
+                    <text x="132" y="290" font-family="JetBrains Mono, monospace" font-size="10" fill="#22c55e">"w-16 h-16"</text>
+                    <text x="216" y="290" font-family="JetBrains Mono, monospace" font-size="10" fill="#fafafa">/&gt;</text>
+
+                    <text x="28" y="308" font-family="JetBrains Mono, monospace" font-size="10" fill="#fafafa">    &lt;</text>
+                    <text x="46" y="308" font-family="JetBrains Mono, monospace" font-size="10" fill="#f87171">h2</text>
+                    <text x="58" y="308" font-family="JetBrains Mono, monospace" font-size="10" fill="#fafafa">&gt;{name}&lt;/</text>
+                    <text x="118" y="308" font-family="JetBrains Mono, monospace" font-size="10" fill="#f87171">h2</text>
+                    <text x="130" y="308" font-family="JetBrains Mono, monospace" font-size="10" fill="#fafafa">&gt;</text>
+
+                    <text x="28" y="326" font-family="JetBrains Mono, monospace" font-size="10" fill="#fafafa">    &lt;</text>
+                    <text x="46" y="326" font-family="JetBrains Mono, monospace" font-size="10" fill="#f87171">p</text>
+                    <text x="54" y="326" font-family="JetBrains Mono, monospace" font-size="10" fill="#fafafa">&gt;{email}&lt;/</text>
+                    <text x="120" y="326" font-family="JetBrains Mono, monospace" font-size="10" fill="#f87171">p</text>
+                    <text x="128" y="326" font-family="JetBrains Mono, monospace" font-size="10" fill="#fafafa">&gt;</text>
+
+                    <text x="28" y="344" font-family="JetBrains Mono, monospace" font-size="10" fill="#fafafa">  &lt;/</text>
+                    <text x="52" y="344" font-family="JetBrains Mono, monospace" font-size="10" fill="#f87171">div</text>
+                    <text x="72" y="344" font-family="JetBrains Mono, monospace" font-size="10" fill="#fafafa">&gt;</text>
+
+                    <text x="28" y="362" font-family="JetBrains Mono, monospace" font-size="10" fill="#fafafa">);</text>
+
+                    <!-- RIGHT PANE: Dev Server / Browser Preview -->
+                    <rect x="401" y="38" width="399" height="382" fill="#111113"/>
+
+                    <!-- Browser chrome bar -->
+                    <rect x="401" y="38" width="399" height="32" fill="#1a1a1d"/>
+                    <circle cx="418" cy="54" r="5" fill="#ff5f56"/>
+                    <circle cx="434" cy="54" r="5" fill="#ffbd2e"/>
+                    <circle cx="450" cy="54" r="5" fill="#27c93f"/>
+                    <!-- URL bar -->
+                    <rect x="466" y="46" width="200" height="16" rx="4" fill="#27272a"/>
+                    <text x="478" y="57" font-family="JetBrains Mono, monospace" font-size="9" fill="#71717a">localhost:3000</text>
+
+                    <!-- React logo (simplified atom) -->
+                    <ellipse cx="600" cy="54" rx="10" ry="4" stroke="#61dafb" stroke-width="1" fill="none" opacity="0.5"/>
+                    <ellipse cx="600" cy="54" rx="10" ry="4" stroke="#61dafb" stroke-width="1" fill="none" opacity="0.5" transform="rotate(60 600 54)"/>
+                    <ellipse cx="600" cy="54" rx="10" ry="4" stroke="#61dafb" stroke-width="1" fill="none" opacity="0.5" transform="rotate(120 600 54)"/>
+                    <circle cx="600" cy="54" r="2" fill="#61dafb" opacity="0.7"/>
+
+                    <!-- Rendered card component preview -->
+                    <rect x="440" y="110" width="320" height="220" rx="12" fill="#1a1a1d" stroke="#27272a" stroke-width="1"/>
+
+                    <!-- Avatar circle -->
+                    <circle cx="500" cy="170" r="32" fill="#27272a"/>
+                    <circle cx="500" cy="162" r="12" fill="#3b82f6" opacity="0.6"/>
+                    <ellipse cx="500" cy="184" rx="16" ry="10" fill="#3b82f6" opacity="0.4"/>
+
+                    <!-- User name -->
+                    <rect x="548" y="152" width="140" height="14" rx="3" fill="#fafafa" opacity="0.9"/>
+                    <text x="555" y="163" font-family="Space Grotesk, sans-serif" font-size="12" font-weight="600" fill="#1a1a1d">Sarah Chen</text>
+
+                    <!-- Email -->
+                    <rect x="548" y="174" width="160" height="10" rx="3" fill="#a1a1aa" opacity="0.3"/>
+                    <text x="553" y="182" font-family="JetBrains Mono, monospace" font-size="9" fill="#71717a">sarah@company.com</text>
+
+                    <!-- Activity items -->
+                    <rect x="462" y="218" width="276" height="1" fill="#27272a"/>
+                    <text x="462" y="240" font-family="Space Grotesk, sans-serif" font-size="10" fill="#a1a1aa" font-weight="500">Recent Activity</text>
+                    <circle cx="472" cy="258" r="3" fill="#22c55e"/>
+                    <rect x="482" y="254" width="180" height="8" rx="2" fill="#a1a1aa" opacity="0.2"/>
+                    <circle cx="472" cy="276" r="3" fill="#3b82f6"/>
+                    <rect x="482" y="272" width="150" height="8" rx="2" fill="#a1a1aa" opacity="0.2"/>
+                    <circle cx="472" cy="294" r="3" fill="#f59e0b"/>
+                    <rect x="482" y="290" width="200" height="8" rx="2" fill="#a1a1aa" opacity="0.2"/>
+
+                    <!-- Hot reload indicator -->
+                    <rect x="440" y="350" width="320" height="28" rx="0 0 12 12" fill="#0a0a0b" opacity="0.7"/>
+                    <circle cx="458" cy="364" r="4" fill="#22c55e"/>
+                    <text x="468" y="368" font-family="JetBrains Mono, monospace" font-size="9" fill="#22c55e">HMR updated: UserProfile.tsx</text>
+
+                    <!-- Split pane label -->
+                    <text x="160" y="400" font-family="Space Grotesk, sans-serif" font-size="10" fill="#71717a" text-anchor="middle">Claude Code generates</text>
+                    <text x="600" y="400" font-family="Space Grotesk, sans-serif" font-size="10" fill="#71717a" text-anchor="middle">Live preview updates instantly</text>
+
+                    <!-- Arrow indicating flow -->
+                    <line x1="370" y1="210" x2="390" y2="210" stroke="#f59e0b" stroke-width="1.5" opacity="0.6"/>
+                    <polygon points="390,206 398,210 390,214" fill="#f59e0b" opacity="0.6"/>
+                </svg>
+            </div>
+
+            <h2>Why Claude Code Excels at React</h2>
+
+            <p>React is fundamentally a pattern-driven framework. Components follow predictable structures. Hooks have well-defined rules and conventions. State management libraries have standard wiring patterns. This regularity makes React one of the best targets for AI-assisted development -- and Claude Code takes full advantage of it.</p>
+
+            <p>Claude understands JSX, TypeScript, hooks, context, and every major state management library. When you describe a component, Claude does not just generate JSX -- it generates properly typed TypeScript interfaces, correct prop destructuring, appropriate hook usage with proper dependency arrays, and styling that matches your project's conventions. It knows modern React patterns inside and out: Server Components, the App Router, Suspense boundaries, the <span class="kbd">use()</span> hook, and streaming SSR.</p>
+
+            <p>What makes Claude Code particularly powerful for React is its multi-file awareness. It does not just see one component in isolation. It understands your component tree, your custom hooks, your utility functions, and your type definitions. When you ask it to create a new component, it can reference your existing patterns and maintain consistency across your entire codebase.</p>
+
+            <h2>Your React Development Workspace</h2>
+
+            <p>Before diving into React-specific prompts, set up a Beam workspace that lets you see the full picture of your React development. The right workspace layout transforms Claude Code from a code generator into an integrated development partner.</p>
+
+            <p>Create a workspace called "React App" with these tabs:</p>
+
+            <ul>
+                <li><strong>Tab 1: Claude Code</strong> -- Your primary interaction point for component generation, refactoring, and code reviews</li>
+                <li><strong>Tab 2: Dev server</strong> -- <span class="kbd">npm run dev</span> with hot reload so you see changes instantly</li>
+                <li><strong>Tab 3: Tests</strong> -- <span class="kbd">npm run test -- --watch</span> running continuously in the background</li>
+                <li><strong>Tab 4: Storybook</strong> (optional) -- <span class="kbd">npm run storybook</span> for component isolation and visual testing</li>
+                <li><strong>Tab 5: Git</strong> -- For commits, branch management, and reviewing diffs</li>
+            </ul>
+
+            <p>The real power move is the split pane. Press <span class="kbd">&#8984;&#8997;&#8963;T</span> to split your Claude Code tab side-by-side with your dev server. As Claude writes a component, hot reload pushes it to your browser preview. You are literally watching components materialize in real time. This feedback loop is what makes the workflow so effective -- you can course-correct immediately instead of waiting until Claude finishes generating an entire file.</p>
+
+            <h2>Generating Components</h2>
+
+            <p>Component generation is where most React developers start with Claude Code, and for good reason. The more specific your prompt, the better the output. Instead of saying "create a user profile component," give Claude the full picture:</p>
+
+            <p><em>"Create a UserProfile card component that displays an avatar image, full name, email address, and a scrollable list of recent activity items. Use Tailwind CSS for styling with a dark theme. Accept a User type prop with all fields typed. Include hover and focus states for accessibility."</em></p>
+
+            <p>Claude generates the complete package: a TypeScript component with a properly defined prop interface, Tailwind utility classes following your project's design system, responsive sizing, and semantic HTML. If you have a <span class="kbd">CLAUDE.md</span> file in your project root that specifies your conventions -- named exports, functional components only, co-located test files -- Claude follows those rules automatically.</p>
+
+            <p>The key to getting great component output is specificity. Tell Claude which styling library you use (Tailwind, CSS Modules, styled-components), which state management approach (local state, Zustand, Redux), and how you handle data fetching (React Query, SWR, Server Components). The more context Claude has, the less editing you need to do afterward.</p>
+
+            <h2>Writing Custom Hooks</h2>
+
+            <p>Custom hooks are where Claude Code saves you the most debugging time. Hooks have subtle edge cases that even experienced React developers trip over: stale closures, missing cleanup functions, incorrect dependency arrays, and SSR hydration mismatches. Claude handles all of these by default.</p>
+
+            <p>Try prompts like: <em>"Create a useDebounce hook that accepts a generic value and a configurable delay in milliseconds. It should return the debounced value and clean up the timeout on unmount."</em> Claude generates the hook with proper TypeScript generics, a <span class="kbd">useEffect</span> cleanup function, and correct dependency management.</p>
+
+            <p>For more complex hooks: <em>"Create a useLocalStorage hook with full type safety that works with SSR. It should sync across tabs using the storage event and handle JSON serialization errors gracefully."</em> Claude produces a hook that guards against <span class="kbd">window</span> being undefined during server rendering, wraps <span class="kbd">JSON.parse</span> in try-catch blocks, and listens for cross-tab storage events with proper cleanup.</p>
+
+            <p>A useful practice is to ask Claude to add JSDoc comments to your hooks. This gives you inline documentation and better IDE autocomplete: <em>"Add JSDoc comments with @param descriptions, @returns, and a usage @example to the useDebounce hook."</em></p>
+
+            <h2>Refactoring State Management</h2>
+
+            <p>State management refactoring is tedious, error-prone, and often involves touching many files at once. This is exactly the kind of work where Claude Code shines brightest. A refactor that might take you an hour of careful editing becomes a single prompt.</p>
+
+            <p>Common refactoring prompts that work well:</p>
+
+            <ul>
+                <li><strong>"Refactor this component from useState to useReducer"</strong> -- When a component has five or more state variables that change together, Claude creates the reducer, defines action types, and rewrites the event handlers</li>
+                <li><strong>"Move this local state to a Zustand store"</strong> -- Claude creates the store file, defines the typed state and actions, and updates every component that needs access</li>
+                <li><strong>"Convert these prop drilling chains to React Context"</strong> -- Claude creates the context, the provider component, a typed custom hook for consuming it, and updates all the intermediate components to stop passing props they no longer need</li>
+                <li><strong>"Migrate from Redux to Zustand"</strong> -- Claude maps your slices to Zustand stores, converts selectors, and updates all connected components</li>
+            </ul>
+
+            <p>The multi-file awareness is critical here. When Claude converts prop drilling to context, it does not just create the context file -- it traces the prop chain through your component tree, identifies every component that passes the prop, and removes the unnecessary prop forwarding. That is the kind of comprehensive refactor that is miserable to do by hand.</p>
+
+            <h2>Building Forms</h2>
+
+            <div class="highlight">
+                <h3>Why Forms Are Claude Code's Sweet Spot</h3>
+                <p>Forms involve the highest density of boilerplate in React: field components, validation schemas, error states, submission handlers, loading states, accessibility attributes, and multi-step navigation. A single form can easily require hundreds of lines of repetitive code. Claude Code generates all of it from a natural language description, including edge cases you might not think of.</p>
+            </div>
+
+            <p>Try this prompt: <em>"Build a multi-step registration form with three steps: personal info (name, email, phone), account setup (username, password with strength indicator), and preferences (notification settings, theme). Use React Hook Form for state management and Zod for validation. Include progress indicators, step navigation, and proper error display."</em></p>
+
+            <p>Claude generates the complete form system: Zod schemas for each step with proper validation rules (email format, password strength, required fields), React Hook Form integration with typed form data, step navigation with state preservation (so users do not lose data when going back), accessible error messages with ARIA attributes, and focus management that moves to the first error field on validation failure.</p>
+
+            <p>After Claude generates the form structure, iterate on the design in your dev server preview. The split-pane workflow is ideal here: <em>"Make the form inputs wider on mobile"</em>, <em>"Add a password visibility toggle"</em>, <em>"Show a green checkmark next to valid fields."</em> Each change hot-reloads instantly so you can fine-tune the user experience without context switching.</p>
+
+            <h2>Testing React Components</h2>
+
+            <p>Writing tests is the task most developers put off, and Claude Code makes it effortless enough that you might actually enjoy it. Tell Claude which testing framework you use and what you want to test, and it generates meaningful, well-structured tests.</p>
+
+            <p><em>"Write tests for the UserProfile component using Vitest and React Testing Library. Cover rendering with all props, rendering with missing optional props, user interaction with the activity list, and accessibility (proper heading hierarchy, alt text on avatar)."</em></p>
+
+            <p>Claude generates test suites that go beyond superficial snapshot tests. It creates tests for user interactions using <span class="kbd">userEvent</span>, checks accessibility with role queries, tests edge cases like empty data and loading states, and uses <span class="kbd">screen.getByRole</span> over <span class="kbd">getByTestId</span> for better accessibility coverage.</p>
+
+            <p>With your Tests tab running in watch mode, you see test results update as Claude writes them. This creates a tight feedback loop: Claude writes a test, it either passes or fails, and you can immediately ask Claude to fix any failures. You can also go broader: <em>"Add snapshot tests for all components in the /components directory"</em> -- Claude iterates through the directory and generates snapshot tests for each component with representative prop combinations.</p>
+
+            <h2>The Live Preview Workflow</h2>
+
+            <p>The split-pane workflow is transformative for React development, and it fundamentally changes how you interact with Claude Code. Instead of the traditional cycle of generate-review-run-check, everything happens in a continuous visual loop.</p>
+
+            <p>Here is how it works in practice: Claude writes a component in the left pane. Vite's hot module replacement detects the file change and pushes the update to the dev server in the right pane. You see the component render within a second or two. If something looks off -- the spacing is wrong, a color does not match your design system, the layout breaks at a certain width -- you tell Claude immediately: <em>"Make the card wider"</em>, <em>"Add a hover animation that scales to 1.02"</em>, <em>"Change the font size to 14px."</em> Each iteration takes seconds.</p>
+
+            <p>For Storybook users, this workflow is even more powerful. Have Storybook running in a tab, and as Claude generates or modifies components, your stories update in real time. You get isolated component previews with different prop combinations without leaving your workspace.</p>
+
+            <p>The speed of this loop changes your development style. Instead of trying to get everything perfect in one prompt, you start with a rough description and iterate visually. It is closer to design tool prototyping than traditional coding, but the output is production-ready React code.</p>
+
+            <h2>Memory File: React Conventions</h2>
+
+            <p>To get the most consistent output from Claude Code across your React project, create a <span class="kbd">CLAUDE.md</span> file in your project root. This memory file tells Claude your project's conventions so it does not have to guess or ask. For React projects, your memory file should cover these areas:</p>
+
+            <ul>
+                <li><strong>Component patterns:</strong> Functional components only, named exports (no default exports), co-located styles and tests in the same directory</li>
+                <li><strong>State management:</strong> Which library you use (Zustand, Redux Toolkit, React Context) and when to use each one</li>
+                <li><strong>Styling approach:</strong> Tailwind utility classes, CSS Modules, styled-components -- and any custom design tokens or theme variables</li>
+                <li><strong>File structure:</strong> Where components live (<span class="kbd">components/</span>), where hooks go (<span class="kbd">hooks/</span>), where utilities are (<span class="kbd">utils/</span>), and where types are defined (<span class="kbd">types/</span>)</li>
+                <li><strong>Testing conventions:</strong> Vitest or Jest, React Testing Library, snapshot policy (when to use them, when not to), minimum coverage expectations</li>
+            </ul>
+
+            <p>With a well-defined memory file, Claude generates code that fits seamlessly into your existing codebase. No more reformatting, renaming exports, or moving files after generation. The code lands in the right place, following the right patterns, every time.</p>
+
+            <div class="cta-box">
+                <h3>Build React Apps Faster</h3>
+                <p>Download Beam and organize your React + Claude Code workflow with workspaces, split panes, and live previews.</p>
+                <a href="../" class="btn">Download Beam for macOS</a>
+            </div>
+
+            <h2>Summary</h2>
+
+            <p>Claude Code and React are a natural pairing. React's pattern-driven architecture plays to Claude's strengths, and with the right workspace setup in Beam, you get an integrated development experience that is faster than any IDE plugin. Here are the key workflows to adopt:</p>
+
+            <ul>
+                <li>Use <strong>specific, detailed prompts</strong> for component generation -- include styling library, state management, and typing requirements</li>
+                <li>Let Claude write your <strong>custom hooks</strong> -- it handles edge cases like cleanup functions, SSR guards, and dependency arrays correctly</li>
+                <li>Use Claude for <strong>state management refactors</strong> -- multi-file changes that would take an hour become one-prompt operations</li>
+                <li>Have Claude <strong>build entire form systems</strong> with validation, accessibility, and multi-step navigation from a single description</li>
+                <li>Run <strong>tests in watch mode</strong> while Claude writes them -- see results immediately and iterate on failures</li>
+                <li>Use the <strong>split-pane live preview</strong> for rapid visual iteration -- Claude writes, hot reload renders, you refine</li>
+                <li>Create a <strong>CLAUDE.md memory file</strong> with your React conventions for consistent, project-aware code generation</li>
+            </ul>
+
+            <div class="related-articles">
+                <h2>Related Articles</h2>
+                <div class="related-grid">
+                    <a href="build-website-with-claude-code.html" class="related-card">
+                        <h4>Build a Website with Claude Code</h4>
+                        <p>Step-by-step guide to building a complete website with AI-assisted development.</p>
+                    </a>
+                    <a href="claude-code-api-development.html" class="related-card">
+                        <h4>Claude Code for API Development</h4>
+                        <p>Design, build, and test REST and GraphQL APIs with Claude Code.</p>
+                    </a>
+                    <a href="claude-code-keyboard-shortcuts.html" class="related-card">
+                        <h4>Claude Code Keyboard Shortcuts</h4>
+                        <p>Master the essential keyboard shortcuts for faster AI-assisted coding.</p>
+                    </a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>
+                <a href="../">Beam</a> &bull; Terminal Organizer for macOS &bull;
+                <a href="mailto:frank@nextuptechnologies.co">Contact</a>
+            </p>
+
+            <p style="margin-top: 12px; font-size: 0.8rem;">
+                <a href="/privacy.html" style="color: #71717a; text-decoration: none;">Privacy Policy</a> &bull;
+                <a href="/terms.html" style="color: #71717a; text-decoration: none;">Terms of Service</a>
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>

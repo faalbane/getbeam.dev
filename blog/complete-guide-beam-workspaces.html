@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D0XH8B0RKL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-D0XH8B0RKL');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Complete Guide to Beam Workspaces: Terminal Organization Mastery | Beam</title>
+    <meta name="description" content="Master Beam workspaces: create, name, organize, save, and restore terminal layouts. The complete guide to workspace-based terminal management for AI-powered development.">
+    <meta name="keywords" content="Beam workspaces, Beam terminal guide, terminal organization, Beam tutorial, Beam workspace management, Beam layouts, terminal workspaces">
+    <meta name="author" content="NextUp Technologies">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://getbeam.dev/blog/complete-guide-beam-workspaces.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://getbeam.dev/blog/complete-guide-beam-workspaces.html">
+    <meta property="og:title" content="The Complete Guide to Beam Workspaces: Terminal Organization Mastery">
+    <meta property="og:description" content="Master Beam workspaces: create, name, organize, save, and restore terminal layouts.">
+    <meta property="og:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="The Complete Guide to Beam Workspaces: Terminal Organization Mastery">
+    <meta name="twitter:description" content="Master Beam workspaces: create, name, organize, save, and restore terminal layouts.">
+    <meta name="twitter:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "The Complete Guide to Beam Workspaces: Terminal Organization Mastery",
+        "description": "Master Beam workspaces: create, name, organize, save, and restore terminal layouts. The complete guide to workspace-based terminal management for AI-powered development.",
+        "author": {
+            "@type": "Organization",
+            "name": "NextUp Technologies"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Beam"
+        },
+        "datePublished": "2026-02-11",
+        "keywords": "Beam workspaces, Beam terminal guide, terminal organization, Beam tutorial, Beam workspace management"
+    }
+    </script>
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #111113;
+            --bg-tertiary: #1a1a1d;
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.4);
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --border: #27272a;
+            --success: #22c55e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        header {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 60px;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1.5rem;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            background: var(--accent);
+            color: white;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+        }
+
+        article {
+            padding-bottom: 80px;
+        }
+
+        .breadcrumb {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+        }
+
+        .breadcrumb a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .meta {
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            font-size: 0.95rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 48px 0 20px;
+            color: var(--text-primary);
+        }
+
+        h3 {
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin: 32px 0 12px;
+            color: var(--text-primary);
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        ul, ol {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            padding-left: 24px;
+        }
+
+        li {
+            margin-bottom: 12px;
+        }
+
+        .highlight {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 32px 0;
+        }
+
+        .highlight h3 {
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            margin-top: 0;
+            color: var(--text-primary);
+        }
+
+        .kbd {
+            display: inline-block;
+            padding: 2px 8px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .cta-box h3 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+            margin-top: 0;
+        }
+
+        .cta-box p {
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 24px;
+        }
+
+        .cta-box .btn {
+            background: white;
+            color: var(--accent);
+        }
+
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+
+        .related-articles { margin-top: 60px; padding-top: 40px; border-top: 1px solid var(--border); }
+        .related-articles h2 { font-size: 1.5rem; margin-bottom: 24px; }
+        .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .related-card { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-decoration: none; transition: border-color 0.2s; }
+        .related-card:hover { border-color: var(--accent); }
+        .related-card h4 { color: white; font-size: 1rem; margin: 0 0 8px 0; }
+        .related-card p { color: var(--text-muted); font-size: 0.85rem; margin: 0; }
+        @media (max-width: 600px) { .related-grid { grid-template-columns: 1fr; } h1 { font-size: 1.8rem; } }
+
+        .blog-visual {
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        .blog-visual svg {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .shortcut-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .shortcut-table td {
+            padding: 10px 16px;
+            border-bottom: 1px solid var(--border);
+            color: var(--text-secondary);
+            font-size: 1rem;
+        }
+
+        .shortcut-table td:first-child {
+            width: 180px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            color: var(--text-primary);
+        }
+
+        .strategy-block {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 20px 0;
+        }
+
+        .strategy-block h3 {
+            margin-top: 0;
+            margin-bottom: 8px;
+            color: var(--accent);
+            font-size: 1.05rem;
+        }
+
+        .strategy-block p {
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+        }
+
+        .strategy-block ul {
+            margin-bottom: 0;
+        }
+
+        .strategy-block li {
+            margin-bottom: 6px;
+            font-size: 0.95rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="../" class="logo">
+                <div class="logo-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round">
+                        <path d="M4 17l6-6-6-6M12 19h8"/>
+                    </svg>
+                </div>
+                Beam
+            </a>
+            <a href="../" class="btn">Download Beam</a>
+        </div>
+    </header>
+
+    <main>
+        <article class="container">
+            <div class="breadcrumb">
+                <a href="../">Beam</a> / <a href="../#guides">Guides</a> / Beam Workspaces Guide
+            </div>
+
+            <h1>The Complete Guide to Beam Workspaces: Terminal Organization Mastery</h1>
+            <p class="meta">February 2026 &bull; 9 min read</p>
+
+            <p>Beam's workspaces are the feature that changes how you think about terminal management. Instead of a flat list of tabs or windows scattered across your screen, you get project-level containers that keep your terminals grouped, named, and completely isolated from one another. Once you start using them, you'll wonder how you ever managed without them.</p>
+
+            <p>This guide covers everything you need to know: creating workspaces, organizing tabs and panes within them, saving and restoring layouts, using the Quick Switcher to navigate at speed, and building workspace strategies that match different types of development work. Whether you're running a single project or juggling half a dozen, this is the definitive reference for getting the most out of Beam.</p>
+
+            <!-- Workspace Hierarchy SVG -->
+            <div class="blog-visual">
+                <svg width="720" height="480" viewBox="0 0 720 480" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Background -->
+                    <rect width="720" height="480" rx="16" fill="#111113"/>
+                    <rect width="720" height="480" rx="16" stroke="#27272a" stroke-width="1"/>
+
+                    <!-- Title -->
+                    <text x="360" y="36" text-anchor="middle" fill="#fafafa" font-family="Space Grotesk, sans-serif" font-size="16" font-weight="600">Beam Workspace Hierarchy</text>
+
+                    <!-- Layout Layer (outermost) -->
+                    <rect x="24" y="56" width="672" height="400" rx="12" fill="#0a0a0b" stroke="#3b82f6" stroke-width="2" stroke-dasharray="6 3"/>
+                    <rect x="24" y="56" width="140" height="28" rx="6" fill="#3b82f6"/>
+                    <text x="94" y="75" text-anchor="middle" fill="white" font-family="Space Grotesk, sans-serif" font-size="12" font-weight="600">Saved Layout</text>
+
+                    <!-- Workspace 1 (active) -->
+                    <rect x="44" y="100" width="310" height="170" rx="10" fill="#1a1a1d" stroke="#3b82f6" stroke-width="1.5"/>
+                    <rect x="44" y="100" width="130" height="24" rx="6" fill="rgba(59,130,246,0.2)"/>
+                    <text x="109" y="116" text-anchor="middle" fill="#3b82f6" font-family="Space Grotesk, sans-serif" font-size="11" font-weight="600">Workspace: Frontend</text>
+
+                    <!-- Workspace 1 > Tab 1 -->
+                    <rect x="58" y="138" width="136" height="56" rx="6" fill="#111113" stroke="#3b82f6" stroke-width="1"/>
+                    <text x="126" y="157" text-anchor="middle" fill="#3b82f6" font-family="JetBrains Mono, monospace" font-size="10" font-weight="500">Claude Code</text>
+                    <text x="126" y="182" text-anchor="middle" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="9">Tab 1 (active)</text>
+
+                    <!-- Workspace 1 > Tab 2 -->
+                    <rect x="204" y="138" width="136" height="56" rx="6" fill="#111113" stroke="#27272a" stroke-width="1"/>
+                    <text x="272" y="157" text-anchor="middle" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="10" font-weight="500">Dev Server</text>
+                    <text x="272" y="182" text-anchor="middle" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="9">Tab 2</text>
+
+                    <!-- Workspace 1 > Tab 3 with Split Panes -->
+                    <rect x="58" y="204" width="282" height="56" rx="6" fill="#111113" stroke="#27272a" stroke-width="1"/>
+                    <line x1="199" y1="204" x2="199" y2="260" stroke="#27272a" stroke-width="1" stroke-dasharray="3 2"/>
+                    <text x="128" y="228" text-anchor="middle" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="10">Tests</text>
+                    <text x="270" y="228" text-anchor="middle" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="10">Git</text>
+                    <text x="199" y="250" text-anchor="middle" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="9">Tab 3 (split panes)</text>
+
+                    <!-- Workspace 2 -->
+                    <rect x="366" y="100" width="310" height="170" rx="10" fill="#1a1a1d" stroke="#27272a" stroke-width="1.5"/>
+                    <rect x="366" y="100" width="130" height="24" rx="6" fill="rgba(113,113,122,0.15)"/>
+                    <text x="431" y="116" text-anchor="middle" fill="#a1a1aa" font-family="Space Grotesk, sans-serif" font-size="11" font-weight="600">Workspace: Backend</text>
+
+                    <!-- Workspace 2 > Tab 1 -->
+                    <rect x="380" y="138" width="136" height="56" rx="6" fill="#111113" stroke="#27272a" stroke-width="1"/>
+                    <text x="448" y="157" text-anchor="middle" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="10" font-weight="500">Claude Code</text>
+                    <text x="448" y="182" text-anchor="middle" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="9">Tab 1</text>
+
+                    <!-- Workspace 2 > Tab 2 -->
+                    <rect x="526" y="138" width="136" height="56" rx="6" fill="#111113" stroke="#27272a" stroke-width="1"/>
+                    <text x="594" y="157" text-anchor="middle" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="10" font-weight="500">Server Logs</text>
+                    <text x="594" y="182" text-anchor="middle" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="9">Tab 2</text>
+
+                    <!-- Workspace 2 > Tab 3 -->
+                    <rect x="380" y="204" width="136" height="56" rx="6" fill="#111113" stroke="#27272a" stroke-width="1"/>
+                    <text x="448" y="228" text-anchor="middle" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="10" font-weight="500">Database</text>
+                    <text x="448" y="250" text-anchor="middle" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="9">Tab 3</text>
+
+                    <!-- Workspace 2 > Tab 4 -->
+                    <rect x="526" y="204" width="136" height="56" rx="6" fill="#111113" stroke="#27272a" stroke-width="1"/>
+                    <text x="594" y="228" text-anchor="middle" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="10" font-weight="500">Docker</text>
+                    <text x="594" y="250" text-anchor="middle" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="9">Tab 4</text>
+
+                    <!-- Workspace 3 -->
+                    <rect x="44" y="286" width="632" height="76" rx="10" fill="#1a1a1d" stroke="#27272a" stroke-width="1.5"/>
+                    <rect x="44" y="286" width="130" height="24" rx="6" fill="rgba(113,113,122,0.15)"/>
+                    <text x="109" y="302" text-anchor="middle" fill="#a1a1aa" font-family="Space Grotesk, sans-serif" font-size="11" font-weight="600">Workspace: DevOps</text>
+
+                    <!-- Workspace 3 > Tab 1 -->
+                    <rect x="58" y="322" width="136" height="30" rx="6" fill="#111113" stroke="#27272a" stroke-width="1"/>
+                    <text x="126" y="342" text-anchor="middle" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="10">Claude Code</text>
+
+                    <!-- Workspace 3 > Tab 2 -->
+                    <rect x="204" y="322" width="136" height="30" rx="6" fill="#111113" stroke="#27272a" stroke-width="1"/>
+                    <text x="272" y="342" text-anchor="middle" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="10">CI/CD</text>
+
+                    <!-- Workspace 3 > Tab 3 -->
+                    <rect x="350" y="322" width="136" height="30" rx="6" fill="#111113" stroke="#27272a" stroke-width="1"/>
+                    <text x="418" y="342" text-anchor="middle" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="10">Monitoring</text>
+
+                    <!-- Workspace 3 > Tab 4 -->
+                    <rect x="496" y="322" width="136" height="30" rx="6" fill="#111113" stroke="#27272a" stroke-width="1"/>
+                    <text x="564" y="342" text-anchor="middle" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="10">SSH Tunnels</text>
+
+                    <!-- Legend -->
+                    <rect x="44" y="382" width="632" height="64" rx="8" fill="rgba(26,26,29,0.5)"/>
+                    <rect x="64" y="400" width="14" height="14" rx="3" stroke="#3b82f6" stroke-width="1.5" fill="none"/>
+                    <text x="86" y="412" fill="#a1a1aa" font-family="Space Grotesk, sans-serif" font-size="11">Active</text>
+                    <rect x="144" y="400" width="14" height="14" rx="3" stroke="#27272a" stroke-width="1.5" fill="none"/>
+                    <text x="166" y="412" fill="#71717a" font-family="Space Grotesk, sans-serif" font-size="11">Inactive</text>
+                    <line x1="242" y1="400" x2="242" y2="414" stroke="#27272a" stroke-width="1" stroke-dasharray="3 2"/>
+                    <text x="256" y="412" fill="#71717a" font-family="Space Grotesk, sans-serif" font-size="11">Split Pane Divider</text>
+                    <rect x="404" y="400" width="14" height="14" rx="3" stroke="#3b82f6" stroke-width="2" stroke-dasharray="6 3" fill="none"/>
+                    <text x="426" y="412" fill="#71717a" font-family="Space Grotesk, sans-serif" font-size="11">Layout Container</text>
+                </svg>
+            </div>
+
+            <h2>What Are Workspaces?</h2>
+
+            <p>A workspace in Beam is a container for a group of related terminal tabs. Think of it as a virtual desktop, but exclusively for your terminals. Each workspace has its own name, its own set of tabs, and its own split pane configurations. When you switch to a different workspace, your entire terminal context changes at once -- the tabs, the panes, the running sessions -- everything swaps cleanly.</p>
+
+            <p>The critical principle is isolation. Nothing bleeds between workspaces. Your frontend workspace has no knowledge of your backend workspace's tabs, and vice versa. If you have a Claude Code session running in one workspace and a dev server in another, they exist in completely separate contexts. This means you can focus on one area of your work without visual noise from everything else you have running.</p>
+
+            <p>For developers working on multiple projects, or even multiple areas within a single large project, this isolation is transformative. Instead of scanning through a dozen undifferentiated terminal tabs trying to remember which one is running what, you switch to the right workspace and everything you need is already there, organized exactly the way you left it.</p>
+
+            <h2>Creating and Naming Workspaces</h2>
+
+            <p>Creating a new workspace is as simple as pressing <span class="kbd">⌘N</span>. A new workspace appears in the sidebar, ready for you to populate with terminals. To give it a meaningful name, double-click the workspace name in the sidebar and type whatever makes sense for your use case.</p>
+
+            <p>Good naming is the foundation of good organization. Name your workspaces after the project they serve ("SaaS App", "Marketing Site", "Open Source Library"), after the role they play ("Frontend", "Backend", "DevOps"), or after the purpose of the session ("Debugging Session", "Code Review", "Deploy"). The name should tell you, at a glance, what you'll find inside.</p>
+
+            <p>All your workspaces are visible in the sidebar at all times. You never have to hunt for them or remember what's open. You can also reorder workspaces by dragging them in the sidebar, which is useful when you want to keep your most active projects at the top. As your list grows, the sidebar becomes a table of contents for your entire development environment.</p>
+
+            <h2>Tabs Inside Workspaces</h2>
+
+            <p>Each workspace contains its own independent set of tabs. Press <span class="kbd">⌘T</span> to add a new tab within the current workspace, and <span class="kbd">⌘W</span> to close one. Tabs are scoped to their workspace, so adding a tab in your "Frontend" workspace doesn't affect your "Backend" workspace at all.</p>
+
+            <p>The real power comes from naming your tabs. Double-click any tab name to rename it. Instead of "Shell 1", "Shell 2", "Shell 3", you get "Claude Code", "Dev Server", "Tests", "Git". Named tabs eliminate the guesswork. You always know what each terminal is for, and you never accidentally type a command in the wrong session.</p>
+
+            <p>Jump between tabs within the current workspace using <span class="kbd">⌘1</span> through <span class="kbd">⌘9</span>. This is keyboard-driven navigation at its best: <span class="kbd">⌘1</span> for Claude Code, <span class="kbd">⌘2</span> for your dev server, <span class="kbd">⌘3</span> for tests. Once you internalize the positions, switching is instantaneous and doesn't require you to move your hands from the keyboard.</p>
+
+            <h2>Split Panes: Side-by-Side Terminals</h2>
+
+            <p>Sometimes you need to see two terminals at the same time. Press <span class="kbd">⌘⌥⌃T</span> to split the current tab into two panes, side by side within the same tab. This is different from having two separate tabs -- split panes let you see both outputs simultaneously without switching.</p>
+
+            <p>The most common use case is watching output while an AI agent works. Put Claude Code in one pane and your dev server in the other. As Claude Code makes changes to your frontend code, you can watch the dev server hot-reload in real time, catching issues the moment they appear rather than after the fact.</p>
+
+            <p>Other effective split pane combinations include: test output alongside the code being tested, application logs next to the terminal where you're issuing commands, or a database CLI alongside your API server. Any situation where you need to correlate what's happening in two terminals is a good candidate for split panes. The key insight is that tabs are for different tasks, while split panes are for tasks you need to monitor together.</p>
+
+            <h2>Saving and Restoring Layouts</h2>
+
+            <div class="highlight">
+                <h3>This Changes Everything</h3>
+                <p>Layouts are what turn Beam from a nice terminal into a genuine productivity tool. Press <span class="kbd">⌘S</span> to save your entire configuration: every workspace, every tab within those workspaces, every split pane, and every name. Give the layout a meaningful name like "Full-Stack Project", "ML Pipeline", or "DevOps". When you restore that layout later, your entire environment comes back exactly as you left it.</p>
+            </div>
+
+            <p>Think about what this means for your daily workflow. You spend time setting up the perfect arrangement of workspaces and tabs for a project -- Claude Code here, dev server there, tests in a split pane, git operations in their own tab. Without layouts, you'd have to recreate that arrangement every time you sit down to work. With layouts, you restore it in a single action.</p>
+
+            <p>Create template layouts for different types of projects. A "React Project" layout might have workspaces for frontend, API, and testing, each pre-configured with the right tabs. A "Data Science" layout might have workspaces for notebooks, data processing, and model training. When you start a new project of that type, restore the template and you're immediately in a productive configuration.</p>
+
+            <p>You can also maintain multiple layouts simultaneously. Save one layout for your current sprint's configuration, another for your side project, and a third as a clean template. Switch between them as your focus shifts throughout the day or week.</p>
+
+            <h2>The Quick Switcher</h2>
+
+            <p>As your workspace collection grows, the Quick Switcher becomes indispensable. Press <span class="kbd">⌘P</span> to open it, then start typing. The Quick Switcher performs fuzzy search across all your workspaces, tabs, and saved layouts, letting you jump to exactly where you need to be in seconds.</p>
+
+            <p>Type "claude backend" and it jumps to the Claude Code tab inside your Backend workspace. Type "tests" and it finds whichever workspace has a Tests tab. Type "full stack" and it offers to restore your Full-Stack layout. The matching is intelligent and forgiving -- you don't need to type exact names, just enough characters for Beam to identify what you want.</p>
+
+            <p>The Quick Switcher is especially valuable when you have five or more workspaces open. Clicking through the sidebar still works, but typing a few characters is faster. It's the difference between scanning a list and directly addressing what you need. The larger your project grows, the more valuable the Quick Switcher becomes.</p>
+
+            <h2>Undo Close</h2>
+
+            <p>Accidentally closing a terminal is one of the most frustrating experiences in development, especially when that terminal was running a long-lived Claude Code conversation or displaying output you hadn't finished reading. In Beam, press <span class="kbd">⌘Z</span> to undo the last close action, whether it was a tab, a workspace, or a pane.</p>
+
+            <p>The restored terminal comes back with its shell history intact. You don't lose any output, and you don't lose your place in a conversation. This applies to any close action: if you accidentally close an entire workspace full of tabs, <span class="kbd">⌘Z</span> brings the whole thing back. The safety net is comprehensive.</p>
+
+            <p>This single feature saves hours of frustration over time. No more restarting dev servers because you closed the wrong tab. No more losing Claude Code context because of a misclick. Just undo and continue working.</p>
+
+            <h2>Workspace Strategies</h2>
+
+            <p>The flexibility of workspaces means there's no single "correct" way to use them. The right strategy depends on your workflow, your project structure, and how you think about your work. Here are four proven approaches.</p>
+
+            <div class="strategy-block">
+                <h3>Strategy 1: One Workspace Per Project</h3>
+                <p>The most common pattern, and the best starting point for most developers. Each project you work on gets its own workspace: "SaaS App", "Side Project", "Open Source Library". Within each workspace, you set up tabs for that project's specific needs -- a Claude Code session, a dev server, a git tab, maybe a testing tab.</p>
+                <ul>
+                    <li>Best for developers juggling 2-5 independent projects</li>
+                    <li>Clean separation between different codebases</li>
+                    <li>Easy to context-switch by just clicking the right workspace</li>
+                </ul>
+            </div>
+
+            <div class="strategy-block">
+                <h3>Strategy 2: One Workspace Per Role</h3>
+                <p>For larger projects where you wear multiple hats, organize by role instead of by project. Create workspaces like "Frontend", "Backend", "DevOps", and "Database". Each role-based workspace has tabs configured specifically for that type of work.</p>
+                <ul>
+                    <li>Best for full-stack developers on a single large project</li>
+                    <li>Each workspace is tuned for a specific type of work</li>
+                    <li>Reduces cognitive load when switching between frontend and backend tasks</li>
+                </ul>
+            </div>
+
+            <div class="strategy-block">
+                <h3>Strategy 3: One Workspace Per Agent</h3>
+                <p>For multi-agent AI workflows, dedicate a workspace to each AI agent or tool. "Claude Code" gets its own workspace, "Codex" gets another, and "Manual Terminal" is where you do non-AI work. This keeps each agent's output isolated and lets you compare their approaches side by side.</p>
+                <ul>
+                    <li>Best when running multiple AI agents on the same codebase</li>
+                    <li>Prevents output from different agents from mixing together</li>
+                    <li>Useful for evaluating different AI tools against each other</li>
+                </ul>
+            </div>
+
+            <div class="strategy-block">
+                <h3>Strategy 4: Hybrid</h3>
+                <p>Combine the strategies above to fit your actual workflow. Your main project might get role-based workspaces (Frontend, Backend, DevOps), while side projects each get a single workspace. You might also have an agent-specific workspace for experimental multi-agent work.</p>
+                <ul>
+                    <li>Best for experienced Beam users with complex workflows</li>
+                    <li>Use whatever organizational scheme makes sense for each context</li>
+                    <li>Save different hybrid configurations as named layouts for different work modes</li>
+                </ul>
+            </div>
+
+            <h2>Project Memory Integration</h2>
+
+            <p>Beam includes a feature that bridges the gap between terminal organization and AI agent context: Project Memory. Through Beam's toolbar, you have access to two buttons -- "Install Project Memory" and "Save Project Memory" -- that create and manage a <span class="kbd">CLAUDE.md</span> file in your project root.</p>
+
+            <p>This memory file is automatically read by AI agents like Claude Code when they start a session in that directory. It contains project context, conventions, build instructions, and any other information that helps the AI agent understand your project. When you save project memory, you're capturing the context that makes future AI sessions more effective from the very first prompt.</p>
+
+            <p>The connection to workspaces is natural: each workspace corresponds to a project or area of work, and each project has its own memory file. When you switch workspaces and start a new Claude Code session, the AI agent reads the memory file for that project and immediately has the context it needs. There's no need to re-explain your project structure, your conventions, or your preferences every time you start a session.</p>
+
+            <h2>Keyboard Shortcut Reference</h2>
+
+            <div class="highlight">
+                <h3>Essential Shortcuts</h3>
+                <table class="shortcut-table">
+                    <tr>
+                        <td><span class="kbd">⌘N</span></td>
+                        <td>Create a new workspace</td>
+                    </tr>
+                    <tr>
+                        <td><span class="kbd">⌘T</span></td>
+                        <td>Open a new tab in current workspace</td>
+                    </tr>
+                    <tr>
+                        <td><span class="kbd">⌘W</span></td>
+                        <td>Close the current tab</td>
+                    </tr>
+                    <tr>
+                        <td><span class="kbd">⌘⌥←→</span></td>
+                        <td>Switch between workspaces</td>
+                    </tr>
+                    <tr>
+                        <td><span class="kbd">⌘1</span> - <span class="kbd">⌘9</span></td>
+                        <td>Jump to tab by number</td>
+                    </tr>
+                    <tr>
+                        <td><span class="kbd">⌘⌥⌃T</span></td>
+                        <td>Split current tab into panes</td>
+                    </tr>
+                    <tr>
+                        <td><span class="kbd">⌘P</span></td>
+                        <td>Open the Quick Switcher</td>
+                    </tr>
+                    <tr>
+                        <td><span class="kbd">⌘S</span></td>
+                        <td>Save current layout</td>
+                    </tr>
+                    <tr>
+                        <td><span class="kbd">⌘Z</span></td>
+                        <td>Undo last close (tab, workspace, or pane)</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="cta-box">
+                <h3>Master Your Terminal</h3>
+                <p>Download Beam and organize your development workflow with workspaces, tabs, and saved layouts.</p>
+                <a href="../" class="btn">Download Beam for macOS</a>
+            </div>
+
+            <h2>Summary</h2>
+
+            <p>Beam workspaces give you a structured, hierarchical way to manage your terminal sessions. Layouts contain workspaces, workspaces contain tabs, and tabs can contain split panes. Every level is named, every level is isolated, and every level can be saved and restored.</p>
+
+            <ul>
+                <li><strong>Workspaces</strong> isolate your terminal context by project, role, or agent</li>
+                <li><strong>Tabs</strong> organize individual terminals within each workspace</li>
+                <li><strong>Split panes</strong> let you monitor related outputs side by side</li>
+                <li><strong>Layouts</strong> save and restore your entire configuration in one action</li>
+                <li><strong>Quick Switcher</strong> (<span class="kbd">⌘P</span>) gets you anywhere in seconds</li>
+                <li><strong>Undo Close</strong> (<span class="kbd">⌘Z</span>) means you never lose work by accident</li>
+                <li><strong>Project Memory</strong> gives your AI agents persistent context per workspace</li>
+            </ul>
+
+            <p>Start with one workspace per project, name everything clearly, and save your layouts. As your workflow evolves, experiment with role-based or agent-based strategies. The system is flexible enough to adapt to however you work best.</p>
+
+            <div class="related-articles">
+                <h2>Related Articles</h2>
+                <div class="related-grid">
+                    <a href="beam-claude-code-setup.html" class="related-card">
+                        <h4>Setting Up Beam for Claude Code</h4>
+                        <p>Step-by-step guide to configuring Beam for AI-powered development.</p>
+                    </a>
+                    <a href="workspace-templates-guide.html" class="related-card">
+                        <h4>Workspace Templates Guide</h4>
+                        <p>Pre-built workspace templates for common development workflows.</p>
+                    </a>
+                    <a href="organizing-claude-code-sessions.html" class="related-card">
+                        <h4>Organizing Claude Code Sessions</h4>
+                        <p>Keep your AI coding workflow clean with workspaces, tabs, and layouts.</p>
+                    </a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>
+                <a href="../">Beam</a> &bull; Terminal Organizer for macOS &bull;
+                <a href="mailto:frank@nextuptechnologies.co">Contact</a>
+            </p>
+
+            <p style="margin-top: 12px; font-size: 0.8rem;">
+                <a href="/privacy.html" style="color: #71717a; text-decoration: none;">Privacy Policy</a> &bull;
+                <a href="/terms.html" style="color: #71717a; text-decoration: none;">Terms of Service</a>
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>

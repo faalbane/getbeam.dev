@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D0XH8B0RKL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-D0XH8B0RKL');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Use Claude Code with Docker: Containers + AI Workflow | Beam</title>
+    <meta name="description" content="Run Claude Code alongside Docker containers with an organized workflow. Beam workspaces keep your AI agent, container logs, and compose commands in separate, labeled tabs.">
+    <meta name="keywords" content="Claude Code Docker, Claude Code containers, AI coding Docker workflow, Claude Code Docker Compose, terminal Docker AI">
+    <meta name="author" content="NextUp Technologies">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://getbeam.dev/blog/claude-code-with-docker.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://getbeam.dev/blog/claude-code-with-docker.html">
+    <meta property="og:title" content="How to Use Claude Code with Docker: Containers + AI Workflow">
+    <meta property="og:description" content="Run Claude Code alongside Docker containers with an organized workflow. Beam workspaces keep your AI agent, container logs, and compose commands in separate, labeled tabs.">
+    <meta property="og:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="How to Use Claude Code with Docker: Containers + AI Workflow">
+    <meta name="twitter:description" content="Run Claude Code alongside Docker containers with an organized workflow. Beam workspaces keep your AI agent, container logs, and compose commands in separate, labeled tabs.">
+    <meta name="twitter:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "How to Use Claude Code with Docker: Containers + AI Workflow",
+        "description": "Run Claude Code alongside Docker containers with an organized workflow. Beam workspaces keep your AI agent, container logs, and compose commands in separate, labeled tabs.",
+        "author": {
+            "@type": "Organization",
+            "name": "NextUp Technologies"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Beam"
+        },
+        "datePublished": "2026-02-11",
+        "keywords": "Claude Code Docker, Claude Code containers, AI coding Docker workflow, Claude Code Docker Compose, terminal Docker AI"
+    }
+    </script>
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #111113;
+            --bg-tertiary: #1a1a1d;
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.4);
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --border: #27272a;
+            --success: #22c55e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        header {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 60px;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1.5rem;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            background: var(--accent);
+            color: white;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+        }
+
+        article {
+            padding-bottom: 80px;
+        }
+
+        .breadcrumb {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+        }
+
+        .breadcrumb a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .meta {
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            font-size: 0.95rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 48px 0 20px;
+            color: var(--text-primary);
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        ul, ol {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            padding-left: 24px;
+        }
+
+        li {
+            margin-bottom: 12px;
+        }
+
+        .highlight {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 32px 0;
+        }
+
+        .highlight h3 {
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .kbd {
+            display: inline-block;
+            padding: 2px 8px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+        }
+
+        code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            background: var(--bg-tertiary);
+            padding: 2px 6px;
+            border-radius: 4px;
+            border: 1px solid var(--border);
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .cta-box h3 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+        }
+
+        .cta-box p {
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 24px;
+        }
+
+        .cta-box .btn {
+            background: white;
+            color: var(--accent);
+        }
+
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+
+        .related-articles { margin-top: 60px; padding-top: 40px; border-top: 1px solid var(--border); }
+        .related-articles h2 { font-size: 1.5rem; margin-bottom: 24px; }
+        .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .related-card { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-decoration: none; transition: border-color 0.2s; }
+        .related-card:hover { border-color: var(--accent); }
+        .related-card h4 { color: white; font-size: 1rem; margin: 0 0 8px 0; }
+        .related-card p { color: var(--text-muted); font-size: 0.85rem; margin: 0; }
+        @media (max-width: 600px) { .related-grid { grid-template-columns: 1fr; } h1 { font-size: 1.8rem; } }
+
+        .blog-visual {
+            margin: 40px 0;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        .blog-visual svg {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="../" class="logo">
+                <div class="logo-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round">
+                        <path d="M4 17l6-6-6-6M12 19h8"/>
+                    </svg>
+                </div>
+                Beam
+            </a>
+            <a href="../" class="btn">Download Beam</a>
+        </div>
+    </header>
+
+    <main>
+        <article class="container">
+            <div class="breadcrumb">
+                <a href="../">Beam</a> / <a href="../#guides">Guides</a> / Claude Code with Docker
+            </div>
+
+            <h1>How to Use Claude Code with Docker: Containers + AI Workflow</h1>
+            <p class="meta">February 2026 &bull; 7 min read</p>
+
+            <p>Docker and Claude Code are two of the most powerful tools in a developer's arsenal -- but running them together can quickly overwhelm your terminal. You've got Claude Code refactoring your app, Docker Compose running your services, container logs streaming in another window, and <code>docker exec</code> sessions open for debugging. That's five or more terminals before you even open git. Here's how to keep it all organized.</p>
+
+            <div class="blog-visual">
+                <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" fill="none">
+                    <!-- Window background -->
+                    <rect width="800" height="420" rx="12" fill="#0a0a0b"/>
+                    <rect x="0.5" y="0.5" width="799" height="419" rx="11.5" stroke="#27272a"/>
+
+                    <!-- Title bar -->
+                    <rect x="1" y="1" width="798" height="36" rx="11" fill="#111113"/>
+                    <line x1="0" y1="37" x2="800" y2="37" stroke="#27272a"/>
+                    <!-- Window dots -->
+                    <circle cx="20" cy="19" r="5" fill="#ef4444" opacity="0.8"/>
+                    <circle cx="38" cy="19" r="5" fill="#eab308" opacity="0.8"/>
+                    <circle cx="56" cy="19" r="5" fill="#22c55e" opacity="0.8"/>
+                    <!-- Workspace title -->
+                    <text x="400" y="23" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-size="12" fill="#a1a1aa" font-weight="500">Docker Microservices</text>
+
+                    <!-- Tab bar -->
+                    <rect x="1" y="37" width="798" height="34" fill="#0a0a0b"/>
+                    <line x1="0" y1="71" x2="800" y2="71" stroke="#27272a"/>
+
+                    <!-- Tab 1: Claude Code (active, amber) -->
+                    <rect x="8" y="42" width="140" height="26" rx="6" fill="#1a1a1d"/>
+                    <rect x="8.5" y="42.5" width="139" height="25" rx="5.5" stroke="#D97706" stroke-opacity="0.5"/>
+                    <circle cx="22" cy="55" r="3" fill="#D97706"/>
+                    <!-- Sparkle icon for Claude -->
+                    <path d="M36 51l1.5 3 1.5-3 3 1.5-3 1.5 3 1.5-3-1.5-1.5 3-1.5-3-3-1.5z" fill="#D97706" opacity="0.9"/>
+                    <text x="48" y="59" font-family="Space Grotesk, sans-serif" font-size="11" fill="#fafafa" font-weight="500">Claude Code</text>
+
+                    <!-- Tab 2: Compose (Docker blue) -->
+                    <rect x="156" y="42" width="120" height="26" rx="6" fill="#111113"/>
+                    <circle cx="170" cy="55" r="3" fill="#2496ED"/>
+                    <!-- Docker whale mini icon -->
+                    <rect x="181" y="51" width="3" height="2.5" rx="0.5" fill="#2496ED" opacity="0.8"/>
+                    <rect x="185" y="51" width="3" height="2.5" rx="0.5" fill="#2496ED" opacity="0.8"/>
+                    <rect x="189" y="51" width="3" height="2.5" rx="0.5" fill="#2496ED" opacity="0.8"/>
+                    <rect x="181" y="54.5" width="3" height="2.5" rx="0.5" fill="#2496ED" opacity="0.8"/>
+                    <rect x="185" y="54.5" width="3" height="2.5" rx="0.5" fill="#2496ED" opacity="0.8"/>
+                    <rect x="189" y="54.5" width="3" height="2.5" rx="0.5" fill="#2496ED" opacity="0.8"/>
+                    <text x="198" y="59" font-family="Space Grotesk, sans-serif" font-size="11" fill="#a1a1aa" font-weight="500">Compose</text>
+
+                    <!-- Tab 3: Logs (Docker blue) -->
+                    <rect x="284" y="42" width="100" height="26" rx="6" fill="#111113"/>
+                    <circle cx="298" cy="55" r="3" fill="#2496ED"/>
+                    <rect x="309" y="51" width="3" height="2.5" rx="0.5" fill="#2496ED" opacity="0.8"/>
+                    <rect x="313" y="51" width="3" height="2.5" rx="0.5" fill="#2496ED" opacity="0.8"/>
+                    <rect x="309" y="54.5" width="3" height="2.5" rx="0.5" fill="#2496ED" opacity="0.8"/>
+                    <rect x="313" y="54.5" width="3" height="2.5" rx="0.5" fill="#2496ED" opacity="0.8"/>
+                    <text x="322" y="59" font-family="Space Grotesk, sans-serif" font-size="11" fill="#a1a1aa" font-weight="500">Logs</text>
+
+                    <!-- Tab 4: Exec (Docker blue) -->
+                    <rect x="392" y="42" width="100" height="26" rx="6" fill="#111113"/>
+                    <circle cx="406" cy="55" r="3" fill="#2496ED"/>
+                    <rect x="417" y="51" width="3" height="2.5" rx="0.5" fill="#2496ED" opacity="0.8"/>
+                    <rect x="421" y="51" width="3" height="2.5" rx="0.5" fill="#2496ED" opacity="0.8"/>
+                    <rect x="417" y="54.5" width="3" height="2.5" rx="0.5" fill="#2496ED" opacity="0.8"/>
+                    <rect x="421" y="54.5" width="3" height="2.5" rx="0.5" fill="#2496ED" opacity="0.8"/>
+                    <text x="430" y="59" font-family="Space Grotesk, sans-serif" font-size="11" fill="#a1a1aa" font-weight="500">Exec</text>
+
+                    <!-- Tab 5: Git (muted) -->
+                    <rect x="500" y="42" width="90" height="26" rx="6" fill="#111113"/>
+                    <circle cx="514" cy="55" r="3" fill="#71717a"/>
+                    <!-- Git branch icon -->
+                    <circle cx="527" cy="52" r="2" stroke="#71717a" stroke-width="1" fill="none"/>
+                    <circle cx="527" cy="58" r="2" stroke="#71717a" stroke-width="1" fill="none"/>
+                    <line x1="527" y1="54" x2="527" y2="56" stroke="#71717a" stroke-width="1"/>
+                    <text x="535" y="59" font-family="Space Grotesk, sans-serif" font-size="11" fill="#71717a" font-weight="500">Git</text>
+
+                    <!-- Divider between panes -->
+                    <line x1="400" y1="71" x2="400" y2="420" stroke="#27272a"/>
+
+                    <!-- LEFT PANE: Claude Code generating a Dockerfile -->
+                    <rect x="1" y="71" width="399" height="348" fill="#0a0a0b"/>
+
+                    <!-- Left pane header -->
+                    <rect x="1" y="71" width="399" height="24" fill="#111113"/>
+                    <text x="16" y="87" font-family="JetBrains Mono, monospace" font-size="10" fill="#D97706" font-weight="500">Claude Code</text>
+                    <text x="110" y="87" font-family="JetBrains Mono, monospace" font-size="10" fill="#71717a">~/project</text>
+
+                    <!-- Claude Code output lines -->
+                    <text x="16" y="115" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#71717a">$</text>
+                    <text x="28" y="115" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#a1a1aa">Create a multi-stage Dockerfile</text>
+
+                    <text x="16" y="140" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#D97706">Writing Dockerfile...</text>
+
+                    <text x="16" y="168" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#71717a">1</text>
+                    <text x="32" y="168" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#8b5cf6">FROM</text>
+                    <text x="64" y="168" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#a1a1aa"> node:20-alpine</text>
+                    <text x="178" y="168" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#8b5cf6"> AS</text>
+                    <text x="200" y="168" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#22c55e"> builder</text>
+
+                    <text x="16" y="186" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#71717a">2</text>
+                    <text x="32" y="186" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#8b5cf6">WORKDIR</text>
+                    <text x="88" y="186" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#a1a1aa"> /app</text>
+
+                    <text x="16" y="204" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#71717a">3</text>
+                    <text x="32" y="204" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#8b5cf6">COPY</text>
+                    <text x="64" y="204" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#a1a1aa"> package*.json ./</text>
+
+                    <text x="16" y="222" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#71717a">4</text>
+                    <text x="32" y="222" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#8b5cf6">RUN</text>
+                    <text x="58" y="222" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#a1a1aa"> npm ci --production</text>
+
+                    <text x="16" y="240" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#71717a">5</text>
+                    <text x="32" y="240" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#8b5cf6">COPY</text>
+                    <text x="64" y="240" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#a1a1aa"> . .</text>
+
+                    <text x="16" y="258" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#71717a">6</text>
+                    <text x="32" y="258" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#8b5cf6">RUN</text>
+                    <text x="58" y="258" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#a1a1aa"> npm run build</text>
+
+                    <text x="16" y="283" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#71717a">7</text>
+                    <text x="32" y="283" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#8b5cf6">FROM</text>
+                    <text x="64" y="283" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#a1a1aa"> node:20-alpine</text>
+                    <text x="178" y="283" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#8b5cf6"> AS</text>
+                    <text x="200" y="283" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#22c55e"> production</text>
+
+                    <text x="16" y="301" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#71717a">8</text>
+                    <text x="32" y="301" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#8b5cf6">COPY</text>
+                    <text x="64" y="301" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#3b82f6"> --from=builder</text>
+                    <text x="172" y="301" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#a1a1aa"> /app/dist ./dist</text>
+
+                    <text x="16" y="319" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#71717a">9</text>
+                    <text x="32" y="319" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#8b5cf6">EXPOSE</text>
+                    <text x="82" y="319" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#eab308"> 3000</text>
+
+                    <!-- Blinking cursor -->
+                    <rect x="16" y="338" width="7" height="14" rx="1" fill="#D97706" opacity="0.8">
+                        <animate attributeName="opacity" values="0.8;0;0.8" dur="1.2s" repeatCount="indefinite"/>
+                    </rect>
+
+                    <!-- RIGHT PANE: Docker Compose output -->
+                    <rect x="400" y="71" width="399" height="348" fill="#0a0a0b"/>
+
+                    <!-- Right pane header -->
+                    <rect x="400" y="71" width="399" height="24" fill="#111113"/>
+                    <text x="416" y="87" font-family="JetBrains Mono, monospace" font-size="10" fill="#2496ED" font-weight="500">Docker Compose</text>
+                    <text x="530" y="87" font-family="JetBrains Mono, monospace" font-size="10" fill="#71717a">~/project</text>
+
+                    <!-- Compose output -->
+                    <text x="416" y="115" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#71717a">$</text>
+                    <text x="428" y="115" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#a1a1aa">docker compose up</text>
+
+                    <text x="416" y="143" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#2496ED">[+] Running 4/4</text>
+
+                    <!-- Network line -->
+                    <text x="416" y="168" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#71717a"> Network</text>
+                    <text x="485" y="168" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#a1a1aa"> app_default</text>
+
+                    <!-- Postgres service -->
+                    <text x="416" y="196" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#71717a"> Container</text>
+                    <text x="500" y="196" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#a1a1aa"> postgres</text>
+                    <circle cx="740" cy="193" r="4" fill="#22c55e"/>
+                    <text x="750" y="196" font-family="JetBrains Mono, monospace" font-size="9" fill="#22c55e">Started</text>
+
+                    <!-- Redis service -->
+                    <text x="416" y="220" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#71717a"> Container</text>
+                    <text x="500" y="220" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#a1a1aa"> redis</text>
+                    <circle cx="740" cy="217" r="4" fill="#22c55e"/>
+                    <text x="750" y="220" font-family="JetBrains Mono, monospace" font-size="9" fill="#22c55e">Started</text>
+
+                    <!-- API service -->
+                    <text x="416" y="244" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#71717a"> Container</text>
+                    <text x="500" y="244" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#a1a1aa"> api</text>
+                    <circle cx="740" cy="241" r="4" fill="#22c55e"/>
+                    <text x="750" y="244" font-family="JetBrains Mono, monospace" font-size="9" fill="#22c55e">Started</text>
+
+                    <!-- Log lines -->
+                    <text x="416" y="275" font-family="JetBrains Mono, monospace" font-size="10" fill="#2496ED">postgres</text>
+                    <text x="478" y="275" font-family="JetBrains Mono, monospace" font-size="10" fill="#71717a"> | </text>
+                    <text x="498" y="275" font-family="JetBrains Mono, monospace" font-size="10" fill="#a1a1aa">ready on port 5432</text>
+
+                    <text x="416" y="295" font-family="JetBrains Mono, monospace" font-size="10" fill="#ef4444">redis</text>
+                    <text x="458" y="295" font-family="JetBrains Mono, monospace" font-size="10" fill="#71717a">    | </text>
+                    <text x="498" y="295" font-family="JetBrains Mono, monospace" font-size="10" fill="#a1a1aa">ready on port 6379</text>
+
+                    <text x="416" y="315" font-family="JetBrains Mono, monospace" font-size="10" fill="#22c55e">api</text>
+                    <text x="440" y="315" font-family="JetBrains Mono, monospace" font-size="10" fill="#71717a">      | </text>
+                    <text x="498" y="315" font-family="JetBrains Mono, monospace" font-size="10" fill="#a1a1aa">listening on :3000</text>
+
+                    <text x="416" y="335" font-family="JetBrains Mono, monospace" font-size="10" fill="#22c55e">api</text>
+                    <text x="440" y="335" font-family="JetBrains Mono, monospace" font-size="10" fill="#71717a">      | </text>
+                    <text x="498" y="335" font-family="JetBrains Mono, monospace" font-size="10" fill="#a1a1aa">connected to postgres</text>
+
+                    <text x="416" y="355" font-family="JetBrains Mono, monospace" font-size="10" fill="#22c55e">api</text>
+                    <text x="440" y="355" font-family="JetBrains Mono, monospace" font-size="10" fill="#71717a">      | </text>
+                    <text x="498" y="355" font-family="JetBrains Mono, monospace" font-size="10" fill="#a1a1aa">connected to redis</text>
+
+                    <!-- Bottom status bar -->
+                    <rect x="1" y="395" width="798" height="24" rx="0" fill="#111113"/>
+                    <text x="16" y="411" font-family="JetBrains Mono, monospace" font-size="10" fill="#71717a">Workspace:</text>
+                    <text x="90" y="411" font-family="JetBrains Mono, monospace" font-size="10" fill="#3b82f6">Docker Microservices</text>
+                    <text x="620" y="411" font-family="JetBrains Mono, monospace" font-size="10" fill="#71717a">5 tabs</text>
+                    <text x="680" y="411" font-family="JetBrains Mono, monospace" font-size="10" fill="#71717a">2 panes</text>
+                    <text x="745" y="411" font-family="JetBrains Mono, monospace" font-size="10" fill="#22c55e">Saved</text>
+                </svg>
+            </div>
+
+            <h2>The Docker + AI Terminal Problem</h2>
+
+            <p>Docker already demands a serious amount of terminal real estate. You need a terminal for <code>docker compose up</code> to keep your services running in the foreground. You need another for <code>docker compose logs -f</code> to tail a specific service. You probably have a <code>docker exec</code> session open so you can poke around inside a running container. And somewhere in the mix, you're running builds, pushing images, or managing volumes.</p>
+
+            <p>Now add Claude Code to that picture and you've effectively doubled the terminal count. Your AI agent is generating code, refactoring files, and running commands -- all in its own terminal session. The problem is that every one of these terminals looks identical. A wall of monospace text with no labels, no grouping, and no context. You can't tell at a glance whether a terminal is tailing Postgres logs or running a Claude Code session that's halfway through rewriting your authentication middleware.</p>
+
+            <p>The real danger is operational. Accidentally running <code>docker compose down</code> in the wrong terminal -- because you thought it was your disposable test environment but it was actually production -- is a mistake that happens once and haunts you forever. When terminals are unlabeled and unorganized, that kind of misfire is just a matter of time.</p>
+
+            <h2>The Beam Workspace Layout for Docker Projects</h2>
+
+            <p>The solution is to give every terminal a purpose and a label, then group them by context. In Beam, you create a single workspace for your Docker project and populate it with purpose-built tabs:</p>
+
+            <ul>
+                <li><strong>Tab 1: Claude Code</strong> -- Your AI coding assistant, scoped to the project directory. This is where you ask Claude to write Dockerfiles, modify compose configurations, debug failing services, and refactor application code.</li>
+                <li><strong>Tab 2: Docker Compose</strong> -- A dedicated tab running <code>docker compose up</code> with live service output. You never touch this tab except to watch the orchestration status.</li>
+                <li><strong>Tab 3: Container Logs</strong> -- Run <code>docker compose logs -f [service]</code> here to tail specific services. When something breaks, this is the first place you look.</li>
+                <li><strong>Tab 4: Docker Exec</strong> -- Interactive shells into running containers. Use this for <code>docker exec -it postgres psql</code> or poking around the filesystem of a misbehaving service.</li>
+                <li><strong>Tab 5: Git</strong> -- Your version control operations live here. Commits, branch management, push and pull -- all separated from your Docker and AI workflows.</li>
+            </ul>
+
+            <p>Each tab is clearly labeled, so you always know exactly what you're looking at. There's no ambiguity, no squinting at output to figure out which process is running in which terminal. You can also use split panes within any tab -- Claude Code on the left, container logs on the right -- to watch cause and effect in real time.</p>
+
+            <h2>Claude Code Writing Dockerfiles</h2>
+
+            <p>One of Claude Code's strongest capabilities in a containerized workflow is generating and optimizing Dockerfiles. Instead of hunting through documentation for the right syntax or best practices, you can describe what you need in plain language: "Create a multi-stage Dockerfile for this Node.js app with separate build and production stages, using Alpine for the final image."</p>
+
+            <p>Claude understands Docker best practices out of the box. It will set up layer caching correctly by copying <code>package.json</code> before the rest of the source code. It will choose minimal base images to keep your final image small. It will add a non-root user for security. It will separate build dependencies from runtime dependencies so your production image doesn't ship with compilers and dev tools it doesn't need.</p>
+
+            <p>The workflow is smooth when you have your tabs set up properly. Claude generates the Dockerfile in your Claude Code tab. You switch to the Docker Compose tab and run <code>docker compose build</code> to test it. If something fails, you copy the error, switch back to Claude Code, and paste it in. Claude reads the build log, identifies the issue, and produces a corrected Dockerfile. The iteration loop is tight because every step has its own dedicated space.</p>
+
+            <h2>Claude Code + Docker Compose: The Power Combo</h2>
+
+            <p>Docker Compose files are where Claude Code really shines as a productivity multiplier. Compose configurations can get intricate -- services, networks, volumes, health checks, dependency ordering, environment variables, build contexts -- and keeping all of that consistent is tedious manual work. Claude handles it effortlessly.</p>
+
+            <p>Need to add a Redis cache to your stack? Tell Claude: "Add a Redis service to docker-compose.yml and connect it to the API service with the appropriate environment variables." Claude will add the service definition, set up a shared network if one doesn't exist, configure the connection string as an environment variable on your API service, and add a <code>depends_on</code> clause so Redis starts before your API does.</p>
+
+            <p>The split-pane workflow is particularly powerful here. Keep Claude Code in the left pane of your Compose tab and the compose output in the right pane. Claude modifies the YAML, you run <code>docker compose up</code> in the right pane, and you immediately see whether the new service starts correctly. If there's a port conflict or a missing environment variable, the error appears right next to the terminal where Claude can fix it. No switching windows, no copy-pasting across screens.</p>
+
+            <h2>Debugging Containers with Claude Code</h2>
+
+            <p>Container debugging is where the multi-tab workflow proves its value most dramatically. Something is failing in your application, and the error is buried in container logs. Without organization, you'd be scrolling through three different terminal windows trying to correlate timestamps and trace the issue across services.</p>
+
+            <p>With Beam's tab layout, the process is methodical. Check your Logs tab for the error. You see a connection refused error from your API service trying to reach Postgres. Copy the relevant log lines. Switch to your Claude Code tab and paste them in: "This error is coming from the API container trying to connect to Postgres. Here's the log output." Claude reads the error, understands the context, and diagnoses the problem -- maybe the Postgres health check isn't configured, so the API starts before the database is ready to accept connections.</p>
+
+            <p>Claude suggests adding a health check to the Postgres service and a <code>condition: service_healthy</code> to the API's <code>depends_on</code> configuration. You apply the fix. Switch to the Compose tab, run <code>docker compose up</code> again. Switch to the Logs tab to verify the API now waits for Postgres. The whole debugging cycle happens across labeled tabs instead of a chaotic pile of anonymous terminals.</p>
+
+            <div class="highlight">
+                <h3>Pro Tip: Split Pane Debugging</h3>
+                <p>Use split panes within a single tab -- Claude Code in one pane, container logs in the other. Watch Claude suggest a fix, apply it, and see the container recover in real-time. This side-by-side view makes the cause-and-effect relationship immediately visible, cutting your debugging time significantly.</p>
+            </div>
+
+            <h2>Microservices Workflow: One Workspace Per Service</h2>
+
+            <p>For larger projects with multiple microservices, a single workspace isn't enough. The tab bar gets crowded, and you lose the clarity that made the organization valuable in the first place. The solution is to create one workspace per microservice, plus an infrastructure workspace that ties everything together.</p>
+
+            <ul>
+                <li><strong>Workspace "Auth Service"</strong> -- Claude Code working on the auth codebase, service-specific logs from <code>docker compose logs -f auth</code>, and a tab for running tests against the auth service</li>
+                <li><strong>Workspace "API Gateway"</strong> -- Claude Code for the gateway logic, gateway logs, and a tab for <code>curl</code> testing against your API endpoints</li>
+                <li><strong>Workspace "Worker"</strong> -- Claude Code for the background worker, worker logs, and a tab for monitoring your message queue</li>
+                <li><strong>Workspace "Infrastructure"</strong> -- The master <code>docker compose up</code> for all services, overall system logs, and orchestration commands</li>
+            </ul>
+
+            <p>Switch between workspaces with <span class="kbd">⌘⌥←→</span> or use the Quick Switcher with <span class="kbd">⌘P</span> to jump directly to any workspace by name. The mental model is clean: each workspace is a self-contained context for one microservice, and the infrastructure workspace is where you manage the system as a whole. You're never more than a keyboard shortcut away from any part of your stack.</p>
+
+            <h2>Saving Your Docker Development Layout</h2>
+
+            <p>The most frustrating part of a multi-terminal Docker workflow is rebuilding it every morning. You open your terminal, start creating tabs, remember which one was compose, which one was logs, set up the split panes, and by the time you're ready to code, you've spent ten minutes on terminal housekeeping.</p>
+
+            <p>Beam solves this with saveable layouts. Once you have your Docker workspace configured the way you want it -- all the tabs labeled, split panes positioned, working directories set -- press <span class="kbd">⌘S</span> to save the entire setup. Give it a descriptive name like "Docker Microservices" or the specific project name.</p>
+
+            <p>The next day, restore the layout and everything comes back exactly as you left it: the workspace structure, the tab labels, the split pane arrangement. Run <code>docker compose up</code> in the compose tab and you're back to full speed in seconds instead of minutes. You can even create template layouts for different types of Docker projects -- one for a standard web app with a database, another for a microservices architecture, another for a data pipeline with workers and queues.</p>
+
+            <h2>Memory File: Docker Conventions</h2>
+
+            <p>Every team has Docker conventions. Maybe you standardize on Alpine-based images. Maybe all services connect through a shared network named <code>app-net</code>. Maybe environment variables follow a specific naming pattern like <code>SERVICE_NAME_VAR_NAME</code>. These conventions live in people's heads, or buried in a wiki page nobody reads, and they get violated constantly.</p>
+
+            <p>Beam's Project Memory feature changes this. Create a memory file that documents your Docker-specific conventions: base images, networking patterns, volume mount strategies, environment variable naming schemes, health check standards, and logging configurations. When Claude Code starts a session, it reads this memory file automatically and follows your conventions from the very first prompt.</p>
+
+            <p>This is especially valuable for teams. Instead of every developer's Claude Code sessions producing slightly different Dockerfiles and compose configurations, everyone's AI assistant follows the same patterns. The memory file becomes a living style guide for your containerized infrastructure, and it's enforced not by code review but by the AI itself. New team members get the conventions right from day one because their Claude Code session already knows the rules.</p>
+
+            <div class="cta-box">
+                <h3>Tame Your Docker + AI Workflow</h3>
+                <p>Download Beam and organize Claude Code alongside your containers. No more terminal chaos.</p>
+                <a href="../" class="btn">Download Beam for macOS</a>
+            </div>
+
+            <h2>Summary</h2>
+
+            <p>Docker and Claude Code are each powerful on their own, but using them together without organization creates a terminal management nightmare. With Beam, you can bring structure to the chaos:</p>
+
+            <ul>
+                <li>Use <strong>labeled tabs</strong> to give every terminal a clear purpose -- Claude Code, Compose, Logs, Exec, and Git each get their own space</li>
+                <li>Use <strong>split panes</strong> for side-by-side workflows -- Claude Code generating a fix while container logs show the result in real time</li>
+                <li>Use <strong>workspaces</strong> to isolate microservices, with one workspace per service and an infrastructure workspace for orchestration</li>
+                <li>Use <strong>saved layouts</strong> (<span class="kbd">⌘S</span>) to restore your entire Docker development environment in seconds</li>
+                <li>Use <strong>Project Memory</strong> to ensure Claude Code follows your Docker conventions from the first prompt</li>
+                <li>Use <strong>Quick Switcher</strong> (<span class="kbd">⌘P</span>) to jump between workspaces, services, and contexts instantly</li>
+            </ul>
+
+            <p>The key insight is that Docker workflows are inherently multi-terminal, and adding AI makes them even more so. The answer isn't fewer terminals -- it's better-organized ones.</p>
+
+            <div class="related-articles">
+                <h2>Related Articles</h2>
+                <div class="related-grid">
+                    <a href="beam-claude-code-setup.html" class="related-card">
+                        <h4>Setting Up Beam for Claude Code</h4>
+                        <p>Step-by-step guide to configuring Beam for AI-assisted development.</p>
+                    </a>
+                    <a href="claude-code-api-development.html" class="related-card">
+                        <h4>Claude Code for API Development</h4>
+                        <p>Build and test APIs faster with Claude Code and organized terminals.</p>
+                    </a>
+                    <a href="manage-multiple-claude-code-sessions.html" class="related-card">
+                        <h4>Manage Multiple Claude Code Sessions</h4>
+                        <p>Run parallel Claude Code sessions without losing track of any of them.</p>
+                    </a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>
+                <a href="../">Beam</a> &bull; Terminal Organizer for macOS &bull;
+                <a href="mailto:frank@nextuptechnologies.co">Contact</a>
+            </p>
+
+            <p style="margin-top: 12px; font-size: 0.8rem;">
+                <a href="/privacy.html" style="color: #71717a; text-decoration: none;">Privacy Policy</a> &bull;
+                <a href="/terms.html" style="color: #71717a; text-decoration: none;">Terms of Service</a>
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>

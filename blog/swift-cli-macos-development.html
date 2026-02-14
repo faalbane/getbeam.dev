@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D0XH8B0RKL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-D0XH8B0RKL');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Building Swift CLI Tools on macOS: Terminal Workflow with Claude Code and Beam</title>
+    <meta name="description" content="Learn how to build professional Swift CLI tools and server-side Swift apps on macOS using Swift Package Manager, swift-argument-parser, and an organized Beam + Claude Code terminal workflow.">
+    <meta name="keywords" content="Swift CLI development, Swift command line tool, Swift Package Manager terminal, macOS Swift development, server-side Swift 2026, Swift CLI tutorial, swift-argument-parser, Vapor Swift, Beam terminal">
+    <meta name="author" content="NextUp Technologies">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://getbeam.dev/blog/swift-cli-macos-development.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://getbeam.dev/blog/swift-cli-macos-development.html">
+    <meta property="og:title" content="Building Swift CLI Tools on macOS: Terminal Workflow with Claude Code and Beam">
+    <meta property="og:description" content="Build professional Swift CLI tools and server-side apps using SPM, swift-argument-parser, and an organized Beam + Claude Code terminal workflow.">
+    <meta property="og:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Building Swift CLI Tools on macOS: Terminal Workflow with Claude Code and Beam">
+    <meta name="twitter:description" content="Build professional Swift CLI tools and server-side apps using SPM, swift-argument-parser, and an organized Beam + Claude Code terminal workflow.">
+    <meta name="twitter:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Building Swift CLI Tools on macOS: Terminal Workflow with Claude Code and Beam",
+        "description": "Learn how to build professional Swift CLI tools and server-side Swift apps on macOS using Swift Package Manager, swift-argument-parser, and an organized Beam + Claude Code terminal workflow.",
+        "author": {
+            "@type": "Organization",
+            "name": "NextUp Technologies"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Beam"
+        },
+        "datePublished": "2026-02-11",
+        "keywords": "Swift CLI development, Swift command line tool, Swift Package Manager terminal, macOS Swift development, server-side Swift 2026"
+    }
+    </script>
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #111113;
+            --bg-tertiary: #1a1a1d;
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.4);
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --border: #27272a;
+            --success: #22c55e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        header {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 60px;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1.5rem;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            background: var(--accent);
+            color: white;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+        }
+
+        article {
+            padding-bottom: 80px;
+        }
+
+        .breadcrumb {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+        }
+
+        .breadcrumb a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .meta {
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            font-size: 0.95rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 48px 0 20px;
+            color: var(--text-primary);
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        ul, ol {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            padding-left: 24px;
+        }
+
+        li {
+            margin-bottom: 12px;
+        }
+
+        .highlight {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 32px 0;
+        }
+
+        .highlight h3 {
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            margin-top: 0;
+            color: var(--text-primary);
+        }
+
+        code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            background: var(--bg-tertiary);
+            padding: 2px 6px;
+            border-radius: 4px;
+            border: 1px solid var(--border);
+        }
+
+        pre {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px 24px;
+            margin: 24px 0;
+            overflow-x: auto;
+            line-height: 1.6;
+        }
+
+        pre code {
+            background: none;
+            border: none;
+            padding: 0;
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+        }
+
+        .kbd {
+            display: inline-block;
+            padding: 2px 8px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+        }
+
+        .prompt-example {
+            background: var(--bg-secondary);
+            border-left: 3px solid var(--accent);
+            border-radius: 0 12px 12px 0;
+            padding: 16px 24px;
+            margin: 20px 0;
+            font-style: italic;
+            color: var(--text-secondary);
+        }
+
+        .prompt-example::before {
+            content: "Prompt: ";
+            font-style: normal;
+            font-weight: 600;
+            color: var(--accent);
+        }
+
+        .swift-accent {
+            color: #F05138;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .cta-box h3 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+            margin-top: 0;
+        }
+
+        .cta-box p {
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 24px;
+        }
+
+        .cta-box .btn {
+            background: white;
+            color: var(--accent);
+        }
+
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+
+        .related-articles { margin-top: 60px; padding-top: 40px; border-top: 1px solid var(--border); }
+        .related-articles h2 { font-size: 1.5rem; margin-bottom: 24px; }
+        .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .related-card { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-decoration: none; transition: border-color 0.2s; }
+        .related-card:hover { border-color: var(--accent); }
+        .related-card h4 { color: white; font-size: 1rem; margin: 0 0 8px 0; }
+        .related-card p { color: var(--text-muted); font-size: 0.85rem; margin: 0; }
+        @media (max-width: 600px) {
+            .related-grid { grid-template-columns: 1fr; }
+            h1 { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="../" class="logo">
+                <div class="logo-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round">
+                        <path d="M4 17l6-6-6-6M12 19h8"/>
+                    </svg>
+                </div>
+                Beam
+            </a>
+            <a href="../" class="btn">Download Beam</a>
+        </div>
+    </header>
+
+    <main>
+        <article class="container">
+            <div class="breadcrumb">
+                <a href="../">Beam</a> / <a href="../#guides">Guides</a> / Swift CLI Development on macOS
+            </div>
+
+            <h1>Building Swift CLI Tools on macOS: Terminal Workflow with Claude Code and Beam</h1>
+            <p class="meta">February 11, 2026 &bull; NextUp Technologies &bull; 8 min read</p>
+
+            <p>When most developers think of Swift, they think of iOS apps and Xcode storyboards. But Swift has quietly become one of the best languages for building command-line tools and server-side applications -- especially on macOS, where its tight integration with the system gives you performance and capabilities that other languages simply cannot match.</p>
+
+            <p>The best part? Swift CLI development is entirely terminal-based. No Xcode required. Just <code>swift build</code>, <code>swift test</code>, and <code>swift run</code> -- the trifecta of Swift Package Manager commands that power a fast, iterative development loop. Pair that workflow with <strong>Claude Code</strong> for AI-assisted coding and <strong>Beam</strong> for terminal organization, and you have a native macOS development environment that is hard to beat.</p>
+
+            <h2>Why Swift for CLI Tools?</h2>
+
+            <p>Swift is not just an alternative to Python or Go for command-line tools -- it brings genuine advantages to the table:</p>
+
+            <ul>
+                <li><strong>Native performance</strong> -- Swift compiles to native machine code. Your CLI tools start instantly and run fast, with no runtime or interpreter overhead.</li>
+                <li><strong>Type safety</strong> -- Swift's strong type system catches bugs at compile time. No more runtime crashes from <code>nil</code> values or mismatched types.</li>
+                <li><strong>macOS integration</strong> -- Access Foundation, Core Data, Security framework, and other Apple APIs directly. Read Keychain items, interact with Spotlight, or call system services without FFI wrappers.</li>
+                <li><strong>Modern concurrency</strong> -- Swift 6's strict concurrency model with <code>async/await</code> and <code>Sendable</code> conformance makes writing concurrent CLI tools safe and predictable.</li>
+                <li><strong>Growing ecosystem</strong> -- Apple's swift-argument-parser, SwiftNIO, Vapor, Hummingbird, and hundreds of SPM packages give you everything you need for serious CLI and server work.</li>
+            </ul>
+
+            <h2>Swift Package Manager: Your Entire Build System in the Terminal</h2>
+
+            <p>Swift Package Manager (SPM) is Swift's native build system and dependency manager. Unlike Xcode projects with their opaque <code>.xcodeproj</code> files, SPM uses a simple, declarative <code>Package.swift</code> manifest that you can read, edit, and version control with ease.</p>
+
+            <p>Here is how to scaffold a new CLI project from scratch:</p>
+
+<pre><code># Create and initialize a new executable package
+mkdir MyCLI && cd MyCLI
+swift package init --type executable
+
+# This creates:
+# Package.swift      - Your project manifest
+# Sources/main.swift - Entry point
+# Tests/             - Test directory</code></pre>
+
+            <p>The three commands you will use constantly:</p>
+
+<pre><code># Compile your project (debug mode by default)
+swift build
+
+# Run your tests
+swift test
+
+# Build and run in one step
+swift run MyCLI</code></pre>
+
+            <p>For release builds with full optimizations:</p>
+
+<pre><code># Optimized release build
+swift build -c release
+
+# The binary lands in .build/release/MyCLI
+# Copy it to /usr/local/bin or distribute it directly</code></pre>
+
+            <div class="highlight">
+                <h3>Why Terminal-Based Swift Beats Xcode for CLI Work</h3>
+                <p>Xcode is excellent for GUI apps, but for CLI tools it adds unnecessary overhead. SPM in the terminal gives you faster iteration cycles, easier CI/CD integration, and the ability to use any editor you want. You also avoid the friction of Xcode project settings, build schemes, and target configurations that have no relevance for command-line executables.</p>
+            </div>
+
+            <h2>Building Professional CLIs with swift-argument-parser</h2>
+
+            <p>Apple's <code>swift-argument-parser</code> is the standard library for building CLI tools in Swift. It gives you automatic help generation, type-safe argument parsing, subcommands, and shell completions -- all declared using Swift's property wrapper syntax.</p>
+
+            <p>First, add it to your <code>Package.swift</code>:</p>
+
+<pre><code>// swift-tools-version: 6.0
+import PackageDescription
+
+let package = Package(
+    name: "MyCLI",
+    platforms: [.macOS(.v13)],
+    dependencies: [
+        .package(
+            url: "https://github.com/apple/swift-argument-parser",
+            from: "1.5.0"
+        ),
+    ],
+    targets: [
+        .executableTarget(
+            name: "MyCLI",
+            dependencies: [
+                .product(
+                    name: "ArgumentParser",
+                    package: "swift-argument-parser"
+                ),
+            ]
+        ),
+        .testTarget(
+            name: "MyCLITests",
+            dependencies: ["MyCLI"]
+        ),
+    ]
+)</code></pre>
+
+            <p>Then build a command with subcommands:</p>
+
+<pre><code>import ArgumentParser
+import Foundation
+
+@main
+struct MyCLI: ParsableCommand {
+    static let configuration = CommandConfiguration(
+        commandName: "mycli",
+        abstract: "A developer utility for project management.",
+        version: "1.0.0",
+        subcommands: [Init.self, Build.self, Deploy.self]
+    )
+}
+
+struct Init: ParsableCommand {
+    static let configuration = CommandConfiguration(
+        abstract: "Initialize a new project."
+    )
+
+    @Argument(help: "The project name.")
+    var name: String
+
+    @Option(name: .shortAndLong, help: "Project template to use.")
+    var template: String = "default"
+
+    @Flag(name: .shortAndLong, help: "Enable verbose output.")
+    var verbose: Bool = false
+
+    func run() throws {
+        if verbose {
+            print("Creating project '\(name)' with template '\(template)'...")
+        }
+        // Project initialization logic here
+        print("Project '\(name)' created successfully.")
+    }
+}</code></pre>
+
+            <p>Run it and get automatic help for free:</p>
+
+<pre><code>$ swift run MyCLI --help
+OVERVIEW: A developer utility for project management.
+
+USAGE: mycli &lt;subcommand&gt;
+
+OPTIONS:
+  --version     Show the version.
+  -h, --help    Show help information.
+
+SUBCOMMANDS:
+  init          Initialize a new project.
+  build         Build the current project.
+  deploy        Deploy to production.
+
+$ swift run MyCLI init MyApp --template vapor --verbose
+Creating project 'MyApp' with template 'vapor'...
+Project 'MyApp' created successfully.</code></pre>
+
+            <h2>The Beam Workspace Setup for Swift CLI Development</h2>
+
+            <p>Swift CLI development involves juggling builds, tests, running your tool, AI assistance, and version control. Beam workspaces keep all of this organized in a single, switchable context.</p>
+
+            <p>Here is the workspace layout I recommend. Create a workspace called <strong>"MyCLI"</strong> and set it up with five tabs:</p>
+
+            <ul>
+                <li><strong>Tab 1: Build</strong> -- Run <code>swift build</code> here. After each change, hit up-arrow and Enter for a quick rebuild. For continuous feedback, use <code>watchexec -e swift swift build</code> if you have watchexec installed.</li>
+                <li><strong>Tab 2: Tests</strong> -- Run <code>swift test</code> or <code>swift test --filter MyCLITests.InitTests</code> for targeted test runs. Keep this tab open so you can quickly verify changes.</li>
+                <li><strong>Tab 3: Run</strong> -- Execute your tool with <code>swift run MyCLI init TestProject --verbose</code>. This is where you manually test different argument combinations and see your CLI in action.</li>
+                <li><strong>Tab 4: Claude Code</strong> -- Your AI coding companion. Ask Claude to generate new subcommands, write tests, refactor argument parsing, or debug build errors.</li>
+                <li><strong>Tab 5: Git</strong> -- All your version control operations: <code>git status</code>, <code>git diff</code>, <code>git commit</code>, and pushing to your remote.</li>
+            </ul>
+
+            <div class="highlight">
+                <h3>Pro Tip: Split Panes for Build + Test</h3>
+                <p>Press <span class="kbd">&#8984;&#8997;&#8963;T</span> to split Tab 1 into two panes. Put <code>swift build</code> on the left and <code>swift test</code> on the right. Now you can see compile errors and test results side by side without switching tabs. This is especially valuable when refactoring, since you can immediately see if your changes break anything.</p>
+            </div>
+
+            <p>Switch between tabs with <span class="kbd">&#8984;1</span> through <span class="kbd">&#8984;5</span>. Save the entire layout with <span class="kbd">&#8984;S</span> so you can restore it tomorrow and pick up exactly where you left off.</p>
+
+            <h2>Server-Side Swift: Vapor and Hummingbird Workspace Setup</h2>
+
+            <p>Swift is not just for CLI tools. Server-side Swift frameworks like <strong>Vapor</strong> and <strong>Hummingbird</strong> let you build high-performance web APIs using the same language, type system, and package ecosystem. The terminal workflow is nearly identical.</p>
+
+            <p>Create a new Beam workspace called <strong>"MyAPI"</strong> with these tabs:</p>
+
+            <ul>
+                <li><strong>Tab 1: Server</strong> -- <code>swift run App serve --hostname 0.0.0.0 --port 8080</code> for Vapor, or <code>swift run App</code> for Hummingbird. This is your running server.</li>
+                <li><strong>Tab 2: Database</strong> -- Run migrations with <code>swift run App migrate</code> or interact with your database directly via <code>psql</code> or <code>sqlite3</code>.</li>
+                <li><strong>Tab 3: API Testing</strong> -- Test your endpoints with curl or httpie:
+<pre><code># Test a POST endpoint
+http POST localhost:8080/api/users name="Alice" email="alice@example.com"
+
+# Or with curl
+curl -X POST http://localhost:8080/api/users \
+  -H "Content-Type: application/json" \
+  -d '{"name": "Alice", "email": "alice@example.com"}'</code></pre>
+                </li>
+                <li><strong>Tab 4: Claude Code</strong> -- Generate route handlers, middleware, database models, and migrations with AI assistance.</li>
+                <li><strong>Tab 5: Tests + Git</strong> -- Run <code>swift test</code> and manage your repository.</li>
+            </ul>
+
+            <p>Switch between your CLI workspace and server workspace with <span class="kbd">&#8984;&#8997;&#8592;&#8594;</span>. Each workspace maintains its own state -- your server keeps running in one workspace while you build CLI tools in another.</p>
+
+            <h2>Swift 6 Strict Concurrency: Where Claude Code Shines</h2>
+
+            <p>Swift 6 introduced strict concurrency checking, and it can be a challenging migration. The compiler now enforces <code>Sendable</code> conformance across concurrency boundaries, which means code that compiled fine in Swift 5 may suddenly produce dozens of warnings or errors.</p>
+
+            <p>This is exactly where Claude Code becomes invaluable. Ask it to help with common concurrency patterns:</p>
+
+            <div class="prompt-example">I'm getting 'Sendable' warnings on my DatabaseManager class that uses a connection pool. Can you make it thread-safe using Swift 6 concurrency? Here's the current code...</div>
+
+            <p>Claude Code can help you with:</p>
+
+            <ul>
+                <li>Adding <code>@Sendable</code> annotations to closures passed across concurrency boundaries</li>
+                <li>Converting classes to actors when mutable shared state is involved</li>
+                <li>Using <code>nonisolated</code> for properties that are safe to access from any context</li>
+                <li>Wrapping legacy code with <code>@unchecked Sendable</code> when you know it is safe but the compiler cannot prove it</li>
+                <li>Migrating from DispatchQueue patterns to structured concurrency with <code>TaskGroup</code></li>
+            </ul>
+
+<pre><code>// Before: Swift 5 pattern that triggers warnings in Swift 6
+class DatabaseManager {
+    var connectionPool: [Connection] = []
+
+    func query(_ sql: String) async throws -> [Row] {
+        let conn = connectionPool.first!
+        return try await conn.execute(sql)
+    }
+}
+
+// After: Swift 6 safe pattern using an actor
+actor DatabaseManager {
+    private var connectionPool: [Connection] = []
+
+    func query(_ sql: String) async throws -> [Row] {
+        let conn = connectionPool.first!
+        return try await conn.execute(sql)
+    }
+}</code></pre>
+
+            <h2>Project Memory: Teaching Claude Code Your Swift Conventions</h2>
+
+            <p>Every Swift project has its own conventions -- naming patterns, preferred libraries, target structure, and coding style. Claude Code's project memory feature (via <code>CLAUDE.md</code>) lets you persist this context so Claude understands your project from the start of every session.</p>
+
+            <p>Here is an example <code>CLAUDE.md</code> for a Swift CLI project:</p>
+
+<pre><code># Project: MyCLI
+
+## Build
+- Build: swift build
+- Test: swift test
+- Run: swift run MyCLI
+- Release: swift build -c release
+
+## Architecture
+- Entry point: Sources/MyCLI/MyCLI.swift (@main struct)
+- Commands in Sources/MyCLI/Commands/
+- Models in Sources/MyCLI/Models/
+- Uses swift-argument-parser for CLI parsing
+- Uses Swift 6 strict concurrency (no @unchecked Sendable)
+
+## Conventions
+- All commands are ParsableCommand structs
+- Error handling via custom CLIError enum
+- Verbose flag on all commands for debug output
+- Tests mirror source structure: Tests/MyCLITests/Commands/</code></pre>
+
+            <p>With this in place, Claude Code knows how to build your project, where to find things, and which patterns to follow when generating new code. No more repeating yourself at the start of every session.</p>
+
+            <h2>Cross-Compilation and Distribution</h2>
+
+            <p>Once your CLI tool is ready, you need to distribute it. Swift makes building universal binaries straightforward on macOS:</p>
+
+<pre><code># Build a universal binary (Apple Silicon + Intel)
+swift build -c release --arch arm64 --arch x86_64
+
+# Check the architectures
+file .build/apple/Products/Release/MyCLI
+# MyCLI: Mach-O universal binary with 2 architectures:
+#   arm64, x86_64
+
+# Strip debug symbols for a smaller binary
+strip .build/apple/Products/Release/MyCLI
+
+# Copy to a standard location
+cp .build/apple/Products/Release/MyCLI /usr/local/bin/</code></pre>
+
+            <p>For broader distribution, consider these options:</p>
+
+            <ul>
+                <li><strong>Homebrew tap</strong> -- Create a formula that builds from source or distributes a pre-built binary. Users install with <code>brew install yourtap/mycli</code>.</li>
+                <li><strong>Mint</strong> -- A Swift-specific package manager for CLI tools. Users install with <code>mint install yourrepo/MyCLI</code> and it builds from source automatically.</li>
+                <li><strong>GitHub Releases</strong> -- Attach universal binaries to tagged releases. Automate this with GitHub Actions using <code>swift build -c release</code> on a macOS runner.</li>
+                <li><strong>Swift Package plugins</strong> -- Distribute your tool as an SPM plugin that other packages can use directly in their build process.</li>
+            </ul>
+
+            <div class="highlight">
+                <h3>Linux Cross-Compilation</h3>
+                <p>If you need to target Linux (for server deployment or CI), Swift supports cross-compilation with the Swift SDK. Install a Linux SDK with <code>swift sdk install</code> and build with <code>swift build --swift-sdk x86_64-swift-linux-musl</code>. This produces a statically linked Linux binary right from your Mac -- no Docker required for the build step.</p>
+            </div>
+
+            <h2>Why Swift Developers Should Invest in Terminal Workflows</h2>
+
+            <p>The Swift ecosystem is evolving rapidly beyond iOS. Server-side Swift is production-ready, CLI tools built with Swift rival Go and Rust in performance, and Apple continues to invest heavily in SPM and the open-source Swift toolchain.</p>
+
+            <p>By building a terminal-first workflow with Beam and Claude Code, you get:</p>
+
+            <ul>
+                <li><strong>Speed</strong> -- SPM builds are fast, and the edit-build-test cycle in the terminal has less overhead than launching Xcode for every change.</li>
+                <li><strong>Organization</strong> -- Beam workspaces keep your CLI project, server project, and any other contexts completely separated but instantly accessible.</li>
+                <li><strong>AI assistance</strong> -- Claude Code understands Swift deeply. It can generate argument-parser commands, write XCTest cases, refactor for Swift 6 concurrency, and debug compiler errors right in your terminal.</li>
+                <li><strong>Reproducibility</strong> -- Terminal commands are scriptable, shareable, and CI-friendly. Your entire build and test process is a series of commands, not GUI clicks.</li>
+                <li><strong>Flexibility</strong> -- Use any editor (VS Code, Neovim, Zed) alongside your terminal tabs. Your build system does not care how you edit the files.</li>
+            </ul>
+
+            <p>Swift is no longer just an iOS language. It is a systems programming language with native performance, a strong type system, modern concurrency, and a growing ecosystem for CLI and server development. The terminal is where that work happens best.</p>
+
+            <div class="cta-box">
+                <h3>Ready to Build Swift CLI Tools with Beam?</h3>
+                <p>Download Beam free and set up your perfect Swift development workspace with organized tabs, split panes, and Claude Code integration.</p>
+                <a href="../" class="btn">Download Beam for macOS</a>
+            </div>
+
+            <h2>Summary</h2>
+
+            <p>Swift CLI development is a fully terminal-based workflow, and it deserves a terminal environment built for that kind of work. Here is what we covered:</p>
+
+            <ul>
+                <li><strong>Swift Package Manager</strong> gives you <code>swift build</code>, <code>swift test</code>, and <code>swift run</code> -- everything you need without Xcode.</li>
+                <li><strong>swift-argument-parser</strong> lets you build professional CLIs with type-safe arguments, subcommands, and auto-generated help.</li>
+                <li><strong>Beam workspaces</strong> organize your build, test, run, Claude Code, and git tabs into a single switchable context.</li>
+                <li><strong>Server-side Swift</strong> with Vapor or Hummingbird uses the same SPM workflow, extended with server and database tabs.</li>
+                <li><strong>Claude Code</strong> accelerates Swift 6 concurrency migration, test generation, and code scaffolding.</li>
+                <li><strong>Project memory</strong> via <code>CLAUDE.md</code> teaches Claude your conventions so every session starts informed.</li>
+                <li><strong>Universal binaries</strong> and distribution via Homebrew, Mint, or GitHub Releases make sharing your tools easy.</li>
+            </ul>
+
+            <p>Happy building!</p>
+
+            <div class="related-articles">
+                <h2>Related Articles</h2>
+                <div class="related-grid">
+                    <a href="claude-code-xcode-setup.html" class="related-card">
+                        <h4>How to Set Up Claude Code in Xcode 26</h4>
+                        <p>Complete guide to setting up Claude Code and the Claude Agent SDK in Xcode 26.</p>
+                    </a>
+                    <a href="beam-claude-code-setup.html" class="related-card">
+                        <h4>Setting Up Beam for Claude Code</h4>
+                        <p>Step-by-step guide to setting up Beam for Claude Code development.</p>
+                    </a>
+                    <a href="build-cli-tool-go-claude-code.html" class="related-card">
+                        <h4>Build a CLI Tool with Go and Claude Code</h4>
+                        <p>How to build a Go CLI tool with Cobra, Claude Code, and Beam workspaces.</p>
+                    </a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>
+                <a href="../">Beam</a> &bull; Terminal Organizer for macOS &bull;
+                <a href="mailto:frank@nextuptechnologies.co">Contact</a> &bull;
+                Built by <a href="https://nextuptechnologies.co">NextUp</a>
+            </p>
+
+            <p style="margin-top: 12px; font-size: 0.8rem;">
+                <a href="/privacy.html" style="color: #71717a; text-decoration: none;">Privacy Policy</a> &bull;
+                <a href="/terms.html" style="color: #71717a; text-decoration: none;">Terms of Service</a>
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>

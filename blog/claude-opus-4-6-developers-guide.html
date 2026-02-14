@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D0XH8B0RKL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-D0XH8B0RKL');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claude Opus 4.6 for Developers: Everything That's New | Beam</title>
+    <meta name="description" content="Claude Opus 4.6 brings agent teams, 1M context window, 128K output tokens, adaptive thinking, and the highest Terminal-Bench 2.0 score. Here's what developers need to know.">
+    <meta name="keywords" content="Claude Opus 4.6, Opus 4.6 features, Claude Opus 4.6 coding, Claude 4.6 developers, Opus 4.6 agent teams, Claude Opus 4.6 review">
+    <meta name="author" content="NextUp Technologies">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://getbeam.dev/blog/claude-opus-4-6-developers-guide.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://getbeam.dev/blog/claude-opus-4-6-developers-guide.html">
+    <meta property="og:title" content="Claude Opus 4.6 for Developers: Everything That's New">
+    <meta property="og:description" content="Agent teams, 1M context, 128K output, adaptive thinking, and the highest Terminal-Bench 2.0 score. A developer's guide to Opus 4.6.">
+    <meta property="og:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Claude Opus 4.6 for Developers: Everything That's New">
+    <meta name="twitter:description" content="Agent teams, 1M context, 128K output, adaptive thinking, and the highest Terminal-Bench 2.0 score. A developer's guide to Opus 4.6.">
+    <meta name="twitter:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Claude Opus 4.6 for Developers: Everything That's New",
+        "description": "Claude Opus 4.6 brings agent teams, 1M context window, 128K output tokens, adaptive thinking, and the highest Terminal-Bench 2.0 score. A complete developer's guide.",
+        "author": {
+            "@type": "Organization",
+            "name": "NextUp Technologies"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Beam"
+        },
+        "datePublished": "2026-02-11",
+        "keywords": "Claude Opus 4.6, Opus 4.6 features, Claude Opus 4.6 coding, Claude 4.6 developers, Opus 4.6 agent teams, Claude Opus 4.6 review"
+    }
+    </script>
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #111113;
+            --bg-tertiary: #1a1a1d;
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.4);
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --border: #27272a;
+            --success: #22c55e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        header {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 60px;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1.5rem;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            background: var(--accent);
+            color: white;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+        }
+
+        article {
+            padding-bottom: 80px;
+        }
+
+        .breadcrumb {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+        }
+
+        .breadcrumb a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .meta {
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            font-size: 0.95rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 48px 0 20px;
+            color: var(--text-primary);
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        ul, ol {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            padding-left: 24px;
+        }
+
+        li {
+            margin-bottom: 12px;
+        }
+
+        .highlight {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 32px 0;
+        }
+
+        .highlight h3 {
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .kbd {
+            display: inline-block;
+            padding: 2px 8px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+        }
+
+        code {
+            font-family: 'JetBrains Mono', monospace;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 2px 6px;
+            font-size: 0.85rem;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .cta-box h3 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+        }
+
+        .cta-box p {
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 24px;
+        }
+
+        .cta-box .btn {
+            background: white;
+            color: var(--accent);
+        }
+
+        .radar-chart {
+            display: flex;
+            justify-content: center;
+            margin: 40px 0;
+        }
+
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+
+        .related-articles { margin-top: 60px; padding-top: 40px; border-top: 1px solid var(--border); }
+        .related-articles h2 { font-size: 1.5rem; margin-bottom: 24px; }
+        .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .related-card { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-decoration: none; transition: border-color 0.2s; }
+        .related-card:hover { border-color: var(--accent); }
+        .related-card h4 { color: white; font-size: 1rem; margin: 0 0 8px 0; }
+        .related-card p { color: var(--text-muted); font-size: 0.85rem; margin: 0; }
+        @media (max-width: 600px) { .related-grid { grid-template-columns: 1fr; } h1 { font-size: 1.8rem; } }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="../" class="logo">
+                <div class="logo-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round">
+                        <path d="M4 17l6-6-6-6M12 19h8"/>
+                    </svg>
+                </div>
+                Beam
+            </a>
+            <a href="../" class="btn">Download Beam</a>
+        </div>
+    </header>
+
+    <main>
+        <article class="container">
+            <div class="breadcrumb">
+                <a href="../">Beam</a> / <a href="../#guides">Guides</a> / Claude Opus 4.6 for Developers
+            </div>
+
+            <h1>Claude Opus 4.6 for Developers: Everything That's New</h1>
+            <p class="meta">February 2026 &bull; 10 min read</p>
+
+            <p>On February 5, 2026, Anthropic released Claude Opus 4.6 -- the most capable coding model the company has ever shipped. With native agent teams, a 1M token context window, 128K output tokens, and the highest score ever recorded on Terminal-Bench 2.0, this is the release that changes how developers work with AI in the terminal.</p>
+
+            <p>If you use Claude Code for day-to-day development, this guide breaks down exactly what changed, why it matters, and how to get the most out of it.</p>
+
+            <!-- Feature Radar SVG -->
+            <div class="radar-chart">
+                <svg width="420" height="380" viewBox="0 0 420 380" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Background -->
+                    <rect width="420" height="380" rx="16" fill="#111113" stroke="#27272a" stroke-width="1"/>
+
+                    <!-- Title -->
+                    <text x="210" y="32" text-anchor="middle" fill="#fafafa" font-family="Space Grotesk, sans-serif" font-size="14" font-weight="600">Opus 4.6 Capability Radar</text>
+
+                    <!-- Radar grid - pentagons centered at 210, 200 -->
+                    <!-- Outer ring (r=130) -->
+                    <polygon points="210,70 333.7,149.6 286.9,304.4 133.1,304.4 86.3,149.6" fill="none" stroke="#27272a" stroke-width="1"/>
+                    <!-- Mid ring (r=97.5) -->
+                    <polygon points="210,102.5 302.8,162.2 267.7,278.3 152.3,278.3 117.2,162.2" fill="none" stroke="#27272a" stroke-width="0.7" stroke-dasharray="4,4"/>
+                    <!-- Inner ring (r=65) -->
+                    <polygon points="210,135 271.8,174.8 248.5,252.2 171.5,252.2 148.2,174.8" fill="none" stroke="#27272a" stroke-width="0.5" stroke-dasharray="2,4"/>
+                    <!-- Center ring (r=32.5) -->
+                    <polygon points="210,167.5 240.9,187.4 229.2,226.1 190.8,226.1 179.1,187.4" fill="none" stroke="#27272a" stroke-width="0.5" stroke-dasharray="2,4"/>
+
+                    <!-- Spokes -->
+                    <line x1="210" y1="200" x2="210" y2="70" stroke="#27272a" stroke-width="0.7"/>
+                    <line x1="210" y1="200" x2="333.7" y2="149.6" stroke="#27272a" stroke-width="0.7"/>
+                    <line x1="210" y1="200" x2="286.9" y2="304.4" stroke="#27272a" stroke-width="0.7"/>
+                    <line x1="210" y1="200" x2="133.1" y2="304.4" stroke="#27272a" stroke-width="0.7"/>
+                    <line x1="210" y1="200" x2="86.3" y2="149.6" stroke="#27272a" stroke-width="0.7"/>
+
+                    <!-- Data polygon - Opus 4.6 (high on all axes) -->
+                    <!-- Context: 95%, Output: 90%, Agents: 88%, Speed: 82%, Accuracy: 92% -->
+                    <polygon points="210,76.5 321.4,153.5 278.2,291.8 142.3,291.5 96.4,158.9"
+                        fill="rgba(59, 130, 246, 0.15)" stroke="#3b82f6" stroke-width="2"/>
+
+                    <!-- Data polygon - Opus 4.5 (comparison, lower) -->
+                    <!-- Context: 60%, Output: 50%, Agents: 0%, Speed: 65%, Accuracy: 75% -->
+                    <polygon points="210,122 271.3,175.2 248.0,252.4 162.7,265.7 148.8,173.0"
+                        fill="rgba(139, 92, 246, 0.08)" stroke="#8b5cf6" stroke-width="1.5" stroke-dasharray="6,3"/>
+
+                    <!-- Data points - Opus 4.6 -->
+                    <circle cx="210" cy="76.5" r="4" fill="#3b82f6"/>
+                    <circle cx="321.4" cy="153.5" r="4" fill="#3b82f6"/>
+                    <circle cx="278.2" cy="291.8" r="4" fill="#3b82f6"/>
+                    <circle cx="142.3" cy="291.5" r="4" fill="#3b82f6"/>
+                    <circle cx="96.4" cy="158.9" r="4" fill="#3b82f6"/>
+
+                    <!-- Axis labels -->
+                    <text x="210" y="58" text-anchor="middle" fill="#fafafa" font-family="Space Grotesk, sans-serif" font-size="12" font-weight="500">Context</text>
+                    <text x="210" y="48" text-anchor="middle" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="10">1M tokens</text>
+                    <text x="348" y="149" text-anchor="start" fill="#fafafa" font-family="Space Grotesk, sans-serif" font-size="12" font-weight="500">Output</text>
+                    <text x="348" y="163" text-anchor="start" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="10">128K tokens</text>
+                    <text x="300" y="318" text-anchor="start" fill="#fafafa" font-family="Space Grotesk, sans-serif" font-size="12" font-weight="500">Agents</text>
+                    <text x="300" y="332" text-anchor="start" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="10">native teams</text>
+                    <text x="120" y="318" text-anchor="end" fill="#fafafa" font-family="Space Grotesk, sans-serif" font-size="12" font-weight="500">Speed</text>
+                    <text x="120" y="332" text-anchor="end" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="10">effort controls</text>
+                    <text x="72" y="149" text-anchor="end" fill="#fafafa" font-family="Space Grotesk, sans-serif" font-size="12" font-weight="500">Accuracy</text>
+                    <text x="72" y="163" text-anchor="end" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="10">65.4% T-Bench</text>
+
+                    <!-- Legend -->
+                    <line x1="120" y1="360" x2="140" y2="360" stroke="#3b82f6" stroke-width="2"/>
+                    <text x="146" y="364" fill="#a1a1aa" font-family="Space Grotesk, sans-serif" font-size="11">Opus 4.6</text>
+                    <line x1="210" y1="360" x2="230" y2="360" stroke="#8b5cf6" stroke-width="1.5" stroke-dasharray="6,3"/>
+                    <text x="236" y="364" fill="#a1a1aa" font-family="Space Grotesk, sans-serif" font-size="11">Opus 4.5</text>
+                </svg>
+            </div>
+
+            <h2>What's New for Developers</h2>
+
+            <p>Opus 4.6 is not a minor iteration. Compared to Opus 4.5, the model plans more carefully, sustains agentic tasks for significantly longer, operates more reliably in large codebases, and catches its own mistakes through improved self-debugging and code review.</p>
+
+            <p>In practical terms, this means fewer failed edits, less hallucinated code, and more coherent multi-file refactors. The improvements are most visible when working on real-world projects with complex dependency trees, large test suites, and cross-cutting concerns. Here is what stands out:</p>
+
+            <ul>
+                <li><strong>Better planning</strong> -- Opus 4.6 breaks down complex tasks into logical steps before writing code, reducing the need for manual course-correction mid-session</li>
+                <li><strong>Sustained agentic tasks</strong> -- The model can work through longer, multi-step workflows without losing context or drifting from the original goal</li>
+                <li><strong>Large codebase reliability</strong> -- More accurate file navigation, fewer phantom imports, and better understanding of project structure when working across hundreds of files</li>
+                <li><strong>Self-debugging</strong> -- When something breaks, Opus 4.6 is better at reading error output, diagnosing root causes, and applying targeted fixes rather than flailing</li>
+                <li><strong>Code review quality</strong> -- Catches more bugs, suggests more meaningful improvements, and produces reviews that read like they came from a senior engineer</li>
+            </ul>
+
+            <h2>Agent Teams: Parallel Agents Working Together</h2>
+
+            <p>Agent teams are the headline feature of this release. Instead of one Claude Code agent working through tasks sequentially, you can now spin up multiple agents that work in parallel as a coordinated team.</p>
+
+            <p>One session acts as the team lead, assigning tasks and synthesizing results. Each teammate gets its own full context window and can independently read, write, and test code. They stay in sync using a shared task list and a built-in messaging system.</p>
+
+            <div class="highlight">
+                <h3>How Agent Teams Work</h3>
+                <p>Agent teams support two execution modes:</p>
+                <ul>
+                    <li><strong>In-process mode</strong> -- All teammates run inside your main terminal. Use <span class="kbd">Shift+Up/Down</span> to select a teammate and type to message them directly. Works in any terminal.</li>
+                    <li><strong>Split-pane mode</strong> -- Each teammate gets its own pane via tmux or iTerm2. You can see everyone's output at once and click into any pane to interact directly.</li>
+                </ul>
+                <p>Enable agent teams by adding <code>CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS</code> to your settings.</p>
+            </div>
+
+            <p>The real power shows up in tasks that naturally decompose. Frontend, backend, and tests can each be owned by a different teammate. Instead of one agent context-switching between layers, three agents work in parallel with full focus on their domain. In one notable demonstration, Anthropic used 16 parallel Claude agents to write a 100,000-line C compiler in just two weeks -- one that could compile the Linux 6.9 kernel with a 99% pass rate on the GCC test suite.</p>
+
+            <p>One important limitation: two teammates editing the same file leads to overwrites. Structure your work so each teammate owns a different set of files.</p>
+
+            <h2>1M Token Context Window</h2>
+
+            <p>Opus 4.6 ships with a 1 million token context window in beta. To put that in perspective, 1M tokens is roughly 750,000 words -- enough to hold an entire medium-sized codebase in a single conversation.</p>
+
+            <p>What this means in practice:</p>
+
+            <ul>
+                <li><strong>Full-project refactors</strong> -- Load your entire project's source code and refactor across all files in a single session, with full awareness of dependencies</li>
+                <li><strong>Deep code review</strong> -- Submit an entire pull request with hundreds of changed files and get comprehensive review comments with full project context</li>
+                <li><strong>Architecture analysis</strong> -- Feed in your whole codebase and ask about architectural patterns, coupling, dead code, or migration paths</li>
+                <li><strong>Documentation generation</strong> -- Generate documentation that actually understands how all the pieces fit together, not just individual functions</li>
+            </ul>
+
+            <p>This is a qualitative shift, not just a quantitative one. When the model can see everything at once, the nature of what you can ask it to do changes fundamentally.</p>
+
+            <h2>128K Output Tokens</h2>
+
+            <p>Opus 4.6 doubles the output token limit from 64K to 128K. That is roughly 96,000 words of output in a single response.</p>
+
+            <p>For developers, this means longer code generation without truncation, more thorough reasoning in extended thinking mode, and the ability to produce complete implementations rather than abbreviated skeletons. When combined with the 1M context window, you can feed in a large codebase and get back a comprehensive, detailed response without the model cutting itself short.</p>
+
+            <p>This is especially impactful for tasks like generating complete test suites, producing detailed migration plans, or writing multi-file implementations where previous models would run out of output space.</p>
+
+            <h2>Adaptive Thinking and Effort Controls</h2>
+
+            <p>Opus 4.6 introduces adaptive thinking, a new mode where the model dynamically decides when and how much to reason before responding. Set <code>thinking: {type: "adaptive"}</code> in the API, and Claude evaluates the complexity of each request on the fly. Simple questions get fast answers. Complex debugging or architecture questions get deep chain-of-thought reasoning.</p>
+
+            <p>Alongside adaptive thinking, Anthropic has added four discrete effort levels: <strong>low</strong>, <strong>medium</strong>, <strong>high</strong> (default), and <strong>max</strong>. These give you explicit control over the intelligence-speed-cost tradeoff:</p>
+
+            <ul>
+                <li><strong>Low</strong> -- Fast responses, minimal thinking. Good for simple lookups, formatting, and quick questions.</li>
+                <li><strong>Medium</strong> -- Balanced mode for routine coding tasks.</li>
+                <li><strong>High</strong> -- The default. Claude almost always engages extended thinking. Best for most development work.</li>
+                <li><strong>Max</strong> -- Maximum reasoning depth. Use for hard debugging, complex architecture decisions, and thorny algorithmic problems.</li>
+            </ul>
+
+            <div class="highlight">
+                <h3>When to Use Each Effort Level</h3>
+                <p>In Claude Code, effort controls let you tune each interaction. Prototyping a quick script? Drop to <strong>low</strong>. Debugging a concurrency issue in production code? Crank it to <strong>max</strong>. The default <strong>high</strong> setting is right for most development work -- you only need to adjust when you want to explicitly trade speed for depth or vice versa.</p>
+            </div>
+
+            <h2>Context Compaction</h2>
+
+            <p>Long-running terminal sessions have always had a ceiling: eventually you hit the context limit and the model either fails or loses earlier context. Opus 4.6 solves this with context compaction -- automatic, server-side context summarization.</p>
+
+            <p>As a conversation approaches the context window limit, the API automatically summarizes earlier parts of the conversation, compressing them while preserving the essential information. This happens transparently. You do not need custom truncation logic or manual context management.</p>
+
+            <p>For developers, this means you can run genuinely long agentic sessions -- multi-hour debugging marathons, iterative feature builds, or extended code reviews -- without worrying about the model forgetting what happened earlier. The context compacts, but the knowledge persists.</p>
+
+            <h2>Terminal-Bench 2.0: The Highest Score Ever</h2>
+
+            <p>Claude Opus 4.6 achieves <strong>65.4%</strong> on Terminal-Bench 2.0, the leading benchmark for agentic coding systems. That is the highest score ever recorded, surpassing Opus 4.5 at 59.8%, GPT-5.2 at 64.7%, and Gemini 3 Pro at 56.2%.</p>
+
+            <p>Terminal-Bench 2.0 measures how well an AI agent can operate autonomously in a terminal environment -- navigating codebases, running commands, interpreting output, and making edits. A 65.4% score means Opus 4.6 can handle roughly two-thirds of the benchmark's real-world agentic coding tasks without human intervention.</p>
+
+            <p>This is not a synthetic benchmark. Terminal-Bench tasks are drawn from actual development workflows, making this score a strong signal for how well Opus 4.6 will perform in your day-to-day Claude Code sessions.</p>
+
+            <div class="highlight">
+                <h3>Terminal-Bench 2.0 Leaderboard</h3>
+                <ul>
+                    <li><strong>Claude Opus 4.6 -- 65.4%</strong></li>
+                    <li>GPT-5.2 -- 64.7%</li>
+                    <li>Claude Opus 4.5 -- 59.8%</li>
+                    <li>Gemini 3 Pro -- 56.2%</li>
+                    <li>Claude Sonnet 4.5 -- 51.0%</li>
+                </ul>
+            </div>
+
+            <h2>Setting Up Opus 4.6 with Beam</h2>
+
+            <p>Opus 4.6 is available today via the Claude API using the model ID <code>claude-opus-4-6</code>. If you are using Claude Code, you are already on it. The question is how to organize your workflow to get the most out of these new capabilities.</p>
+
+            <p>With agent teams, longer sessions, and bigger context windows, the number of concurrent terminal sessions you are managing is about to increase. Here is how to set up Beam for an Opus 4.6 workflow:</p>
+
+            <ol>
+                <li><strong>One workspace per project</strong> -- Press <span class="kbd">&#8984;N</span> to create a workspace. Name it after your project. This is your isolated context for everything related to that codebase.</li>
+                <li><strong>Agent teams in parallel tabs</strong> -- When running agent teams in split-pane mode via tmux, use Beam tabs to keep each agent's output visible and organized. One tab for the lead, additional tabs for teammates.</li>
+                <li><strong>Supporting terminals alongside Claude Code</strong> -- Press <span class="kbd">&#8984;T</span> for additional tabs. Keep your dev server, test runner, and git operations in dedicated tabs within the same workspace.</li>
+                <li><strong>Save your layout</strong> -- Press <span class="kbd">&#8984;S</span> to save your entire workspace arrangement. Restore it next session and pick up exactly where you left off.</li>
+                <li><strong>Quick switch between projects</strong> -- Use <span class="kbd">&#8984;P</span> to jump to any workspace, tab, or session instantly. When you are running five agent teams across three projects, this is essential.</li>
+            </ol>
+
+            <div class="highlight">
+                <h3>Pro Tip: Workspace Per Agent Team</h3>
+                <p>If you are running multiple agent teams on different tasks, give each team its own Beam workspace. The lead agent goes in the first tab, and each teammate gets a tab. Switch between teams with <span class="kbd">&#8984;&#8997;&#8592;&#8594;</span>. This keeps each team's context completely isolated and easy to monitor.</p>
+            </div>
+
+            <div class="cta-box">
+                <h3>Get the Most Out of Opus 4.6</h3>
+                <p>Agent teams, longer sessions, more context. Beam keeps it all organized so you can focus on building.</p>
+                <a href="../" class="btn">Download Beam for macOS</a>
+            </div>
+
+            <h2>Summary</h2>
+
+            <p>Claude Opus 4.6 is a step change for developers who work in the terminal. The combination of agent teams, 1M token context, 128K output, adaptive thinking, context compaction, and a record-setting Terminal-Bench 2.0 score makes this the most capable coding model available today.</p>
+
+            <ul>
+                <li><strong>Agent teams</strong> let multiple Claude Code instances work in parallel on coordinated tasks</li>
+                <li><strong>1M context window</strong> means you can work with entire codebases, not just individual files</li>
+                <li><strong>128K output tokens</strong> double the previous limit for longer code generation and deeper reasoning</li>
+                <li><strong>Adaptive thinking</strong> and effort controls let you tune intelligence versus speed versus cost</li>
+                <li><strong>Context compaction</strong> enables longer-running sessions without context loss</li>
+                <li><strong>65.4% on Terminal-Bench 2.0</strong> -- the highest agentic coding score ever recorded</li>
+            </ul>
+
+            <p>The model is live now. Pair it with Beam to keep your agent teams, workspaces, and sessions organized as your AI-assisted workflow scales up.</p>
+
+            <div class="related-articles">
+                <h2>Related Articles</h2>
+                <div class="related-grid">
+                    <a href="claude-code-agent-teams-guide.html" class="related-card">
+                        <h4>How to Use Claude Code Agent Teams</h4>
+                        <p>Hands-on guide to setting up and running multi-agent workflows in your terminal.</p>
+                    </a>
+                    <a href="best-terminal-app-ai-coding-2026.html" class="related-card">
+                        <h4>Best Terminal App for AI Coding in 2026</h4>
+                        <p>Why your choice of terminal matters for AI-assisted development.</p>
+                    </a>
+                    <a href="claude-code-keyboard-shortcuts.html" class="related-card">
+                        <h4>Claude Code Keyboard Shortcuts Cheat Sheet</h4>
+                        <p>Every shortcut you need to navigate Claude Code like a pro.</p>
+                    </a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>
+                <a href="../">Beam</a> &bull; Terminal Organizer for macOS &bull;
+                <a href="mailto:frank@nextuptechnologies.co">Contact</a>
+            </p>
+
+            <p style="margin-top: 12px; font-size: 0.8rem;">
+                <a href="/privacy.html" style="color: #71717a; text-decoration: none;">Privacy Policy</a> &bull;
+                <a href="/terms.html" style="color: #71717a; text-decoration: none;">Terms of Service</a>
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>

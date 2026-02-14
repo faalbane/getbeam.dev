@@ -1,5 +1,9 @@
 {
-  "version": "2.5.0",
-  "download_url": "https://getbeam.dev/Beam-v2.5.0.dmg",
+  "version": "3.0.1",
+  "download_url": "https://getbeam.dev/Beam-v3.0.1.dmg",
+  "download_url_arm64": "https://getbeam.dev/Beam-v3.0.1-arm64.dmg",
+  "download_url_x64": "https://getbeam.dev/Beam-v3.0.1-x64.dmg",
+  "download_url_windows": "https://getbeam.dev/Beam-v3.0.1-setup.exe",
+  "download_url_linux": "https://getbeam.dev/Beam-v3.0.1.AppImage",
   "release_notes": "https://getbeam.dev"
 }

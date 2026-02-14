@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D0XH8B0RKL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-D0XH8B0RKL');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Build a Website with Claude Code: Step-by-Step Guide | Beam</title>
+    <meta name="description" content="Build a complete website using Claude Code as your AI coding assistant. Step-by-step tutorial from project setup to deployment, organized with Beam workspaces.">
+    <meta name="keywords" content="build website with Claude Code, Claude Code website tutorial, create website AI agent, Claude Code web development, AI web development">
+    <meta name="author" content="NextUp Technologies">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://getbeam.dev/blog/build-website-with-claude-code.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://getbeam.dev/blog/build-website-with-claude-code.html">
+    <meta property="og:title" content="How to Build a Website with Claude Code: Step-by-Step Guide">
+    <meta property="og:description" content="Build a complete website using Claude Code as your AI coding assistant. Step-by-step tutorial from project setup to deployment.">
+    <meta property="og:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="How to Build a Website with Claude Code: Step-by-Step Guide">
+    <meta name="twitter:description" content="Build a complete website using Claude Code as your AI coding assistant. Step-by-step tutorial from project setup to deployment.">
+    <meta name="twitter:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "How to Build a Website with Claude Code: Step-by-Step Guide",
+        "description": "Build a complete website using Claude Code as your AI coding assistant. Step-by-step tutorial from project setup to deployment, organized with Beam workspaces.",
+        "author": {
+            "@type": "Organization",
+            "name": "NextUp Technologies"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Beam"
+        },
+        "datePublished": "2026-02-11",
+        "keywords": "build website with Claude Code, Claude Code website tutorial, AI web development"
+    }
+    </script>
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #111113;
+            --bg-tertiary: #1a1a1d;
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.4);
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --border: #27272a;
+            --success: #22c55e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        header {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 60px;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1.5rem;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            background: var(--accent);
+            color: white;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+        }
+
+        article {
+            padding-bottom: 80px;
+        }
+
+        .breadcrumb {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+        }
+
+        .breadcrumb a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .meta {
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            font-size: 0.95rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 48px 0 20px;
+            color: var(--text-primary);
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        ul, ol {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            padding-left: 24px;
+        }
+
+        li {
+            margin-bottom: 12px;
+        }
+
+        .highlight {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 32px 0;
+        }
+
+        .highlight h3 {
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .kbd {
+            display: inline-block;
+            padding: 2px 8px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+        }
+
+        code {
+            font-family: 'JetBrains Mono', monospace;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 2px 8px;
+            font-size: 0.88rem;
+            color: var(--accent);
+        }
+
+        .code-block {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 24px 0;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            overflow-x: auto;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .cta-box h3 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+        }
+
+        .cta-box p {
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 24px;
+        }
+
+        .cta-box .btn {
+            background: white;
+            color: var(--accent);
+        }
+
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+
+        .blog-visual { margin: 40px 0; text-align: center; }
+        .blog-visual svg { max-width: 100%; height: auto; border-radius: 12px; }
+
+        .related-articles { margin-top: 60px; padding-top: 40px; border-top: 1px solid var(--border); }
+        .related-articles h2 { font-size: 1.5rem; margin-bottom: 24px; }
+        .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .related-card { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-decoration: none; transition: border-color 0.2s; }
+        .related-card:hover { border-color: var(--accent); }
+        .related-card h4 { color: white; font-size: 1rem; margin: 0 0 8px 0; }
+        .related-card p { color: var(--text-muted); font-size: 0.85rem; margin: 0; }
+        @media (max-width: 600px) { .related-grid { grid-template-columns: 1fr; } h1 { font-size: 1.8rem; } }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="../" class="logo">
+                <div class="logo-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round">
+                        <path d="M4 17l6-6-6-6M12 19h8"/>
+                    </svg>
+                </div>
+                Beam
+            </a>
+            <a href="../" class="btn">Download Beam</a>
+        </div>
+    </header>
+
+    <main>
+        <article class="container">
+            <div class="breadcrumb">
+                <a href="../">Beam</a> / <a href="../#guides">Guides</a> / Build a Website with Claude Code
+            </div>
+
+            <h1>How to Build a Website with Claude Code: Step-by-Step Guide</h1>
+            <p class="meta">February 2026 &bull; 8 min read</p>
+
+            <p>What if you could describe the website you want and have an AI build it? That's not a hypothetical -- it's a Tuesday afternoon with Claude Code. This guide walks you through building a complete website from scratch using Claude Code as your AI coding assistant, with Beam keeping your workflow organized every step of the way.</p>
+
+            <p>Whether you're a developer looking to speed up your workflow or someone who's never touched HTML before, Claude Code makes web development surprisingly approachable. You provide the creative direction. Claude writes the code. And Beam keeps everything structured so you never lose track of where you are in the process.</p>
+
+            <h2>What We're Building</h2>
+
+            <p>By the end of this tutorial, you'll have a fully responsive landing page with a hero section, a three-column features grid, customer testimonials, and a working contact form. It will look polished, load fast, and work on every screen size.</p>
+
+            <p>For the tech stack, we're keeping it intentionally simple: HTML, CSS, and vanilla JavaScript. No React, no Next.js, no build tools. This isn't because those frameworks aren't useful -- it's because you don't need them for a landing page, and skipping the framework overhead means you go from prompt to published in about 30 minutes.</p>
+
+            <p>Claude Code handles the coding. You handle the creative direction. That division of labor is what makes this workflow so effective.</p>
+
+            <div class="blog-visual">
+                <svg viewBox="0 0 900 200" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="900" height="200" rx="12" fill="#111113"/>
+
+                    <!-- Connecting lines -->
+                    <line x1="175" y1="100" x2="265" y2="100" stroke="#27272a" stroke-width="2"/>
+                    <line x1="355" y1="100" x2="445" y2="100" stroke="#27272a" stroke-width="2"/>
+                    <line x1="535" y1="100" x2="625" y2="100" stroke="#27272a" stroke-width="2"/>
+                    <line x1="715" y1="100" x2="805" y2="100" stroke="#27272a" stroke-width="2"/>
+
+                    <!-- Arrows -->
+                    <polygon points="260,95 270,100 260,105" fill="#27272a"/>
+                    <polygon points="440,95 450,100 440,105" fill="#27272a"/>
+                    <polygon points="620,95 630,100 620,105" fill="#27272a"/>
+                    <polygon points="800,95 810,100 800,105" fill="#27272a"/>
+
+                    <!-- Step 1: Describe -->
+                    <rect x="60" y="55" width="120" height="90" rx="12" fill="none" stroke="#D97706" stroke-width="2"/>
+                    <!-- Speech bubble icon -->
+                    <path d="M105 78 L105 78" fill="none"/>
+                    <rect x="100" y="72" width="30" height="22" rx="4" fill="none" stroke="#D97706" stroke-width="1.5"/>
+                    <polygon points="110,94 114,100 118,94" fill="none" stroke="#D97706" stroke-width="1.5" stroke-linejoin="round"/>
+                    <text x="120" y="125" fill="#fafafa" font-family="Space Grotesk, sans-serif" font-size="13" font-weight="600" text-anchor="middle">Describe</text>
+
+                    <!-- Step 2: Scaffold -->
+                    <rect x="240" y="55" width="120" height="90" rx="12" fill="none" stroke="#D97706" stroke-width="2"/>
+                    <!-- Code brackets icon -->
+                    <path d="M288 76 L278 86 L288 96" fill="none" stroke="#D97706" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M312 76 L322 86 L312 96" fill="none" stroke="#D97706" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <line x1="306" y1="74" x2="294" y2="98" stroke="#D97706" stroke-width="1.5" stroke-linecap="round"/>
+                    <text x="300" y="125" fill="#fafafa" font-family="Space Grotesk, sans-serif" font-size="13" font-weight="600" text-anchor="middle">Scaffold</text>
+
+                    <!-- Step 3: Iterate (highlighted) -->
+                    <defs>
+                        <filter id="glow">
+                            <feGaussianBlur stdDeviation="4" result="blur"/>
+                            <feMerge>
+                                <feMergeNode in="blur"/>
+                                <feMergeNode in="SourceGraphic"/>
+                            </feMerge>
+                        </filter>
+                    </defs>
+                    <rect x="420" y="55" width="120" height="90" rx="12" fill="rgba(59,130,246,0.08)" stroke="#3b82f6" stroke-width="2.5" filter="url(#glow)"/>
+                    <!-- Refresh arrows icon -->
+                    <path d="M466 80 A16 16 0 0 1 494 80" fill="none" stroke="#3b82f6" stroke-width="1.5" stroke-linecap="round"/>
+                    <polygon points="494,77 497,83 491,83" fill="#3b82f6"/>
+                    <path d="M494 92 A16 16 0 0 1 466 92" fill="none" stroke="#3b82f6" stroke-width="1.5" stroke-linecap="round"/>
+                    <polygon points="466,95 463,89 469,89" fill="#3b82f6"/>
+                    <text x="480" y="125" fill="#3b82f6" font-family="Space Grotesk, sans-serif" font-size="13" font-weight="700" text-anchor="middle">Iterate</text>
+
+                    <!-- Step 4: Interact -->
+                    <rect x="600" y="55" width="120" height="90" rx="12" fill="none" stroke="#D97706" stroke-width="2"/>
+                    <!-- Lightning bolt icon -->
+                    <path d="M656 72 L648 88 L658 88 L652 102" fill="none" stroke="#D97706" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                    <text x="660" y="125" fill="#fafafa" font-family="Space Grotesk, sans-serif" font-size="13" font-weight="600" text-anchor="middle">Interact</text>
+
+                    <!-- Step 5: Deploy -->
+                    <rect x="780" y="55" width="120" height="90" rx="12" fill="none" stroke="#D97706" stroke-width="2"/>
+                    <!-- Rocket icon -->
+                    <path d="M840 96 L840 82 C840 76 836 72 832 72 L832 72 C836 72 840 76 840 82" fill="none" stroke="#D97706" stroke-width="1.5" stroke-linecap="round"/>
+                    <path d="M832 72 C828 72 824 76 824 82 L824 96" fill="none" stroke="#D97706" stroke-width="1.5" stroke-linecap="round"/>
+                    <path d="M824 96 L832 102 L840 96" fill="none" stroke="#D97706" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <line x1="832" y1="88" x2="832" y2="92" stroke="#D97706" stroke-width="1.5" stroke-linecap="round"/>
+                    <circle cx="832" cy="82" r="2.5" fill="#D97706"/>
+                    <text x="840" y="125" fill="#fafafa" font-family="Space Grotesk, sans-serif" font-size="13" font-weight="600" text-anchor="middle">Deploy</text>
+
+                    <!-- Subtitle -->
+                    <text x="450" y="175" fill="#71717a" font-family="Space Grotesk, sans-serif" font-size="11" text-anchor="middle">From idea to live website in 5 steps</text>
+                </svg>
+            </div>
+
+            <h2>Prerequisites</h2>
+
+            <div class="highlight">
+                <h3>Before You Start, Make Sure You Have:</h3>
+                <ul>
+                    <li><strong>Node.js</strong> -- needed for running a local dev server to preview your site</li>
+                    <li><strong>Claude Code</strong> -- install it globally with <code>npm install -g @anthropic-ai/claude-code</code></li>
+                    <li><strong>Beam</strong> -- your terminal organizer for managing the workflow (<a href="https://getbeam.dev" style="color: var(--accent);">download here</a>)</li>
+                    <li><strong>A GitHub account</strong> -- for deploying your finished site via GitHub Pages</li>
+                </ul>
+            </div>
+
+            <p>If you already have these installed, you're ready to go. If not, Node.js takes about two minutes to install from <a href="https://nodejs.org" style="color: var(--accent);">nodejs.org</a>, and Claude Code is a single npm command. The whole setup should take less than five minutes.</p>
+
+            <h2>Setting Up Your Beam Workspace</h2>
+
+            <p>Before writing a single line of code, let's set up the environment. This is where Beam earns its keep -- instead of juggling loose terminal windows, you'll have a purpose-built workspace that keeps every part of the process in its lane.</p>
+
+            <p>Open Beam and create a new workspace with <span class="kbd">&#8984;N</span>. Name it "Landing Page" (or whatever you're building). Now set up three tabs:</p>
+
+            <ul>
+                <li><strong>Tab 1: Claude Code session</strong> -- this is where the magic happens. All your prompts and Claude's code output live here.</li>
+                <li><strong>Tab 2: Dev server</strong> -- you'll run <code>npx serve .</code> here later to preview your site in real time.</li>
+                <li><strong>Tab 3: Git operations</strong> -- commits, pushes, and deployment commands go here, keeping them separate from your creative flow.</li>
+            </ul>
+
+            <p>On Tab 1, use split panes (<span class="kbd">&#8984;&#8997;&#8963;T</span>) so you can see Claude's output and the dev server side by side. This two-panel view is the key to fast iteration -- you'll give Claude instructions on one side and immediately see the result on the other.</p>
+
+            <p>Once your workspace is arranged, save the layout with <span class="kbd">&#8984;S</span>. You'll be able to reuse this exact configuration for every future web project without setting it up again.</p>
+
+            <h2>Step 1: Describe Your Website to Claude Code</h2>
+
+            <p>Switch to Tab 1 and navigate to your project directory. If you haven't created one yet, make a new folder for the project -- something like <code>~/Projects/acme-landing</code>. Then start Claude Code by typing <code>claude</code> and hitting Enter.</p>
+
+            <p>Now comes the fun part. Give Claude a detailed description of what you want. The more specific you are, the closer the first draft will be to your vision. Here's an example prompt:</p>
+
+            <div class="code-block">Build a responsive landing page for a SaaS product called "Acme". Include a hero section with a bold headline and a CTA button, a 3-column features grid with icons, a customer testimonials section with cards, and a contact form with name, email, and message fields. Use a modern dark theme with a blue accent color. Create a single index.html file with all CSS inline in a style tag. Make it look professional and production-ready.</div>
+
+            <p>Claude will likely ask a few clarifying questions -- things like the specific shade of blue you want, whether the testimonials should include photos, or what the CTA button text should say. Answer these questions thoughtfully. They're not busywork; they're Claude narrowing in on exactly what you have in mind.</p>
+
+            <p>This back-and-forth is what separates AI-assisted development from template-based website builders. You're having a conversation about design, not filling in form fields.</p>
+
+            <h2>Step 2: Watch Claude Scaffold the Project</h2>
+
+            <p>After you confirm the details, Claude gets to work. You'll see the code appear in your terminal in real time -- the HTML structure first, then the CSS styling, then any JavaScript for interactivity. For a landing page like this, Claude typically generates everything in one pass.</p>
+
+            <p>As Claude writes the code, it explains its decisions. You'll see comments about why it chose flexbox over grid for a particular section, or why it's using CSS custom properties for the color scheme. This isn't just output -- it's a running tutorial on web development best practices.</p>
+
+            <p>A good rule of thumb: let Claude finish before you start making changes. Review the complete output first. It's tempting to jump in and request modifications mid-stream, but you'll get better results if you let the first draft land fully and then iterate from there.</p>
+
+            <p>Claude will create your <code>index.html</code> file with all the markup and styles. Depending on your prompt, it might also create separate CSS or JavaScript files. Either way, you'll have a fully functional page ready for preview within a couple of minutes.</p>
+
+            <h2>Step 3: Iterate on Design with Live Preview</h2>
+
+            <p>This is where the workflow really clicks. Switch to Tab 2 in your Beam workspace and start the development server:</p>
+
+            <div class="code-block">npx serve .</div>
+
+            <p>This spins up a local server (usually at <code>http://localhost:3000</code>) that serves your project files. Open that URL in your browser, and you'll see your landing page live.</p>
+
+            <p>Now use your split pane view on Tab 1 to see Claude and the browser side by side. Tell Claude what to change in natural language:</p>
+
+            <ul>
+                <li>"Make the hero headline larger and add a subtle gradient to the text"</li>
+                <li>"Change the CTA button color to a deeper blue and add a hover animation"</li>
+                <li>"Add more vertical spacing between the features grid and the testimonials section"</li>
+                <li>"The contact form feels too wide -- constrain it to 600px max width"</li>
+            </ul>
+
+            <p>Each iteration takes seconds. Claude makes the change, you refresh the browser (or the dev server auto-reloads), and you see the result immediately. This rapid feedback loop is what makes the process feel less like coding and more like directing.</p>
+
+            <p>Don't be afraid to be picky. Ask for five different versions of the hero section if you want. Claude doesn't get tired, and each variation teaches it more about your preferences for the current project.</p>
+
+            <h2>Step 4: Add Interactivity</h2>
+
+            <p>Once the visual design feels right, it's time to make the page come alive. Ask Claude to add JavaScript for the interactive elements. Start with the essentials:</p>
+
+            <div class="code-block">Add smooth scrolling when clicking the CTA button so it scrolls down to the features section. Also add form validation on the contact form -- check for a valid email format and make sure all fields are filled before submission. Add a subtle fade-in animation for elements as they scroll into view.</div>
+
+            <p>Claude writes clean, vanilla JavaScript for this -- no jQuery, no libraries, no bundle size bloat. You get exactly what you need: event listeners for smooth scrolling, regex validation for the email field, and an Intersection Observer for scroll-triggered animations.</p>
+
+            <p>Test each interaction in your live preview. Click the CTA, submit the form with invalid data, scroll up and down to see the animations trigger. If something doesn't feel right, tell Claude. "The smooth scroll is too fast -- slow it down." "The fade-in animation should come from the bottom, not just opacity." Claude adjusts in seconds.</p>
+
+            <p>This is one of the biggest advantages of vanilla JavaScript for a project like this. There's no build step, no compilation, no waiting. You make a change and see it immediately.</p>
+
+            <h2>Step 5: Deploy to GitHub Pages</h2>
+
+            <p>Your site looks great, the interactions work, and you're ready to put it on the internet. Switch to Tab 3 in your Beam workspace -- the one you set aside for Git operations.</p>
+
+            <p>If you haven't initialized a Git repository yet, do that first:</p>
+
+            <div class="code-block">git init
+git add .
+git commit -m "Initial landing page"</div>
+
+            <p>Create a new repository on GitHub (you can do this from the command line with the GitHub CLI or through the GitHub website), then push your code:</p>
+
+            <div class="code-block">git remote add origin https://github.com/yourusername/acme-landing.git
+git branch -M main
+git push -u origin main</div>
+
+            <p>To enable GitHub Pages, go to your repository's Settings, navigate to the Pages section, and set the source to "Deploy from a branch" with the main branch selected. Within a minute or two, your site will be live at <code>https://yourusername.github.io/acme-landing</code>.</p>
+
+            <p>If you're not comfortable with Git commands, ask Claude for help right in your Claude Code session. It can walk you through every step or even generate the exact commands you need to copy and paste.</p>
+
+            <div class="highlight">
+                <h3>Pro Tip: Save the Layout for Future Web Projects</h3>
+                <p>Press <span class="kbd">&#8984;S</span> to save your workspace layout and name it "Web Project Template." The next time you want to build a website -- whether it's another landing page, a React app, or a Next.js project -- restore this layout and start immediately. Same three-tab structure, same split pane arrangement, zero setup time.</p>
+                <p>This is one of Beam's most underrated features. You're not just building a website -- you're building a reusable workflow that gets faster every time you use it.</p>
+            </div>
+
+            <h2>Memory File: Teach Claude Your Web Dev Conventions</h2>
+
+            <p>Here's where things get really interesting for repeat projects. Every developer has preferences: maybe you use BEM for CSS class names, prefer rem over px, or always structure your HTML with semantic elements. Instead of repeating these preferences every time you start a new Claude Code session, you can write them down once.</p>
+
+            <p>Use Beam's "Install Project Memory" toolbar button to create a <code>CLAUDE.md</code> file in your project directory. This markdown file is automatically read by Claude Code at the start of every session. Write your conventions into it:</p>
+
+            <div class="code-block">- Use BEM methodology for CSS class naming
+- Prefer CSS Grid for layouts, Flexbox for alignment
+- Use rem units for spacing, em for typography
+- Always include aria labels on interactive elements
+- Mobile-first responsive design with breakpoints at 640px, 768px, 1024px
+- Color scheme: use CSS custom properties defined in :root</div>
+
+            <p>The next time you start Claude Code in this directory, it reads these conventions automatically and follows them without being asked. Over time, your <code>CLAUDE.md</code> becomes a living style guide that makes Claude increasingly aligned with how you like to build. Your AI assistant gets better at matching your style with every project.</p>
+
+            <div class="cta-box">
+                <h3>Ready to Build Your Next Website?</h3>
+                <p>Download Beam and start creating with Claude Code. Your AI-powered web development workflow starts here.</p>
+                <a href="../" class="btn">Download Beam for macOS</a>
+            </div>
+
+            <h2>Summary</h2>
+
+            <p>Building a website with Claude Code isn't just faster than doing it by hand -- it's a fundamentally different way of working. You think in terms of outcomes, not syntax. Here's what we covered:</p>
+
+            <ul>
+                <li><strong>Set up a Beam workspace</strong> with dedicated tabs for Claude Code, dev server, and Git -- saving the layout for reuse</li>
+                <li><strong>Described the website</strong> to Claude Code in plain English and let it scaffold the entire project</li>
+                <li><strong>Iterated on the design</strong> with a live preview, making changes in seconds through natural language</li>
+                <li><strong>Added interactivity</strong> with vanilla JavaScript -- smooth scrolling, form validation, scroll animations</li>
+                <li><strong>Deployed to GitHub Pages</strong> and had a live site in minutes</li>
+                <li><strong>Created a memory file</strong> to teach Claude your personal conventions for future projects</li>
+            </ul>
+
+            <p>The whole process takes about 30 minutes. The workspace layout you built in Beam is reusable for every future project. And the memory file means Claude gets smarter about your preferences over time. That's not a workflow hack -- it's a compounding advantage.</p>
+
+            <div class="related-articles">
+                <h2>Related Articles</h2>
+                <div class="related-grid">
+                    <a href="beam-claude-code-setup.html" class="related-card">
+                        <h4>Setting Up Beam for Claude Code</h4>
+                        <p>Step-by-step guide to setting up Beam for Claude Code development.</p>
+                    </a>
+                    <a href="vibe-coding-setup.html" class="related-card">
+                        <h4>The Perfect Vibe Coding Setup</h4>
+                        <p>Achieve flow state with the right terminal organization.</p>
+                    </a>
+                    <a href="best-terminal-app-ai-coding-2026.html" class="related-card">
+                        <h4>Best Terminal App for AI Coding in 2026</h4>
+                        <p>Why your choice of terminal matters for AI-assisted development.</p>
+                    </a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>
+                <a href="../">Beam</a> &bull; Terminal Organizer for macOS &bull;
+                <a href="mailto:frank@nextuptechnologies.co">Contact</a>
+            </p>
+
+            <p style="margin-top: 12px; font-size: 0.8rem;">
+                <a href="/privacy.html" style="color: #71717a; text-decoration: none;">Privacy Policy</a> &bull;
+                <a href="/terms.html" style="color: #71717a; text-decoration: none;">Terms of Service</a>
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>

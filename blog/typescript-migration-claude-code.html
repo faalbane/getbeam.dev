@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D0XH8B0RKL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-D0XH8B0RKL');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Migrate to TypeScript with Claude Code | Beam Terminal Organizer</title>
+    <meta name="description" content="Migrate your JavaScript codebase to TypeScript with Claude Code. File-by-file conversion, type inference, interface generation, and strict mode — without breaking your app.">
+    <meta name="keywords" content="TypeScript migration, migrate JavaScript to TypeScript, Claude Code TypeScript, AI TypeScript conversion, TypeScript migration guide, add types to JavaScript">
+    <meta name="author" content="NextUp Technologies">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://getbeam.dev/blog/typescript-migration-claude-code.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://getbeam.dev/blog/typescript-migration-claude-code.html">
+    <meta property="og:title" content="How to Migrate to TypeScript with Claude Code">
+    <meta property="og:description" content="Migrate your JavaScript codebase to TypeScript with Claude Code. File-by-file conversion, type inference, interface generation, and strict mode — without breaking your app.">
+    <meta property="og:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="How to Migrate to TypeScript with Claude Code">
+    <meta name="twitter:description" content="Migrate your JavaScript codebase to TypeScript with Claude Code. File-by-file conversion, type inference, interface generation, and strict mode — without breaking your app.">
+    <meta name="twitter:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "How to Migrate to TypeScript with Claude Code",
+        "description": "Migrate your JavaScript codebase to TypeScript with Claude Code. File-by-file conversion, type inference, interface generation, and strict mode — without breaking your app.",
+        "author": {
+            "@type": "Organization",
+            "name": "NextUp Technologies"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Beam"
+        },
+        "datePublished": "2026-02-11",
+        "keywords": "TypeScript migration, migrate JavaScript to TypeScript, Claude Code TypeScript, AI TypeScript conversion"
+    }
+    </script>
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #111113;
+            --bg-tertiary: #1a1a1d;
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.4);
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --border: #27272a;
+            --success: #22c55e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        header {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 60px;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1.5rem;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            background: var(--accent);
+            color: white;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+        }
+
+        article {
+            padding-bottom: 80px;
+        }
+
+        .breadcrumb {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+        }
+
+        .breadcrumb a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .meta {
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            font-size: 0.95rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 48px 0 20px;
+            color: var(--text-primary);
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        ul, ol {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            padding-left: 24px;
+        }
+
+        li {
+            margin-bottom: 12px;
+        }
+
+        .highlight {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 32px 0;
+        }
+
+        .highlight h3 {
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .kbd {
+            display: inline-block;
+            padding: 2px 8px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+        }
+
+        code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            background: var(--bg-tertiary);
+            padding: 2px 6px;
+            border-radius: 4px;
+            border: 1px solid var(--border);
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .cta-box h3 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+        }
+
+        .cta-box p {
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 24px;
+        }
+
+        .cta-box .btn {
+            background: white;
+            color: var(--accent);
+        }
+
+        .blog-visual {
+            margin: 40px 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .blog-visual svg {
+            width: 100%;
+            max-width: 720px;
+            height: auto;
+        }
+
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+
+        .related-articles { margin-top: 60px; padding-top: 40px; border-top: 1px solid var(--border); }
+        .related-articles h2 { font-size: 1.5rem; margin-bottom: 24px; }
+        .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .related-card { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-decoration: none; transition: border-color 0.2s; }
+        .related-card:hover { border-color: var(--accent); }
+        .related-card h4 { color: white; font-size: 1rem; margin: 0 0 8px 0; }
+        .related-card p { color: var(--text-muted); font-size: 0.85rem; margin: 0; }
+        @media (max-width: 600px) { .related-grid { grid-template-columns: 1fr; } h1 { font-size: 1.8rem; } }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="../" class="logo">
+                <div class="logo-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round">
+                        <path d="M4 17l6-6-6-6M12 19h8"/>
+                    </svg>
+                </div>
+                Beam
+            </a>
+            <a href="../" class="btn">Download Beam</a>
+        </div>
+    </header>
+
+    <main>
+        <article class="container">
+            <div class="breadcrumb">
+                <a href="../">Beam</a> / <a href="../#guides">Guides</a> / TypeScript Migration with Claude Code
+            </div>
+
+            <h1>How to Migrate to TypeScript with Claude Code</h1>
+            <p class="meta">February 2026 &bull; 8 min read</p>
+
+            <p>Migrating a JavaScript codebase to TypeScript is one of those tasks that everyone agrees is worth doing and nobody wants to start. It is tedious, file-by-file work that touches every part of your project. The type errors cascade, the imports break, and the sheer volume of changes makes it feel like a months-long commitment. Claude Code turns this from a drawn-out slog into a focused sprint. It reads your JavaScript, infers types from actual usage patterns, generates proper interfaces, and converts files one by one -- all while keeping your app running and your tests passing.</p>
+
+            <div class="blog-visual">
+                <svg viewBox="0 0 720 320" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Background -->
+                    <rect width="720" height="320" rx="16" fill="#0a0a0b"/>
+                    <rect x="1" y="1" width="718" height="318" rx="15" fill="none" stroke="#27272a" stroke-width="1"/>
+
+                    <!-- Left: JS File -->
+                    <g transform="translate(40, 30)">
+                        <!-- File chrome -->
+                        <rect width="260" height="200" rx="8" fill="#111113" stroke="#27272a" stroke-width="1"/>
+                        <!-- Title bar -->
+                        <rect width="260" height="32" rx="8" fill="#1a1a1d"/>
+                        <rect y="24" width="260" height="8" fill="#1a1a1d"/>
+                        <!-- Window dots -->
+                        <circle cx="16" cy="16" r="4" fill="#3b3b3e"/>
+                        <circle cx="32" cy="16" r="4" fill="#3b3b3e"/>
+                        <circle cx="48" cy="16" r="4" fill="#3b3b3e"/>
+                        <!-- Filename -->
+                        <text x="130" y="20" text-anchor="middle" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="11">userService.js</text>
+
+                        <!-- JS code lines (muted/gray) -->
+                        <text x="16" y="58" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="10">function getUser(id) {</text>
+                        <text x="16" y="76" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="10">  const user = db.find(id)</text>
+                        <text x="16" y="94" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="10">  return {</text>
+                        <text x="16" y="112" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="10">    name: user.name,</text>
+                        <text x="16" y="130" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="10">    email: user.email,</text>
+                        <text x="16" y="148" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="10">    role: user.role</text>
+                        <text x="16" y="166" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="10">  }</text>
+                        <text x="16" y="184" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="10">}</text>
+
+                        <!-- JS badge -->
+                        <rect x="200" y="4" width="48" height="22" rx="4" fill="#f7df1e" opacity="0.85"/>
+                        <text x="224" y="19" text-anchor="middle" fill="#000" font-family="Space Grotesk, sans-serif" font-weight="700" font-size="11">JS</text>
+                    </g>
+
+                    <!-- Arrow with Claude dot -->
+                    <g transform="translate(330, 100)">
+                        <!-- Arrow line -->
+                        <line x1="0" y1="30" x2="50" y2="30" stroke="#71717a" stroke-width="2" stroke-dasharray="4,4"/>
+                        <polygon points="52,30 42,24 42,36" fill="#71717a"/>
+                        <!-- Claude amber dot -->
+                        <circle cx="26" cy="30" r="12" fill="#d97706" opacity="0.9"/>
+                        <circle cx="26" cy="30" r="12" fill="none" stroke="#d97706" stroke-width="1" opacity="0.4">
+                            <animate attributeName="r" values="12;18;12" dur="2s" repeatCount="indefinite"/>
+                            <animate attributeName="opacity" values="0.4;0;0.4" dur="2s" repeatCount="indefinite"/>
+                        </circle>
+                        <!-- Sparkle/star inside dot -->
+                        <text x="26" y="35" text-anchor="middle" fill="white" font-size="14" font-weight="bold">*</text>
+                    </g>
+
+                    <!-- Right: TS File -->
+                    <g transform="translate(420, 30)">
+                        <!-- File chrome -->
+                        <rect width="260" height="200" rx="8" fill="#111113" stroke="#3178c6" stroke-width="1" opacity="1"/>
+                        <!-- Title bar -->
+                        <rect width="260" height="32" rx="8" fill="#1a1a1d"/>
+                        <rect y="24" width="260" height="8" fill="#1a1a1d"/>
+                        <!-- Window dots -->
+                        <circle cx="16" cy="16" r="4" fill="#3b3b3e"/>
+                        <circle cx="32" cy="16" r="4" fill="#3b3b3e"/>
+                        <circle cx="48" cy="16" r="4" fill="#3b3b3e"/>
+                        <!-- Filename -->
+                        <text x="130" y="20" text-anchor="middle" fill="#3178c6" font-family="JetBrains Mono, monospace" font-size="11">userService.ts</text>
+
+                        <!-- TS code lines (blue-highlighted) -->
+                        <text x="16" y="58" fill="#3178c6" font-family="JetBrains Mono, monospace" font-size="10">interface User {</text>
+                        <text x="16" y="76" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="10">  name: <tspan fill="#3178c6">string</tspan></text>
+                        <text x="16" y="94" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="10">  email: <tspan fill="#3178c6">string</tspan></text>
+                        <text x="16" y="112" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="10">  role: <tspan fill="#3178c6">Role</tspan></text>
+                        <text x="16" y="130" fill="#3178c6" font-family="JetBrains Mono, monospace" font-size="10">}</text>
+                        <text x="16" y="152" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="10">function getUser(</text>
+                        <text x="16" y="170" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="10">  id: <tspan fill="#3178c6">string</tspan></text>
+                        <text x="16" y="188" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="10">): <tspan fill="#3178c6">User</tspan> {</text>
+
+                        <!-- TS badge -->
+                        <rect x="200" y="4" width="48" height="22" rx="4" fill="#3178c6" opacity="0.9"/>
+                        <text x="224" y="19" text-anchor="middle" fill="white" font-family="Space Grotesk, sans-serif" font-weight="700" font-size="11">TS</text>
+                    </g>
+
+                    <!-- Progress bar -->
+                    <g transform="translate(40, 260)">
+                        <!-- Label -->
+                        <text x="0" y="14" fill="#a1a1aa" font-family="Space Grotesk, sans-serif" font-size="13">Migration Progress</text>
+                        <text x="640" y="14" text-anchor="end" fill="#3178c6" font-family="JetBrains Mono, monospace" font-size="13" font-weight="600">12 / 47 files</text>
+
+                        <!-- Track -->
+                        <rect y="24" width="640" height="10" rx="5" fill="#1a1a1d" stroke="#27272a" stroke-width="1"/>
+                        <!-- Fill (12/47 = ~25.5%) -->
+                        <rect y="24" width="163" height="10" rx="5" fill="url(#progressGrad)"/>
+                        <!-- Glow -->
+                        <rect y="24" width="163" height="10" rx="5" fill="none" stroke="#3178c6" stroke-width="1" opacity="0.4"/>
+
+                        <!-- Gradient for progress bar -->
+                        <defs>
+                            <linearGradient id="progressGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" style="stop-color:#3178c6;stop-opacity:0.8"/>
+                                <stop offset="100%" style="stop-color:#3b82f6;stop-opacity:1"/>
+                            </linearGradient>
+                        </defs>
+                    </g>
+                </svg>
+            </div>
+
+            <h2>Why Claude Code Is Perfect for TypeScript Migration</h2>
+
+            <p>Most migration tools give you a mechanical rename and a sea of <code>any</code> types. Claude Code is fundamentally different because it actually reads and understands your code. It traces how every function is called, what shapes your objects take, and where data flows between modules. From that understanding, it generates real types -- proper interfaces with specific fields, union types where values vary, and generics where patterns repeat.</p>
+
+            <p>Claude Code understands the entire migration path. It knows that <code>.js</code> files become <code>.ts</code> and <code>.jsx</code> files become <code>.tsx</code>. It knows to update your imports, adjust your build configuration, and handle the subtle differences between CommonJS and ES module type declarations. It can start you on a gradual path with <code>allowJs</code> and <code>checkJs</code> enabled, or go straight to strict mode if you prefer to rip the bandage off.</p>
+
+            <p>The real advantage is multi-file awareness. When you ask Claude Code to convert a service file, it does not look at that file in isolation. It examines every caller, every consumer, every test that touches that module. The interfaces it generates are consistent across your entire codebase, not just locally correct within a single file. This is the kind of holistic understanding that makes the difference between a migration that works and one that creates more problems than it solves.</p>
+
+            <h2>The Migration Workspace</h2>
+
+            <p>A TypeScript migration is a multi-tool operation. You need to convert code, check types, run tests, and verify runtime behavior all at the same time. In Beam, create a workspace called "TS Migration" and set it up with five tabs that cover every angle of the process.</p>
+
+            <ul>
+                <li><strong>Tab 1: Claude Code</strong> -- this is your conversion engine, where all the migration work happens</li>
+                <li><strong>Tab 2: TypeScript compiler</strong> -- run <code>tsc --watch --noEmit</code> to see type errors appear and resolve in real-time</li>
+                <li><strong>Tab 3: Tests</strong> -- your test runner in watch mode, verifying nothing breaks with each conversion</li>
+                <li><strong>Tab 4: App</strong> -- your application running in development mode so you can verify runtime behavior</li>
+                <li><strong>Tab 5: Git</strong> -- for committing after each successful file conversion</li>
+            </ul>
+
+            <p>The most powerful configuration is a split pane with Claude Code on the left and the <code>tsc</code> output on the right. As Claude converts a file, you watch the type errors appear and then resolve in real-time. It is deeply satisfying and gives you immediate confidence that the conversion is correct. Save this layout in Beam so you can restore your entire migration workspace between sessions.</p>
+
+            <h2>Step 1: Set Up TypeScript</h2>
+
+            <p>Start the migration by telling Claude Code to scaffold the TypeScript infrastructure. A prompt like "Add TypeScript to this project. Create tsconfig.json with strict mode, configure path aliases to match our existing imports, and update the build pipeline" gives it everything it needs. Claude will install the <code>typescript</code> package, create a properly configured <code>tsconfig.json</code>, and update your <code>package.json</code> scripts to use the TypeScript compiler.</p>
+
+            <p>It sets up path aliases that match whatever import patterns you already use. If you have <code>@/components</code> style imports or relative paths that go three directories deep, Claude configures the <code>paths</code> and <code>baseUrl</code> in your tsconfig to match. The critical setting at this stage is <code>allowJs: true</code>, which lets TypeScript and JavaScript coexist in the same project. This is what makes file-by-file migration possible -- you do not have to convert everything at once.</p>
+
+            <h2>Step 2: Convert File by File</h2>
+
+            <p>With the infrastructure in place, start converting files. Tell Claude Code something like "Convert src/services/userService.js to TypeScript. Infer proper types from usage, create interfaces for function parameters and return values." Claude renames the file from <code>.js</code> to <code>.ts</code>, analyzes every function signature, and generates typed versions.</p>
+
+            <p>What sets Claude Code apart here is that it does not take shortcuts. Instead of slapping <code>any</code> on everything and calling it done, it traces how each function is actually used across your codebase. If <code>getUser</code> always receives a string ID and returns an object with <code>name</code>, <code>email</code>, and <code>role</code> fields, Claude generates an interface that reflects exactly that shape. It looks at your database queries, your API responses, and your test fixtures to figure out the real types.</p>
+
+            <p>Keep an eye on your <code>tsc</code> tab while Claude works. You will see type errors appear briefly as the conversion happens, then resolve as Claude adds the right types and updates the imports. Commit each converted file separately. This gives you a clean git history where every commit is a single file conversion, making it easy to bisect if something goes wrong later.</p>
+
+            <h2>Step 3: Generate Shared Types</h2>
+
+            <p>After converting a handful of files, you will notice the same shapes appearing in multiple places -- user objects, API responses, configuration types. This is where you ask Claude Code to consolidate. Tell it "Create a types/ directory with shared interfaces for User, Project, Task, and API responses based on how they are used across the codebase."</p>
+
+            <p>Claude scans your entire project, identifies the repeated object shapes, and creates centralized type definitions in a dedicated <code>types/</code> directory. It generates proper type exports and updates every import across your codebase to reference the shared definitions instead of local inline types. This is where Claude saves the most time in the entire migration. Manually finding and consolidating types across dozens or hundreds of files is the kind of work that takes days by hand. Claude does it in minutes because it can hold the entire codebase in context and see every usage pattern at once.</p>
+
+            <h2>Step 4: Handle the Hard Cases</h2>
+
+            <div class="highlight">
+                <h3>The Tricky Parts Claude Code Handles for You</h3>
+                <p>Every codebase has a few files that are genuinely difficult to type. Dynamic objects built at runtime, third-party libraries without type declarations, complex generic patterns that map and transform data. These are the files developers skip during migration, leaving them as untyped islands in an otherwise typed codebase.</p>
+            </div>
+
+            <p>Claude Code handles these cases with real sophistication. When you point it at a function that accepts any object and returns a transformed version, it generates bounded generics and conditional types that capture the actual transformation logic. Tell it "This function accepts any object and returns a transformed version. Add proper generic types" and watch it produce something like <code>&lt;T extends Record&lt;string, unknown&gt;&gt;</code> with mapped types that preserve the input structure.</p>
+
+            <p>For third-party libraries that ship without types and have no <code>@types</code> package on npm, Claude generates custom declaration files. It reads how you use the library throughout your codebase, infers what the API surface looks like, and creates a <code>.d.ts</code> file that gives you proper type checking without modifying the library itself.</p>
+
+            <div class="highlight">
+                <h3>Pro Tip: Start at the Leaves</h3>
+                <p>Start with the leaf files -- utilities, helpers, constants, and pure functions that do not import from your own codebase. Then work inward toward the core application logic. This minimizes cascading type errors because each file you convert only depends on files that are already typed. If you start at the center, every conversion creates ripple effects in files you have not touched yet.</p>
+            </div>
+
+            <h2>Step 5: Enable Strict Mode</h2>
+
+            <p>Once every file has been converted from JavaScript to TypeScript, it is time to tighten the configuration. Tell Claude Code "Enable strict mode in tsconfig.json and fix all resulting type errors." This flips on the full suite of strict checks: <code>strictNullChecks</code>, <code>strictFunctionTypes</code>, <code>strictPropertyInitialization</code>, <code>noImplicitAny</code>, and more.</p>
+
+            <p>Strict mode will surface a new wave of type errors, mostly around nullable values and implicit <code>any</code> types that slipped through during the initial conversion. Claude Code works through these methodically, adding null checks where values might be undefined, narrowing union types with type guards, and replacing any remaining <code>any</code> types with proper definitions. This is the final polish step, and it is exactly the kind of tedious, repetitive work that Claude excels at. What would take a developer hours of manual null-check insertion takes Claude a few minutes.</p>
+
+            <h2>The Gradual Migration Strategy</h2>
+
+            <div class="highlight">
+                <h3>A Five-Week Migration Plan</h3>
+                <p>You do not have to convert everything at once. A gradual approach is safer, less disruptive, and easier to review. Here is a realistic timeline for a medium-sized codebase:</p>
+            </div>
+
+            <ul>
+                <li><strong>Week 1:</strong> Set up TypeScript infrastructure, convert utility files and constants</li>
+                <li><strong>Week 2:</strong> Convert the service layer -- API clients, database access, business logic</li>
+                <li><strong>Week 3:</strong> Convert API routes, middleware, and request handlers</li>
+                <li><strong>Week 4:</strong> Convert components and UI layer (JSX to TSX)</li>
+                <li><strong>Week 5:</strong> Enable strict mode, final cleanup, remove <code>allowJs</code></li>
+            </ul>
+
+            <p>Each week, you open Beam, restore your "TS Migration" workspace layout, and pick up right where you left off. Your Claude Code session, your tsc watcher, your test runner, and your git tab are all exactly where you left them. Beam saves the entire workspace configuration between sessions so there is zero friction resuming the migration after a break.</p>
+
+            <h2>Memory File: TypeScript Conventions</h2>
+
+            <p>To keep the migration consistent, especially if multiple developers are involved, create a <code>CLAUDE.md</code> memory file that documents your TypeScript conventions. This file lives in your project root and Claude Code reads it automatically at the start of every session. Include the decisions your team has made so Claude follows them consistently across every file it converts.</p>
+
+            <ul>
+                <li><strong>Type naming conventions</strong> -- whether you prefix interfaces with <code>I</code> (like <code>IUser</code>) or use plain names (like <code>User</code>), and whether type aliases get a <code>T</code> prefix</li>
+                <li><strong>Interfaces vs type aliases</strong> -- when to use <code>interface</code> (for object shapes that might be extended) versus <code>type</code> (for unions, intersections, and utility types)</li>
+                <li><strong>Strict mode policy</strong> -- whether to enforce strict mode from the start or enable it after all files are converted</li>
+                <li><strong>Untyped third-party libraries</strong> -- whether to create local <code>.d.ts</code> files, use <code>@ts-ignore</code>, or wrap libraries in typed adapters</li>
+                <li><strong>Path alias patterns</strong> -- your import conventions like <code>@/types</code>, <code>@/services</code>, and how they map to the filesystem</li>
+            </ul>
+
+            <p>This memory file becomes especially valuable as the migration progresses. Claude Code remembers your conventions between sessions and applies them automatically to every file it touches, producing results that are consistent with the files you converted last week and the ones you will convert next week.</p>
+
+            <div class="cta-box">
+                <h3>Migrate to TypeScript Without the Pain</h3>
+                <p>Download Beam and let Claude Code handle the tedious conversion work.</p>
+                <a href="../" class="btn">Download Beam for macOS</a>
+            </div>
+
+            <h2>Summary</h2>
+
+            <p>Migrating to TypeScript does not have to be a months-long ordeal. With Claude Code doing the heavy lifting and Beam keeping your migration workspace organized, you can convert a full codebase in weeks instead of months. The key steps are:</p>
+
+            <ul>
+                <li><strong>Set up your migration workspace</strong> in Beam with Claude Code, tsc, tests, your app, and git in separate tabs</li>
+                <li><strong>Scaffold TypeScript infrastructure</strong> with <code>allowJs: true</code> so you can migrate file by file</li>
+                <li><strong>Convert files from the leaves inward</strong>, committing each conversion separately</li>
+                <li><strong>Generate shared types</strong> to consolidate repeated shapes across your codebase</li>
+                <li><strong>Handle the hard cases</strong> -- generics, dynamic objects, untyped libraries -- with Claude's help</li>
+                <li><strong>Enable strict mode</strong> as the final step and let Claude fix the remaining type errors</li>
+                <li><strong>Document conventions</strong> in a CLAUDE.md memory file for consistency across sessions</li>
+            </ul>
+
+            <p>The result is a fully typed, strict-mode TypeScript codebase with proper interfaces, consistent conventions, and a clean git history showing every step of the migration. That is a project you can maintain with confidence.</p>
+
+            <div class="related-articles">
+                <h2>Related Articles</h2>
+                <div class="related-grid">
+                    <a href="refactor-legacy-code-claude-code.html" class="related-card">
+                        <h4>Refactor Legacy Code with Claude Code</h4>
+                        <p>Modernize old codebases safely with AI-assisted refactoring.</p>
+                    </a>
+                    <a href="claude-code-react-development.html" class="related-card">
+                        <h4>Claude Code for React Development</h4>
+                        <p>Build React components, hooks, and full apps with Claude Code.</p>
+                    </a>
+                    <a href="write-tests-with-claude-code.html" class="related-card">
+                        <h4>Write Tests with Claude Code</h4>
+                        <p>Generate comprehensive test suites with AI assistance.</p>
+                    </a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>
+                <a href="../">Beam</a> &bull; Terminal Organizer for macOS &bull;
+                <a href="mailto:frank@nextuptechnologies.co">Contact</a>
+            </p>
+
+            <p style="margin-top: 12px; font-size: 0.8rem;">
+                <a href="/privacy.html" style="color: #71717a; text-decoration: none;">Privacy Policy</a> &bull;
+                <a href="/terms.html" style="color: #71717a; text-decoration: none;">Terms of Service</a>
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D0XH8B0RKL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-D0XH8B0RKL');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neovim + Claude Code + Beam Workflow | Terminal-Native AI Development</title>
+    <meta name="description" content="Build the ultimate terminal-native AI development environment with Neovim, Claude Code, and Beam. The keyboard-first coding workflow for developers who live in the terminal.">
+    <meta name="keywords" content="Neovim Claude Code, Neovim AI coding, Neovim terminal workflow, vim Claude Code, terminal IDE Neovim, Neovim coding workflow 2026, Neovim AI pair programming, terminal development workflow">
+    <meta name="author" content="NextUp Technologies">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://getbeam.dev/blog/neovim-claude-code-beam-workflow.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://getbeam.dev/blog/neovim-claude-code-beam-workflow.html">
+    <meta property="og:title" content="The Neovim + Claude Code + Beam Workflow: Terminal-Native AI Development">
+    <meta property="og:description" content="Build the ultimate terminal-native AI development environment with Neovim, Claude Code, and Beam. Keyboard-first, zero GUI.">
+    <meta property="og:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="The Neovim + Claude Code + Beam Workflow: Terminal-Native AI Development">
+    <meta name="twitter:description" content="Build the ultimate terminal-native AI development environment with Neovim, Claude Code, and Beam. Keyboard-first, zero GUI.">
+    <meta name="twitter:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "The Neovim + Claude Code + Beam Workflow: Terminal-Native AI Development",
+        "description": "Build the ultimate terminal-native AI development environment with Neovim, Claude Code, and Beam. The keyboard-first coding workflow for developers who live in the terminal.",
+        "author": {
+            "@type": "Organization",
+            "name": "NextUp Technologies"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Beam"
+        },
+        "datePublished": "2026-02-11",
+        "keywords": "Neovim Claude Code, Neovim AI coding, terminal IDE Neovim, Neovim coding workflow 2026"
+    }
+    </script>
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #111113;
+            --bg-tertiary: #1a1a1d;
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.4);
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --border: #27272a;
+            --success: #22c55e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        header {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 60px;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1.5rem;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            background: var(--accent);
+            color: white;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+        }
+
+        article {
+            padding-bottom: 80px;
+        }
+
+        .breadcrumb {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+        }
+
+        .breadcrumb a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .meta {
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            font-size: 0.95rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 48px 0 20px;
+            color: var(--text-primary);
+        }
+
+        h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 32px 0 16px;
+            color: var(--text-primary);
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        ul, ol {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            padding-left: 24px;
+        }
+
+        li {
+            margin-bottom: 12px;
+        }
+
+        .highlight {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 32px 0;
+        }
+
+        .highlight h3 {
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            margin-top: 0;
+            color: var(--text-primary);
+        }
+
+        .kbd {
+            display: inline-block;
+            padding: 2px 8px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+        }
+
+        code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            background: var(--bg-tertiary);
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: var(--accent);
+        }
+
+        pre {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 20px;
+            overflow-x: auto;
+            margin-bottom: 20px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            line-height: 1.6;
+            color: var(--text-secondary);
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .cta-box h3 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+            margin-top: 0;
+        }
+
+        .cta-box p {
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 24px;
+        }
+
+        .cta-box .btn {
+            background: white;
+            color: var(--accent);
+        }
+
+        .hero-illustration {
+            margin: 40px 0;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        .hero-illustration svg {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 24px 0;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 12px 16px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.95rem;
+        }
+
+        .comparison-table th {
+            color: var(--text-primary);
+            font-weight: 600;
+            background: var(--bg-secondary);
+        }
+
+        .comparison-table td {
+            color: var(--text-secondary);
+        }
+
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+
+        .related-articles { margin-top: 60px; padding-top: 40px; border-top: 1px solid var(--border); }
+        .related-articles h2 { font-size: 1.5rem; margin-bottom: 24px; }
+        .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .related-card { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-decoration: none; transition: border-color 0.2s; }
+        .related-card:hover { border-color: var(--accent); }
+        .related-card h4 { color: white; font-size: 1rem; margin: 0 0 8px 0; }
+        .related-card p { color: var(--text-muted); font-size: 0.85rem; margin: 0; }
+        @media (max-width: 600px) {
+            .related-grid { grid-template-columns: 1fr; }
+            h1 { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="../" class="logo">
+                <div class="logo-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round">
+                        <path d="M4 17l6-6-6-6M12 19h8"/>
+                    </svg>
+                </div>
+                Beam
+            </a>
+            <a href="../" class="btn">Download Beam</a>
+        </div>
+    </header>
+
+    <main>
+        <article class="container">
+            <div class="breadcrumb">
+                <a href="../">Beam</a> / <a href="../#guides">Guides</a> / Neovim + Claude Code + Beam
+            </div>
+
+            <h1>The Neovim + Claude Code + Beam Workflow: Terminal-Native AI Development</h1>
+            <p class="meta">February 2026 &bull; 12 min read</p>
+
+            <p>Neovim users are the most terminal-native developers on the planet. If you use Neovim, you have already made a deliberate choice: you want to live in the terminal. You think in keystrokes. You compose tools rather than click buttons. You have spent hours configuring your setup to be exactly right.</p>
+
+            <p>So when it comes to AI-assisted coding, why would you leave the terminal? You should not. Instead, add Claude Code as your AI pair programmer and Beam as your workspace organizer, and you get the ultimate terminal-native development environment. No Electron apps. No browser tabs. No mouse. Just terminals, arranged exactly the way you want them.</p>
+
+            <p>This guide walks through the complete Neovim + Claude Code + Beam workflow: how to set it up, how the development loop works, language-specific configurations, and why this stack replaces traditional IDEs for developers who take their tools seriously.</p>
+
+            <!-- Hero Illustration: Split terminal with Neovim and Claude Code -->
+            <div class="hero-illustration">
+                <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Terminal window chrome -->
+                    <rect width="800" height="420" rx="12" fill="#0a0a0b"/>
+                    <rect width="800" height="36" rx="12" fill="#1a1a1d"/>
+                    <rect y="24" width="800" height="12" fill="#1a1a1d"/>
+                    <!-- Window buttons -->
+                    <circle cx="20" cy="18" r="6" fill="#ff5f57"/>
+                    <circle cx="40" cy="18" r="6" fill="#febc2e"/>
+                    <circle cx="60" cy="18" r="6" fill="#28c840"/>
+                    <!-- Title bar text -->
+                    <text x="400" y="22" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="#71717a">Beam - neovim-project</text>
+                    <!-- Tab bar -->
+                    <rect y="36" width="800" height="28" fill="#111113"/>
+                    <rect x="0" y="36" width="160" height="28" fill="#0a0a0b" rx="0"/>
+                    <text x="16" y="54" font-family="JetBrains Mono, monospace" font-size="10" fill="#3b82f6">neovim + claude</text>
+                    <text x="180" y="54" font-family="JetBrains Mono, monospace" font-size="10" fill="#71717a">tests</text>
+                    <text x="270" y="54" font-family="JetBrains Mono, monospace" font-size="10" fill="#71717a">git</text>
+                    <!-- Divider -->
+                    <line x1="0" y1="64" x2="800" y2="64" stroke="#27272a" stroke-width="1"/>
+
+                    <!-- Left pane: Neovim (60%) -->
+                    <rect x="0" y="64" width="478" height="356" fill="#0a0a0b"/>
+                    <!-- Neovim mode indicator -->
+                    <rect x="0" y="388" width="478" height="32" fill="#1a1a1d"/>
+                    <rect x="0" y="388" width="70" height="32" fill="#57A143"/>
+                    <text x="10" y="408" font-family="JetBrains Mono, monospace" font-size="11" font-weight="bold" fill="#0a0a0b">NORMAL</text>
+                    <text x="80" y="408" font-family="JetBrains Mono, monospace" font-size="10" fill="#71717a">src/handler.rs</text>
+                    <text x="340" y="408" font-family="JetBrains Mono, monospace" font-size="10" fill="#71717a">utf-8 | rust</text>
+
+                    <!-- Line numbers -->
+                    <text x="8" y="84" font-family="JetBrains Mono, monospace" font-size="11" fill="#3d3d42">14</text>
+                    <text x="8" y="100" font-family="JetBrains Mono, monospace" font-size="11" fill="#3d3d42">15</text>
+                    <text x="8" y="116" font-family="JetBrains Mono, monospace" font-size="11" fill="#3d3d42">16</text>
+                    <text x="8" y="132" font-family="JetBrains Mono, monospace" font-size="11" fill="#fafafa">17</text>
+                    <text x="8" y="148" font-family="JetBrains Mono, monospace" font-size="11" fill="#3d3d42">18</text>
+                    <text x="8" y="164" font-family="JetBrains Mono, monospace" font-size="11" fill="#3d3d42">19</text>
+                    <text x="8" y="180" font-family="JetBrains Mono, monospace" font-size="11" fill="#3d3d42">20</text>
+                    <text x="8" y="196" font-family="JetBrains Mono, monospace" font-size="11" fill="#3d3d42">21</text>
+                    <text x="8" y="212" font-family="JetBrains Mono, monospace" font-size="11" fill="#3d3d42">22</text>
+                    <text x="8" y="228" font-family="JetBrains Mono, monospace" font-size="11" fill="#3d3d42">23</text>
+                    <text x="8" y="244" font-family="JetBrains Mono, monospace" font-size="11" fill="#3d3d42">24</text>
+                    <text x="8" y="260" font-family="JetBrains Mono, monospace" font-size="11" fill="#3d3d42">25</text>
+                    <text x="8" y="276" font-family="JetBrains Mono, monospace" font-size="11" fill="#3d3d42">26</text>
+                    <text x="8" y="292" font-family="JetBrains Mono, monospace" font-size="11" fill="#3d3d42">27</text>
+                    <text x="8" y="308" font-family="JetBrains Mono, monospace" font-size="11" fill="#3d3d42">28</text>
+                    <text x="8" y="324" font-family="JetBrains Mono, monospace" font-size="11" fill="#3d3d42">29</text>
+                    <text x="8" y="340" font-family="JetBrains Mono, monospace" font-size="11" fill="#3d3d42">30</text>
+                    <text x="8" y="356" font-family="JetBrains Mono, monospace" font-size="11" fill="#3d3d42">31</text>
+                    <text x="8" y="372" font-family="JetBrains Mono, monospace" font-size="11" fill="#3d3d42">32</text>
+
+                    <!-- Neovim code content (Rust syntax highlighted) -->
+                    <!-- Line 14: empty/closing brace -->
+                    <text x="36" y="84" font-family="JetBrains Mono, monospace" font-size="11" fill="#71717a">}</text>
+                    <!-- Line 15: blank -->
+                    <!-- Line 16: function signature -->
+                    <text x="36" y="116" font-family="JetBrains Mono, monospace" font-size="11" fill="#c586c0">pub</text>
+                    <text x="66" y="116" font-family="JetBrains Mono, monospace" font-size="11" fill="#c586c0">async</text>
+                    <text x="108" y="116" font-family="JetBrains Mono, monospace" font-size="11" fill="#c586c0">fn</text>
+                    <text x="126" y="116" font-family="JetBrains Mono, monospace" font-size="11" fill="#57A143">handle_request</text>
+                    <text x="234" y="116" font-family="JetBrains Mono, monospace" font-size="11" fill="#fafafa">(</text>
+                    <!-- Line 17: cursor line (highlighted) -->
+                    <rect x="30" y="120" width="448" height="16" fill="#1a1a1d" opacity="0.8"/>
+                    <text x="52" y="132" font-family="JetBrains Mono, monospace" font-size="11" fill="#9cdcfe">req</text>
+                    <text x="76" y="132" font-family="JetBrains Mono, monospace" font-size="11" fill="#fafafa">:</text>
+                    <text x="88" y="132" font-family="JetBrains Mono, monospace" font-size="11" fill="#4ec9b0">Request</text>
+                    <text x="146" y="132" font-family="JetBrains Mono, monospace" font-size="11" fill="#fafafa">,</text>
+                    <!-- Cursor block -->
+                    <rect x="52" y="121" width="8" height="14" fill="#57A143" opacity="0.7"/>
+                    <!-- Line 18 -->
+                    <text x="52" y="148" font-family="JetBrains Mono, monospace" font-size="11" fill="#9cdcfe">state</text>
+                    <text x="88" y="148" font-family="JetBrains Mono, monospace" font-size="11" fill="#fafafa">:</text>
+                    <text x="100" y="148" font-family="JetBrains Mono, monospace" font-size="11" fill="#4ec9b0">AppState</text>
+                    <text x="164" y="148" font-family="JetBrains Mono, monospace" font-size="11" fill="#fafafa">,</text>
+                    <!-- Line 19 -->
+                    <text x="36" y="164" font-family="JetBrains Mono, monospace" font-size="11" fill="#fafafa">) -></text>
+                    <text x="84" y="164" font-family="JetBrains Mono, monospace" font-size="11" fill="#4ec9b0">Result</text>
+                    <text x="128" y="164" font-family="JetBrains Mono, monospace" font-size="11" fill="#fafafa"><</text>
+                    <text x="138" y="164" font-family="JetBrains Mono, monospace" font-size="11" fill="#4ec9b0">Response</text>
+                    <text x="200" y="164" font-family="JetBrains Mono, monospace" font-size="11" fill="#fafafa">></text>
+                    <text x="212" y="164" font-family="JetBrains Mono, monospace" font-size="11" fill="#fafafa">{</text>
+                    <!-- Line 20 -->
+                    <text x="52" y="180" font-family="JetBrains Mono, monospace" font-size="11" fill="#c586c0">let</text>
+                    <text x="78" y="180" font-family="JetBrains Mono, monospace" font-size="11" fill="#9cdcfe">body</text>
+                    <text x="110" y="180" font-family="JetBrains Mono, monospace" font-size="11" fill="#fafafa">=</text>
+                    <text x="122" y="180" font-family="JetBrains Mono, monospace" font-size="11" fill="#9cdcfe">req</text>
+                    <text x="146" y="180" font-family="JetBrains Mono, monospace" font-size="11" fill="#fafafa">.</text>
+                    <text x="154" y="180" font-family="JetBrains Mono, monospace" font-size="11" fill="#57A143">body</text>
+                    <text x="186" y="180" font-family="JetBrains Mono, monospace" font-size="11" fill="#fafafa">();</text>
+                    <!-- Line 21 -->
+                    <text x="52" y="196" font-family="JetBrains Mono, monospace" font-size="11" fill="#c586c0">let</text>
+                    <text x="78" y="196" font-family="JetBrains Mono, monospace" font-size="11" fill="#9cdcfe">parsed</text>
+                    <text x="126" y="196" font-family="JetBrains Mono, monospace" font-size="11" fill="#fafafa">=</text>
+                    <text x="138" y="196" font-family="JetBrains Mono, monospace" font-size="11" fill="#57A143">serde_json</text>
+                    <text x="218" y="196" font-family="JetBrains Mono, monospace" font-size="11" fill="#fafafa">::</text>
+                    <text x="234" y="196" font-family="JetBrains Mono, monospace" font-size="11" fill="#57A143">from_str</text>
+                    <text x="298" y="196" font-family="JetBrains Mono, monospace" font-size="11" fill="#fafafa">(</text>
+                    <!-- Line 22 -->
+                    <text x="68" y="212" font-family="JetBrains Mono, monospace" font-size="11" fill="#fafafa">&</text>
+                    <text x="78" y="212" font-family="JetBrains Mono, monospace" font-size="11" fill="#9cdcfe">body</text>
+                    <text x="110" y="212" font-family="JetBrains Mono, monospace" font-size="11" fill="#fafafa">)?;</text>
+                    <!-- Line 23: blank -->
+                    <!-- Line 24: comment -->
+                    <text x="52" y="244" font-family="JetBrains Mono, monospace" font-size="11" fill="#6a9955">// TODO: validate input</text>
+                    <!-- Line 25 -->
+                    <text x="52" y="260" font-family="JetBrains Mono, monospace" font-size="11" fill="#9cdcfe">state</text>
+                    <text x="94" y="260" font-family="JetBrains Mono, monospace" font-size="11" fill="#fafafa">.</text>
+                    <text x="102" y="260" font-family="JetBrains Mono, monospace" font-size="11" fill="#57A143">process</text>
+                    <text x="158" y="260" font-family="JetBrains Mono, monospace" font-size="11" fill="#fafafa">(</text>
+                    <text x="166" y="260" font-family="JetBrains Mono, monospace" font-size="11" fill="#9cdcfe">parsed</text>
+                    <text x="214" y="260" font-family="JetBrains Mono, monospace" font-size="11" fill="#fafafa">)</text>
+                    <text x="222" y="260" font-family="JetBrains Mono, monospace" font-size="11" fill="#fafafa">.</text>
+                    <text x="230" y="260" font-family="JetBrains Mono, monospace" font-size="11" fill="#c586c0">await</text>
+                    <text x="270" y="260" font-family="JetBrains Mono, monospace" font-size="11" fill="#fafafa">?;</text>
+                    <!-- Line 26: blank -->
+                    <!-- Line 27 -->
+                    <text x="52" y="292" font-family="JetBrains Mono, monospace" font-size="11" fill="#4ec9b0">Ok</text>
+                    <text x="68" y="292" font-family="JetBrains Mono, monospace" font-size="11" fill="#fafafa">(</text>
+                    <text x="76" y="292" font-family="JetBrains Mono, monospace" font-size="11" fill="#4ec9b0">Response</text>
+                    <text x="138" y="292" font-family="JetBrains Mono, monospace" font-size="11" fill="#fafafa">::</text>
+                    <text x="154" y="292" font-family="JetBrains Mono, monospace" font-size="11" fill="#57A143">ok</text>
+                    <text x="170" y="292" font-family="JetBrains Mono, monospace" font-size="11" fill="#fafafa">())</text>
+                    <!-- Line 28 -->
+                    <text x="36" y="308" font-family="JetBrains Mono, monospace" font-size="11" fill="#71717a">}</text>
+
+                    <!-- Vertical divider between panes -->
+                    <line x1="478" y1="64" x2="478" y2="420" stroke="#27272a" stroke-width="2"/>
+
+                    <!-- Right pane: Claude Code (40%) -->
+                    <rect x="480" y="64" width="320" height="356" fill="#0a0a0b"/>
+                    <!-- Claude Code header -->
+                    <rect x="480" y="64" width="320" height="24" fill="#111113"/>
+                    <text x="496" y="80" font-family="JetBrains Mono, monospace" font-size="10" fill="#3b82f6">claude</text>
+                    <text x="540" y="80" font-family="JetBrains Mono, monospace" font-size="10" fill="#71717a">src/handler.rs</text>
+
+                    <!-- Claude Code conversation -->
+                    <text x="496" y="108" font-family="JetBrains Mono, monospace" font-size="10" fill="#71717a">You:</text>
+                    <text x="496" y="124" font-family="JetBrains Mono, monospace" font-size="10" fill="#a1a1aa">Review handle_request</text>
+                    <text x="496" y="140" font-family="JetBrains Mono, monospace" font-size="10" fill="#a1a1aa">and add input</text>
+                    <text x="496" y="156" font-family="JetBrains Mono, monospace" font-size="10" fill="#a1a1aa">validation</text>
+
+                    <!-- Claude response -->
+                    <text x="496" y="184" font-family="JetBrains Mono, monospace" font-size="10" fill="#3b82f6">Claude:</text>
+                    <text x="496" y="200" font-family="JetBrains Mono, monospace" font-size="10" fill="#a1a1aa">I see the TODO on line</text>
+                    <text x="496" y="216" font-family="JetBrains Mono, monospace" font-size="10" fill="#a1a1aa">24. I'll add a</text>
+                    <text x="496" y="232" font-family="JetBrains Mono, monospace" font-size="10" fill="#a1a1aa">validate() function</text>
+                    <text x="496" y="248" font-family="JetBrains Mono, monospace" font-size="10" fill="#a1a1aa">that checks the</text>
+                    <text x="496" y="264" font-family="JetBrains Mono, monospace" font-size="10" fill="#a1a1aa">parsed body against</text>
+                    <text x="496" y="280" font-family="JetBrains Mono, monospace" font-size="10" fill="#a1a1aa">your schema and</text>
+                    <text x="496" y="296" font-family="JetBrains Mono, monospace" font-size="10" fill="#a1a1aa">returns a 400 on</text>
+                    <text x="496" y="312" font-family="JetBrains Mono, monospace" font-size="10" fill="#a1a1aa">invalid input.</text>
+
+                    <!-- Claude Code blinking cursor -->
+                    <rect x="496" y="330" width="200" height="1" fill="#3b82f6" opacity="0.6"/>
+                    <text x="496" y="350" font-family="JetBrains Mono, monospace" font-size="10" fill="#57A143">Writing src/handler.rs</text>
+                    <text x="496" y="366" font-family="JetBrains Mono, monospace" font-size="10" fill="#57A143">+24 lines</text>
+
+                    <!-- Status bar for Claude Code pane -->
+                    <rect x="480" y="388" width="320" height="32" fill="#1a1a1d"/>
+                    <text x="496" y="408" font-family="JetBrains Mono, monospace" font-size="10" fill="#3b82f6">Claude Code</text>
+                    <text x="620" y="408" font-family="JetBrains Mono, monospace" font-size="10" fill="#71717a">Opus 4</text>
+                </svg>
+            </div>
+
+            <!-- Section 1: Why This Stack Works -->
+            <h2>Why This Stack Works</h2>
+
+            <p>Every tool in this stack does exactly one thing, and does it well. That is the Unix philosophy, and it is exactly how Neovim users already think about software.</p>
+
+            <p><strong>Neovim</strong> handles editing. It is the best editor for people who think in keystrokes. Modal editing, composable commands, Lua configuration, treesitter-powered syntax highlighting, and a plugin ecosystem that puts most IDEs to shame. If you already use Neovim, you know all this. The point is: Neovim is your editor, and it should stay that way.</p>
+
+            <p><strong>Claude Code</strong> handles AI assistance. It runs in a terminal. It understands your entire codebase. It reads files, writes files, generates code, debugs problems, writes tests, and handles git operations. It is not a plugin inside your editor trying to autocomplete single lines. It is a full AI agent that works alongside you.</p>
+
+            <p><strong>Beam</strong> handles workspace organization. It gives you workspaces, tabs, split panes, saveable layouts, and a Quick Switcher to jump between everything. It is the connective tissue that keeps Neovim and Claude Code organized across multiple projects.</p>
+
+            <p>The key insight: everything runs in a terminal. Zero context switching to GUI applications. Zero reaching for the mouse. Zero waiting for Electron to render. This is what terminal-native AI development actually looks like.</p>
+
+            <div class="highlight">
+                <h3>The Three-Tool Principle</h3>
+                <p>Each tool in this stack has a clear responsibility. Neovim edits. Claude Code thinks. Beam organizes. When you need AI help, you do not open a browser or switch to a different application. You switch to the next pane, which is already running Claude Code, already pointed at your project. The total context switch time is one keystroke.</p>
+            </div>
+
+            <!-- Section 2: The Beam Layout for Neovim Users -->
+            <h2>The Beam Layout for Neovim Users</h2>
+
+            <p>There are two primary layouts that work well for the Neovim + Claude Code workflow. Which one you prefer depends on whether you like seeing Claude Code's output while you type, or whether you prefer full-screen Neovim and switch contexts deliberately.</p>
+
+            <h3>Layout 1: The Side-by-Side Split</h3>
+
+            <p>This is the most popular layout. Split your Beam window into two panes:</p>
+
+            <ul>
+                <li><strong>Left pane (60%)</strong> &mdash; Neovim, running full height. This is where you write code.</li>
+                <li><strong>Right pane (40%)</strong> &mdash; Split vertically into two sections:
+                    <ul>
+                        <li><strong>Top right</strong> &mdash; Claude Code session, where you ask questions and receive suggestions</li>
+                        <li><strong>Bottom right</strong> &mdash; A regular shell for running builds, tests, or git commands</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <p>Press <span class="kbd">&CommandMac;&Option;&Control;T</span> to create the split in Beam. Then resize the panes by dragging the divider. The 60/40 ratio gives Neovim enough room for 80+ character lines while keeping Claude Code's output readable.</p>
+
+            <h3>Layout 2: The Tab-Based Workflow</h3>
+
+            <p>If you prefer full-screen Neovim and do not want any visual distraction while editing, use tabs instead of splits:</p>
+
+            <ul>
+                <li><strong>Tab 1</strong> &mdash; Neovim (full screen, maximum focus)</li>
+                <li><strong>Tab 2</strong> &mdash; Claude Code (full screen for reading longer responses)</li>
+                <li><strong>Tab 3</strong> &mdash; Build and test output (<code>cargo watch</code>, <code>jest --watch</code>, etc.)</li>
+                <li><strong>Tab 4</strong> &mdash; Git operations or ad-hoc shell commands</li>
+            </ul>
+
+            <p>Switch between tabs with <span class="kbd">&CommandMac;1</span> through <span class="kbd">&CommandMac;4</span>. The muscle memory builds fast: <span class="kbd">&CommandMac;1</span> to edit, <span class="kbd">&CommandMac;2</span> to talk to Claude Code, <span class="kbd">&CommandMac;3</span> to check test output.</p>
+
+            <div class="highlight">
+                <h3>Save Your Layout as a Template</h3>
+                <p>Once you have your ideal Neovim + Claude Code layout configured, press <span class="kbd">&CommandMac;S</span> to save it in Beam. Next time you work on this project, restore the layout and everything comes back: the split ratios, the working directories, all of it. You can even create different layout templates for different types of projects (a Rust layout, a TypeScript layout, a Go layout).</p>
+            </div>
+
+            <p>Both layouts work with Beam's <strong>Quick Switcher</strong> (<span class="kbd">&CommandMac;P</span>). If you have multiple projects open across different workspaces, the Quick Switcher lets you fuzzy-search across all of them and jump to any tab or pane instantly. This is similar to telescope.nvim's file finder, but for your terminal workspaces.</p>
+
+            <!-- Section 3: The Workflow Loop -->
+            <h2>The Workflow Loop</h2>
+
+            <p>This is the core of the Neovim + Claude Code + Beam workflow. It is a tight, keyboard-driven loop that keeps you moving fast without ever reaching for the mouse.</p>
+
+            <h3>Step 1: Write Code in Neovim</h3>
+
+            <p>You are in Neovim, writing code as usual. You use your LSP for diagnostics, treesitter for syntax highlighting, and whatever other plugins you have configured. This is your primary creative space.</p>
+
+            <h3>Step 2: Ask Claude Code for Help</h3>
+
+            <p>When you hit a decision point, a bug, or want a review, switch to the Claude Code pane. If you are using the split layout, this is just <span class="kbd">Ctrl-W l</span> if Claude Code is in Neovim's built-in terminal, or a Beam pane switch. If you are using the tab layout, press <span class="kbd">&CommandMac;2</span>.</p>
+
+            <p>Tell Claude Code what you need:</p>
+
+            <pre>"Review what I just wrote in src/handler.rs and suggest improvements"
+"Write tests for the parse_config function in src/config.rs"
+"There's a race condition in my worker pool — help me debug it"
+"Refactor this module to use the builder pattern"</pre>
+
+            <p>Claude Code reads the file directly from disk, understands the context of your entire project, and gives you a detailed response. It can also write files directly, which means the changes appear in Neovim immediately if you have autoread enabled.</p>
+
+            <h3>Step 3: Apply Changes in Neovim</h3>
+
+            <p>If Claude Code wrote changes to disk, just reload in Neovim (<code>:e</code> or let autoread handle it). If Claude Code suggested changes in its response, switch back to Neovim and apply them manually. You have full control.</p>
+
+            <h3>Step 4: Watch Tests Run</h3>
+
+            <p>In your third pane or tab, you have a file watcher running your test suite. Every time Claude Code writes a file or you save in Neovim, the tests re-run automatically. You see green or red without any manual intervention.</p>
+
+            <h3>Step 5: Repeat</h3>
+
+            <p>This loop — write, ask, apply, verify — is remarkably fast. There is no waiting for a GUI to update. No switching between applications. No loading spinners. Every step happens in the terminal, and every transition is a keystroke.</p>
+
+            <div class="highlight">
+                <h3>Why This Loop Is Faster Than Any IDE</h3>
+                <p>In VS Code or Cursor, the AI interaction happens inside the editor's UI. That sounds convenient, but it means the AI's output competes for screen space with your code. You end up scrolling panels, resizing sidebars, and clicking tiny buttons. In the Neovim + Claude Code + Beam workflow, each tool has its own dedicated space. No competition for screen real estate. No UI overhead. And because everything is keyboard-driven, the transition between steps takes milliseconds, not seconds.</p>
+            </div>
+
+            <!-- Section 4: Integration Tips -->
+            <h2>Neovim + Claude Code Integration Tips</h2>
+
+            <p>Here are specific techniques for making Neovim and Claude Code work together more smoothly within Beam.</p>
+
+            <h3>Use Claude Code's File Reading</h3>
+
+            <p>Claude Code can read any file in your project directly. When you switch to the Claude Code pane, you do not need to copy-paste code from Neovim. Just tell Claude Code which file you want it to look at:</p>
+
+            <pre>Review src/handler.rs, focusing on the error handling in handle_request</pre>
+
+            <p>Claude Code will read the file, understand the context, and respond. This is much faster than selecting text in Neovim and piping it somewhere.</p>
+
+            <h3>Enable Autoread in Neovim</h3>
+
+            <p>When Claude Code writes changes to files, you want Neovim to pick them up automatically. Add this to your Neovim config:</p>
+
+            <pre>-- In your init.lua
+vim.opt.autoread = true
+
+-- Auto-check for file changes when you focus the buffer
+vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter" }, {
+    command = "checktime",
+})</pre>
+
+            <p>Now when you switch from the Claude Code pane back to Neovim, any file changes are loaded automatically. No manual <code>:e!</code> needed.</p>
+
+            <h3>Clipboard Sharing Between Panes</h3>
+
+            <p>Beam shares the system clipboard across all panes and tabs. If you yank text in Neovim (with <code>"+y</code> to use the system register), you can paste it in the Claude Code pane to provide context. Vice versa, if Claude Code outputs a snippet you want, select it in the Claude Code pane and paste it in Neovim.</p>
+
+            <p>Make sure your Neovim config uses the system clipboard:</p>
+
+            <pre>vim.opt.clipboard = "unnamedplus"</pre>
+
+            <h3>Neovim's Built-in Terminal vs. Beam's Panes</h3>
+
+            <p>Neovim has a built-in terminal (<code>:term</code>). You could technically run Claude Code inside Neovim's terminal. But this has drawbacks: the terminal buffer shares Neovim's screen space, scrollback is limited by Neovim's terminal emulation, and switching between terminal mode and normal mode adds keystrokes.</p>
+
+            <p>The better approach: run Claude Code in a dedicated Beam pane alongside Neovim. You get the full terminal experience with unlimited scrollback, proper color rendering, and you can interact with Claude Code without leaving terminal mode. Use Neovim's built-in terminal only for quick one-off commands.</p>
+
+            <h3>tmux Inside Beam: When It Makes Sense</h3>
+
+            <p>If you are a tmux user, you might wonder whether to use tmux inside Beam or use Beam's native tabs and splits. The short answer: use Beam's native features for workspace-level organization, and tmux only if you need session persistence over SSH.</p>
+
+            <ul>
+                <li><strong>Local development</strong> &mdash; Use Beam's tabs and splits. The Quick Switcher, keyboard shortcuts, and saveable layouts are better than tmux for local workflow management.</li>
+                <li><strong>Remote development (SSH)</strong> &mdash; Use tmux inside a Beam tab. tmux keeps your session alive if the SSH connection drops. Beam keeps your local workspace organized.</li>
+            </ul>
+
+            <!-- Section 5: Project Memory -->
+            <h2>Project Memory for Neovim Workflows</h2>
+
+            <p>One of the most powerful features of Claude Code is project memory via <code>CLAUDE.md</code> files. These are markdown files at the root of your project that tell Claude Code about your codebase: the architecture, conventions, build commands, and anything else that helps it give better suggestions.</p>
+
+            <p>For Neovim-centric workflows, your <code>CLAUDE.md</code> should include your coding conventions so that Claude Code generates code that matches your style:</p>
+
+            <pre># Project: my-api
+
+## Build
+- `cargo build` to compile
+- `cargo test` to run tests
+- `cargo watch -x test` for continuous testing
+
+## Architecture
+- src/handler.rs — HTTP request handlers
+- src/models/ — Data models with serde
+- src/db/ — Database layer using sqlx
+
+## Code Conventions
+- Use Result&lt;T, AppError&gt; for all fallible functions
+- Prefer impl Trait over Box&lt;dyn Trait&gt;
+- Error handling: use thiserror for custom errors
+- No unwrap() in production code
+- Tests go in the same file, in a #[cfg(test)] module</pre>
+
+            <h3>Beam's Install Memory Feature</h3>
+
+            <p>Beam has an "Install Project Memory" toolbar button that writes your project context to <code>CLAUDE.md</code> in one click. Instead of manually creating and maintaining this file, let Beam handle it. When you start a new Claude Code session, the AI already knows your project's conventions, structure, and build commands.</p>
+
+            <p>This is especially useful when you switch between multiple projects. Each Beam workspace can have its own project directory, and when you open Claude Code in that workspace, it automatically loads the right memory file.</p>
+
+            <h3>Include Your Neovim Conventions</h3>
+
+            <p>Here is something most guides miss: put your Neovim-specific conventions in the memory file. If you use specific formatting settings, indentation preferences, or code organization patterns enforced by your Neovim config, tell Claude Code about them:</p>
+
+            <pre>## Editor Conventions (Neovim)
+- Indent: 4 spaces (not tabs)
+- Max line length: 100 characters
+- Trailing whitespace is auto-removed on save
+- Files end with a newline
+- Imports are sorted by conform.nvim</pre>
+
+            <p>Now Claude Code generates code that looks like it came from your hands, not from an AI. No reformatting needed after applying suggestions.</p>
+
+            <!-- Section 6: Language-Specific Setups -->
+            <h2>Language-Specific Setups</h2>
+
+            <p>Different languages benefit from different Beam workspace configurations. Here are optimized setups for the most common languages used with Neovim + Claude Code.</p>
+
+            <h3>Rust: Neovim + rust-analyzer + Claude Code + cargo watch</h3>
+
+            <p>Rust development is one of the best use cases for this workflow because the compile-test cycle is inherently terminal-driven.</p>
+
+            <ul>
+                <li><strong>Neovim LSP:</strong> rust-analyzer via <code>nvim-lspconfig</code></li>
+                <li><strong>Tab 1:</strong> Neovim with rust-analyzer providing inline diagnostics, code actions, and type hints</li>
+                <li><strong>Tab 2:</strong> Claude Code for architecture decisions, complex trait implementations, and debugging borrow checker issues</li>
+                <li><strong>Tab 3:</strong> <code>cargo watch -x test</code> for continuous testing, or <code>cargo watch -x "clippy -- -W warnings"</code> for lint-on-save</li>
+            </ul>
+
+            <p>Claude Code is particularly good at Rust because it understands lifetime annotations, trait bounds, and async patterns that trip up most developers. Ask it to explain a borrow checker error and you will get a clear explanation with a fix, not just a suggestion to add <code>.clone()</code>.</p>
+
+            <h3>Go: Neovim + gopls + Claude Code + go test</h3>
+
+            <ul>
+                <li><strong>Neovim LSP:</strong> gopls via <code>nvim-lspconfig</code></li>
+                <li><strong>Tab 1:</strong> Neovim with gopls providing diagnostics and auto-imports</li>
+                <li><strong>Tab 2:</strong> Claude Code for generating table-driven tests, interface implementations, and concurrency patterns</li>
+                <li><strong>Tab 3:</strong> <code>go test ./... -v</code> or use <code>gotestsum --watch</code> for continuous output</li>
+            </ul>
+
+            <p>Go's simplicity makes it ideal for this workflow. Claude Code generates idiomatic Go quickly, and gopls catches any issues immediately in Neovim.</p>
+
+            <h3>TypeScript: Neovim + ts_ls + Claude Code + jest --watch</h3>
+
+            <ul>
+                <li><strong>Neovim LSP:</strong> ts_ls (TypeScript language server) via <code>nvim-lspconfig</code></li>
+                <li><strong>Tab 1:</strong> Neovim with full TypeScript diagnostics and auto-imports</li>
+                <li><strong>Tab 2:</strong> Claude Code for React component generation, type gymnastics, and API integration</li>
+                <li><strong>Tab 3:</strong> <code>jest --watch</code> or <code>vitest --watch</code> for continuous testing</li>
+                <li><strong>Tab 4:</strong> <code>npm run dev</code> for the development server</li>
+            </ul>
+
+            <p>TypeScript projects often need more terminals because you have separate build, test, and dev server processes. Beam's tab system keeps these organized without the clutter of multiple terminal windows.</p>
+
+            <h3>Python: Neovim + pyright + Claude Code + pytest</h3>
+
+            <ul>
+                <li><strong>Neovim LSP:</strong> pyright via <code>nvim-lspconfig</code></li>
+                <li><strong>Tab 1:</strong> Neovim with pyright providing type checking and diagnostics</li>
+                <li><strong>Tab 2:</strong> Claude Code for data pipeline architecture, pandas operations, and FastAPI endpoint generation</li>
+                <li><strong>Tab 3:</strong> <code>pytest-watch</code> or <code>ptw</code> for continuous testing</li>
+            </ul>
+
+            <p>For Python data science work, add a fourth tab with an IPython shell for interactive exploration. Claude Code can generate code that you test interactively in IPython before committing to your source files.</p>
+
+            <div class="highlight">
+                <h3>One Workspace Per Language</h3>
+                <p>If you work on polyglot projects (a Go backend and TypeScript frontend, for example), create separate Beam workspaces for each. Each workspace gets its own Claude Code session, its own test runner, and its own Neovim instance pointed at the relevant subdirectory. Switch between workspaces with <span class="kbd">&CommandMac;&Option;&larr;&rarr;</span>. Save each workspace layout as a template so you can restore the whole multi-project setup in seconds.</p>
+            </div>
+
+            <!-- Section 7: Replacing the IDE -->
+            <h2>Replacing the IDE: What You Gain</h2>
+
+            <p>The question every Neovim user eventually asks about AI coding tools: can I get the same AI features without switching to VS Code or Cursor? The answer is yes, and here is what you gain by staying in the terminal.</p>
+
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Capability</th>
+                        <th>VS Code / Cursor</th>
+                        <th>Neovim + Claude Code + Beam</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Code editing</td>
+                        <td>GUI editor</td>
+                        <td>Neovim (modal, composable, faster)</td>
+                    </tr>
+                    <tr>
+                        <td>AI assistance</td>
+                        <td>Inline copilot / sidebar chat</td>
+                        <td>Claude Code (full agent, reads/writes files)</td>
+                    </tr>
+                    <tr>
+                        <td>Workspace management</td>
+                        <td>Window manager / OS tabs</td>
+                        <td>Beam (purpose-built for terminal workspaces)</td>
+                    </tr>
+                    <tr>
+                        <td>Startup time</td>
+                        <td>2-5 seconds (Electron)</td>
+                        <td>Under 100ms (native)</td>
+                    </tr>
+                    <tr>
+                        <td>Memory usage</td>
+                        <td>500MB-2GB</td>
+                        <td>Under 100MB total</td>
+                    </tr>
+                    <tr>
+                        <td>Keyboard-first</td>
+                        <td>Partial (still needs mouse for many actions)</td>
+                        <td>100% keyboard-driven</td>
+                    </tr>
+                    <tr>
+                        <td>Works over SSH</td>
+                        <td>Requires Remote SSH extension + port forwarding</td>
+                        <td>Native (SSH + tmux, no extensions)</td>
+                    </tr>
+                    <tr>
+                        <td>Customization</td>
+                        <td>JSON settings, limited extension API</td>
+                        <td>Lua (Neovim) + shell scripts (infinite)</td>
+                    </tr>
+                    <tr>
+                        <td>Composability</td>
+                        <td>Monolithic (all-in-one)</td>
+                        <td>Unix philosophy (each tool does one thing)</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p>The composability advantage is the most important one. In the IDE model, the AI is a feature inside the editor. If the AI integration is bad, you are stuck. In the terminal model, each tool is independent. You can upgrade Neovim without affecting Claude Code. You can switch from Beam to another terminal organizer without touching your Neovim config. The tools are loosely coupled, which means you can optimize each one independently.</p>
+
+            <h3>Speed: No Electron Overhead</h3>
+
+            <p>Neovim starts in under 100ms, even with 50+ plugins. Claude Code is a CLI tool with near-zero startup time. Beam is a native macOS application, not an Electron wrapper. The entire stack uses a fraction of the memory that VS Code alone consumes. On an M-series Mac, this setup feels instantaneous.</p>
+
+            <h3>Works Everywhere SSH Does</h3>
+
+            <p>This is the capability that GUI IDEs cannot replicate well. SSH into a remote server, start tmux, open Neovim, run Claude Code. Your entire development environment is now running on the remote machine. No VS Code Remote SSH extension, no port forwarding, no latency from rendering a GUI over the network. Beam manages your local workspace while tmux keeps the remote session alive.</p>
+
+            <!-- Section 8: Neovim Plugins -->
+            <h2>Neovim Plugins That Complement Claude Code</h2>
+
+            <p>With Claude Code handling AI assistance, you do not need AI-specific Neovim plugins like Copilot.vim or CodeCompanion.nvim. Instead, focus your Neovim plugin setup on the things Claude Code does not do: file navigation, diagnostics display, and git integration.</p>
+
+            <h3>telescope.nvim — Fuzzy Finding</h3>
+
+            <p>Telescope is the Neovim equivalent of Beam's Quick Switcher, but for files within a project. Use telescope to find and open files, search for symbols, and grep through code. When Claude Code tells you to check a specific file, telescope gets you there in two keystrokes.</p>
+
+            <pre>-- Telescope keymaps
+vim.keymap.set("n", "&lt;leader&gt;ff", "&lt;cmd&gt;Telescope find_files&lt;cr&gt;")
+vim.keymap.set("n", "&lt;leader&gt;fg", "&lt;cmd&gt;Telescope live_grep&lt;cr&gt;")
+vim.keymap.set("n", "&lt;leader&gt;fb", "&lt;cmd&gt;Telescope buffers&lt;cr&gt;")</pre>
+
+            <h3>trouble.nvim — Diagnostics</h3>
+
+            <p>Trouble gives you a clean list of all LSP diagnostics (errors, warnings) in your project. When Claude Code makes changes to multiple files, open trouble to see if anything broke. It is a faster feedback mechanism than waiting for the test suite.</p>
+
+            <h3>oil.nvim — File Management</h3>
+
+            <p>Oil turns your file system into an editable buffer. Create, rename, move, and delete files using normal Neovim editing commands. When Claude Code creates new files, use oil to organize them without leaving Neovim.</p>
+
+            <h3>lazygit.nvim — Git Integration</h3>
+
+            <p>Lazygit gives you a full TUI git interface inside Neovim. Stage changes, write commits, manage branches, and resolve merge conflicts. Alternatively, you can use Claude Code for git operations — it handles commits, diffs, and branch management natively. Use whichever feels faster for the operation at hand.</p>
+
+            <h3>conform.nvim — Formatting</h3>
+
+            <p>Auto-format on save so that code Claude Code generates and code you write look identical. Configure conform with your project's formatter (rustfmt, gofmt, prettier, black) and formatting becomes invisible.</p>
+
+            <div class="highlight">
+                <h3>The "No AI Plugin" Approach</h3>
+                <p>Here is a liberating idea: you do not need any AI plugin in Neovim. No Copilot.vim. No ChatGPT.nvim. No CodeCompanion. Claude Code, running in a separate Beam pane, is your entire AI layer. This keeps your Neovim config clean and focused on editing. Your AI tool and your editor are decoupled, which means you can upgrade either one without breaking the other. When a better AI comes along, you swap Claude Code for it. When Neovim introduces a new feature, you adopt it without worrying about plugin compatibility.</p>
+            </div>
+
+            <h3>A Minimal Plugin List for This Workflow</h3>
+
+            <p>If you are setting up a fresh Neovim configuration optimized for the Claude Code workflow, here is a focused plugin list:</p>
+
+            <ul>
+                <li><strong>lazy.nvim</strong> &mdash; Plugin manager</li>
+                <li><strong>nvim-lspconfig</strong> &mdash; LSP configuration for your languages</li>
+                <li><strong>nvim-treesitter</strong> &mdash; Syntax highlighting and code objects</li>
+                <li><strong>telescope.nvim</strong> &mdash; Fuzzy finder for files, symbols, and grep</li>
+                <li><strong>oil.nvim</strong> &mdash; File system editing</li>
+                <li><strong>trouble.nvim</strong> &mdash; Diagnostics list</li>
+                <li><strong>conform.nvim</strong> &mdash; Auto-formatting</li>
+                <li><strong>gitsigns.nvim</strong> &mdash; Git change indicators in the gutter</li>
+                <li><strong>mini.nvim</strong> &mdash; Collection of small, useful modules (surround, comment, pairs)</li>
+            </ul>
+
+            <p>That is nine plugins. No bloat. Everything else — AI assistance, workspace management, project memory — is handled outside Neovim by Claude Code and Beam.</p>
+
+            <!-- Section 9: Advanced Workflows -->
+            <h2>Advanced: Multi-Project Orchestration</h2>
+
+            <p>When you are working on a system with multiple services (a common pattern in backend development), the Neovim + Claude Code + Beam workflow scales naturally.</p>
+
+            <h3>Workspace Per Service</h3>
+
+            <p>Create a Beam workspace for each service:</p>
+
+            <ul>
+                <li><strong>Workspace "api-gateway"</strong> &mdash; Neovim + Claude Code + test runner for the API gateway</li>
+                <li><strong>Workspace "auth-service"</strong> &mdash; Neovim + Claude Code + test runner for the auth service</li>
+                <li><strong>Workspace "frontend"</strong> &mdash; Neovim + Claude Code + dev server for the frontend</li>
+                <li><strong>Workspace "infrastructure"</strong> &mdash; Neovim + Claude Code for Terraform/Docker configs</li>
+            </ul>
+
+            <p>Each workspace has its own Claude Code session, so the AI maintains separate context for each service. No cross-contamination of project knowledge. Switch between workspaces with <span class="kbd">&CommandMac;&Option;&larr;&rarr;</span> or use the Quick Switcher (<span class="kbd">&CommandMac;P</span>) to jump directly to any tab in any workspace.</p>
+
+            <h3>Cross-Service Debugging</h3>
+
+            <p>When a bug spans multiple services, you need to look at code in different projects simultaneously. With Beam workspaces, you can quickly switch between the API gateway's Claude Code session and the auth service's Neovim instance. Ask Claude Code in each workspace about its respective service, then piece together the full picture.</p>
+
+            <p>This is where Beam's Quick Switcher really shines. Type a few characters of the service name and jump directly to the relevant tab, regardless of which workspace it is in.</p>
+
+            <!-- Section 10: CTA + Summary -->
+            <h2>Getting Started</h2>
+
+            <p>Here is how to set up the Neovim + Claude Code + Beam workflow from scratch:</p>
+
+            <ol>
+                <li><strong>Install Beam</strong> &mdash; Download from getbeam.dev. It is a native macOS app.</li>
+                <li><strong>Install Claude Code</strong> &mdash; Run <code>npm install -g @anthropic-ai/claude-code</code> in any terminal.</li>
+                <li><strong>Set up Neovim</strong> &mdash; If you do not have a config, start with kickstart.nvim and customize from there.</li>
+                <li><strong>Create your first workspace</strong> &mdash; Open Beam, press <span class="kbd">&CommandMac;N</span> to create a workspace, name it after your project.</li>
+                <li><strong>Set up your layout</strong> &mdash; Create tabs or splits for Neovim, Claude Code, and your test runner.</li>
+                <li><strong>Create a CLAUDE.md</strong> &mdash; Add your project description, build commands, and code conventions.</li>
+                <li><strong>Save the layout</strong> &mdash; Press <span class="kbd">&CommandMac;S</span> so you can restore this setup any time.</li>
+                <li><strong>Start coding</strong> &mdash; Write code in Neovim, ask Claude Code for help, watch tests pass.</li>
+            </ol>
+
+            <p>The first time you go through the write-ask-apply-verify loop entirely in the terminal, without touching a mouse or switching to a GUI app, you will understand why this workflow exists. It is not about being anti-GUI. It is about removing every unnecessary millisecond of friction between thinking and doing.</p>
+
+            <div class="cta-box">
+                <h3>Build the Ultimate Terminal-Native Dev Environment</h3>
+                <p>Download Beam free and pair it with Neovim + Claude Code for the fastest AI coding workflow that exists.</p>
+                <a href="../" class="btn">Download Beam for macOS</a>
+            </div>
+
+            <h2>Summary</h2>
+
+            <p>The Neovim + Claude Code + Beam workflow is for developers who believe the terminal is the best development environment. Here is what you get:</p>
+
+            <ul>
+                <li><strong>Neovim</strong> for editing &mdash; modal, composable, and fast enough to keep up with your thoughts</li>
+                <li><strong>Claude Code</strong> for AI assistance &mdash; a full AI agent that understands your codebase, runs in a terminal, and reads/writes files directly</li>
+                <li><strong>Beam</strong> for organization &mdash; workspaces, tabs, splits, saveable layouts, and Quick Switcher to manage everything</li>
+                <li><strong>Zero GUI overhead</strong> &mdash; no Electron, no browser tabs, no mouse required</li>
+                <li><strong>Language-agnostic</strong> &mdash; works the same way for Rust, Go, TypeScript, Python, or anything else</li>
+                <li><strong>Composable</strong> &mdash; each tool does one thing well, and you can swap any piece without breaking the others</li>
+                <li><strong>Works over SSH</strong> &mdash; the entire stack runs in a terminal, so remote development is native</li>
+            </ul>
+
+            <p>If you already use Neovim, you are 90% of the way there. Add Claude Code for AI. Add Beam for workspace management. That is the whole stack.</p>
+
+            <p>Happy coding.</p>
+
+            <div class="related-articles">
+                <h2>Related Articles</h2>
+                <div class="related-grid">
+                    <a href="terminal-is-the-new-ide.html" class="related-card">
+                        <h4>The Terminal Is the New IDE</h4>
+                        <p>Why terminal-native development is replacing traditional IDEs in 2026.</p>
+                    </a>
+                    <a href="beam-claude-code-setup.html" class="related-card">
+                        <h4>Setting Up Beam for Claude Code</h4>
+                        <p>Step-by-step guide to setting up Beam for Claude Code development.</p>
+                    </a>
+                    <a href="claude-code-keyboard-shortcuts.html" class="related-card">
+                        <h4>Claude Code Keyboard Shortcuts</h4>
+                        <p>Master the keyboard shortcuts for faster Claude Code workflows.</p>
+                    </a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>
+                <a href="../">Beam</a> &bull; Terminal Organizer for macOS &bull;
+                <a href="mailto:frank@nextuptechnologies.co">Contact</a>
+            </p>
+
+            <p style="margin-top: 12px; font-size: 0.8rem;">
+                <a href="/privacy.html" style="color: #71717a; text-decoration: none;">Privacy Policy</a> &bull;
+                <a href="/terms.html" style="color: #71717a; text-decoration: none;">Terms of Service</a>
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>

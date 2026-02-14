@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D0XH8B0RKL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-D0XH8B0RKL');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Are AI Coding Tools Getting Worse? What the Developer Backlash Means | Beam</title>
+    <meta name="description" content="Hacker News and Reddit are buzzing with complaints about AI coding tools declining in quality. Here's what's really happening and what to do about it.">
+    <meta name="keywords" content="AI coding tools getting worse, AI coding backlash, Hacker News AI coding, Claude Code quality, Cursor complaints, AI coding pricing, developer frustration">
+    <meta name="author" content="NextUp Technologies">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://getbeam.dev/blog/are-ai-coding-tools-getting-worse.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://getbeam.dev/blog/are-ai-coding-tools-getting-worse.html">
+    <meta property="og:title" content="Are AI Coding Tools Getting Worse? What the Developer Backlash Actually Means">
+    <meta property="og:description" content="Hacker News and Reddit are buzzing with complaints about AI coding tools declining in quality. Here's what's really happening and what to do about it.">
+    <meta property="og:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Are AI Coding Tools Getting Worse? What the Developer Backlash Actually Means">
+    <meta name="twitter:description" content="Hacker News and Reddit are buzzing with complaints about AI coding tools declining in quality. Here's what's really happening and what to do about it.">
+    <meta name="twitter:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Are AI Coding Tools Getting Worse? What the Developer Backlash Actually Means",
+        "description": "Hacker News and Reddit are buzzing with complaints about AI coding tools declining in quality. Here's what's really happening and what to do about it.",
+        "author": {
+            "@type": "Organization",
+            "name": "NextUp Technologies"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Beam"
+        },
+        "datePublished": "2026-02-12",
+        "keywords": "AI coding tools getting worse, AI coding backlash, Hacker News AI coding, Claude Code quality, Cursor complaints, AI coding pricing, developer frustration"
+    }
+    </script>
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #111113;
+            --bg-tertiary: #1a1a1d;
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.4);
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --border: #27272a;
+            --success: #22c55e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        header {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 60px;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1.5rem;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            background: var(--accent);
+            color: white;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+        }
+
+        article {
+            padding-bottom: 80px;
+        }
+
+        .breadcrumb {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+        }
+
+        .breadcrumb a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .meta {
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            font-size: 0.95rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 48px 0 20px;
+            color: var(--text-primary);
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        ul, ol {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            padding-left: 24px;
+        }
+
+        li {
+            margin-bottom: 12px;
+        }
+
+        .highlight {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 32px 0;
+        }
+
+        .highlight h3 {
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .kbd {
+            display: inline-block;
+            padding: 2px 8px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+        }
+
+        code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            background: var(--bg-tertiary);
+            padding: 2px 6px;
+            border-radius: 4px;
+            border: 1px solid var(--border);
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .cta-box h3 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+        }
+
+        .cta-box p {
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 24px;
+        }
+
+        .cta-box .btn {
+            background: white;
+            color: var(--accent);
+        }
+
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+
+        .related-articles { margin-top: 60px; padding-top: 40px; border-top: 1px solid var(--border); }
+        .related-articles h2 { font-size: 1.5rem; margin-bottom: 24px; }
+        .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .related-card { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-decoration: none; transition: border-color 0.2s; }
+        .related-card:hover { border-color: var(--accent); }
+        .related-card h4 { color: white; font-size: 1rem; margin: 0 0 8px 0; }
+        .related-card p { color: var(--text-muted); font-size: 0.85rem; margin: 0; }
+        @media (max-width: 600px) { .related-grid { grid-template-columns: 1fr; } h1 { font-size: 1.8rem; } }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="../" class="logo">
+                <div class="logo-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round">
+                        <path d="M4 17l6-6-6-6M12 19h8"/>
+                    </svg>
+                </div>
+                Beam
+            </a>
+            <a href="../" class="btn">Download Beam</a>
+        </div>
+    </header>
+
+    <main>
+        <article class="container">
+            <div class="breadcrumb">
+                <a href="../">Beam</a> / <a href="../#guides">Guides</a> / Are AI Coding Tools Getting Worse?
+            </div>
+
+            <h1>Are AI Coding Tools Getting Worse? What the Developer Backlash Actually Means</h1>
+            <p class="meta">February 2026 &bull; 8 min read</p>
+
+            <p>A Hacker News thread titled &ldquo;AI coding assistants are getting worse?&rdquo; recently hit the front page and stayed there. Hundreds of comments. Reddit threads echoing the same sentiment. Developer Twitter lit up with pricing complaints, quality grievances, and declarations that the golden age of AI coding is already over.</p>
+
+            <p>It&rsquo;s a real conversation, and dismissing it as mere complaining would be a mistake. But the full picture is more nuanced than &ldquo;tools bad, developers angry.&rdquo; Here&rsquo;s what&rsquo;s actually happening -- and what the smartest developers are doing about it.</p>
+
+            <h2>The Complaints</h2>
+
+            <p>If you&rsquo;ve spent any time in developer communities this year, the grievances are hard to miss. They tend to cluster around a few themes:</p>
+
+            <ul>
+                <li><strong>Quality degradation</strong> -- &ldquo;Claude used to nail my requests first try. Now it takes three or four attempts to get the same result.&rdquo; &ldquo;Cursor was magic in 2024. Now it feels like it&rsquo;s guessing.&rdquo; Developers report that tools they relied on daily have become less reliable, more prone to hallucinations, and worse at following complex instructions.</li>
+                <li><strong>Pricing increases</strong> -- Cursor went from $20/month to introducing higher tiers. Claude Code Max launched at $100/month and $200/month. GitHub Copilot Enterprise sits at $39/user/month. The free or cheap access that hooked developers is giving way to real subscription costs that add up fast.</li>
+                <li><strong>Rate limiting</strong> -- Even paying customers hit walls. Claude Code Pro users encounter rate limits during heavy sessions. Cursor users see slowdowns during peak hours. The &ldquo;unlimited&rdquo; promises of early marketing have quietly become &ldquo;unlimited within reason.&rdquo;</li>
+                <li><strong>Inconsistent results</strong> -- The same prompt on Monday gives a different (often worse) result on Friday. Model updates happen without warning. A workflow you perfected over weeks suddenly stops working because something changed on the backend.</li>
+            </ul>
+
+            <p>These complaints are real. Developers aren&rsquo;t imagining them. But the underlying causes are more interesting than the symptoms suggest.</p>
+
+            <h2>What&rsquo;s Actually Happening</h2>
+
+            <p>Here&rsquo;s the part most of the Hacker News discourse misses: <strong>the models aren&rsquo;t getting worse</strong>. By every measurable benchmark -- SWE-bench, HumanEval, MBPP, real-world coding tasks -- the latest models outperform their predecessors. Claude Opus 4 is demonstrably better than Claude 3.5 Sonnet at nearly every coding task. GPT-4o outperforms GPT-4 on structured code generation.</p>
+
+            <p>So why does it feel worse? Several things are happening simultaneously:</p>
+
+            <p><strong>Expectations have outpaced capability.</strong> When you first used AI coding tools, everything felt magical because you had no expectations. Now you expect it to handle complex multi-file refactoring, understand your entire codebase context, and write production-quality code on the first try. The gap between &ldquo;this is amazing&rdquo; and &ldquo;this should be perfect&rdquo; is where frustration lives.</p>
+
+            <p><strong>Tasks are getting harder.</strong> Early adopters used AI for simple tasks -- write a function, generate boilerplate, explain code. Now developers are trying to use AI for architecture decisions, complex debugging across distributed systems, and multi-thousand-line refactoring. The tools have improved, but the ask has grown faster than the improvement.</p>
+
+            <p><strong>Subsidy pricing is ending.</strong> This is the Uber playbook. AI coding tools launched with below-cost pricing to acquire users. Cursor at $20/month was never sustainable at scale. Claude Code&rsquo;s free tier was a growth strategy, not a business model. The companies are now transitioning to pricing that reflects actual compute costs -- and it stings.</p>
+
+            <p><strong>Context management is the real bottleneck.</strong> Most developer frustration isn&rsquo;t actually about model capability. It&rsquo;s about context. The model doesn&rsquo;t remember your architecture decisions from yesterday&rsquo;s session. It doesn&rsquo;t know about the refactoring you did last week. Every new session starts cold, and re-establishing context burns tokens, wastes time, and degrades output quality.</p>
+
+            <h2>The Pricing Reality</h2>
+
+            <p>Let&rsquo;s talk numbers honestly. Claude Code Max at $200/month sounds expensive. And for a developer who uses AI occasionally for autocomplete and quick questions, it genuinely is overkill. But for developers running multi-agent workflows, doing hours of deep coding sessions daily, and building production features with AI as a core part of their process? The math works differently.</p>
+
+            <p>If Claude Code Max saves you 10 hours a week and you value your time at $100/hour, that&rsquo;s $4,000/month of value for $200. Even if the time savings are more modest -- say, 5 hours a week -- you&rsquo;re still well ahead.</p>
+
+            <p>The problem isn&rsquo;t really the absolute price. It&rsquo;s the <strong>perception gap</strong>. Developers got used to getting $200/month of value for $20/month. Paying the real price feels like a downgrade even though the tool is actually better.</p>
+
+            <p>That said, not every developer needs the top tier. Cursor at $20/month is fine for inline completions and light AI assistance. Claude Code Pro at $100/month handles most serious workflows. The $200/month tier is for power users who are running AI constantly throughout their workday. Know which category you&rsquo;re in and pay accordingly.</p>
+
+            <h2>The Quality Question</h2>
+
+            <p>Here&rsquo;s something that doesn&rsquo;t get discussed enough: <strong>benchmark improvements don&rsquo;t always match developer experience</strong>. A model can score higher on SWE-bench while feeling worse in daily use because benchmarks test isolated, well-defined tasks. Real development is messy -- ambiguous requirements, legacy code, undocumented conventions, and projects that have been refactored six times.</p>
+
+            <p>The factors that matter most for day-to-day AI coding quality are often not about the model itself:</p>
+
+            <ul>
+                <li><strong>Context persistence</strong> -- Does the tool remember your project&rsquo;s patterns, conventions, and architecture across sessions? Or does it start fresh every time?</li>
+                <li><strong>Memory management</strong> -- Can you build up project knowledge over time so the AI gets better the longer you work with it?</li>
+                <li><strong>Tool integration</strong> -- Does the AI have access to your file system, terminal, git history, and build output? Or is it operating in a vacuum?</li>
+                <li><strong>Session organization</strong> -- Can you maintain focused, domain-specific sessions? Or does everything get mixed together, diluting context?</li>
+            </ul>
+
+            <p>A mediocre model with excellent context management will outperform a brilliant model with no memory of what you did yesterday. This is the part most developers overlook when they complain about quality.</p>
+
+            <h2>What Smart Developers Are Doing</h2>
+
+            <p>Instead of posting on Hacker News about tools getting worse, the most productive AI-assisted developers are optimizing their workflows. Here&rsquo;s what they&rsquo;ve figured out:</p>
+
+            <ul>
+                <li><strong>Using project memory to reduce re-prompting</strong> -- A well-maintained <code>CLAUDE.md</code> file means you spend fewer tokens re-explaining your project every session. The AI starts with context instead of starting cold. This alone can improve output quality by 30-40% because the model isn&rsquo;t guessing at your conventions.</li>
+                <li><strong>Organizing sessions by domain</strong> -- Instead of one long session that tries to do everything, they run focused sessions: one for backend work, one for frontend, one for tests. Each session maintains tight, relevant context instead of drowning in irrelevant history.</li>
+                <li><strong>Choosing the right tool for the right task</strong> -- Claude Code for deep reasoning and complex tasks. Copilot for inline completions. Codex for quick file generation. Not every task needs the most powerful (and most expensive) tool.</li>
+                <li><strong>Not trying to use AI for everything</strong> -- Some tasks are faster to do manually. A quick config change, renaming a variable, fixing a typo. The overhead of explaining these to an AI often exceeds the time it would take to just do them. Smart developers have developed an intuition for when to reach for AI and when to type it themselves.</li>
+                <li><strong>Saving and restoring workspace layouts</strong> -- Instead of rebuilding their AI development environment from scratch every morning, they save their entire multi-session setup and restore it in one click. This preserves the organizational structure that makes multi-session workflows effective.</li>
+            </ul>
+
+            <div class="highlight">
+                <h3>The Real Differentiator: Workflow, Not Model</h3>
+                <p>The developers getting the most value from AI coding tools in 2026 aren&rsquo;t necessarily using a different model than everyone else. They&rsquo;re using the same tools with better workflows. Project memory, organized sessions, focused contexts, and saved layouts. The model is the engine, but the workflow is the steering. Most developer frustration traces back to workflow problems that get blamed on model quality.</p>
+            </div>
+
+            <div class="cta-box">
+                <h3>Frustrated with AI Coding? Maybe the Problem Isn&rsquo;t the Model.</h3>
+                <p>Beam helps you organize AI coding sessions, maintain context across projects, and build workflows that actually make AI tools deliver on their promise. Free download.</p>
+                <a href="../" class="btn">Download Beam for macOS</a>
+            </div>
+
+            <h2>Summary</h2>
+
+            <p>The developer backlash against AI coding tools is real, but the diagnosis is incomplete. Models aren&rsquo;t getting worse -- expectations are getting higher, tasks are getting harder, subsidy pricing is ending, and context management remains the unsolved problem that makes everything feel worse than benchmarks suggest.</p>
+
+            <ul>
+                <li><strong>The complaints are valid</strong> -- pricing increases, rate limiting, and inconsistent results are real friction points that deserve attention from tool makers.</li>
+                <li><strong>The models are actually improving</strong> -- every major benchmark shows consistent gains. The disconnect is between isolated benchmarks and messy real-world development.</li>
+                <li><strong>Context is the real bottleneck</strong> -- most &ldquo;quality&rdquo; complaints are actually context management failures. The model doesn&rsquo;t remember, doesn&rsquo;t know your project, and starts cold every session.</li>
+                <li><strong>Workflow optimization matters more than model selection</strong> -- project memory, organized sessions, and the right tool for the right task will improve your results more than switching providers.</li>
+                <li><strong>The pricing was never sustainable</strong> -- the cheap era was a growth strategy. Real pricing reflects real compute costs. Budget accordingly and use the tier that matches your actual usage.</li>
+            </ul>
+
+            <p>The developers who thrive with AI coding tools in 2026 won&rsquo;t be the ones with the best model access. They&rsquo;ll be the ones with the best workflows -- the ones who figured out that the secret to productive AI coding isn&rsquo;t a smarter model, but a smarter process around the model.</p>
+
+            <div class="related-articles">
+                <h2>Related Articles</h2>
+                <div class="related-grid">
+                    <a href="best-ai-coding-tool-2026.html" class="related-card">
+                        <h4>Best AI Coding Tool in 2026</h4>
+                        <p>Claude Code vs Cursor vs Copilot -- which AI coding tool should you actually use?</p>
+                    </a>
+                    <a href="organizing-claude-code-sessions.html" class="related-card">
+                        <h4>How to Organize Claude Code Sessions</h4>
+                        <p>Keep your AI coding workflow clean with workspaces, tabs, and saveable layouts.</p>
+                    </a>
+                    <a href="claude-code-vs-cursor-vs-codex.html" class="related-card">
+                        <h4>Claude Code vs Cursor vs Codex</h4>
+                        <p>Detailed comparison of the top AI coding tools for real-world development.</p>
+                    </a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>
+                <a href="../">Beam</a> &bull; Terminal Organizer for macOS &bull;
+                <a href="mailto:frank@nextuptechnologies.co">Contact</a>
+            </p>
+
+            <p style="margin-top: 12px; font-size: 0.8rem;">
+                <a href="/privacy.html" style="color: #71717a; text-decoration: none;">Privacy Policy</a> &bull;
+                <a href="/terms.html" style="color: #71717a; text-decoration: none;">Terms of Service</a>
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>

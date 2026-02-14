@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D0XH8B0RKL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-D0XH8B0RKL');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Automate Tasks with Claude Code: Scripts, CLIs, and Workflows | Beam Terminal Organizer</title>
+    <meta name="description" content="Use Claude Code to build automation scripts, CLI tools, and workflow pipelines. From file processing to API integrations to cron jobs — automate the tedious work with AI.">
+    <meta name="keywords" content="automate with Claude Code, Claude Code automation, Claude Code scripts, Claude Code CLI tools, AI task automation, Claude Code workflows">
+    <meta name="author" content="NextUp Technologies">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://getbeam.dev/blog/automate-tasks-claude-code.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://getbeam.dev/blog/automate-tasks-claude-code.html">
+    <meta property="og:title" content="How to Automate Tasks with Claude Code: Scripts, CLIs, and Workflows">
+    <meta property="og:description" content="Use Claude Code to build automation scripts, CLI tools, and workflow pipelines. From file processing to API integrations to cron jobs.">
+    <meta property="og:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="How to Automate Tasks with Claude Code: Scripts, CLIs, and Workflows">
+    <meta name="twitter:description" content="Use Claude Code to build automation scripts, CLI tools, and workflow pipelines. From file processing to API integrations to cron jobs.">
+    <meta name="twitter:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "How to Automate Tasks with Claude Code: Scripts, CLIs, and Workflows",
+        "description": "Use Claude Code to build automation scripts, CLI tools, and workflow pipelines. From file processing to API integrations to cron jobs.",
+        "author": {
+            "@type": "Organization",
+            "name": "NextUp Technologies"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Beam"
+        },
+        "datePublished": "2026-02-11",
+        "keywords": "automate with Claude Code, Claude Code automation, Claude Code scripts, Claude Code CLI tools, AI task automation, Claude Code workflows"
+    }
+    </script>
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #111113;
+            --bg-tertiary: #1a1a1d;
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.4);
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --border: #27272a;
+            --success: #22c55e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        header {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 60px;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1.5rem;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            background: var(--accent);
+            color: white;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+        }
+
+        article {
+            padding-bottom: 80px;
+        }
+
+        .breadcrumb {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+        }
+
+        .breadcrumb a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .meta {
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            font-size: 0.95rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 48px 0 20px;
+            color: var(--text-primary);
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        ul, ol {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            padding-left: 24px;
+        }
+
+        li {
+            margin-bottom: 12px;
+        }
+
+        .highlight {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 32px 0;
+        }
+
+        .highlight h3 {
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .kbd {
+            display: inline-block;
+            padding: 2px 8px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .cta-box h3 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+        }
+
+        .cta-box p {
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 24px;
+        }
+
+        .cta-box .btn {
+            background: white;
+            color: var(--accent);
+        }
+
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+
+        .related-articles { margin-top: 60px; padding-top: 40px; border-top: 1px solid var(--border); }
+        .related-articles h2 { font-size: 1.5rem; margin-bottom: 24px; }
+        .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .related-card { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-decoration: none; transition: border-color 0.2s; }
+        .related-card:hover { border-color: var(--accent); }
+        .related-card h4 { color: white; font-size: 1rem; margin: 0 0 8px 0; }
+        .related-card p { color: var(--text-muted); font-size: 0.85rem; margin: 0; }
+        @media (max-width: 600px) { .related-grid { grid-template-columns: 1fr; } h1 { font-size: 1.8rem; } }
+
+        .blog-visual {
+            margin: 40px 0;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px;
+            overflow: hidden;
+        }
+
+        .blog-visual svg {
+            width: 100%;
+            height: auto;
+        }
+
+        code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            background: var(--bg-tertiary);
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: var(--accent);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="../" class="logo">
+                <div class="logo-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round">
+                        <path d="M4 17l6-6-6-6M12 19h8"/>
+                    </svg>
+                </div>
+                Beam
+            </a>
+            <a href="../" class="btn">Download Beam</a>
+        </div>
+    </header>
+
+    <main>
+        <article class="container">
+            <div class="breadcrumb">
+                <a href="../">Beam</a> / <a href="../#guides">Guides</a> / Automate Tasks with Claude Code
+            </div>
+
+            <h1>How to Automate Tasks with Claude Code: Scripts, CLIs, and Workflows</h1>
+            <p class="meta">February 2026 &bull; 7 min read</p>
+
+            <p>Every developer has a mental list of tasks they do manually that should have been automated months ago: renaming files in bulk, syncing data between services, generating weekly reports, cleaning up old logs, migrating database records. The gap between "I should automate that" and actually doing it is almost always the implementation effort. Claude Code closes that gap. Describe what you want in plain English, Claude builds a complete, working script, and you run it. No boilerplate, no Stack Overflow deep dives, no half-remembered flag syntax. This guide shows you how to use Claude Code as your personal automation engine, and how Beam keeps your automation workflow organized as you build, test, and run scripts across multiple projects.</p>
+
+            <!-- Automation Pipeline SVG Visual -->
+            <div class="blog-visual">
+                <svg viewBox="0 0 800 340" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Background grid pattern -->
+                    <defs>
+                        <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+                            <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#27272a" stroke-width="0.5"/>
+                        </pattern>
+                        <filter id="glow">
+                            <feGaussianBlur stdDeviation="3" result="blur"/>
+                            <feMerge>
+                                <feMergeNode in="blur"/>
+                                <feMergeNode in="SourceGraphic"/>
+                            </feMerge>
+                        </filter>
+                        <linearGradient id="pipeGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#3b82f6" stop-opacity="0.2"/>
+                            <stop offset="50%" stop-color="#3b82f6" stop-opacity="0.6"/>
+                            <stop offset="100%" stop-color="#22c55e" stop-opacity="0.2"/>
+                        </linearGradient>
+                    </defs>
+                    <rect width="800" height="340" fill="#0a0a0b"/>
+                    <rect width="800" height="340" fill="url(#grid)"/>
+
+                    <!-- Pipeline connection line -->
+                    <line x1="175" y1="80" x2="625" y2="80" stroke="url(#pipeGrad)" stroke-width="3" stroke-dasharray="8,4" filter="url(#glow)"/>
+
+                    <!-- Animated arrow markers on the pipeline -->
+                    <polygon points="270,74 282,80 270,86" fill="#3b82f6" opacity="0.8"/>
+                    <polygon points="420,74 432,80 420,86" fill="#3b82f6" opacity="0.8"/>
+                    <polygon points="570,74 582,80 570,86" fill="#22c55e" opacity="0.8"/>
+
+                    <!-- Stage 1: Input -->
+                    <rect x="60" y="40" width="120" height="80" rx="12" fill="#111113" stroke="#3b82f6" stroke-width="1.5"/>
+                    <!-- File/API icon -->
+                    <rect x="97" y="54" width="20" height="26" rx="2" fill="none" stroke="#3b82f6" stroke-width="1.5"/>
+                    <path d="M107 54 L117 54 L117 58 L107 58 Z" fill="none" stroke="#3b82f6" stroke-width="1.5"/>
+                    <line x1="102" y1="64" x2="112" y2="64" stroke="#3b82f6" stroke-width="1" opacity="0.6"/>
+                    <line x1="102" y1="68" x2="110" y2="68" stroke="#3b82f6" stroke-width="1" opacity="0.6"/>
+                    <line x1="102" y1="72" x2="113" y2="72" stroke="#3b82f6" stroke-width="1" opacity="0.6"/>
+                    <text x="120" y="102" font-family="Space Grotesk, sans-serif" font-size="11" fill="#a1a1aa" text-anchor="middle">INPUT</text>
+
+                    <!-- Stage 2: Process -->
+                    <rect x="210" y="40" width="120" height="80" rx="12" fill="#111113" stroke="#3b82f6" stroke-width="1.5"/>
+                    <!-- Gear icon -->
+                    <circle cx="270" cy="68" r="12" fill="none" stroke="#3b82f6" stroke-width="1.5"/>
+                    <circle cx="270" cy="68" r="5" fill="none" stroke="#3b82f6" stroke-width="1.5"/>
+                    <line x1="270" y1="53" x2="270" y2="58" stroke="#3b82f6" stroke-width="2"/>
+                    <line x1="270" y1="78" x2="270" y2="83" stroke="#3b82f6" stroke-width="2"/>
+                    <line x1="255" y1="68" x2="260" y2="68" stroke="#3b82f6" stroke-width="2"/>
+                    <line x1="280" y1="68" x2="285" y2="68" stroke="#3b82f6" stroke-width="2"/>
+                    <line x1="259" y1="57" x2="263" y2="61" stroke="#3b82f6" stroke-width="2"/>
+                    <line x1="277" y1="75" x2="281" y2="79" stroke="#3b82f6" stroke-width="2"/>
+                    <line x1="259" y1="79" x2="263" y2="75" stroke="#3b82f6" stroke-width="2"/>
+                    <line x1="277" y1="61" x2="281" y2="57" stroke="#3b82f6" stroke-width="2"/>
+                    <text x="270" y="102" font-family="Space Grotesk, sans-serif" font-size="11" fill="#a1a1aa" text-anchor="middle">PROCESS</text>
+
+                    <!-- Stage 3: Transform -->
+                    <rect x="360" y="40" width="120" height="80" rx="12" fill="#111113" stroke="#3b82f6" stroke-width="1.5"/>
+                    <!-- Transform arrows icon -->
+                    <path d="M395 62 L415 62" stroke="#3b82f6" stroke-width="1.5" fill="none"/>
+                    <polygon points="413,58 421,62 413,66" fill="#3b82f6"/>
+                    <path d="M425 74 L405 74" stroke="#3b82f6" stroke-width="1.5" fill="none"/>
+                    <polygon points="407,70 399,74 407,78" fill="#3b82f6"/>
+                    <text x="420" y="102" font-family="Space Grotesk, sans-serif" font-size="11" fill="#a1a1aa" text-anchor="middle">TRANSFORM</text>
+
+                    <!-- Stage 4: Output -->
+                    <rect x="510" y="40" width="120" height="80" rx="12" fill="#111113" stroke="#22c55e" stroke-width="1.5"/>
+                    <!-- Database/output icon -->
+                    <ellipse cx="570" cy="58" rx="14" ry="5" fill="none" stroke="#22c55e" stroke-width="1.5"/>
+                    <path d="M556 58 L556 78 Q556 83 570 83 Q584 83 584 78 L584 58" fill="none" stroke="#22c55e" stroke-width="1.5"/>
+                    <ellipse cx="570" cy="68" rx="14" ry="5" fill="none" stroke="#22c55e" stroke-width="1" opacity="0.4"/>
+                    <text x="570" y="102" font-family="Space Grotesk, sans-serif" font-size="11" fill="#a1a1aa" text-anchor="middle">OUTPUT</text>
+
+                    <!-- Success checkmark on output -->
+                    <circle cx="618" cy="48" r="8" fill="#22c55e" opacity="0.15"/>
+                    <path d="M614 48 L617 51 L623 45" stroke="#22c55e" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+
+                    <!-- Terminal window below -->
+                    <rect x="100" y="145" width="600" height="170" rx="10" fill="#111113" stroke="#27272a" stroke-width="1"/>
+                    <!-- Terminal title bar -->
+                    <rect x="100" y="145" width="600" height="30" rx="10" fill="#1a1a1d"/>
+                    <rect x="100" y="165" width="600" height="10" fill="#1a1a1d"/>
+                    <!-- Traffic lights -->
+                    <circle cx="120" cy="160" r="5" fill="#ef4444" opacity="0.8"/>
+                    <circle cx="136" cy="160" r="5" fill="#eab308" opacity="0.8"/>
+                    <circle cx="152" cy="160" r="5" fill="#22c55e" opacity="0.8"/>
+                    <text x="400" y="163" font-family="JetBrains Mono, monospace" font-size="10" fill="#71717a" text-anchor="middle">automation.py</text>
+
+                    <!-- Terminal content -->
+                    <text x="120" y="198" font-family="JetBrains Mono, monospace" font-size="11" fill="#71717a">$</text>
+                    <text x="134" y="198" font-family="JetBrains Mono, monospace" font-size="11" fill="#a1a1aa">python automation.py --input data/ --output results/</text>
+                    <text x="120" y="218" font-family="JetBrains Mono, monospace" font-size="11" fill="#3b82f6">[1/4]</text>
+                    <text x="162" y="218" font-family="JetBrains Mono, monospace" font-size="11" fill="#a1a1aa">Reading 2,847 records from data/users.csv</text>
+                    <text x="120" y="238" font-family="JetBrains Mono, monospace" font-size="11" fill="#3b82f6">[2/4]</text>
+                    <text x="162" y="238" font-family="JetBrains Mono, monospace" font-size="11" fill="#a1a1aa">Validating schema... 2,841 valid, 6 skipped</text>
+                    <text x="120" y="258" font-family="JetBrains Mono, monospace" font-size="11" fill="#3b82f6">[3/4]</text>
+                    <text x="162" y="258" font-family="JetBrains Mono, monospace" font-size="11" fill="#a1a1aa">Transforming dates to ISO 8601 format</text>
+                    <text x="120" y="278" font-family="JetBrains Mono, monospace" font-size="11" fill="#22c55e">[4/4]</text>
+                    <text x="162" y="278" font-family="JetBrains Mono, monospace" font-size="11" fill="#22c55e">Done. 2,841 records written to results/output.json</text>
+                    <text x="120" y="300" font-family="JetBrains Mono, monospace" font-size="11" fill="#71717a">$</text>
+                    <rect x="134" y="290" width="8" height="14" fill="#3b82f6" opacity="0.7"/>
+                </svg>
+            </div>
+
+            <h2>Why Claude Code Is Great for Automation</h2>
+
+            <p>Most automation tasks are not algorithmically hard. They are tedious. You know exactly what needs to happen -- read files from this directory, filter by date, rename according to a pattern, upload to S3 -- but writing the script means looking up library APIs, handling edge cases, and wiring together a dozen small pieces. That is precisely where Claude Code excels.</p>
+
+            <p>When you describe an automation task to Claude Code, it does not hand you a code snippet and wish you luck. It generates complete, runnable scripts with proper imports, error handling, logging, and even a <code>--help</code> flag if it makes sense. It handles the common building blocks of automation -- file I/O, HTTP requests, database queries, JSON and CSV parsing, string manipulation -- without you needing to remember which standard library module does what.</p>
+
+            <p>More importantly, Claude Code adds the things you would probably skip if you were writing a quick script yourself: retry logic for flaky network calls, graceful error messages instead of raw stack traces, progress output so you know the script is actually working, and cleanup routines that run even if something fails halfway through. You describe the workflow at a high level, and Claude handles every implementation detail down to the exit codes.</p>
+
+            <h2>Quick Scripts: One-Off Automation</h2>
+
+            <p>The fastest path to automation with Claude Code is the one-off script. You have a task that you are about to do manually, you stop yourself, open a Claude Code session, and describe it instead. Here are a few examples of prompts that produce immediately useful scripts:</p>
+
+            <ul>
+                <li><strong>"Write a script that finds all images in this directory larger than 5MB and converts them to WebP format at 80% quality."</strong> Claude generates a script using Pillow or ImageMagick, walks the directory tree, checks file sizes, converts in place or to a new directory, and reports how much space you saved.</li>
+                <li><strong>"Write a script that reads a CSV of users and creates accounts via our REST API, skipping any that already exist."</strong> Claude handles CSV parsing, HTTP POST requests with proper headers, duplicate detection, rate limiting, and outputs a summary of created vs. skipped accounts.</li>
+                <li><strong>"Write a script that backs up all .env files across my projects to a central encrypted location."</strong> Claude walks your project directories, finds every <code>.env</code> file, copies them to a timestamped backup folder, and optionally encrypts them with GPG.</li>
+            </ul>
+
+            <p>Each of these takes about five minutes from prompt to working script. The manual alternative would take thirty minutes to an hour, and you would probably skip the error handling. Over the course of a week, these small automations compound into hours saved -- and they become reusable scripts you can run again next month.</p>
+
+            <h2>Building CLI Tools</h2>
+
+            <p>When a task graduates from "one-off script" to "thing I do regularly," it is time to turn it into a proper CLI tool. This is where Claude Code really shines, because building a good CLI involves a surprising amount of boilerplate: argument parsing, subcommands, help text, input validation, configuration files, and output formatting. Claude generates all of it.</p>
+
+            <p>Try a prompt like: <strong>"Create a CLI tool called 'proj' that lists all my git repos under ~/Projects, shows their status (clean/dirty/ahead/behind), and can bulk-pull updates across all of them."</strong> Claude will build a fully structured CLI with subcommands, flags, and useful defaults.</p>
+
+            <div class="highlight">
+                <h3>Example CLI Structure: proj</h3>
+                <ul>
+                    <li><code>proj list</code> -- Scans ~/Projects and displays all git repos with their current branch and status</li>
+                    <li><code>proj status --dirty-only</code> -- Shows only repos with uncommitted changes, with color-coded output</li>
+                    <li><code>proj pull --all</code> -- Runs git pull across every repo, reporting successes and failures in a summary table</li>
+                </ul>
+            </div>
+
+            <p>Claude builds this with proper argument parsing using Commander (Node), Click (Python), or Cobra (Go) depending on your preferred language. It creates a help screen that actually helps, handles edge cases like missing directories or repos without remotes, and formats output with colors and alignment so the tool feels polished. You go from "I wish I had a tool for this" to a working binary in one conversation.</p>
+
+            <h2>Data Processing Pipelines</h2>
+
+            <p>Data processing is one of the most common automation needs, and it is also one of the most error-prone when done manually. Claude Code builds pipelines where each stage is a clear, testable function that feeds into the next. Describe the full pipeline in one prompt and Claude composes the entire thing.</p>
+
+            <p>For example: <strong>"Build a pipeline that reads a CSV from an S3 bucket, validates the schema against expected columns, transforms all date fields to ISO 8601 format, deduplicates rows by email address keeping the most recent entry, and loads the cleaned data into a PostgreSQL table."</strong></p>
+
+            <p>Claude creates each stage as a separate function -- <code>fetch_from_s3()</code>, <code>validate_schema()</code>, <code>normalize_dates()</code>, <code>deduplicate()</code>, <code>load_to_postgres()</code> -- and composes them into a pipeline with proper error handling at each boundary. If the schema validation fails, you get a clear report of which columns are missing or mistyped, not a cryptic database insertion error three stages later. It adds logging at every step so you can see exactly where your data is in the pipeline, and it includes progress reporting for large datasets so you are not staring at a frozen terminal wondering if anything is happening.</p>
+
+            <p>Run the pipeline in a dedicated Beam tab while monitoring the log output in a split pane. When something goes wrong, you have the full context right in front of you without switching windows.</p>
+
+            <h2>API Integrations</h2>
+
+            <p>Connecting APIs is one of those tasks that sounds simple until you actually do it. Every API has its own authentication scheme, pagination style, rate limits, and error response format. Claude Code absorbs all of that complexity and gives you a clean integration script.</p>
+
+            <p>Prompt examples that produce production-quality integrations:</p>
+
+            <ul>
+                <li><strong>"Write a script that syncs our Stripe customers to our PostgreSQL database nightly, handling pagination and only updating records that have changed since the last sync."</strong></li>
+                <li><strong>"Build an integration that watches our GitHub repository for new issues labeled 'urgent' and sends a formatted Slack notification to the #engineering channel."</strong></li>
+                <li><strong>"Create a script that pulls analytics data from Google Analytics, aggregates it by page, and pushes a weekly summary to a Google Sheet."</strong></li>
+            </ul>
+
+            <p>Claude handles the pieces that trip people up: OAuth token refresh, cursor-based pagination that varies between APIs, rate limit headers that require exponential backoff, and partial failure recovery so a single bad record does not kill the entire sync. It generates proper retry logic -- not just "try again" but real exponential backoff with jitter so you do not hammer a struggling API. It also creates idempotent operations where possible, so re-running the script after a failure picks up where it left off instead of creating duplicate records.</p>
+
+            <h2>File Watchers and Triggers</h2>
+
+            <p>Some automation is not "run once and done" -- it needs to run continuously, responding to events as they happen. File watchers are the most common example: monitor a directory for new files, process them, and move them to an output location. Claude Code builds these as long-running scripts with proper event handling.</p>
+
+            <p>Try: <strong>"Create a file watcher that monitors the /uploads directory for new PDF files, extracts text from each one, saves the extracted text as a .txt file in /processed, and moves the original PDF to /archive."</strong></p>
+
+            <p>Claude uses proper file watching libraries -- chokidar for Node, watchdog for Python, fsnotify for Go -- instead of polling, which means it reacts instantly and uses minimal system resources. It handles the subtle problems that naive file watchers get wrong: debouncing so a file that is still being written does not trigger processing prematurely, error recovery so a corrupt file does not crash the watcher, and concurrent processing so multiple files arriving at once are handled in parallel without race conditions.</p>
+
+            <p>Run the file watcher in a dedicated Beam tab. It stays active in the background while you work in other tabs, and you can glance over at any time to see the processing log. If something goes wrong, the error is right there in the tab -- no hunting through system logs.</p>
+
+            <h2>Cron Jobs and Scheduled Tasks</h2>
+
+            <p>Scheduled automation is the final step: a script that runs on its own at regular intervals without you thinking about it. Claude Code generates not just the script itself but everything you need to schedule and monitor it.</p>
+
+            <p>Ask: <strong>"Create a daily report that queries our PostgreSQL database for yesterday's signups, generates a summary with total count, breakdown by referral source, and top 5 countries, then sends it as a formatted email to the team."</strong></p>
+
+            <p>Claude produces the database query, the report formatting logic, the email template with inline styles that work across email clients, and the cron expression to schedule it. It handles timezone awareness so "yesterday" means the right thing regardless of server timezone. It adds failure notifications so you get an alert if the report does not send instead of silently failing for days. And it includes log rotation so your automation logs do not slowly fill up the disk over months of unattended operation.</p>
+
+            <p>Use Beam to test the script interactively before you trust it to run unattended. Run it in one tab, check the email output in another, and verify the database queries in a third. Once you are confident it works, schedule it and move on.</p>
+
+            <h2>The Automation Workspace</h2>
+
+            <p>Automation work has a natural rhythm: build a script, test it, watch its output, fix issues, commit it to version control. Beam workspaces let you create a dedicated environment for this entire cycle.</p>
+
+            <p>Set up a Beam workspace called "Automation" with four tabs:</p>
+
+            <ul>
+                <li><strong>Tab 1: Claude Code</strong> -- This is where you build and iterate on your automation scripts. Describe the task, refine the output, ask Claude to add error handling or logging.</li>
+                <li><strong>Tab 2: Script Output</strong> -- Run your scripts here and watch the output in real time. Test with sample data before pointing at production.</li>
+                <li><strong>Tab 3: Logs</strong> -- Tail the log files from your running automations. When a scheduled job fails at 3am, this is where you start debugging the next morning.</li>
+                <li><strong>Tab 4: Git</strong> -- Version control your automation scripts. Good scripts deserve to be tracked, reviewed, and shared with your team.</li>
+            </ul>
+
+            <p>Save this workspace layout with <span class="kbd">&#8984;S</span>. The next time you need to build or debug an automation, restore it and your entire working environment is ready in one click. No setup, no "which terminal was that in," just immediate productivity.</p>
+
+            <h2>Memory File: Automation Patterns</h2>
+
+            <p>If you build automations regularly, add an automation section to your project's <code>CLAUDE.md</code> memory file. This tells Claude Code your preferences so every new script follows your established patterns without you repeating yourself.</p>
+
+            <div class="highlight">
+                <h3>Example CLAUDE.md Automation Section</h3>
+                <ul>
+                    <li><strong>Preferred languages:</strong> Python for data processing, Bash for file operations, Node for API integrations</li>
+                    <li><strong>Logging:</strong> Use Python's logging module with ISO timestamps, log to both stdout and a rotating file</li>
+                    <li><strong>Error handling:</strong> Always include retry logic for network calls (3 retries, exponential backoff starting at 1s)</li>
+                    <li><strong>Database:</strong> PostgreSQL via psycopg2, connection string from DATABASE_URL environment variable</li>
+                    <li><strong>APIs:</strong> Store credentials in .env files, never hardcode. Use httpx for async HTTP.</li>
+                    <li><strong>Deployment:</strong> Scripts go in the /scripts directory, cron jobs documented in CRONTAB.md</li>
+                </ul>
+            </div>
+
+            <p>With this context in place, every automation script Claude Code generates will follow your conventions from the start. The logging format matches your existing scripts. Database connections use the same patterns. Error handling is consistent. Your automation library becomes a cohesive collection instead of a pile of one-off scripts that all work slightly differently.</p>
+
+            <div class="cta-box">
+                <h3>Automate Everything</h3>
+                <p>Download Beam and build automation scripts with Claude Code in organized terminal workspaces.</p>
+                <a href="../" class="btn">Download Beam for macOS</a>
+            </div>
+
+            <h2>Summary</h2>
+
+            <p>Claude Code transforms automation from a weekend project into a five-minute conversation. Whether you need a quick one-off script, a polished CLI tool, a multi-stage data pipeline, or a scheduled cron job, the process is the same: describe what you want, get a working implementation, test it, and deploy it. With Beam organizing your workspace, you have dedicated tabs for building, testing, monitoring, and versioning your automation scripts -- all without leaving your terminal.</p>
+
+            <ul>
+                <li>Use <strong>quick scripts</strong> for one-off tasks that save hours over manual work</li>
+                <li>Use <strong>CLI tools</strong> when a task becomes recurring and needs proper argument handling</li>
+                <li>Use <strong>data pipelines</strong> for multi-stage processing with validation and error recovery</li>
+                <li>Use <strong>API integrations</strong> with built-in retry logic, pagination, and rate limiting</li>
+                <li>Use <strong>file watchers</strong> for event-driven automation that runs continuously</li>
+                <li>Use <strong>cron jobs</strong> for scheduled tasks with failure notifications and log rotation</li>
+                <li>Use <strong>Beam workspaces</strong> to keep your automation workflow organized end to end</li>
+                <li>Use <strong>CLAUDE.md</strong> to codify your automation patterns for consistent, convention-following scripts</li>
+            </ul>
+
+            <p>Stop doing manually what a script can do for you. The next time you catch yourself repeating a task, open Claude Code in a Beam tab and automate it.</p>
+
+            <div class="related-articles">
+                <h2>Related Articles</h2>
+                <div class="related-grid">
+                    <a href="claude-code-python-data-science.html" class="related-card">
+                        <h4>Claude Code for Python & Data Science</h4>
+                        <p>Use Claude Code for data analysis, visualization, and machine learning workflows.</p>
+                    </a>
+                    <a href="claude-code-with-docker.html" class="related-card">
+                        <h4>Claude Code with Docker</h4>
+                        <p>Containerize your development workflow with Claude Code and Docker.</p>
+                    </a>
+                    <a href="ai-coding-solo-developer.html" class="related-card">
+                        <h4>AI Coding for Solo Developers</h4>
+                        <p>How solo developers can multiply their output with AI-assisted coding.</p>
+                    </a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>
+                <a href="../">Beam</a> &bull; Terminal Organizer for macOS &bull;
+                <a href="mailto:frank@nextuptechnologies.co">Contact</a>
+            </p>
+
+            <p style="margin-top: 12px; font-size: 0.8rem;">
+                <a href="/privacy.html" style="color: #71717a; text-decoration: none;">Privacy Policy</a> &bull;
+                <a href="/terms.html" style="color: #71717a; text-decoration: none;">Terms of Service</a>
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>

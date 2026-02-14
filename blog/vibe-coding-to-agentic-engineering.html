@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D0XH8B0RKL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-D0XH8B0RKL');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>From Vibe Coding to Agentic Engineering: What Karpathy's New Term Means for You | Beam Terminal Organizer</title>
+    <meta name="description" content="Andrej Karpathy declared vibe coding pass&eacute; on February 5, 2026, introducing agentic engineering as the new paradigm. Here's what it means and how to adapt your workflow.">
+    <meta name="keywords" content="agentic engineering, vibe coding, Karpathy, AI coding 2026, Claude Code, agentic coding, developer workflow">
+    <meta name="author" content="NextUp Technologies">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://getbeam.dev/blog/vibe-coding-to-agentic-engineering.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://getbeam.dev/blog/vibe-coding-to-agentic-engineering.html">
+    <meta property="og:title" content="From Vibe Coding to Agentic Engineering: What Karpathy's New Term Means for You">
+    <meta property="og:description" content="Karpathy declared vibe coding pass&eacute;. Here's what agentic engineering means and how to adapt your workflow.">
+    <meta property="og:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="From Vibe Coding to Agentic Engineering: What Karpathy's New Term Means for You">
+    <meta name="twitter:description" content="Karpathy declared vibe coding pass&eacute;. Here's what agentic engineering means and how to adapt your workflow.">
+    <meta name="twitter:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "From Vibe Coding to Agentic Engineering: What Karpathy's New Term Means for You",
+        "description": "Andrej Karpathy declared vibe coding pass\u00e9 on February 5, 2026, introducing agentic engineering as the new paradigm. Here's what it means and how to adapt your workflow.",
+        "author": {
+            "@type": "Organization",
+            "name": "NextUp Technologies"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Beam"
+        },
+        "datePublished": "2026-02-12",
+        "keywords": "agentic engineering, vibe coding, Karpathy, AI coding 2026, Claude Code, agentic coding, developer workflow"
+    }
+    </script>
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #111113;
+            --bg-tertiary: #1a1a1d;
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.4);
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --border: #27272a;
+            --success: #22c55e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        header {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 60px;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1.5rem;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            background: var(--accent);
+            color: white;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+        }
+
+        article {
+            padding-bottom: 80px;
+        }
+
+        .breadcrumb {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+        }
+
+        .breadcrumb a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .meta {
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            font-size: 0.95rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 48px 0 20px;
+            color: var(--text-primary);
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        ul, ol {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            padding-left: 24px;
+        }
+
+        li {
+            margin-bottom: 12px;
+        }
+
+        .highlight {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 32px 0;
+        }
+
+        .highlight h3 {
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .kbd {
+            display: inline-block;
+            padding: 2px 8px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .cta-box h3 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+        }
+
+        .cta-box p {
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 24px;
+        }
+
+        .cta-box .btn {
+            background: white;
+            color: var(--accent);
+        }
+
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+
+        .related-articles { margin-top: 60px; padding-top: 40px; border-top: 1px solid var(--border); }
+        .related-articles h2 { font-size: 1.5rem; margin-bottom: 24px; }
+        .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .related-card { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-decoration: none; transition: border-color 0.2s; }
+        .related-card:hover { border-color: var(--accent); }
+        .related-card h4 { color: white; font-size: 1rem; margin: 0 0 8px 0; }
+        .related-card p { color: var(--text-muted); font-size: 0.85rem; margin: 0; }
+        @media (max-width: 600px) { .related-grid { grid-template-columns: 1fr; } h1 { font-size: 1.8rem; } }
+
+        blockquote {
+            border-left: 3px solid var(--accent);
+            padding-left: 20px;
+            margin: 24px 0;
+            font-style: italic;
+        }
+
+        blockquote p {
+            color: var(--text-secondary);
+        }
+
+        code {
+            font-family: 'JetBrains Mono', monospace;
+            background: var(--bg-tertiary);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.88rem;
+            border: 1px solid var(--border);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="../" class="logo">
+                <div class="logo-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round">
+                        <path d="M4 17l6-6-6-6M12 19h8"/>
+                    </svg>
+                </div>
+                Beam
+            </a>
+            <a href="../" class="btn">Download Beam</a>
+        </div>
+    </header>
+
+    <main>
+        <article class="container">
+            <div class="breadcrumb">
+                <a href="../">Beam</a> / <a href="../#guides">Guides</a> / From Vibe Coding to Agentic Engineering
+            </div>
+
+            <h1>From Vibe Coding to Agentic Engineering: What Karpathy&rsquo;s New Term Means for You</h1>
+            <p class="meta">February 2026 &bull; 9 min read</p>
+
+            <p>On February 5, 2026, Andrej Karpathy dropped a single post that rewrote the narrative for an entire industry. The man who coined &ldquo;vibe coding&rdquo; -- the term that became Collins Dictionary&rsquo;s Word of the Year, reshaped startup culture, and gave millions of people permission to build software without writing a line of code -- declared his own creation <strong>pass&eacute;</strong>. The replacement term: <strong>agentic engineering</strong>.</p>
+
+            <p>If that feels fast, it&rsquo;s because it is. Twelve months ago, vibe coding was the future. Today, it&rsquo;s the floor. And the ceiling just moved way, way up.</p>
+
+            <h2>What Was Vibe Coding?</h2>
+
+            <p>Vibe coding was Karpathy&rsquo;s term for a radically new approach to building software. Instead of typing code character by character, you described what you wanted in plain English. The AI generated it. You accepted or tweaked the output, ran it, and iterated. The &ldquo;vibe&rdquo; was the point -- you didn&rsquo;t need to understand every line. You just needed to communicate your intent clearly enough for the model to produce something that worked.</p>
+
+            <p>For a while, it felt like magic. And the numbers backed up the hype.</p>
+
+            <div class="highlight">
+                <h3>Vibe Coding&rsquo;s Peak: The 2025 Numbers</h3>
+                <ul>
+                    <li><strong>Collins Dictionary Word of the Year 2025</strong> -- the term crossed from tech jargon into mainstream vocabulary in record time</li>
+                    <li><strong>25% of Y Combinator&rsquo;s W25 batch</strong> reported that 95% or more of their codebase was AI-generated</li>
+                    <li><strong>92% of US developers</strong> were using AI coding tools daily by end of 2025</li>
+                    <li>Platforms like Cursor, Replit, and Lovable made it possible for non-programmers to ship functional apps in hours</li>
+                </ul>
+            </div>
+
+            <p>Vibe coding was a genuine revolution. It democratized software creation, lowered the barrier to entry for building digital products, and forced every developer tool company on the planet to rethink their roadmap. Product managers prototyped internal tools. Designers built working frontends. Solo founders shipped MVPs without hiring engineers.</p>
+
+            <p>But it had a ceiling, and by late 2025, people were slamming into it. The &ldquo;accept all&rdquo; mentality that made vibe coding fast also made it fragile. Codebases grew tangled. Debugging AI-generated code you didn&rsquo;t fully understand turned out to be harder than writing it yourself. The quick prototypes were quick, but the production systems that grew out of them were nightmares to maintain.</p>
+
+            <h2>What Is Agentic Engineering?</h2>
+
+            <p>Agentic engineering is what happens when AI stops being your autocomplete and starts being your engineering team.</p>
+
+            <p>In vibe coding, you have a conversation with an AI. You describe what you want. It generates code. You review it, accept it, or ask for changes. The interaction is fundamentally <em>conversational</em> -- one prompt, one response, one decision at a time.</p>
+
+            <p>In agentic engineering, you deploy AI <strong>agents</strong> that operate autonomously on multi-step tasks. An agent doesn&rsquo;t just generate a function when you ask for one. It reads your entire project structure, understands your architecture, creates a plan, implements changes across multiple files, runs your test suite, analyzes failures, fixes them, and comes back to you with a completed result. You&rsquo;re not prompting. You&rsquo;re <em>delegating</em>.</p>
+
+            <blockquote>
+                <p>&ldquo;You are not writing the code directly 99% of the time. You are orchestrating agents who do -- and acting as oversight.&rdquo;</p>
+                <p><strong>-- Andrej Karpathy, February 5, 2026</strong></p>
+            </blockquote>
+
+            <p>The developer&rsquo;s role changes fundamentally. You become an architect who designs systems, a project manager who decomposes problems and assigns them to agents, and a reviewer who ensures quality at every checkpoint. You&rsquo;re still the most important person in the process. But you&rsquo;re not the one typing the code.</p>
+
+            <h2>The Key Differences</h2>
+
+            <p>Vibe coding and agentic engineering might sound like they&rsquo;re on the same spectrum, but they represent genuinely different paradigms. The distinction matters because it changes what skills you need, what tools you use, and how you structure your workday.</p>
+
+            <div class="highlight">
+                <h3>Vibe Coding: Prompt and Pray</h3>
+                <ul>
+                    <li><strong>Single-shot interaction</strong> -- you describe what you want, the AI generates it, you accept or reject</li>
+                    <li><strong>Context lives in the chat</strong> -- when the conversation ends, the context is gone</li>
+                    <li><strong>You are the driver</strong> -- every action requires your direct input</li>
+                    <li><strong>Quality gate: &ldquo;Does it run?&rdquo;</strong> -- if the output executes without errors, you ship it</li>
+                    <li><strong>Best for:</strong> scripts, prototypes, isolated features, quick experiments</li>
+                    <li><strong>Breaks down at:</strong> multi-file changes, large codebases, production systems</li>
+                </ul>
+            </div>
+
+            <div class="highlight">
+                <h3>Agentic Engineering: Orchestrate and Verify</h3>
+                <ul>
+                    <li><strong>Multi-step autonomous execution</strong> -- agents plan, implement, test, and iterate without you typing each step</li>
+                    <li><strong>Context persists across sessions</strong> -- project memory, architecture docs, and shared state carry forward</li>
+                    <li><strong>You are the architect</strong> -- you define goals, set constraints, and review at checkpoints</li>
+                    <li><strong>Quality gate: &ldquo;Does it pass review?&rdquo;</strong> -- agents run tests, you verify the design and implementation</li>
+                    <li><strong>Best for:</strong> production codebases, multi-service systems, complex features, team-scale work</li>
+                    <li><strong>Requires:</strong> engineering judgment, oversight discipline, organized tooling</li>
+                </ul>
+            </div>
+
+            <p>Think of it this way. Vibe coding is like texting a contractor one instruction at a time: &ldquo;build a wall here,&rdquo; &ldquo;add a door there,&rdquo; &ldquo;paint it blue.&rdquo; Agentic engineering is like handing a general contractor a blueprint, walking the site at key milestones, and signing off on the completed work. Both get a building built. Only one scales.</p>
+
+            <h2>What This Means for Your Workflow</h2>
+
+            <p>The practical impact of agentic engineering hits you the moment you open your terminal. Vibe coding required one window, one conversation, one thread of work. Agentic engineering generates <strong>concurrency</strong>. You might have a Claude Code session refactoring your authentication module, another writing integration tests for your API, and a third exploring a new database schema -- all running at the same time.</p>
+
+            <p>That parallel execution is where the power comes from. It&rsquo;s also where the chaos starts.</p>
+
+            <p>The tools that worked for vibe coding don&rsquo;t cut it anymore. You need infrastructure that supports the new reality:</p>
+
+            <ul>
+                <li><strong>Persistent memory</strong> -- Your agents need to know about your project across sessions. A <code>CLAUDE.md</code> file or equivalent project memory ensures every agent starts with full context about your architecture, conventions, and decisions.</li>
+                <li><strong>Session management</strong> -- When you have three agents running simultaneously, you need to track what each one is doing, review their output independently, and pick up any session where you left off.</li>
+                <li><strong>Multi-agent coordination</strong> -- Agents working on related parts of a codebase need shared context. Agent 2 needs to know what Agent 1 decided about the data model.</li>
+                <li><strong>Workspace organization</strong> -- Five terminal windows with no labels, no grouping, and no way to switch between them quickly is not a workflow. It&rsquo;s a mess. And it gets worse every time you add another agent.</li>
+            </ul>
+
+            <h2>How to Set Up an Agentic Engineering Workflow</h2>
+
+            <p>You don&rsquo;t need to rebuild your entire setup from scratch. The transition from vibe coding to agentic engineering is additive -- you&rsquo;re adding structure, not replacing skills. Here&rsquo;s a practical path.</p>
+
+            <p><strong>1. Pick your agent runtime.</strong> Claude Code and OpenAI Codex CLI are the two leading agentic coding tools in 2026. Both can read your project, plan multi-step changes, execute them, run tests, and iterate. Start with whichever one you&rsquo;re more comfortable with. You can always add the other later for parallel workstreams.</p>
+
+            <p><strong>2. Create project memory on day one.</strong> Before you run your first agent session, create a memory file in your project root. Document your architecture, your coding conventions, your API patterns, and your testing approach. This is the single highest-leverage thing you can do. Without it, every agent session starts cold. With it, your agents inherit institutional knowledge.</p>
+
+            <p><strong>3. Organize one workspace per project.</strong> In Beam, press <span class="kbd">&#8984;N</span> to create a workspace and name it after your project. Inside that workspace, create separate tabs for each agent role: &ldquo;Implementation,&rdquo; &ldquo;Testing,&rdquo; &ldquo;Review.&rdquo; This isolation means you always know where to find a specific agent&rsquo;s output.</p>
+
+            <p><strong>4. Decompose before you delegate.</strong> The core skill of agentic engineering is task decomposition. Before you type a single prompt, break your goal into discrete sub-tasks. What needs to happen first? What can run in parallel? What has dependencies? This is the architecture work that makes everything else possible.</p>
+
+            <p><strong>5. Set review checkpoints.</strong> Don&rsquo;t let agents run unsupervised to completion on large tasks. Review the plan before implementation starts. Review the implementation before tests run. Review the test results before merging. Your judgment at these checkpoints is what separates agentic engineering from &ldquo;vibe coding with extra steps.&rdquo;</p>
+
+            <p><strong>6. Save and restore your layouts.</strong> Once you have your multi-agent workspace configured -- the right tabs, the right splits, the right naming -- save it with <span class="kbd">&#8984;S</span> in Beam. Tomorrow morning, you restore the entire setup in one click. No re-creating your orchestration environment from scratch every day.</p>
+
+            <div class="highlight">
+                <h3>Example: Full-Stack Feature Development</h3>
+                <ul>
+                    <li><strong>Tab 1: &ldquo;Planning&rdquo;</strong> -- Claude Code session for task decomposition and architecture decisions</li>
+                    <li><strong>Tab 2: &ldquo;Backend Agent&rdquo;</strong> -- Claude Code implementing API endpoints and database changes</li>
+                    <li><strong>Tab 3: &ldquo;Frontend Agent&rdquo;</strong> -- Claude Code building React components against the new API</li>
+                    <li><strong>Tab 4: &ldquo;Test Agent&rdquo;</strong> -- Claude Code writing and running tests as the implementation progresses</li>
+                    <li><strong>Tab 5: &ldquo;Review&rdquo;</strong> -- Your terminal for <code>git diff</code>, manual testing, and final approval</li>
+                </ul>
+                <p>Switch between tabs with <span class="kbd">&#8984;1</span> through <span class="kbd">&#8984;5</span>. Jump to any workspace with <span class="kbd">&#8984;P</span>.</p>
+            </div>
+
+            <div class="cta-box">
+                <h3>Ready to Move from Vibe Coding to Agentic Engineering?</h3>
+                <p>Multiple agents need organized workspaces, persistent sessions, and fast switching. Beam gives you the infrastructure to orchestrate without the chaos.</p>
+                <a href="../" class="btn">Download Beam for macOS</a>
+            </div>
+
+            <h2>Key Takeaways</h2>
+
+            <p>The shift from vibe coding to agentic engineering is the defining transition of 2026 for software developers. Here&rsquo;s what you need to remember:</p>
+
+            <ul>
+                <li><strong>Karpathy declared vibe coding pass&eacute; on February 5, 2026.</strong> The term he coined in 2025 -- Collins Dictionary Word of the Year, embraced by 25% of YC&rsquo;s W25 batch -- has already been superseded by the reality of what AI agents can do.</li>
+                <li><strong>Agentic engineering is not a rebrand.</strong> It&rsquo;s a fundamentally different paradigm where you orchestrate autonomous AI agents rather than prompting a chatbot. The developer becomes an architect and reviewer, not a typist.</li>
+                <li><strong>The key distinction is autonomy and oversight.</strong> Vibe coding is prompt-and-pray. Agentic engineering is orchestrate-and-verify. The quality bar goes up, not down.</li>
+                <li><strong>Your workflow needs to evolve.</strong> Persistent project memory, organized workspaces, multi-agent session management, and structured review checkpoints are no longer nice-to-haves. They&rsquo;re requirements.</li>
+                <li><strong>Terminal organization is the foundation.</strong> You can&rsquo;t orchestrate what you can&rsquo;t see. When you&rsquo;re running three to five agents in parallel, workspace organization determines whether you&rsquo;re in control or drowning.</li>
+                <li><strong>Start today.</strong> Create a project memory file. Set up dedicated workspaces. Practice task decomposition. The developers who build these habits now will be the ones leading teams in six months.</li>
+            </ul>
+
+            <div class="related-articles">
+                <h2>Related Articles</h2>
+                <div class="related-grid">
+                    <a href="agentic-engineering-guide.html" class="related-card">
+                        <h4>Agentic Engineering: The Evolution Beyond Vibe Coding</h4>
+                        <p>Deep dive into ReAct loops, multi-agent coordination, and the core patterns of agentic engineering.</p>
+                    </a>
+                    <a href="multi-agent-ai-coding-workflows.html" class="related-card">
+                        <h4>How to Set Up Multi-Agent AI Coding Workflows</h4>
+                        <p>Practical guide to running multiple AI agents in parallel for faster development.</p>
+                    </a>
+                    <a href="vibe-coding-setup.html" class="related-card">
+                        <h4>The Perfect Vibe Coding Setup for Flow State Development</h4>
+                        <p>Where the journey started -- optimizing your environment for AI-assisted coding.</p>
+                    </a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>
+                <a href="../">Beam</a> &bull; Terminal Organizer for macOS &bull;
+                <a href="mailto:frank@nextuptechnologies.co">Contact</a>
+            </p>
+
+            <p style="margin-top: 12px; font-size: 0.8rem;">
+                <a href="/privacy.html" style="color: #71717a; text-decoration: none;">Privacy Policy</a> &bull;
+                <a href="/terms.html" style="color: #71717a; text-decoration: none;">Terms of Service</a>
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>

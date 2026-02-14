@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D0XH8B0RKL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-D0XH8B0RKL');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Use Claude Code with Git: Advanced Workflows | Beam Terminal Organizer</title>
+    <meta name="description" content="Master Git with Claude Code. Merge conflicts, interactive rebasing, commit message generation, branch management, and PR workflows — all organized in Beam terminal tabs.">
+    <meta name="keywords" content="Claude Code Git, Claude Code merge conflicts, AI Git workflow, Claude Code commit messages, Claude Code PR workflow, Git AI assistant">
+    <meta name="author" content="NextUp Technologies">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://getbeam.dev/blog/claude-code-git-workflows.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://getbeam.dev/blog/claude-code-git-workflows.html">
+    <meta property="og:title" content="How to Use Claude Code with Git: Advanced Workflows">
+    <meta property="og:description" content="Master Git with Claude Code. Merge conflicts, interactive rebasing, commit message generation, branch management, and PR workflows.">
+    <meta property="og:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="How to Use Claude Code with Git: Advanced Workflows">
+    <meta name="twitter:description" content="Master Git with Claude Code. Merge conflicts, interactive rebasing, commit message generation, branch management, and PR workflows.">
+    <meta name="twitter:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "How to Use Claude Code with Git: Advanced Workflows",
+        "description": "Master Git with Claude Code. Merge conflicts, interactive rebasing, commit message generation, branch management, and PR workflows.",
+        "author": {
+            "@type": "Organization",
+            "name": "NextUp Technologies"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Beam"
+        },
+        "datePublished": "2026-02-11",
+        "keywords": "Claude Code Git, AI Git workflow, Claude Code merge conflicts, Claude Code commit messages"
+    }
+    </script>
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #111113;
+            --bg-tertiary: #1a1a1d;
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.4);
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --border: #27272a;
+            --success: #22c55e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        header {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 60px;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1.5rem;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            background: var(--accent);
+            color: white;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+        }
+
+        article {
+            padding-bottom: 80px;
+        }
+
+        .breadcrumb {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+        }
+
+        .breadcrumb a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .meta {
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            font-size: 0.95rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 48px 0 20px;
+            color: var(--text-primary);
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        ul, ol {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            padding-left: 24px;
+        }
+
+        li {
+            margin-bottom: 12px;
+        }
+
+        .highlight {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 32px 0;
+        }
+
+        .highlight h3 {
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .kbd {
+            display: inline-block;
+            padding: 2px 8px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+        }
+
+        code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            background: var(--bg-tertiary);
+            padding: 2px 8px;
+            border-radius: 4px;
+            border: 1px solid var(--border);
+        }
+
+        .blog-visual {
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        .blog-visual svg {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .cta-box h3 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+        }
+
+        .cta-box p {
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 24px;
+        }
+
+        .cta-box .btn {
+            background: white;
+            color: var(--accent);
+        }
+
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+
+        .related-articles { margin-top: 60px; padding-top: 40px; border-top: 1px solid var(--border); }
+        .related-articles h2 { font-size: 1.5rem; margin-bottom: 24px; }
+        .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .related-card { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-decoration: none; transition: border-color 0.2s; }
+        .related-card:hover { border-color: var(--accent); }
+        .related-card h4 { color: white; font-size: 1rem; margin: 0 0 8px 0; }
+        .related-card p { color: var(--text-muted); font-size: 0.85rem; margin: 0; }
+        @media (max-width: 600px) { .related-grid { grid-template-columns: 1fr; } h1 { font-size: 1.8rem; } }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="../" class="logo">
+                <div class="logo-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round">
+                        <path d="M4 17l6-6-6-6M12 19h8"/>
+                    </svg>
+                </div>
+                Beam
+            </a>
+            <a href="../" class="btn">Download Beam</a>
+        </div>
+    </header>
+
+    <main>
+        <article class="container">
+            <div class="breadcrumb">
+                <a href="../">Beam</a> / <a href="../#guides">Guides</a> / Claude Code Git Workflows
+            </div>
+
+            <h1>How to Use Claude Code with Git: Advanced Workflows</h1>
+            <p class="meta">February 2026 &bull; 7 min read</p>
+
+            <p>Git is the backbone of every development workflow, but it is also where a lot of time gets lost. Merge conflicts, messy commit histories, branch management, PR descriptions -- these are tasks that feel like overhead, not progress. Claude Code handles all of them. It understands Git deeply and can resolve conflicts, write commit messages, manage branches, and draft PR descriptions while you focus on building. This guide walks through the advanced Git workflows that Claude Code makes effortless, and how Beam keeps everything organized in dedicated terminal tabs.</p>
+
+            <div class="blog-visual">
+                <svg width="720" height="340" viewBox="0 0 720 340" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Background -->
+                    <rect width="720" height="340" rx="16" fill="#111113"/>
+                    <rect width="720" height="340" rx="16" stroke="#27272a" stroke-width="1"/>
+
+                    <!-- Main branch line -->
+                    <line x1="80" y1="170" x2="640" y2="170" stroke="#f05032" stroke-width="3" stroke-linecap="round"/>
+
+                    <!-- Feature branch arc -->
+                    <path d="M200 170 C200 170, 220 80, 320 80" stroke="#d4a017" stroke-width="3" stroke-linecap="round" fill="none"/>
+                    <path d="M320 80 C420 80, 440 80, 460 80" stroke="#d4a017" stroke-width="3" stroke-linecap="round" fill="none"/>
+                    <path d="M460 80 C500 80, 520 170, 520 170" stroke="#d4a017" stroke-width="3" stroke-linecap="round" fill="none"/>
+
+                    <!-- Commit nodes on main -->
+                    <circle cx="120" cy="170" r="10" fill="#f05032" stroke="#1a1a1d" stroke-width="2"/>
+                    <circle cx="200" cy="170" r="10" fill="#f05032" stroke="#1a1a1d" stroke-width="2"/>
+                    <circle cx="520" cy="170" r="12" fill="#22c55e" stroke="#1a1a1d" stroke-width="2"/>
+                    <circle cx="600" cy="170" r="10" fill="#f05032" stroke="#1a1a1d" stroke-width="2"/>
+
+                    <!-- Commit nodes on feature branch -->
+                    <circle cx="320" cy="80" r="10" fill="#d4a017" stroke="#1a1a1d" stroke-width="2"/>
+                    <circle cx="400" cy="80" r="10" fill="#d4a017" stroke="#1a1a1d" stroke-width="2"/>
+                    <circle cx="460" cy="80" r="10" fill="#d4a017" stroke="#1a1a1d" stroke-width="2"/>
+
+                    <!-- Auto-generated commit message labels -->
+                    <rect x="90" y="195" width="60" height="22" rx="4" fill="#1a1a1d" stroke="#27272a" stroke-width="1"/>
+                    <text x="120" y="210" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="9" text-anchor="middle">init</text>
+
+                    <rect x="155" y="195" width="90" height="22" rx="4" fill="#1a1a1d" stroke="#27272a" stroke-width="1"/>
+                    <text x="200" y="210" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="9" text-anchor="middle">feat: auth</text>
+
+                    <rect x="278" y="42" width="84" height="22" rx="4" fill="#1a1a1d" stroke="#3a3520" stroke-width="1"/>
+                    <text x="320" y="57" fill="#d4a017" font-family="JetBrains Mono, monospace" font-size="9" text-anchor="middle">feat: login</text>
+
+                    <rect x="354" y="100" width="92" height="22" rx="4" fill="#1a1a1d" stroke="#3a3520" stroke-width="1"/>
+                    <text x="400" y="115" fill="#d4a017" font-family="JetBrains Mono, monospace" font-size="9" text-anchor="middle">fix: session</text>
+
+                    <rect x="420" y="42" width="80" height="22" rx="4" fill="#1a1a1d" stroke="#3a3520" stroke-width="1"/>
+                    <text x="460" y="57" fill="#d4a017" font-family="JetBrains Mono, monospace" font-size="9" text-anchor="middle">test: auth</text>
+
+                    <!-- Merge node label (green - resolved) -->
+                    <rect x="484" y="195" width="72" height="22" rx="4" fill="#0a2e14" stroke="#22c55e" stroke-width="1"/>
+                    <text x="520" y="210" fill="#22c55e" font-family="JetBrains Mono, monospace" font-size="9" text-anchor="middle">merged</text>
+
+                    <rect x="558" y="195" width="84" height="22" rx="4" fill="#1a1a1d" stroke="#27272a" stroke-width="1"/>
+                    <text x="600" y="210" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="9" text-anchor="middle">deploy v2</text>
+
+                    <!-- Claude Code speech bubble at merge point -->
+                    <rect x="430" y="230" width="180" height="48" rx="10" fill="#1a1a1d" stroke="#d4a017" stroke-width="1.5"/>
+                    <polygon points="520,230 513,218 527,218" fill="#1a1a1d" stroke="#d4a017" stroke-width="1.5"/>
+                    <polygon points="519,232 514,222 526,222" fill="#1a1a1d"/>
+                    <text x="520" y="252" fill="#d4a017" font-family="Space Grotesk, sans-serif" font-size="11" font-weight="600" text-anchor="middle">Conflict resolved</text>
+                    <text x="520" y="268" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="9" text-anchor="middle">by Claude Code</text>
+
+                    <!-- Branch labels -->
+                    <rect x="52" y="140" width="56" height="20" rx="4" fill="#2a1510" stroke="#f05032" stroke-width="1"/>
+                    <text x="80" y="154" fill="#f05032" font-family="JetBrains Mono, monospace" font-size="10" font-weight="500" text-anchor="middle">main</text>
+
+                    <rect x="220" y="70" width="72" height="20" rx="4" fill="#3a3520" stroke="#d4a017" stroke-width="1"/>
+                    <text x="256" y="84" fill="#d4a017" font-family="JetBrains Mono, monospace" font-size="10" font-weight="500" text-anchor="middle">feature</text>
+
+                    <!-- Legend -->
+                    <circle cx="100" cy="310" r="5" fill="#f05032"/>
+                    <text x="112" y="314" fill="#71717a" font-family="Space Grotesk, sans-serif" font-size="11">Main commits</text>
+                    <circle cx="230" cy="310" r="5" fill="#d4a017"/>
+                    <text x="242" y="314" fill="#71717a" font-family="Space Grotesk, sans-serif" font-size="11">Feature commits</text>
+                    <circle cx="380" cy="310" r="5" fill="#22c55e"/>
+                    <text x="392" y="314" fill="#71717a" font-family="Space Grotesk, sans-serif" font-size="11">AI-resolved merge</text>
+                    <rect x="515" y="305" width="10" height="10" rx="2" fill="#1a1a1d" stroke="#d4a017" stroke-width="1"/>
+                    <text x="532" y="314" fill="#71717a" font-family="Space Grotesk, sans-serif" font-size="11">Auto-generated messages</text>
+                </svg>
+            </div>
+
+            <h2>Claude Code as Your Git Assistant</h2>
+
+            <p>Claude Code is not just a code generator that suggests Git commands for you to copy and paste. It executes commands directly in your terminal. When you ask it to resolve a conflict, create a branch, or rewrite a commit message, it runs the actual Git operations right there in your session. This means you get real results, not instructions you have to follow manually.</p>
+
+            <p>What makes Claude Code particularly effective for Git work is its ability to understand diff output, merge conflicts, and branch topology at a structural level. It reads the conflict markers, understands the surrounding code context, and knows what each side of a merge was trying to accomplish. If something went wrong in your history, you can ask "Why did this merge conflict occur?" and get a clear explanation of how the two branches diverged and which files were modified in incompatible ways.</p>
+
+            <p>Claude Code also generates contextual commit messages based on what actually changed in the codebase, not generic placeholders. It reads the staged diff, identifies the purpose of the change, and writes a message that your team will actually find useful six months from now when they are reading the log.</p>
+
+            <h2>Resolving Merge Conflicts</h2>
+
+            <p>Merge conflicts are one of the most dreaded parts of any Git workflow. They break your flow, force you to context-switch into detective mode, and often involve code you did not write. Claude Code turns this from a manual chore into a conversational request. Tell it something like: "Resolve all merge conflicts in this branch. Keep our changes for the API routes, keep theirs for the database schema." Claude reads each conflict, understands the intent on both sides, and resolves them according to your instructions.</p>
+
+            <p>The key difference from other tools is that Claude Code does not just blindly pick one side. When the conflict is nuanced -- say both branches added a new field to the same struct, or both modified a validation function in different ways -- Claude reads the surrounding code to understand what each side was trying to accomplish. It can merge the intent of both changes into a single coherent resolution, keeping the new field from one branch and the updated validation from the other.</p>
+
+            <p>For complex projects with dozens of conflicting files, you can give Claude high-level guidance and let it work through them systematically. Watch the conflicts resolve in real time in your Git tab while you review the results in a split pane alongside it.</p>
+
+            <h2>Writing Better Commit Messages</h2>
+
+            <div class="highlight">
+                <h3>Pro Tip: Pipe Your Diff to Claude</h3>
+                <p>You can generate a commit message without even entering an interactive session. Run <code>git diff --staged | claude "Write a commit message for these changes"</code> in your terminal and Claude will analyze the diff and return a well-structured conventional commit message instantly.</p>
+            </div>
+
+            <p>Most developers know that good commit messages matter, but when you are deep in a coding session, it is tempting to write "update files" or "fix stuff" and move on. Claude Code eliminates that temptation entirely. Ask it to "write a commit message for the staged changes" and it reads the diff, identifies the intent of the modification, and generates a clear conventional commit message.</p>
+
+            <p>Claude follows established conventions automatically. It prefixes messages with <code>feat:</code>, <code>fix:</code>, <code>refactor:</code>, <code>docs:</code>, or <code>test:</code> depending on what the change actually does. It writes meaningful descriptions that explain the "why" behind the change, not just the "what." A commit that touches three files across the authentication module will not get a message saying "updated auth" -- it will get something like "fix: prevent session expiration during active OAuth token refresh" because Claude understands what the code is doing.</p>
+
+            <p>Over time, this transforms your Git history from a wall of cryptic one-liners into a readable narrative of how your project evolved. Every commit tells a story, and Claude makes sure that story is clear.</p>
+
+            <h2>Interactive Rebasing Made Easy</h2>
+
+            <p>Interactive rebasing is one of Git's most powerful features, but it is also one of the most intimidating. The syntax is arcane, a mistake can rewrite history in ways that are hard to undo, and resolving conflicts during a rebase adds another layer of complexity. Claude Code makes rebasing approachable for everyone.</p>
+
+            <p>Instead of manually editing a rebase plan, you describe what you want in plain English: "Clean up the last 5 commits. Squash the two 'fix typo' commits into the feature commit before them, and reword the 'add user auth' commit to be more descriptive." Claude builds the rebase plan, executes it, and handles any conflicts that arise during the process. If a conflict comes up mid-rebase, Claude resolves it using the same contextual understanding it brings to merge conflicts.</p>
+
+            <p>The result is a clean, readable Git history that tells a coherent story. No more sequences of "fix typo," "oops," "actually fix it this time" cluttering your branch. Your feature branch arrives at the PR review stage looking like it was written in one clean pass, even if the reality was messier.</p>
+
+            <h2>Branch Management</h2>
+
+            <p>Branch hygiene is one of those things every team agrees is important but nobody wants to spend time on. Claude Code handles the routine work of creating, comparing, and cleaning up branches so you can focus on the code itself.</p>
+
+            <p>Need a new branch? Tell Claude the task: "Create a feature branch from main, name it based on this task: add user notification preferences." It creates <code>feature/add-user-notification-preferences</code>, checks it out, and you are ready to go. Need to clean up? Ask "Which branches can be safely deleted? They've been merged to main." Claude checks each branch, identifies the ones that have been fully merged, and lists them for you to confirm before deleting.</p>
+
+            <p>Comparing branches is equally straightforward. "Show me what's different between this branch and main" gives you a clear summary of all the changes -- not just a raw diff, but an explanation of what was added, modified, and removed. This is invaluable before opening a PR or when you need to understand how far a branch has drifted from the base.</p>
+
+            <h2>PR Descriptions and Reviews</h2>
+
+            <p>Writing a good PR description is important for code review, but it is also time-consuming. You have to summarize what changed, explain why, list any breaking changes, and provide testing instructions. Claude Code generates all of this from the actual code changes on your branch.</p>
+
+            <p>Ask Claude to "Draft a PR description for this branch. Include a summary of changes, what was changed and why, and testing notes." It reads every commit on the branch, analyzes the diffs, and produces a structured PR description with bullet-point summaries, detailed change explanations, and step-by-step testing instructions. The description reflects what actually changed in the code, not what you remember changing three days ago.</p>
+
+            <p>For reviewing incoming PRs, Claude is equally useful. "Review the changes in PR #42 and summarize the key modifications" gives you a high-level overview before you dive into the line-by-line review. Claude identifies the most significant changes, flags potential issues, and explains the overall intent of the PR. This is especially helpful for large PRs where the sheer volume of changes makes it hard to see the forest for the trees.</p>
+
+            <h2>The Git Workflow in Beam</h2>
+
+            <p>All of these Git workflows become even more effective when you organize them in Beam. The key is having a dedicated Git tab in every workspace. Instead of running Git commands in the same terminal where Claude Code is writing code, you set up a split pane: Claude Code on one side, your Git status and diff output on the other. Claude makes changes in one pane, and you verify the Git state in the other.</p>
+
+            <p>The natural workflow becomes: code with Claude, stage the changes, ask Claude to write a commit message, commit, and repeat. Each step is visible in its own pane, so you never lose track of where you are in the process. If you are working across multiple projects, use Beam's Quick Switcher (<span class="kbd">&#8984;P</span>) to jump between each project's Git tab instantly.</p>
+
+            <p>Save your Git-focused layout with <span class="kbd">&#8984;S</span> and restore it any time you need to do branch management, conflict resolution, or PR work. Your Claude Code session, Git pane, and any supporting terminals are all right where you left them.</p>
+
+            <h2>Cherry-Picking and Bisecting</h2>
+
+            <p>Some Git operations are powerful but rarely used because they feel complicated. Cherry-picking and bisecting are two of the best examples. Claude Code makes both of them accessible to every developer, not just Git power users.</p>
+
+            <p>For cherry-picking, the instruction is as simple as: "Cherry-pick commit abc123 from the release branch into main." Claude handles the operation and resolves any conflicts that arise from applying the commit in a different context. This is invaluable for hotfixes that need to land in multiple branches without merging entire feature sets.</p>
+
+            <p>For bisecting, Claude can automate the entire process. Tell it "Help me bisect: this bug was introduced somewhere in the last 20 commits" and it runs <code>git bisect</code>, testing at each step to narrow down the offending commit. If you have a test that reproduces the bug, Claude can run it automatically at each bisect step, finding the exact commit that broke things without any manual intervention. What used to be a tedious binary search through your history becomes a single request.</p>
+
+            <h2>Memory File: Git Conventions</h2>
+
+            <p>Every team has its own Git conventions -- commit message formats, branch naming schemes, PR templates, and policies about merging versus rebasing. Instead of hoping that every developer remembers and follows these rules, you encode them in your <code>CLAUDE.md</code> memory file. Add a Git section that specifies your team's commit message format, branch naming pattern, PR template structure, and whether you use merge commits or rebase.</p>
+
+            <p>Once these conventions are in the memory file, Claude follows them automatically. Every commit message it writes will match your team's format. Every branch it creates will follow your naming scheme. Every PR description it drafts will use your template. The memory file turns Claude from a general-purpose Git assistant into one that knows your team's specific workflow and enforces it consistently across every developer on the project.</p>
+
+            <div class="cta-box">
+                <h3>Master Git with AI</h3>
+                <p>Download Beam and keep your Git workflow in a dedicated tab alongside Claude Code.</p>
+                <a href="../" class="btn">Download Beam for macOS</a>
+            </div>
+
+            <h2>Summary</h2>
+
+            <p>Git is essential, but it should not slow you down. With Claude Code handling the mechanical parts of your Git workflow, you can focus on the decisions that matter: what to build, how to structure it, and when to ship. Here is what Claude Code brings to your Git workflow:</p>
+
+            <ul>
+                <li><strong>Merge conflict resolution</strong> that understands both sides and merges intent, not just text</li>
+                <li><strong>Contextual commit messages</strong> generated from actual diffs, following conventional commit standards</li>
+                <li><strong>Interactive rebasing</strong> described in plain English instead of arcane syntax</li>
+                <li><strong>Branch management</strong> -- creating, comparing, and cleaning up branches conversationally</li>
+                <li><strong>PR descriptions and reviews</strong> generated from the real changes on your branch</li>
+                <li><strong>Cherry-picking and bisecting</strong> made accessible through natural language</li>
+                <li><strong>Team conventions</strong> encoded in CLAUDE.md and followed automatically</li>
+            </ul>
+
+            <p>Pair all of this with Beam's dedicated Git tabs and split panes, and you have a workflow where Git is no longer overhead -- it is just another thing that happens naturally as you build.</p>
+
+            <div class="related-articles">
+                <h2>Related Articles</h2>
+                <div class="related-grid">
+                    <a href="code-review-with-claude-code.html" class="related-card">
+                        <h4>Code Review with Claude Code</h4>
+                        <p>Use Claude Code to review pull requests, catch bugs, and suggest improvements.</p>
+                    </a>
+                    <a href="claude-code-keyboard-shortcuts.html" class="related-card">
+                        <h4>Claude Code Keyboard Shortcuts</h4>
+                        <p>Every shortcut you need to work faster with Claude Code in the terminal.</p>
+                    </a>
+                    <a href="ai-pair-programming-best-practices.html" class="related-card">
+                        <h4>AI Pair Programming Best Practices</h4>
+                        <p>Proven patterns for getting the most out of AI-assisted development workflows.</p>
+                    </a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>
+                <a href="../">Beam</a> &bull; Terminal Organizer for macOS &bull;
+                <a href="mailto:frank@nextuptechnologies.co">Contact</a>
+            </p>
+
+            <p style="margin-top: 12px; font-size: 0.8rem;">
+                <a href="/privacy.html" style="color: #71717a; text-decoration: none;">Privacy Policy</a> &bull;
+                <a href="/terms.html" style="color: #71717a; text-decoration: none;">Terms of Service</a>
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>

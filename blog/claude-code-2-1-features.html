@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D0XH8B0RKL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-D0XH8B0RKL');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claude Code 2.1: Agent Teams, 1M Context Windows, and 16 Features You Missed | Beam</title>
+    <meta name="description" content="Claude Code 2.1.0 shipped with 1,096 commits. Here are the most important features including Agent Teams, the 1M token context window beta, skills overhaul, and more.">
+    <meta name="keywords" content="Claude Code 2.1, Claude Code update, Agent Teams, 1M context window, Claude Code features 2026, Claude Code skills, Opus 4.6">
+    <meta name="author" content="NextUp Technologies">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://getbeam.dev/blog/claude-code-2-1-features.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://getbeam.dev/blog/claude-code-2-1-features.html">
+    <meta property="og:title" content="Claude Code 2.1: Agent Teams, 1M Context Windows, and 16 Features You Missed">
+    <meta property="og:description" content="Claude Code 2.1.0 shipped with 1,096 commits. Here are the most important features including Agent Teams, the 1M token context window beta, and more.">
+    <meta property="og:image" content="https://getbeam.dev/beam-screenshot-1.9.6.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Claude Code 2.1: Agent Teams, 1M Context Windows, and 16 Features You Missed">
+    <meta name="twitter:description" content="Claude Code 2.1.0 shipped with 1,096 commits. Here are the most important features including Agent Teams, the 1M token context window beta, and more.">
+    <meta name="twitter:image" content="https://getbeam.dev/beam-screenshot-1.9.6.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Claude Code 2.1: Agent Teams, 1M Context Windows, and 16 Features You Missed",
+        "description": "Claude Code 2.1.0 shipped with 1,096 commits. Here are the most important features including Agent Teams, the 1M token context window beta, skills overhaul, and more.",
+        "author": {
+            "@type": "Organization",
+            "name": "NextUp Technologies"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Beam"
+        },
+        "datePublished": "2026-02-12",
+        "keywords": "Claude Code 2.1, Claude Code update, Agent Teams, 1M context window, Claude Code features 2026, Claude Code skills, Opus 4.6"
+    }
+    </script>
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #111113;
+            --bg-tertiary: #1a1a1d;
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.4);
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --border: #27272a;
+            --success: #22c55e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+
+        .container { max-width: 800px; margin: 0 auto; padding: 0 24px; }
+
+        header {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 60px;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1.5rem;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            background: var(--accent);
+            color: white;
+            transition: all 0.2s;
+        }
+
+        .btn:hover { background: #2563eb; transform: translateY(-2px); }
+
+        article { padding-bottom: 80px; }
+
+        .breadcrumb {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+        }
+
+        .breadcrumb a { color: var(--accent); text-decoration: none; }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .meta {
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            font-size: 0.95rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 48px 0 20px;
+            color: var(--text-primary);
+        }
+
+        h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 32px 0 16px;
+            color: var(--text-primary);
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        ul, ol {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            padding-left: 24px;
+        }
+
+        li { margin-bottom: 12px; }
+
+        strong { color: var(--text-primary); }
+
+        .highlight {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 32px 0;
+        }
+
+        .highlight h3 {
+            font-size: 1.1rem;
+            margin: 0 0 12px 0;
+            color: var(--text-primary);
+        }
+
+        .highlight p:last-child, .highlight ul:last-child {
+            margin-bottom: 0;
+        }
+
+        .kbd {
+            display: inline-block;
+            padding: 2px 8px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+        }
+
+        code {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 2px 6px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+        }
+
+        pre {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 20px;
+            overflow-x: auto;
+            margin: 24px 0;
+        }
+
+        pre code {
+            background: none;
+            border: none;
+            padding: 0;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .cta-box h3 { font-size: 1.5rem; margin-bottom: 12px; color: white; }
+        .cta-box p { color: rgba(255,255,255,0.8); margin-bottom: 24px; }
+        .cta-box .btn { background: white; color: var(--accent); }
+
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer a { color: var(--text-secondary); text-decoration: none; }
+
+        .related-articles { margin-top: 60px; padding-top: 40px; border-top: 1px solid var(--border); }
+        .related-articles h2 { font-size: 1.5rem; margin-bottom: 24px; }
+        .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .related-card { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-decoration: none; transition: border-color 0.2s; }
+        .related-card:hover { border-color: var(--accent); }
+        .related-card h4 { color: white; font-size: 1rem; margin: 0 0 8px 0; }
+        .related-card p { color: var(--text-muted); font-size: 0.85rem; margin: 0; }
+        @media (max-width: 600px) { .related-grid { grid-template-columns: 1fr; } h1 { font-size: 1.8rem; } }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="../" class="logo">
+                <div class="logo-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round">
+                        <path d="M4 17l6-6-6-6M12 19h8"/>
+                    </svg>
+                </div>
+                Beam
+            </a>
+            <a href="../" class="btn">Download Beam</a>
+        </div>
+    </header>
+
+    <main class="container">
+        <article>
+            <div class="breadcrumb">
+                <a href="../">Beam</a> / <a href="../#guides">Guides</a> / Claude Code 2.1 Features
+            </div>
+
+            <h1>Claude Code 2.1: Agent Teams, 1M Context Windows, and 16 Features You Missed</h1>
+            <p class="meta">February 2026 &bull; 10 min read</p>
+
+            <p>Claude Code 2.1.0 dropped on January 8, 2026 with <strong>1,096 commits</strong> — making it the biggest single release in Claude Code history. Then, just weeks later, Anthropic rolled out Opus 4.6 with a 1M token context window beta. If you blinked, you missed a lot.</p>
+
+            <p>We dug through the changelogs, the GitHub discussions, and the community chatter to pull out every feature that matters. Here are the 16 most important things from the Claude Code 2.1 era — and how to actually use them.</p>
+
+            <h2>1. Agent Teams (Experimental)</h2>
+
+            <p>This is the headline feature. Agent Teams lets you <strong>spawn sub-agents from within a Claude Code session</strong>, each with their own context and task. Think of it as a lead developer delegating to junior devs — except the junior devs are also Claude.</p>
+
+            <p>In practice, you can tell Claude to &ldquo;refactor the auth module, update the tests, and fix the API docs&rdquo; and it will spin up parallel agents to handle each task simultaneously. The lead agent coordinates, merges results, and resolves conflicts.</p>
+
+            <div class="highlight">
+                <h3>What Agent Teams Enable</h3>
+                <ul>
+                    <li><strong>Parallel task execution</strong> — multiple files edited at once, across different parts of the codebase</li>
+                    <li><strong>Specialized sub-agents</strong> — one agent for code, another for tests, another for documentation</li>
+                    <li><strong>Coordinated planning</strong> — the lead agent creates a plan, delegates, then reviews the combined output</li>
+                </ul>
+            </div>
+
+            <p>Agent Teams is still marked as experimental, but early reports from developers running it on large monorepos are extremely promising. The key limitation right now is token cost — running 3-4 agents in parallel burns through your API budget quickly.</p>
+
+            <h2>2. 1M Token Context Window</h2>
+
+            <p>With the release of Opus 4.6, Claude Code gained access to a <strong>1 million token context window</strong> in beta. To put that in perspective, that is roughly 750,000 words — or an entire medium-sized codebase loaded into memory at once.</p>
+
+            <p>The practical implications are significant. Instead of Claude needing to search, read, and re-read files as it works, it can hold your entire project in context. This means fewer hallucinations about file locations, fewer &ldquo;let me check that file again&rdquo; round-trips, and a much deeper understanding of cross-file dependencies.</p>
+
+            <div class="highlight">
+                <h3>Best Use Cases for the 1M Window</h3>
+                <ul>
+                    <li><strong>Large refactors</strong> — rename a core abstraction across dozens of files with full awareness of every usage</li>
+                    <li><strong>Architecture reviews</strong> — load the entire codebase and ask Claude to identify design issues</li>
+                    <li><strong>Migration projects</strong> — move from one framework to another with the full source in context</li>
+                </ul>
+            </div>
+
+            <p>Note that the 1M window is in beta and requires Opus 4.6 to be selected as your model. Standard context limits still apply on older models.</p>
+
+            <h2>3. Skills Overhaul</h2>
+
+            <p>Skills got a major rework in 2.1. The old system was functional but rigid — you wrote a skill file, Claude loaded it, and that was it. The new system introduces three key improvements:</p>
+
+            <ul>
+                <li><strong>Forked context</strong> — skills can now run in their own context branch, so a skill that generates boilerplate does not pollute your main conversation history</li>
+                <li><strong>Hot reload</strong> — edit a skill file and Claude picks up the changes immediately without restarting the session</li>
+                <li><strong>Community skills marketplace</strong> — browse and install skills shared by other developers directly from the CLI with <code>/skills search</code></li>
+            </ul>
+
+            <p>If you have not looked at skills since the early days, it is worth revisiting. The ecosystem has matured significantly, with popular skills for Django scaffolding, React component generation, API endpoint creation, and more.</p>
+
+            <h2>4. Shift+Enter for Newlines</h2>
+
+            <p>This one sounds small but was the most requested feature on the Claude Code GitHub for months. Previously, pressing Enter always sent your message. Now, <span class="kbd">Shift+Enter</span> inserts a newline, letting you compose multi-line prompts without triggering submission.</p>
+
+            <p>If you write detailed prompts (and you should), this single change makes the daily experience dramatically better.</p>
+
+            <h2>5. Agents Continue When You Deny Tool Use</h2>
+
+            <p>Before 2.1, if Claude asked to use a tool (say, writing to a file) and you denied it, the entire flow would stall. Claude would just sit there or apologize and stop working.</p>
+
+            <p>Now, when you deny a tool use request, <strong>Claude adapts and continues</strong>. It will either find an alternative approach or explain what it wanted to do and ask how you would like to proceed. This makes the &ldquo;trust but verify&rdquo; workflow much smoother — you can deny risky operations without killing the agent&rsquo;s momentum.</p>
+
+            <h2>6. Wildcard Tool Permissions</h2>
+
+            <p>The permissions system got more granular. You can now set wildcard rules like &ldquo;allow all file reads in <code>src/</code>&rdquo; or &ldquo;deny all writes to <code>*.env</code>&rdquo; using glob patterns in your settings. This is particularly useful for teams that want to let agents work freely within certain boundaries.</p>
+
+            <div class="highlight">
+                <h3>Example Permission Rules</h3>
+                <p>In your <code>.claude/settings.json</code>, you can define patterns like:</p>
+                <ul>
+                    <li><code>src/**</code> — allow reads and writes</li>
+                    <li><code>*.env</code> — deny all access</li>
+                    <li><code>tests/**</code> — allow writes (let Claude create tests freely)</li>
+                    <li><code>infrastructure/**</code> — read only</li>
+                </ul>
+            </div>
+
+            <h2>7. /teleport to claude.ai/code</h2>
+
+            <p>The <code>/teleport</code> command creates a seamless handoff between the CLI and the web interface. Run <code>/teleport</code> in your terminal session and it generates a link that opens <strong>claude.ai/code</strong> with your full conversation context intact.</p>
+
+            <p>This is perfect for situations where you want to share your session with a teammate, switch to a device without CLI access, or simply prefer the web UI for reviewing a long conversation. The context transfer includes your file tree, recent changes, and conversation history.</p>
+
+            <h2>8. February Stability Update</h2>
+
+            <p>The February patch (2.1.x) focused on stability and performance. The highlights:</p>
+
+            <ul>
+                <li><strong>Session guards</strong> — if a session crashes mid-operation, Claude Code now recovers gracefully instead of losing your conversation</li>
+                <li><strong>Crash fixes</strong> — several edge cases that caused hard crashes on large file operations have been resolved</li>
+                <li><strong>Faster terminal rendering</strong> — output from Claude now streams noticeably faster, especially for long code blocks</li>
+                <li><strong>Reduced memory usage</strong> — long sessions no longer balloon in memory after hours of use</li>
+            </ul>
+
+            <p>If you experienced random crashes or sluggishness in January, update to the latest patch. The difference is real.</p>
+
+            <h2>9. Ten More Features Worth Knowing</h2>
+
+            <p>Beyond the headliners, the 1,096-commit release packed in a ton of smaller improvements. Here is the rapid-fire list:</p>
+
+            <ol>
+                <li><strong>Improved diff display</strong> — file diffs now show syntax-highlighted before/after views</li>
+                <li><strong>Git-aware context</strong> — Claude automatically reads your recent git history for better context on what you have been working on</li>
+                <li><strong>Faster file search</strong> — the internal file indexer is significantly quicker on large repos</li>
+                <li><strong>Better error recovery</strong> — when a command fails, Claude provides clearer explanations and retry options</li>
+                <li><strong>Model switching mid-session</strong> — swap between Sonnet, Opus, and Haiku without restarting</li>
+                <li><strong>Inline image support</strong> — paste screenshots directly into the CLI for visual debugging</li>
+                <li><strong>Workspace file pinning</strong> — pin important files so Claude always has them in context</li>
+                <li><strong>Streaming tool results</strong> — see command output in real-time instead of waiting for completion</li>
+                <li><strong>Custom system prompts</strong> — set per-project system prompts in <code>.claude/config.json</code> for consistent behavior</li>
+                <li><strong>Audit log</strong> — every tool use and file change is logged for compliance and review</li>
+            </ol>
+
+            <h2>10. Making the Most of These Features</h2>
+
+            <p>With this many new capabilities, the question is not &ldquo;what can Claude Code do?&rdquo; but &ldquo;how do I stay organized while using it?&rdquo;</p>
+
+            <p>Here are practical tips for getting the most out of the 2.1 release:</p>
+
+            <ul>
+                <li><strong>Start with permissions</strong> — before using Agent Teams or any multi-agent workflow, set up your wildcard tool permissions. You do not want a sub-agent accidentally deleting your production config.</li>
+                <li><strong>Use skills for repetitive tasks</strong> — if you find yourself giving Claude the same instructions across projects, write it as a skill. The hot-reload feature makes iteration fast.</li>
+                <li><strong>Organize your sessions</strong> — with Agent Teams spawning multiple processes, terminal organization becomes critical. Use a tool like Beam to keep each agent&rsquo;s output in its own workspace.</li>
+                <li><strong>Save your context</strong> — the 1M window is powerful, but sessions still end. Use project memory files to persist architecture decisions, conventions, and key context between sessions.</li>
+                <li><strong>Monitor your token usage</strong> — Agent Teams and the 1M context window can burn through tokens fast. Keep an eye on your Anthropic dashboard.</li>
+            </ul>
+
+            <div class="highlight">
+                <h3>Pro Tip: Agent Teams + Beam</h3>
+                <p>When running Agent Teams, each sub-agent runs in your terminal. Use Beam workspaces to give each agent its own tab. Name them by task — &ldquo;Agent: Tests&rdquo;, &ldquo;Agent: Refactor&rdquo;, &ldquo;Agent: Docs&rdquo; — so you can monitor each one independently and jump between them with <span class="kbd">&#8984;P</span>.</p>
+            </div>
+
+            <div class="cta-box">
+                <h3>Manage Your Claude Code 2.1 Sessions with Beam</h3>
+                <p>Agent Teams, parallel workflows, multiple sessions — keep it all organized with workspaces, layouts, and project memory. Free to try.</p>
+                <a href="../" class="btn">Download Beam Free</a>
+            </div>
+
+            <h2>Summary</h2>
+
+            <p>Claude Code 2.1 is a generational update. Agent Teams introduces true multi-agent collaboration. The 1M context window means Claude can finally understand your entire codebase at once. The skills overhaul makes custom workflows reusable and shareable. And dozens of quality-of-life improvements make the day-to-day experience significantly smoother.</p>
+
+            <p>The pace of development from the Claude Code team shows no signs of slowing down. If you are building software in 2026, this is the tool to watch — and the one to organize around.</p>
+
+            <div class="related-articles">
+                <h2>Related Articles</h2>
+                <div class="related-grid">
+                    <a href="beam-claude-code-setup.html" class="related-card">
+                        <h4>Setting Up Beam for Claude Code</h4>
+                        <p>Step-by-step guide to organizing your Claude Code workflow with Beam.</p>
+                    </a>
+                    <a href="multi-agent-coding-orchestration-guide.html" class="related-card">
+                        <h4>Multi-Agent Coding Orchestration</h4>
+                        <p>How to coordinate multiple AI agents working on the same codebase.</p>
+                    </a>
+                    <a href="anthropic-agentic-coding-trends-2026.html" class="related-card">
+                        <h4>Agentic Coding Trends in 2026</h4>
+                        <p>Where Anthropic and the industry are heading with AI-powered development.</p>
+                    </a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>
+                <a href="../">Beam</a> &bull; Terminal Organizer for macOS &bull;
+                <a href="mailto:frank@nextuptechnologies.co">Contact</a>
+            </p>
+
+            <p style="margin-top: 12px; font-size: 0.8rem;">
+                <a href="/privacy.html" style="color: #71717a; text-decoration: none;">Privacy Policy</a> &bull;
+                <a href="/terms.html" style="color: #71717a; text-decoration: none;">Terms of Service</a>
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>

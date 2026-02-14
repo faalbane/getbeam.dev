@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D0XH8B0RKL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-D0XH8B0RKL');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Managing Kubernetes Clusters in Beam: The DevOps Terminal Workflow | Beam</title>
+    <meta name="description" content="Organize kubectl, helm, terraform, and Claude Code across dev, staging, and production Kubernetes clusters using Beam workspaces. The DevOps terminal workflow that prevents cluster context mistakes.">
+    <meta name="keywords" content="Kubernetes terminal, kubectl terminal management, Kubernetes workflow, manage Kubernetes clusters terminal, DevOps terminal workflow, k8s terminal organizer, Claude Code Kubernetes">
+    <meta name="author" content="NextUp Technologies">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://getbeam.dev/blog/kubernetes-terminal-workflow-beam.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://getbeam.dev/blog/kubernetes-terminal-workflow-beam.html">
+    <meta property="og:title" content="Managing Kubernetes Clusters in Beam: The DevOps Terminal Workflow">
+    <meta property="og:description" content="Organize kubectl, helm, terraform, and Claude Code across dev, staging, and production Kubernetes clusters using Beam workspaces.">
+    <meta property="og:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Managing Kubernetes Clusters in Beam: The DevOps Terminal Workflow">
+    <meta name="twitter:description" content="Organize kubectl, helm, terraform, and Claude Code across dev, staging, and production Kubernetes clusters using Beam workspaces.">
+    <meta name="twitter:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Managing Kubernetes Clusters in Beam: The DevOps Terminal Workflow",
+        "description": "Organize kubectl, helm, terraform, and Claude Code across dev, staging, and production Kubernetes clusters using Beam workspaces. The DevOps terminal workflow that prevents cluster context mistakes.",
+        "author": {
+            "@type": "Organization",
+            "name": "NextUp Technologies"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Beam"
+        },
+        "datePublished": "2026-02-11",
+        "keywords": "Kubernetes terminal, kubectl terminal management, Kubernetes workflow, manage Kubernetes clusters terminal, DevOps terminal workflow, k8s terminal organizer"
+    }
+    </script>
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #111113;
+            --bg-tertiary: #1a1a1d;
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.4);
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --border: #27272a;
+            --success: #22c55e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        header {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 60px;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1.5rem;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            background: var(--accent);
+            color: white;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+        }
+
+        article {
+            padding-bottom: 80px;
+        }
+
+        .breadcrumb {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+        }
+
+        .breadcrumb a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .meta {
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            font-size: 0.95rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 48px 0 20px;
+            color: var(--text-primary);
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        ul, ol {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            padding-left: 24px;
+        }
+
+        li {
+            margin-bottom: 12px;
+        }
+
+        .highlight {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 32px 0;
+        }
+
+        .highlight h3 {
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .kbd {
+            display: inline-block;
+            padding: 2px 8px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+        }
+
+        code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            background: var(--bg-tertiary);
+            padding: 2px 6px;
+            border-radius: 4px;
+            border: 1px solid var(--border);
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .cta-box h3 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+        }
+
+        .cta-box p {
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 24px;
+        }
+
+        .cta-box .btn {
+            background: white;
+            color: var(--accent);
+        }
+
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+
+        .related-articles { margin-top: 60px; padding-top: 40px; border-top: 1px solid var(--border); }
+        .related-articles h2 { font-size: 1.5rem; margin-bottom: 24px; }
+        .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .related-card { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-decoration: none; transition: border-color 0.2s; }
+        .related-card:hover { border-color: var(--accent); }
+        .related-card h4 { color: white; font-size: 1rem; margin: 0 0 8px 0; }
+        .related-card p { color: var(--text-muted); font-size: 0.85rem; margin: 0; }
+        @media (max-width: 600px) { .related-grid { grid-template-columns: 1fr; } h1 { font-size: 1.8rem; } }
+
+        .blog-visual {
+            margin: 40px 0;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        .blog-visual svg {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="../" class="logo">
+                <div class="logo-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round">
+                        <path d="M4 17l6-6-6-6M12 19h8"/>
+                    </svg>
+                </div>
+                Beam
+            </a>
+            <a href="../" class="btn">Download Beam</a>
+        </div>
+    </header>
+
+    <main>
+        <article class="container">
+            <div class="breadcrumb">
+                <a href="../">Beam</a> / <a href="../#guides">Guides</a> / Kubernetes Terminal Workflow
+            </div>
+
+            <h1>Managing Kubernetes Clusters in Beam: The DevOps Terminal Workflow</h1>
+            <p class="meta">February 2026 &bull; 12 min read</p>
+
+            <p>DevOps engineers live in the terminal. On any given day, you're running <code>kubectl</code> against three different clusters, tailing logs with <code>stern</code>, deploying Helm charts, writing Terraform modules, building Docker images, and debugging failing pods. Each Kubernetes cluster -- dev, staging, production -- needs its own terminal context, its own <code>kubectl</code> configuration, its own set of running commands. Add Claude Code to the mix for generating configs, writing IaC, and diagnosing incidents, and you're suddenly managing fifteen or more terminal sessions with no structure whatsoever.</p>
+
+            <p>Beam fixes this. By organizing your Kubernetes workflow into dedicated workspaces -- one per cluster environment, one for infrastructure -- you eliminate the single most dangerous problem in DevOps: running a command against the wrong cluster. Here's the complete workflow.</p>
+
+            <div class="blog-visual">
+                <svg viewBox="0 0 800 460" xmlns="http://www.w3.org/2000/svg" fill="none">
+                    <!-- Window background -->
+                    <rect width="800" height="460" rx="12" fill="#0a0a0b"/>
+                    <rect x="0.5" y="0.5" width="799" height="459" rx="11.5" stroke="#27272a"/>
+
+                    <!-- Title bar -->
+                    <rect x="1" y="1" width="798" height="36" rx="11" fill="#111113"/>
+                    <line x1="0" y1="37" x2="800" y2="37" stroke="#27272a"/>
+                    <!-- Window dots -->
+                    <circle cx="20" cy="19" r="5" fill="#ef4444" opacity="0.8"/>
+                    <circle cx="38" cy="19" r="5" fill="#eab308" opacity="0.8"/>
+                    <circle cx="56" cy="19" r="5" fill="#22c55e" opacity="0.8"/>
+                    <!-- Window title -->
+                    <text x="400" y="23" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-size="12" fill="#a1a1aa" font-weight="500">Beam -- Kubernetes Workflow</text>
+
+                    <!-- Workspace switcher bar -->
+                    <rect x="1" y="37" width="798" height="32" fill="#0a0a0b"/>
+                    <line x1="0" y1="69" x2="800" y2="69" stroke="#27272a"/>
+
+                    <!-- Workspace: Dev Cluster (active, green) -->
+                    <rect x="12" y="42" width="130" height="24" rx="6" fill="#1a1a1d"/>
+                    <rect x="12.5" y="42.5" width="129" height="23" rx="5.5" stroke="#22c55e" stroke-opacity="0.6"/>
+                    <circle cx="26" cy="54" r="4" fill="#22c55e"/>
+                    <!-- K8s helm icon mini -->
+                    <path d="M38 49l4 3-4 3z" fill="#22c55e" opacity="0.8"/>
+                    <text x="48" y="58" font-family="Space Grotesk, sans-serif" font-size="10.5" fill="#fafafa" font-weight="600">Dev Cluster</text>
+
+                    <!-- Workspace: Staging (yellow) -->
+                    <rect x="152" y="42" width="120" height="24" rx="6" fill="#111113"/>
+                    <circle cx="166" cy="54" r="4" fill="#eab308"/>
+                    <path d="M178 49l4 3-4 3z" fill="#eab308" opacity="0.8"/>
+                    <text x="188" y="58" font-family="Space Grotesk, sans-serif" font-size="10.5" fill="#a1a1aa" font-weight="500">Staging</text>
+
+                    <!-- Workspace: Production (red) -->
+                    <rect x="282" y="42" width="130" height="24" rx="6" fill="#111113"/>
+                    <circle cx="296" cy="54" r="4" fill="#ef4444"/>
+                    <path d="M308 49l4 3-4 3z" fill="#ef4444" opacity="0.8"/>
+                    <text x="318" y="58" font-family="Space Grotesk, sans-serif" font-size="10.5" fill="#a1a1aa" font-weight="500">Production</text>
+
+                    <!-- Workspace: Infrastructure (blue) -->
+                    <rect x="422" y="42" width="140" height="24" rx="6" fill="#111113"/>
+                    <circle cx="436" cy="54" r="4" fill="#326CE5"/>
+                    <path d="M448 49l4 3-4 3z" fill="#326CE5" opacity="0.8"/>
+                    <text x="458" y="58" font-family="Space Grotesk, sans-serif" font-size="10.5" fill="#a1a1aa" font-weight="500">Infrastructure</text>
+
+                    <!-- Tab bar -->
+                    <rect x="1" y="69" width="798" height="32" fill="#0a0a0b"/>
+                    <line x1="0" y1="101" x2="800" y2="101" stroke="#27272a"/>
+
+                    <!-- Tab 1: Claude Code (active) -->
+                    <rect x="8" y="74" width="130" height="24" rx="6" fill="#1a1a1d"/>
+                    <rect x="8.5" y="74.5" width="129" height="23" rx="5.5" stroke="#D97706" stroke-opacity="0.5"/>
+                    <circle cx="22" cy="86" r="3" fill="#D97706"/>
+                    <path d="M34 82l1.5 3 1.5-3 3 1.5-3 1.5 3 1.5-3-1.5-1.5 3-1.5-3-3-1.5z" fill="#D97706" opacity="0.9"/>
+                    <text x="46" y="90" font-family="Space Grotesk, sans-serif" font-size="10.5" fill="#fafafa" font-weight="500">Claude Code</text>
+
+                    <!-- Tab 2: kubectl -->
+                    <rect x="146" y="74" width="100" height="24" rx="6" fill="#111113"/>
+                    <circle cx="160" cy="86" r="3" fill="#326CE5"/>
+                    <text x="170" y="90" font-family="Space Grotesk, sans-serif" font-size="10.5" fill="#a1a1aa" font-weight="500">kubectl</text>
+
+                    <!-- Tab 3: stern logs -->
+                    <rect x="254" y="74" width="110" height="24" rx="6" fill="#111113"/>
+                    <circle cx="268" cy="86" r="3" fill="#326CE5"/>
+                    <text x="278" y="90" font-family="Space Grotesk, sans-serif" font-size="10.5" fill="#a1a1aa" font-weight="500">stern logs</text>
+
+                    <!-- Tab 4: helm -->
+                    <rect x="372" y="74" width="90" height="24" rx="6" fill="#111113"/>
+                    <circle cx="386" cy="86" r="3" fill="#326CE5"/>
+                    <text x="396" y="90" font-family="Space Grotesk, sans-serif" font-size="10.5" fill="#a1a1aa" font-weight="500">helm</text>
+
+                    <!-- Divider between panes -->
+                    <line x1="400" y1="101" x2="400" y2="460" stroke="#27272a"/>
+
+                    <!-- LEFT PANE: Claude Code generating K8s deployment -->
+                    <rect x="1" y="101" width="399" height="358" fill="#0a0a0b"/>
+
+                    <!-- Left pane header -->
+                    <rect x="1" y="101" width="399" height="24" fill="#111113"/>
+                    <text x="16" y="117" font-family="JetBrains Mono, monospace" font-size="10" fill="#D97706" font-weight="500">Claude Code</text>
+                    <text x="110" y="117" font-family="JetBrains Mono, monospace" font-size="10" fill="#71717a">~/infra/k8s</text>
+
+                    <!-- Claude Code output -->
+                    <text x="16" y="145" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#71717a">$</text>
+                    <text x="28" y="145" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#a1a1aa">Generate a deployment for</text>
+                    <text x="28" y="162" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#a1a1aa">go-api with 3 replicas + HPA</text>
+
+                    <text x="16" y="185" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#D97706">Writing deployment.yaml...</text>
+
+                    <text x="16" y="210" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#71717a">1</text>
+                    <text x="32" y="210" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#8b5cf6">apiVersion:</text>
+                    <text x="110" y="210" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#a1a1aa"> apps/v1</text>
+
+                    <text x="16" y="228" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#71717a">2</text>
+                    <text x="32" y="228" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#8b5cf6">kind:</text>
+                    <text x="72" y="228" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#a1a1aa"> Deployment</text>
+
+                    <text x="16" y="246" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#71717a">3</text>
+                    <text x="32" y="246" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#8b5cf6">metadata:</text>
+
+                    <text x="16" y="264" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#71717a">4</text>
+                    <text x="32" y="264" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#a1a1aa">  name:</text>
+                    <text x="82" y="264" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#22c55e"> go-api</text>
+
+                    <text x="16" y="282" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#71717a">5</text>
+                    <text x="32" y="282" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#8b5cf6">spec:</text>
+
+                    <text x="16" y="300" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#71717a">6</text>
+                    <text x="32" y="300" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#a1a1aa">  replicas:</text>
+                    <text x="110" y="300" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#eab308"> 3</text>
+
+                    <text x="16" y="318" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#71717a">7</text>
+                    <text x="32" y="318" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#a1a1aa">  selector:</text>
+
+                    <text x="16" y="336" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#71717a">8</text>
+                    <text x="32" y="336" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#a1a1aa">    matchLabels:</text>
+
+                    <text x="16" y="354" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#71717a">9</text>
+                    <text x="32" y="354" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#a1a1aa">      app:</text>
+                    <text x="82" y="354" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#22c55e"> go-api</text>
+
+                    <!-- Blinking cursor -->
+                    <rect x="16" y="370" width="7" height="14" rx="1" fill="#D97706" opacity="0.8">
+                        <animate attributeName="opacity" values="0.8;0;0.8" dur="1.2s" repeatCount="indefinite"/>
+                    </rect>
+
+                    <!-- RIGHT PANE: kubectl output -->
+                    <rect x="400" y="101" width="399" height="358" fill="#0a0a0b"/>
+
+                    <!-- Right pane header -->
+                    <rect x="400" y="101" width="399" height="24" fill="#111113"/>
+                    <text x="416" y="117" font-family="JetBrains Mono, monospace" font-size="10" fill="#326CE5" font-weight="500">kubectl</text>
+                    <text x="475" y="117" font-family="JetBrains Mono, monospace" font-size="10" fill="#71717a">ctx: dev-cluster</text>
+
+                    <!-- kubectl output -->
+                    <text x="416" y="145" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#71717a">$</text>
+                    <text x="428" y="145" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#a1a1aa">kubectl get pods -n api</text>
+
+                    <text x="416" y="170" font-family="JetBrains Mono, monospace" font-size="10" fill="#71717a">NAME</text>
+                    <text x="570" y="170" font-family="JetBrains Mono, monospace" font-size="10" fill="#71717a">READY</text>
+                    <text x="630" y="170" font-family="JetBrains Mono, monospace" font-size="10" fill="#71717a">STATUS</text>
+                    <text x="710" y="170" font-family="JetBrains Mono, monospace" font-size="10" fill="#71717a">AGE</text>
+
+                    <!-- Pod 1 -->
+                    <text x="416" y="190" font-family="JetBrains Mono, monospace" font-size="10" fill="#a1a1aa">go-api-6d8f9b-xk2m4</text>
+                    <text x="570" y="190" font-family="JetBrains Mono, monospace" font-size="10" fill="#a1a1aa">1/1</text>
+                    <text x="630" y="190" font-family="JetBrains Mono, monospace" font-size="10" fill="#22c55e">Running</text>
+                    <text x="710" y="190" font-family="JetBrains Mono, monospace" font-size="10" fill="#71717a">4m</text>
+
+                    <!-- Pod 2 -->
+                    <text x="416" y="208" font-family="JetBrains Mono, monospace" font-size="10" fill="#a1a1aa">go-api-6d8f9b-np7r2</text>
+                    <text x="570" y="208" font-family="JetBrains Mono, monospace" font-size="10" fill="#a1a1aa">1/1</text>
+                    <text x="630" y="208" font-family="JetBrains Mono, monospace" font-size="10" fill="#22c55e">Running</text>
+                    <text x="710" y="208" font-family="JetBrains Mono, monospace" font-size="10" fill="#71717a">4m</text>
+
+                    <!-- Pod 3 -->
+                    <text x="416" y="226" font-family="JetBrains Mono, monospace" font-size="10" fill="#a1a1aa">go-api-6d8f9b-jw9t1</text>
+                    <text x="570" y="226" font-family="JetBrains Mono, monospace" font-size="10" fill="#a1a1aa">1/1</text>
+                    <text x="630" y="226" font-family="JetBrains Mono, monospace" font-size="10" fill="#22c55e">Running</text>
+                    <text x="710" y="226" font-family="JetBrains Mono, monospace" font-size="10" fill="#71717a">4m</text>
+
+                    <!-- Separator -->
+                    <line x1="416" y1="240" x2="784" y2="240" stroke="#27272a" stroke-dasharray="3,3"/>
+
+                    <!-- HPA output -->
+                    <text x="416" y="260" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#71717a">$</text>
+                    <text x="428" y="260" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#a1a1aa">kubectl get hpa -n api</text>
+
+                    <text x="416" y="285" font-family="JetBrains Mono, monospace" font-size="10" fill="#71717a">NAME</text>
+                    <text x="510" y="285" font-family="JetBrains Mono, monospace" font-size="10" fill="#71717a">MIN</text>
+                    <text x="548" y="285" font-family="JetBrains Mono, monospace" font-size="10" fill="#71717a">MAX</text>
+                    <text x="586" y="285" font-family="JetBrains Mono, monospace" font-size="10" fill="#71717a">REPLICAS</text>
+                    <text x="665" y="285" font-family="JetBrains Mono, monospace" font-size="10" fill="#71717a">CPU</text>
+
+                    <text x="416" y="305" font-family="JetBrains Mono, monospace" font-size="10" fill="#a1a1aa">go-api-hpa</text>
+                    <text x="510" y="305" font-family="JetBrains Mono, monospace" font-size="10" fill="#eab308">3</text>
+                    <text x="548" y="305" font-family="JetBrains Mono, monospace" font-size="10" fill="#eab308">10</text>
+                    <text x="586" y="305" font-family="JetBrains Mono, monospace" font-size="10" fill="#22c55e">3</text>
+                    <text x="665" y="305" font-family="JetBrains Mono, monospace" font-size="10" fill="#a1a1aa">23%/70%</text>
+
+                    <!-- stern logs snippet -->
+                    <line x1="416" y1="320" x2="784" y2="320" stroke="#27272a" stroke-dasharray="3,3"/>
+
+                    <text x="416" y="340" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#71717a">$</text>
+                    <text x="428" y="340" font-family="JetBrains Mono, monospace" font-size="10.5" fill="#a1a1aa">stern go-api -n api</text>
+
+                    <text x="416" y="362" font-family="JetBrains Mono, monospace" font-size="9.5" fill="#22c55e">go-api-xk2m4</text>
+                    <text x="520" y="362" font-family="JetBrains Mono, monospace" font-size="9.5" fill="#71717a">|</text>
+                    <text x="530" y="362" font-family="JetBrains Mono, monospace" font-size="9.5" fill="#a1a1aa">GET /health 200 1ms</text>
+
+                    <text x="416" y="380" font-family="JetBrains Mono, monospace" font-size="9.5" fill="#326CE5">go-api-np7r2</text>
+                    <text x="520" y="380" font-family="JetBrains Mono, monospace" font-size="9.5" fill="#71717a">|</text>
+                    <text x="530" y="380" font-family="JetBrains Mono, monospace" font-size="9.5" fill="#a1a1aa">POST /api/v1/users 201 24ms</text>
+
+                    <text x="416" y="398" font-family="JetBrains Mono, monospace" font-size="9.5" fill="#eab308">go-api-jw9t1</text>
+                    <text x="520" y="398" font-family="JetBrains Mono, monospace" font-size="9.5" fill="#71717a">|</text>
+                    <text x="530" y="398" font-family="JetBrains Mono, monospace" font-size="9.5" fill="#a1a1aa">GET /api/v1/orders 200 8ms</text>
+
+                    <!-- Bottom status bar -->
+                    <rect x="1" y="435" width="798" height="24" rx="0" fill="#111113"/>
+                    <circle cx="16" cy="447" r="4" fill="#22c55e"/>
+                    <text x="26" y="451" font-family="JetBrains Mono, monospace" font-size="10" fill="#22c55e">dev-cluster</text>
+                    <text x="120" y="451" font-family="JetBrains Mono, monospace" font-size="10" fill="#71717a">|</text>
+                    <text x="135" y="451" font-family="JetBrains Mono, monospace" font-size="10" fill="#71717a">ns: api</text>
+                    <text x="610" y="451" font-family="JetBrains Mono, monospace" font-size="10" fill="#71717a">4 tabs</text>
+                    <text x="670" y="451" font-family="JetBrains Mono, monospace" font-size="10" fill="#71717a">2 panes</text>
+                    <text x="745" y="451" font-family="JetBrains Mono, monospace" font-size="10" fill="#22c55e">Saved</text>
+                </svg>
+            </div>
+
+            <h2>The Kubernetes Terminal Problem</h2>
+
+            <p>Every DevOps engineer knows this scenario. You have fifteen terminals open. Some are running <code>kubectl</code>, some are tailing logs with <code>stern</code>, one is running a <code>helm upgrade</code>, another has a Terraform plan in progress, and somewhere in the chaos there's a terminal where you're building a Docker image. They all look the same: monospace text on a dark background with no labels and no grouping.</p>
+
+            <p>The problem is not just disorganization -- it's danger. Kubernetes contexts are invisible. You think you're pointing at the dev cluster, but your <code>kubectl</code> context was set to production three hours ago when you were investigating an issue and never switched back. You run <code>kubectl delete deployment api-gateway</code> and the next thing you hear is the on-call Slack channel exploding. You just took down production.</p>
+
+            <p>This is not a hypothetical. Context switching between clusters is the number one cause of accidental production incidents in Kubernetes environments. The tools themselves provide almost no guardrails. Your terminal prompt might show the current context if you've configured it, but once you have a dozen terminals open, you're not reading prompts anymore. You're muscle-memorying your way through commands at speed, and that's exactly when mistakes happen.</p>
+
+            <p>Now add Claude Code to the equation. You're asking Claude to generate deployment manifests, write Helm charts, debug CrashLoopBackOff errors, and create Terraform modules. Each of those conversations needs its own terminal. Claude Code is generating YAML that you're going to <code>kubectl apply</code> somewhere, and if "somewhere" is the wrong cluster because you lost track of which terminal is which, you have a problem that no amount of AI assistance can undo.</p>
+
+            <h2>The Workspace-Per-Cluster Model</h2>
+
+            <p>The solution is architectural. Instead of running all your Kubernetes terminals in a flat, unlabeled pile, you create one Beam workspace per cluster environment. Each workspace is a self-contained context for a single environment, and switching between them is a deliberate, visible action rather than a silent, invisible <code>kubectl config use-context</code> buried in a terminal you're not looking at.</p>
+
+            <p>Here's the model:</p>
+
+            <p><strong>Workspace "Dev Cluster" (Green)</strong></p>
+            <ul>
+                <li>Tab 1: Claude Code -- generating and iterating on Kubernetes manifests for development</li>
+                <li>Tab 2: <code>kubectl</code> -- pointed at the dev cluster context, for applying manifests and checking resources</li>
+                <li>Tab 3: <code>stern</code> -- tailing logs from the dev namespace, color-coded by pod</li>
+                <li>Tab 4: <code>helm</code> -- managing Helm releases in the dev environment</li>
+            </ul>
+
+            <p><strong>Workspace "Staging" (Yellow)</strong></p>
+            <ul>
+                <li>Tab 1: Claude Code -- debugging staging-specific issues, generating configs with staging values</li>
+                <li>Tab 2: <code>kubectl</code> -- pointed at the staging cluster, for deployment verification and rollbacks</li>
+                <li>Tab 3: <code>stern</code> -- tailing staging logs, watching for integration test failures</li>
+                <li>Tab 4: <code>helm</code> -- managing staging Helm releases with staging-specific values</li>
+            </ul>
+
+            <p><strong>Workspace "Production" (Red)</strong></p>
+            <ul>
+                <li>Tab 1: Claude Code -- analyzing production logs, diagnosing incidents, generating hotfixes</li>
+                <li>Tab 2: <code>kubectl</code> -- read-heavy operations in production: <code>get</code>, <code>describe</code>, <code>top</code></li>
+                <li>Tab 3: <code>stern</code> -- tailing production logs, filtering by error level</li>
+                <li>Tab 4: <code>k9s</code> -- real-time cluster dashboard for production overview</li>
+            </ul>
+
+            <p><strong>Workspace "Infrastructure" (Blue)</strong></p>
+            <ul>
+                <li>Tab 1: Claude Code -- writing Terraform modules, generating IaC, creating CI/CD configs</li>
+                <li>Tab 2: Terraform -- running <code>terraform plan</code> and <code>terraform apply</code></li>
+                <li>Tab 3: Docker -- building and pushing container images</li>
+                <li>Tab 4: Git -- version control for infrastructure-as-code repositories</li>
+            </ul>
+
+            <p>The color coding is critical. When you switch to the Production workspace, the red indicator is an immediate visual signal that you're operating in the danger zone. It's the terminal equivalent of painting the production server rack red. You never forget where you are because the environment tells you.</p>
+
+            <div class="highlight">
+                <h3>Pro Tip: Set kubectl Context Per Workspace</h3>
+                <p>In each workspace's first terminal, run <code>export KUBECONFIG=~/.kube/config-dev</code> (or staging, prod) to ensure every tab in that workspace inherits the correct cluster context. Combined with Beam's workspace color coding, this makes cross-cluster mistakes nearly impossible. You can also add <code>kubectl config use-context dev-cluster</code> to your shell startup for each workspace's saved layout.</p>
+            </div>
+
+            <h2>Using Claude Code for Kubernetes</h2>
+
+            <p>Claude Code is remarkably effective at Kubernetes work. It understands the Kubernetes API, knows the YAML schema for every resource type, and can generate production-quality manifests from plain-language descriptions. But the real power comes from having it operate within a structured workspace where you can immediately test what it generates.</p>
+
+            <p>Here are the prompts that DevOps engineers use most often with Claude Code in a Kubernetes workflow:</p>
+
+            <p><strong>Generating deployments with best practices:</strong> "Generate a Kubernetes deployment for a Go API with 3 replicas, CPU and memory resource limits, liveness and readiness health checks on /health, and a Horizontal Pod Autoscaler that scales to 10 replicas at 70% CPU." Claude doesn't just generate the Deployment YAML. It creates the HPA as a separate resource, sets sensible resource requests alongside the limits, configures the health check endpoints with appropriate initial delay seconds and period seconds, and adds standard labels for service discovery.</p>
+
+            <p><strong>Writing Helm charts:</strong> "Write a Helm chart for this service with values files for dev, staging, and prod. Dev should have 1 replica with no resource limits. Staging should have 2 replicas with moderate limits. Prod should have 3 replicas with strict limits and pod disruption budgets." Claude generates the entire chart structure -- <code>Chart.yaml</code>, templates with Go templating, and three separate <code>values-*.yaml</code> files with environment-appropriate configurations.</p>
+
+            <p><strong>Debugging CrashLoopBackOff:</strong> Copy your pod logs from the <code>stern</code> tab and paste them into Claude Code: "This pod is in CrashLoopBackOff. Here are the last 50 lines of logs." Claude reads the stack trace, identifies the root cause -- maybe a missing environment variable, a failed database migration, or an OOM kill -- and suggests the specific fix. If it's an OOM kill, Claude will recommend updated resource limits. If it's a missing config, Claude will generate the ConfigMap or Secret you need.</p>
+
+            <p><strong>Network policies:</strong> "Create a NetworkPolicy that only allows ingress traffic to the API pods from the API gateway namespace, and egress traffic to the Postgres service on port 5432 and the Redis service on port 6379." Network policies are one of the most syntax-heavy resources in Kubernetes, and getting the label selectors, namespace selectors, and port specifications right is tedious. Claude handles it cleanly.</p>
+
+            <p><strong>Terraform for cluster provisioning:</strong> "Write a Terraform module for an EKS cluster with managed node groups, using m5.xlarge instances, autoscaling from 3 to 10 nodes, with the VPC CNI and CoreDNS add-ons." Claude generates the module with proper variable definitions, the EKS cluster resource, node group configuration, IAM roles with the minimum required policies, and outputs for the cluster endpoint and certificate authority.</p>
+
+            <h2>Split Pane Workflows for Kubernetes</h2>
+
+            <p>Split panes are where Beam's workspace model becomes a genuine operational advantage for Kubernetes work. Instead of switching between tabs or windows to see cause and effect, you put the cause in one pane and the effect in the other. The feedback loop is immediate and visual.</p>
+
+            <p><strong>Left: Claude Code generating YAML. Right: <code>kubectl apply</code> watching it deploy.</strong> Claude writes a deployment manifest. You copy it, paste it into the right pane with <code>kubectl apply -f -</code>, and watch the pods come up in real time. If the deployment fails -- image pull error, resource quota exceeded, invalid YAML -- the error appears right next to Claude, who can read it and produce a corrected manifest without you switching contexts.</p>
+
+            <p><strong>Left: <code>stern</code> following pod logs. Right: Claude Code analyzing errors.</strong> The logs stream on the left. You see a pattern -- repeated connection timeouts, memory warnings, or a specific error message appearing across multiple pods. You copy the relevant lines, paste them into Claude on the right. Claude reads the log pattern, identifies the root cause, and suggests the fix. The conversation happens in real time alongside the live logs.</p>
+
+            <p><strong>Top: <code>k9s</code> cluster overview. Bottom: Claude Code writing fixes.</strong> You're watching the cluster dashboard and notice a node is running hot, or a deployment's available replicas just dropped. In the bottom pane, you ask Claude what's happening: "The go-api deployment shows 2/3 replicas available and one pod is in CrashLoopBackOff. Here's the describe output." Claude diagnoses and fixes while you watch the cluster recover in real time above.</p>
+
+            <p>Press <span class="kbd">⌘⌥⌃T</span> to split any tab into panes. This keyboard shortcut becomes muscle memory fast when you're doing Kubernetes operations all day. Every tab in your workspace can become a two-pane workstation tuned to a specific task.</p>
+
+            <h2>Helm Chart Development</h2>
+
+            <p>Helm charts are one of the areas where the workspace-per-cluster model pays for itself immediately. A typical Helm chart development workflow involves generating templates, testing them against different environments, and iterating on values files until the configuration is correct for each target cluster. Without organization, this means running <code>helm template</code> and <code>helm install</code> commands in random terminals, constantly switching kubectl contexts, and losing track of which environment you last deployed to.</p>
+
+            <p>In Beam, the workflow is clean. You develop the chart in the Dev Cluster workspace. Claude Code generates the templates and base values in one tab. You run <code>helm template . -f values-dev.yaml</code> in the helm tab to verify the rendered YAML looks correct. Then you run <code>helm upgrade --install my-service . -f values-dev.yaml</code> and check the stern tab to confirm the pods are healthy.</p>
+
+            <p>When the chart works in dev, you switch to the Staging workspace with <span class="kbd">⌘⌥→</span>. The context switches visually and operationally. Your kubectl tab is already pointed at the staging cluster. You run <code>helm upgrade --install my-service . -f values-staging.yaml</code> here, and any staging-specific issues surface immediately in the staging stern tab. If something fails, you switch back to the Dev workspace where Claude Code is still running, describe the staging failure, and Claude updates the templates or values file to handle the difference.</p>
+
+            <p>The values files for each environment are where Claude Code really accelerates the process. Tell Claude: "The staging environment uses an internal load balancer annotation instead of a public one, the database endpoint is different, and we need to add a podAntiAffinity rule for high availability." Claude updates the values-staging.yaml with the correct annotations, endpoints, and affinity rules without touching the values-dev.yaml that's already working.</p>
+
+            <div class="highlight">
+                <h3>Pro Tip: Helm Diff Before Deploy</h3>
+                <p>Install the <code>helm-diff</code> plugin and keep a split pane showing <code>helm diff upgrade my-service . -f values-staging.yaml</code> before you run the actual upgrade. You'll see exactly what changes Helm is about to make to your cluster. Combined with Claude Code explaining what each change does, this gives you a complete audit trail before any manifest hits the cluster.</p>
+            </div>
+
+            <h2>Terraform with Beam</h2>
+
+            <p>Infrastructure provisioning with Terraform follows the same workspace model, but the workspaces map to infrastructure layers rather than cluster environments. Your cloud infrastructure has layers -- networking, compute, database, monitoring, security -- and each layer has its own Terraform state, its own variables, and its own blast radius if something goes wrong. Mixing them in the same terminal context is asking for trouble.</p>
+
+            <p><strong>Workspace "Networking":</strong> Claude Code writing VPC configurations, subnet layouts, NAT gateways, and security groups. A Terraform tab running <code>terraform plan</code> to preview changes. A split pane showing the plan output next to Claude's explanation of what each change means.</p>
+
+            <p><strong>Workspace "Compute":</strong> Claude Code generating EKS cluster configurations, node group definitions, and instance type selections. Terraform tab for planning and applying. A kubectl tab to verify the cluster comes up correctly after provisioning.</p>
+
+            <p><strong>Workspace "Database":</strong> Claude Code writing RDS configurations, ElastiCache setups, and backup policies. Terraform tab for the database layer. A terminal for connectivity testing -- can the cluster reach the database on the right port?</p>
+
+            <p><strong>Workspace "Monitoring":</strong> Claude Code generating Prometheus rules, Grafana dashboard JSON, and alerting configurations. Terraform tab for deploying the monitoring stack. A browser-testing terminal for verifying dashboards load correctly.</p>
+
+            <p>The split-pane workflow is especially valuable for Terraform. In the left pane, Claude Code generates a Terraform module. In the right pane, you run <code>terraform plan</code> and see the exact resources that will be created, modified, or destroyed. If the plan shows unexpected changes -- a resource being replaced when you expected an in-place update -- you ask Claude about it in the left pane. Claude reads the plan output and explains why Terraform wants to replace the resource (maybe a computed attribute changed, or you modified an immutable field). This back-and-forth between Claude and Terraform happens entirely within a single tab, with no window switching.</p>
+
+            <h2>Incident Response Workflow</h2>
+
+            <p>When something breaks in production at 3 AM, organization is not a luxury -- it's the difference between a five-minute fix and a fifty-minute scramble. The workspace model shines during incidents because every tool you need is already in the right place, labeled, and ready to go.</p>
+
+            <p>Here's the incident response workflow step by step:</p>
+
+            <ol>
+                <li><strong>Switch to the Production workspace.</strong> Press <span class="kbd">⌘P</span>, type "prod," hit Enter. You're immediately in the Production context. The red workspace indicator confirms you're in the right place. No fumbling with <code>kubectl config use-context</code>, no wondering which terminal is pointed where.</li>
+                <li><strong>Check pod status.</strong> Your kubectl tab is already pointed at the production cluster. Run <code>kubectl get pods -n api --field-selector=status.phase!=Running</code> to see what's unhealthy. You immediately see three pods in CrashLoopBackOff.</li>
+                <li><strong>Tail the logs.</strong> Switch to the stern tab. It's already configured to tail the right namespace. Run <code>stern go-api -n api --since 5m</code> to see recent log output. You spot a panic: nil pointer dereference at a specific line in the handler code.</li>
+                <li><strong>Ask Claude Code to diagnose.</strong> Switch to the Claude Code tab. Paste the panic trace: "Three pods are crash-looping in production. Here's the stack trace from stern." Claude reads the trace, identifies the nil pointer dereference, and traces it to a recent code change that didn't handle a nullable field from the database correctly.</li>
+                <li><strong>Generate the fix.</strong> Claude produces a corrected handler with proper nil checks. You review it, apply it to the codebase, build a new image, and push it to the registry.</li>
+                <li><strong>Deploy and verify.</strong> Back in the kubectl tab, run <code>kubectl set image deployment/go-api go-api=registry/go-api:hotfix-1</code>. Switch to stern and watch the new pods come up with healthy logs. Verify in k9s that all replicas are running.</li>
+                <li><strong>Document the incident.</strong> Ask Claude Code to generate an incident report based on the timeline: root cause, impact, fix applied, and follow-up items. Claude produces a structured post-mortem document you can paste directly into your incident tracking system.</li>
+            </ol>
+
+            <p>The entire incident lifecycle -- detection, diagnosis, fix, deployment, verification, documentation -- happens within a single workspace with clearly labeled tabs. No context switching, no wondering which cluster you're looking at, no accidentally running a fix against staging when you meant production.</p>
+
+            <div class="highlight">
+                <h3>Pro Tip: Save an Incident Response Layout</h3>
+                <p>Create a dedicated "Incident Response" saved layout with the production workspace pre-configured: kubectl in one split pane, stern in the other, Claude Code in a separate tab, and k9s in a third tab. When an incident hits, restore the layout with <span class="kbd">⌘S</span> and you're ready to investigate in seconds instead of spending the first five minutes of an outage setting up your terminals.</p>
+            </div>
+
+            <h2>GitOps with ArgoCD and Flux</h2>
+
+            <p>GitOps workflows add another layer of terminal complexity to Kubernetes operations. Instead of applying manifests directly with <code>kubectl</code>, you push changes to a Git repository and let ArgoCD or Flux sync them to the cluster. This means you need terminals for Git operations, terminals for watching sync status, and terminals for Claude Code generating the manifests that get committed.</p>
+
+            <p>The Beam workspace for a GitOps workflow looks like this:</p>
+
+            <ul>
+                <li><strong>Tab 1: Claude Code</strong> -- generating Kubernetes manifests, Kustomize overlays, or ArgoCD Application resources. Claude understands the GitOps model and will generate manifests that are intended for Git commit rather than direct <code>kubectl apply</code>.</li>
+                <li><strong>Tab 2: Git</strong> -- staging changes, committing manifests, pushing to the GitOps repository. This is where the rendered YAML from Claude gets committed.</li>
+                <li><strong>Tab 3: ArgoCD CLI or <code>kubectl</code></strong> -- watching sync status with <code>argocd app get my-app</code> or <code>kubectl get applications -n argocd</code>. After you push a commit, this tab shows whether ArgoCD picked up the change and whether the sync succeeded.</li>
+                <li><strong>Tab 4: stern</strong> -- tailing application logs to verify the synced manifests actually work. This is your ground truth: the sync succeeded, but are the pods actually healthy?</li>
+            </ul>
+
+            <p>The split-pane workflow for GitOps is powerful. Left pane: Claude Code generates an ArgoCD Application resource that points to a specific path in your GitOps repo, with automated sync and self-heal enabled. Right pane: you <code>git add</code>, <code>git commit</code>, and <code>git push</code> the generated YAML. Within seconds, the ArgoCD tab shows the application syncing. You're watching the entire GitOps pipeline from commit to deployment in a single workspace.</p>
+
+            <p>Claude Code is especially useful for generating Kustomize overlays. Tell Claude: "Create a Kustomize overlay for the staging environment that patches the deployment to use 2 replicas, sets the image tag to the latest staging build, and adds an annotation for the internal load balancer." Claude generates the <code>kustomization.yaml</code> and the patch files, correctly structured for the Kustomize directory layout. You commit them, and ArgoCD takes care of the rest.</p>
+
+            <h2>Multi-Cluster Operations</h2>
+
+            <p>The workspace-per-cluster model scales naturally to multi-cluster architectures. If you're running a service mesh across three clusters, or managing a fleet of edge clusters, or operating separate clusters for different teams, each one gets its own workspace in Beam. The mental model stays the same regardless of how many clusters you manage.</p>
+
+            <p>For teams managing many clusters -- say, ten or more -- the Quick Switcher becomes essential. Press <span class="kbd">⌘P</span> and type "prod-us-east" to jump directly to the US East production cluster workspace. Type "staging-eu" to switch to the European staging environment. The fuzzy search matches workspace names instantly, so naming your workspaces descriptively (with region and environment) makes navigation effortless even at scale.</p>
+
+            <p>Each workspace's kubectl tab should have its <code>KUBECONFIG</code> set to the specific cluster's config file. This ensures that no matter how many workspaces you have open, there's zero chance of running a command against the wrong cluster. The workspace boundary is also the security boundary.</p>
+
+            <h2>Project Memory for Kubernetes Conventions</h2>
+
+            <p>Every Kubernetes team has conventions. Maybe all services must have resource limits defined. Maybe pod disruption budgets are required for production deployments. Maybe labels must follow a specific schema: <code>app.kubernetes.io/name</code>, <code>app.kubernetes.io/version</code>, <code>app.kubernetes.io/managed-by</code>. Maybe your team uses Istio and every service needs sidecar injection annotations. These rules live in runbooks, wiki pages, or people's heads -- and they get violated every time someone is in a hurry.</p>
+
+            <p>Beam's Project Memory feature solves this. Create a memory file that documents your Kubernetes conventions: required labels, resource limit standards, namespace naming patterns, Helm chart structure, Terraform module conventions, and deployment rollout strategies. When Claude Code starts a session, it reads this memory file automatically and follows your conventions from the very first prompt.</p>
+
+            <p>Tell Claude: "Generate a deployment for the payment service." Without memory, Claude will generate a reasonable deployment with generic best practices. With your team's memory file loaded, Claude generates a deployment with your exact label schema, your standard resource limits for that service tier, your required annotations for monitoring and service mesh integration, your pod disruption budget, and your specific health check conventions. Every manifest Claude produces is compliant with your team's standards from the moment it's generated.</p>
+
+            <p>This is especially powerful for on-call engineers who might not know every convention by heart. During an incident at 3 AM, they don't need to remember that production deployments require a PDB with <code>minAvailable: 2</code>. Claude already knows, because the memory file told it.</p>
+
+            <div class="cta-box">
+                <h3>Organize Your Kubernetes Terminal Workflow</h3>
+                <p>Download Beam and never accidentally deploy to the wrong cluster again. One workspace per environment. Color-coded. Saved layouts. Instant switching.</p>
+                <a href="../" class="btn">Download Beam for macOS</a>
+            </div>
+
+            <h2>Summary</h2>
+
+            <p>Kubernetes operations are inherently multi-terminal, multi-cluster, and multi-tool. You're running kubectl, helm, terraform, stern, k9s, docker, and Claude Code -- often all at the same time, often across multiple cluster environments. Without structure, this leads to the most dangerous class of DevOps errors: running commands against the wrong cluster.</p>
+
+            <p>Beam's workspace model eliminates this class of error entirely:</p>
+
+            <ul>
+                <li>Use <strong>one workspace per cluster environment</strong> -- Dev, Staging, Production, Infrastructure -- each with its own kubectl context and color coding</li>
+                <li>Use <strong>Claude Code inside each workspace</strong> to generate deployments, Helm charts, Terraform modules, network policies, and debug failing pods with full cluster context</li>
+                <li>Use <strong>split panes</strong> for real-time feedback -- Claude generating YAML on the left, kubectl applying it on the right, stern showing the result live</li>
+                <li>Use <strong>saved layouts</strong> (<span class="kbd">⌘S</span>) to restore your entire multi-cluster terminal setup in seconds, including an incident response layout ready for emergencies</li>
+                <li>Use <strong>Project Memory</strong> to ensure Claude Code follows your team's Kubernetes conventions -- labels, resource limits, annotations, PDBs -- from the first prompt</li>
+                <li>Use <strong>Quick Switcher</strong> (<span class="kbd">⌘P</span>) to jump between clusters and environments instantly, even when managing ten or more cluster workspaces</li>
+            </ul>
+
+            <p>The key insight is that Kubernetes safety comes from context isolation. When every environment has its own workspace with its own visual identity and its own kubectl context, the accidental cross-environment command becomes nearly impossible. Beam doesn't just organize your terminals -- it makes your Kubernetes operations fundamentally safer.</p>
+
+            <div class="related-articles">
+                <h2>Related Articles</h2>
+                <div class="related-grid">
+                    <a href="claude-code-devops-cicd.html" class="related-card">
+                        <h4>Claude Code for DevOps & CI/CD</h4>
+                        <p>Use Claude Code for GitHub Actions, Dockerfiles, and deployment pipelines.</p>
+                    </a>
+                    <a href="claude-code-with-docker.html" class="related-card">
+                        <h4>Claude Code with Docker</h4>
+                        <p>Organize Claude Code alongside containers, compose, and logs.</p>
+                    </a>
+                    <a href="manage-multiple-claude-code-sessions.html" class="related-card">
+                        <h4>Manage Multiple Claude Code Sessions</h4>
+                        <p>Run parallel Claude Code sessions without losing track of any of them.</p>
+                    </a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>
+                <a href="../">Beam</a> &bull; Terminal Organizer for macOS &bull;
+                <a href="mailto:frank@nextuptechnologies.co">Contact</a>
+            </p>
+
+            <p style="margin-top: 12px; font-size: 0.8rem;">
+                <a href="/privacy.html" style="color: #71717a; text-decoration: none;">Privacy Policy</a> &bull;
+                <a href="/terms.html" style="color: #71717a; text-decoration: none;">Terms of Service</a>
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>

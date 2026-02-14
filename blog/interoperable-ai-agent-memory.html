@@ -372,7 +372,7 @@
 
             <p>Every time you switch agents, you start from zero. The architecture your Claude Code session documented? Gone when Codex starts. The conventions Codex established? Invisible to OpenClaw. You end up as the human bridge between agents that can't talk to each other.</p>
 
-            <p>Beam v2.1.0 fixes this with <strong>interoperable memory</strong> &mdash; a single Markdown file on disk that every agent reads and writes.</p>
+            <p>Beam v2.5.0 fixes this with <strong>interoperable memory</strong> &mdash; a single Markdown file on disk that every agent reads and writes.</p>
 
             <h2>The Fragmentation Problem</h2>
 
@@ -394,7 +394,7 @@
 
             <p>That's it. No database. No cloud sync. No proprietary format. Just a <code>.md</code> file in your home directory.</p>
 
-            <p>When you start any AI agent from Beam, it copies a memory prompt to your clipboard. You paste it as the agent's first message, and the prompt tells the agent:</p>
+            <p>When you start any AI agent from Beam, click <strong>Install Project Memory</strong> in the toolbar. Beam sends the memory prompt directly to your active agent. The prompt tells the agent:</p>
 
             <pre><code>Before starting, read and reference the memory bank at
 ~/ProjectName.md for project context, conventions, and
@@ -412,7 +412,7 @@ or learn new information about the project.</code></pre>
 
             <h3>Day 1: Start with Claude Code</h3>
 
-            <p>You create a new project called "MyApp" in Beam. Right-click, start Claude Code. Beam copies the memory prompt. You paste it.</p>
+            <p>You create a new project called "MyApp" in Beam. Start Claude Code from the toolbar. Click <strong>Install Project Memory</strong> to send the memory prompt.</p>
 
             <p>Claude Code reads <code>~/MyApp.md</code> (which is empty or has a template). As you work, Claude documents your architecture, tech stack, key files, build commands, and design decisions in the file.</p>
 
@@ -441,7 +441,7 @@ or learn new information about the project.</code></pre>
 
             <h3>Day 2: Switch to OpenAI Codex</h3>
 
-            <p>Next day, you want to use Codex for some quick API work. Right-click, start Codex. Paste the memory prompt.</p>
+            <p>Next day, you want to use Codex for some quick API work. Start Codex from the toolbar. Click <strong>Install Project Memory</strong> to send the memory prompt.</p>
 
             <p>Codex reads <code>~/MyApp.md</code> and <strong>immediately knows</strong> your tech stack, file structure, and conventions &mdash; all context that Claude Code wrote yesterday. No re-explanation needed.</p>
 
@@ -530,7 +530,7 @@ or learn new information about the project.</code></pre>
             <p>Beam doesn't just create the files &mdash; it gives you tools to manage them:</p>
 
             <ul>
-                <li><strong>Memory Manager</strong> (toolbar button or right-click &rarr; Manage Memory Prompts) shows all projects and their memory files</li>
+                <li><strong>Memory Manager</strong> (toolbar button) shows all projects and their memory files</li>
                 <li><strong>Custom file names</strong> &mdash; use different memory files for different contexts within the same project</li>
                 <li><strong>Inline editor</strong> &mdash; view and edit the raw memory content directly in Beam, no need to open a separate editor</li>
                 <li><strong>Status indicators</strong> &mdash; green dot means the file exists and has content, orange means it will be created on first use</li>
@@ -557,7 +557,7 @@ or learn new information about the project.</code></pre>
 
             <div class="cta-box">
                 <h3>Unify Your AI Agent Memory</h3>
-                <p>Download Beam v2.1.0 and give every AI agent the same persistent project context. Works with Claude Code, Codex, OpenClaw, and more.</p>
+                <p>Download Beam v2.5.0 and give every AI agent the same persistent project context. Works with Claude Code, Codex, OpenClaw, and more.</p>
                 <a href="../" class="btn">Download Beam Free</a>
             </div>
 
@@ -584,9 +584,15 @@ or learn new information about the project.</code></pre>
     <footer>
         <div class="container">
             <p>
-                <a href="../">Beam</a> &middot; Built by <a href="https://nextuptechnologies.co">NextUp Technologies</a>
+                <a href="../">Beam</a> &middot; Built by NextUp Technologies
+            </p>
+
+            <p style="margin-top: 12px; font-size: 0.8rem;">
+                <a href="/privacy.html" style="color: #71717a; text-decoration: none;">Privacy Policy</a> &bull;
+                <a href="/terms.html" style="color: #71717a; text-decoration: none;">Terms of Service</a>
             </p>
         </div>
     </footer>
+
 </body>
 </html>

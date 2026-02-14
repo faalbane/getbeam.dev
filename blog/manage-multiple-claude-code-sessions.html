@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D0XH8B0RKL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-D0XH8B0RKL');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Manage Multiple Claude Code Sessions Across Projects | Beam Terminal Organizer</title>
+    <meta name="description" content="Running Claude Code across multiple projects? Learn how to manage 5+ sessions without losing track. Beam workspaces, Quick Switcher, and saved layouts keep you organized.">
+    <meta name="keywords" content="multiple Claude Code sessions, Claude Code multiple projects, manage Claude Code terminals, Claude Code project management, Claude Code workflow">
+    <meta name="author" content="NextUp Technologies">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://getbeam.dev/blog/manage-multiple-claude-code-sessions.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://getbeam.dev/blog/manage-multiple-claude-code-sessions.html">
+    <meta property="og:title" content="How to Manage Multiple Claude Code Sessions Across Projects">
+    <meta property="og:description" content="Running Claude Code across multiple projects? Learn how to manage 5+ sessions without losing track.">
+    <meta property="og:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="How to Manage Multiple Claude Code Sessions Across Projects">
+    <meta name="twitter:description" content="Running Claude Code across multiple projects? Learn how to manage 5+ sessions without losing track.">
+    <meta name="twitter:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "How to Manage Multiple Claude Code Sessions Across Projects",
+        "description": "Running Claude Code across multiple projects? Learn how to manage 5+ sessions without losing track. Beam workspaces, Quick Switcher, and saved layouts keep you organized.",
+        "author": {
+            "@type": "Organization",
+            "name": "NextUp Technologies"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Beam"
+        },
+        "datePublished": "2026-02-11",
+        "keywords": "multiple Claude Code sessions, Claude Code multiple projects, manage Claude Code terminals, Claude Code project management, Claude Code workflow"
+    }
+    </script>
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #111113;
+            --bg-tertiary: #1a1a1d;
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.4);
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --border: #27272a;
+            --success: #22c55e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        header {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 60px;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1.5rem;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            background: var(--accent);
+            color: white;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+        }
+
+        article {
+            padding-bottom: 80px;
+        }
+
+        .breadcrumb {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+        }
+
+        .breadcrumb a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .meta {
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            font-size: 0.95rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 48px 0 20px;
+            color: var(--text-primary);
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        ul, ol {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            padding-left: 24px;
+        }
+
+        li {
+            margin-bottom: 12px;
+        }
+
+        .highlight {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 32px 0;
+        }
+
+        .highlight h3 {
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .kbd {
+            display: inline-block;
+            padding: 2px 8px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .cta-box h3 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+        }
+
+        .cta-box p {
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 24px;
+        }
+
+        .cta-box .btn {
+            background: white;
+            color: var(--accent);
+        }
+
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+
+        .related-articles { margin-top: 60px; padding-top: 40px; border-top: 1px solid var(--border); }
+        .related-articles h2 { font-size: 1.5rem; margin-bottom: 24px; }
+        .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .related-card { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-decoration: none; transition: border-color 0.2s; }
+        .related-card:hover { border-color: var(--accent); }
+        .related-card h4 { color: white; font-size: 1rem; margin: 0 0 8px 0; }
+        .related-card p { color: var(--text-muted); font-size: 0.85rem; margin: 0; }
+        @media (max-width: 600px) { .related-grid { grid-template-columns: 1fr; } }
+
+        .blog-visual { margin: 40px 0; text-align: center; }
+        .blog-visual svg { max-width: 100%; height: auto; border-radius: 12px; }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="../" class="logo">
+                <div class="logo-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round">
+                        <path d="M4 17l6-6-6-6M12 19h8"/>
+                    </svg>
+                </div>
+                Beam
+            </a>
+            <a href="../" class="btn">Download Beam</a>
+        </div>
+    </header>
+
+    <main>
+        <article class="container">
+            <div class="breadcrumb">
+                <a href="../">Beam</a> / <a href="../#guides">Guides</a> / Managing Multiple Claude Code Sessions
+            </div>
+
+            <h1>How to Manage Multiple Claude Code Sessions Across Projects</h1>
+            <p class="meta">February 2026 &bull; 6 min read</p>
+
+            <p>You're deep in a refactor on your main project. You have a Claude Code session helping with the API migration, and it's going well. But your side project needs a quick fix -- a broken dependency that's blocking CI. And you just got tagged on a pull request for an open-source repo you maintain. Three projects, each needing its own Claude Code session, plus dev servers, test runners, and git -- that's a dozen terminals and counting. Here's how to tame the chaos before it tames you.</p>
+
+            <div class="blog-visual">
+                <svg viewBox="0 0 720 400" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Background -->
+                    <rect width="720" height="400" rx="12" fill="#0a0a0b"/>
+                    <rect x="1" y="1" width="718" height="398" rx="11" fill="none" stroke="#27272a" stroke-width="1"/>
+
+                    <!-- Sidebar -->
+                    <rect x="0" y="0" width="180" height="400" rx="12" fill="#111113"/>
+                    <rect x="180" y="0" width="1" height="400" fill="#27272a"/>
+
+                    <!-- Sidebar title -->
+                    <text x="20" y="32" fill="#71717a" font-family="Space Grotesk, sans-serif" font-size="11" font-weight="600" letter-spacing="0.08em">WORKSPACES</text>
+
+                    <!-- Workspace 1 - Active -->
+                    <rect x="0" y="46" width="180" height="48" fill="rgba(59, 130, 246, 0.08)"/>
+                    <rect x="0" y="46" width="3" height="48" rx="0" fill="#3b82f6"/>
+                    <circle cx="28" cy="70" r="8" fill="rgba(59, 130, 246, 0.2)" stroke="#3b82f6" stroke-width="1"/>
+                    <text x="28" y="73" fill="#3b82f6" font-family="JetBrains Mono, monospace" font-size="9" text-anchor="middle">S</text>
+                    <text x="44" y="66" fill="#fafafa" font-family="Space Grotesk, sans-serif" font-size="13" font-weight="600">SaaS App</text>
+                    <text x="44" y="80" fill="#71717a" font-family="Space Grotesk, sans-serif" font-size="10">4 tabs</text>
+
+                    <!-- Workspace 2 -->
+                    <rect x="0" y="94" width="180" height="48" fill="transparent"/>
+                    <circle cx="28" cy="118" r="8" fill="rgba(113, 113, 122, 0.15)" stroke="#3a3a3f" stroke-width="1"/>
+                    <text x="28" y="121" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="9" text-anchor="middle">C</text>
+                    <text x="44" y="114" fill="#a1a1aa" font-family="Space Grotesk, sans-serif" font-size="13" font-weight="500">CLI Tool</text>
+                    <text x="44" y="128" fill="#52525b" font-family="Space Grotesk, sans-serif" font-size="10">2 tabs</text>
+
+                    <!-- Workspace 3 -->
+                    <rect x="0" y="142" width="180" height="48" fill="transparent"/>
+                    <circle cx="28" cy="166" r="8" fill="rgba(113, 113, 122, 0.15)" stroke="#3a3a3f" stroke-width="1"/>
+                    <text x="28" y="169" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="9" text-anchor="middle">O</text>
+                    <text x="44" y="162" fill="#a1a1aa" font-family="Space Grotesk, sans-serif" font-size="13" font-weight="500">OSS Contrib</text>
+                    <text x="44" y="176" fill="#52525b" font-family="Space Grotesk, sans-serif" font-size="10">3 tabs</text>
+
+                    <!-- Divider line in sidebar -->
+                    <line x1="16" y1="206" x2="164" y2="206" stroke="#27272a" stroke-width="1"/>
+
+                    <!-- Quick Switcher hint -->
+                    <rect x="14" y="220" width="152" height="32" rx="6" fill="#1a1a1d" stroke="#27272a" stroke-width="1"/>
+                    <text x="28" y="240" fill="#52525b" font-family="JetBrains Mono, monospace" font-size="10">&#x2318;P Quick Switch</text>
+
+                    <!-- Tab bar area -->
+                    <rect x="181" y="0" width="539" height="42" fill="#111113"/>
+                    <line x1="181" y1="42" x2="720" y2="42" stroke="#27272a" stroke-width="1"/>
+
+                    <!-- Tab 1 - Active (Claude Code) -->
+                    <rect x="190" y="8" width="120" height="28" rx="6" fill="rgba(217, 119, 6, 0.12)" stroke="rgba(217, 119, 6, 0.3)" stroke-width="1"/>
+                    <circle cx="206" cy="22" r="4" fill="#D97706"/>
+                    <text x="216" y="26" fill="#fafafa" font-family="Space Grotesk, sans-serif" font-size="11.5" font-weight="600">Claude Code</text>
+
+                    <!-- Tab 2 -->
+                    <rect x="318" y="8" width="100" height="28" rx="6" fill="transparent" stroke="#27272a" stroke-width="1"/>
+                    <circle cx="334" cy="22" r="4" fill="#22c55e"/>
+                    <text x="344" y="26" fill="#71717a" font-family="Space Grotesk, sans-serif" font-size="11.5" font-weight="500">Dev Server</text>
+
+                    <!-- Tab 3 -->
+                    <rect x="426" y="8" width="72" height="28" rx="6" fill="transparent" stroke="#27272a" stroke-width="1"/>
+                    <circle cx="442" cy="22" r="4" fill="#a78bfa"/>
+                    <text x="452" y="26" fill="#71717a" font-family="Space Grotesk, sans-serif" font-size="11.5" font-weight="500">Tests</text>
+
+                    <!-- Tab 4 -->
+                    <rect x="506" y="8" width="56" height="28" rx="6" fill="transparent" stroke="#27272a" stroke-width="1"/>
+                    <circle cx="522" cy="22" r="4" fill="#f472b6"/>
+                    <text x="532" y="26" fill="#71717a" font-family="Space Grotesk, sans-serif" font-size="11.5" font-weight="500">Git</text>
+
+                    <!-- Terminal content area -->
+                    <rect x="190" y="52" width="520" height="338" fill="#0a0a0b"/>
+
+                    <!-- Terminal prompt lines -->
+                    <text x="206" y="80" fill="#D97706" font-family="JetBrains Mono, monospace" font-size="12" font-weight="500">claude</text>
+                    <text x="258" y="80" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="12">~/saas-app</text>
+
+                    <text x="206" y="106" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="11.5">I'll refactor the auth module to use the new</text>
+                    <text x="206" y="124" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="11.5">API v2 endpoints. Let me start by updating</text>
+                    <text x="206" y="142" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="11.5">the service layer...</text>
+
+                    <!-- File operation line -->
+                    <text x="206" y="172" fill="#22c55e" font-family="JetBrains Mono, monospace" font-size="11.5">Updated</text>
+                    <text x="272" y="172" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="11.5">src/services/auth.ts</text>
+
+                    <text x="206" y="194" fill="#22c55e" font-family="JetBrains Mono, monospace" font-size="11.5">Updated</text>
+                    <text x="272" y="194" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="11.5">src/middleware/verify.ts</text>
+
+                    <text x="206" y="216" fill="#22c55e" font-family="JetBrains Mono, monospace" font-size="11.5">Created</text>
+                    <text x="272" y="216" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="11.5">src/services/auth-v2.ts</text>
+
+                    <!-- Blinking cursor -->
+                    <rect x="206" y="240" width="8" height="16" fill="#D97706" opacity="0.8">
+                        <animate attributeName="opacity" values="0.8;0;0.8" dur="1.2s" repeatCount="indefinite"/>
+                    </rect>
+
+                    <!-- Status bar -->
+                    <rect x="181" y="380" width="539" height="20" fill="#111113"/>
+                    <line x1="181" y1="380" x2="720" y2="380" stroke="#27272a" stroke-width="1"/>
+                    <text x="200" y="394" fill="#3b82f6" font-family="JetBrains Mono, monospace" font-size="10">SaaS App</text>
+                    <text x="275" y="394" fill="#52525b" font-family="JetBrains Mono, monospace" font-size="10">|</text>
+                    <text x="290" y="394" fill="#D97706" font-family="JetBrains Mono, monospace" font-size="10">Claude Code</text>
+                    <text x="385" y="394" fill="#52525b" font-family="JetBrains Mono, monospace" font-size="10">|</text>
+                    <text x="400" y="394" fill="#52525b" font-family="JetBrains Mono, monospace" font-size="10">3 workspaces  &#xB7;  9 tabs</text>
+                </svg>
+            </div>
+
+            <h2>The Terminal Chaos at Scale</h2>
+
+            <p>Running a single Claude Code session is straightforward. Running five or more across three different projects is where things start to fall apart. Your main project has a Claude Code session for the refactor, a dev server, and a git terminal. Your side project has its own Claude session and a test runner. The open-source repo you contribute to has another Claude session plus a terminal for managing upstream remotes. That's already nine terminals, and you haven't even opened a database CLI yet.</p>
+
+            <p>Terminal.app gives you one flat list of windows. iTerm2 gives you tabs. Neither gives you project-level grouping. So you end up doing the same thing every time: pressing <span class="kbd">&#x2318;Tab</span> over and over, scanning window titles, trying to remember which terminal belongs to which project. It's slow, it's frustrating, and it's error-prone. Accidentally typing a destructive command in the wrong project's Claude Code session -- like confirming a migration against the wrong database -- can cause real problems.</p>
+
+            <h2>Why Terminal.app and iTerm2 Fall Short</h2>
+
+            <p><strong>Terminal.app</strong> is the default, and it shows. There's no concept of grouping windows by project. No saved state worth mentioning. Every window looks the same, and if you close one by accident, it's gone. When you're running multiple Claude Code sessions, Terminal.app gives you no way to distinguish between them at a glance.</p>
+
+            <p><strong>iTerm2</strong> is better. Profiles help you color-code terminals, and tab titles give you some orientation. But tabs are still flat -- there's no hierarchy. You can't say "show me only the terminals for my SaaS project." When you have 10+ tabs open, you're back to scanning left to right trying to find the right one.</p>
+
+            <p><strong>tmux</strong> is powerful for session persistence and pane management, but it comes with a steep learning curve and doesn't solve the visual organization problem. You're still working inside a single terminal window, and switching between tmux sessions requires memorizing key bindings and session names. For developers who want to think about their code and not their terminal multiplexer, tmux adds friction instead of removing it.</p>
+
+            <p>What you actually need is project-level isolation with instant switching. You need to be able to jump from your SaaS project's Claude Code session to your side project's test runner in under a second, without scanning through a flat list of tabs.</p>
+
+            <h2>Beam's Workspace-Per-Project Model</h2>
+
+            <p>Beam solves this with a simple idea: one workspace equals one project context. A workspace isn't just a folder or a tab group -- it's a complete, isolated environment for a single project. It has its own tabs, its own split panes, and its own working directory. When you're inside a workspace, you see only the terminals that belong to that project.</p>
+
+            <p>Creating a new workspace takes one keystroke: <span class="kbd">&#x2318;N</span>. Double-click the workspace name in the sidebar to rename it. That's it. You now have a dedicated space for that project, and every tab you open inside it stays associated with that workspace. The workspace name is always visible in the sidebar, so you never have to guess which project you're looking at.</p>
+
+            <p>This model scales naturally. Your SaaS app gets a workspace with four tabs. Your CLI tool gets a workspace with two. Your open-source contribution gets a workspace with three. They're visually separated, logically isolated, and instantly accessible from the sidebar.</p>
+
+            <div class="highlight">
+                <h3>Naming Conventions That Scale</h3>
+                <p>Good naming is what makes project-level organization actually work at scale. For <strong>workspace names</strong>, use the project name itself: "SaaS App", "CLI Tool", "OSS Contrib". Keep them short and recognizable. For <strong>tab names</strong>, use the purpose: "Claude Code", "Dev Server", "Tests", "Git". Double-click any tab or workspace to rename it.</p>
+                <p>When you follow this convention consistently, you get instant recognition. Even with 10+ tabs open across multiple workspaces, you always know exactly where you are. The workspace tells you the project, the tab tells you the task.</p>
+            </div>
+
+            <h2>Quick Switcher: Your Command Palette for Terminals</h2>
+
+            <p>The sidebar gives you visual organization, but the Quick Switcher is what makes Beam fast at scale. Press <span class="kbd">&#x2318;P</span> and start typing. The Quick Switcher fuzzy-searches across all your workspaces, tabs, and saved layouts in real time.</p>
+
+            <p>Type "saas claude" and you jump straight to your SaaS project's Claude Code session. Type "cli test" and you're in your CLI tool's test runner. It works the same way a command palette works in VS Code or Raycast -- muscle memory takes over after a few days, and you stop thinking about navigation entirely.</p>
+
+            <p>The Quick Switcher also searches across saved layouts, so if you have a layout called "Full-Stack Friday" with a specific arrangement of workspaces, you can pull it up just as fast. No mousing through menus, no scanning through tabs. You think of where you want to be, type a few characters, and you're there.</p>
+
+            <h2>Saving Layouts Per Project</h2>
+
+            <p>One of the biggest time sinks in multi-project development is the morning setup ritual. Open Terminal. Navigate to project A. Start Claude Code. Open another tab. Start the dev server. Repeat for project B. By the time you're ready to actually write code, you've burned ten minutes on terminal setup.</p>
+
+            <p>Beam eliminates this with saved layouts. Press <span class="kbd">&#x2318;S</span> to save your entire workspace configuration -- every workspace, every tab, every split pane arrangement. When you come back the next day, restore the layout and your entire multi-project environment is back exactly as you left it. Same workspaces, same tabs, same splits, same working directories.</p>
+
+            <p>You can also create template layouts for different types of work. A "Full-Stack" template might have three workspaces pre-configured for frontend, backend, and infrastructure. A "Library" template might have two workspaces for development and documentation. Build them once, reuse them across projects.</p>
+
+            <h2>Memory Management Per Project</h2>
+
+            <p>Managing multiple Claude Code sessions isn't just about terminals -- it's about context. Each project has its own architecture, its own conventions, and its own decisions that Claude Code needs to understand. Without persistent memory, you end up re-explaining the same project structure every time you start a new session.</p>
+
+            <p>Beam's "Install Project Memory" feature solves this by giving each project its own memory file. Click the toolbar button, and Beam creates a <span class="kbd">CLAUDE.md</span> file in your project's working directory. Claude Code reads this file automatically on startup, so your AI assistant already knows your project's tech stack, coding conventions, and architectural decisions before you type a single prompt.</p>
+
+            <p>When you learn something new about your project -- a tricky deployment step, a naming convention, an important design decision -- use "Save Project Memory" to persist it. The next Claude Code session in that project picks up right where the last one left off. Across three projects, this means three separate, tailored memory contexts, each loaded automatically into the right session.</p>
+
+            <h2>Real Workflow: Three Projects at Once</h2>
+
+            <p>Here's what a real multi-project workflow looks like in Beam:</p>
+
+            <p><strong>Workspace 1: "SaaS App"</strong> (Full-stack web application)</p>
+            <ul>
+                <li>Tab 1: Claude Code -- handling the API v2 migration</li>
+                <li>Tab 2: Frontend dev server (Vite/Next.js)</li>
+                <li>Tab 3: Backend server (Express/FastAPI)</li>
+                <li>Tab 4: Git operations and PR management</li>
+            </ul>
+
+            <p><strong>Workspace 2: "CLI Tool"</strong> (Side project)</p>
+            <ul>
+                <li>Tab 1: Claude Code -- fixing the broken dependency</li>
+                <li>Tab 2: Test runner (watching for changes)</li>
+            </ul>
+
+            <p><strong>Workspace 3: "OSS Contrib"</strong> (Open-source contribution)</p>
+            <ul>
+                <li>Tab 1: Claude Code -- reviewing and implementing PR feedback</li>
+                <li>Tab 2: Upstream remote management and rebasing</li>
+                <li>Tab 3: PR review notes and testing</li>
+            </ul>
+
+            <p>That's three workspaces and nine tabs, with complete isolation between projects. Switch between any of them in under a second -- click the workspace in the sidebar, or press <span class="kbd">&#x2318;P</span> and type where you want to go. Each Claude Code session has its own project memory loaded, each dev server is running in the right directory, and you never accidentally type a command in the wrong project.</p>
+
+            <div class="cta-box">
+                <h3>Stop Losing Track of Your Claude Code Sessions</h3>
+                <p>Download Beam and manage all your projects in one organized terminal.</p>
+                <a href="../" class="btn">Download Beam for macOS</a>
+            </div>
+
+            <h2>Summary</h2>
+
+            <p>Managing multiple Claude Code sessions across projects doesn't have to mean drowning in terminals. With the right tool, it becomes effortless:</p>
+
+            <ul>
+                <li>Use <strong>workspaces</strong> to give each project its own isolated terminal environment</li>
+                <li>Use <strong>consistent naming</strong> for workspaces (project name) and tabs (task purpose) to stay oriented at scale</li>
+                <li>Use <strong>Quick Switcher</strong> (<span class="kbd">&#x2318;P</span>) to jump to any session across any project instantly</li>
+                <li>Use <strong>saved layouts</strong> (<span class="kbd">&#x2318;S</span>) to restore your entire multi-project setup in one click</li>
+                <li>Use <strong>project memory</strong> to give each Claude Code session persistent, project-specific context</li>
+                <li>Use <strong>split panes</strong> to monitor dev servers while Claude Code works alongside you</li>
+            </ul>
+
+            <p>Three projects, nine tabs, zero confusion. That's the goal, and Beam gets you there.</p>
+
+            <div class="related-articles">
+                <h2>Related Articles</h2>
+                <div class="related-grid">
+                    <a href="organizing-claude-code-sessions.html" class="related-card">
+                        <h4>Organizing Claude Code Sessions</h4>
+                        <p>The fundamentals of keeping your Claude Code workflow clean and organized.</p>
+                    </a>
+                    <a href="beam-claude-code-setup.html" class="related-card">
+                        <h4>Setting Up Beam for Claude Code</h4>
+                        <p>Step-by-step guide to configuring Beam for AI-assisted development.</p>
+                    </a>
+                    <a href="ai-agent-memory-management.html" class="related-card">
+                        <h4>AI Agent Memory Management</h4>
+                        <p>How persistent memory makes your AI coding sessions smarter over time.</p>
+                    </a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>
+                <a href="../">Beam</a> &bull; Terminal Organizer for macOS &bull;
+                <a href="mailto:frank@nextuptechnologies.co">Contact</a>
+            </p>
+
+            <p style="margin-top: 12px; font-size: 0.8rem;">
+                <a href="/privacy.html" style="color: #71717a; text-decoration: none;">Privacy Policy</a> &bull;
+                <a href="/terms.html" style="color: #71717a; text-decoration: none;">Terms of Service</a>
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>

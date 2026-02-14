@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D0XH8B0RKL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-D0XH8B0RKL');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Managing Go Microservices in Beam: 5 Services, One Screen | Beam</title>
+    <meta name="description" content="Run 5 Go microservices and their Claude Code sessions from one screen. Beam workspaces give each service its own terminal context — API gateway, user service, orders, notifications, and workers all organized.">
+    <meta name="keywords" content="Go microservices, manage Go microservices terminal, Go microservices workflow, multiple Go services terminal, Go microservices development, Claude Code microservices, Go microservices Beam, gRPC Go services, Go monorepo terminal">
+    <meta name="author" content="NextUp Technologies">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://getbeam.dev/blog/go-microservices-beam-workflow.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://getbeam.dev/blog/go-microservices-beam-workflow.html">
+    <meta property="og:title" content="Managing Go Microservices in Beam: 5 Services, One Screen">
+    <meta property="og:description" content="Run 5 Go microservices and their Claude Code sessions from one screen. Beam workspaces give each service its own terminal context.">
+    <meta property="og:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Managing Go Microservices in Beam: 5 Services, One Screen">
+    <meta name="twitter:description" content="Run 5 Go microservices and their Claude Code sessions from one screen. Beam workspaces give each service its own terminal context.">
+    <meta name="twitter:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Managing Go Microservices in Beam: 5 Services, One Screen",
+        "description": "Run 5 Go microservices and their Claude Code sessions from one screen. Beam workspaces give each service its own terminal context.",
+        "author": {
+            "@type": "Organization",
+            "name": "NextUp Technologies"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Beam"
+        },
+        "datePublished": "2026-02-11",
+        "keywords": "Go microservices, manage Go microservices terminal, Go microservices workflow, multiple Go services terminal, Claude Code microservices"
+    }
+    </script>
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #111113;
+            --bg-tertiary: #1a1a1d;
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.4);
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --border: #27272a;
+            --success: #22c55e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        header {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 60px;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1.5rem;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            background: var(--accent);
+            color: white;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+        }
+
+        article {
+            padding-bottom: 80px;
+        }
+
+        .breadcrumb {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+        }
+
+        .breadcrumb a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .meta {
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            font-size: 0.95rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 48px 0 20px;
+            color: var(--text-primary);
+        }
+
+        h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 32px 0 12px;
+            color: var(--text-primary);
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        ul, ol {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            padding-left: 24px;
+        }
+
+        li {
+            margin-bottom: 12px;
+        }
+
+        .highlight {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 32px 0;
+        }
+
+        .highlight h3 {
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            margin-top: 0;
+            color: var(--text-primary);
+        }
+
+        .kbd {
+            display: inline-block;
+            padding: 2px 8px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+        }
+
+        code {
+            font-family: 'JetBrains Mono', monospace;
+            background: var(--bg-tertiary);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            color: #e4e4e7;
+        }
+
+        pre {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px 24px;
+            margin: 24px 0;
+            overflow-x: auto;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.88rem;
+            line-height: 1.7;
+            color: var(--text-secondary);
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .cta-box h3 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+            margin-top: 0;
+        }
+
+        .cta-box p {
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 24px;
+        }
+
+        .cta-box .btn {
+            background: white;
+            color: var(--accent);
+        }
+
+        .workspace-diagram {
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        .workspace-diagram svg {
+            max-width: 100%;
+            height: auto;
+        }
+
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+
+        .related-articles { margin-top: 60px; padding-top: 40px; border-top: 1px solid var(--border); }
+        .related-articles h2 { font-size: 1.5rem; margin-bottom: 24px; }
+        .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .related-card { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-decoration: none; transition: border-color 0.2s; }
+        .related-card:hover { border-color: var(--accent); }
+        .related-card h4 { color: white; font-size: 1rem; margin: 0 0 8px 0; }
+        .related-card p { color: var(--text-muted); font-size: 0.85rem; margin: 0; }
+        @media (max-width: 600px) {
+            .related-grid { grid-template-columns: 1fr; }
+            h1 { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="../" class="logo">
+                <div class="logo-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round">
+                        <path d="M4 17l6-6-6-6M12 19h8"/>
+                    </svg>
+                </div>
+                Beam
+            </a>
+            <a href="../" class="btn">Download Beam</a>
+        </div>
+    </header>
+
+    <main>
+        <article class="container">
+            <div class="breadcrumb">
+                <a href="../">Beam</a> / <a href="../#guides">Guides</a> / Go Microservices in Beam
+            </div>
+
+            <h1>Managing Go Microservices in Beam: 5 Services, One Screen</h1>
+            <p class="meta">February 2026 &bull; 12 min read</p>
+
+            <p>You're building a Go microservices platform. The architecture looks clean on the whiteboard: an API gateway routes traffic to a user service, an order service, a notification service, and a background worker. Five binaries, five domains, five teams worth of complexity. But on your screen? It's ten or more terminal windows. Five <code>go run</code> processes, five Claude Code sessions, maybe a Docker Compose log stream, maybe a database shell. You've lost track of which tab is which, and you just accidentally <code>Ctrl+C</code>'d the wrong service.</p>
+
+            <p>Every Go microservices developer has been here. Beam fixes this by giving each service its own isolated workspace, each with its own terminals, Claude Code session, and running process -- all switchable in a keystroke. This guide walks you through the entire workflow.</p>
+
+            <!-- Workspace Switcher SVG Diagram -->
+            <div class="workspace-diagram">
+                <svg width="720" height="340" viewBox="0 0 720 340" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Background -->
+                    <rect width="720" height="340" rx="16" fill="#111113"/>
+                    <rect width="720" height="340" rx="16" stroke="#27272a" stroke-width="1"/>
+
+                    <!-- Title bar -->
+                    <rect x="0" y="0" width="720" height="44" rx="16" fill="#0a0a0b"/>
+                    <rect x="0" y="30" width="720" height="14" fill="#0a0a0b"/>
+                    <text x="360" y="28" text-anchor="middle" fill="#71717a" font-family="Space Grotesk, sans-serif" font-size="12" font-weight="500">BEAM WORKSPACE SWITCHER</text>
+
+                    <!-- Workspace Card 1: API Gateway (Active) -->
+                    <rect x="20" y="60" width="130" height="120" rx="10" fill="#1a1a1d" stroke="#3b82f6" stroke-width="2"/>
+                    <circle cx="40" cy="82" r="6" fill="#22c55e"/>
+                    <text x="52" y="86" fill="#fafafa" font-family="Space Grotesk, sans-serif" font-size="11" font-weight="600">API Gateway</text>
+                    <text x="36" y="108" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="9">:8080</text>
+                    <rect x="32" y="120" width="106" height="18" rx="4" fill="#0a0a0b"/>
+                    <text x="38" y="133" fill="#00ADD8" font-family="JetBrains Mono, monospace" font-size="9">claude &gt; _</text>
+                    <rect x="32" y="144" width="106" height="18" rx="4" fill="#0a0a0b"/>
+                    <text x="38" y="157" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="9">go run .</text>
+
+                    <!-- Workspace Card 2: Users -->
+                    <rect x="162" y="60" width="130" height="120" rx="10" fill="#1a1a1d" stroke="#27272a" stroke-width="1"/>
+                    <circle cx="182" cy="82" r="6" fill="#22c55e"/>
+                    <text x="194" y="86" fill="#fafafa" font-family="Space Grotesk, sans-serif" font-size="11" font-weight="600">User Service</text>
+                    <text x="178" y="108" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="9">:8081</text>
+                    <rect x="174" y="120" width="106" height="18" rx="4" fill="#0a0a0b"/>
+                    <text x="180" y="133" fill="#00ADD8" font-family="JetBrains Mono, monospace" font-size="9">claude &gt; _</text>
+                    <rect x="174" y="144" width="106" height="18" rx="4" fill="#0a0a0b"/>
+                    <text x="180" y="157" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="9">go run .</text>
+
+                    <!-- Workspace Card 3: Orders -->
+                    <rect x="304" y="60" width="130" height="120" rx="10" fill="#1a1a1d" stroke="#27272a" stroke-width="1"/>
+                    <circle cx="324" cy="82" r="6" fill="#22c55e"/>
+                    <text x="336" y="86" fill="#fafafa" font-family="Space Grotesk, sans-serif" font-size="11" font-weight="600">Order Service</text>
+                    <text x="320" y="108" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="9">:8082</text>
+                    <rect x="316" y="120" width="106" height="18" rx="4" fill="#0a0a0b"/>
+                    <text x="322" y="133" fill="#00ADD8" font-family="JetBrains Mono, monospace" font-size="9">claude &gt; _</text>
+                    <rect x="316" y="144" width="106" height="18" rx="4" fill="#0a0a0b"/>
+                    <text x="322" y="157" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="9">go run .</text>
+
+                    <!-- Workspace Card 4: Notifications -->
+                    <rect x="446" y="60" width="130" height="120" rx="10" fill="#1a1a1d" stroke="#27272a" stroke-width="1"/>
+                    <circle cx="466" cy="82" r="6" fill="#eab308"/>
+                    <text x="478" y="86" fill="#fafafa" font-family="Space Grotesk, sans-serif" font-size="11" font-weight="600">Notifications</text>
+                    <text x="462" y="108" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="9">:8083</text>
+                    <rect x="458" y="120" width="106" height="18" rx="4" fill="#0a0a0b"/>
+                    <text x="464" y="133" fill="#00ADD8" font-family="JetBrains Mono, monospace" font-size="9">claude &gt; _</text>
+                    <rect x="458" y="144" width="106" height="18" rx="4" fill="#0a0a0b"/>
+                    <text x="464" y="157" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="9">go run .</text>
+
+                    <!-- Workspace Card 5: Worker -->
+                    <rect x="588" y="60" width="112" height="120" rx="10" fill="#1a1a1d" stroke="#27272a" stroke-width="1"/>
+                    <circle cx="608" cy="82" r="6" fill="#22c55e"/>
+                    <text x="620" y="86" fill="#fafafa" font-family="Space Grotesk, sans-serif" font-size="11" font-weight="600">Worker</text>
+                    <text x="604" y="108" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="9">bg proc</text>
+                    <rect x="600" y="120" width="88" height="18" rx="4" fill="#0a0a0b"/>
+                    <text x="606" y="133" fill="#00ADD8" font-family="JetBrains Mono, monospace" font-size="9">claude &gt;_</text>
+                    <rect x="600" y="144" width="88" height="18" rx="4" fill="#0a0a0b"/>
+                    <text x="606" y="157" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="9">go run .</text>
+
+                    <!-- Infrastructure Bar -->
+                    <rect x="20" y="196" width="680" height="50" rx="10" fill="#1a1a1d" stroke="#27272a" stroke-width="1"/>
+                    <circle cx="40" cy="221" r="6" fill="#3b82f6"/>
+                    <text x="54" y="218" fill="#fafafa" font-family="Space Grotesk, sans-serif" font-size="11" font-weight="600">Infrastructure</text>
+                    <text x="54" y="234" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="9">docker compose up &bull; postgres &bull; redis &bull; nats</text>
+
+                    <!-- Status Legend -->
+                    <circle cx="36" cy="272" r="5" fill="#22c55e"/>
+                    <text x="48" y="276" fill="#71717a" font-family="Space Grotesk, sans-serif" font-size="10">Running</text>
+                    <circle cx="120" cy="272" r="5" fill="#eab308"/>
+                    <text x="132" y="276" fill="#71717a" font-family="Space Grotesk, sans-serif" font-size="10">Building</text>
+                    <circle cx="210" cy="272" r="5" fill="#3b82f6"/>
+                    <text x="222" y="276" fill="#71717a" font-family="Space Grotesk, sans-serif" font-size="10">Infra</text>
+
+                    <!-- Keyboard shortcut hint -->
+                    <rect x="430" y="262" width="270" height="28" rx="6" fill="#0a0a0b" stroke="#27272a" stroke-width="1"/>
+                    <text x="445" y="280" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="10">Cmd+P to switch &bull; Cmd+Opt+arrows</text>
+
+                    <!-- Active indicator arrow -->
+                    <polygon points="85,55 80,48 90,48" fill="#3b82f6"/>
+
+                    <!-- Connection lines between services -->
+                    <line x1="150" y1="100" x2="162" y2="100" stroke="#27272a" stroke-width="1" stroke-dasharray="3,3"/>
+                    <line x1="292" y1="100" x2="304" y2="100" stroke="#27272a" stroke-width="1" stroke-dasharray="3,3"/>
+                    <line x1="434" y1="100" x2="446" y2="100" stroke="#27272a" stroke-width="1" stroke-dasharray="3,3"/>
+                    <line x1="576" y1="100" x2="588" y2="100" stroke="#27272a" stroke-width="1" stroke-dasharray="3,3"/>
+
+                    <!-- Bottom border -->
+                    <line x1="20" y1="300" x2="700" y2="300" stroke="#27272a" stroke-width="1"/>
+                    <text x="360" y="322" text-anchor="middle" fill="#3b82f6" font-family="Space Grotesk, sans-serif" font-size="11" font-weight="600">5 workspaces &bull; 15+ tabs &bull; 1 Beam window</text>
+                </svg>
+            </div>
+
+            <h2>The Microservices Terminal Problem</h2>
+
+            <p>Go microservices are lightweight by design. Each service compiles to a single binary, starts in milliseconds, and consumes minimal memory. That architectural elegance creates a practical problem: if it's easy to spin up services, you end up with a lot of them.</p>
+
+            <p>Here's what a typical Go microservices development session looks like without Beam:</p>
+
+            <ul>
+                <li><strong>Terminal 1-5</strong> -- Five <code>go run</code> processes, one per service. Each needs its own terminal because each runs its own HTTP/gRPC server.</li>
+                <li><strong>Terminal 6-10</strong> -- Five Claude Code sessions. Each service has different code, different conventions, different bugs. You want AI assistance scoped to each service's directory.</li>
+                <li><strong>Terminal 11</strong> -- Docker Compose for Postgres, Redis, and NATS (or whatever your infrastructure stack looks like).</li>
+                <li><strong>Terminal 12+</strong> -- Ad hoc terminals for <code>curl</code>, <code>grpcurl</code>, database shells, log tailing, and git operations.</li>
+            </ul>
+
+            <p>That's twelve or more terminal windows. In iTerm2, that's a wall of tabs where "zsh" tells you nothing about which service lives in which tab. In the default macOS Terminal, it's a pile of overlapping windows. You're spending more time finding the right terminal than writing code.</p>
+
+            <p>The worst part: you <code>Ctrl+C</code> what you think is the notification service, but it was actually the API gateway. Now the entire system is broken and you're restarting everything, trying to remember which ports go where.</p>
+
+            <h2>The Beam Workspace-Per-Service Model</h2>
+
+            <p>Beam solves this with <strong>workspaces</strong>. Each workspace is a named, isolated group of terminal tabs. One workspace per microservice means every service gets its own labeled environment that you can switch to instantly.</p>
+
+            <p>Here's the layout:</p>
+
+            <h3>Workspace: "API Gateway"</h3>
+            <ul>
+                <li><strong>Tab 1: Claude Code</strong> -- Scoped to <code>/services/gateway</code>. Handles routing logic, middleware, authentication, rate limiting.</li>
+                <li><strong>Tab 2: <code>go run ./cmd/gateway</code></strong> -- The running gateway process on port 8080. You see request logs in real time.</li>
+                <li><strong>Tab 3: Testing</strong> -- Running <code>curl</code> or <code>httpie</code> commands against the gateway, or tailing structured logs.</li>
+            </ul>
+
+            <h3>Workspace: "User Service"</h3>
+            <ul>
+                <li><strong>Tab 1: Claude Code</strong> -- Scoped to <code>/services/users</code>. User CRUD, authentication, profile management.</li>
+                <li><strong>Tab 2: <code>go run ./cmd/users</code></strong> -- Running on port 8081. gRPC server for internal calls, REST for external.</li>
+                <li><strong>Tab 3: Database</strong> -- <code>psql</code> connected to the users database for inspecting data while developing.</li>
+            </ul>
+
+            <h3>Workspace: "Order Service"</h3>
+            <ul>
+                <li><strong>Tab 1: Claude Code</strong> -- Scoped to <code>/services/orders</code>. Order lifecycle, payment integration, inventory checks.</li>
+                <li><strong>Tab 2: <code>go run ./cmd/orders</code></strong> -- Running on port 8082.</li>
+                <li><strong>Tab 3: Logs</strong> -- Filtered order-specific logs or message queue monitoring.</li>
+            </ul>
+
+            <h3>Workspace: "Notification Service"</h3>
+            <ul>
+                <li><strong>Tab 1: Claude Code</strong> -- Scoped to <code>/services/notifications</code>. Email, push, SMS dispatch logic.</li>
+                <li><strong>Tab 2: <code>go run ./cmd/notifications</code></strong> -- Running on port 8083. Consumes events from the message queue.</li>
+                <li><strong>Tab 3: Queue monitor</strong> -- Watching NATS or RabbitMQ subjects to see events flowing in.</li>
+            </ul>
+
+            <h3>Workspace: "Worker"</h3>
+            <ul>
+                <li><strong>Tab 1: Claude Code</strong> -- Scoped to <code>/services/worker</code>. Background jobs, scheduled tasks, data processing.</li>
+                <li><strong>Tab 2: <code>go run ./cmd/worker</code></strong> -- Long-running process consuming job queues.</li>
+                <li><strong>Tab 3: Monitoring</strong> -- Job queue status, retry counts, dead letter inspection.</li>
+            </ul>
+
+            <h3>Workspace: "Infrastructure"</h3>
+            <ul>
+                <li><strong>Tab 1: <code>docker compose up</code></strong> -- Postgres, Redis, NATS, and any other dependencies running locally.</li>
+                <li><strong>Tab 2: Docker logs</strong> -- Filtered logs from specific containers.</li>
+                <li><strong>Tab 3: Ad hoc</strong> -- Migrations, seed scripts, infrastructure debugging.</li>
+            </ul>
+
+            <p>Switch between any workspace with <span class="kbd">&#8984;&#8997;&larr;&rarr;</span> or press <span class="kbd">&#8984;P</span> to open the Quick Switcher, type "orders" and hit Enter. You're in the order service workspace in under a second, with all its tabs and context exactly as you left them.</p>
+
+            <div class="highlight">
+                <h3>Pro Tip: Name Your Tabs Too</h3>
+                <p>Double-click any tab in Beam to rename it. Instead of five tabs that all say "zsh", you'll see "Claude Code", "go run", "logs" -- instantly recognizable. When you combine named workspaces with named tabs, there's zero ambiguity about what's running where.</p>
+            </div>
+
+            <h2>Setting Up the Architecture with Claude Code</h2>
+
+            <p>Before you can organize five services in Beam, you need to scaffold them. This is where Claude Code earns its keep. Open a Claude Code session and ask it to generate the entire monorepo structure.</p>
+
+            <p>A typical Go microservices monorepo looks like this:</p>
+
+            <pre>
+project-root/
+  services/
+    gateway/
+      cmd/gateway/main.go
+      internal/handlers/
+      internal/middleware/
+    users/
+      cmd/users/main.go
+      internal/handlers/
+      internal/repository/
+      internal/service/
+    orders/
+      cmd/orders/main.go
+      internal/handlers/
+      internal/repository/
+      internal/service/
+    notifications/
+      cmd/notifications/main.go
+      internal/handlers/
+      internal/consumers/
+    worker/
+      cmd/worker/main.go
+      internal/jobs/
+  pkg/
+    shared/
+      models/
+      middleware/
+      logging/
+  proto/
+    user.proto
+    order.proto
+    notification.proto
+  docker-compose.yml
+  Makefile
+  go.work</pre>
+
+            <p>Claude Code can scaffold this in one prompt. It'll generate the <code>go.work</code> file that ties the monorepo modules together, the base <code>main.go</code> files with signal handling and graceful shutdown, and the shared packages that every service imports.</p>
+
+            <p>The key is the <strong>Makefile</strong>. Ask Claude Code to generate per-service targets:</p>
+
+            <pre>
+.PHONY: run-gateway run-users run-orders run-notifications run-worker
+
+run-gateway:
+    cd services/gateway && go run ./cmd/gateway
+
+run-users:
+    cd services/users && go run ./cmd/users
+
+run-orders:
+    cd services/orders && go run ./cmd/orders
+
+run-notifications:
+    cd services/notifications && go run ./cmd/notifications
+
+run-worker:
+    cd services/worker && go run ./cmd/worker
+
+run-all:
+    make -j5 run-gateway run-users run-orders run-notifications run-worker
+
+test-all:
+    cd services/gateway && go test ./...
+    cd services/users && go test ./...
+    cd services/orders && go test ./...
+    cd services/notifications && go test ./...
+    cd services/worker && go test ./...
+
+proto:
+    protoc --go_out=. --go-grpc_out=. proto/*.proto</pre>
+
+            <p>Now each Beam workspace tab can run its respective <code>make run-*</code> target. Clean, predictable, and you never have to remember which port belongs to which service.</p>
+
+            <h2>Service-to-Service Communication</h2>
+
+            <p>The real complexity in Go microservices isn't any single service -- it's how they talk to each other. Claude Code is remarkably effective at generating the glue code that connects services together.</p>
+
+            <h3>gRPC Service Definitions</h3>
+
+            <p>In your "User Service" workspace, ask Claude Code to generate the protobuf definitions and Go implementations. It'll produce the <code>.proto</code> file, run <code>protoc</code> to generate the Go code, and implement the server:</p>
+
+            <pre>
+// proto/user.proto
+syntax = "proto3";
+package user;
+option go_package = "pkg/shared/userpb";
+
+service UserService {
+    rpc GetUser(GetUserRequest) returns (User);
+    rpc CreateUser(CreateUserRequest) returns (User);
+    rpc ListUsers(ListUsersRequest) returns (ListUsersResponse);
+}</pre>
+
+            <p>Then switch to the "Order Service" workspace (<span class="kbd">&#8984;P</span>, type "order"), and ask Claude Code there to generate the gRPC client that calls the user service. Because each Claude Code session is scoped to its service directory, it generates the client code in the right place with the right imports.</p>
+
+            <h3>HTTP Client Wrappers</h3>
+
+            <p>For services that communicate over REST, Claude Code generates typed HTTP clients with proper error handling, retries, and circuit breaking:</p>
+
+            <pre>
+// pkg/shared/clients/orders.go
+type OrderClient struct {
+    baseURL    string
+    httpClient *http.Client
+}
+
+func (c *OrderClient) CreateOrder(ctx context.Context, req CreateOrderRequest) (*Order, error) {
+    body, err := json.Marshal(req)
+    if err != nil {
+        return nil, fmt.Errorf("marshal request: %w", err)
+    }
+
+    httpReq, err := http.NewRequestWithContext(ctx, "POST", c.baseURL+"/api/orders", bytes.NewReader(body))
+    if err != nil {
+        return nil, fmt.Errorf("create request: %w", err)
+    }
+    httpReq.Header.Set("Content-Type", "application/json")
+
+    resp, err := c.httpClient.Do(httpReq)
+    if err != nil {
+        return nil, fmt.Errorf("execute request: %w", err)
+    }
+    defer resp.Body.Close()
+
+    if resp.StatusCode != http.StatusCreated {
+        return nil, fmt.Errorf("unexpected status: %d", resp.StatusCode)
+    }
+
+    var order Order
+    if err := json.NewDecoder(resp.Body).Decode(&order); err != nil {
+        return nil, fmt.Errorf("decode response: %w", err)
+    }
+    return &order, nil
+}</pre>
+
+            <h3>Message Queue Integration</h3>
+
+            <p>For event-driven communication, ask Claude Code to wire up NATS or RabbitMQ publishers and subscribers. In the "Order Service" workspace, generate the event publisher:</p>
+
+            <pre>
+// services/orders/internal/events/publisher.go
+func (p *Publisher) OrderCreated(ctx context.Context, order *models.Order) error {
+    event := OrderCreatedEvent{
+        OrderID:   order.ID,
+        UserID:    order.UserID,
+        Total:     order.Total,
+        CreatedAt: order.CreatedAt,
+    }
+    data, err := json.Marshal(event)
+    if err != nil {
+        return fmt.Errorf("marshal event: %w", err)
+    }
+    return p.nc.Publish("orders.created", data)
+}</pre>
+
+            <p>Then switch to the "Notification Service" workspace and ask Claude Code to generate the corresponding subscriber that listens for <code>orders.created</code> events and sends confirmation emails. The workspace isolation keeps your mental model clean: you're thinking about notifications in the notification workspace, orders in the order workspace.</p>
+
+            <h2>Split Pane Workflows</h2>
+
+            <p>Within each workspace, Beam's split panes let you see multiple things at once without switching tabs. Here are the workflows that Go microservices developers use most.</p>
+
+            <h3>Build and Test Side by Side</h3>
+
+            <p>Press <span class="kbd">&#8984;&#8997;&#8963;T</span> to split the current tab into two panes. On the left, Claude Code is building a new endpoint for the order service. On the right, you're running the test:</p>
+
+            <ul>
+                <li><strong>Left pane:</strong> Claude Code adding a <code>CancelOrder</code> handler with validation, database updates, and event publishing.</li>
+                <li><strong>Right pane:</strong> <code>go test -v -run TestCancelOrder ./internal/handlers/...</code> -- watching it go from failing to passing as Claude Code iterates.</li>
+            </ul>
+
+            <p>You see the test output update in real time while Claude Code works. No tab switching, no losing context.</p>
+
+            <h3>Code and curl</h3>
+
+            <ul>
+                <li><strong>Left pane:</strong> Claude Code implementing a new <code>POST /api/orders</code> endpoint.</li>
+                <li><strong>Right pane:</strong> Testing it live with <code>curl -X POST http://localhost:8082/api/orders -d '{"user_id": "abc", "items": [...]}'</code></li>
+            </ul>
+
+            <p>The moment Claude Code says the endpoint is ready, you fire the curl command and verify it works. Instant feedback loop.</p>
+
+            <h3>Logs and Debugging</h3>
+
+            <ul>
+                <li><strong>Top pane:</strong> Service logs streaming with <code>go run ./cmd/orders 2>&1 | jq .</code> for pretty-printed structured JSON logs.</li>
+                <li><strong>Bottom pane:</strong> Claude Code analyzing a stack trace, suggesting a fix, and applying it. You watch the logs clear up as the fix takes effect on the next hot reload.</li>
+            </ul>
+
+            <h2>Project Memory Per Service</h2>
+
+            <p>One of Claude Code's most powerful features is <strong>CLAUDE.md</strong> -- a project memory file that gives Claude Code persistent context about your codebase. In a microservices architecture, each service is different enough that it deserves its own memory file.</p>
+
+            <p>In each service directory, create a <code>CLAUDE.md</code> that describes:</p>
+
+            <pre>
+# User Service
+
+## Architecture
+- gRPC server on :8081 for internal service-to-service calls
+- REST API on :8080 for external/gateway calls
+- PostgreSQL for persistence (users, profiles, sessions)
+- Redis for session caching
+
+## Conventions
+- All handlers in internal/handlers/
+- Repository pattern: internal/repository/ interfaces, implementations
+- Request validation with go-playground/validator
+- Errors wrapped with fmt.Errorf and %w verb
+- Structured logging with slog
+
+## Testing
+- Table-driven tests for all handlers
+- Testcontainers for integration tests against real Postgres
+- go test -race on all packages
+
+## Dependencies
+- Called by: API Gateway (REST), Order Service (gRPC)
+- Calls: Notification Service (NATS events)</pre>
+
+            <p>When you switch to the "User Service" workspace in Beam and start talking to Claude Code, it reads this <code>CLAUDE.md</code> and immediately understands the service's architecture, conventions, and dependencies. It won't suggest patterns that belong in a different service. It won't generate REST endpoints when the service uses gRPC internally.</p>
+
+            <p>Each workspace in Beam has its Claude Code session scoped to its service directory. That means each session reads its own <code>CLAUDE.md</code>. You effectively have five specialized AI assistants, one per service, each with deep knowledge of its domain.</p>
+
+            <div class="highlight">
+                <h3>Pro Tip: Cross-Service Memory</h3>
+                <p>Put a <code>CLAUDE.md</code> in the project root too, describing the overall architecture, shared packages, and inter-service communication patterns. Claude Code reads both the root and the local <code>CLAUDE.md</code>, so each service session understands both the big picture and its specific domain.</p>
+            </div>
+
+            <h2>Running Everything Together</h2>
+
+            <p>Getting five Go services, three infrastructure containers, and a message broker all running locally is a coordination problem. Here's the Beam workflow that makes it painless.</p>
+
+            <h3>Step 1: Infrastructure First</h3>
+
+            <p>Switch to your "Infrastructure" workspace and start the dependencies:</p>
+
+            <pre>
+# docker-compose.yml
+services:
+  postgres:
+    image: postgres:16-alpine
+    ports: ["5432:5432"]
+    environment:
+      POSTGRES_PASSWORD: dev
+      POSTGRES_DB: microservices
+
+  redis:
+    image: redis:7-alpine
+    ports: ["6379:6379"]
+
+  nats:
+    image: nats:2-alpine
+    ports: ["4222:4222", "8222:8222"]</pre>
+
+            <p>Run <code>docker compose up</code> in the first tab. The second tab shows filtered logs. Third tab is for running migrations.</p>
+
+            <h3>Step 2: Hot Reload Each Service</h3>
+
+            <p>In each service workspace's "go run" tab, use <code>air</code> or <code>watchexec</code> for hot reloading instead of plain <code>go run</code>:</p>
+
+            <pre>
+# Install air for hot reloading
+go install github.com/air-verse/air@latest
+
+# In each service tab:
+cd services/gateway && air
+cd services/users && air
+cd services/orders && air
+cd services/notifications && air
+cd services/worker && air</pre>
+
+            <p>Now when Claude Code edits a file in any service, the service automatically rebuilds and restarts. You see the restart in the adjacent tab, verify the change, and move on.</p>
+
+            <h3>Step 3: Save the Entire Layout</h3>
+
+            <p>Once all six workspaces are set up -- five services plus infrastructure -- press <span class="kbd">&#8984;S</span> to save the layout. Name it "Go Microservices Dev". Tomorrow, or next week, you open Beam, restore this layout, and every workspace, every tab, every split pane is back exactly how you left it. Start <code>docker compose up</code> and <code>air</code> in each tab, and you're developing in under a minute.</p>
+
+            <div class="highlight">
+                <h3>Layout Restore Saves Hours</h3>
+                <p>Setting up a 5-service microservices environment from scratch takes 15-20 minutes of creating terminals, navigating to directories, and starting processes. With a saved Beam layout, you restore in one keystroke and just start the processes. Over a week of development, that's over an hour saved.</p>
+            </div>
+
+            <h2>Debugging Across Services</h2>
+
+            <p>The hardest part of microservices development is debugging problems that span multiple services. A request hits the API gateway, calls the user service, triggers an order, publishes an event to the notification service -- and somewhere in that chain, something goes wrong. Beam's workspace model turns this cross-service debugging from nightmare to manageable.</p>
+
+            <h3>Distributed Tracing with OpenTelemetry</h3>
+
+            <p>Ask Claude Code (in any workspace) to add OpenTelemetry tracing to the shared middleware package. Every service imports it, so every service gets tracing:</p>
+
+            <pre>
+// pkg/shared/middleware/tracing.go
+func TracingMiddleware(serviceName string) func(http.Handler) http.Handler {
+    return func(next http.Handler) http.Handler {
+        return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+            ctx, span := otel.Tracer(serviceName).Start(r.Context(), r.URL.Path)
+            defer span.End()
+
+            span.SetAttributes(
+                attribute.String("http.method", r.Method),
+                attribute.String("http.url", r.URL.String()),
+                attribute.String("service.name", serviceName),
+            )
+
+            next.ServeHTTP(w, r.WithContext(ctx))
+        })
+    }
+}</pre>
+
+            <p>Now when a request fails, you can trace it across services. Switch to the workspace where the error originated (the Quick Switcher makes this instant), ask Claude Code to analyze the trace, and fix the bug in the right service.</p>
+
+            <h3>Debugging Race Conditions</h3>
+
+            <p>Go's concurrency model means race conditions are a real concern in microservices. When two services update the same resource concurrently, you need to see what's happening in both services at the same time.</p>
+
+            <p>The Beam workflow: open the two relevant workspaces and use split panes in each to show Claude Code and the service logs side by side. Ask Claude Code in the first service to add detailed logging around the concurrent access point, then switch to the second service and do the same. The structured logs from both services, visible in their respective workspaces, tell you exactly what's happening and in what order.</p>
+
+            <p>Then ask Claude Code to implement the fix -- optimistic locking, distributed locks with Redis, or whatever pattern fits your architecture. The fix goes into the right service because you're in the right workspace.</p>
+
+            <h3>End-to-End Request Tracing</h3>
+
+            <p>When debugging a full request flow, use this workflow:</p>
+
+            <ol>
+                <li>Start in the "API Gateway" workspace. Check the access logs for the failing request. Note the request ID.</li>
+                <li><span class="kbd">&#8984;P</span>, type "users" -- switch to the User Service workspace. Search logs for that request ID.</li>
+                <li><span class="kbd">&#8984;P</span>, type "orders" -- switch to the Order Service workspace. Find where the request ID shows up and where it fails.</li>
+                <li>Ask Claude Code in that workspace to analyze the error and fix it.</li>
+                <li>Test the fix from the "API Gateway" workspace by replaying the original request.</li>
+            </ol>
+
+            <p>The entire debugging session hops between workspaces, but each workspace preserves its state. Your Claude Code session in the User Service is still right where you left it. Your logs in the Order Service are still scrolled to the right line. Nothing is lost.</p>
+
+            <h2>Scaling the Workflow</h2>
+
+            <p>Five services is a starting point. Real microservices architectures grow to ten, twenty, fifty services. Beam's workspace model scales because:</p>
+
+            <ul>
+                <li><strong>Quick Switcher is fuzzy</strong> -- Type "notif" and it finds the Notification Service workspace. You don't need to remember exact names or positions.</li>
+                <li><strong>Workspaces are lazy</strong> -- You don't need all workspaces active at once. Only open the ones you're currently working on. Save the full layout and restore individual workspaces as needed.</li>
+                <li><strong>Layouts compose</strong> -- Save a "Core Services" layout with gateway, users, and orders. Save an "Event System" layout with notifications, worker, and infrastructure. Load whichever set you need for today's work.</li>
+                <li><strong>Claude Code stays contextual</strong> -- Each session reads its own <code>CLAUDE.md</code>. Adding a sixth or seventh service is just another workspace with its own memory file.</li>
+            </ul>
+
+            <div class="cta-box">
+                <h3>Tame Your Go Microservices Workflow</h3>
+                <p>Stop drowning in terminal tabs. Beam gives every service its own workspace, every workspace its own Claude Code session, and every layout a one-keystroke restore. Download free for macOS.</p>
+                <a href="../" class="btn">Download Beam for macOS</a>
+            </div>
+
+            <h2>Summary</h2>
+
+            <p>Managing Go microservices development doesn't have to mean drowning in terminal windows. With Beam:</p>
+
+            <ul>
+                <li><strong>One workspace per service</strong> -- API Gateway, User Service, Order Service, Notification Service, Worker, and Infrastructure each get their own isolated workspace with Claude Code, running process, and logs.</li>
+                <li><strong>Quick Switcher</strong> (<span class="kbd">&#8984;P</span>) -- Jump between services instantly by typing a few characters. No more hunting through tab bars.</li>
+                <li><strong>Split panes</strong> -- Watch Claude Code build an endpoint on the left while you test it on the right. See logs and debugging side by side.</li>
+                <li><strong>Project memory per service</strong> -- Each service's <code>CLAUDE.md</code> gives its Claude Code session specialized knowledge. Five services, five AI assistants, each an expert in its domain.</li>
+                <li><strong>Saved layouts</strong> (<span class="kbd">&#8984;S</span>) -- Save your entire 6-workspace microservices setup and restore it tomorrow with one keystroke.</li>
+                <li><strong>Hot reloading</strong> -- Use <code>air</code> in each service tab so Claude Code's changes take effect immediately.</li>
+                <li><strong>Cross-service debugging</strong> -- Trace requests across services by hopping between workspaces, each preserving its own state and context.</li>
+            </ul>
+
+            <p>Go microservices are architecturally elegant. Your terminal setup should be too.</p>
+
+            <div class="related-articles">
+                <h2>Related Articles</h2>
+                <div class="related-grid">
+                    <a href="claude-code-go-development.html" class="related-card">
+                        <h4>Claude Code for Go Development</h4>
+                        <p>The complete workflow for Go development with Claude Code and Beam.</p>
+                    </a>
+                    <a href="claude-code-with-docker.html" class="related-card">
+                        <h4>Claude Code with Docker</h4>
+                        <p>Run Claude Code alongside Docker containers with an organized workflow.</p>
+                    </a>
+                    <a href="manage-multiple-claude-code-sessions.html" class="related-card">
+                        <h4>Manage Multiple Claude Code Sessions</h4>
+                        <p>How to manage 5+ Claude Code sessions across projects without losing track.</p>
+                    </a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>
+                <a href="../">Beam</a> &bull; Terminal Organizer for macOS &bull;
+                <a href="mailto:frank@nextuptechnologies.co">Contact</a>
+            </p>
+
+            <p style="margin-top: 12px; font-size: 0.8rem;">
+                <a href="/privacy.html" style="color: #71717a; text-decoration: none;">Privacy Policy</a> &bull;
+                <a href="/terms.html" style="color: #71717a; text-decoration: none;">Terms of Service</a>
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D0XH8B0RKL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-D0XH8B0RKL');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agentic Engineering: The Evolution Beyond Vibe Coding | Beam Terminal Organizer</title>
+    <meta name="description" content="Agentic engineering is replacing vibe coding as the dominant AI development paradigm in 2026. Learn how Karpathy's new concept works, core patterns like ReAct and multi-agent coordination, and how to set up your agentic workflow with Beam.">
+    <meta name="keywords" content="agentic engineering, vibe coding evolution, agentic coding 2026, Karpathy agentic engineering, AI agent coding, beyond vibe coding">
+    <meta name="author" content="NextUp Technologies">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://getbeam.dev/blog/agentic-engineering-guide.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://getbeam.dev/blog/agentic-engineering-guide.html">
+    <meta property="og:title" content="Agentic Engineering: The Evolution Beyond Vibe Coding">
+    <meta property="og:description" content="Karpathy says vibe coding is over. Here's how agentic engineering works and how to set up your workflow.">
+    <meta property="og:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Agentic Engineering: The Evolution Beyond Vibe Coding">
+    <meta name="twitter:description" content="Karpathy says vibe coding is over. Here's how agentic engineering works and how to set up your workflow.">
+    <meta name="twitter:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Agentic Engineering: The Evolution Beyond Vibe Coding",
+        "description": "Agentic engineering is replacing vibe coding as the dominant AI development paradigm in 2026. Learn how Karpathy's new concept works and how to set up your agentic workflow.",
+        "author": {
+            "@type": "Organization",
+            "name": "NextUp Technologies"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Beam"
+        },
+        "datePublished": "2026-02-11",
+        "keywords": "agentic engineering, vibe coding evolution, agentic coding 2026, Karpathy agentic engineering, AI agent coding, beyond vibe coding"
+    }
+    </script>
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #111113;
+            --bg-tertiary: #1a1a1d;
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.4);
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --border: #27272a;
+            --success: #22c55e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        header {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 60px;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1.5rem;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            background: var(--accent);
+            color: white;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+        }
+
+        article {
+            padding-bottom: 80px;
+        }
+
+        .breadcrumb {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+        }
+
+        .breadcrumb a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .meta {
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            font-size: 0.95rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 48px 0 20px;
+            color: var(--text-primary);
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        ul, ol {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            padding-left: 24px;
+        }
+
+        li {
+            margin-bottom: 12px;
+        }
+
+        .highlight {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 32px 0;
+        }
+
+        .highlight h3 {
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .kbd {
+            display: inline-block;
+            padding: 2px 8px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .cta-box h3 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+        }
+
+        .cta-box p {
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 24px;
+        }
+
+        .cta-box .btn {
+            background: white;
+            color: var(--accent);
+        }
+
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+
+        .related-articles { margin-top: 60px; padding-top: 40px; border-top: 1px solid var(--border); }
+        .related-articles h2 { font-size: 1.5rem; margin-bottom: 24px; }
+        .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .related-card { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-decoration: none; transition: border-color 0.2s; }
+        .related-card:hover { border-color: var(--accent); }
+        .related-card h4 { color: white; font-size: 1rem; margin: 0 0 8px 0; }
+        .related-card p { color: var(--text-muted); font-size: 0.85rem; margin: 0; }
+        @media (max-width: 600px) { .related-grid { grid-template-columns: 1fr; } }
+
+        blockquote {
+            border-left: 3px solid var(--accent);
+            padding-left: 20px;
+            margin: 24px 0;
+            font-style: italic;
+        }
+
+        blockquote p {
+            color: var(--text-secondary);
+        }
+
+        .evolution-timeline {
+            margin: 40px 0;
+        }
+
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin: 32px 0;
+        }
+
+        .stat-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .stat-card .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent);
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .stat-card .stat-label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        @media (max-width: 600px) {
+            .stat-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="../" class="logo">
+                <div class="logo-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round">
+                        <path d="M4 17l6-6-6-6M12 19h8"/>
+                    </svg>
+                </div>
+                Beam
+            </a>
+            <a href="../" class="btn">Download Beam</a>
+        </div>
+    </header>
+
+    <main>
+        <article class="container">
+            <div class="breadcrumb">
+                <a href="../">Beam</a> / <a href="../#guides">Guides</a> / Agentic Engineering Guide
+            </div>
+
+            <h1>Agentic Engineering: The Evolution Beyond Vibe Coding</h1>
+            <p class="meta">February 2026 &bull; 9 min read</p>
+
+            <p>Exactly one year ago, Andrej Karpathy casually named a revolution: <strong>vibe coding</strong> – the practice of describing what you want and letting an LLM write the code. It dominated the conversation in 2025. But in February 2026, the same person who coined &ldquo;vibe coding&rdquo; has declared it pass&eacute;. The new paradigm? <strong>Agentic engineering</strong> – orchestrating AI agents rather than writing code yourself.</p>
+
+            <p>This isn&rsquo;t a rebrand. It&rsquo;s a fundamental shift in how professional software gets built. And if you&rsquo;re still just &ldquo;vibing,&rdquo; you&rsquo;re already behind.</p>
+
+            <!-- Evolution Timeline SVG -->
+            <div class="evolution-timeline">
+                <svg viewBox="0 0 800 180" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+                    <!-- Background -->
+                    <rect width="800" height="180" rx="12" fill="#111113" stroke="#27272a" stroke-width="1"/>
+
+                    <!-- Timeline line -->
+                    <line x1="100" y1="90" x2="700" y2="90" stroke="#27272a" stroke-width="3" stroke-linecap="round"/>
+                    <!-- Progress overlay -->
+                    <line x1="100" y1="90" x2="700" y2="90" stroke="url(#timelineGrad)" stroke-width="3" stroke-linecap="round"/>
+
+                    <defs>
+                        <linearGradient id="timelineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#71717a"/>
+                            <stop offset="40%" stop-color="#3b82f6"/>
+                            <stop offset="100%" stop-color="#8b5cf6"/>
+                        </linearGradient>
+                    </defs>
+
+                    <!-- Stage 1: Manual Coding -->
+                    <circle cx="130" cy="90" r="24" fill="#1a1a1d" stroke="#71717a" stroke-width="2"/>
+                    <!-- Keyboard icon -->
+                    <rect x="118" y="82" width="24" height="16" rx="2" fill="none" stroke="#71717a" stroke-width="1.5"/>
+                    <line x1="122" y1="87" x2="126" y2="87" stroke="#71717a" stroke-width="1.2"/>
+                    <line x1="128" y1="87" x2="132" y2="87" stroke="#71717a" stroke-width="1.2"/>
+                    <line x1="134" y1="87" x2="138" y2="87" stroke="#71717a" stroke-width="1.2"/>
+                    <line x1="124" y1="92" x2="136" y2="92" stroke="#71717a" stroke-width="1.2"/>
+                    <text x="130" y="135" text-anchor="middle" fill="#71717a" font-family="Space Grotesk, sans-serif" font-size="12" font-weight="600">Manual Coding</text>
+                    <text x="130" y="152" text-anchor="middle" fill="#52525b" font-family="Space Grotesk, sans-serif" font-size="10">Pre-2024</text>
+
+                    <!-- Arrow 1 -->
+                    <polygon points="195,90 185,84 185,96" fill="#71717a"/>
+
+                    <!-- Stage 2: Vibe Coding -->
+                    <circle cx="310" cy="90" r="24" fill="#1a1a1d" stroke="#3b82f6" stroke-width="2"/>
+                    <!-- Chat bubble icon -->
+                    <rect x="297" y="79" width="26" height="18" rx="4" fill="none" stroke="#3b82f6" stroke-width="1.5"/>
+                    <polygon points="305,97 309,97 305,103" fill="none" stroke="#3b82f6" stroke-width="1.5" stroke-linejoin="round"/>
+                    <line x1="303" y1="86" x2="317" y2="86" stroke="#3b82f6" stroke-width="1.2"/>
+                    <line x1="303" y1="91" x2="313" y2="91" stroke="#3b82f6" stroke-width="1.2"/>
+                    <text x="310" y="135" text-anchor="middle" fill="#3b82f6" font-family="Space Grotesk, sans-serif" font-size="12" font-weight="600">Vibe Coding</text>
+                    <text x="310" y="152" text-anchor="middle" fill="#52525b" font-family="Space Grotesk, sans-serif" font-size="10">2025</text>
+
+                    <!-- Arrow 2 -->
+                    <polygon points="395,90 385,84 385,96" fill="#3b82f6"/>
+
+                    <!-- Stage 3: Agentic Engineering -->
+                    <circle cx="530" cy="90" r="28" fill="#1a1a1d" stroke="#8b5cf6" stroke-width="2.5"/>
+                    <!-- Glow effect -->
+                    <circle cx="530" cy="90" r="28" fill="none" stroke="rgba(139,92,246,0.3)" stroke-width="6"/>
+                    <!-- Network/orchestration icon: 3 nodes connected -->
+                    <circle cx="522" cy="82" r="4" fill="#8b5cf6"/>
+                    <circle cx="538" cy="82" r="4" fill="#8b5cf6"/>
+                    <circle cx="530" cy="98" r="4" fill="#8b5cf6"/>
+                    <line x1="522" y1="82" x2="538" y2="82" stroke="#8b5cf6" stroke-width="1.5"/>
+                    <line x1="522" y1="82" x2="530" y2="98" stroke="#8b5cf6" stroke-width="1.5"/>
+                    <line x1="538" y1="82" x2="530" y2="98" stroke="#8b5cf6" stroke-width="1.5"/>
+                    <!-- Small center dot -->
+                    <circle cx="530" cy="88" r="2" fill="#c4b5fd"/>
+                    <text x="530" y="139" text-anchor="middle" fill="#8b5cf6" font-family="Space Grotesk, sans-serif" font-size="12" font-weight="700">Agentic Engineering</text>
+                    <text x="530" y="156" text-anchor="middle" fill="#52525b" font-family="Space Grotesk, sans-serif" font-size="10">2026</text>
+
+                    <!-- "YOU ARE HERE" marker -->
+                    <text x="680" y="80" text-anchor="middle" fill="#8b5cf6" font-family="JetBrains Mono, monospace" font-size="10" font-weight="500">YOU ARE</text>
+                    <text x="680" y="95" text-anchor="middle" fill="#8b5cf6" font-family="JetBrains Mono, monospace" font-size="10" font-weight="500">HERE</text>
+                    <line x1="620" y1="90" x2="650" y2="90" stroke="#8b5cf6" stroke-width="1.5" stroke-dasharray="4,3"/>
+                    <polygon points="650,90 644,86 644,94" fill="#8b5cf6"/>
+
+                    <!-- Title -->
+                    <text x="400" y="25" text-anchor="middle" fill="#71717a" font-family="Space Grotesk, sans-serif" font-size="11" font-weight="500">THE EVOLUTION OF SOFTWARE DEVELOPMENT</text>
+                </svg>
+            </div>
+
+            <h2>What Is Agentic Engineering?</h2>
+
+            <p>Agentic engineering is the practice of <strong>orchestrating AI agents</strong> to build software under human direction. Instead of writing code line by line – or even describing what you want in a prompt – you define goals, constraints, and quality criteria. Then a suite of AI agents handles the planning, coding, testing, debugging, and integration.</p>
+
+            <blockquote>
+                <p>&ldquo;You are not writing the code directly 99% of the time... you are orchestrating agents who do and acting as oversight.&rdquo;</p>
+                <p><strong>-- Andrej Karpathy, February 2026</strong></p>
+            </blockquote>
+
+            <p>Think of it this way: you&rsquo;re the <strong>architect</strong>, and the AI agents are your <strong>builders</strong>. You don&rsquo;t lay bricks. You review blueprints, inspect work, course-correct when things go sideways, and make the strategic decisions that shape the outcome.</p>
+
+            <p>This isn&rsquo;t hypothetical. It&rsquo;s how a growing number of professional engineering teams ship code today. The key distinction from vibe coding? Agentic engineering demands <strong>oversight, structure, and engineering discipline</strong> – not just good prompts.</p>
+
+            <h2>Vibe Coding vs. Agentic Engineering</h2>
+
+            <p>The terms sound related, but they represent fundamentally different approaches to building software with AI.</p>
+
+            <div class="highlight">
+                <h3>Vibe Coding (2025)</h3>
+                <ul>
+                    <li>You <strong>describe</strong> what you want in natural language</li>
+                    <li>A single LLM generates code based on your prompt</li>
+                    <li>You tweak, accept, or reject the output</li>
+                    <li>Best for prototypes, scripts, and quick explorations</li>
+                    <li>The developer is a <strong>collaborator</strong></li>
+                </ul>
+            </div>
+
+            <div class="highlight">
+                <h3>Agentic Engineering (2026)</h3>
+                <ul>
+                    <li>You <strong>define goals</strong>, constraints, and quality standards</li>
+                    <li>Multiple AI agents plan, implement, test, and iterate</li>
+                    <li>You review, redirect, and approve at checkpoints</li>
+                    <li>Built for production systems and complex, multi-component projects</li>
+                    <li>The developer is an <strong>architect and governor</strong></li>
+                </ul>
+            </div>
+
+            <p>The shift isn&rsquo;t just semantic. In vibe coding, you&rsquo;re a hands-on contributor who happens to have an AI assistant. In agentic engineering, you&rsquo;re managing a team of AI workers – setting direction, reviewing output, and ensuring quality. The code is still yours, but you didn&rsquo;t type it.</p>
+
+            <h2>The Numbers Tell the Story</h2>
+
+            <p>The data on AI-assisted development in 2026 is staggering.</p>
+
+            <div class="stat-grid">
+                <div class="stat-card">
+                    <span class="stat-number">41%</span>
+                    <span class="stat-label">of all code is now AI-generated</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">92%</span>
+                    <span class="stat-label">of US devs use AI tools daily</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">4%</span>
+                    <span class="stat-label">of GitHub commits by Claude Code</span>
+                </div>
+            </div>
+
+            <p>That last number deserves attention. According to a <strong>SemiAnalysis report from February 2026</strong>, 4% of all public GitHub commits are now authored by Claude Code. At current growth rates, that figure is projected to exceed <strong>20% of all daily commits by the end of 2026</strong>.</p>
+
+            <p>The friction to adoption is near zero – it&rsquo;s often just a subscription tier or an API key. Developers are delegating implementation details while focusing on architecture, problem definition, and oversight. That&rsquo;s agentic engineering in practice.</p>
+
+            <h2>Core Patterns of Agentic Engineering</h2>
+
+            <p>Agentic engineering isn&rsquo;t ad hoc. There are established patterns that make it work reliably at scale.</p>
+
+            <p><strong>1. ReAct (Reasoning + Acting)</strong></p>
+            <p>The agent reasons about a problem, takes an action (like writing code or running a test), observes the result, then reasons again. This loop continues until the task is complete. It&rsquo;s the foundation of tools like Claude Code, where the agent reads your codebase, plans changes, implements them, and verifies the result.</p>
+
+            <p><strong>2. Planning Loops</strong></p>
+            <p>Before writing any code, the agent creates a plan – breaking a large task into subtasks, identifying dependencies, and estimating complexity. You review the plan, adjust it, then let the agent execute. This is where your engineering judgment matters most.</p>
+
+            <p><strong>3. Multi-Agent Coordination</strong></p>
+            <p>Different agents handle different concerns. One agent writes frontend code. Another builds the API. A third writes tests. A fourth reviews everything for security. They communicate through shared context and handoff protocols, much like a human engineering team.</p>
+
+            <p><strong>4. Human-in-the-Loop Oversight</strong></p>
+            <p>The most critical pattern. You&rsquo;re not handing the keys over to AI and walking away. You set checkpoints: review after planning, review after implementation, review after tests pass. You catch architectural drift, enforce coding standards, and make judgment calls that AI can&rsquo;t.</p>
+
+            <div class="highlight">
+                <h3>The Agentic Engineering Loop</h3>
+                <p><strong>Define</strong> goals and constraints &rarr; <strong>Agent plans</strong> the approach &rarr; <strong>You review</strong> the plan &rarr; <strong>Agent implements</strong> &rarr; <strong>Agent tests</strong> &rarr; <strong>You review</strong> the output &rarr; <strong>Ship</strong> or <strong>iterate</strong></p>
+            </div>
+
+            <h2>Your Agentic Engineering Setup with Beam</h2>
+
+            <p>Agentic engineering means running multiple AI agents in parallel – and that means multiple terminal sessions, each with its own context, its own task, and its own output stream. This is where organization becomes critical.</p>
+
+            <p>Here&rsquo;s how to set up Beam for an agentic workflow:</p>
+
+            <p><strong>One Workspace Per Agent</strong></p>
+            <p>Create a dedicated workspace for each agent you&rsquo;re orchestrating. Press <span class="kbd">&#8984;N</span> to create a workspace and name it by task: &ldquo;Frontend Agent,&rdquo; &ldquo;API Agent,&rdquo; &ldquo;Test Agent.&rdquo; Each workspace isolates that agent&rsquo;s terminals, output, and context.</p>
+
+            <p><strong>Parallel Agent Monitoring</strong></p>
+            <p>Use split panes (<span class="kbd">&#8984;&#8997;&#8963;T</span>) within a workspace to watch multiple agent outputs side by side. Monitor your frontend agent&rsquo;s progress while your test agent catches regressions in real time.</p>
+
+            <p><strong>Quick Switcher Between Orchestrated Tasks</strong></p>
+            <p>When you&rsquo;re coordinating 3-5 agents, you need to jump between contexts fast. Press <span class="kbd">&#8984;P</span> to open the Quick Switcher and fuzzy-search across all workspaces and tabs instantly. No more hunting through terminal windows.</p>
+
+            <p><strong>Saved Layouts for Agentic Workflows</strong></p>
+            <p>Once you have your multi-agent setup dialed in, press <span class="kbd">&#8984;S</span> to save the entire layout. Tomorrow, restore it in one click and your full orchestration environment is back – every workspace, every tab, every split.</p>
+
+            <div class="highlight">
+                <h3>Example: Multi-Agent Full-Stack Workflow</h3>
+                <ul>
+                    <li><strong>Workspace 1: &ldquo;Frontend Agent&rdquo;</strong> – Claude Code building React components + dev server</li>
+                    <li><strong>Workspace 2: &ldquo;API Agent&rdquo;</strong> – Claude Code building endpoints + API logs</li>
+                    <li><strong>Workspace 3: &ldquo;Test Agent&rdquo;</strong> – Claude Code writing and running tests + coverage output</li>
+                    <li><strong>Workspace 4: &ldquo;Review&rdquo;</strong> – Your review terminal for git diffs, code review, and final approval</li>
+                </ul>
+                <p>Switch between them with <span class="kbd">&#8984;&#8997;&#8592;&#8594;</span>. Each agent&rsquo;s context stays isolated and organized.</p>
+            </div>
+
+            <h2>Getting Started with Agentic Engineering</h2>
+
+            <p>You don&rsquo;t need to overhaul your workflow overnight. Here&rsquo;s a practical progression:</p>
+
+            <ol>
+                <li><strong>Start with single-agent Claude Code.</strong> Get comfortable letting the agent handle full implementation tasks while you focus on review. Practice the &ldquo;define, plan, review, ship&rdquo; loop with one agent.</li>
+                <li><strong>Graduate to agent teams.</strong> Run two Claude Code sessions in parallel – one for implementation, one for testing. Learn to coordinate between them and manage shared context.</li>
+                <li><strong>Add Codex for parallel work.</strong> Use OpenAI Codex alongside Claude Code for truly parallel agentic workflows. Assign different components to different agents and orchestrate the integration yourself.</li>
+                <li><strong>Build your review muscle.</strong> The most important skill in agentic engineering isn&rsquo;t prompting – it&rsquo;s <strong>code review</strong>. Get fast at reading diffs, spotting architectural issues, and catching edge cases the agents miss.</li>
+            </ol>
+
+            <h2>The 63% Problem</h2>
+
+            <p>Here&rsquo;s the uncomfortable truth: <strong>63% of developers have spent more time debugging AI-generated code than writing it themselves</strong> at least once. Studies consistently show that debugging AI code is a major challenge, with some surveys reporting up to 67% of developers spending more time on debugging than before adopting AI tools.</p>
+
+            <p>This isn&rsquo;t a reason to abandon AI-assisted development. It&rsquo;s a reason to do it <em>better</em>. The developers hitting this wall are typically vibing, not engineering. They&rsquo;re accepting AI output without review, skipping tests, and losing track of what the AI changed.</p>
+
+            <p>Agentic engineering solves this with structure:</p>
+
+            <ul>
+                <li><strong>Better oversight</strong> – Review at every checkpoint, not just at the end</li>
+                <li><strong>Better organization</strong> – Dedicated workspaces per agent so you can trace exactly what each agent did</li>
+                <li><strong>Better testing</strong> – A dedicated test agent that runs alongside your implementation agent</li>
+                <li><strong>Better tooling</strong> – A terminal organizer that keeps your multi-agent workflow from devolving into chaos</li>
+            </ul>
+
+            <p>The developers who thrive in 2026 aren&rsquo;t the fastest prompters. They&rsquo;re the best <strong>orchestrators</strong> – the ones who know when to let agents run, when to intervene, and how to keep everything organized.</p>
+
+            <div class="cta-box">
+                <h3>Organize Your Agentic Engineering Workflow</h3>
+                <p>Multiple agents need multiple terminals. Beam keeps them organized so you can focus on orchestrating, not searching for windows.</p>
+                <a href="../" class="btn">Download Beam for macOS</a>
+            </div>
+
+            <h2>Summary</h2>
+
+            <p>The evolution from manual coding to vibe coding to agentic engineering is happening fast. In 2026, the developers shipping the most impactful work aren&rsquo;t typing code – they&rsquo;re orchestrating AI agents with engineering discipline. Here&rsquo;s what matters:</p>
+
+            <ul>
+                <li><strong>Agentic engineering</strong> is orchestrating AI agents under human oversight, not just prompting an LLM</li>
+                <li>Core patterns include <strong>ReAct loops</strong>, <strong>planning phases</strong>, <strong>multi-agent coordination</strong>, and <strong>human-in-the-loop checkpoints</strong></li>
+                <li><strong>41% of code</strong> is AI-generated, <strong>4% of GitHub commits</strong> come from Claude Code, and both numbers are growing fast</li>
+                <li>The <strong>63% debugging problem</strong> is solved by structure and oversight, not by avoiding AI</li>
+                <li>Use <strong>Beam workspaces</strong> to isolate each agent, <strong>Quick Switcher</strong> (<span class="kbd">&#8984;P</span>) to navigate, and <strong>saved layouts</strong> to restore your orchestration setup instantly</li>
+            </ul>
+
+            <p>The age of the solo developer typing code is giving way to the age of the developer-as-orchestrator. The question isn&rsquo;t whether to adopt agentic engineering – it&rsquo;s how organized you&rsquo;ll be when you do.</p>
+
+            <div class="related-articles">
+                <h2>Related Articles</h2>
+                <div class="related-grid">
+                    <a href="vibe-coding-mac-setup-2026.html" class="related-card">
+                        <h4>The Complete Vibe Coding Mac Setup for 2026</h4>
+                        <p>Set up your Mac for AI-assisted development with the right tools and workflows.</p>
+                    </a>
+                    <a href="claude-code-and-codex-together.html" class="related-card">
+                        <h4>How to Use Claude Code Agent Teams</h4>
+                        <p>Run multiple AI agents in parallel for faster, more reliable development.</p>
+                    </a>
+                    <a href="ai-pair-programming-best-practices.html" class="related-card">
+                        <h4>AI Pair Programming Best Practices</h4>
+                        <p>Proven patterns for working effectively with AI coding assistants.</p>
+                    </a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>
+                <a href="../">Beam</a> &bull; Terminal Organizer for macOS &bull;
+                <a href="mailto:frank@nextuptechnologies.co">Contact</a>
+            </p>
+
+            <p style="margin-top: 12px; font-size: 0.8rem;">
+                <a href="/privacy.html" style="color: #71717a; text-decoration: none;">Privacy Policy</a> &bull;
+                <a href="/terms.html" style="color: #71717a; text-decoration: none;">Terms of Service</a>
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>

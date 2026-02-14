@@ -1,0 +1,1347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D0XH8B0RKL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-D0XH8B0RKL');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog — AI Coding Guides & Terminal Tips | Beam</title>
+    <meta name="description" content="Guides, tutorials, and tips for AI-assisted development with Claude Code, Codex, and more. Learn to organize your terminal workflow with Beam.">
+    <meta name="keywords" content="Claude Code guides, AI coding tutorials, terminal tips, Beam blog, Claude Code tips, AI development workflow, Codex tutorials, agentic engineering, vibe coding">
+    <meta name="author" content="NextUp Technologies">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://getbeam.dev/blog/">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://getbeam.dev/blog/">
+    <meta property="og:title" content="Blog — AI Coding Guides & Terminal Tips | Beam">
+    <meta property="og:description" content="Guides, tutorials, and tips for AI-assisted development with Claude Code, Codex, and more. Learn to organize your terminal workflow with Beam.">
+    <meta property="og:image" content="https://getbeam.dev/beam-screenshot.png">
+    <meta property="og:site_name" content="Beam">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Blog — AI Coding Guides & Terminal Tips | Beam">
+    <meta name="twitter:description" content="Guides, tutorials, and tips for AI-assisted development with Claude Code, Codex, and more.">
+    <meta name="twitter:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- RSS Feed Autodiscovery -->
+    <link rel="alternate" type="application/rss+xml" title="Beam Blog" href="/blog/feed.xml">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        "name": "Beam Blog — AI Coding Guides & Terminal Tips",
+        "description": "Guides, tutorials, and tips for AI-assisted development with Claude Code, Codex, and more.",
+        "url": "https://getbeam.dev/blog/",
+        "publisher": {
+            "@type": "Organization",
+            "name": "Beam",
+            "url": "https://getbeam.dev"
+        },
+        "mainEntity": {
+            "@type": "ItemList",
+            "numberOfItems": 67,
+            "itemListElement": [
+                {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "url": "https://getbeam.dev/blog/vibe-coding-to-agentic-engineering.html"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "url": "https://getbeam.dev/blog/xcode-26-3-agentic-coding.html"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 3,
+                    "url": "https://getbeam.dev/blog/gpt-5-3-codex-vs-claude-code.html"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 4,
+                    "url": "https://getbeam.dev/blog/mcp-servers-guide-2026.html"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 5,
+                    "url": "https://getbeam.dev/blog/anthropic-agentic-coding-trends-2026.html"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 6,
+                    "url": "https://getbeam.dev/blog/claude-code-vs-cursor-vs-opencode-2026.html"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 7,
+                    "url": "https://getbeam.dev/blog/multi-agent-coding-orchestration-guide.html"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 8,
+                    "url": "https://getbeam.dev/blog/are-ai-coding-tools-getting-worse.html"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 9,
+                    "url": "https://getbeam.dev/blog/claude-code-2-1-features.html"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 10,
+                    "url": "https://getbeam.dev/blog/agentic-coding-workflow-setup-guide.html"
+                }
+            ]
+        }
+    }
+    </script>
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #111113;
+            --bg-tertiary: #1a1a1d;
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.4);
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --border: #27272a;
+            --success: #22c55e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header */
+        header {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 60px;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1.5rem;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            background: var(--accent);
+            color: white;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+        }
+
+        /* Page Header */
+        .page-header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .eyebrow {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 16px;
+        }
+
+        .page-header h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            line-height: 1.15;
+            margin-bottom: 16px;
+        }
+
+        .page-header .subtitle {
+            color: var(--text-secondary);
+            font-size: 1.15rem;
+            max-width: 600px;
+            margin: 0 auto 8px;
+            line-height: 1.6;
+        }
+
+        .rss-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .rss-link:hover {
+            color: var(--accent);
+        }
+
+        .rss-link svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        /* Filter Bar */
+        .filter-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 48px;
+        }
+
+        .filter-pill {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            font-weight: 500;
+            padding: 8px 18px;
+            border-radius: 100px;
+            border: 1px solid var(--border);
+            background: var(--bg-secondary);
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.2s;
+            user-select: none;
+        }
+
+        .filter-pill:hover {
+            border-color: var(--accent);
+            color: var(--text-primary);
+        }
+
+        .filter-pill.active {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: white;
+        }
+
+        /* Post Grid */
+        .post-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-bottom: 80px;
+        }
+
+        .post-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 28px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .post-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .post-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .post-card.visible:hover {
+            transform: translateY(-2px);
+        }
+
+        .post-card.hidden {
+            display: none;
+        }
+
+        .post-card h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            line-height: 1.4;
+            color: var(--text-primary);
+            margin-bottom: 10px;
+            letter-spacing: -0.01em;
+        }
+
+        .post-card .post-desc {
+            color: var(--text-secondary);
+            font-size: 0.88rem;
+            line-height: 1.55;
+            margin-bottom: 16px;
+            flex: 1;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .post-card-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+        }
+
+        .post-date {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            white-space: nowrap;
+        }
+
+        .post-tags {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+
+        .post-tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.68rem;
+            font-weight: 500;
+            padding: 3px 10px;
+            border-radius: 100px;
+            background: var(--bg-tertiary);
+            color: var(--text-muted);
+            white-space: nowrap;
+        }
+
+        /* Footer */
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: var(--text-primary);
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .post-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .page-header h1 {
+                font-size: 2rem;
+            }
+
+            .post-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .filter-bar {
+                gap: 8px;
+            }
+
+            .filter-pill {
+                font-size: 0.75rem;
+                padding: 6px 14px;
+            }
+
+            header {
+                margin-bottom: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="../" class="logo">
+                <div class="logo-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round">
+                        <path d="M4 17l6-6-6-6M12 19h8"/>
+                    </svg>
+                </div>
+                Beam
+            </a>
+            <a href="../" class="btn">Download Beam</a>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="page-header">
+                <p class="eyebrow">Blog</p>
+                <h1>AI Coding Guides &amp; Terminal Tips</h1>
+                <p class="subtitle">67 guides on Claude Code, terminal workflows, and AI-assisted development. New posts weekly.</p>
+                <a href="/blog/feed.xml" class="rss-link">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 11a9 9 0 0 1 9 9"/><path d="M4 4a16 16 0 0 1 16 16"/><circle cx="5" cy="19" r="1"/>
+                    </svg>
+                    Subscribe via RSS
+                </a>
+            </div>
+
+            <!-- Filter Bar -->
+            <div class="filter-bar">
+                <span class="filter-pill active" data-filter="all">All</span>
+                <span class="filter-pill" data-filter="claude-code">Claude Code</span>
+                <span class="filter-pill" data-filter="comparisons">Comparisons</span>
+                <span class="filter-pill" data-filter="tutorials">Tutorials</span>
+                <span class="filter-pill" data-filter="ai-agents">AI Agents</span>
+                <span class="filter-pill" data-filter="beam">Beam</span>
+                <span class="filter-pill" data-filter="trending">Trending</span>
+            </div>
+
+            <!-- Post Grid -->
+            <div class="post-grid">
+
+                <!-- Feb 12, 2026 posts -->
+
+                <a href="vibe-coding-to-agentic-engineering.html" class="post-card" data-categories="trending ai-agents">
+                    <h3>From Vibe Coding to Agentic Engineering: What Karpathy's New Term Means for You</h3>
+                    <p class="post-desc">Karpathy declared vibe coding pass&eacute;. Agentic engineering is the new paradigm.</p>
+                    <div class="post-card-footer">
+                        <span class="post-date">Feb 12, 2026</span>
+                        <div class="post-tags">
+                            <span class="post-tag">Trending</span>
+                            <span class="post-tag">AI Agents</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="xcode-26-3-agentic-coding.html" class="post-card" data-categories="trending ai-agents">
+                    <h3>Xcode 26.3 Agentic Coding: How Apple Just Changed iOS Development Forever</h3>
+                    <p class="post-desc">Apple added Claude Agent and Codex directly into Xcode with MCP support.</p>
+                    <div class="post-card-footer">
+                        <span class="post-date">Feb 12, 2026</span>
+                        <div class="post-tags">
+                            <span class="post-tag">Trending</span>
+                            <span class="post-tag">AI Agents</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="gpt-5-3-codex-vs-claude-code.html" class="post-card" data-categories="comparisons claude-code">
+                    <h3>GPT-5.3 Codex vs Claude Code: Which Agentic Coding Tool Wins in 2026?</h3>
+                    <p class="post-desc">Both released on the same day. We compare speed, context, pricing, and workflow.</p>
+                    <div class="post-card-footer">
+                        <span class="post-date">Feb 12, 2026</span>
+                        <div class="post-tags">
+                            <span class="post-tag">Comparisons</span>
+                            <span class="post-tag">Claude Code</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="mcp-servers-guide-2026.html" class="post-card" data-categories="tutorials claude-code">
+                    <h3>The Complete Guide to MCP Servers in 2026: Google, Apple, and 50+ Integrations</h3>
+                    <p class="post-desc">Google, Apple, and 50+ integrations. MCP is now the universal AI standard.</p>
+                    <div class="post-card-footer">
+                        <span class="post-date">Feb 12, 2026</span>
+                        <div class="post-tags">
+                            <span class="post-tag">Tutorials</span>
+                            <span class="post-tag">Claude Code</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="anthropic-agentic-coding-trends-2026.html" class="post-card" data-categories="trending ai-agents">
+                    <h3>Anthropic's 2026 Agentic Coding Trends Report: 8 Shifts Every Developer Needs to Know</h3>
+                    <p class="post-desc">8 trends from Anthropic's report reshaping how software gets built.</p>
+                    <div class="post-card-footer">
+                        <span class="post-date">Feb 12, 2026</span>
+                        <div class="post-tags">
+                            <span class="post-tag">Trending</span>
+                            <span class="post-tag">AI Agents</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="claude-code-vs-cursor-vs-opencode-2026.html" class="post-card" data-categories="comparisons claude-code">
+                    <h3>Claude Code vs Cursor vs OpenCode: The Definitive 2026 Comparison</h3>
+                    <p class="post-desc">Terminal-native vs IDE-first vs open-source. The definitive comparison.</p>
+                    <div class="post-card-footer">
+                        <span class="post-date">Feb 12, 2026</span>
+                        <div class="post-tags">
+                            <span class="post-tag">Comparisons</span>
+                            <span class="post-tag">Claude Code</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="multi-agent-coding-orchestration-guide.html" class="post-card" data-categories="tutorials ai-agents">
+                    <h3>Multi-Agent Coding Workflows: How to Orchestrate AI Agents That Build Software for You</h3>
+                    <p class="post-desc">Claude Code Agent Teams and patterns for multi-agent coordination.</p>
+                    <div class="post-card-footer">
+                        <span class="post-date">Feb 12, 2026</span>
+                        <div class="post-tags">
+                            <span class="post-tag">Tutorials</span>
+                            <span class="post-tag">AI Agents</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="are-ai-coding-tools-getting-worse.html" class="post-card" data-categories="trending">
+                    <h3>Are AI Coding Tools Getting Worse? What the Developer Backlash Actually Means</h3>
+                    <p class="post-desc">The HN/Reddit backlash explained. What's really happening with AI quality.</p>
+                    <div class="post-card-footer">
+                        <span class="post-date">Feb 12, 2026</span>
+                        <div class="post-tags">
+                            <span class="post-tag">Trending</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="claude-code-2-1-features.html" class="post-card" data-categories="claude-code trending">
+                    <h3>Claude Code 2.1: Agent Teams, 1M Context Windows, and 16 Features You Missed</h3>
+                    <p class="post-desc">1,096 commits, Agent Teams, 1M context, and features most devs missed.</p>
+                    <div class="post-card-footer">
+                        <span class="post-date">Feb 12, 2026</span>
+                        <div class="post-tags">
+                            <span class="post-tag">Claude Code</span>
+                            <span class="post-tag">Trending</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="agentic-coding-workflow-setup-guide.html" class="post-card" data-categories="tutorials ai-agents beam">
+                    <h3>How to Set Up an Agentic Coding Workflow: A Step-by-Step Guide</h3>
+                    <p class="post-desc">The practical, hands-on guide to setting up agentic workflows.</p>
+                    <div class="post-card-footer">
+                        <span class="post-date">Feb 12, 2026</span>
+                        <div class="post-tags">
+                            <span class="post-tag">Tutorials</span>
+                            <span class="post-tag">AI Agents</span>
+                            <span class="post-tag">Beam</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Feb 11, 2026 posts -->
+
+                <a href="claude-code-rust-development.html" class="post-card" data-categories="claude-code tutorials">
+                    <h3>How to Use Claude Code for Rust Development</h3>
+                    <p class="post-desc">Cargo workflows, ownership patterns, async Rust, CLI tools, and testing — the complete Rust development workflow in Beam.</p>
+                    <div class="post-card-footer">
+                        <span class="post-date">Feb 11, 2026</span>
+                        <div class="post-tags">
+                            <span>Rust</span>
+                            <span>Tutorial</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="kubernetes-terminal-workflow-beam.html" class="post-card" data-categories="beam tutorials">
+                    <h3>Managing Kubernetes Clusters in Beam: The DevOps Terminal Workflow</h3>
+                    <p class="post-desc">Organize kubectl, helm, terraform, and Claude Code across dev, staging, and production Kubernetes clusters using Beam workspaces.</p>
+                    <div class="post-card-footer">
+                        <span class="post-date">Feb 11, 2026</span>
+                        <div class="post-tags">
+                            <span>Kubernetes</span>
+                            <span>DevOps</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="neovim-claude-code-beam-workflow.html" class="post-card" data-categories="claude-code beam tutorials">
+                    <h3>Neovim + Claude Code + Beam: Terminal-Native AI Development</h3>
+                    <p class="post-desc">Build the ultimate terminal-native AI development environment. Keyboard-first coding for developers who live in the terminal.</p>
+                    <div class="post-card-footer">
+                        <span class="post-date">Feb 11, 2026</span>
+                        <div class="post-tags">
+                            <span>Neovim</span>
+                            <span>Workflow</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="build-cli-tool-go-claude-code.html" class="post-card" data-categories="claude-code tutorials">
+                    <h3>How to Build a CLI Tool with Claude Code and Go</h3>
+                    <p class="post-desc">Scaffold a cobra CLI, add commands, cross-compile, and distribute via Homebrew — all with AI assistance in Beam.</p>
+                    <div class="post-card-footer">
+                        <span class="post-date">Feb 11, 2026</span>
+                        <div class="post-tags">
+                            <span>Go/Golang</span>
+                            <span>CLI Tools</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="go-microservices-beam-workflow.html" class="post-card" data-categories="claude-code beam tutorials">
+                    <h3>Managing Go Microservices in Beam: 5 Services, One Screen</h3>
+                    <p class="post-desc">One workspace per Go microservice. Quick Switcher to jump between them. The sanity-saving workflow for multi-service development.</p>
+                    <div class="post-card-footer">
+                        <span class="post-date">Feb 11, 2026</span>
+                        <div class="post-tags">
+                            <span>Go/Golang</span>
+                            <span>Microservices</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="go-testing-claude-code.html" class="post-card" data-categories="claude-code tutorials">
+                    <h3>AI-Assisted Go Testing: Table-Driven Tests, Benchmarks, and Fuzz Tests</h3>
+                    <p class="post-desc">The complete Go testing workflow with Claude Code: table-driven tests, benchmarks, fuzz testing, race detection, and coverage.</p>
+                    <div class="post-card-footer">
+                        <span class="post-date">Feb 11, 2026</span>
+                        <div class="post-tags">
+                            <span>Go/Golang</span>
+                            <span>Testing</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="claude-code-go-development.html" class="post-card" data-categories="claude-code tutorials">
+                    <h3>How to Use Claude Code for Go Development</h3>
+                    <p class="post-desc">The complete Go workflow: structs, interfaces, table-driven tests, concurrency patterns, and microservices — all organized in Beam.</p>
+                    <div class="post-card-footer">
+                        <span class="post-date">Feb 11, 2026</span>
+                        <div class="post-tags">
+                            <span>Go/Golang</span>
+                            <span>Tutorial</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="agentic-engineering-guide.html" class="post-card" data-categories="ai-agents trending">
+                    <h3>Agentic Engineering: The Evolution Beyond Vibe Coding</h3>
+                    <p class="post-desc">Agentic engineering is replacing vibe coding as the dominant AI development paradigm in 2026. Learn how Karpathy's new concept works, core patterns like ReAct and multi-agent coordination.</p>
+                    <div class="post-card-footer">
+                        <span class="post-date">Feb 11, 2026</span>
+                        <div class="post-tags">
+                            <span class="post-tag">AI Agents</span>
+                            <span class="post-tag">Trending</span>
+                        </div>
+                    </div>
+                </a>
+
+
+                <a href="claude-opus-4-6-developers-guide.html" class="post-card" data-categories="claude-code trending">
+                    <h3>Claude Opus 4.6 for Developers: Everything That's New</h3>
+                    <p class="post-desc">Claude Opus 4.6 brings agent teams, 1M context window, 128K output tokens, adaptive thinking, and the highest Terminal-Bench 2.0 score. Here's what developers need to know.</p>
+                    <div class="post-card-footer">
+                        <span class="post-date">Feb 11, 2026</span>
+                        <div class="post-tags">
+                            <span class="post-tag">Claude Code</span>
+                            <span class="post-tag">Trending</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="claude-code-agent-teams-guide.html" class="post-card" data-categories="ai-agents claude-code">
+                    <h3>How to Use Claude Code Agent Teams: Complete Setup Guide</h3>
+                    <p class="post-desc">Learn how to set up and use Claude Code agent teams with Opus 4.6. Step-by-step guide to running parallel agents, coordinating multi-agent workflows, and organizing agent teams with Beam.</p>
+                    <div class="post-card-footer">
+                        <span class="post-date">Feb 11, 2026</span>
+                        <div class="post-tags">
+                            <span class="post-tag">AI Agents</span>
+                            <span class="post-tag">Claude Code</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="multi-agent-ai-coding-workflows.html" class="post-card" data-categories="ai-agents tutorials">
+                    <h3>How to Set Up Multi-Agent AI Coding Workflows</h3>
+                    <p class="post-desc">Learn how to set up multi-agent AI coding workflows using Claude Code agent teams, Codex, and Copilot in parallel. Orchestrate multiple AI agents for faster full-stack development.</p>
+                    <div class="post-card-footer">
+                        <span class="post-date">Feb 11, 2026</span>
+                        <div class="post-tags">
+                            <span class="post-tag">AI Agents</span>
+                            <span class="post-tag">Tutorials</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="best-ai-coding-tool-2026.html" class="post-card" data-categories="comparisons trending">
+                    <h3>Best AI Coding Tool in 2026: Claude Code vs Cursor vs Copilot</h3>
+                    <p class="post-desc">The definitive 2026 comparison of Claude Code, Cursor, and GitHub Copilot. Pricing, features, context window, autonomy, and which AI coding tool is best for your workflow.</p>
+                    <div class="post-card-footer">
+                        <span class="post-date">Feb 11, 2026</span>
+                        <div class="post-tags">
+                            <span class="post-tag">Comparisons</span>
+                            <span class="post-tag">Trending</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="beam-vs-warp.html" class="post-card" data-categories="comparisons beam">
+                    <h3>Beam vs Warp: Which Terminal for AI Coding in 2026?</h3>
+                    <p class="post-desc">Beam vs Warp — an honest comparison for AI-powered development. Session organization, workspaces, AI features, pricing, and which terminal is better for Claude Code and Codex workflows.</p>
+                    <div class="post-card-footer">
+                        <span class="post-date">Feb 11, 2026</span>
+                        <div class="post-tags">
+                            <span class="post-tag">Comparisons</span>
+                            <span class="post-tag">Beam</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="claude-code-vs-github-copilot.html" class="post-card" data-categories="comparisons claude-code">
+                    <h3>Claude Code vs GitHub Copilot: Which Is Better in 2026?</h3>
+                    <p class="post-desc">Claude Code vs GitHub Copilot — a detailed comparison for 2026. Autocomplete vs agentic coding, context windows, pricing, and when to use each.</p>
+                    <div class="post-card-footer">
+                        <span class="post-date">Feb 11, 2026</span>
+                        <div class="post-tags">
+                            <span class="post-tag">Comparisons</span>
+                            <span class="post-tag">Claude Code</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="should-you-learn-to-code-2026.html" class="post-card" data-categories="trending">
+                    <h3>Should You Learn to Code in 2026? (Yes — Here's Why)</h3>
+                    <p class="post-desc">AI writes 41% of code and 92% of developers use AI tools daily. Should you still learn to code in 2026? Absolutely. Here's why coding skills matter more than ever.</p>
+                    <div class="post-card-footer">
+                        <span class="post-date">Feb 11, 2026</span>
+                        <div class="post-tags">
+                            <span class="post-tag">Trending</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="ai-agent-project-memory-guide.html" class="post-card" data-categories="ai-agents tutorials">
+                    <h3>How to Give AI Agents Project Memory: The CLAUDE.md Guide</h3>
+                    <p class="post-desc">AI agents forget everything between sessions. Learn how to create a CLAUDE.md project memory file that gives Claude Code persistent context — architecture, conventions, and decisions.</p>
+                    <div class="post-card-footer">
+                        <span class="post-date">Feb 11, 2026</span>
+                        <div class="post-tags">
+                            <span class="post-tag">AI Agents</span>
+                            <span class="post-tag">Tutorials</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="ai-coding-solo-developer.html" class="post-card" data-categories="claude-code tutorials">
+                    <h3>AI Coding for Solo Developers: The Complete Workflow</h3>
+                    <p class="post-desc">How solo developers and indie hackers use Claude Code to ship faster. The complete AI coding workflow: multiple projects, persistent memory, organized terminals, and zero overhead.</p>
+                    <div class="post-card-footer">
+                        <span class="post-date">Feb 11, 2026</span>
+                        <div class="post-tags">
+                            <span class="post-tag">Claude Code</span>
+                            <span class="post-tag">Tutorials</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="ai-pair-programming-best-practices.html" class="post-card" data-categories="claude-code tutorials">
+                    <h3>AI Pair Programming: Best Practices for 2026</h3>
+                    <p class="post-desc">Master AI pair programming in 2026. Best practices for working with Claude Code, Codex, and other AI agents — from prompt writing to session management to building persistent context.</p>
+                    <div class="post-card-footer">
+                        <span class="post-date">Feb 11, 2026</span>
+                        <div class="post-tags">
+                            <span class="post-tag">Claude Code</span>
+                            <span class="post-tag">Tutorials</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="claude-code-xcode-setup.html" class="post-card" data-categories="claude-code tutorials">
+                    <h3>How to Set Up Claude Code in Xcode 26: Complete Guide</h3>
+                    <p class="post-desc">Complete guide to setting up Claude Code and the Claude Agent SDK in Xcode 26.3. Learn how to enable agentic coding, configure your Claude account, and use Beam to organize your workflow.</p>
+                    <div class="post-card-footer">
+                        <span class="post-date">Feb 11, 2026</span>
+                        <div class="post-tags">
+                            <span class="post-tag">Claude Code</span>
+                            <span class="post-tag">Tutorials</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="claude-code-and-codex-together.html" class="post-card" data-categories="ai-agents tutorials">
+                    <h3>How to Use Claude Code and Codex Together on One Project</h3>
+                    <p class="post-desc">Learn how to run Claude Code and OpenAI Codex together on the same project using Beam. Dual-agent workflows, shared memory, and organized workspaces.</p>
+                    <div class="post-card-footer">
+                        <span class="post-date">Feb 11, 2026</span>
+                        <div class="post-tags">
+                            <span class="post-tag">AI Agents</span>
+                            <span class="post-tag">Tutorials</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="manage-multiple-claude-code-sessions.html" class="post-card" data-categories="claude-code beam">
+                    <h3>How to Manage Multiple Claude Code Sessions Across Projects</h3>
+                    <p class="post-desc">Running Claude Code across multiple projects? Learn how to manage 5+ sessions without losing track. Beam workspaces, Quick Switcher, and saved layouts keep you organized.</p>
+                    <div class="post-card-footer">
+                        <span class="post-date">Feb 11, 2026</span>
+                        <div class="post-tags">
+                            <span class="post-tag">Claude Code</span>
+                            <span class="post-tag">Beam</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="organize-openai-codex-sessions.html" class="post-card" data-categories="tutorials">
+                    <h3>How to Organize OpenAI Codex CLI Sessions</h3>
+                    <p class="post-desc">Learn how to organize OpenAI Codex CLI terminal sessions across projects using Beam. Workspaces, tabs, Quick Switcher, and saved layouts keep your Codex workflow clean.</p>
+                    <div class="post-card-footer">
+                        <span class="post-date">Feb 11, 2026</span>
+                        <div class="post-tags">
+                            <span class="post-tag">Tutorials</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="complete-guide-beam-workspaces.html" class="post-card" data-categories="beam tutorials">
+                    <h3>The Complete Guide to Beam Workspaces: Terminal Organization Mastery</h3>
+                    <p class="post-desc">Master Beam workspaces: create, name, organize, save, and restore terminal layouts. The complete guide to workspace-based terminal management for AI-powered development.</p>
+                    <div class="post-card-footer">
+                        <span class="post-date">Feb 11, 2026</span>
+                        <div class="post-tags">
+                            <span class="post-tag">Beam</span>
+                            <span class="post-tag">Tutorials</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="vibe-coding-mac-setup-2026.html" class="post-card" data-categories="tutorials trending">
+                    <h3>How to Set Up a Vibe Coding Mac in 2026: The Complete Stack</h3>
+                    <p class="post-desc">The complete 2026 vibe coding Mac setup: Beam for terminal organization, Claude Code for AI development, Wispr Flow for voice coding, and the tools that tie it all together.</p>
+                    <div class="post-card-footer">
+                        <span class="post-date">Feb 11, 2026</span>
+                        <div class="post-tags">
+                            <span class="post-tag">Tutorials</span>
+                            <span class="post-tag">Trending</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="build-website-with-claude-code.html" class="post-card" data-categories="claude-code tutorials">
+                    <h3>How to Build a Website with Claude Code: Step-by-Step Guide</h3>
+                    <p class="post-desc">Build a complete website using Claude Code as your AI coding assistant. Step-by-step tutorial from project setup to deployment, organized with Beam workspaces.</p>
+                    <div class="post-card-footer">
+                        <span class="post-date">Feb 11, 2026</span>
+                        <div class="post-tags">
+                            <span class="post-tag">Claude Code</span>
+                            <span class="post-tag">Tutorials</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="claude-code-api-development.html" class="post-card" data-categories="claude-code tutorials">
+                    <h3>How to Use Claude Code for API Development: A Complete Guide</h3>
+                    <p class="post-desc">Build REST APIs faster with Claude Code as your AI pair programmer. Step-by-step guide covering endpoint design, route generation, testing, and deployment.</p>
+                    <div class="post-card-footer">
+                        <span class="post-date">Feb 11, 2026</span>
+                        <div class="post-tags">
+                            <span class="post-tag">Claude Code</span>
+                            <span class="post-tag">Tutorials</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="claude-code-react-development.html" class="post-card" data-categories="claude-code tutorials">
+                    <h3>How to Use Claude Code for React Development</h3>
+                    <p class="post-desc">Build React apps faster with Claude Code. Learn how to generate components, write custom hooks, refactor state management, and organize your React workflow with Beam workspaces.</p>
+                    <div class="post-card-footer">
+                        <span class="post-date">Feb 11, 2026</span>
+                        <div class="post-tags">
+                            <span class="post-tag">Claude Code</span>
+                            <span class="post-tag">Tutorials</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="claude-code-python-data-science.html" class="post-card" data-categories="claude-code tutorials">
+                    <h3>How to Use Claude Code for Python &amp; Data Science</h3>
+                    <p class="post-desc">Use Claude Code for Python development and data science workflows. Generate scripts, analyze data, build pipelines, and manage experiments — organized in Beam terminal workspaces.</p>
+                    <div class="post-card-footer">
+                        <span class="post-date">Feb 11, 2026</span>
+                        <div class="post-tags">
+                            <span class="post-tag">Claude Code</span>
+                            <span class="post-tag">Tutorials</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="claude-code-nextjs-development.html" class="post-card" data-categories="claude-code tutorials">
+                    <h3>How to Use Claude Code for Next.js Development</h3>
+                    <p class="post-desc">Build Next.js apps faster with Claude Code. Server Components, App Router, API routes, server actions, and deployment — all organized in Beam workspaces.</p>
+                    <div class="post-card-footer">
+                        <span class="post-date">Feb 11, 2026</span>
+                        <div class="post-tags">
+                            <span class="post-tag">Claude Code</span>
+                            <span class="post-tag">Tutorials</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="claude-code-keyboard-shortcuts.html" class="post-card" data-categories="claude-code tutorials">
+                    <h3>Claude Code Keyboard Shortcuts &amp; Tips: The 2026 Cheat Sheet</h3>
+                    <p class="post-desc">Every Claude Code keyboard shortcut and power-user tip in one place. Plus Beam shortcuts for managing multiple sessions. The complete 2026 cheat sheet.</p>
+                    <div class="post-card-footer">
+                        <span class="post-date">Feb 11, 2026</span>
+                        <div class="post-tags">
+                            <span class="post-tag">Claude Code</span>
+                            <span class="post-tag">Tutorials</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="claude-code-with-docker.html" class="post-card" data-categories="claude-code tutorials">
+                    <h3>How to Use Claude Code with Docker: Containers + AI Workflow</h3>
+                    <p class="post-desc">Run Claude Code alongside Docker containers with an organized workflow. Beam workspaces keep your AI agent, container logs, and compose commands in separate, labeled tabs.</p>
+                    <div class="post-card-footer">
+                        <span class="post-date">Feb 11, 2026</span>
+                        <div class="post-tags">
+                            <span class="post-tag">Claude Code</span>
+                            <span class="post-tag">Tutorials</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="debug-with-claude-code.html" class="post-card" data-categories="claude-code tutorials">
+                    <h3>How to Debug with Claude Code: A Practical Guide</h3>
+                    <p class="post-desc">Debug faster with Claude Code as your AI debugging partner. Stack traces, runtime errors, logic bugs — learn the workflow for solving any bug with AI assistance.</p>
+                    <div class="post-card-footer">
+                        <span class="post-date">Feb 11, 2026</span>
+                        <div class="post-tags">
+                            <span class="post-tag">Claude Code</span>
+                            <span class="post-tag">Tutorials</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="refactor-legacy-code-claude-code.html" class="post-card" data-categories="claude-code tutorials">
+                    <h3>How to Refactor Legacy Code with Claude Code</h3>
+                    <p class="post-desc">Tackle legacy code with Claude Code as your refactoring partner. Break apart monoliths, modernize patterns, add types, and improve test coverage — safely and systematically.</p>
+                    <div class="post-card-footer">
+                        <span class="post-date">Feb 11, 2026</span>
+                        <div class="post-tags">
+                            <span class="post-tag">Claude Code</span>
+                            <span class="post-tag">Tutorials</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="write-tests-with-claude-code.html" class="post-card" data-categories="claude-code tutorials">
+                    <h3>How to Write Tests with Claude Code: Unit, Integration, and E2E</h3>
+                    <p class="post-desc">Stop dreading test writing. Claude Code generates unit tests, integration tests, and E2E tests that actually cover edge cases. Learn the workflow for comprehensive test coverage.</p>
+                    <div class="post-card-footer">
+                        <span class="post-date">Feb 11, 2026</span>
+                        <div class="post-tags">
+                            <span class="post-tag">Claude Code</span>
+                            <span class="post-tag">Tutorials</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="code-review-with-claude-code.html" class="post-card" data-categories="claude-code tutorials">
+                    <h3>How to Do Code Review with Claude Code</h3>
+                    <p class="post-desc">Use Claude Code as your AI code reviewer. Catch bugs, spot anti-patterns, review PRs, and improve code quality — whether you're a solo dev or working on a team.</p>
+                    <div class="post-card-footer">
+                        <span class="post-date">Feb 11, 2026</span>
+                        <div class="post-tags">
+                            <span class="post-tag">Claude Code</span>
+                            <span class="post-tag">Tutorials</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="claude-code-git-workflows.html" class="post-card" data-categories="claude-code tutorials">
+                    <h3>How to Use Claude Code with Git: Advanced Workflows</h3>
+                    <p class="post-desc">Master Git with Claude Code. Merge conflicts, interactive rebasing, commit message generation, branch management, and PR workflows — all organized in Beam terminal tabs.</p>
+                    <div class="post-card-footer">
+                        <span class="post-date">Feb 11, 2026</span>
+                        <div class="post-tags">
+                            <span class="post-tag">Claude Code</span>
+                            <span class="post-tag">Tutorials</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="automate-tasks-claude-code.html" class="post-card" data-categories="claude-code tutorials">
+                    <h3>How to Automate Tasks with Claude Code: Scripts, CLIs, and Workflows</h3>
+                    <p class="post-desc">Use Claude Code to build automation scripts, CLI tools, and workflow pipelines. From file processing to API integrations to cron jobs — automate the tedious work with AI.</p>
+                    <div class="post-card-footer">
+                        <span class="post-date">Feb 11, 2026</span>
+                        <div class="post-tags">
+                            <span class="post-tag">Claude Code</span>
+                            <span class="post-tag">Tutorials</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="claude-code-documentation.html" class="post-card" data-categories="claude-code tutorials">
+                    <h3>How to Write Documentation with Claude Code</h3>
+                    <p class="post-desc">Generate API docs, README files, code comments, and architecture guides with Claude Code. Stop putting off documentation — let AI write the first draft while you refine.</p>
+                    <div class="post-card-footer">
+                        <span class="post-date">Feb 11, 2026</span>
+                        <div class="post-tags">
+                            <span class="post-tag">Claude Code</span>
+                            <span class="post-tag">Tutorials</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="claude-code-open-source.html" class="post-card" data-categories="claude-code tutorials">
+                    <h3>How to Use Claude Code for Open Source Contributions</h3>
+                    <p class="post-desc">Contribute to open source projects faster with Claude Code. Understand unfamiliar codebases, fix bugs, write tests, and submit quality PRs — with Beam organizing your workflow.</p>
+                    <div class="post-card-footer">
+                        <span class="post-date">Feb 11, 2026</span>
+                        <div class="post-tags">
+                            <span class="post-tag">Claude Code</span>
+                            <span class="post-tag">Tutorials</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="claude-code-devops-cicd.html" class="post-card" data-categories="claude-code tutorials">
+                    <h3>How to Use Claude Code for DevOps &amp; CI/CD</h3>
+                    <p class="post-desc">Use Claude Code for DevOps tasks: GitHub Actions workflows, Dockerfiles, infrastructure config, monitoring scripts, and deployment pipelines — organized in Beam workspaces.</p>
+                    <div class="post-card-footer">
+                        <span class="post-date">Feb 11, 2026</span>
+                        <div class="post-tags">
+                            <span class="post-tag">Claude Code</span>
+                            <span class="post-tag">Tutorials</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="typescript-migration-claude-code.html" class="post-card" data-categories="claude-code tutorials">
+                    <h3>How to Migrate to TypeScript with Claude Code</h3>
+                    <p class="post-desc">Migrate your JavaScript codebase to TypeScript with Claude Code. File-by-file conversion, type inference, interface generation, and strict mode — without breaking your app.</p>
+                    <div class="post-card-footer">
+                        <span class="post-date">Feb 11, 2026</span>
+                        <div class="post-tags">
+                            <span class="post-tag">Claude Code</span>
+                            <span class="post-tag">Tutorials</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="switch-from-cursor-to-claude-code.html" class="post-card" data-categories="comparisons claude-code">
+                    <h3>How to Switch from Cursor to Claude Code (And Why You Might Want To)</h3>
+                    <p class="post-desc">Thinking about switching from Cursor to Claude Code? This guide covers what you gain, what changes, and how Beam replaces Cursor's IDE organization with terminal workspaces.</p>
+                    <div class="post-card-footer">
+                        <span class="post-date">Feb 11, 2026</span>
+                        <div class="post-tags">
+                            <span class="post-tag">Comparisons</span>
+                            <span class="post-tag">Claude Code</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Feb 10, 2026 posts -->
+
+                <a href="ai-agent-memory-management.html" class="post-card" data-categories="ai-agents beam">
+                    <h3>AI Agent Memory Management: How to Give Claude Code Persistent Context</h3>
+                    <p class="post-desc">AI agents like Claude Code forget everything between sessions. Learn how Beam's memory management system gives every agent persistent project context with one click.</p>
+                    <div class="post-card-footer">
+                        <span class="post-date">Feb 10, 2026</span>
+                        <div class="post-tags">
+                            <span class="post-tag">AI Agents</span>
+                            <span class="post-tag">Beam</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="interoperable-ai-agent-memory.html" class="post-card" data-categories="ai-agents beam">
+                    <h3>Interoperable Memory Across AI Agents: One File, Every Agent</h3>
+                    <p class="post-desc">AI agents like Claude Code, OpenAI Codex, and OpenClaw each have their own memory systems. Beam unifies them with one plain Markdown file on disk that any agent can read and write.</p>
+                    <div class="post-card-footer">
+                        <span class="post-date">Feb 10, 2026</span>
+                        <div class="post-tags">
+                            <span class="post-tag">AI Agents</span>
+                            <span class="post-tag">Beam</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Feb 8, 2026 posts -->
+
+                <a href="best-terminal-app-ai-coding-2026.html" class="post-card" data-categories="comparisons beam">
+                    <h3>Best Terminal App for AI Coding in 2026: Why Beam Wins</h3>
+                    <p class="post-desc">We compare the top terminal apps for AI coding in 2026 — Terminal.app, iTerm2, Warp, Ghostty, tmux, and Beam — to find which one handles Claude Code, Codex, and multi-agent workflows best.</p>
+                    <div class="post-card-footer">
+                        <span class="post-date">Feb 8, 2026</span>
+                        <div class="post-tags">
+                            <span class="post-tag">Comparisons</span>
+                            <span class="post-tag">Beam</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="claude-code-vs-cursor-vs-codex.html" class="post-card" data-categories="comparisons claude-code">
+                    <h3>Claude Code vs Cursor vs Codex: Which AI Coding Tool Should You Use?</h3>
+                    <p class="post-desc">An in-depth comparison of Claude Code, Cursor, and OpenAI Codex. Learn which AI coding tool fits your workflow best in 2026 and how to get the most out of each one.</p>
+                    <div class="post-card-footer">
+                        <span class="post-date">Feb 8, 2026</span>
+                        <div class="post-tags">
+                            <span class="post-tag">Comparisons</span>
+                            <span class="post-tag">Claude Code</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="how-to-use-openai-codex-mac.html" class="post-card" data-categories="tutorials">
+                    <h3>How to Use OpenAI Codex on Mac: Complete Setup Guide 2026</h3>
+                    <p class="post-desc">Step-by-step guide to installing and using OpenAI Codex on Mac. Learn how to set up Codex, configure your API key, and use Beam for one-click AI coding sessions.</p>
+                    <div class="post-card-footer">
+                        <span class="post-date">Feb 8, 2026</span>
+                        <div class="post-tags">
+                            <span class="post-tag">Tutorials</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="workspace-templates-guide.html" class="post-card" data-categories="beam tutorials">
+                    <h3>Workspace Templates: Instant Multi-Agent Setups in Beam</h3>
+                    <p class="post-desc">Learn how Beam's Workspace Templates let you spin up entire multi-agent development environments in one keystroke. Built-in templates for Claude Code, Full Stack, and OpenClaw workflows.</p>
+                    <div class="post-card-footer">
+                        <span class="post-date">Feb 8, 2026</span>
+                        <div class="post-tags">
+                            <span class="post-tag">Beam</span>
+                            <span class="post-tag">Tutorials</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Feb 7, 2026 posts -->
+
+                <a href="beam-claude-code-setup.html" class="post-card" data-categories="beam claude-code tutorials">
+                    <h3>Setting Up Beam for Claude Code Development</h3>
+                    <p class="post-desc">A complete guide to organizing your Claude Code sessions with Beam. Learn how to use workspaces, layouts, and keyboard shortcuts for maximum productivity with AI-assisted coding.</p>
+                    <div class="post-card-footer">
+                        <span class="post-date">Feb 7, 2026</span>
+                        <div class="post-tags">
+                            <span class="post-tag">Beam</span>
+                            <span class="post-tag">Tutorials</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="terminal-is-the-new-ide.html" class="post-card" data-categories="trending">
+                    <h3>Why Your Terminal is the New IDE</h3>
+                    <p class="post-desc">The rise of AI coding tools like Claude Code, Cursor, and Codex is changing how we develop software. Your terminal is becoming your IDE — here's why, and how to set it up.</p>
+                    <div class="post-card-footer">
+                        <span class="post-date">Feb 7, 2026</span>
+                        <div class="post-tags">
+                            <span class="post-tag">Trending</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="how-to-install-openclaw-setup-guide.html" class="post-card" data-categories="tutorials">
+                    <h3>How to Install OpenClaw: Complete Setup Guide 2026</h3>
+                    <p class="post-desc">Step-by-step guide to install and set up OpenClaw, the open-source AI assistant. Learn how to install OpenClaw on Mac, configure it with WhatsApp, Telegram, and use Beam.</p>
+                    <div class="post-card-footer">
+                        <span class="post-date">Feb 7, 2026</span>
+                        <div class="post-tags">
+                            <span class="post-tag">Tutorials</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Feb 6, 2026 posts -->
+
+                <a href="organizing-claude-code-sessions.html" class="post-card" data-categories="claude-code beam">
+                    <h3>How to Organize Claude Code Sessions</h3>
+                    <p class="post-desc">Learn how to organize multiple Claude Code terminal sessions across different projects using Beam. Keep your AI coding workflow clean with workspaces, tabs, and saveable layouts.</p>
+                    <div class="post-card-footer">
+                        <span class="post-date">Feb 6, 2026</span>
+                        <div class="post-tags">
+                            <span class="post-tag">Claude Code</span>
+                            <span class="post-tag">Beam</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="beam-vs-tmux.html" class="post-card" data-categories="comparisons beam">
+                    <h3>Beam vs tmux: When to Use Each</h3>
+                    <p class="post-desc">Comparing Beam and tmux for terminal organization. Learn when to use each tool, key differences, and how they can work together for the ultimate terminal setup.</p>
+                    <div class="post-card-footer">
+                        <span class="post-date">Feb 6, 2026</span>
+                        <div class="post-tags">
+                            <span class="post-tag">Comparisons</span>
+                            <span class="post-tag">Beam</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="beam-vs-iterm2.html" class="post-card" data-categories="comparisons beam">
+                    <h3>Beam vs iTerm2: Which macOS Terminal is Right for You?</h3>
+                    <p class="post-desc">Comparing Beam and iTerm2 for macOS. Learn the key differences between these terminal emulators and which one fits your workflow better.</p>
+                    <div class="post-card-footer">
+                        <span class="post-date">Feb 6, 2026</span>
+                        <div class="post-tags">
+                            <span class="post-tag">Comparisons</span>
+                            <span class="post-tag">Beam</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="vibe-coding-setup.html" class="post-card" data-categories="tutorials">
+                    <h3>The Perfect Vibe Coding Setup</h3>
+                    <p class="post-desc">Set up the perfect vibe coding environment with Beam. Stay in flow state with organized terminals, split panes, and instant workspace switching. The ultimate setup for AI-assisted development.</p>
+                    <div class="post-card-footer">
+                        <span class="post-date">Feb 6, 2026</span>
+                        <div class="post-tags">
+                            <span class="post-tag">Tutorials</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="wispr-flow-claude-code-beam.html" class="post-card" data-categories="tutorials">
+                    <h3>Voice-Controlled Coding: Using Wispr Flow with Claude Code and Beam</h3>
+                    <p class="post-desc">Learn how to combine Wispr Flow dictation, Claude Code AI, and Beam terminal organizer for a seamless voice-controlled coding workflow on macOS.</p>
+                    <div class="post-card-footer">
+                        <span class="post-date">Feb 6, 2026</span>
+                        <div class="post-tags">
+                            <span class="post-tag">Tutorials</span>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="how-to-rename-terminal-windows-macos.html" class="post-card" data-categories="tutorials beam">
+                    <h3>How to Rename Terminal Windows on macOS</h3>
+                    <p class="post-desc">Learn how to rename terminal windows, tabs, and panes on macOS. Stop seeing 'zsh' everywhere. Give your terminals meaningful names with Beam.</p>
+                    <div class="post-card-footer">
+                        <span class="post-date">Feb 2026</span>
+                        <div class="post-tags">
+                            <span class="post-tag">Tutorials</span>
+                            <span class="post-tag">Beam</span>
+                        </div>
+                    </div>
+                </a>
+
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>
+                <a href="../">Beam</a> &bull; Terminal Organizer for macOS &bull;
+                <a href="mailto:frank@nextuptechnologies.co">Contact</a>
+            </p>
+
+            <p style="margin-top: 12px; font-size: 0.8rem;">
+                <a href="/privacy.html" style="color: #71717a; text-decoration: none;">Privacy Policy</a> &bull;
+                <a href="/terms.html" style="color: #71717a; text-decoration: none;">Terms of Service</a>
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Filter functionality
+        const filterPills = document.querySelectorAll('.filter-pill');
+        const postCards = document.querySelectorAll('.post-card');
+
+        filterPills.forEach(pill => {
+            pill.addEventListener('click', () => {
+                // Update active pill
+                filterPills.forEach(p => p.classList.remove('active'));
+                pill.classList.add('active');
+
+                const filter = pill.getAttribute('data-filter');
+
+                postCards.forEach(card => {
+                    if (filter === 'all') {
+                        card.classList.remove('hidden');
+                    } else {
+                        const categories = card.getAttribute('data-categories') || '';
+                        if (categories.includes(filter)) {
+                            card.classList.remove('hidden');
+                        } else {
+                            card.classList.add('hidden');
+                        }
+                    }
+                });
+            });
+        });
+
+        // Scroll reveal animation using Intersection Observer
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -40px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    // Stagger the animation slightly
+                    const card = entry.target;
+                    const delay = Array.from(postCards).indexOf(card) % 3 * 80;
+                    setTimeout(() => {
+                        card.classList.add('visible');
+                    }, delay);
+                    observer.unobserve(card);
+                }
+            });
+        }, observerOptions);
+
+        postCards.forEach(card => {
+            observer.observe(card);
+        });
+    </script>
+
+</body>
+</html>

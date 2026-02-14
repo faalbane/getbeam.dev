@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D0XH8B0RKL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-D0XH8B0RKL');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Write Tests with Claude Code: Unit, Integration, and E2E | Beam Terminal Organizer</title>
+    <meta name="description" content="Stop dreading test writing. Claude Code generates unit tests, integration tests, and E2E tests that actually cover edge cases. Learn the workflow for comprehensive test coverage with AI.">
+    <meta name="keywords" content="write tests with Claude Code, Claude Code testing, AI test generation, Claude Code unit tests, automated test writing AI, Claude Code Jest Vitest">
+    <meta name="author" content="NextUp Technologies">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://getbeam.dev/blog/write-tests-with-claude-code.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://getbeam.dev/blog/write-tests-with-claude-code.html">
+    <meta property="og:title" content="How to Write Tests with Claude Code: Unit, Integration, and E2E">
+    <meta property="og:description" content="Stop dreading test writing. Claude Code generates unit tests, integration tests, and E2E tests that actually cover edge cases.">
+    <meta property="og:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="How to Write Tests with Claude Code: Unit, Integration, and E2E">
+    <meta name="twitter:description" content="Stop dreading test writing. Claude Code generates unit tests, integration tests, and E2E tests that actually cover edge cases.">
+    <meta name="twitter:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "How to Write Tests with Claude Code: Unit, Integration, and E2E",
+        "description": "Stop dreading test writing. Claude Code generates unit tests, integration tests, and E2E tests that actually cover edge cases. Learn the workflow for comprehensive test coverage with AI.",
+        "author": {
+            "@type": "Organization",
+            "name": "NextUp Technologies"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Beam"
+        },
+        "datePublished": "2026-02-11",
+        "keywords": "write tests with Claude Code, Claude Code testing, AI test generation, Claude Code unit tests, automated test writing AI, Claude Code Jest Vitest"
+    }
+    </script>
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #111113;
+            --bg-tertiary: #1a1a1d;
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.4);
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --border: #27272a;
+            --success: #22c55e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        header {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 60px;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1.5rem;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            background: var(--accent);
+            color: white;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+        }
+
+        article {
+            padding-bottom: 80px;
+        }
+
+        .breadcrumb {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+        }
+
+        .breadcrumb a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .meta {
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            font-size: 0.95rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 48px 0 20px;
+            color: var(--text-primary);
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        ul, ol {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            padding-left: 24px;
+        }
+
+        li {
+            margin-bottom: 12px;
+        }
+
+        .highlight {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 32px 0;
+        }
+
+        .highlight h3 {
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .kbd {
+            display: inline-block;
+            padding: 2px 8px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+        }
+
+        code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            background: var(--bg-tertiary);
+            padding: 2px 6px;
+            border-radius: 4px;
+            border: 1px solid var(--border);
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .cta-box h3 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+        }
+
+        .cta-box p {
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 24px;
+        }
+
+        .cta-box .btn {
+            background: white;
+            color: var(--accent);
+        }
+
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+
+        .related-articles { margin-top: 60px; padding-top: 40px; border-top: 1px solid var(--border); }
+        .related-articles h2 { font-size: 1.5rem; margin-bottom: 24px; }
+        .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .related-card { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-decoration: none; transition: border-color 0.2s; }
+        .related-card:hover { border-color: var(--accent); }
+        .related-card h4 { color: white; font-size: 1rem; margin: 0 0 8px 0; }
+        .related-card p { color: var(--text-muted); font-size: 0.85rem; margin: 0; }
+        @media (max-width: 600px) { .related-grid { grid-template-columns: 1fr; } h1 { font-size: 1.8rem; } }
+
+        .blog-visual {
+            margin: 40px 0;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        .blog-visual svg {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="../" class="logo">
+                <div class="logo-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round">
+                        <path d="M4 17l6-6-6-6M12 19h8"/>
+                    </svg>
+                </div>
+                Beam
+            </a>
+            <a href="../" class="btn">Download Beam</a>
+        </div>
+    </header>
+
+    <main>
+        <article class="container">
+            <div class="breadcrumb">
+                <a href="../">Beam</a> / <a href="../#guides">Guides</a> / Write Tests with Claude Code
+            </div>
+
+            <h1>How to Write Tests with Claude Code: Unit, Integration, and E2E</h1>
+            <p class="meta">February 2026 &bull; 7 min read</p>
+
+            <p>Nobody loves writing tests. But everyone loves having tests. There is a reason test suites are the first thing you check when inheriting a codebase, and the last thing you want to write yourself. Claude Code bridges that gap. It reads your source code, understands the business logic, and generates tests that cover happy paths, edge cases, error conditions, and boundary values. The tests it writes are not shallow mocks-everything stubs. They are meaningful tests that catch real bugs, structured the way a senior engineer would write them. Here is how to make test writing the easiest part of your entire workflow.</p>
+
+            <!-- Visual: Test generation workflow -->
+            <div class="blog-visual">
+                <svg viewBox="0 0 800 380" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Background -->
+                    <rect width="800" height="380" fill="#0a0a0b"/>
+
+                    <!-- Left panel: Claude Code -->
+                    <rect x="30" y="24" width="350" height="240" rx="10" fill="#111113" stroke="#27272a" stroke-width="1.5"/>
+                    <!-- Title bar -->
+                    <rect x="30" y="24" width="350" height="32" rx="10" fill="#1a1a1d"/>
+                    <rect x="30" y="46" width="350" height="10" fill="#1a1a1d"/>
+                    <circle cx="50" cy="40" r="5" fill="#ef4444"/>
+                    <circle cx="68" cy="40" r="5" fill="#eab308"/>
+                    <circle cx="86" cy="40" r="5" fill="#22c55e"/>
+                    <text x="200" y="44" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="11" text-anchor="middle">Claude Code</text>
+
+                    <!-- Claude amber indicator -->
+                    <rect x="48" y="70" width="8" height="8" rx="2" fill="#f59e0b"/>
+                    <text x="64" y="78" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="11">claude &gt;</text>
+
+                    <!-- Prompt text -->
+                    <text x="48" y="102" fill="#fafafa" font-family="JetBrains Mono, monospace" font-size="11">Write unit tests for the</text>
+                    <text x="48" y="118" fill="#fafafa" font-family="JetBrains Mono, monospace" font-size="11">CartService class. Cover all</text>
+                    <text x="48" y="134" fill="#fafafa" font-family="JetBrains Mono, monospace" font-size="11">public methods, edge cases,</text>
+                    <text x="48" y="150" fill="#fafafa" font-family="JetBrains Mono, monospace" font-size="11">and error conditions.</text>
+
+                    <!-- Writing indicator -->
+                    <rect x="48" y="174" width="8" height="8" rx="2" fill="#f59e0b"/>
+                    <text x="64" y="182" fill="#f59e0b" font-family="JetBrains Mono, monospace" font-size="11">Writing cart.test.ts...</text>
+                    <!-- Animated dots suggestion -->
+                    <rect x="48" y="198" width="280" height="4" rx="2" fill="#f59e0b" opacity="0.3"/>
+                    <rect x="48" y="198" width="180" height="4" rx="2" fill="#f59e0b" opacity="0.6"/>
+                    <rect x="48" y="210" width="280" height="4" rx="2" fill="#f59e0b" opacity="0.3"/>
+                    <rect x="48" y="210" width="120" height="4" rx="2" fill="#f59e0b" opacity="0.6"/>
+                    <rect x="48" y="222" width="280" height="4" rx="2" fill="#f59e0b" opacity="0.3"/>
+                    <rect x="48" y="222" width="220" height="4" rx="2" fill="#f59e0b" opacity="0.6"/>
+                    <rect x="48" y="234" width="280" height="4" rx="2" fill="#f59e0b" opacity="0.3"/>
+                    <rect x="48" y="234" width="90" height="4" rx="2" fill="#f59e0b" opacity="0.6"/>
+
+                    <!-- Arrow connecting panels -->
+                    <path d="M395 144 L420 144" stroke="#3b82f6" stroke-width="2" stroke-dasharray="4 3"/>
+                    <polygon points="418,138 430,144 418,150" fill="#3b82f6"/>
+
+                    <!-- Right panel: Test Runner -->
+                    <rect x="440" y="24" width="330" height="240" rx="10" fill="#111113" stroke="#27272a" stroke-width="1.5"/>
+                    <rect x="440" y="24" width="330" height="32" rx="10" fill="#1a1a1d"/>
+                    <rect x="440" y="46" width="330" height="10" fill="#1a1a1d"/>
+                    <circle cx="460" cy="40" r="5" fill="#ef4444"/>
+                    <circle cx="478" cy="40" r="5" fill="#eab308"/>
+                    <circle cx="496" cy="40" r="5" fill="#22c55e"/>
+                    <text x="610" y="44" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="11" text-anchor="middle">Test Runner</text>
+
+                    <!-- Test results -->
+                    <text x="458" y="78" fill="#22c55e" font-family="JetBrains Mono, monospace" font-size="11">PASS</text>
+                    <text x="496" y="78" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="11">cart.test.ts</text>
+
+                    <text x="466" y="100" fill="#22c55e" font-family="JetBrains Mono, monospace" font-size="10.5">&#x2713;</text>
+                    <text x="480" y="100" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="10.5">adds item to empty cart</text>
+
+                    <text x="466" y="118" fill="#22c55e" font-family="JetBrains Mono, monospace" font-size="10.5">&#x2713;</text>
+                    <text x="480" y="118" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="10.5">calculates total correctly</text>
+
+                    <text x="466" y="136" fill="#22c55e" font-family="JetBrains Mono, monospace" font-size="10.5">&#x2713;</text>
+                    <text x="480" y="136" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="10.5">handles negative quantity</text>
+
+                    <text x="466" y="154" fill="#22c55e" font-family="JetBrains Mono, monospace" font-size="10.5">&#x2713;</text>
+                    <text x="480" y="154" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="10.5">removes item from cart</text>
+
+                    <text x="466" y="172" fill="#22c55e" font-family="JetBrains Mono, monospace" font-size="10.5">&#x2713;</text>
+                    <text x="480" y="172" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="10.5">applies discount code</text>
+
+                    <text x="466" y="190" fill="#22c55e" font-family="JetBrains Mono, monospace" font-size="10.5">&#x2713;</text>
+                    <text x="480" y="190" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="10.5">rejects expired discount</text>
+
+                    <text x="466" y="208" fill="#22c55e" font-family="JetBrains Mono, monospace" font-size="10.5">&#x2713;</text>
+                    <text x="480" y="208" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="10.5">throws on empty cart checkout</text>
+
+                    <!-- Summary line -->
+                    <text x="458" y="240" fill="#22c55e" font-family="JetBrains Mono, monospace" font-size="11">Tests: 7 passed, 7 total</text>
+
+                    <!-- Bottom: Coverage progress bar -->
+                    <rect x="30" y="290" width="740" height="70" rx="10" fill="#111113" stroke="#27272a" stroke-width="1.5"/>
+                    <text x="56" y="316" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="11">Coverage</text>
+
+                    <!-- 0% label -->
+                    <text x="56" y="344" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="10">0%</text>
+
+                    <!-- Progress bar background -->
+                    <rect x="86" y="331" width="600" height="16" rx="8" fill="#1a1a1d"/>
+
+                    <!-- Progress bar fill (82%) -->
+                    <rect x="86" y="331" width="492" height="16" rx="8" fill="url(#coverageGrad)"/>
+
+                    <!-- 82% label -->
+                    <text x="590" y="344" fill="#fafafa" font-family="JetBrains Mono, monospace" font-size="12" font-weight="600">82%</text>
+
+                    <!-- Arrow on progress bar -->
+                    <text x="136" y="316" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="18">&rarr;</text>
+
+                    <!-- Target marker -->
+                    <rect x="696" y="329" width="2" height="20" fill="#71717a" opacity="0.5"/>
+                    <text x="700" y="344" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="10">100%</text>
+
+                    <!-- Gradient definition -->
+                    <defs>
+                        <linearGradient id="coverageGrad" x1="0" y1="0" x2="1" y2="0">
+                            <stop offset="0%" stop-color="#ef4444"/>
+                            <stop offset="30%" stop-color="#f59e0b"/>
+                            <stop offset="70%" stop-color="#22c55e"/>
+                            <stop offset="100%" stop-color="#22c55e"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
+            </div>
+
+            <h2>Why Claude Code Writes Better Tests Than You'd Expect</h2>
+
+            <p>The first time you ask Claude Code to generate tests, you might expect generic boilerplate. What you actually get is surprisingly thorough. Claude Code does not just look at function signatures and guess. It reads the full source code, follows the control flow, and understands what the code is trying to accomplish. That means the tests it generates are informed by actual business logic, not just type signatures.</p>
+
+            <p>Where Claude Code really shines is edge cases. Human developers tend to write tests for the golden path and maybe a couple of error cases. Claude Code systematically considers null inputs, empty arrays, boundary values, off-by-one scenarios, concurrent access patterns, and type coercion pitfalls. These are the exact cases that cause production bugs, and they are the ones most often skipped when writing tests by hand.</p>
+
+            <p>The structure of the generated tests is clean, too. You get proper arrange-act-assert patterns, descriptive test names that read like documentation, and properly isolated tests that do not depend on execution order. Claude Code knows the conventions of every major testing framework -- Jest, Vitest, pytest, Go's testing package, RSpec, JUnit -- and generates idiomatic code for whichever one your project uses.</p>
+
+            <p>Perhaps the most impressive case is generating tests for code that has zero existing tests. Starting from nothing is the hardest testing challenge, and Claude Code handles it by reading the implementation, inferring the expected behavior, and building a complete test suite from scratch.</p>
+
+            <h2>The Testing Workspace</h2>
+
+            <p>Before you start generating tests, set up a Beam workspace that keeps everything visible and fast. The ideal testing workspace uses four tabs so you can monitor the entire feedback loop without switching contexts.</p>
+
+            <ul>
+                <li><strong>Tab 1: Claude Code</strong> -- This is where you write prompts and Claude generates tests. Keep it focused on test generation.</li>
+                <li><strong>Tab 2: Test runner in watch mode</strong> -- Run <code>npm run test -- --watch</code> or <code>pytest --watch</code> so tests execute automatically as Claude writes files.</li>
+                <li><strong>Tab 3: App or server</strong> -- Keep your application running so you can verify behavior at the integration level when needed.</li>
+                <li><strong>Tab 4: Coverage report</strong> -- Run <code>npm run test:coverage</code> to track your progress in real time.</li>
+            </ul>
+
+            <p>Use Beam's split pane feature (<span class="kbd">&#8984;&#8997;&#8963;T</span>) to put Claude Code and the test runner side by side. As Claude writes test files, you will see them appear in the runner output immediately. Green checkmarks rolling in while Claude is still typing -- that is the workflow you want.</p>
+
+            <h2>Unit Tests: The Foundation</h2>
+
+            <p>Unit tests are where you start, and they are where Claude Code delivers the most value per prompt. A single, well-crafted instruction like "Write unit tests for the CartService class. Cover all public methods, edge cases, and error conditions" is enough to produce a comprehensive test suite with organized describe/it blocks, meaningful assertions, and thorough coverage.</p>
+
+            <p>Claude Code generates test data factories instead of fragile inline test data. Instead of hardcoding <code>{ id: 1, name: "Widget", price: 9.99 }</code> in every test, it creates helper functions like <code>createMockProduct()</code> and <code>createMockCart()</code> that you can reuse and extend. This makes your test suite maintainable from day one.</p>
+
+            <p>The sad path is where Claude Code really earns its keep. It tests what happens when input is invalid, when required fields are missing, when arrays are empty, when numbers are negative or zero, and when strings contain unexpected characters. These are the tests that catch the bugs your users would have found in production.</p>
+
+            <p>With your test runner in watch mode in the next tab, you can see each test appear and pass in real time as Claude writes them. It is a surprisingly satisfying feedback loop.</p>
+
+            <h2>Integration Tests: Components Working Together</h2>
+
+            <p>Integration tests are harder to write by hand because they require understanding how multiple parts of a system interact. Claude Code handles this naturally because it can read across multiple source files and understand the dependency graph. A prompt like "Write integration tests for the checkout flow: cart to payment to order creation to email notification" gives Claude the scope it needs to generate meaningful multi-step tests.</p>
+
+            <p>The generated tests include proper setup and teardown. Claude Code creates database fixtures, seeds test data before each test, and cleans up afterward. It handles API mocking at the right boundaries -- mocking external services while letting internal components interact with each other, which is exactly how integration tests should work.</p>
+
+            <p>One of the subtler skills Claude Code brings is knowing when to mock and when to use real implementations. It understands that mocking your own code too aggressively defeats the purpose of integration testing. External APIs, payment gateways, and email services get mocked. Your own database layer, validation logic, and business rules use real implementations.</p>
+
+            <div class="highlight">
+                <h3>Pro Tip: Control What Gets Mocked</h3>
+                <p>Be explicit in your prompt about which dependencies to mock and which to use real. For example: "Mock the payment gateway but use the real database" or "Mock all external HTTP calls but test the full service layer with real implementations." This gives Claude Code clear boundaries and produces more useful integration tests.</p>
+            </div>
+
+            <h2>E2E Tests: The Full User Journey</h2>
+
+            <p>End-to-end tests simulate real user behavior from start to finish. Claude Code generates Playwright, Cypress, or Selenium tests depending on your project setup. A prompt like "Write Playwright E2E tests for the user registration flow: sign up, verify email, first login, onboarding" produces a complete test file with page navigation, form interactions, assertions, and proper waiting for async operations.</p>
+
+            <p>Claude Code generates page objects that encapsulate DOM selectors and common actions. This means your E2E tests read like user stories rather than CSS selector soup. It handles the async complexity that makes E2E tests brittle -- waiting for elements to appear, waiting for navigation to complete, waiting for API responses to return -- using the proper framework-specific patterns.</p>
+
+            <p>It also adds accessibility checks within the E2E flow. Claude Code will assert that form fields have proper labels, that focus management works correctly after navigation, and that error messages are announced to screen readers. These are checks that most teams skip entirely, but they come for free when Claude writes your E2E tests.</p>
+
+            <p>Run E2E tests in a dedicated Beam tab while Claude writes them. Playwright's headed mode lets you watch the browser automation happen in real time, which is both useful for debugging and deeply satisfying to watch.</p>
+
+            <h2>Testing React Components</h2>
+
+            <p>React component testing has its own set of best practices, and Claude Code knows them cold. Ask it to "Write tests for the UserDashboard component using Testing Library" and you get tests that follow the Testing Library philosophy: test what the user sees and does, not implementation details.</p>
+
+            <p>The generated tests use <code>getByRole</code>, <code>getByText</code>, and <code>getByLabelText</code> instead of reaching for test IDs or CSS class selectors. User interactions use <code>userEvent</code> instead of <code>fireEvent</code>, which more accurately simulates real browser behavior. Async state changes are handled with <code>waitFor</code> and <code>findBy</code> queries.</p>
+
+            <p>Claude Code generates three categories of component tests: render tests that verify the component displays correct content in different states, interaction tests that simulate clicks, typing, and form submissions, and async tests that verify loading states, data fetching, and error handling. Together, these give you confidence that the component works as users expect.</p>
+
+            <h2>Testing API Endpoints</h2>
+
+            <p>API testing is one of Claude Code's strongest areas because the contract is explicit. Ask it to "Write Supertest tests for all /api/users endpoints" and it generates comprehensive coverage for every route: happy path responses, validation error handling, authentication failures, authorization checks, and edge cases like malformed request bodies or missing required fields.</p>
+
+            <p>The test setup is production-quality. Claude Code generates proper database seeding to create test users, authentication token generation for protected routes, and cleanup logic that runs after each test. Each endpoint gets its own describe block with tests for every HTTP method it supports and every status code it can return.</p>
+
+            <p>What would take an afternoon of tedious work -- writing tests for a dozen REST endpoints with all their variations -- takes minutes. Claude Code understands RESTful conventions, so it knows to test pagination parameters, sorting, filtering, and field selection if your API supports them.</p>
+
+            <h2>Going from 0% to 80% Coverage</h2>
+
+            <div class="highlight">
+                <h3>The Untested Codebase Strategy</h3>
+                <p>If you are staring at a codebase with zero test coverage, here is the strategy that turns a months-long effort into a days-long sprint:</p>
+                <ol>
+                    <li><strong>Identify critical modules first.</strong> Ask Claude Code to analyze your codebase and identify the highest-risk modules -- the ones with the most business logic, the most dependencies, or the most bug-prone history.</li>
+                    <li><strong>Generate tests for those first.</strong> Start with the modules that give you the biggest safety net. This is where your testing ROI is highest.</li>
+                    <li><strong>Run the coverage report.</strong> Check your coverage output in the fourth tab. Identify the gaps.</li>
+                    <li><strong>Target the gaps.</strong> Use prompts like "Write tests to cover the uncovered branches in UserService." Claude Code reads the coverage data and targets exactly what is missing.</li>
+                    <li><strong>Repeat until you hit your target.</strong> Each round gets faster because the remaining uncovered code is smaller and often follows similar patterns.</li>
+                </ol>
+            </div>
+
+            <p>This strategy works because Claude Code can generate tests far faster than any human. The bottleneck shifts from writing tests to reviewing and refining them. A codebase that would take a team weeks to bring under test coverage can reach 80% in a matter of days with this approach.</p>
+
+            <h2>Memory File: Testing Conventions</h2>
+
+            <p>To get consistent, project-specific tests from Claude Code every time, add a testing section to your <code>CLAUDE.md</code> memory file. This tells Claude Code exactly how your team writes tests, so every generated test file matches your conventions without manual edits.</p>
+
+            <div class="highlight">
+                <h3>Example CLAUDE.md Testing Section</h3>
+                <ul>
+                    <li><strong>Testing framework:</strong> Vitest with @testing-library/react for components</li>
+                    <li><strong>File naming:</strong> <code>*.test.ts</code> colocated next to source files</li>
+                    <li><strong>Mock policy:</strong> Mock external APIs and third-party services. Use real implementations for internal modules and database (test DB).</li>
+                    <li><strong>Test data:</strong> Use factory functions in <code>tests/factories/</code>. Never hardcode test data inline.</li>
+                    <li><strong>Coverage threshold:</strong> 80% branches, 85% statements. Fail CI below threshold.</li>
+                    <li><strong>Assertion style:</strong> Use <code>expect().toBe()</code> for primitives, <code>expect().toEqual()</code> for objects. Prefer specific matchers (<code>toHaveBeenCalledWith</code>) over generic ones.</li>
+                </ul>
+            </div>
+
+            <p>With these conventions stored in memory, Claude Code produces test files that are ready to commit. No reformatting, no renaming, no restructuring. The tests match your codebase from the first generation.</p>
+
+            <div class="cta-box">
+                <h3>Make Test Writing Effortless</h3>
+                <p>Download Beam and watch Claude Code generate comprehensive tests while you focus on building features.</p>
+                <a href="../" class="btn">Download Beam for macOS</a>
+            </div>
+
+            <h2>Summary</h2>
+
+            <p>Test writing does not have to be the part of development you dread. With Claude Code and a well-organized Beam workspace, you can generate unit tests, integration tests, E2E tests, component tests, and API tests that are thorough, well-structured, and ready to commit. The key practices to remember:</p>
+
+            <ul>
+                <li>Set up a <strong>four-tab testing workspace</strong> in Beam: Claude Code, test runner in watch mode, app server, and coverage report</li>
+                <li>Start with <strong>unit tests</strong> for comprehensive foundation coverage, then layer on integration and E2E tests</li>
+                <li>Be explicit about <strong>mock boundaries</strong> -- tell Claude what to mock and what to keep real</li>
+                <li>Use the <strong>0% to 80% strategy</strong> for untested codebases: prioritize critical modules, target coverage gaps, iterate</li>
+                <li>Store <strong>testing conventions in CLAUDE.md</strong> so every generated test matches your team's standards</li>
+                <li>Let the <strong>test runner watch mode</strong> give you real-time feedback as Claude writes tests</li>
+            </ul>
+
+            <p>The gap between "nobody wants to write tests" and "everyone wants to have tests" just got a lot smaller.</p>
+
+            <div class="related-articles">
+                <h2>Related Articles</h2>
+                <div class="related-grid">
+                    <a href="debug-with-claude-code.html" class="related-card">
+                        <h4>Debug with Claude Code</h4>
+                        <p>Use Claude Code to trace bugs, understand stack traces, and fix issues faster.</p>
+                    </a>
+                    <a href="refactor-legacy-code-claude-code.html" class="related-card">
+                        <h4>Refactor Legacy Code with Claude Code</h4>
+                        <p>Modernize old codebases safely with AI-assisted refactoring and test generation.</p>
+                    </a>
+                    <a href="claude-code-api-development.html" class="related-card">
+                        <h4>Claude Code for API Development</h4>
+                        <p>Build, test, and document APIs faster with Claude Code in your workflow.</p>
+                    </a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>
+                <a href="../">Beam</a> &bull; Terminal Organizer for macOS &bull;
+                <a href="mailto:frank@nextuptechnologies.co">Contact</a>
+            </p>
+
+            <p style="margin-top: 12px; font-size: 0.8rem;">
+                <a href="/privacy.html" style="color: #71717a; text-decoration: none;">Privacy Policy</a> &bull;
+                <a href="/terms.html" style="color: #71717a; text-decoration: none;">Terms of Service</a>
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D0XH8B0RKL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-D0XH8B0RKL');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Use Claude Code and Codex Together on One Project | Beam Terminal Organizer</title>
+    <meta name="description" content="Learn how to run Claude Code and OpenAI Codex together on the same project using Beam. Dual-agent workflows, shared memory, and organized workspaces.">
+    <meta name="keywords" content="Claude Code and Codex together, use multiple AI agents, Claude Code Codex workflow, multi-agent coding, dual AI agent setup">
+    <meta name="author" content="NextUp Technologies">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://getbeam.dev/blog/claude-code-and-codex-together.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://getbeam.dev/blog/claude-code-and-codex-together.html">
+    <meta property="og:title" content="How to Use Claude Code and Codex Together on One Project">
+    <meta property="og:description" content="Dual-agent workflows, shared memory, and organized workspaces for Claude Code and Codex.">
+    <meta property="og:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="How to Use Claude Code and Codex Together on One Project">
+    <meta name="twitter:description" content="Dual-agent workflows, shared memory, and organized workspaces for Claude Code and Codex.">
+    <meta name="twitter:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "How to Use Claude Code and Codex Together on One Project",
+        "description": "Learn how to run Claude Code and OpenAI Codex together on the same project using Beam. Dual-agent workflows, shared memory, and organized workspaces.",
+        "author": {
+            "@type": "Organization",
+            "name": "NextUp Technologies"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Beam"
+        },
+        "datePublished": "2026-02-11",
+        "keywords": "Claude Code and Codex together, multi-agent coding, dual AI agent setup"
+    }
+    </script>
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #111113;
+            --bg-tertiary: #1a1a1d;
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.4);
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --border: #27272a;
+            --success: #22c55e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        header {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 60px;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1.5rem;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            background: var(--accent);
+            color: white;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+        }
+
+        article {
+            padding-bottom: 80px;
+        }
+
+        .breadcrumb {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+        }
+
+        .breadcrumb a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .meta {
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            font-size: 0.95rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 48px 0 20px;
+            color: var(--text-primary);
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        ul, ol {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            padding-left: 24px;
+        }
+
+        li {
+            margin-bottom: 12px;
+        }
+
+        .highlight {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 32px 0;
+        }
+
+        .highlight h3 {
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .kbd {
+            display: inline-block;
+            padding: 2px 8px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .cta-box h3 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+        }
+
+        .cta-box p {
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 24px;
+        }
+
+        .cta-box .btn {
+            background: white;
+            color: var(--accent);
+        }
+
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+
+        .related-articles { margin-top: 60px; padding-top: 40px; border-top: 1px solid var(--border); }
+        .related-articles h2 { font-size: 1.5rem; margin-bottom: 24px; }
+        .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .related-card { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-decoration: none; transition: border-color 0.2s; }
+        .related-card:hover { border-color: var(--accent); }
+        .related-card h4 { color: white; font-size: 1rem; margin: 0 0 8px 0; }
+        .related-card p { color: var(--text-muted); font-size: 0.85rem; margin: 0; }
+        @media (max-width: 600px) { .related-grid { grid-template-columns: 1fr; } }
+
+        .blog-visual { margin: 40px 0; text-align: center; }
+        .blog-visual svg { max-width: 100%; height: auto; border-radius: 12px; }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="../" class="logo">
+                <div class="logo-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round">
+                        <path d="M4 17l6-6-6-6M12 19h8"/>
+                    </svg>
+                </div>
+                Beam
+            </a>
+            <a href="../" class="btn">Download Beam</a>
+        </div>
+    </header>
+
+    <main>
+        <article class="container">
+            <div class="breadcrumb">
+                <a href="../">Beam</a> / <a href="../#guides">Guides</a> / Claude Code and Codex Together
+            </div>
+
+            <h1>How to Use Claude Code and Codex Together on One Project</h1>
+            <p class="meta">February 2026 &bull; 7 min read</p>
+
+            <p>The AI coding landscape has evolved past the point of choosing a single agent. Claude Code excels at complex reasoning, multi-file refactors, and deep architecture work. OpenAI's Codex CLI is fast, focused, and excellent for targeted edits and code generation. The smartest developers in 2026 are not picking one or the other -- they are using both on the same project.</p>
+
+            <p>The problem? Running two AI coding agents on a single codebase turns your terminal into a mess of overlapping sessions, lost context, and constant re-explanation. This guide shows you how to set up a clean dual-agent workflow using Beam, so Claude Code and Codex work together instead of against each other.</p>
+
+            <!-- Dual-Agent Workspace Diagram -->
+            <div class="blog-visual">
+                <svg viewBox="0 0 720 420" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Background -->
+                    <rect width="720" height="420" rx="12" fill="#111113"/>
+
+                    <!-- Left panel: Claude Code -->
+                    <rect x="24" y="24" width="320" height="240" rx="10" fill="#18181b" stroke="#D97706" stroke-width="1.5"/>
+                    <!-- Title bar -->
+                    <rect x="24" y="24" width="320" height="36" rx="10" fill="#D97706" fill-opacity="0.15"/>
+                    <rect x="24" y="50" width="320" height="10" fill="#18181b"/>
+                    <circle cx="44" cy="42" r="5" fill="#f87171"/>
+                    <circle cx="62" cy="42" r="5" fill="#fbbf24"/>
+                    <circle cx="80" cy="42" r="5" fill="#4ade80"/>
+                    <text x="184" y="47" text-anchor="middle" fill="#D97706" font-family="Space Grotesk, sans-serif" font-size="13" font-weight="600">Claude Code</text>
+
+                    <!-- Tabs -->
+                    <rect x="34" y="68" width="90" height="26" rx="5" fill="#D97706" fill-opacity="0.2" stroke="#D97706" stroke-width="0.8"/>
+                    <text x="79" y="85" text-anchor="middle" fill="#fafafa" font-family="JetBrains Mono, monospace" font-size="10">claude</text>
+                    <rect x="130" y="68" width="90" height="26" rx="5" fill="#27272a"/>
+                    <text x="175" y="85" text-anchor="middle" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="10">dev server</text>
+                    <rect x="226" y="68" width="60" height="26" rx="5" fill="#27272a"/>
+                    <text x="256" y="85" text-anchor="middle" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="10">git</text>
+
+                    <!-- Terminal content lines -->
+                    <text x="44" y="118" fill="#D97706" font-family="JetBrains Mono, monospace" font-size="10" opacity="0.8">$ claude</text>
+                    <text x="44" y="136" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="10" opacity="0.6">Refactoring auth module...</text>
+                    <text x="44" y="154" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="10" opacity="0.6">Updating 12 files across</text>
+                    <text x="44" y="172" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="10" opacity="0.6">3 packages...</text>
+                    <rect x="44" y="186" width="8" height="14" fill="#D97706" opacity="0.7">
+                        <animate attributeName="opacity" values="0.7;0;0.7" dur="1.2s" repeatCount="indefinite"/>
+                    </rect>
+
+                    <!-- Workspace label -->
+                    <text x="184" y="250" text-anchor="middle" fill="#D97706" font-family="Space Grotesk, sans-serif" font-size="11" font-weight="500" opacity="0.7">Workspace 1</text>
+
+                    <!-- Right panel: Codex -->
+                    <rect x="376" y="24" width="320" height="240" rx="10" fill="#18181b" stroke="#10A37F" stroke-width="1.5"/>
+                    <!-- Title bar -->
+                    <rect x="376" y="24" width="320" height="36" rx="10" fill="#10A37F" fill-opacity="0.15"/>
+                    <rect x="376" y="50" width="320" height="10" fill="#18181b"/>
+                    <circle cx="396" cy="42" r="5" fill="#f87171"/>
+                    <circle cx="414" cy="42" r="5" fill="#fbbf24"/>
+                    <circle cx="432" cy="42" r="5" fill="#4ade80"/>
+                    <text x="536" y="47" text-anchor="middle" fill="#10A37F" font-family="Space Grotesk, sans-serif" font-size="13" font-weight="600">Codex</text>
+
+                    <!-- Tabs -->
+                    <rect x="386" y="68" width="90" height="26" rx="5" fill="#10A37F" fill-opacity="0.2" stroke="#10A37F" stroke-width="0.8"/>
+                    <text x="431" y="85" text-anchor="middle" fill="#fafafa" font-family="JetBrains Mono, monospace" font-size="10">codex</text>
+                    <rect x="482" y="68" width="90" height="26" rx="5" fill="#27272a"/>
+                    <text x="527" y="85" text-anchor="middle" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="10">test runner</text>
+                    <rect x="578" y="68" width="60" height="26" rx="5" fill="#27272a"/>
+                    <text x="608" y="85" text-anchor="middle" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="10">logs</text>
+
+                    <!-- Terminal content lines -->
+                    <text x="396" y="118" fill="#10A37F" font-family="JetBrains Mono, monospace" font-size="10" opacity="0.8">$ codex</text>
+                    <text x="396" y="136" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="10" opacity="0.6">Updating test files to</text>
+                    <text x="396" y="154" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="10" opacity="0.6">match new auth schema...</text>
+                    <text x="396" y="172" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="10" opacity="0.6">tests/auth.test.ts OK</text>
+                    <rect x="396" y="186" width="8" height="14" fill="#10A37F" opacity="0.7">
+                        <animate attributeName="opacity" values="0.7;0;0.7" dur="1.2s" repeatCount="indefinite"/>
+                    </rect>
+
+                    <!-- Workspace label -->
+                    <text x="536" y="250" text-anchor="middle" fill="#10A37F" font-family="Space Grotesk, sans-serif" font-size="11" font-weight="500" opacity="0.7">Workspace 2</text>
+
+                    <!-- Shared Memory element -->
+                    <rect x="200" y="310" width="320" height="80" rx="10" fill="#18181b" stroke="#3b82f6" stroke-width="1.5"/>
+                    <rect x="200" y="310" width="320" height="30" rx="10" fill="#3b82f6" fill-opacity="0.12"/>
+                    <rect x="200" y="332" width="320" height="8" fill="#18181b"/>
+                    <!-- File icon -->
+                    <rect x="224" y="318" width="12" height="14" rx="2" fill="none" stroke="#3b82f6" stroke-width="1.2"/>
+                    <line x1="224" y1="322" x2="232" y2="322" stroke="#3b82f6" stroke-width="0.8" opacity="0.5"/>
+                    <text x="244" y="330" fill="#3b82f6" font-family="Space Grotesk, sans-serif" font-size="12" font-weight="600">Project Memory</text>
+                    <text x="220" y="358" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="10" opacity="0.7">CLAUDE.md / project-context.md</text>
+                    <text x="220" y="376" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="10" opacity="0.5">Architecture, conventions, decisions</text>
+
+                    <!-- Connection line: left panel to memory -->
+                    <line x1="184" y1="264" x2="300" y2="310" stroke="#D97706" stroke-width="1.2" stroke-dasharray="5,4" opacity="0.6"/>
+                    <circle cx="300" cy="310" r="3" fill="#D97706" opacity="0.7"/>
+
+                    <!-- Connection line: right panel to memory -->
+                    <line x1="536" y1="264" x2="420" y2="310" stroke="#10A37F" stroke-width="1.2" stroke-dasharray="5,4" opacity="0.6"/>
+                    <circle cx="420" cy="310" r="3" fill="#10A37F" opacity="0.7"/>
+
+                    <!-- Arrow indicators -->
+                    <polygon points="296,310 300,302 304,310" fill="#D97706" opacity="0.7"/>
+                    <polygon points="416,310 420,302 424,310" fill="#10A37F" opacity="0.7"/>
+
+                    <!-- Keyboard shortcut hint -->
+                    <text x="360" y="280" text-anchor="middle" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="10">Switch: Cmd+Opt+Arrow</text>
+                </svg>
+            </div>
+
+            <h2>Why Use Both Agents?</h2>
+
+            <p>Claude Code and Codex CLI have fundamentally different strengths. Claude Code, built by Anthropic, is one of the most capable reasoning engines available for software development. It can hold an entire codebase in its head, trace complex dependency chains, and plan multi-step refactors that touch dozens of files. When you need to redesign an authentication module, migrate a database schema, or debug a race condition buried three layers deep, Claude Code is the tool you reach for.</p>
+
+            <p>Codex CLI, from OpenAI, takes a different approach. It is fast, direct, and excels at focused execution. Need to update every test file to match a new interface? Generate boilerplate for a new API endpoint? Write documentation for twenty functions? Codex handles targeted, repetitive tasks with speed that makes it the perfect complement to Claude Code's deep reasoning.</p>
+
+            <p>The real power emerges when you combine them. Consider a practical example: Claude Code spends twenty minutes redesigning your API schema, restructuring the route handlers, updating the middleware, and documenting the architectural decisions. Then Codex takes over, quickly updating all 40 test files to match the new schema, generating the OpenAPI spec, and adding type definitions across the client codebase. What would take one agent an hour takes both agents half that time, each working in its area of strength.</p>
+
+            <h2>The Problem: Scattered Terminals, No Shared Context</h2>
+
+            <p>In theory, using two agents sounds straightforward. In practice, it creates immediate organizational problems. Two AI agents means at least two active terminal sessions. But you also need terminals for your dev server, your test runner, git operations, log watching, and database management. Before you know it, you have eight or more terminal windows scattered across your screen with no clear structure.</p>
+
+            <p>Standard terminal applications offer no native way to group these sessions by purpose. Your Claude Code session sits next to a random SSH connection. Your Codex session is buried behind three other tabs. Every time you need to switch context, you are playing a game of hide-and-seek with your own terminals.</p>
+
+            <p>But the terminal chaos is only half the problem. The deeper issue is context fragmentation. Claude Code and Codex do not share memory. Every time you start a new session with either agent, it begins with zero knowledge of your project. You end up repeating the same explanations: "The project uses a monorepo with three packages. Authentication is handled by a custom JWT middleware. The database layer uses Drizzle ORM." This re-explanation tax adds up to significant wasted time across a workday.</p>
+
+            <h2>The Beam Solution: Organized Workspaces + Shared Memory</h2>
+
+            <p>Beam solves both problems with two features: workspaces for organization and project memory for shared context. The idea is simple. Create one dedicated workspace for each AI agent, with all the supporting terminals that agent needs grouped alongside it.</p>
+
+            <p><strong>Workspace "Claude Code":</strong></p>
+            <ul>
+                <li>Tab 1: Your active Claude Code session</li>
+                <li>Tab 2: Dev server and file watcher (split pane for side-by-side output)</li>
+                <li>Tab 3: Git operations for reviewing and committing Claude's changes</li>
+            </ul>
+
+            <p><strong>Workspace "Codex":</strong></p>
+            <ul>
+                <li>Tab 1: Your active Codex CLI session</li>
+                <li>Tab 2: Test runner to verify Codex's output in real time</li>
+                <li>Tab 3: Logs and build output</li>
+            </ul>
+
+            <p>With this layout, you switch between agents instantly using <span class="kbd">&#8984;&#8997;&larr;&rarr;</span> or by opening the Quick Switcher with <span class="kbd">&#8984;P</span>. Each workspace is a self-contained environment. When you are in the Claude Code workspace, everything you see is relevant to Claude's work. When you switch to the Codex workspace, you are in a completely different context. No mixing, no searching, no confusion.</p>
+
+            <h2>Step-by-Step Dual-Agent Setup</h2>
+
+            <ol>
+                <li><strong>Download and open Beam.</strong> If this is your first time, Beam walks you through the basics in a quick onboarding flow.</li>
+                <li><strong>Create your first workspace.</strong> Press <span class="kbd">&#8984;N</span> to create a new workspace. Double-click the workspace name in the sidebar and rename it to "Claude Code."</li>
+                <li><strong>Start Claude Code.</strong> In the first tab, navigate to your project directory and run <span class="kbd">claude</span> to start a Claude Code session.</li>
+                <li><strong>Add supporting tabs.</strong> Press <span class="kbd">&#8984;T</span> to add a new tab. Start your dev server in the second tab. Add a third tab for git. Use <span class="kbd">&#8984;&#8997;&#8963;T</span> to create split panes if you want side-by-side output.</li>
+                <li><strong>Create the Codex workspace.</strong> Press <span class="kbd">&#8984;N</span> again to create a second workspace. Rename it to "Codex."</li>
+                <li><strong>Start Codex.</strong> In the first tab of the new workspace, navigate to the same project directory and run <span class="kbd">codex</span> to launch the Codex CLI.</li>
+                <li><strong>Add Codex supporting tabs.</strong> Add tabs for your test runner (e.g., <span class="kbd">npm test -- --watch</span>) and a log tail for build output.</li>
+                <li><strong>Save the layout.</strong> Press <span class="kbd">&#8984;S</span> to save your entire dual-workspace layout. Tomorrow, when you sit down to work, restore it and everything is exactly where you left it -- both agent workspaces, all tabs, all splits.</li>
+            </ol>
+
+            <h2>Interoperable Memory: The Key to Multi-Agent Workflows</h2>
+
+            <div class="highlight">
+                <h3>Why Shared Memory Changes Everything</h3>
+                <p>The single biggest frustration with multi-agent development is the lack of shared context. Agent A makes an important architectural decision, and Agent B has no idea it happened. Beam's project memory solves this by giving both agents access to the same source of truth.</p>
+            </div>
+
+            <p>Beam's "Install Project Memory" feature creates a shared markdown file in your project root. This file serves as a persistent knowledge base that both Claude Code and Codex can read. For Claude Code, this integrates directly with its CLAUDE.md convention. For Codex, you can reference the same file as context when starting a session.</p>
+
+            <p>The memory file captures everything both agents need to know: your project architecture, the coding conventions your team follows, the file structure, key decisions and their rationale, and any gotchas or constraints. When Claude Code decides to restructure the authentication flow from session-based to JWT, you document that decision in the shared memory file. The next time you start a Codex session, it reads that file and immediately understands the new architecture without you typing a single word of explanation.</p>
+
+            <p>This is the real superpower of a multi-agent workflow: agents that build on each other's work instead of operating in isolation. Claude Code lays the architectural foundation and documents it. Codex picks up that documentation and executes the follow-up tasks with full awareness of what changed and why. The memory file acts as the connective tissue between two otherwise independent agents.</p>
+
+            <p>To keep the memory file useful, treat it like a living document. After every significant change either agent makes, spend thirty seconds updating the relevant section. The compound value of this habit is enormous -- within a few days, you have a rich project context file that eliminates the re-explanation tax entirely.</p>
+
+            <h2>A Day with Both Agents: Example Workflow</h2>
+
+            <p>Here is what a realistic dual-agent workday looks like for a developer building a SaaS application:</p>
+
+            <p><strong>Morning -- Architecture with Claude Code.</strong> You open Beam, restore your saved layout, and switch to the Claude Code workspace. You have a complex task: redesign the authentication module to support OAuth providers alongside the existing email/password flow. This is exactly the kind of multi-file, multi-concern task where Claude Code shines. It analyzes your existing auth code, proposes a strategy, and methodically updates the middleware, route handlers, database models, and type definitions. You review the changes in the git tab as they happen.</p>
+
+            <p><strong>Midday -- Update the memory file.</strong> Claude Code finishes the refactor. Before switching agents, you update the project memory file with the new auth architecture: what changed, what the new flow looks like, which files were added or modified, and any migration steps needed. This takes two minutes and saves twenty minutes of explanation later.</p>
+
+            <p><strong>Afternoon -- Execution with Codex.</strong> You switch to the Codex workspace with <span class="kbd">&#8984;&#8997;&rarr;</span>. Codex reads the updated memory file and immediately knows about the new OAuth architecture. You point it at the test directory and ask it to update all authentication tests. Codex moves fast -- updating 30 test files, generating new test cases for the OAuth flow, and fixing type imports across the test suite. You watch the test runner in the adjacent tab confirm everything passes.</p>
+
+            <p><strong>Evening -- Review with Claude Code.</strong> You switch back to the Claude Code workspace for a final review pass. Claude Code scans the full codebase for consistency: are all the new OAuth types used correctly? Did Codex miss any edge cases in the tests? Are the error messages consistent? Claude catches two minor issues and fixes them. You commit everything with confidence.</p>
+
+            <p>Throughout this entire day, Beam kept everything organized. You never once searched for a lost terminal, never re-explained the project to an agent, and never accidentally ran a command in the wrong session.</p>
+
+            <h2>When to Use Which Agent</h2>
+
+            <div class="highlight">
+                <h3>Quick Reference: Claude Code vs. Codex</h3>
+                <p><strong>Choose Claude Code for:</strong> multi-file refactors, architecture design, complex debugging, dependency analysis, code review, and tasks that require understanding the full system.</p>
+                <p><strong>Choose Codex for:</strong> targeted edits, boilerplate generation, test writing, repetitive updates across files, quick fixes, documentation generation, and focused code completion.</p>
+                <p><strong>Use both when:</strong> one agent's output requires another's refinement, such as Claude redesigning an API and Codex updating all consumers, or Codex generating initial code and Claude reviewing it for architectural consistency.</p>
+            </div>
+
+            <p>The general rule is straightforward. If the task requires deep reasoning about how multiple parts of your system interact, use Claude Code. If the task is well-defined and execution-focused, use Codex. If you are unsure, start with Claude Code for the planning phase and hand off to Codex for implementation of the individual pieces.</p>
+
+            <p>Over time, you will develop an intuition for which agent to reach for. The key insight is that this is not about one agent being "better" than the other. They have genuinely different strengths, and the developer who leverages both will consistently outperform the developer locked into a single tool.</p>
+
+            <div class="cta-box">
+                <h3>Ready for Multi-Agent Development?</h3>
+                <p>Download Beam and organize your Claude Code + Codex workflow in minutes.</p>
+                <a href="../" class="btn">Download Beam for macOS</a>
+            </div>
+
+            <h2>Summary</h2>
+
+            <p>Running Claude Code and Codex together on one project is one of the most effective ways to accelerate your development workflow in 2026. The key is organization and shared context. Here are the takeaways:</p>
+
+            <ul>
+                <li>Use <strong>Claude Code for reasoning</strong> and <strong>Codex for execution</strong> -- they complement each other perfectly</li>
+                <li>Create <strong>dedicated Beam workspaces</strong> for each agent with their supporting terminals grouped together</li>
+                <li>Switch between agents instantly with <span class="kbd">&#8984;&#8997;&larr;&rarr;</span> or the <strong>Quick Switcher</strong> (<span class="kbd">&#8984;P</span>)</li>
+                <li>Use Beam's <strong>project memory</strong> to share context between agents -- this eliminates the re-explanation tax</li>
+                <li><strong>Save your layout</strong> with <span class="kbd">&#8984;S</span> so your dual-agent setup restores instantly every morning</li>
+                <li>Document architectural decisions in the shared memory file so both agents <strong>build on each other's work</strong></li>
+            </ul>
+
+            <p>The developers who figure out multi-agent workflows early will have a significant advantage. With the right organization, two AI agents are not twice as useful as one -- they are more than the sum of their parts.</p>
+
+            <div class="related-articles">
+                <h2>Related Articles</h2>
+                <div class="related-grid">
+                    <a href="interoperable-ai-agent-memory.html" class="related-card">
+                        <h4>Interoperable Memory Across AI Agents</h4>
+                        <p>How shared project memory bridges the gap between different AI coding tools.</p>
+                    </a>
+                    <a href="organize-openai-codex-sessions.html" class="related-card">
+                        <h4>How to Organize OpenAI Codex CLI Sessions</h4>
+                        <p>A complete guide to managing Codex CLI workflows with workspaces and tabs.</p>
+                    </a>
+                    <a href="organizing-claude-code-sessions.html" class="related-card">
+                        <h4>Organizing Claude Code Sessions</h4>
+                        <p>Keep your Claude Code workflow clean with workspaces, tabs, and saveable layouts.</p>
+                    </a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>
+                <a href="../">Beam</a> &bull; Terminal Organizer for macOS &bull;
+                <a href="mailto:frank@nextuptechnologies.co">Contact</a>
+            </p>
+
+            <p style="margin-top: 12px; font-size: 0.8rem;">
+                <a href="/privacy.html" style="color: #71717a; text-decoration: none;">Privacy Policy</a> &bull;
+                <a href="/terms.html" style="color: #71717a; text-decoration: none;">Terms of Service</a>
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>

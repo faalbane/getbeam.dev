@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D0XH8B0RKL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-D0XH8B0RKL');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Organize OpenAI Codex CLI Sessions | Beam Terminal Organizer</title>
+    <meta name="description" content="Learn how to organize OpenAI Codex CLI terminal sessions across projects using Beam. Workspaces, tabs, Quick Switcher, and saved layouts keep your Codex workflow clean.">
+    <meta name="keywords" content="organize Codex CLI, OpenAI Codex terminal, Codex CLI sessions, manage Codex sessions, Codex CLI workflow, OpenAI Codex Mac">
+    <meta name="author" content="NextUp Technologies">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://getbeam.dev/blog/organize-openai-codex-sessions.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://getbeam.dev/blog/organize-openai-codex-sessions.html">
+    <meta property="og:title" content="How to Organize OpenAI Codex CLI Sessions">
+    <meta property="og:description" content="Workspaces, tabs, Quick Switcher, and saved layouts keep your Codex workflow clean.">
+    <meta property="og:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="How to Organize OpenAI Codex CLI Sessions">
+    <meta name="twitter:description" content="Workspaces, tabs, Quick Switcher, and saved layouts keep your Codex workflow clean.">
+    <meta name="twitter:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "How to Organize OpenAI Codex CLI Sessions",
+        "description": "Learn how to organize OpenAI Codex CLI terminal sessions across projects using Beam.",
+        "author": {
+            "@type": "Organization",
+            "name": "NextUp Technologies"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Beam"
+        },
+        "datePublished": "2026-02-11",
+        "keywords": "OpenAI Codex CLI, terminal organizer, Codex sessions"
+    }
+    </script>
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #111113;
+            --bg-tertiary: #1a1a1d;
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.4);
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --border: #27272a;
+            --success: #22c55e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        header {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 60px;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1.5rem;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            background: var(--accent);
+            color: white;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+        }
+
+        article {
+            padding-bottom: 80px;
+        }
+
+        .breadcrumb {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+        }
+
+        .breadcrumb a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .meta {
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            font-size: 0.95rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 48px 0 20px;
+            color: var(--text-primary);
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        ul, ol {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            padding-left: 24px;
+        }
+
+        li {
+            margin-bottom: 12px;
+        }
+
+        .highlight {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 32px 0;
+        }
+
+        .highlight h3 {
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .kbd {
+            display: inline-block;
+            padding: 2px 8px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .cta-box h3 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+        }
+
+        .cta-box p {
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 24px;
+        }
+
+        .cta-box .btn {
+            background: white;
+            color: var(--accent);
+        }
+
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+
+        .blog-visual { margin: 40px 0; text-align: center; }
+        .blog-visual svg { max-width: 100%; height: auto; border-radius: 12px; }
+
+        .related-articles { margin-top: 60px; padding-top: 40px; border-top: 1px solid var(--border); }
+        .related-articles h2 { font-size: 1.5rem; margin-bottom: 24px; }
+        .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .related-card { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-decoration: none; transition: border-color 0.2s; }
+        .related-card:hover { border-color: var(--accent); }
+        .related-card h4 { color: white; font-size: 1rem; margin: 0 0 8px 0; }
+        .related-card p { color: var(--text-muted); font-size: 0.85rem; margin: 0; }
+        @media (max-width: 600px) { .related-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="../" class="logo">
+                <div class="logo-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round">
+                        <path d="M4 17l6-6-6-6M12 19h8"/>
+                    </svg>
+                </div>
+                Beam
+            </a>
+            <a href="../" class="btn">Download Beam</a>
+        </div>
+    </header>
+
+    <main>
+        <article class="container">
+            <div class="breadcrumb">
+                <a href="../">Beam</a> / <a href="../#guides">Guides</a> / Organize OpenAI Codex CLI Sessions
+            </div>
+
+            <h1>How to Organize OpenAI Codex CLI Sessions</h1>
+            <p class="meta">February 2026 &bull; 6 min read</p>
+
+            <p>OpenAI's Codex CLI is a terminal-based coding agent that brings GPT-powered development straight into your command line. It can read your codebase, propose changes, run commands, and iterate on code -- all from a single terminal session. The problem is that "single terminal session" part. The moment you're running Codex across two or three projects simultaneously, your terminal setup turns into a mess of indistinguishable windows.</p>
+
+            <p>This guide walks through how Beam keeps your Codex CLI workflow organized so you spend your time building, not searching for the right terminal window.</p>
+
+            <figure class="blog-visual">
+                <svg viewBox="0 0 720 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Beam workspace layout with Codex CLI sessions organized across Frontend, Backend, and Infra workspaces">
+                    <!-- Window background -->
+                    <rect width="720" height="420" rx="12" fill="#0a0a0b" stroke="#27272a" stroke-width="1.5"/>
+                    <!-- Title bar -->
+                    <rect x="0" y="0" width="720" height="36" rx="12" fill="#111113"/>
+                    <rect x="0" y="12" width="720" height="24" fill="#111113"/>
+                    <circle cx="20" cy="18" r="6" fill="#ff5f57"/>
+                    <circle cx="40" cy="18" r="6" fill="#febc2e"/>
+                    <circle cx="60" cy="18" r="6" fill="#28c840"/>
+                    <text x="360" y="22" text-anchor="middle" fill="#71717a" font-family="Space Grotesk, sans-serif" font-size="12" font-weight="500">Beam</text>
+
+                    <!-- Workspace tabs bar -->
+                    <rect x="0" y="36" width="720" height="32" fill="#111113"/>
+                    <line x1="0" y1="68" x2="720" y2="68" stroke="#27272a" stroke-width="1"/>
+
+                    <!-- Workspace: Frontend (active) -->
+                    <rect x="12" y="40" width="110" height="24" rx="6" fill="#3b82f6" opacity="0.15"/>
+                    <rect x="12" y="40" width="110" height="24" rx="6" stroke="#3b82f6" stroke-width="1" fill="none"/>
+                    <text x="67" y="56" text-anchor="middle" fill="#3b82f6" font-family="Space Grotesk, sans-serif" font-size="11" font-weight="600">Frontend</text>
+
+                    <!-- Workspace: Backend -->
+                    <rect x="132" y="40" width="100" height="24" rx="6" fill="transparent"/>
+                    <text x="182" y="56" text-anchor="middle" fill="#71717a" font-family="Space Grotesk, sans-serif" font-size="11" font-weight="500">Backend</text>
+
+                    <!-- Workspace: Infra -->
+                    <rect x="242" y="40" width="80" height="24" rx="6" fill="transparent"/>
+                    <text x="282" y="56" text-anchor="middle" fill="#71717a" font-family="Space Grotesk, sans-serif" font-size="11" font-weight="500">Infra</text>
+
+                    <!-- Tab bar within workspace -->
+                    <rect x="0" y="68" width="720" height="30" fill="#0a0a0b"/>
+                    <line x1="0" y1="98" x2="720" y2="98" stroke="#27272a" stroke-width="1"/>
+
+                    <!-- Tab: Codex (active, with OpenAI green accent) -->
+                    <rect x="12" y="72" width="100" height="22" rx="5" fill="#10A37F" opacity="0.15"/>
+                    <rect x="12" y="72" width="100" height="22" rx="5" stroke="#10A37F" stroke-width="1" fill="none"/>
+                    <circle cx="28" cy="83" r="4" fill="#10A37F"/>
+                    <text x="70" y="87" text-anchor="middle" fill="#10A37F" font-family="Space Grotesk, sans-serif" font-size="11" font-weight="600">Codex</text>
+
+                    <!-- Tab: Dev Server -->
+                    <rect x="122" y="72" width="100" height="22" rx="5" fill="transparent"/>
+                    <text x="172" y="87" text-anchor="middle" fill="#71717a" font-family="Space Grotesk, sans-serif" font-size="11" font-weight="500">Dev Server</text>
+
+                    <!-- Tab: Git -->
+                    <rect x="232" y="72" width="60" height="22" rx="5" fill="transparent"/>
+                    <text x="262" y="87" text-anchor="middle" fill="#71717a" font-family="Space Grotesk, sans-serif" font-size="11" font-weight="500">Git</text>
+
+                    <!-- Terminal area -->
+                    <rect x="12" y="106" width="696" height="300" rx="8" fill="#0a0a0b" stroke="#27272a" stroke-width="1"/>
+
+                    <!-- Terminal prompt and Codex output -->
+                    <text x="28" y="132" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="12">~/projects/frontend $</text>
+                    <text x="220" y="132" fill="#10A37F" font-family="JetBrains Mono, monospace" font-size="12">codex</text>
+
+                    <text x="28" y="160" fill="#10A37F" font-family="JetBrains Mono, monospace" font-size="12" font-weight="500">OpenAI Codex CLI v0.1</text>
+
+                    <text x="28" y="188" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="11">Model: codex-1 | Sandbox: on</text>
+
+                    <text x="28" y="220" fill="#fafafa" font-family="JetBrains Mono, monospace" font-size="12">&gt; Refactor the auth module to use JWT tokens</text>
+
+                    <!-- Codex "thinking" output -->
+                    <text x="28" y="252" fill="#10A37F" font-family="JetBrains Mono, monospace" font-size="11">Reading src/auth/handler.ts ...</text>
+                    <text x="28" y="272" fill="#10A37F" font-family="JetBrains Mono, monospace" font-size="11">Reading src/auth/middleware.ts ...</text>
+                    <text x="28" y="292" fill="#10A37F" font-family="JetBrains Mono, monospace" font-size="11">Proposing changes to 3 files:</text>
+
+                    <text x="44" y="316" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="11">M  src/auth/handler.ts</text>
+                    <text x="44" y="336" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="11">M  src/auth/middleware.ts</text>
+                    <text x="44" y="356" fill="#22c55e" font-family="JetBrains Mono, monospace" font-size="11">A  src/auth/jwt.ts</text>
+
+                    <!-- Blinking cursor -->
+                    <rect x="28" y="374" width="8" height="16" rx="1" fill="#10A37F" opacity="0.8">
+                        <animate attributeName="opacity" values="0.8;0;0.8" dur="1.2s" repeatCount="indefinite"/>
+                    </rect>
+
+                    <!-- Keyboard shortcut hint -->
+                    <rect x="540" y="384" width="168" height="22" rx="6" fill="#111113" stroke="#27272a" stroke-width="1"/>
+                    <text x="624" y="399" text-anchor="middle" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="10">Switch workspace: Cmd+Opt+arrows</text>
+                </svg>
+            </figure>
+
+            <h2>The Codex CLI Session Sprawl Problem</h2>
+
+            <p>Every Codex CLI session runs inside a terminal window. When you ask Codex to refactor a module or write tests, it takes over that terminal entirely -- reading files, proposing diffs, executing commands. That's fine for a single project. But real-world development rarely stays that simple.</p>
+
+            <p>You might have Codex rewriting your frontend auth flow in one terminal, while another Codex session is building out API endpoints in a second. A third terminal is running your dev server, a fourth has your database logs, and somewhere in the mix is the git window where you're staging commits. Within thirty minutes you have eight terminal windows, half of them look identical, and you're clicking through each one trying to figure out which Codex session is working on the frontend versus the backend.</p>
+
+            <p>Codex doesn't offer any built-in way to group or label sessions by project. The terminal is a flat list of windows, and the cognitive load of tracking everything manually starts to eat into the time you saved by using an AI agent in the first place.</p>
+
+            <h2>Workspaces: One Per Project, Zero Confusion</h2>
+
+            <p>Beam solves this with workspaces -- isolated containers that group all the terminals for a single project together. Each workspace has its own set of tabs, its own split panes, and its own visual identity. Nothing bleeds between them.</p>
+
+            <p>Here's how to set one up:</p>
+
+            <ol>
+                <li><strong>Create a workspace</strong> -- Press <span class="kbd">&#8984;N</span> and a new workspace appears. Double-click the name in the sidebar to rename it to your project (e.g., "Frontend").</li>
+                <li><strong>Dedicate the first tab to Codex</strong> -- Launch your Codex CLI session here. This is the tab you'll always know is your AI agent for this project.</li>
+                <li><strong>Add supporting tabs</strong> -- Press <span class="kbd">&#8984;T</span> to open new tabs for your dev server, git operations, logs, or anything else that project needs.</li>
+                <li><strong>Split panes for parallel visibility</strong> -- Press <span class="kbd">&#8984;&#8997;&#8963;T</span> to split a tab into two panes. This is especially useful for watching your dev server output in real time while Codex modifies files in the adjacent pane.</li>
+            </ol>
+
+            <p>Each workspace is completely isolated. When you're inside the "Frontend" workspace, you only see Frontend terminals. The "Backend" workspace's Codex session, server logs, and database CLI are all tucked away, waiting for you when you switch over.</p>
+
+            <h2>Workflow Example: Frontend Codex + Backend Codex + Dev Servers</h2>
+
+            <p>Here's a concrete layout for a full-stack project with Codex running across three workspaces:</p>
+
+            <p><strong>Workspace "Frontend"</strong></p>
+            <ul>
+                <li>Tab 1: Codex CLI (working on React components, styling, client-side logic)</li>
+                <li>Tab 2: <code>npm run dev</code> (Vite/Next.js dev server running in the background)</li>
+                <li>Tab 3: Git operations (staging, committing, reviewing diffs)</li>
+            </ul>
+
+            <p><strong>Workspace "Backend"</strong></p>
+            <ul>
+                <li>Tab 1: Codex CLI (building API routes, writing business logic)</li>
+                <li>Tab 2: Server logs (tailing output from your Node/Python/Go server)</li>
+                <li>Tab 3: Database CLI (psql, mongosh, or redis-cli for quick queries)</li>
+            </ul>
+
+            <p><strong>Workspace "Infra"</strong></p>
+            <ul>
+                <li>Tab 1: Codex CLI (Dockerfiles, CI/CD configs, deployment scripts)</li>
+                <li>Tab 2: Monitoring (container logs, health checks, deploy status)</li>
+            </ul>
+
+            <p>Switch between any of these with <span class="kbd">&#8984;&#8997;&#8592;&#8594;</span>. One keystroke and you go from watching Codex refactor your React components to checking whether the backend API is still running. No window hunting, no guessing.</p>
+
+            <h2>Quick Switcher: Jump to Any Codex Session Instantly</h2>
+
+            <p>Even with well-organized workspaces, there are moments when you just need to get somewhere fast. Maybe a build failed in one of your background tabs, or you want to check what Codex is doing in another workspace without switching away from your current context first.</p>
+
+            <p>Press <span class="kbd">&#8984;P</span> to open the Quick Switcher. It's a fuzzy search across every workspace, tab, and pane in your entire Beam session. Type "codex backend" and it immediately narrows to your Backend workspace's Codex tab. Hit Enter and you're there. The whole interaction takes about a second.</p>
+
+            <p>This becomes especially valuable when you're juggling more than three or four workspaces. Instead of mentally mapping which workspace is where in the sidebar, you search by name and jump directly.</p>
+
+            <h2>Save and Restore Your Codex Layouts</h2>
+
+            <div class="highlight">
+                <h3>Save Once, Restore Anytime</h3>
+                <p>Press <span class="kbd">&#8984;S</span> to save your entire workspace configuration -- every workspace, every tab, every split pane, all named and positioned exactly as you have them. The next time you sit down to work on this project, restore the layout and your full Codex setup is back in place. No re-creating workspaces. No re-launching sessions. Just open Beam and pick up where you left off.</p>
+            </div>
+
+            <p>This is particularly useful if you have a consistent project structure you return to repeatedly. Create a "Full-Stack with Codex" template layout that has three workspaces pre-configured, each with the right tabs and working directories. Save it once, and every new full-stack project starts with a clean, organized foundation.</p>
+
+            <p>You can also maintain separate layouts for different types of work. A "Solo Backend" layout with just one workspace and three tabs is different from a "Microservices" layout with five workspaces, each containing a Codex session pointed at a different service. Save both, and switch between them depending on what your day looks like.</p>
+
+            <h2>Memory Management: Install Project Memory for Codex Context</h2>
+
+            <p>One of the challenges with terminal-based AI agents is that they lose context between sessions. You close a Codex session, and the next time you start one, the agent has to re-learn your project's architecture, conventions, and file structure from scratch.</p>
+
+            <p>Beam's "Install Project Memory" toolbar button addresses this. It creates a project memory file in your repository -- a structured document that captures your project's architecture decisions, coding conventions, key file locations, and anything else that gives an AI agent a head start. Codex CLI reads files in your project root, so this memory file becomes part of its context automatically.</p>
+
+            <p>The practical effect is significant. Instead of spending the first few prompts re-explaining that your project uses a specific ORM, or that your API routes follow a certain naming convention, Codex picks up that context from the memory file. It's the difference between onboarding a new developer every session and working with someone who already knows the codebase.</p>
+
+            <p>Use the "Save Project Memory" button to update the file as your project evolves. New decisions, new patterns, new dependencies -- all persisted for the next time you (or Codex) need them.</p>
+
+            <div class="cta-box">
+                <h3>Ready to Organize Your Codex Workflow?</h3>
+                <p>Download Beam free and start coding with organized Codex sessions.</p>
+                <a href="../" class="btn">Download Beam for macOS</a>
+            </div>
+
+            <h2>Summary</h2>
+
+            <p>Codex CLI is a powerful coding agent, but its effectiveness multiplies when you can stay organized across sessions and projects. With Beam:</p>
+
+            <ul>
+                <li>Use <strong>workspaces</strong> to isolate each project's Codex session, dev server, and supporting terminals</li>
+                <li>Use <strong>tabs and split panes</strong> to keep related terminals visible together</li>
+                <li>Use <strong>saved layouts</strong> (<span class="kbd">&#8984;S</span>) to restore your entire Codex setup in one action</li>
+                <li>Use the <strong>Quick Switcher</strong> (<span class="kbd">&#8984;P</span>) to jump to any Codex session instantly</li>
+                <li>Use <strong>project memory</strong> to give Codex persistent context between sessions</li>
+            </ul>
+
+            <p>Stop managing terminal windows and start managing code. That's the whole point of having an AI agent -- let Beam handle the organization so Codex can handle the coding.</p>
+
+            <div class="related-articles">
+                <h2>Related Articles</h2>
+                <div class="related-grid">
+                    <a href="how-to-use-openai-codex-mac.html" class="related-card">
+                        <h4>How to Use OpenAI Codex on Mac</h4>
+                        <p>Complete setup guide for running OpenAI Codex CLI on macOS.</p>
+                    </a>
+                    <a href="organizing-claude-code-sessions.html" class="related-card">
+                        <h4>Organizing Claude Code Sessions</h4>
+                        <p>The same workspace workflow, applied to Anthropic's Claude Code CLI.</p>
+                    </a>
+                    <a href="claude-code-vs-cursor-vs-codex.html" class="related-card">
+                        <h4>Claude Code vs Cursor vs Codex</h4>
+                        <p>Comparing the leading AI coding tools and how Beam works with each.</p>
+                    </a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>
+                <a href="../">Beam</a> &bull; Terminal Organizer for macOS &bull;
+                <a href="mailto:frank@nextuptechnologies.co">Contact</a>
+            </p>
+
+            <p style="margin-top: 12px; font-size: 0.8rem;">
+                <a href="/privacy.html" style="color: #71717a; text-decoration: none;">Privacy Policy</a> &bull;
+                <a href="/terms.html" style="color: #71717a; text-decoration: none;">Terms of Service</a>
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D0XH8B0RKL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-D0XH8B0RKL');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Use Claude Code for Rust Development: The Complete Workflow | Beam Terminal Organizer</title>
+    <meta name="description" content="Master Rust development with Claude Code and Beam. Learn workflows for cargo, ownership and borrowing, trait implementations, async Rust, CLI tools, testing, and workspace management.">
+    <meta name="keywords" content="Claude Code Rust, Rust AI coding, Rust development workflow, Claude Code cargo, AI Rust development, Rust terminal workflow, cargo watch, Rust CLI tools, Rust testing">
+    <meta name="author" content="NextUp Technologies">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://getbeam.dev/blog/claude-code-rust-development.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://getbeam.dev/blog/claude-code-rust-development.html">
+    <meta property="og:title" content="How to Use Claude Code for Rust Development: The Complete Workflow">
+    <meta property="og:description" content="Master Rust development with Claude Code and Beam. Cargo workflows, ownership patterns, async Rust, CLI tools, and testing.">
+    <meta property="og:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="How to Use Claude Code for Rust Development: The Complete Workflow">
+    <meta name="twitter:description" content="Master Rust development with Claude Code and Beam. Cargo workflows, ownership patterns, async Rust, CLI tools, and testing.">
+    <meta name="twitter:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "How to Use Claude Code for Rust Development: The Complete Workflow",
+        "description": "Master Rust development with Claude Code and Beam. Learn workflows for cargo, ownership and borrowing, trait implementations, async Rust, CLI tools, testing, and workspace management.",
+        "author": {
+            "@type": "Organization",
+            "name": "NextUp Technologies"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Beam"
+        },
+        "datePublished": "2026-02-11",
+        "keywords": "Claude Code Rust, Rust AI coding, Rust development workflow, Claude Code cargo, AI Rust development, Rust terminal workflow"
+    }
+    </script>
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #111113;
+            --bg-tertiary: #1a1a1d;
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.4);
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --border: #27272a;
+            --success: #22c55e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        header {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 60px;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1.5rem;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            background: var(--accent);
+            color: white;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+        }
+
+        article {
+            padding-bottom: 80px;
+        }
+
+        .breadcrumb {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+        }
+
+        .breadcrumb a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .meta {
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            font-size: 0.95rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 48px 0 20px;
+            color: var(--text-primary);
+        }
+
+        h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 32px 0 14px;
+            color: var(--text-primary);
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        ul, ol {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            padding-left: 24px;
+        }
+
+        li {
+            margin-bottom: 12px;
+        }
+
+        .highlight {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 32px 0;
+        }
+
+        .highlight h3 {
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            margin-top: 0;
+            color: var(--text-primary);
+        }
+
+        .kbd {
+            display: inline-block;
+            padding: 2px 8px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+        }
+
+        code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            background: var(--bg-tertiary);
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: #e2e8f0;
+        }
+
+        pre {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            overflow-x: auto;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            line-height: 1.7;
+            color: var(--text-secondary);
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .cta-box h3 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+            margin-top: 0;
+        }
+
+        .cta-box p {
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 24px;
+        }
+
+        .cta-box .btn {
+            background: white;
+            color: var(--accent);
+        }
+
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+
+        .related-articles { margin-top: 60px; padding-top: 40px; border-top: 1px solid var(--border); }
+        .related-articles h2 { font-size: 1.5rem; margin-bottom: 24px; }
+        .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .related-card { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-decoration: none; transition: border-color 0.2s; }
+        .related-card:hover { border-color: var(--accent); }
+        .related-card h4 { color: white; font-size: 1rem; margin: 0 0 8px 0; }
+        .related-card p { color: var(--text-muted); font-size: 0.85rem; margin: 0; }
+        @media (max-width: 600px) { .related-grid { grid-template-columns: 1fr; } h1 { font-size: 1.8rem; } }
+
+        .workspace-svg {
+            margin: 32px 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .workspace-svg svg {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="../" class="logo">
+                <div class="logo-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round">
+                        <path d="M4 17l6-6-6-6M12 19h8"/>
+                    </svg>
+                </div>
+                Beam
+            </a>
+            <a href="../" class="btn">Download Beam</a>
+        </div>
+    </header>
+
+    <main>
+        <article class="container">
+            <div class="breadcrumb">
+                <a href="../">Beam</a> / <a href="../#guides">Guides</a> / Claude Code for Rust Development
+            </div>
+
+            <h1>How to Use Claude Code for Rust Development: The Complete Workflow</h1>
+            <p class="meta">February 2026 &bull; 12 min read</p>
+
+            <p>Rust developers live in the terminal. <code>cargo build</code>, <code>cargo test</code>, <code>cargo clippy</code>, <code>cargo fmt</code>, <code>cargo doc</code> &mdash; the entire development lifecycle is CLI-first. There is no "Run" button, no integrated build system hiding behind a GUI. Every Rust developer already has a terminal workflow. The question is whether that workflow is organized or chaotic.</p>
+
+            <p>Claude Code understands Rust at a deep level. It knows the ownership model, lifetimes, trait bounds, error handling patterns, and the nuances of <code>unsafe</code>. It can explain why the borrow checker is rejecting your code and offer a fix that is idiomatic, not just correct. Combined with <strong>Beam</strong> for workspace organization, you get the ideal Rust development stack: an AI pair programmer that speaks Rust fluently, inside a terminal organizer built for multi-session workflows.</p>
+
+            <p>This guide walks through the complete workflow &mdash; from project scaffolding to performance profiling &mdash; showing how Claude Code and Beam work together for Rust development.</p>
+
+            <!-- Custom Workspace SVG -->
+            <div class="workspace-svg">
+                <svg width="720" height="340" viewBox="0 0 720 340" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Window frame -->
+                    <rect x="0.5" y="0.5" width="719" height="339" rx="11.5" fill="#111113" stroke="#27272a"/>
+                    <!-- Title bar -->
+                    <rect x="1" y="1" width="718" height="36" rx="11" fill="#1a1a1d"/>
+                    <circle cx="20" cy="19" r="6" fill="#ef4444" opacity="0.8"/>
+                    <circle cx="40" cy="19" r="6" fill="#eab308" opacity="0.8"/>
+                    <circle cx="60" cy="19" r="6" fill="#22c55e" opacity="0.8"/>
+                    <text x="360" y="23" text-anchor="middle" fill="#a1a1aa" font-family="Space Grotesk, sans-serif" font-size="12" font-weight="500">Beam &mdash; Rust Workspace</text>
+                    <!-- Tab bar -->
+                    <rect x="1" y="37" width="718" height="30" fill="#0a0a0b"/>
+                    <rect x="1" y="37" width="160" height="30" fill="#111113" rx="0"/>
+                    <rect x="1" y="37" width="160" height="2" fill="#3b82f6"/>
+                    <text x="80" y="56" text-anchor="middle" fill="#fafafa" font-family="JetBrains Mono, monospace" font-size="11">Claude Code</text>
+                    <text x="240" y="56" text-anchor="middle" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="11">cargo watch</text>
+                    <text x="400" y="56" text-anchor="middle" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="11">cargo test</text>
+                    <!-- Divider -->
+                    <line x1="360" y1="67" x2="360" y2="339" stroke="#27272a" stroke-width="1"/>
+                    <!-- Left pane: Claude Code -->
+                    <text x="20" y="95" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="11">$</text>
+                    <text x="36" y="95" fill="#3b82f6" font-family="JetBrains Mono, monospace" font-size="11">claude</text>
+                    <text x="20" y="118" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="10.5">&gt; Implement Display and</text>
+                    <text x="20" y="135" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="10.5">  FromStr for AppError</text>
+                    <text x="20" y="158" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="10.5">I'll implement Display using</text>
+                    <text x="20" y="175" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="10.5">thiserror's derive macro and</text>
+                    <text x="20" y="192" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="10.5">add FromStr with a custom</text>
+                    <text x="20" y="209" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="10.5">parse error type...</text>
+                    <text x="20" y="240" fill="#22c55e" font-family="JetBrains Mono, monospace" font-size="10.5">+ impl Display for AppError {</text>
+                    <text x="20" y="257" fill="#22c55e" font-family="JetBrains Mono, monospace" font-size="10.5">+   fn fmt(&amp;self, f: &amp;mut</text>
+                    <text x="20" y="274" fill="#22c55e" font-family="JetBrains Mono, monospace" font-size="10.5">+     Formatter) -&gt; fmt::Result</text>
+                    <text x="20" y="295" fill="#CE422B" font-family="JetBrains Mono, monospace" font-size="10.5" font-weight="600">// Rust</text>
+                    <text x="75" y="295" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="10.5">src/error.rs</text>
+                    <!-- Right pane: cargo output -->
+                    <text x="376" y="95" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="11">$</text>
+                    <text x="392" y="95" fill="#CE422B" font-family="JetBrains Mono, monospace" font-size="11">cargo</text>
+                    <text x="432" y="95" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="11">watch -x check</text>
+                    <text x="376" y="125" fill="#22c55e" font-family="JetBrains Mono, monospace" font-size="10.5">   Compiling myapp v0.1.0</text>
+                    <text x="376" y="145" fill="#22c55e" font-family="JetBrains Mono, monospace" font-size="10.5">   Compiling myapp-core v0.1.0</text>
+                    <text x="376" y="165" fill="#22c55e" font-family="JetBrains Mono, monospace" font-size="10.5">    Checking myapp-cli v0.1.0</text>
+                    <text x="376" y="190" fill="#22c55e" font-family="JetBrains Mono, monospace" font-size="10.5" font-weight="600">    Finished</text>
+                    <text x="450" y="190" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="10.5">`dev` in 1.42s</text>
+                    <text x="376" y="220" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="10.5">[Waiting for changes...]</text>
+                    <!-- Rust gear/crab accent -->
+                    <rect x="376" y="250" width="160" height="60" rx="8" fill="#1a1a1d" stroke="#27272a"/>
+                    <text x="456" y="275" text-anchor="middle" fill="#CE422B" font-family="Space Grotesk, sans-serif" font-size="11" font-weight="600">0 errors, 0 warnings</text>
+                    <text x="456" y="298" text-anchor="middle" fill="#22c55e" font-family="JetBrains Mono, monospace" font-size="10">all checks passing</text>
+                    <!-- Beam workspace indicator -->
+                    <rect x="560" y="250" width="140" height="60" rx="8" fill="rgba(59,130,246,0.1)" stroke="#3b82f6" stroke-opacity="0.3"/>
+                    <text x="630" y="275" text-anchor="middle" fill="#3b82f6" font-family="Space Grotesk, sans-serif" font-size="11" font-weight="500">Workspace 1</text>
+                    <text x="630" y="298" text-anchor="middle" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="10">3 tabs &bull; 2 panes</text>
+                </svg>
+            </div>
+
+            <h2>Setting Up Your Rust Workspace in Beam</h2>
+
+            <p>A well-organized workspace is the foundation of a productive Rust workflow. Beam lets you create a dedicated Rust development environment where every terminal has a purpose and nothing gets lost.</p>
+
+            <p><strong>The ideal Rust workspace layout:</strong></p>
+
+            <ul>
+                <li><strong>Tab 1: Claude Code</strong> &mdash; Your AI pair programmer. This is where you ask questions, generate code, refactor, and debug. Claude Code runs in your project directory so it has full context.</li>
+                <li><strong>Tab 2: <code>cargo watch</code> / <code>cargo run</code></strong> &mdash; Live recompilation. Every time Claude Code modifies a file, you see the compiler output immediately in this tab.</li>
+                <li><strong>Tab 3: <code>cargo test</code></strong> &mdash; Dedicated test runner. Run tests continuously or on-demand without interrupting your Claude Code conversation.</li>
+            </ul>
+
+            <p>For maximum productivity, use Beam's split panes. Press <span class="kbd">&#8984;&#8997;&#8963;T</span> to split your first tab horizontally: Claude Code on the left, compiler output on the right. This gives you an instant feedback loop &mdash; ask Claude Code to make a change, and watch the compiler validate it in real time.</p>
+
+            <div class="highlight">
+                <h3>Pro Tip: Save Your Rust Layout</h3>
+                <p>Once you have your workspace configured with the right tabs and splits, press <span class="kbd">&#8984;S</span> to save it as a layout. Name it something like "Rust Dev." The next time you start a Rust project, restore the layout and you are instantly in your ideal environment &mdash; no setup required.</p>
+            </div>
+
+            <p>For larger projects, create multiple workspaces. One workspace per crate keeps things clean:</p>
+
+            <p><strong>Workspace 1: "Core Library"</strong></p>
+            <ul>
+                <li>Tab 1: Claude Code (working on <code>myapp-core/</code>)</li>
+                <li>Tab 2: <code>cargo watch -x check -p myapp-core</code></li>
+                <li>Tab 3: <code>cargo test -p myapp-core</code></li>
+            </ul>
+
+            <p><strong>Workspace 2: "CLI Application"</strong></p>
+            <ul>
+                <li>Tab 1: Claude Code (working on <code>myapp-cli/</code>)</li>
+                <li>Tab 2: <code>cargo run -- --help</code></li>
+                <li>Tab 3: Integration tests</li>
+            </ul>
+
+            <p>Switch between workspaces with <span class="kbd">&#8984;&#8997;&#8592;&#8594;</span>. Each workspace maintains its own shell state, so your <code>cargo watch</code> keeps running when you switch contexts.</p>
+
+            <h2>Scaffolding Rust Projects with Claude Code</h2>
+
+            <p>Starting a new Rust project involves more than <code>cargo new</code>. You need the right dependencies, feature flags, project structure, and boilerplate. Claude Code handles all of this in a single prompt.</p>
+
+            <h3>Binary Projects with Argument Parsing</h3>
+
+            <p>Tell Claude Code what your CLI tool should do, and it generates the complete scaffold:</p>
+
+            <pre>&gt; Create a new Rust CLI tool called "logparse" that reads log files,
+  filters by log level, and outputs JSON. Use clap for arg parsing,
+  serde for JSON, and anyhow for errors. Set up the project structure
+  with src/main.rs, src/lib.rs, src/parser.rs, and src/output.rs.</pre>
+
+            <p>Claude Code will generate the <code>Cargo.toml</code> with pinned dependency versions, set up the clap derive-based argument parser, create the module structure with proper <code>mod</code> declarations, and include skeleton implementations for each module. It understands that a well-structured Rust binary separates the CLI interface from the library logic.</p>
+
+            <h3>Library Crates with Public API Design</h3>
+
+            <p>Library design in Rust requires careful thought about what is public and what stays private. Claude Code can scaffold a library with a clean API surface:</p>
+
+            <pre>&gt; Create a Rust library crate for a rate limiter. Public API should
+  expose RateLimiter::new(max_requests, window_duration), .check(),
+  and .reset(). Use a token bucket algorithm internally. Include
+  builder pattern for configuration.</pre>
+
+            <p>Claude Code will create the public structs and methods in <code>lib.rs</code>, keep implementation details in private submodules, add doc comments with examples on every public item, and set up <code>#[cfg(test)]</code> module skeletons for each file.</p>
+
+            <h3>Workspace Projects with Multiple Crates</h3>
+
+            <p>Cargo workspaces are the standard for Rust monorepos. Claude Code understands the workspace <code>Cargo.toml</code> format and inter-crate dependencies:</p>
+
+            <pre>&gt; Set up a Cargo workspace with three crates: myapp-core (library),
+  myapp-server (binary, depends on core), and myapp-cli (binary,
+  depends on core). Share common dependencies at workspace level.
+  Enable LTO for release builds.</pre>
+
+            <p>It will generate the root <code>Cargo.toml</code> with <code>[workspace]</code> members and shared <code>[workspace.dependencies]</code>, each crate's <code>Cargo.toml</code> referencing workspace dependencies with <code>dep.workspace = true</code>, and a <code>[profile.release]</code> section with <code>lto = true</code>, <code>codegen-units = 1</code>, and <code>strip = true</code> for optimized binaries.</p>
+
+            <h3>Cargo.toml Expertise</h3>
+
+            <p>Claude Code knows the Cargo.toml specification deeply. Ask it to add feature flags, conditional compilation targets, or optional dependencies, and it generates correct, idiomatic configuration:</p>
+
+            <pre>&gt; Add an optional "tls" feature to my library that enables rustls
+  support. When enabled, expose an additional connect_tls() method.
+  Default features should include "tls".</pre>
+
+            <div class="highlight">
+                <h3>Why Scaffolding with Claude Code Matters</h3>
+                <p>Rust projects have more upfront structure than most languages. Module declarations, <code>pub</code> visibility, feature gates, and <code>Cargo.toml</code> configuration all need to be correct before you write a single line of business logic. Claude Code eliminates the boilerplate phase entirely, letting you jump straight into the problem you are actually trying to solve.</p>
+            </div>
+
+            <h2>Rust-Specific Claude Code Workflows</h2>
+
+            <p>Rust has a unique set of concepts that trip up developers at every experience level. Claude Code understands them all, and more importantly, it can explain <em>why</em> the compiler is complaining and offer idiomatic solutions.</p>
+
+            <h3>Ownership and Borrowing</h3>
+
+            <p>The borrow checker is Rust's defining feature and its steepest learning curve. When you hit a lifetime error, paste the compiler output into Claude Code:</p>
+
+            <pre>&gt; Fix this error:
+  error[E0597]: `data` does not live long enough
+  --&gt; src/main.rs:12:22
+     |
+  12 |     let reference = &amp;data;
+     |                      ^^^^ borrowed value does not live long enough
+  13 | }
+     | - `data` dropped here while still borrowed</pre>
+
+            <p>Claude Code does not just fix the code. It explains the ownership problem: what owns the data, what borrows it, and why the lifetimes do not align. Then it offers the right solution, whether that is restructuring the code, using <code>Arc</code> for shared ownership, cloning where appropriate, or adjusting lifetime annotations.</p>
+
+            <p>Common ownership scenarios Claude Code handles well:</p>
+
+            <ul>
+                <li><strong>Moving values into closures</strong> &mdash; when to use <code>move</code>, when to borrow, when to clone</li>
+                <li><strong>Self-referential structs</strong> &mdash; why they are problematic and alternatives like <code>ouroboros</code> or index-based approaches</li>
+                <li><strong>Lifetime elision</strong> &mdash; when you need explicit lifetimes and when the compiler infers them</li>
+                <li><strong>Interior mutability</strong> &mdash; choosing between <code>Cell</code>, <code>RefCell</code>, <code>Mutex</code>, and <code>RwLock</code></li>
+            </ul>
+
+            <h3>Trait Implementations</h3>
+
+            <p>Rust traits are pervasive. Almost every struct needs <code>Debug</code>, most need <code>Display</code>, and many need <code>From</code>/<code>Into</code> conversions. Instead of writing these by hand, ask Claude Code:</p>
+
+            <pre>&gt; Implement Display, Debug, From&lt;io::Error&gt;, From&lt;serde_json::Error&gt;,
+  and Into&lt;StatusCode&gt; for my AppError enum. Also implement the Error
+  trait properly.</pre>
+
+            <p>Claude Code generates all the trait implementations with correct match arms, proper formatting, and idiomatic Rust style. It knows when to use <code>#[derive(Debug)]</code> versus a manual implementation, when <code>Display</code> should delegate to inner types, and how to chain <code>From</code> implementations for ergonomic error conversion with the <code>?</code> operator.</p>
+
+            <h3>Error Handling Patterns</h3>
+
+            <p>Rust's error handling ecosystem has converged on two crates: <strong>thiserror</strong> for libraries and <strong>anyhow</strong> for applications. Claude Code knows which to use and when:</p>
+
+            <pre>&gt; Create an error type for my HTTP client library using thiserror.
+  It should cover connection errors, timeout errors, invalid URL,
+  HTTP status errors (with the status code), and deserialization
+  errors. Include From impls for reqwest::Error and serde_json::Error.</pre>
+
+            <p>For application code, Claude Code will use anyhow for quick, flexible error handling with context:</p>
+
+            <pre>&gt; Convert this function to use anyhow. Add .context() calls
+  with meaningful error messages at each failure point.</pre>
+
+            <p>The result is error handling that gives you clear error chains when something fails, without the verbosity of manually writing error types for application-level code.</p>
+
+            <h3>Async Rust</h3>
+
+            <p>Async Rust is powerful but notoriously complex. <code>Pin</code>, <code>Future</code>, <code>Stream</code>, <code>Send + Sync</code> bounds, and the distinction between <code>tokio</code> and <code>async-std</code> create a steep learning curve. Claude Code navigates this confidently:</p>
+
+            <pre>&gt; Create an async HTTP server using axum with three routes:
+  GET /health, POST /data that accepts JSON and stores it,
+  and GET /data/:id that retrieves it. Use tokio with multi-
+  threaded runtime. Include graceful shutdown on SIGTERM.</pre>
+
+            <p>Claude Code handles the common async pain points:</p>
+
+            <ul>
+                <li><strong><code>Send + Sync</code> bounds</strong> &mdash; It knows that <code>tokio::spawn</code> requires <code>Send</code> futures and will structure code to satisfy this</li>
+                <li><strong><code>Pin&lt;Box&lt;dyn Future&gt;&gt;</code></strong> &mdash; When you need type-erased futures, it generates the correct boxing</li>
+                <li><strong>Stream processing</strong> &mdash; Using <code>tokio_stream</code> or <code>futures::Stream</code> for async iteration</li>
+                <li><strong>Select and join</strong> &mdash; Concurrent task management with <code>tokio::select!</code> and <code>tokio::join!</code></li>
+                <li><strong>Async trait methods</strong> &mdash; Using the <code>async-trait</code> crate or Rust's native async traits (stabilized in recent editions)</li>
+            </ul>
+
+            <h3>Unsafe Code Review</h3>
+
+            <p>Sometimes <code>unsafe</code> is necessary. When it is, Claude Code can audit it and suggest safe alternatives:</p>
+
+            <pre>&gt; Audit this unsafe block. Is it sound? Can it be replaced with
+  safe code?
+
+  unsafe {
+      let ptr = data.as_ptr();
+      let slice = std::slice::from_raw_parts(ptr, data.len());
+      process(slice);
+  }</pre>
+
+            <p>Claude Code will analyze whether the invariants required by <code>from_raw_parts</code> are maintained (valid pointer, correct length, proper alignment, no aliasing), and almost always suggest a safe alternative that performs identically. In this case, it would point out that the unsafe block is entirely unnecessary since <code>data</code> is already a slice.</p>
+
+            <h3>Macro Generation</h3>
+
+            <p>Rust macros &mdash; both declarative (<code>macro_rules!</code>) and procedural (derive macros) &mdash; are powerful but have notoriously difficult syntax. Claude Code excels here because macro patterns are repetitive and well-defined:</p>
+
+            <pre>&gt; Create a declarative macro called impl_from_str that takes a
+  struct name and a list of field:type pairs, and generates a
+  FromStr implementation that parses a comma-separated string
+  into the struct.</pre>
+
+            <p>Claude Code generates the macro with proper hygiene, clear token tree patterns, and helpful compile error messages using <code>compile_error!</code>. For derive macros, it can generate the full proc-macro crate structure with <code>syn</code> and <code>quote</code>.</p>
+
+            <h2>Building CLI Tools in Rust</h2>
+
+            <p>Rust is the dominant language for modern CLI tools. ripgrep, bat, fd, exa, zoxide, delta, hyperfine &mdash; the tools developers love most are written in Rust. Claude Code can help you build production-quality CLI tools with the same patterns.</p>
+
+            <h3>The CLI Tool Stack</h3>
+
+            <p>Tell Claude Code what your tool does, and it assembles the right crates:</p>
+
+            <ul>
+                <li><strong><code>clap</code></strong> &mdash; Argument parsing with derive macros. Claude Code generates the <code>#[derive(Parser)]</code> struct with help text, subcommands, and validation.</li>
+                <li><strong><code>indicatif</code></strong> &mdash; Progress bars and spinners. Claude Code sets up multi-progress bars for parallel operations, progress templates with ETA, and automatic tick intervals.</li>
+                <li><strong><code>dialoguer</code></strong> &mdash; Interactive prompts. Confirmation dialogs, selection menus, text input with validation, and password input.</li>
+                <li><strong><code>colored</code></strong> &mdash; Terminal colors and formatting. Error messages in red, success in green, warnings in yellow, all respecting <code>NO_COLOR</code>.</li>
+                <li><strong><code>tokio</code></strong> &mdash; For async I/O-heavy tools. Claude Code knows when async is justified (network requests, concurrent file operations) and when synchronous code is simpler and faster.</li>
+            </ul>
+
+            <h3>Example: Building a Log Analyzer</h3>
+
+            <p>Here is a real workflow using Claude Code and Beam for building a CLI tool:</p>
+
+            <p><strong>Step 1:</strong> In your Claude Code pane, scaffold the project:</p>
+
+            <pre>&gt; Create a CLI tool called "loggrep" that searches structured
+  JSON log files. It should support filtering by log level,
+  time range, and regex pattern matching on message fields.
+  Output as formatted text or JSON. Use clap, serde, regex,
+  chrono, and colored.</pre>
+
+            <p><strong>Step 2:</strong> In your <code>cargo watch</code> pane, start the watcher:</p>
+
+            <pre>$ cargo watch -x check -x clippy</pre>
+
+            <p><strong>Step 3:</strong> Iterate with Claude Code. Ask it to add features one at a time:</p>
+
+            <pre>&gt; Add a --follow flag that watches the file for new lines,
+  like tail -f. Use notify for file watching.</pre>
+
+            <pre>&gt; Add progress bar using indicatif when processing large files.
+  Show bytes processed and estimated time remaining.</pre>
+
+            <pre>&gt; Add shell completions generation. clap_complete for bash,
+  zsh, and fish. Add a "completions" subcommand.</pre>
+
+            <p>Each time Claude Code modifies a file, you see the compiler output in your other pane immediately. No context switching, no running commands manually. The feedback loop is instantaneous.</p>
+
+            <div class="highlight">
+                <h3>Beam Advantage: Split-Pane Feedback Loop</h3>
+                <p>This is where Beam's split panes shine for Rust development. The Rust compiler is famously strict &mdash; and famously helpful. When Claude Code makes a change, the compiler catches issues within seconds in your adjacent pane. You can copy the error back to Claude Code and iterate without leaving your workspace. No tab switching, no lost context.</p>
+            </div>
+
+            <h2>Testing in Rust with Claude Code</h2>
+
+            <p>Rust has testing built into the language and toolchain. No test runner framework to install, no configuration files to maintain. Claude Code leverages this to generate comprehensive tests with minimal prompting.</p>
+
+            <h3>Unit Tests</h3>
+
+            <p>Rust convention places unit tests in a <code>#[cfg(test)]</code> module at the bottom of each file. Claude Code follows this convention automatically:</p>
+
+            <pre>&gt; Write unit tests for the parse_log_entry function. Cover valid
+  JSON entries, malformed JSON, missing required fields, edge
+  cases for timestamp parsing, and unicode in message fields.</pre>
+
+            <p>Claude Code generates the <code>mod tests</code> block with <code>#[test]</code> functions, uses descriptive test names like <code>test_parse_valid_entry_with_all_fields</code>, includes both success and failure cases, and uses <code>assert_eq!</code> with meaningful messages.</p>
+
+            <h3>Integration Tests</h3>
+
+            <p>Integration tests live in the <code>/tests</code> directory and test your crate's public API. Claude Code knows the distinction:</p>
+
+            <pre>&gt; Create integration tests for the loggrep library. Test the
+  full pipeline: read file, apply filters, produce output.
+  Use tempfile for test fixtures.</pre>
+
+            <p>It will create files in <code>tests/</code> that import your crate as an external dependency, set up test fixtures with <code>tempfile::NamedTempFile</code>, and test the full workflow from input to output.</p>
+
+            <h3>Doc Tests</h3>
+
+            <p>Rust's doc tests are unique &mdash; code examples in documentation are compiled and run as tests. Claude Code writes doc examples that serve dual purpose: they document the API <em>and</em> verify it works:</p>
+
+            <pre>&gt; Add documentation with examples to all public functions in
+  the rate_limiter module. Every example should be a complete,
+  runnable doc test.</pre>
+
+            <h3>Property-Based Testing</h3>
+
+            <p>For functions with complex invariants, Claude Code can set up property-based tests with <code>proptest</code>:</p>
+
+            <pre>&gt; Add property-based tests for the serialization module. Verify
+  that for any valid Config value, serialize then deserialize
+  produces the original value (roundtrip property).</pre>
+
+            <p>Claude Code generates the <code>proptest!</code> macro invocations, custom <code>Arbitrary</code> implementations for your types, and targeted strategies that generate meaningful test inputs rather than purely random data.</p>
+
+            <h3>Organizing Test Output in Beam</h3>
+
+            <p>Dedicate a full tab to <code>cargo test</code>. Use the <code>--nocapture</code> flag to see <code>println!</code> output from tests, and <code>--test-threads=1</code> when debugging test interactions. Beam keeps this output visible and scrollable while you work with Claude Code in another pane.</p>
+
+            <p>For test-driven development, run:</p>
+
+            <pre>$ cargo watch -x "test -- --nocapture"</pre>
+
+            <p>Every time Claude Code saves a file, the tests re-run automatically in your dedicated test tab.</p>
+
+            <h2>The Cargo Watch Workflow</h2>
+
+            <p><code>cargo-watch</code> is the secret weapon for Rust's compile-check-test cycle. It watches your source files and re-runs commands on every change. Combined with Beam's split panes, it creates a development experience that rivals any IDE.</p>
+
+            <h3>Setting It Up</h3>
+
+            <p>Install cargo-watch if you have not already:</p>
+
+            <pre>$ cargo install cargo-watch</pre>
+
+            <p>Then in your dedicated Beam pane, run:</p>
+
+            <pre>$ cargo watch -x check -x test -x run</pre>
+
+            <p>This command chains three operations: first <code>cargo check</code> (fast type checking), then <code>cargo test</code> (if check passes), then <code>cargo run</code> (if tests pass). The chain short-circuits on failure, so you get the fastest possible feedback.</p>
+
+            <h3>The Split-Pane Setup</h3>
+
+            <p>The ideal layout in Beam:</p>
+
+            <ul>
+                <li><strong>Left pane:</strong> Claude Code session, where you are writing and refactoring code</li>
+                <li><strong>Right pane:</strong> <code>cargo watch -x check -x clippy</code>, showing real-time compiler and lint output</li>
+            </ul>
+
+            <p>When Claude Code modifies a Rust file, <code>cargo-watch</code> detects the change within a second. You see either green "Finished" messages or compiler errors. If there are errors, you can paste them directly back to Claude Code:</p>
+
+            <pre>&gt; I'm getting this error from cargo check:
+
+  error[E0382]: borrow of moved value: `config`
+  --&gt; src/main.rs:45:20
+     |
+  42 |     let server = Server::new(config);
+     |                              ------ value moved here
+  45 |     println!("{}", config.port);
+     |                    ^^^^^^^^^^^ value borrowed here after move</pre>
+
+            <p>Claude Code will explain that <code>Server::new</code> took ownership of <code>config</code>, and suggest either passing a reference (<code>&amp;config</code>), cloning the value, or restructuring the code to access <code>config.port</code> before the move.</p>
+
+            <h3>Advanced Cargo Watch Configurations</h3>
+
+            <p>For different stages of development, adjust the cargo watch command:</p>
+
+            <ul>
+                <li><strong>Early development:</strong> <code>cargo watch -x check</code> &mdash; fastest feedback, just type checking</li>
+                <li><strong>Feature complete:</strong> <code>cargo watch -x check -x test</code> &mdash; type checking plus tests</li>
+                <li><strong>Pre-commit:</strong> <code>cargo watch -x check -x clippy -x test</code> &mdash; full lint and test suite</li>
+                <li><strong>Specific crate:</strong> <code>cargo watch -x "test -p myapp-core"</code> &mdash; focus on one crate in a workspace</li>
+            </ul>
+
+            <h2>Managing Rust Workspaces</h2>
+
+            <p>As Rust projects grow, they naturally split into multiple crates within a Cargo workspace. This is where Beam's workspace-per-crate organization becomes essential.</p>
+
+            <h3>One Beam Workspace Per Crate</h3>
+
+            <p>For a Cargo workspace with three crates (<code>core</code>, <code>server</code>, <code>cli</code>), create three Beam workspaces:</p>
+
+            <p><strong>Beam Workspace "core":</strong></p>
+            <ul>
+                <li>Tab 1: Claude Code, working directory set to <code>crates/core/</code></li>
+                <li>Tab 2: <code>cargo watch -x "test -p myapp-core"</code></li>
+            </ul>
+
+            <p><strong>Beam Workspace "server":</strong></p>
+            <ul>
+                <li>Tab 1: Claude Code, working directory set to <code>crates/server/</code></li>
+                <li>Tab 2: <code>cargo run -p myapp-server</code></li>
+                <li>Tab 3: <code>curl</code> commands for API testing</li>
+            </ul>
+
+            <p><strong>Beam Workspace "cli":</strong></p>
+            <ul>
+                <li>Tab 1: Claude Code, working directory set to <code>crates/cli/</code></li>
+                <li>Tab 2: <code>cargo run -p myapp-cli -- --help</code></li>
+            </ul>
+
+            <h3>Shared Dependencies and Feature Flags</h3>
+
+            <p>Claude Code understands Cargo workspace dependency management. Ask it to refactor dependencies to the workspace level:</p>
+
+            <pre>&gt; Move all shared dependencies (serde, tokio, tracing) to
+  workspace-level dependencies. Update each crate's Cargo.toml
+  to use dep.workspace = true syntax.</pre>
+
+            <p>Or manage feature flags across crates:</p>
+
+            <pre>&gt; Add a "metrics" feature to the core crate that adds prometheus
+  metrics to all public functions. The server crate should enable
+  this feature by default, but the CLI crate should not.</pre>
+
+            <h3>Claude Code Context Per Crate</h3>
+
+            <p>Claude Code uses memory files to maintain project context. For a multi-crate workspace, you can have a memory file at the workspace root with architectural decisions and one per crate with crate-specific context. Claude Code reads these automatically and understands the relationships between crates.</p>
+
+            <p>This means when you are working on the <code>server</code> crate and you ask Claude Code to add a feature, it already knows the API surface of <code>core</code> and can generate code that uses it correctly.</p>
+
+            <h2>Performance Profiling with Claude Code</h2>
+
+            <p>Rust developers care deeply about performance. Claude Code can help you measure, analyze, and optimize your code.</p>
+
+            <h3>Benchmarking with Criterion</h3>
+
+            <p>Claude Code sets up criterion benchmarks with proper statistical methodology:</p>
+
+            <pre>&gt; Create benchmarks for the parse_log_entry function using
+  criterion. Benchmark with small (100 byte), medium (1KB),
+  and large (10KB) log entries. Include throughput measurement.</pre>
+
+            <p>It generates the <code>benches/</code> directory structure, the benchmark harness with <code>criterion_group!</code> and <code>criterion_main!</code> macros, and parameterized benchmarks that measure both latency and throughput.</p>
+
+            <p>Run the benchmarks in a dedicated Beam tab:</p>
+
+            <pre>$ cargo bench</pre>
+
+            <p>Criterion generates HTML reports with statistical analysis. Claude Code can then help you interpret the results and identify optimization opportunities.</p>
+
+            <h3>Flamegraph Analysis</h3>
+
+            <p>For runtime profiling, the <code>cargo-flamegraph</code> tool generates interactive SVG flamegraphs. Claude Code can help you set it up and interpret the results:</p>
+
+            <pre>&gt; Set up flamegraph profiling for the server binary. Add a
+  /debug/profile endpoint that records 10 seconds of CPU
+  activity and returns a flamegraph SVG.</pre>
+
+            <p>After generating a flamegraph, describe what you see to Claude Code:</p>
+
+            <pre>&gt; The flamegraph shows 40% of time in serde_json::from_str
+  and 25% in regex::Regex::find. How can I optimize these?</pre>
+
+            <p>Claude Code will suggest targeted optimizations: using <code>serde_json::from_slice</code> instead of <code>from_str</code> to avoid a UTF-8 validation pass, compiling the regex once with <code>lazy_static!</code> or <code>std::sync::OnceLock</code> instead of per-call, or switching to <code>simd-json</code> for SIMD-accelerated parsing.</p>
+
+            <h3>Compiler Optimizations</h3>
+
+            <p>Claude Code knows the Rust compiler's optimization knobs:</p>
+
+            <pre>&gt; Optimize my release build for binary size. I want the smallest
+  possible binary for distribution.</pre>
+
+            <p>It will configure:</p>
+
+            <ul>
+                <li><code>opt-level = "z"</code> for size optimization</li>
+                <li><code>lto = true</code> for link-time optimization</li>
+                <li><code>codegen-units = 1</code> for maximum optimization opportunity</li>
+                <li><code>strip = true</code> to remove debug symbols</li>
+                <li><code>panic = "abort"</code> to eliminate unwinding code</li>
+            </ul>
+
+            <p>Or for maximum runtime performance:</p>
+
+            <pre>&gt; Optimize for speed. I need the fastest possible execution
+  for this data processing pipeline.</pre>
+
+            <p>Claude Code will set <code>opt-level = 3</code>, enable <code>lto = "fat"</code>, set <code>target-cpu = "native"</code> in <code>RUSTFLAGS</code>, and suggest algorithmic improvements based on your code's hot paths.</p>
+
+            <h2>Real-World Rust + Claude Code Patterns</h2>
+
+            <p>Here are patterns that come up repeatedly in real Rust development, where Claude Code provides significant value:</p>
+
+            <h3>Serde Customization</h3>
+
+            <p>Almost every Rust project uses serde, and almost every project needs custom serialization at some point. Claude Code handles the full spectrum:</p>
+
+            <ul>
+                <li><strong>Rename fields</strong> &mdash; <code>#[serde(rename = "camelCase")]</code>, <code>#[serde(rename_all)]</code></li>
+                <li><strong>Default values</strong> &mdash; <code>#[serde(default)]</code> with custom default functions</li>
+                <li><strong>Custom deserializers</strong> &mdash; When the derive macro is not flexible enough</li>
+                <li><strong>Flattened and adjacent tagging</strong> &mdash; For complex JSON shapes</li>
+                <li><strong>Untagged enums</strong> &mdash; For parsing JSON that could be multiple types</li>
+            </ul>
+
+            <h3>Tracing and Observability</h3>
+
+            <p>The <code>tracing</code> ecosystem is the standard for structured logging in Rust. Claude Code sets up the full stack:</p>
+
+            <pre>&gt; Add structured logging using tracing. Set up tracing-subscriber
+  with JSON output for production and pretty-printed for dev.
+  Add spans to all public functions and instrument async methods.</pre>
+
+            <h3>Cross-Compilation</h3>
+
+            <p>Claude Code knows Rust's cross-compilation targets and toolchain management:</p>
+
+            <pre>&gt; Set up cross-compilation for Linux x86_64 and ARM64 from macOS.
+  Add a Makefile with targets for each platform. Use cross for
+  Docker-based compilation.</pre>
+
+            <div class="cta-box">
+                <h3>Build Rust Projects Faster with Beam</h3>
+                <p>The terminal is every Rust developer's IDE. Beam organizes it with workspaces, tabs, and split panes designed for multi-session workflows like Claude Code + cargo watch.</p>
+                <a href="../" class="btn">Download Beam for macOS</a>
+            </div>
+
+            <h2>Summary</h2>
+
+            <p>Rust development is inherently terminal-centric. Every tool in the Rust ecosystem &mdash; cargo, clippy, rustfmt, rustup, cargo-watch, cargo-bench &mdash; runs in the terminal. Claude Code operates in the same environment, understanding Rust at a deep enough level to handle ownership, lifetimes, traits, async patterns, macros, and performance optimization.</p>
+
+            <p>Beam ties it all together by organizing the parallel terminal sessions that Rust development demands:</p>
+
+            <ul>
+                <li><strong>Workspaces</strong> per crate or project for clean context separation</li>
+                <li><strong>Split panes</strong> for the Claude Code + cargo watch instant feedback loop</li>
+                <li><strong>Dedicated tabs</strong> for tests, benchmarks, and running binaries</li>
+                <li><strong>Saved layouts</strong> so your entire Rust environment restores in one keystroke</li>
+                <li><strong>Quick Switcher</strong> (<span class="kbd">&#8984;P</span>) to jump between crates and sessions instantly</li>
+            </ul>
+
+            <p>If you are building in Rust and working in the terminal, this is the workflow to adopt. Claude Code for the intelligence. Beam for the organization. Cargo for everything else.</p>
+
+            <div class="related-articles">
+                <h2>Related Articles</h2>
+                <div class="related-grid">
+                    <a href="build-cli-tool-go-claude-code.html" class="related-card">
+                        <h4>Build a CLI Tool with Claude Code and Go</h4>
+                        <p>Step-by-step guide to building a CLI tool with Claude Code and Go.</p>
+                    </a>
+                    <a href="write-tests-with-claude-code.html" class="related-card">
+                        <h4>How to Write Tests with Claude Code</h4>
+                        <p>Unit, integration, and E2E testing workflows with AI assistance.</p>
+                    </a>
+                    <a href="debug-with-claude-code.html" class="related-card">
+                        <h4>How to Debug with Claude Code</h4>
+                        <p>A practical guide to debugging with AI in the terminal.</p>
+                    </a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>
+                <a href="../">Beam</a> &bull; Terminal Organizer for macOS &bull;
+                <a href="mailto:frank@nextuptechnologies.co">Contact</a>
+            </p>
+
+            <p style="margin-top: 12px; font-size: 0.8rem;">
+                <a href="/privacy.html" style="color: #71717a; text-decoration: none;">Privacy Policy</a> &bull;
+                <a href="/terms.html" style="color: #71717a; text-decoration: none;">Terms of Service</a>
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>

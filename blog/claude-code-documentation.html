@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D0XH8B0RKL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-D0XH8B0RKL');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Write Documentation with Claude Code | Beam Terminal Organizer</title>
+    <meta name="description" content="Generate API docs, README files, code comments, and architecture guides with Claude Code. Stop putting off documentation — let AI write the first draft while you refine.">
+    <meta name="keywords" content="Claude Code documentation, AI documentation generation, Claude Code README, write docs with AI, Claude Code API docs, automated documentation">
+    <meta name="author" content="NextUp Technologies">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://getbeam.dev/blog/claude-code-documentation.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://getbeam.dev/blog/claude-code-documentation.html">
+    <meta property="og:title" content="How to Write Documentation with Claude Code">
+    <meta property="og:description" content="Generate API docs, README files, code comments, and architecture guides with Claude Code. Stop putting off documentation — let AI write the first draft while you refine.">
+    <meta property="og:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="How to Write Documentation with Claude Code">
+    <meta name="twitter:description" content="Generate API docs, README files, code comments, and architecture guides with Claude Code. Stop putting off documentation — let AI write the first draft while you refine.">
+    <meta name="twitter:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "How to Write Documentation with Claude Code",
+        "description": "Generate API docs, README files, code comments, and architecture guides with Claude Code. Stop putting off documentation — let AI write the first draft while you refine.",
+        "author": {
+            "@type": "Organization",
+            "name": "NextUp Technologies"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Beam"
+        },
+        "datePublished": "2026-02-11",
+        "keywords": "Claude Code documentation, AI documentation generation, Claude Code README, write docs with AI, Claude Code API docs, automated documentation"
+    }
+    </script>
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #111113;
+            --bg-tertiary: #1a1a1d;
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.4);
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --border: #27272a;
+            --success: #22c55e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        header {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 60px;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1.5rem;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            background: var(--accent);
+            color: white;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+        }
+
+        article {
+            padding-bottom: 80px;
+        }
+
+        .breadcrumb {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+        }
+
+        .breadcrumb a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .meta {
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            font-size: 0.95rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 48px 0 20px;
+            color: var(--text-primary);
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        ul, ol {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            padding-left: 24px;
+        }
+
+        li {
+            margin-bottom: 12px;
+        }
+
+        .highlight {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 32px 0;
+        }
+
+        .highlight h3 {
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .kbd {
+            display: inline-block;
+            padding: 2px 8px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+        }
+
+        code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 2px 6px;
+            color: #e879f9;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .cta-box h3 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+        }
+
+        .cta-box p {
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 24px;
+        }
+
+        .cta-box .btn {
+            background: white;
+            color: var(--accent);
+        }
+
+        .blog-visual {
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        .blog-visual svg {
+            max-width: 100%;
+            height: auto;
+        }
+
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+
+        .related-articles { margin-top: 60px; padding-top: 40px; border-top: 1px solid var(--border); }
+        .related-articles h2 { font-size: 1.5rem; margin-bottom: 24px; }
+        .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .related-card { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-decoration: none; transition: border-color 0.2s; }
+        .related-card:hover { border-color: var(--accent); }
+        .related-card h4 { color: white; font-size: 1rem; margin: 0 0 8px 0; }
+        .related-card p { color: var(--text-muted); font-size: 0.85rem; margin: 0; }
+        @media (max-width: 600px) { .related-grid { grid-template-columns: 1fr; } h1 { font-size: 1.8rem; } }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="../" class="logo">
+                <div class="logo-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round">
+                        <path d="M4 17l6-6-6-6M12 19h8"/>
+                    </svg>
+                </div>
+                Beam
+            </a>
+            <a href="../" class="btn">Download Beam</a>
+        </div>
+    </header>
+
+    <main>
+        <article class="container">
+            <div class="breadcrumb">
+                <a href="../">Beam</a> / <a href="../#guides">Guides</a> / Writing Documentation with Claude Code
+            </div>
+
+            <h1>How to Write Documentation with Claude Code</h1>
+            <p class="meta">February 2026 &bull; 7 min read</p>
+
+            <p>Documentation is the part of software development everyone knows matters and nobody wants to do. README files go stale within weeks of being written. API docs either don't exist or describe endpoints that were refactored three sprints ago. Architecture decisions live only in someone's head, and when that person leaves, the knowledge goes with them. The first draft is always the hardest part -- staring at a blank file, trying to figure out where to start and what to include.</p>
+
+            <p>Claude Code eliminates that pain entirely. It reads your actual codebase, understands the intent behind your functions and modules, and generates accurate, well-structured documentation in seconds. You don't need to explain your code to it -- it reads the source files directly. The result is a solid first draft that you refine and polish, rather than a blank page you have to fill from scratch.</p>
+
+            <!-- SVG Visual: Documentation Generation Pipeline -->
+            <div class="blog-visual">
+                <svg width="720" height="260" viewBox="0 0 720 260" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Background -->
+                    <rect width="720" height="260" rx="16" fill="#111113"/>
+                    <rect width="720" height="260" rx="16" stroke="#27272a" stroke-width="1"/>
+
+                    <!-- Left: Code file icon -->
+                    <g transform="translate(60, 55)">
+                        <rect x="0" y="0" width="100" height="130" rx="8" fill="#1a1a1d" stroke="#27272a" stroke-width="1.5"/>
+                        <path d="M0 0h70l30 30v100a8 8 0 01-8 8H8a8 8 0 01-8-8V8a8 8 0 018-8z" fill="#1a1a1d"/>
+                        <path d="M70 0l30 30H78a8 8 0 01-8-8V0z" fill="#27272a" opacity="0.5"/>
+                        <!-- Code lines -->
+                        <rect x="14" y="42" width="50" height="4" rx="2" fill="#8b5cf6" opacity="0.6"/>
+                        <rect x="14" y="54" width="72" height="4" rx="2" fill="#71717a" opacity="0.4"/>
+                        <rect x="14" y="66" width="60" height="4" rx="2" fill="#71717a" opacity="0.4"/>
+                        <rect x="22" y="78" width="44" height="4" rx="2" fill="#3b82f6" opacity="0.5"/>
+                        <rect x="22" y="90" width="56" height="4" rx="2" fill="#71717a" opacity="0.4"/>
+                        <rect x="14" y="102" width="36" height="4" rx="2" fill="#8b5cf6" opacity="0.6"/>
+                        <rect x="14" y="114" width="48" height="4" rx="2" fill="#71717a" opacity="0.4"/>
+                        <text x="50" y="155" text-anchor="middle" fill="#a1a1aa" font-family="Space Grotesk, sans-serif" font-size="12" font-weight="500">Your Code</text>
+                    </g>
+
+                    <!-- Arrow 1 -->
+                    <g transform="translate(185, 115)">
+                        <line x1="0" y1="0" x2="60" y2="0" stroke="#f59e0b" stroke-width="2" stroke-dasharray="6 4" opacity="0.6"/>
+                        <polygon points="60,-5 70,0 60,5" fill="#f59e0b" opacity="0.8"/>
+                    </g>
+
+                    <!-- Center: Claude Code processing -->
+                    <g transform="translate(270, 60)">
+                        <!-- Glow effect -->
+                        <ellipse cx="65" cy="60" rx="60" ry="55" fill="#f59e0b" opacity="0.06"/>
+                        <ellipse cx="65" cy="60" rx="45" ry="42" fill="#f59e0b" opacity="0.08"/>
+                        <!-- Processing box -->
+                        <rect x="10" y="10" width="110" height="100" rx="12" fill="#1a1a1d" stroke="#f59e0b" stroke-width="1.5" opacity="0.9"/>
+                        <!-- Terminal prompt icon -->
+                        <text x="65" y="48" text-anchor="middle" fill="#f59e0b" font-family="JetBrains Mono, monospace" font-size="18" font-weight="500">&gt;_</text>
+                        <!-- Spinning dots suggesting processing -->
+                        <circle cx="45" cy="72" r="3" fill="#f59e0b" opacity="0.9"/>
+                        <circle cx="65" cy="72" r="3" fill="#f59e0b" opacity="0.6"/>
+                        <circle cx="85" cy="72" r="3" fill="#f59e0b" opacity="0.3"/>
+                        <text x="65" y="100" text-anchor="middle" fill="#f59e0b" font-family="JetBrains Mono, monospace" font-size="10" font-weight="500">Claude Code</text>
+                        <text x="65" y="150" text-anchor="middle" fill="#a1a1aa" font-family="Space Grotesk, sans-serif" font-size="12" font-weight="500">Processing</text>
+                    </g>
+
+                    <!-- Arrow 2 -->
+                    <g transform="translate(400, 115)">
+                        <line x1="0" y1="0" x2="60" y2="0" stroke="#3b82f6" stroke-width="2" stroke-dasharray="6 4" opacity="0.6"/>
+                        <polygon points="60,-5 70,0 60,5" fill="#3b82f6" opacity="0.8"/>
+                    </g>
+
+                    <!-- Right: Three document icons fanning out -->
+                    <!-- Doc 1: README.md (top) -->
+                    <g transform="translate(480, 20)">
+                        <rect x="0" y="0" width="90" height="60" rx="6" fill="#1a1a1d" stroke="#3b82f6" stroke-width="1.5"/>
+                        <rect x="10" y="10" width="40" height="3" rx="1.5" fill="#3b82f6" opacity="0.7"/>
+                        <rect x="10" y="18" width="70" height="3" rx="1.5" fill="#71717a" opacity="0.4"/>
+                        <rect x="10" y="26" width="55" height="3" rx="1.5" fill="#71717a" opacity="0.4"/>
+                        <rect x="10" y="34" width="65" height="3" rx="1.5" fill="#71717a" opacity="0.4"/>
+                        <rect x="10" y="42" width="45" height="3" rx="1.5" fill="#71717a" opacity="0.4"/>
+                        <text x="45" y="75" text-anchor="middle" fill="#3b82f6" font-family="JetBrains Mono, monospace" font-size="11" font-weight="500">README.md</text>
+                    </g>
+
+                    <!-- Doc 2: API Docs (middle) -->
+                    <g transform="translate(510, 95)">
+                        <rect x="0" y="0" width="90" height="60" rx="6" fill="#1a1a1d" stroke="#8b5cf6" stroke-width="1.5"/>
+                        <rect x="10" y="10" width="35" height="3" rx="1.5" fill="#8b5cf6" opacity="0.7"/>
+                        <rect x="10" y="18" width="70" height="3" rx="1.5" fill="#71717a" opacity="0.4"/>
+                        <rect x="10" y="26" width="50" height="3" rx="1.5" fill="#71717a" opacity="0.4"/>
+                        <rect x="10" y="34" width="60" height="3" rx="1.5" fill="#71717a" opacity="0.4"/>
+                        <rect x="10" y="42" width="40" height="3" rx="1.5" fill="#71717a" opacity="0.4"/>
+                        <text x="45" y="75" text-anchor="middle" fill="#8b5cf6" font-family="JetBrains Mono, monospace" font-size="11" font-weight="500">API Docs</text>
+                    </g>
+
+                    <!-- Doc 3: Architecture (bottom) -->
+                    <g transform="translate(480, 170)">
+                        <rect x="0" y="0" width="90" height="60" rx="6" fill="#1a1a1d" stroke="#22c55e" stroke-width="1.5"/>
+                        <rect x="10" y="10" width="45" height="3" rx="1.5" fill="#22c55e" opacity="0.7"/>
+                        <rect x="10" y="18" width="70" height="3" rx="1.5" fill="#71717a" opacity="0.4"/>
+                        <rect x="10" y="26" width="60" height="3" rx="1.5" fill="#71717a" opacity="0.4"/>
+                        <rect x="10" y="34" width="50" height="3" rx="1.5" fill="#71717a" opacity="0.4"/>
+                        <rect x="10" y="42" width="65" height="3" rx="1.5" fill="#71717a" opacity="0.4"/>
+                        <text x="45" y="75" text-anchor="middle" fill="#22c55e" font-family="JetBrains Mono, monospace" font-size="11" font-weight="500">Architecture</text>
+                    </g>
+
+                    <!-- Connecting arrows from center to docs -->
+                    <line x1="405" y1="105" x2="478" y2="55" stroke="#3b82f6" stroke-width="1" opacity="0.3"/>
+                    <line x1="405" y1="120" x2="508" y2="125" stroke="#8b5cf6" stroke-width="1" opacity="0.3"/>
+                    <line x1="405" y1="135" x2="478" y2="195" stroke="#22c55e" stroke-width="1" opacity="0.3"/>
+                </svg>
+            </div>
+
+            <h2>Why Claude Code Writes Good Documentation</h2>
+
+            <p>Most documentation fails because it's written from memory. A developer finishes a feature, opens a blank Markdown file, and tries to recall what they built and why. Details get lost. Edge cases get forgotten. The docs describe what the developer intended, not what the code actually does.</p>
+
+            <p>Claude Code takes a fundamentally different approach. It reads the actual source code -- every function signature, every data flow, every module boundary. The documentation it produces matches reality, not aspirations. When your <code>createUser</code> function actually accepts five parameters but your hand-written docs only mention three, Claude catches that because it read the function definition directly.</p>
+
+            <p>Beyond accuracy, Claude Code understands the full spectrum of documentation formats. It generates proper Markdown with correct heading hierarchies, JSDoc annotations with typed parameters and return values, Python docstrings following Google or NumPy conventions, and OpenAPI specifications with complete request and response schemas. It can write at different levels too -- user-facing guides that assume no code knowledge, API references packed with technical detail, and architecture overviews that explain how the pieces fit together.</p>
+
+            <p>But the most valuable capability is updating existing documentation when code changes. This is where manual documentation always breaks down. Nobody remembers to update the README after refactoring. Claude Code does, because you can simply tell it to.</p>
+
+            <h2>README Generation</h2>
+
+            <p>The README is your project's front door. It's the first thing anyone sees on GitHub, and it sets the tone for whether someone will use your project or move on. Despite its importance, READMEs are notoriously neglected -- either they're a stub from project creation or they describe a version of the software that no longer exists.</p>
+
+            <p>With Claude Code, generating a comprehensive README takes a single prompt: "Generate a README.md for this project. Include: overview, features, installation, quick start, configuration, and contributing guidelines." Claude reads your <code>package.json</code> or <code>setup.py</code> for project metadata, scans your source code for feature coverage, inspects your configuration files for setup requirements, and examines your directory structure for project organization.</p>
+
+            <p>The result is a complete, properly formatted README with sections that reflect your actual project. Installation instructions reference the real dependencies. Quick start examples use actual API calls or CLI commands from your codebase. Configuration documentation lists real environment variables and options, not placeholders. If your project has a <code>Dockerfile</code>, Claude includes Docker-based setup instructions. If you have a <code>Makefile</code>, it documents the available targets.</p>
+
+            <p>The code examples in Claude-generated READMEs actually work because they're derived from reading your source code and tests, not invented from scratch. That alone makes them more valuable than most hand-written examples.</p>
+
+            <h2>API Documentation</h2>
+
+            <p>API documentation is one of the highest-value and most tedious forms of documentation to maintain. Every route needs its path, method, parameters, request body shape, response schema, authentication requirements, and error responses documented. Doing this manually for dozens or hundreds of endpoints is a recipe for incomplete, outdated docs.</p>
+
+            <p>Claude Code handles this systematically. Ask it to "Generate OpenAPI/Swagger documentation for all API routes in this project," and it reads every route handler in your codebase. It extracts path parameters, query parameters, and request body schemas from your code. It identifies response shapes from your return statements and serializers. It detects authentication middleware and documents which endpoints require auth and what kind.</p>
+
+            <p>The output is a complete API specification with realistic request and response examples. If your Express route handler validates the request body with Zod or Joi, Claude reads the validation schema and generates the correct OpenAPI types. If your Django view uses a serializer, Claude reads the serializer fields and produces matching documentation.</p>
+
+            <p>For inline documentation, try: "Add JSDoc comments to all exported functions in the services directory." Claude doesn't just add parameter names -- it generates meaningful descriptions that explain what each function does, what each parameter controls, what the return value represents, and what exceptions might be thrown. These are the kinds of comments that actually help the next developer understand your code.</p>
+
+            <h2>Architecture Documentation</h2>
+
+            <p>Architecture documentation is the hardest to write and the most valuable to have. It's the kind of knowledge that usually exists only in the heads of the engineers who built the system. When they leave, that knowledge evaporates. New team members spend weeks or months piecing together how the system works from code archaeology and tribal knowledge.</p>
+
+            <p>Claude Code can produce this documentation because it does what no human practically can -- it reads every file in the codebase and synthesizes a coherent picture. Ask it to "Write an architecture document for this project. Cover: system overview, directory structure, data flow, key design decisions, and deployment architecture." Claude identifies the layers of your application, maps the dependencies between modules, traces data flows from input to output, and documents integration points with external services.</p>
+
+            <p>The result is an architecture guide that covers how the request lifecycle works end to end, what the major modules are and how they interact, where state is managed and how it's persisted, what external services the system depends on, and how the deployment pipeline is configured. This is documentation that provides real onboarding value.</p>
+
+            <div class="highlight">
+                <h3>Architecture Docs That Surprise Even the Authors</h3>
+                <p>Claude Code generates architecture documentation that even the original developers would struggle to write from scratch -- because it reads every file, not just the ones you remember. It catches cross-cutting concerns, implicit dependencies, and design patterns that are obvious in the code but invisible when you try to describe the system from memory.</p>
+            </div>
+
+            <h2>Code Comments and Docstrings</h2>
+
+            <p>There's a spectrum of opinion on code comments, from "every line should be commented" to "good code is self-documenting." The practical truth is somewhere in the middle: public APIs need documentation, complex algorithms need explanation, and non-obvious design decisions need rationale. Everything else is noise.</p>
+
+            <p>Claude Code understands this balance. Ask it to "Add docstrings to all public functions in the Python codebase" and it generates meaningful documentation where it adds value. For a simple getter, it writes a brief one-line docstring. For a complex data transformation function, it explains the algorithm, documents each parameter with its type and purpose, describes the return value, includes usage examples, and notes any edge cases or exceptions.</p>
+
+            <p>The same applies to TypeScript with JSDoc: "Add JSDoc comments to all exported TypeScript functions." Claude generates <code>@param</code> tags with types and descriptions, <code>@returns</code> with the return type and meaning, <code>@throws</code> for functions that raise errors, and <code>@example</code> blocks with working code snippets. It doesn't over-comment -- it skips obvious utility functions and focuses on the interfaces that other developers will actually consume.</p>
+
+            <p>This targeted approach is what makes Claude-generated comments useful rather than annoying. Nobody needs a comment that says "increments counter by one." Everyone benefits from a comment that explains why a particular retry strategy was chosen or what invariant a validation function enforces.</p>
+
+            <h2>Keeping Docs Up to Date</h2>
+
+            <p>Writing documentation once is hard enough. Keeping it current is where most teams fail completely. Code evolves sprint after sprint, but the docs stay frozen at whatever state they were in when someone last had the energy to update them. Within months, the documentation becomes not just incomplete but actively misleading -- describing behaviors the system no longer exhibits.</p>
+
+            <p>Claude Code makes incremental documentation updates trivial. After making code changes, tell it: "Update the README to reflect the new authentication flow." After modifying API endpoints, say: "Update the OpenAPI spec for the /users endpoints." Claude reads both the current code and the current documentation, identifies what changed, and updates only the affected sections. It doesn't rewrite the entire document -- it surgically updates the parts that are now out of date.</p>
+
+            <p>This changes the economics of documentation entirely. Updating docs is no longer a thirty-minute chore you put off until it becomes a three-hour project. It's a thirty-second prompt at the end of a coding session.</p>
+
+            <div class="highlight">
+                <h3>Pro Tip: Make "Update Docs" Part of Your Commit Workflow</h3>
+                <p>After finishing a feature or fix, add one more step before committing: ask Claude Code to update the relevant documentation. It takes seconds, and it means your docs never drift more than one commit behind your code. Over time, this single habit eliminates the "stale docs" problem entirely.</p>
+            </div>
+
+            <h2>Changelogs and Release Notes</h2>
+
+            <p>Changelogs and release notes are documentation that users and stakeholders actually read. They want to know what's new, what's fixed, and what might break. Writing good release notes requires reading through all the commits since the last release, categorizing them, and translating technical changes into language that makes sense to your audience.</p>
+
+            <p>Claude Code does this in one step: "Generate a changelog for all commits since the last tag." It reads your commit messages, groups them by type -- features, bug fixes, performance improvements, breaking changes -- and produces a properly formatted CHANGELOG.md entry with the version number, date, and categorized items. If your commit messages follow Conventional Commits, the categorization is even more precise.</p>
+
+            <p>For user-facing release notes, follow up with: "Write release notes for v2.0 based on the changelog -- make them user-friendly." Claude translates the technical changelog into language that non-developers can understand. "Refactored authentication middleware to use JWT" becomes "Sign-in is now faster and more secure." "Fixed race condition in WebSocket handler" becomes "Resolved an issue where real-time updates could occasionally be delayed." The technical accuracy is preserved, but the presentation is appropriate for the audience.</p>
+
+            <h2>The Documentation Workspace</h2>
+
+            <p>Documentation work has its own rhythm, distinct from feature development. You're generating content, previewing it, refining the language, and committing the results. Having a dedicated workspace for this flow keeps it clean and efficient.</p>
+
+            <p>In Beam, set up a "Docs" workspace with three tabs:</p>
+
+            <ul>
+                <li><strong>Tab 1: Claude Code</strong> -- This is where you generate and update documentation. All your prompts for README generation, API docs, architecture guides, and changelog creation happen here.</li>
+                <li><strong>Tab 2: Preview</strong> -- Run a Markdown previewer or local docs site here. After Claude generates or updates a file, switch to this tab to see how it looks rendered. Catch formatting issues before they hit production.</li>
+                <li><strong>Tab 3: Git</strong> -- Stage and commit your documentation updates here. Keep doc commits separate from code commits when possible -- it makes the git history cleaner and makes it easy to see when docs were last updated.</li>
+            </ul>
+
+            <p>The workflow becomes generate, preview, refine, commit. With Beam's workspace switching (<span class="kbd">&#8984;&#8997;&larr;&rarr;</span>), you can jump between your documentation workspace and your development workspace without losing context in either one.</p>
+
+            <div class="cta-box">
+                <h3>Stop Putting Off Documentation</h3>
+                <p>Download Beam and let Claude Code write the first draft. You just refine.</p>
+                <a href="../" class="btn">Download Beam for macOS</a>
+            </div>
+
+            <h2>Summary</h2>
+
+            <p>Documentation doesn't have to be the thing you perpetually plan to do and never get around to. With Claude Code, the hardest part -- the first draft -- is handled for you. Here's what you can generate:</p>
+
+            <ul>
+                <li><strong>README files</strong> that accurately describe your project, with working code examples and real installation steps</li>
+                <li><strong>API documentation</strong> with complete OpenAPI specs, parameter descriptions, and response schemas extracted from your actual code</li>
+                <li><strong>Architecture guides</strong> that capture system design, data flows, and integration points -- knowledge that usually lives only in people's heads</li>
+                <li><strong>Code comments and docstrings</strong> that explain the why, not just the what, added only where they provide value</li>
+                <li><strong>Changelogs and release notes</strong> generated from your commit history, formatted for both developers and users</li>
+                <li><strong>Incremental updates</strong> that keep all of the above current as your code evolves</li>
+            </ul>
+
+            <p>The documentation workflow in Beam -- generate in one tab, preview in another, commit in a third -- makes the whole process feel lightweight instead of burdensome. When writing docs takes thirty seconds instead of thirty minutes, you actually do it. And that changes everything.</p>
+
+            <div class="related-articles">
+                <h2>Related Articles</h2>
+                <div class="related-grid">
+                    <a href="code-review-with-claude-code.html" class="related-card">
+                        <h4>Code Review with Claude Code</h4>
+                        <p>Use AI to catch bugs, suggest improvements, and review pull requests.</p>
+                    </a>
+                    <a href="ai-agent-project-memory-guide.html" class="related-card">
+                        <h4>The CLAUDE.md Guide</h4>
+                        <p>How to set up project memory so Claude Code understands your codebase.</p>
+                    </a>
+                    <a href="claude-code-keyboard-shortcuts.html" class="related-card">
+                        <h4>Claude Code Keyboard Shortcuts</h4>
+                        <p>Every shortcut you need to work faster with Claude Code.</p>
+                    </a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>
+                <a href="../">Beam</a> &bull; Terminal Organizer for macOS &bull;
+                <a href="mailto:frank@nextuptechnologies.co">Contact</a>
+            </p>
+
+            <p style="margin-top: 12px; font-size: 0.8rem;">
+                <a href="/privacy.html" style="color: #71717a; text-decoration: none;">Privacy Policy</a> &bull;
+                <a href="/terms.html" style="color: #71717a; text-decoration: none;">Terms of Service</a>
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>

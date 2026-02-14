@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D0XH8B0RKL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-D0XH8B0RKL');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Use Claude Code for DevOps & CI/CD | Beam Terminal Organizer</title>
+    <meta name="description" content="Use Claude Code for DevOps tasks: GitHub Actions workflows, Dockerfiles, infrastructure config, monitoring scripts, and deployment pipelines — organized in Beam workspaces.">
+    <meta name="keywords" content="Claude Code DevOps, Claude Code CI/CD, Claude Code GitHub Actions, AI DevOps, Claude Code infrastructure, Claude Code deployment">
+    <meta name="author" content="NextUp Technologies">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://getbeam.dev/blog/claude-code-devops-cicd.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://getbeam.dev/blog/claude-code-devops-cicd.html">
+    <meta property="og:title" content="How to Use Claude Code for DevOps & CI/CD">
+    <meta property="og:description" content="Use Claude Code for DevOps tasks: GitHub Actions workflows, Dockerfiles, infrastructure config, monitoring scripts, and deployment pipelines.">
+    <meta property="og:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="How to Use Claude Code for DevOps & CI/CD">
+    <meta name="twitter:description" content="Use Claude Code for DevOps tasks: GitHub Actions workflows, Dockerfiles, infrastructure config, monitoring scripts, and deployment pipelines.">
+    <meta name="twitter:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "How to Use Claude Code for DevOps & CI/CD",
+        "description": "Use Claude Code for DevOps tasks: GitHub Actions workflows, Dockerfiles, infrastructure config, monitoring scripts, and deployment pipelines — organized in Beam workspaces.",
+        "author": {
+            "@type": "Organization",
+            "name": "NextUp Technologies"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Beam"
+        },
+        "datePublished": "2026-02-11",
+        "keywords": "Claude Code DevOps, Claude Code CI/CD, Claude Code GitHub Actions, AI DevOps, Claude Code infrastructure, Claude Code deployment"
+    }
+    </script>
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #111113;
+            --bg-tertiary: #1a1a1d;
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.4);
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --border: #27272a;
+            --success: #22c55e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        header {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 60px;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1.5rem;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            background: var(--accent);
+            color: white;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+        }
+
+        article {
+            padding-bottom: 80px;
+        }
+
+        .breadcrumb {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+        }
+
+        .breadcrumb a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .meta {
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            font-size: 0.95rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 48px 0 20px;
+            color: var(--text-primary);
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        ul, ol {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            padding-left: 24px;
+        }
+
+        li {
+            margin-bottom: 12px;
+        }
+
+        .highlight {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 32px 0;
+        }
+
+        .highlight h3 {
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .kbd {
+            display: inline-block;
+            padding: 2px 8px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+        }
+
+        code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 2px 6px;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .cta-box h3 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+        }
+
+        .cta-box p {
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 24px;
+        }
+
+        .cta-box .btn {
+            background: white;
+            color: var(--accent);
+        }
+
+        .blog-visual {
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        .blog-visual svg {
+            max-width: 100%;
+            height: auto;
+        }
+
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+
+        .related-articles { margin-top: 60px; padding-top: 40px; border-top: 1px solid var(--border); }
+        .related-articles h2 { font-size: 1.5rem; margin-bottom: 24px; }
+        .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .related-card { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-decoration: none; transition: border-color 0.2s; }
+        .related-card:hover { border-color: var(--accent); }
+        .related-card h4 { color: white; font-size: 1rem; margin: 0 0 8px 0; }
+        .related-card p { color: var(--text-muted); font-size: 0.85rem; margin: 0; }
+        @media (max-width: 600px) { .related-grid { grid-template-columns: 1fr; } h1 { font-size: 1.8rem; } }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="../" class="logo">
+                <div class="logo-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round">
+                        <path d="M4 17l6-6-6-6M12 19h8"/>
+                    </svg>
+                </div>
+                Beam
+            </a>
+            <a href="../" class="btn">Download Beam</a>
+        </div>
+    </header>
+
+    <main>
+        <article class="container">
+            <div class="breadcrumb">
+                <a href="../">Beam</a> / <a href="../#guides">Guides</a> / Claude Code for DevOps & CI/CD
+            </div>
+
+            <h1>How to Use Claude Code for DevOps & CI/CD</h1>
+            <p class="meta">February 2026 &bull; 7 min read</p>
+
+            <p>DevOps work is 90% YAML, config files, and scripts that need to be exactly right. A missing indent in a GitHub Actions workflow breaks your entire pipeline. A wrong flag in a Dockerfile doubles your image size. A stray comma in a Terraform variable file brings down your infrastructure plan. Claude Code understands all of these formats deeply and generates correct configs on the first try. Here is how to use it for everything from CI/CD pipelines to infrastructure automation, with Beam keeping your DevOps terminals organized across every environment.</p>
+
+            <!-- CI/CD Pipeline Visual -->
+            <div class="blog-visual">
+                <svg width="750" height="220" viewBox="0 0 750 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Background -->
+                    <rect width="750" height="220" rx="16" fill="#0d1117"/>
+                    <rect width="750" height="220" rx="16" stroke="#30363d" stroke-width="1"/>
+
+                    <!-- GitHub Actions label at top -->
+                    <rect x="275" y="12" width="200" height="30" rx="15" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+                    <svg x="288" y="17" width="20" height="20" viewBox="0 0 24 24">
+                        <path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0012 2z" fill="#8b949e"/>
+                    </svg>
+                    <text x="315" y="32" fill="#8b949e" font-family="Space Grotesk, sans-serif" font-size="12" font-weight="600">GitHub Actions</text>
+
+                    <!-- Connecting line across all stages -->
+                    <line x1="140" y1="120" x2="610" y2="120" stroke="#30363d" stroke-width="2" stroke-dasharray="6 4"/>
+
+                    <!-- Stage 1: Code -->
+                    <rect x="30" y="80" width="110" height="80" rx="12" fill="#161b22" stroke="#3fb950" stroke-width="2"/>
+                    <svg x="68" y="90" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#3fb950" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="16 18 22 12 16 6"/>
+                        <polyline points="8 6 2 12 8 18"/>
+                    </svg>
+                    <text x="85" y="135" fill="#e6edf3" font-family="Space Grotesk, sans-serif" font-size="14" font-weight="600" text-anchor="middle">Code</text>
+                    <!-- Green checkmark -->
+                    <circle cx="125" cy="85" r="10" fill="#238636"/>
+                    <polyline points="119,85 123,89 131,81" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+
+                    <!-- Arrow 1 -->
+                    <polygon points="155,120 145,114 145,126" fill="#3fb950"/>
+
+                    <!-- Stage 2: Test -->
+                    <rect x="170" y="80" width="110" height="80" rx="12" fill="#161b22" stroke="#3fb950" stroke-width="2"/>
+                    <svg x="208" y="90" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#3fb950" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M14.5 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V7.5L14.5 2z"/>
+                        <polyline points="14 2 14 8 20 8"/>
+                        <path d="M9 15l2 2 4-4"/>
+                    </svg>
+                    <text x="225" y="135" fill="#e6edf3" font-family="Space Grotesk, sans-serif" font-size="14" font-weight="600" text-anchor="middle">Test</text>
+                    <!-- Green checkmark -->
+                    <circle cx="265" cy="85" r="10" fill="#238636"/>
+                    <polyline points="259,85 263,89 271,81" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+
+                    <!-- Arrow 2 -->
+                    <polygon points="295,120 285,114 285,126" fill="#3fb950"/>
+
+                    <!-- Stage 3: Build -->
+                    <rect x="310" y="80" width="110" height="80" rx="12" fill="#161b22" stroke="#3fb950" stroke-width="2"/>
+                    <svg x="348" y="90" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#3fb950" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="6" width="20" height="12" rx="2"/>
+                        <path d="M12 12h.01"/>
+                        <path d="M17 12h.01"/>
+                        <path d="M7 12h.01"/>
+                    </svg>
+                    <text x="365" y="135" fill="#e6edf3" font-family="Space Grotesk, sans-serif" font-size="14" font-weight="600" text-anchor="middle">Build</text>
+                    <!-- Green checkmark -->
+                    <circle cx="405" cy="85" r="10" fill="#238636"/>
+                    <polyline points="399,85 403,89 411,81" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+
+                    <!-- Arrow 3 -->
+                    <polygon points="435,120 425,114 425,126" fill="#58a6ff"/>
+
+                    <!-- Stage 4: Deploy (active/blue) -->
+                    <rect x="450" y="80" width="110" height="80" rx="12" fill="#161b22" stroke="#58a6ff" stroke-width="2"/>
+                    <rect x="450" y="80" width="110" height="80" rx="12" fill="rgba(56,139,253,0.08)"/>
+                    <svg x="488" y="90" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#58a6ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M22 12l-10 7V5l10 7z"/>
+                        <line x1="2" y1="5" x2="2" y2="19"/>
+                    </svg>
+                    <text x="505" y="135" fill="#e6edf3" font-family="Space Grotesk, sans-serif" font-size="14" font-weight="600" text-anchor="middle">Deploy</text>
+                    <!-- Blue spinner dots -->
+                    <circle cx="545" cy="85" r="3" fill="#58a6ff" opacity="0.9"/>
+                    <circle cx="553" cy="85" r="3" fill="#58a6ff" opacity="0.5"/>
+                    <circle cx="545" cy="93" r="3" fill="#58a6ff" opacity="0.3"/>
+
+                    <!-- Arrow 4 -->
+                    <polygon points="575,120 565,114 565,126" fill="#30363d"/>
+
+                    <!-- Stage 5: Monitor (pending) -->
+                    <rect x="590" y="80" width="120" height="80" rx="12" fill="#161b22" stroke="#30363d" stroke-width="1.5"/>
+                    <svg x="633" y="90" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#8b949e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+                    </svg>
+                    <text x="650" y="135" fill="#8b949e" font-family="Space Grotesk, sans-serif" font-size="14" font-weight="600" text-anchor="middle">Monitor</text>
+
+                    <!-- Bottom label -->
+                    <text x="375" y="195" fill="#484f58" font-family="Space Grotesk, sans-serif" font-size="11" text-anchor="middle">Claude Code generates every config in this pipeline</text>
+                </svg>
+            </div>
+
+            <h2>Why Claude Code for DevOps</h2>
+
+            <p>DevOps engineers spend an enormous amount of time writing configuration that is syntactically unforgiving. YAML files do not tolerate a single misplaced space. Terraform plans fail silently when a resource reference is slightly off. Kubernetes manifests with missing fields deploy broken pods that restart in infinite loops. Claude Code eliminates this entire class of problem because it has internalized the syntax rules of every major DevOps tool.</p>
+
+            <p>It knows YAML indentation cold, so you never have to debug another "mapping values are not allowed here" error. It understands the complete syntax and semantics of GitHub Actions, GitLab CI, CircleCI, and Jenkins pipeline definitions. When you ask for a Dockerfile, it generates proper multi-stage builds with security best practices baked in. It writes correct Terraform resource blocks, Ansible playbooks, and Kubernetes manifests without you needing to cross-reference documentation. Most importantly, it handles the boring-but-critical configuration work that slows DevOps teams down -- the work that is too tedious to enjoy but too important to get wrong.</p>
+
+            <h2>GitHub Actions Workflows</h2>
+
+            <p>GitHub Actions is where most modern CI/CD starts, and it is also where most developers waste hours debugging workflow syntax. Claude Code knows GitHub Actions inside and out. Give it a prompt like "Create a GitHub Actions workflow that runs tests on every PR, builds a Docker image, pushes to ECR, and deploys to staging on merge to main," and it will generate a complete <code>.github/workflows/deploy.yml</code> with every step properly structured.</p>
+
+            <p>What makes Claude Code particularly effective for Actions workflows is that it handles the details that trip people up. It sets up dependency caching correctly so your builds are fast. It uses GitHub secrets references in the right format. It generates matrix builds when you need to test across multiple Node versions or operating systems. It adds conditional steps with proper <code>if:</code> expressions so staging deploys only fire on main-branch merges while tests run on every push. It configures environment protection rules for production deployments.</p>
+
+            <p>Need to iterate? Just say "Add a step to run database migrations before deployment" or "Add Slack notification on failure." Claude Code modifies the existing workflow structure without breaking what is already there. It understands GitHub Actions syntax better than most humans because it never forgets a required field or misindents a step block.</p>
+
+            <h2>Dockerfiles & Docker Compose</h2>
+
+            <p>Docker configuration is another area where small mistakes have outsized consequences. A missing <code>.dockerignore</code> entry copies your entire <code>node_modules</code> into the build context, making builds take five minutes instead of thirty seconds. A non-optimized <code>COPY</code> ordering invalidates the layer cache on every build. Running as root in production is a security risk that is easy to overlook. Claude Code avoids all of these pitfalls by default.</p>
+
+            <p>Ask it to "Create a multi-stage Dockerfile for this Node.js app, production image should be under 100MB," and it generates a proper build stage that installs dependencies and compiles, followed by a lean production stage that copies only the built artifacts into a minimal base image like <code>node:20-alpine</code>. It orders <code>COPY</code> commands so that <code>package.json</code> and <code>package-lock.json</code> come first, maximizing layer cache hits. It adds a non-root user, sets appropriate <code>EXPOSE</code> directives, and uses <code>HEALTHCHECK</code> instructions.</p>
+
+            <p>For local development, ask Claude Code to "Create a docker-compose.yml for local development with PostgreSQL, Redis, and the app." It generates a compose file with proper health checks on the database so your app does not crash on startup, <code>depends_on</code> with condition expressions, named volumes for data persistence, environment variables pulled from <code>.env</code> files, and a shared network so services can communicate by hostname. The entire local development stack, ready in one prompt.</p>
+
+            <h2>Infrastructure as Code</h2>
+
+            <p>Infrastructure as Code is where Claude Code truly shines because the configuration surface area is massive and the feedback loop is painfully slow. A typo in a Terraform variable does not show up until <code>terraform plan</code>, which might take minutes to run against a real cloud provider. Getting the resource relationships right -- security groups referencing VPCs, subnets referencing availability zones, load balancers referencing target groups -- requires holding a complex dependency graph in your head. Claude Code holds that graph effortlessly.</p>
+
+            <p>Ask it to "Write Terraform config for deploying this app to AWS: ECS Fargate, RDS PostgreSQL, ElastiCache Redis, ALB," and it generates a properly structured set of files. A <code>main.tf</code> with resource definitions that correctly wire the ALB to the ECS service, the ECS tasks to the ECR image, the RDS instance into a private subnet, and the ElastiCache cluster with appropriate security groups. A <code>variables.tf</code> with sensible defaults and descriptions. An <code>outputs.tf</code> that exposes the load balancer DNS name, database endpoint, and other values you will need.</p>
+
+            <p>Kubernetes works the same way. "Add a Kubernetes deployment manifest with horizontal pod autoscaling" produces a Deployment with proper resource requests and limits, liveness and readiness probes, ConfigMap and Secret references, and an HPA manifest targeting CPU utilization. Claude Code understands the relationship between these resources and generates them as a coherent set, not isolated snippets that you have to manually wire together.</p>
+
+            <h2>Monitoring & Alerting</h2>
+
+            <p>Monitoring configuration is often the last thing set up and the first thing that breaks in production. Claude Code can generate production-ready monitoring configs that would otherwise require reading through pages of Prometheus or Grafana documentation. Ask it to "Create a health check script that monitors our API endpoints and sends Slack alerts on failure," and you get a robust script with proper timeout handling, retry logic, and a well-formatted Slack webhook payload that includes the failing endpoint, HTTP status code, and response time.</p>
+
+            <p>For Prometheus specifically, Claude Code generates alerting rules with correct PromQL syntax. "Write a Prometheus alerting rule for request latency above 500ms" produces a rule with appropriate <code>for</code> duration to avoid false positives, severity labels for alert routing, and annotations with human-readable summaries. It handles the nuances that matter in production: proper histogram bucket queries, rate window selection, and alert grouping. It can also generate the corresponding Alertmanager routing configuration with silence windows for maintenance periods and escalation paths for critical alerts.</p>
+
+            <h2>Security & Compliance</h2>
+
+            <div class="highlight">
+                <h3>Security Review with Claude Code</h3>
+                <p>Claude Code is an excellent security auditor for DevOps configurations. Ask it to "Audit this Dockerfile for security issues" and it will flag containers running as root, unverified base images, hardcoded credentials, and exposed debug ports. Ask it to "Review our GitHub Actions workflow for secret exposure risks" and it catches secrets being echoed to logs, artifacts containing sensitive data, and third-party actions with excessive permissions.</p>
+            </div>
+
+            <p>Beyond auditing, Claude Code generates security-hardened configurations from the start. It creates <code>.gitignore</code> files tuned to your project type that cover every sensitive file pattern -- <code>.env</code>, credentials, private keys, cloud provider configs. It writes Dockerfiles that run as non-root users with read-only filesystem mounts. It generates Terraform configs with encryption enabled by default on RDS instances, S3 buckets, and EBS volumes. It adds network policies to Kubernetes manifests that restrict pod-to-pod communication to only what is needed.</p>
+
+            <p>Claude Code also catches the subtle security issues that are easy to miss: unencrypted database connections, overly permissive IAM policies, security groups open to 0.0.0.0/0, and missing TLS termination on load balancers. Make it a habit to have Claude Code review every DevOps config for security before you commit it. The cost is one prompt. The benefit is avoiding a breach.</p>
+
+            <h2>The DevOps Workspace</h2>
+
+            <p>DevOps work involves more simultaneous terminals than almost any other discipline. You are generating configs in one terminal, building containers in another, running Terraform in a third, tailing logs in a fourth, and managing Git across all of them. Beam workspaces bring order to this chaos by giving each infrastructure project its own isolated environment.</p>
+
+            <p>Here is how to structure a Beam workspace for DevOps:</p>
+
+            <p><strong>Workspace: "DevOps"</strong></p>
+            <ul>
+                <li><strong>Tab 1: Claude Code</strong> -- generating configs, writing scripts, auditing security</li>
+                <li><strong>Tab 2: Docker</strong> -- docker build, docker run, docker logs, compose operations</li>
+                <li><strong>Tab 3: Infrastructure</strong> -- terraform plan, terraform apply, kubectl commands</li>
+                <li><strong>Tab 4: Monitoring</strong> -- log tailing, health checks, metric queries</li>
+                <li><strong>Tab 5: Git</strong> -- version control for your infrastructure code</li>
+            </ul>
+
+            <p>Each infrastructure project gets its own workspace. Your production Kubernetes cluster, your staging environment, your Terraform modules repository -- all separated so you never accidentally run <code>terraform apply</code> in the wrong context. Switch between them with <span class="kbd">&#8984;&#8997;&larr;&rarr;</span> and save the layout with <span class="kbd">&#8984;S</span> so you can restore your entire DevOps environment in one click.</p>
+
+            <h2>Memory File: DevOps Standards</h2>
+
+            <p>DevOps teams have standards -- naming conventions, tagging strategies, approved base images, deployment policies. Without documentation, this tribal knowledge lives in people's heads and gets applied inconsistently. Claude Code's CLAUDE.md memory file solves this by encoding your DevOps standards in a format that Claude reads automatically every time it starts a session.</p>
+
+            <p>A CLAUDE.md for DevOps might include: your cloud provider and region, container registry URL and naming convention, deployment strategy (blue-green, canary, rolling), resource naming patterns (e.g., <code>{env}-{service}-{resource}</code>), required tags for cost allocation, security requirements (encryption at rest, TLS versions, IAM policy constraints), and your monitoring stack (Prometheus + Grafana, Datadog, CloudWatch). When Claude Code generates infrastructure configs, it automatically follows these standards without you having to repeat them in every prompt.</p>
+
+            <div class="cta-box">
+                <h3>Automate Your Infrastructure</h3>
+                <p>Download Beam and use Claude Code to generate DevOps configs in organized terminal workspaces.</p>
+                <a href="../" class="btn">Download Beam for macOS</a>
+            </div>
+
+            <h2>Summary</h2>
+
+            <p>Claude Code transforms DevOps from a tedious exercise in syntax correctness into a conversation about what you want your infrastructure to do. It generates GitHub Actions workflows, Dockerfiles, Terraform configs, Kubernetes manifests, monitoring rules, and security audits -- all with correct syntax and best practices built in. Combined with Beam's workspace organization, you get a DevOps environment where every infrastructure project has its own dedicated terminal layout, and every config is generated correctly the first time. Stop debugging YAML indentation and start shipping infrastructure.</p>
+
+            <div class="related-articles">
+                <h2>Related Articles</h2>
+                <div class="related-grid">
+                    <a href="claude-code-with-docker.html" class="related-card">
+                        <h4>Claude Code with Docker</h4>
+                        <p>Build, manage, and optimize containers with AI-assisted Docker workflows.</p>
+                    </a>
+                    <a href="automate-tasks-claude-code.html" class="related-card">
+                        <h4>Automate Tasks with Claude Code</h4>
+                        <p>Use Claude Code to automate repetitive development and DevOps tasks.</p>
+                    </a>
+                    <a href="claude-code-git-workflows.html" class="related-card">
+                        <h4>Claude Code Git Workflows</h4>
+                        <p>Streamline your Git workflow with AI-powered branching, merging, and reviews.</p>
+                    </a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>
+                <a href="../">Beam</a> &bull; Terminal Organizer for macOS &bull;
+                <a href="mailto:frank@nextuptechnologies.co">Contact</a>
+            </p>
+
+            <p style="margin-top: 12px; font-size: 0.8rem;">
+                <a href="/privacy.html" style="color: #71717a; text-decoration: none;">Privacy Policy</a> &bull;
+                <a href="/terms.html" style="color: #71717a; text-decoration: none;">Terms of Service</a>
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>

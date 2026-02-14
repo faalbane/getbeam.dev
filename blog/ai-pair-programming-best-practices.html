@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D0XH8B0RKL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-D0XH8B0RKL');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Pair Programming: Best Practices for 2026 | Beam Terminal Organizer</title>
+    <meta name="description" content="Master AI pair programming in 2026. Best practices for working with Claude Code, Codex, and other AI agents — from prompt writing to session management to building persistent context.">
+    <meta name="keywords" content="AI pair programming, AI pair programming best practices, Claude Code best practices, AI coding tips 2026, pair programming with AI, effective AI coding">
+    <meta name="author" content="NextUp Technologies">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://getbeam.dev/blog/ai-pair-programming-best-practices.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://getbeam.dev/blog/ai-pair-programming-best-practices.html">
+    <meta property="og:title" content="AI Pair Programming: Best Practices for 2026">
+    <meta property="og:description" content="Master AI pair programming in 2026. Best practices for working with Claude Code, Codex, and other AI agents — from prompt writing to session management to building persistent context.">
+    <meta property="og:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="AI Pair Programming: Best Practices for 2026">
+    <meta name="twitter:description" content="Master AI pair programming in 2026. Best practices for working with Claude Code, Codex, and other AI agents — from prompt writing to session management to building persistent context.">
+    <meta name="twitter:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "AI Pair Programming: Best Practices for 2026",
+        "description": "Master AI pair programming in 2026. Best practices for working with Claude Code, Codex, and other AI agents — from prompt writing to session management to building persistent context.",
+        "author": {
+            "@type": "Organization",
+            "name": "NextUp Technologies"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Beam"
+        },
+        "datePublished": "2026-02-11",
+        "keywords": "AI pair programming, AI pair programming best practices, Claude Code best practices, AI coding tips 2026"
+    }
+    </script>
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #111113;
+            --bg-tertiary: #1a1a1d;
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.4);
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --border: #27272a;
+            --success: #22c55e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        header {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 60px;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1.5rem;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            background: var(--accent);
+            color: white;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+        }
+
+        article {
+            padding-bottom: 80px;
+        }
+
+        .breadcrumb {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+        }
+
+        .breadcrumb a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .meta {
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            font-size: 0.95rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 48px 0 20px;
+            color: var(--text-primary);
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        ul, ol {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            padding-left: 24px;
+        }
+
+        li {
+            margin-bottom: 12px;
+        }
+
+        .highlight {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 32px 0;
+        }
+
+        .highlight h3 {
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .kbd {
+            display: inline-block;
+            padding: 2px 8px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+        }
+
+        code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 2px 6px;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .cta-box h3 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+        }
+
+        .cta-box p {
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 24px;
+        }
+
+        .cta-box .btn {
+            background: white;
+            color: var(--accent);
+        }
+
+        .blog-visual {
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        .blog-visual svg {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .prompt-compare {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin: 24px 0;
+        }
+
+        .prompt-compare .bad, .prompt-compare .good {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 16px;
+        }
+
+        .prompt-compare .bad {
+            border-left: 3px solid #ef4444;
+        }
+
+        .prompt-compare .good {
+            border-left: 3px solid var(--success);
+        }
+
+        .prompt-compare .label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 8px;
+        }
+
+        .prompt-compare .bad .label { color: #ef4444; }
+        .prompt-compare .good .label { color: var(--success); }
+
+        .prompt-compare p {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 600px) {
+            .prompt-compare { grid-template-columns: 1fr; }
+        }
+
+        .summary-list {
+            counter-reset: summary-counter;
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .summary-list li {
+            counter-increment: summary-counter;
+            padding-left: 36px;
+            position: relative;
+        }
+
+        .summary-list li::before {
+            content: counter(summary-counter);
+            position: absolute;
+            left: 0;
+            top: 2px;
+            width: 24px;
+            height: 24px;
+            background: var(--accent);
+            color: white;
+            border-radius: 50%;
+            font-size: 0.75rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1;
+        }
+
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+
+        .related-articles { margin-top: 60px; padding-top: 40px; border-top: 1px solid var(--border); }
+        .related-articles h2 { font-size: 1.5rem; margin-bottom: 24px; }
+        .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .related-card { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-decoration: none; transition: border-color 0.2s; }
+        .related-card:hover { border-color: var(--accent); }
+        .related-card h4 { color: white; font-size: 1rem; margin: 0 0 8px 0; }
+        .related-card p { color: var(--text-muted); font-size: 0.85rem; margin: 0; }
+        @media (max-width: 600px) { .related-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="../" class="logo">
+                <div class="logo-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round">
+                        <path d="M4 17l6-6-6-6M12 19h8"/>
+                    </svg>
+                </div>
+                Beam
+            </a>
+            <a href="../" class="btn">Download Beam</a>
+        </div>
+    </header>
+
+    <main>
+        <article class="container">
+            <div class="breadcrumb">
+                <a href="../">Beam</a> / <a href="../#guides">Guides</a> / AI Pair Programming Best Practices
+            </div>
+
+            <h1>AI Pair Programming: Best Practices for 2026</h1>
+            <p class="meta">February 2026 &bull; 9 min read</p>
+
+            <p>AI pair programming is not just "using an AI tool." It is a skill -- and like any skill, there are practices that separate developers who get 2x value from those who get 10x. After a year of terminal-based AI agents becoming mainstream, clear patterns have emerged for what works and what does not. These are the best practices that the most productive AI-assisted developers follow in 2026.</p>
+
+            <p>Whether you are using Claude Code, OpenAI Codex, or another agent, the fundamentals are the same. The developers getting the most out of AI pair programming are not the ones with the best tools -- they are the ones with the best habits. Here are ten practices that will transform the way you work with AI.</p>
+
+            <!-- AI Pair Programming Loop SVG -->
+            <div class="blog-visual">
+                <svg width="520" height="520" viewBox="0 0 520 520" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+                            <polygon points="0 0, 8 3, 0 6" fill="#3b82f6"/>
+                        </marker>
+                        <filter id="glow">
+                            <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                            <feMerge>
+                                <feMergeNode in="coloredBlur"/>
+                                <feMergeNode in="SourceGraphic"/>
+                            </feMerge>
+                        </filter>
+                    </defs>
+
+                    <!-- Background circle track -->
+                    <circle cx="260" cy="260" r="170" fill="none" stroke="#1a1a1d" stroke-width="2" stroke-dasharray="6 4"/>
+
+                    <!-- Center label -->
+                    <text x="260" y="248" text-anchor="middle" fill="#fafafa" font-family="Space Grotesk, sans-serif" font-size="16" font-weight="700">AI Pair Programming</text>
+                    <text x="260" y="272" text-anchor="middle" fill="#a1a1aa" font-family="Space Grotesk, sans-serif" font-size="14" font-weight="500">Loop</text>
+
+                    <!-- Step 1: Prompt (top) -->
+                    <rect x="200" y="48" width="120" height="44" rx="22" fill="#111113" stroke="#3b82f6" stroke-width="1.5"/>
+                    <!-- Speech bubble icon -->
+                    <path d="M245 62 a6 6 0 0 1 6-6h14a6 6 0 0 1 6 6v9a6 6 0 0 1-6 6h-8l-4 4v-4h-2a6 6 0 0 1-6-6z" fill="none" stroke="#3b82f6" stroke-width="1.5"/>
+                    <text x="290" y="76" text-anchor="middle" fill="#fafafa" font-family="Space Grotesk, sans-serif" font-size="12" font-weight="600">Prompt</text>
+
+                    <!-- Step 2: Generate (right) -->
+                    <rect x="372" y="156" width="120" height="44" rx="22" fill="#111113" stroke="#3b82f6" stroke-width="1.5"/>
+                    <!-- Gear icon -->
+                    <circle cx="409" cy="178" r="7" fill="none" stroke="#3b82f6" stroke-width="1.5"/>
+                    <circle cx="409" cy="178" r="2.5" fill="#3b82f6"/>
+                    <line x1="409" y1="168" x2="409" y2="171" stroke="#3b82f6" stroke-width="1.5"/>
+                    <line x1="409" y1="185" x2="409" y2="188" stroke="#3b82f6" stroke-width="1.5"/>
+                    <line x1="399" y1="178" x2="402" y2="178" stroke="#3b82f6" stroke-width="1.5"/>
+                    <line x1="416" y1="178" x2="419" y2="178" stroke="#3b82f6" stroke-width="1.5"/>
+                    <text x="460" y="183" text-anchor="middle" fill="#fafafa" font-family="Space Grotesk, sans-serif" font-size="12" font-weight="600">Generate</text>
+
+                    <!-- Step 3: Review (bottom-right) -->
+                    <rect x="342" y="336" width="120" height="44" rx="22" fill="#111113" stroke="#3b82f6" stroke-width="1.5"/>
+                    <!-- Eye icon -->
+                    <ellipse cx="382" cy="358" rx="10" ry="6" fill="none" stroke="#3b82f6" stroke-width="1.5"/>
+                    <circle cx="382" cy="358" r="3" fill="#3b82f6"/>
+                    <text x="430" y="363" text-anchor="middle" fill="#fafafa" font-family="Space Grotesk, sans-serif" font-size="12" font-weight="600">Review</text>
+
+                    <!-- Step 4: Test (bottom-left) -->
+                    <rect x="58" y="336" width="120" height="44" rx="22" fill="#111113" stroke="#3b82f6" stroke-width="1.5"/>
+                    <!-- Checkmark icon -->
+                    <polyline points="91,358 97,364 109,352" fill="none" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <text x="140" y="363" text-anchor="middle" fill="#fafafa" font-family="Space Grotesk, sans-serif" font-size="12" font-weight="600">Test</text>
+
+                    <!-- Step 5: Commit (left) -->
+                    <rect x="28" y="156" width="120" height="44" rx="22" fill="#111113" stroke="#3b82f6" stroke-width="1.5"/>
+                    <!-- Git branch icon -->
+                    <circle cx="67" cy="170" r="3" fill="none" stroke="#3b82f6" stroke-width="1.5"/>
+                    <circle cx="77" cy="186" r="3" fill="none" stroke="#3b82f6" stroke-width="1.5"/>
+                    <line x1="67" y1="173" x2="67" y2="183" stroke="#3b82f6" stroke-width="1.5"/>
+                    <path d="M67 183 Q67 186 70 186 L74 186" fill="none" stroke="#3b82f6" stroke-width="1.5"/>
+                    <text x="113" y="183" text-anchor="middle" fill="#fafafa" font-family="Space Grotesk, sans-serif" font-size="12" font-weight="600">Commit</text>
+
+                    <!-- Arrow: Prompt → Generate -->
+                    <path d="M320 80 Q370 90 382 150" fill="none" stroke="#3b82f6" stroke-width="2" marker-end="url(#arrowhead)" filter="url(#glow)"/>
+
+                    <!-- Arrow: Generate → Review -->
+                    <path d="M462 200 Q480 270 452 330" fill="none" stroke="#3b82f6" stroke-width="2" marker-end="url(#arrowhead)" filter="url(#glow)"/>
+
+                    <!-- Arrow: Review → Test -->
+                    <path d="M342 368 Q260 410 178 368" fill="none" stroke="#3b82f6" stroke-width="2" marker-end="url(#arrowhead)" filter="url(#glow)"/>
+
+                    <!-- Arrow: Test → Commit -->
+                    <path d="M68 336 Q40 270 58 200" fill="none" stroke="#3b82f6" stroke-width="2" marker-end="url(#arrowhead)" filter="url(#glow)"/>
+
+                    <!-- Arrow: Commit → Prompt -->
+                    <path d="M138 156 Q150 90 200 70" fill="none" stroke="#3b82f6" stroke-width="2" marker-end="url(#arrowhead)" filter="url(#glow)"/>
+                </svg>
+            </div>
+
+            <h2>Practice 1: Be Specific, Not Vague</h2>
+
+            <p>The number one mistake developers make with AI pair programming is being too vague. Telling Claude Code to "make this better" is like telling a contractor to "improve the house" -- technically it is an instruction, but it gives the agent almost nothing to work with. The more specific your prompt, the more precise and useful the output will be.</p>
+
+            <p>Every prompt should include three things: what you want changed, how you want it changed, and what constraints to follow. Claude Code is not a mind reader. It is a remarkably capable assistant that excels when it receives clear instructions. Think of specificity as a multiplier on output quality -- double the detail in your prompt and you will often get five times the value in the result.</p>
+
+            <div class="highlight">
+                <h3>Vague vs. Specific: Real Examples</h3>
+
+                <div class="prompt-compare">
+                    <div class="bad">
+                        <div class="label">Vague</div>
+                        <p>"Make this better"</p>
+                    </div>
+                    <div class="good">
+                        <div class="label">Specific</div>
+                        <p>"Refactor this function to use async/await instead of callbacks, add error handling for network failures, and add TypeScript types"</p>
+                    </div>
+                </div>
+
+                <div class="prompt-compare">
+                    <div class="bad">
+                        <div class="label">Vague</div>
+                        <p>"Fix the bug"</p>
+                    </div>
+                    <div class="good">
+                        <div class="label">Specific</div>
+                        <p>"The login form submits twice on fast double-click. Add a loading state that disables the submit button after the first click and re-enables it on error"</p>
+                    </div>
+                </div>
+
+                <div class="prompt-compare">
+                    <div class="bad">
+                        <div class="label">Vague</div>
+                        <p>"Add tests"</p>
+                    </div>
+                    <div class="good">
+                        <div class="label">Specific</div>
+                        <p>"Add unit tests for the UserService class using Vitest. Cover the happy path for createUser, the validation error case, and the duplicate email conflict. Mock the database layer"</p>
+                    </div>
+                </div>
+            </div>
+
+            <h2>Practice 2: Let the Agent Finish Before Interrupting</h2>
+
+            <p>There is a strong temptation, especially when you see Claude heading in an unexpected direction, to hit <span class="kbd">Ctrl+C</span> and start over. Resist that urge. Let the agent complete its response, read the full output, and then iterate. Claude's first response often includes important context about why it made certain choices -- reasoning that you will miss entirely if you interrupt mid-stream.</p>
+
+            <p>When you interrupt, you lose the agent's chain of thought. You then have to re-prompt, often repeating context that Claude was already working with. This creates a frustrating cycle of partial responses and redundant prompts that wastes far more time than simply waiting for the complete output.</p>
+
+            <p>The one exception: if Claude is clearly going in the wrong direction -- generating code for the wrong framework, rewriting files you did not ask it to touch, or producing an obviously incorrect approach -- then yes, interrupt and redirect. But make your redirect specific. Do not just say "no, try again." Say "stop -- I want you to modify only the auth middleware, not the route handlers."</p>
+
+            <h2>Practice 3: Use Project Memory (CLAUDE.md)</h2>
+
+            <p>If you adopt only one practice from this entire article, make it this one. Project memory -- specifically the <code>CLAUDE.md</code> file -- is the single highest-ROI practice in AI pair programming. It gives your agent persistent context about your project: your tech stack, your conventions, your architectural decisions, and your preferences.</p>
+
+            <p>Without a memory file, every new Claude Code session starts with you re-explaining the basics. "We use Next.js with the App Router. Our ORM is Prisma. We follow the repository pattern. API errors return a standard format." You end up repeating this in every session, wasting the first five minutes of every interaction on context that should already be there.</p>
+
+            <p>With a <code>CLAUDE.md</code> file, every session starts productive from the first prompt. Claude already knows your stack, your patterns, and your rules. It generates code that matches your conventions from the start, reducing the review and correction cycle dramatically.</p>
+
+            <p>Beam's "Install Project Memory" button creates this file with one click, populating it with your project's detected stack and structure. But the real power comes from updating it regularly as your project evolves. Every time you make an architectural decision, add a new convention, or choose a library -- document it in your memory file. Your future self (and your AI agent) will thank you.</p>
+
+            <h2>Practice 4: Organize Your Sessions</h2>
+
+            <p>Developers who do not organize their AI sessions waste 20-30% of their time context-switching. They hunt for the right terminal window. They accidentally type a command into their Claude Code session instead of their dev server. They lose track of which project a particular session belongs to. This friction is invisible but constant, and it compounds across every hour of your workday.</p>
+
+            <p>The fix is straightforward: one workspace per project in Beam. Within each workspace, use dedicated tabs -- one for Claude Code, one for your dev server, one for tests, one for git. Use split panes to see Claude's output alongside your running application. Save your layouts so you can restore your entire development environment with a single action.</p>
+
+            <p>The organizational overhead is about five minutes of setup. The time saved is hours per week. Once you have a clean workspace structure, switching between projects becomes instant with <span class="kbd">&#8984;&#8997;&#8592;&#8594;</span>, and every terminal is exactly where you expect it to be.</p>
+
+            <h2>Practice 5: Review, Don't Blindly Accept</h2>
+
+            <p>AI-generated code is a suggestion, not a solution. This distinction matters. When Claude Code produces a change, your job is not to accept it -- your job is to review it. Does it match your existing patterns? Is it secure? Is it over-engineered for what you actually need? These are questions that only you, with your knowledge of the project and its context, can answer.</p>
+
+            <p>Claude Code is very good, but it occasionally over-abstracts simple problems into complex architectures, misses edge cases that are obvious to someone who knows the domain, or uses slightly different conventions than the rest of your codebase. None of these are catastrophic on their own. But left unchecked across dozens of AI-assisted changes, they create a codebase that feels inconsistent and hard to maintain.</p>
+
+            <p>The review step takes two minutes and prevents two hours of debugging later. Use split panes in Beam to see Claude's changes in the terminal on one side and verify the results in your editor or browser on the other. Make review a non-negotiable step in your workflow, not an afterthought.</p>
+
+            <h2>Practice 6: Iterate in Small Steps</h2>
+
+            <p>Do not try to build an entire feature in one prompt. The developers who get the worst results from AI pair programming are the ones who write a single massive prompt asking Claude to "build the user authentication system with OAuth, email verification, password reset, role-based access control, and session management." That is not a prompt -- that is a project plan.</p>
+
+            <p>Break your work into focused steps. Start with the data model. Then build the routes. Then the frontend. Then the tests. Then the documentation. Each step follows the same cycle: prompt, review, commit, move on. Small steps produce better results because Claude can focus its full reasoning on one well-defined task. They are also easier to review, easier to revert if something goes wrong, and easier to test in isolation.</p>
+
+            <p>Claude Code works best with clear, focused tasks. Give it one thing to do well, rather than ten things to do adequately. The sum of ten well-executed small steps will always be better than one sprawling attempt at everything at once.</p>
+
+            <h2>Practice 7: Use Multiple Agents Strategically</h2>
+
+            <p>Different AI agents have different strengths, and the most effective developers in 2026 are not loyal to a single tool. They use the right agent for the right task. Claude Code excels at complex reasoning, architectural decisions, and multi-file refactors where understanding the relationships between components matters. Codex is fast for targeted edits, code completion, and generating boilerplate where speed matters more than depth.</p>
+
+            <p>The key is matching the tool to the task. Need to refactor an authentication system across twelve files while maintaining backward compatibility? Claude Code. Need to quickly scaffold a new React component with standard patterns? Codex might be faster. Need to debug a subtle race condition? Claude Code's reasoning capabilities will serve you better.</p>
+
+            <p>Beam workspaces make switching between agents instant -- different tabs for different agents within the same project workspace, switchable with <span class="kbd">&#8984;&#8997;&#8592;&#8594;</span>. And because your <code>CLAUDE.md</code> project memory lives in the repository, both agents have access to the same context about your project. No need to re-explain your stack every time you switch tools.</p>
+
+            <h2>Practice 8: Commit After Every AI Change</h2>
+
+            <div class="highlight">
+                <h3>The Golden Rule of AI-Assisted Git</h3>
+                <p>After Claude makes a change: <strong>review it, test it, commit it</strong>. Every single time. No exceptions.</p>
+            </div>
+
+            <p>Git is your undo button when working with AI agents. Each AI-assisted change should get its own commit with a clear message describing what was changed and why. This turns your git history into a precise log of AI-assisted development decisions that you can navigate, bisect, and revert with confidence.</p>
+
+            <p>Never let AI changes pile up uncommitted. When you have three or four uncommitted AI changes stacked on top of each other and something breaks, you lose the ability to revert cleanly. You cannot bisect. You cannot isolate which change caused the problem. You end up manually reading through a massive diff trying to figure out what went wrong -- exactly the kind of tedious work that AI pair programming was supposed to eliminate.</p>
+
+            <p>The discipline is simple: prompt, review, test, commit. It takes thirty seconds to commit after each change. That thirty seconds buys you the ability to confidently undo any AI-generated change at any point in the future. There is no better insurance policy in software development.</p>
+
+            <h2>Practice 9: Teach the Agent, Don't Repeat Yourself</h2>
+
+            <p>If you find yourself correcting Claude about the same thing twice, you are doing it wrong. The first time Claude uses Redux when your project uses Zustand, correct it in the session. The second time it happens, add "We use Zustand for state management, not Redux" to your <code>CLAUDE.md</code> file. You will never have to correct it again.</p>
+
+            <p>Your memory file is a living document of your preferences and patterns. "API errors always return <code>{ error, code }</code>." "We use named exports, not default exports." "Database queries go through the repository layer, never directly in route handlers." Each of these rules, once written, is followed automatically in every future session.</p>
+
+            <p>Over time, this compounds powerfully. After a few weeks of teaching your agent, Claude generates code that matches your style so closely it looks like you wrote it yourself. New team members can read the memory file to understand project conventions. The file becomes a living style guide that is actively enforced by your AI pair programmer, not just passively documented in a wiki that nobody reads.</p>
+
+            <h2>Practice 10: Know When to Code Manually</h2>
+
+            <p>AI pair programming is not about never typing code. The best AI-assisted developers know when to prompt and when to type. Sometimes a three-line change is faster to write than to describe. Sometimes the cognitive overhead of formulating a clear prompt exceeds the effort of just making the edit yourself. Recognizing these moments is itself a skill.</p>
+
+            <p>There are also situations where you should lead and let Claude assist rather than the other way around. Critical security logic -- authentication, authorization, encryption -- deserves your direct attention. Write it yourself, then ask Claude to review it. Highly creative or novel work, where you are exploring an idea that does not have established patterns, often benefits from you writing the initial draft and then asking Claude to refine, test, and document it.</p>
+
+            <p>The goal of AI pair programming is not to eliminate manual coding. It is to eliminate unnecessary manual coding so you can invest your keystrokes where they matter most: the parts of your codebase that require human judgment, domain expertise, and creative thinking.</p>
+
+            <div class="cta-box">
+                <h3>Level Up Your AI Coding</h3>
+                <p>Download Beam and put these best practices into action with organized workspaces, split panes, and project memory.</p>
+                <a href="../" class="btn">Download Beam for macOS</a>
+            </div>
+
+            <h2>Summary: The 10 Practices</h2>
+
+            <ol class="summary-list">
+                <li><strong>Be specific, not vague</strong> -- include what you want, how you want it, and what constraints to follow</li>
+                <li><strong>Let the agent finish</strong> -- read the full output before iterating, interrupt only when clearly off track</li>
+                <li><strong>Use project memory</strong> -- a CLAUDE.md file makes every session productive from the first prompt</li>
+                <li><strong>Organize your sessions</strong> -- one workspace per project, dedicated tabs, saved layouts</li>
+                <li><strong>Review, don't blindly accept</strong> -- AI-generated code is a suggestion, not a solution</li>
+                <li><strong>Iterate in small steps</strong> -- one focused task per prompt, commit between each step</li>
+                <li><strong>Use multiple agents strategically</strong> -- match the tool to the task for best results</li>
+                <li><strong>Commit after every AI change</strong> -- git is your undo button, use it after every change</li>
+                <li><strong>Teach the agent</strong> -- add corrections to your memory file so you never repeat yourself</li>
+                <li><strong>Know when to code manually</strong> -- prompt when it saves time, type when it does not</li>
+            </ol>
+
+            <p>AI pair programming is a skill that improves with practice. These ten habits form the foundation. Start with the ones that address your biggest friction points, build them into your daily workflow, and watch your productivity compound over weeks and months.</p>
+
+            <div class="related-articles">
+                <h2>Related Articles</h2>
+                <div class="related-grid">
+                    <a href="ai-agent-project-memory-guide.html" class="related-card">
+                        <h4>The CLAUDE.md Guide</h4>
+                        <p>Everything you need to know about AI agent project memory for persistent context.</p>
+                    </a>
+                    <a href="ai-coding-solo-developer.html" class="related-card">
+                        <h4>AI Coding for Solo Developers</h4>
+                        <p>How solo developers can multiply their output with AI pair programming.</p>
+                    </a>
+                    <a href="vibe-coding-mac-setup-2026.html" class="related-card">
+                        <h4>Vibe Coding Mac Setup 2026</h4>
+                        <p>The complete macOS setup for flow-state AI-assisted development.</p>
+                    </a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>
+                <a href="../">Beam</a> &bull; Terminal Organizer for macOS &bull;
+                <a href="mailto:frank@nextuptechnologies.co">Contact</a>
+            </p>
+
+            <p style="margin-top: 12px; font-size: 0.8rem;">
+                <a href="/privacy.html" style="color: #71717a; text-decoration: none;">Privacy Policy</a> &bull;
+                <a href="/terms.html" style="color: #71717a; text-decoration: none;">Terms of Service</a>
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>

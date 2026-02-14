@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D0XH8B0RKL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-D0XH8B0RKL');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xcode 26.3 Agentic Coding: How Apple Just Changed iOS Development Forever | Beam Terminal Organizer</title>
+    <meta name="description" content="Apple's Xcode 26.3 integrates Claude Agent and OpenAI Codex directly into the IDE, with MCP protocol support. Here's what it means for iOS and macOS developers.">
+    <meta name="keywords" content="Xcode 26.3, agentic coding, Apple Xcode AI, Claude Agent Xcode, Codex Xcode, MCP protocol, iOS development 2026">
+    <meta name="author" content="NextUp Technologies">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://getbeam.dev/blog/xcode-26-3-agentic-coding.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://getbeam.dev/blog/xcode-26-3-agentic-coding.html">
+    <meta property="og:title" content="Xcode 26.3 Agentic Coding: How Apple Just Changed iOS Development Forever">
+    <meta property="og:description" content="Apple's Xcode 26.3 integrates Claude Agent and OpenAI Codex natively with MCP protocol support. Here's what iOS developers need to know.">
+    <meta property="og:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Xcode 26.3 Agentic Coding: How Apple Just Changed iOS Development Forever">
+    <meta name="twitter:description" content="Apple's Xcode 26.3 integrates Claude Agent and OpenAI Codex natively with MCP protocol support. Here's what iOS developers need to know.">
+    <meta name="twitter:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Xcode 26.3 Agentic Coding: How Apple Just Changed iOS Development Forever",
+        "description": "Apple's Xcode 26.3 integrates Claude Agent and OpenAI Codex directly into the IDE, with MCP protocol support. Here's what it means for iOS and macOS developers.",
+        "author": {
+            "@type": "Organization",
+            "name": "NextUp Technologies"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Beam"
+        },
+        "datePublished": "2026-02-12",
+        "keywords": "Xcode 26.3, agentic coding, Apple Xcode AI, Claude Agent Xcode, Codex Xcode, MCP protocol, iOS development 2026"
+    }
+    </script>
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #111113;
+            --bg-tertiary: #1a1a1d;
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.4);
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --border: #27272a;
+            --success: #22c55e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        header {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 60px;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1.5rem;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            background: var(--accent);
+            color: white;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+        }
+
+        article {
+            padding-bottom: 80px;
+        }
+
+        .breadcrumb {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+        }
+
+        .breadcrumb a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .meta {
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            font-size: 0.95rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 48px 0 20px;
+            color: var(--text-primary);
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        ul, ol {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            padding-left: 24px;
+        }
+
+        li {
+            margin-bottom: 12px;
+        }
+
+        .highlight {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 32px 0;
+        }
+
+        .highlight h3 {
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .kbd {
+            display: inline-block;
+            padding: 2px 8px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .cta-box h3 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+        }
+
+        .cta-box p {
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 24px;
+        }
+
+        .cta-box .btn {
+            background: white;
+            color: var(--accent);
+        }
+
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+
+        .related-articles { margin-top: 60px; padding-top: 40px; border-top: 1px solid var(--border); }
+        .related-articles h2 { font-size: 1.5rem; margin-bottom: 24px; }
+        .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .related-card { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-decoration: none; transition: border-color 0.2s; }
+        .related-card:hover { border-color: var(--accent); }
+        .related-card h4 { color: white; font-size: 1rem; margin: 0 0 8px 0; }
+        .related-card p { color: var(--text-muted); font-size: 0.85rem; margin: 0; }
+        @media (max-width: 600px) { .related-grid { grid-template-columns: 1fr; } h1 { font-size: 1.8rem; } }
+
+        blockquote {
+            border-left: 3px solid var(--accent);
+            padding-left: 20px;
+            margin: 24px 0;
+            font-style: italic;
+        }
+
+        blockquote p {
+            color: var(--text-secondary);
+        }
+
+        code {
+            font-family: 'JetBrains Mono', monospace;
+            background: var(--bg-tertiary);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.88rem;
+            border: 1px solid var(--border);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="../" class="logo">
+                <div class="logo-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round">
+                        <path d="M4 17l6-6-6-6M12 19h8"/>
+                    </svg>
+                </div>
+                Beam
+            </a>
+            <a href="../" class="btn">Download Beam</a>
+        </div>
+    </header>
+
+    <main>
+        <article class="container">
+            <div class="breadcrumb">
+                <a href="../">Beam</a> / <a href="../#guides">Guides</a> / Xcode 26.3 Agentic Coding
+            </div>
+
+            <h1>Xcode 26.3 Agentic Coding: How Apple Just Changed iOS Development Forever</h1>
+            <p class="meta">February 2026 &bull; 9 min read</p>
+
+            <p>On February 3, 2026, Apple quietly shipped Xcode 26.3 -- and buried in the release notes was a feature that sent the iOS development community into overdrive. For the first time, Xcode now includes a native <strong>agentic coding panel</strong> with built-in support for Claude Agent and OpenAI Codex. Not a plugin. Not a third-party extension. A first-party, Apple-sanctioned integration that turns Xcode into an AI-native IDE.</p>
+
+            <p>If you build for Apple platforms, this changes everything about how your workday looks. But it also raises a question that matters more than the feature itself: is Xcode&rsquo;s built-in agentic coding enough, or do you still need terminal-based agents for serious work?</p>
+
+            <p>The answer, as with most things in software, is both.</p>
+
+            <h2>What&rsquo;s New in Xcode 26.3</h2>
+
+            <p>The headline feature is the <strong>Agentic Coding Panel</strong> -- a new sidebar in Xcode that hosts AI agent sessions directly inside the IDE. But the real story is the infrastructure Apple built underneath it.</p>
+
+            <div class="highlight">
+                <h3>Xcode 26.3 Agentic Coding Features</h3>
+                <ul>
+                    <li><strong>Native agent integration</strong> -- Claude Agent and OpenAI Codex run inside Xcode with full access to your project structure, build system, and simulator</li>
+                    <li><strong>MCP protocol support</strong> -- Xcode implements the Model Context Protocol, allowing any MCP-compatible agent to interact with the IDE</li>
+                    <li><strong>Build-aware agents</strong> -- Agents can trigger builds, read compiler errors, and suggest fixes with full context about your build configuration</li>
+                    <li><strong>Simulator integration</strong> -- Agents can observe simulator output and use it to inform their suggestions and debugging</li>
+                    <li><strong>SwiftUI preview awareness</strong> -- Agents understand your SwiftUI preview state and can make targeted UI changes based on visual output</li>
+                    <li><strong>Multi-file editing</strong> -- Agents can propose coordinated changes across multiple files in your project, not just the currently open file</li>
+                </ul>
+            </div>
+
+            <p>This is a massive step forward from Xcode&rsquo;s previous AI features, which were limited to basic code completion and suggestion. The agentic coding panel gives agents real access to the tools that define Apple platform development: the build system, Interface Builder, SwiftUI previews, the simulator, and Instruments. An agent can now read a crash log, trace it to the responsible code, propose a fix, build the project to verify it compiles, and present you with a diff -- all without you leaving Xcode.</p>
+
+            <p>For straightforward iOS development work, this is genuinely excellent. But the real story here isn&rsquo;t just what Apple built. It&rsquo;s the protocol they adopted to build it.</p>
+
+            <h2>MCP: The Universal Protocol</h2>
+
+            <p>The most consequential part of Xcode 26.3 isn&rsquo;t the Claude or Codex integration specifically. It&rsquo;s that Apple chose to implement the <strong>Model Context Protocol (MCP)</strong> as the foundation for all agent communication.</p>
+
+            <p>MCP is an open standard, originally developed by Anthropic, that defines how AI agents interact with tools, IDEs, and services. It provides a common language for agents to discover available capabilities, request access to resources, and perform actions in a structured way. Think of it as a USB-C for AI agents -- a universal connector that means any compatible agent can plug into any compatible tool.</p>
+
+            <p>Apple&rsquo;s adoption of MCP is significant for several reasons:</p>
+
+            <ul>
+                <li><strong>Any MCP-compatible agent works in Xcode.</strong> You&rsquo;re not locked into Claude or Codex. As new agents emerge, they can integrate with Xcode through MCP without Apple needing to ship an update.</li>
+                <li><strong>Google adopted MCP the same week.</strong> Google announced MCP support for their Developer Knowledge API, meaning agents can now access Google&rsquo;s documentation, Stack Overflow data, and code search through the same protocol. The convergence is real.</li>
+                <li><strong>MCP is becoming the standard.</strong> With Apple, Google, Anthropic, and OpenAI all supporting MCP, it&rsquo;s rapidly becoming the de facto protocol for AI agent interoperability. For developers, this means your tooling investment carries across platforms and agents.</li>
+                <li><strong>Terminal agents speak MCP too.</strong> Claude Code and Codex CLI already support MCP, which means the agent you run in your terminal and the agent running in Xcode can share context and capabilities through the same protocol.</li>
+            </ul>
+
+            <div class="highlight">
+                <h3>Why MCP Matters for Your Workflow</h3>
+                <p>Before MCP, every agent integration was bespoke. Copilot worked differently in VS Code than it did in JetBrains. Cursor was its own thing entirely. MCP means you can learn one interaction model and apply it everywhere -- Xcode, terminal agents, web-based tools, and whatever comes next. Your skills transfer. Your context transfers. Your workflows compose.</p>
+            </div>
+
+            <h2>What This Means for iOS Developers</h2>
+
+            <p>If you&rsquo;ve been writing Swift and building for Apple platforms, Xcode 26.3 gives you capabilities that were previously only available to developers who lived in the terminal. Agents in Xcode can now:</p>
+
+            <ul>
+                <li><strong>Read your entire project structure</strong> -- including the Xcode project file, targets, schemes, and build settings. The agent understands how your project is organized, not just individual files.</li>
+                <li><strong>Run builds and analyze errors</strong> -- When an agent proposes a change, it can build the project to verify the change compiles. If it doesn&rsquo;t, the agent reads the compiler error and iterates. This is a massive time saver for Swift&rsquo;s strict type system.</li>
+                <li><strong>Interact with the simulator</strong> -- Agents can observe simulator behavior, read console output, and use runtime information to inform their debugging suggestions.</li>
+                <li><strong>Suggest fixes with full context</strong> -- Because the agent has access to your build configuration, linked frameworks, and dependency graph, its suggestions account for your actual project setup -- not just the file you&rsquo;re editing.</li>
+            </ul>
+
+            <p>That said, the Xcode integration has clear boundaries. It&rsquo;s optimized for <strong>single-project, single-agent workflows</strong> inside the IDE. It&rsquo;s perfect for fixing a bug, adding a feature to an existing screen, refactoring a Swift module, or debugging a crash. But there are situations where Xcode&rsquo;s built-in agents aren&rsquo;t enough.</p>
+
+            <div class="highlight">
+                <h3>Where Xcode&rsquo;s Agentic Coding Falls Short</h3>
+                <ul>
+                    <li><strong>Multi-project work</strong> -- If you&rsquo;re building a framework and an app that consumes it simultaneously, you need agents that can work across multiple Xcode projects. The built-in panel is scoped to the current project.</li>
+                    <li><strong>Backend + iOS development</strong> -- Full-stack work where you&rsquo;re building a Swift server alongside an iOS client requires agents that can operate across fundamentally different codebases and build systems.</li>
+                    <li><strong>Heavy refactoring across modules</strong> -- For large-scale architectural changes, terminal agents with persistent memory and multi-step planning still outperform the IDE-embedded experience.</li>
+                    <li><strong>CI/CD and deployment</strong> -- Agents that manage your build pipeline, handle code signing, or orchestrate TestFlight distribution need terminal access, not just IDE access.</li>
+                    <li><strong>Parallel agent execution</strong> -- Xcode runs one agent session at a time. Terminal agents can run multiple concurrent sessions across different concerns.</li>
+                </ul>
+            </div>
+
+            <h2>Xcode + Terminal Agents: The Best of Both Worlds</h2>
+
+            <p>The developers who will get the most out of Xcode 26.3 aren&rsquo;t the ones who use it exclusively. They&rsquo;re the ones who combine it with terminal-based agents for a hybrid workflow that plays to each tool&rsquo;s strengths.</p>
+
+            <p>Use <strong>Xcode&rsquo;s agentic coding panel</strong> for:</p>
+            <ul>
+                <li>Visual work -- SwiftUI layout, Interface Builder, preview-driven development</li>
+                <li>Debugging -- crash logs, breakpoints, Instruments profiling with agent-assisted analysis</li>
+                <li>Single-file or small-scope changes -- quick bug fixes, feature additions, code cleanup</li>
+                <li>Build verification -- letting the agent compile and test changes in the full Xcode build system</li>
+            </ul>
+
+            <p>Use <strong>terminal agents (Claude Code, Codex CLI)</strong> for:</p>
+            <ul>
+                <li>Multi-project orchestration -- working across your iOS app, backend server, and shared framework simultaneously</li>
+                <li>Large-scale refactoring -- architectural changes that touch dozens of files and require persistent planning</li>
+                <li>CI/CD management -- agents that interact with your deployment pipeline, Fastlane scripts, and distribution workflow</li>
+                <li>Parallel execution -- running multiple agents on different tasks at the same time</li>
+                <li>Persistent memory -- agents that remember your architecture decisions, naming conventions, and project context across sessions</li>
+            </ul>
+
+            <p>The key insight: Xcode and terminal agents aren&rsquo;t competing. They&rsquo;re <strong>complementary layers</strong> of the same workflow. Xcode gives you depth within the IDE. Terminal agents give you breadth across your entire development environment.</p>
+
+            <h2>Setting Up Your Hybrid Workflow</h2>
+
+            <p>Here&rsquo;s a practical setup for iOS developers who want to take advantage of both Xcode 26.3&rsquo;s agentic features and terminal-based agents organized in Beam.</p>
+
+            <p><strong>1. Configure Xcode&rsquo;s agent panel.</strong> Open Xcode 26.3, go to Settings, and enable the Agentic Coding panel. Connect your Claude or Codex API key. Set your preferred agent for different task types -- some developers prefer Claude for Swift-specific work and Codex for more general refactoring.</p>
+
+            <p><strong>2. Set up a Beam workspace for your iOS project.</strong> Press <span class="kbd">&#8984;N</span> in Beam to create a workspace named after your project. This is where your terminal agents live -- separate from Xcode but working on the same codebase.</p>
+
+            <p><strong>3. Create project memory.</strong> Add a <code>CLAUDE.md</code> file to your project root with your architecture overview, naming conventions, module structure, and any project-specific patterns. Both Xcode&rsquo;s agents and your terminal agents will benefit from this shared context.</p>
+
+            <p><strong>4. Organize terminal tabs by concern.</strong> In your Beam workspace, create dedicated tabs:</p>
+
+            <div class="highlight">
+                <h3>Example: iOS Project Workspace in Beam</h3>
+                <ul>
+                    <li><strong>Tab 1: &ldquo;Architecture Agent&rdquo;</strong> -- Claude Code session for high-level design decisions and multi-module planning</li>
+                    <li><strong>Tab 2: &ldquo;Backend Agent&rdquo;</strong> -- Claude Code working on your server-side Swift or API layer</li>
+                    <li><strong>Tab 3: &ldquo;Test Agent&rdquo;</strong> -- Claude Code writing and running XCTest suites, analyzing code coverage</li>
+                    <li><strong>Tab 4: &ldquo;CI/CD&rdquo;</strong> -- Terminal for Fastlane, code signing, TestFlight uploads, and deployment scripts</li>
+                    <li><strong>Tab 5: &ldquo;Git&rdquo;</strong> -- Your review terminal for diffs, branch management, and merge decisions</li>
+                </ul>
+                <p>Meanwhile, Xcode stays open for visual work, debugging, and simulator-driven development with its own built-in agent.</p>
+            </div>
+
+            <p><strong>5. Use MCP to share context.</strong> Because both Xcode and terminal agents speak MCP, you can share tool definitions and context sources between them. A custom MCP server that exposes your project&rsquo;s API documentation, for example, can be used by agents in both environments.</p>
+
+            <p><strong>6. Save your layout.</strong> Press <span class="kbd">&#8984;S</span> in Beam to save your workspace configuration. Every morning, restore it in one click. Your Xcode project opens alongside your organized terminal workspace, and you&rsquo;re ready to work in seconds.</p>
+
+            <h2>What Comes Next</h2>
+
+            <p>Xcode 26.3 is clearly not the end of Apple&rsquo;s AI story -- it&rsquo;s the beginning. The MCP foundation they&rsquo;ve laid means future updates can add capabilities without requiring new agent integrations. Expect to see deeper Instruments integration, agent-assisted Core Data modeling, and possibly agent-driven Interface Builder interactions in future releases.</p>
+
+            <p>But the broader takeaway goes beyond Apple. Every major IDE and development tool is converging on the same model: embedded AI agents that understand your project, your build system, and your workflow. The developers who win in this environment aren&rsquo;t the ones who pick one tool and ignore the rest. They&rsquo;re the ones who build hybrid workflows that combine the best of each -- IDE agents for depth, terminal agents for breadth, and organized workspaces to keep it all from becoming chaos.</p>
+
+            <div class="cta-box">
+                <h3>Organize Your Xcode + Terminal Agent Workflow</h3>
+                <p>Xcode handles the IDE. Beam handles the rest. Organize your terminal agents, CI/CD sessions, and multi-project work in dedicated workspaces alongside Xcode.</p>
+                <a href="../" class="btn">Download Beam for macOS</a>
+            </div>
+
+            <h2>Summary</h2>
+
+            <p>Xcode 26.3 marks a turning point for Apple platform development. Here&rsquo;s what matters:</p>
+
+            <ul>
+                <li><strong>Xcode 26.3 shipped native agentic coding</strong> on February 3, 2026, with built-in Claude Agent and OpenAI Codex support -- a first for any Apple developer tool.</li>
+                <li><strong>MCP is the foundation.</strong> Apple adopted the Model Context Protocol, the same standard used by Google, Anthropic, and OpenAI. Any MCP-compatible agent can integrate with Xcode.</li>
+                <li><strong>Xcode agents are powerful but scoped.</strong> They excel at single-project work, debugging, build verification, and SwiftUI-driven development. They&rsquo;re limited for multi-project orchestration, large refactors, and CI/CD automation.</li>
+                <li><strong>Terminal agents fill the gaps.</strong> Claude Code and Codex CLI offer persistent memory, parallel execution, and cross-project capabilities that complement Xcode&rsquo;s built-in features.</li>
+                <li><strong>The hybrid workflow wins.</strong> Use Xcode for visual work and debugging. Use terminal agents in Beam for heavy lifting, multi-project coordination, and persistent sessions.</li>
+                <li><strong>Organization is the multiplier.</strong> Dedicated Beam workspaces for your iOS projects keep terminal agents, CI/CD sessions, and review workflows organized alongside Xcode -- so you get the depth of the IDE and the breadth of the terminal without drowning in windows.</li>
+            </ul>
+
+            <div class="related-articles">
+                <h2>Related Articles</h2>
+                <div class="related-grid">
+                    <a href="swift-cli-macos-development.html" class="related-card">
+                        <h4>Building Swift CLI Tools on macOS with Claude Code</h4>
+                        <p>Use terminal agents to build and test Swift command-line tools alongside your Xcode projects.</p>
+                    </a>
+                    <a href="best-ai-coding-tool-2026.html" class="related-card">
+                        <h4>Best AI Coding Tool in 2026: Claude Code vs Cursor vs Copilot</h4>
+                        <p>How the top AI coding tools compare -- and where Xcode&rsquo;s new agents fit in.</p>
+                    </a>
+                    <a href="beam-claude-code-setup.html" class="related-card">
+                        <h4>Setting Up Beam for Claude Code Development</h4>
+                        <p>The complete guide to organizing your Claude Code sessions in Beam workspaces.</p>
+                    </a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>
+                <a href="../">Beam</a> &bull; Terminal Organizer for macOS &bull;
+                <a href="mailto:frank@nextuptechnologies.co">Contact</a>
+            </p>
+
+            <p style="margin-top: 12px; font-size: 0.8rem;">
+                <a href="/privacy.html" style="color: #71717a; text-decoration: none;">Privacy Policy</a> &bull;
+                <a href="/terms.html" style="color: #71717a; text-decoration: none;">Terms of Service</a>
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>

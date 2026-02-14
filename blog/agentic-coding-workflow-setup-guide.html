@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D0XH8B0RKL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-D0XH8B0RKL');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Set Up an Agentic Coding Workflow: A Step-by-Step Guide | Beam</title>
+    <meta name="description" content="A practical, hands-on guide to setting up a modern agentic coding workflow with Claude Code, project memory, and organized terminal sessions.">
+    <meta name="keywords" content="agentic coding workflow, Claude Code setup, agentic engineering setup, AI coding workflow guide, project memory setup, developer workflow 2026">
+    <meta name="author" content="NextUp Technologies">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://getbeam.dev/blog/agentic-coding-workflow-setup-guide.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://getbeam.dev/blog/agentic-coding-workflow-setup-guide.html">
+    <meta property="og:title" content="How to Set Up an Agentic Coding Workflow: A Step-by-Step Guide">
+    <meta property="og:description" content="A practical, hands-on guide to setting up a modern agentic coding workflow with Claude Code, project memory, and organized terminal sessions.">
+    <meta property="og:image" content="https://getbeam.dev/beam-screenshot-1.9.6.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="How to Set Up an Agentic Coding Workflow: A Step-by-Step Guide">
+    <meta name="twitter:description" content="A practical, hands-on guide to setting up a modern agentic coding workflow with Claude Code, project memory, and organized terminal sessions.">
+    <meta name="twitter:image" content="https://getbeam.dev/beam-screenshot-1.9.6.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "How to Set Up an Agentic Coding Workflow: A Step-by-Step Guide",
+        "description": "A practical, hands-on guide to setting up a modern agentic coding workflow with Claude Code, project memory, and organized terminal sessions.",
+        "author": {
+            "@type": "Organization",
+            "name": "NextUp Technologies"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Beam"
+        },
+        "datePublished": "2026-02-12",
+        "keywords": "agentic coding workflow, Claude Code setup, agentic engineering setup, AI coding workflow guide, project memory setup, developer workflow 2026"
+    }
+    </script>
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #111113;
+            --bg-tertiary: #1a1a1d;
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.4);
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --border: #27272a;
+            --success: #22c55e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+
+        .container { max-width: 800px; margin: 0 auto; padding: 0 24px; }
+
+        header {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 60px;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1.5rem;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            background: var(--accent);
+            color: white;
+            transition: all 0.2s;
+        }
+
+        .btn:hover { background: #2563eb; transform: translateY(-2px); }
+
+        article { padding-bottom: 80px; }
+
+        .breadcrumb {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+        }
+
+        .breadcrumb a { color: var(--accent); text-decoration: none; }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .meta {
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            font-size: 0.95rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 48px 0 20px;
+            color: var(--text-primary);
+        }
+
+        h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 32px 0 16px;
+            color: var(--text-primary);
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        ul, ol {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            padding-left: 24px;
+        }
+
+        li { margin-bottom: 12px; }
+
+        strong { color: var(--text-primary); }
+
+        .highlight {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 32px 0;
+        }
+
+        .highlight h3 {
+            font-size: 1.1rem;
+            margin: 0 0 12px 0;
+            color: var(--text-primary);
+        }
+
+        .highlight p:last-child, .highlight ul:last-child {
+            margin-bottom: 0;
+        }
+
+        .kbd {
+            display: inline-block;
+            padding: 2px 8px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+        }
+
+        code {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 2px 6px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+        }
+
+        pre {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 20px;
+            overflow-x: auto;
+            margin: 24px 0;
+        }
+
+        pre code {
+            background: none;
+            border: none;
+            padding: 0;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            background: var(--accent);
+            color: white;
+            border-radius: 50%;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-right: 12px;
+        }
+
+        .tip {
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 24px 0;
+        }
+
+        .tip strong {
+            color: var(--success);
+        }
+
+        .warning {
+            background: rgba(234, 179, 8, 0.1);
+            border: 1px solid rgba(234, 179, 8, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 24px 0;
+        }
+
+        .warning strong {
+            color: #eab308;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .cta-box h3 { font-size: 1.5rem; margin-bottom: 12px; color: white; }
+        .cta-box p { color: rgba(255,255,255,0.8); margin-bottom: 24px; }
+        .cta-box .btn { background: white; color: var(--accent); }
+
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer a { color: var(--text-secondary); text-decoration: none; }
+
+        .related-articles { margin-top: 60px; padding-top: 40px; border-top: 1px solid var(--border); }
+        .related-articles h2 { font-size: 1.5rem; margin-bottom: 24px; }
+        .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .related-card { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-decoration: none; transition: border-color 0.2s; }
+        .related-card:hover { border-color: var(--accent); }
+        .related-card h4 { color: white; font-size: 1rem; margin: 0 0 8px 0; }
+        .related-card p { color: var(--text-muted); font-size: 0.85rem; margin: 0; }
+        @media (max-width: 600px) { .related-grid { grid-template-columns: 1fr; } h1 { font-size: 1.8rem; } }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="../" class="logo">
+                <div class="logo-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round">
+                        <path d="M4 17l6-6-6-6M12 19h8"/>
+                    </svg>
+                </div>
+                Beam
+            </a>
+            <a href="../" class="btn">Download Beam</a>
+        </div>
+    </header>
+
+    <main class="container">
+        <article>
+            <div class="breadcrumb">
+                <a href="../">Beam</a> / <a href="../#guides">Guides</a> / Agentic Coding Workflow Setup
+            </div>
+
+            <h1>How to Set Up an Agentic Coding Workflow: A Step-by-Step Guide</h1>
+            <p class="meta">February 2026 &bull; 9 min read</p>
+
+            <p>Everyone is talking about agentic coding. Fewer people explain how to actually set it up. Not the theory — the actual steps, from a blank terminal to a fully functioning agentic workflow where an AI agent builds features, remembers your project, and works across sessions without losing context.</p>
+
+            <p>This is that guide. Practical, step-by-step, no hand-waving. By the end, you will have a repeatable workflow that makes you significantly faster.</p>
+
+            <h2>What You Will Need</h2>
+
+            <p>Before you start, make sure you have:</p>
+
+            <ul>
+                <li><strong>macOS</strong> (this guide assumes Mac, but the concepts apply anywhere)</li>
+                <li><strong>Claude Code</strong> installed — run <code>npm install -g @anthropic-ai/claude-code</code> if you have not already</li>
+                <li><strong>A project to work on</strong> — an existing codebase works best for learning the workflow</li>
+                <li><strong>Beam</strong> (optional but recommended) — for organizing your terminal sessions and persisting project memory</li>
+            </ul>
+
+            <p>That is it. No complex infrastructure, no Docker containers, no cloud setup. The entire workflow runs locally.</p>
+
+            <h2>Step 1: Create Your Project Workspace</h2>
+
+            <p>The foundation of an agentic workflow is a clean, organized workspace. Open Beam and create a new project:</p>
+
+            <p><span class="step-number">1</span>Press <span class="kbd">&#8984;N</span> to create a new workspace. Name it after your project.</p>
+
+            <p><span class="step-number">2</span>Set the working directory to your project root. This tells every new terminal tab to start in the right place.</p>
+
+            <p><span class="step-number">3</span>Configure the memory file path — this is where your project context will live between sessions (more on this in Step 2).</p>
+
+            <div class="tip">
+                <strong>Why this matters:</strong> Without a dedicated workspace, your agentic sessions mix with everything else. When you have 5 tabs of Claude Code plus dev servers plus git, chaos is guaranteed. A workspace isolates everything by project.
+            </div>
+
+            <h2>Step 2: Initialize Project Memory</h2>
+
+            <p>This is the step most developers skip — and it is the most important one. Project memory is what separates &ldquo;using Claude Code&rdquo; from &ldquo;having an agentic workflow.&rdquo;</p>
+
+            <p>Create a markdown file at <code>~/YourProjectName.md</code> and fill it with everything an agent needs to know about your project:</p>
+
+            <div class="highlight">
+                <h3>Project Memory Template</h3>
+                <pre><code># Project Name
+
+## Architecture
+- Language/Framework: [e.g., Next.js 14 + TypeScript]
+- Database: [e.g., PostgreSQL via Prisma]
+- Key directories: src/app (routes), src/lib (utilities), src/components
+
+## Build Commands
+- Dev: npm run dev
+- Build: npm run build
+- Test: npm run test
+- Lint: npm run lint
+
+## Conventions
+- Use named exports, not default exports
+- All API routes return { data, error } shape
+- Components use .tsx, utilities use .ts
+- Tests live next to source files (Component.test.tsx)
+
+## Key Decisions
+- Chose server components by default, client only when needed
+- Auth via NextAuth with GitHub provider
+- Deployed on Vercel, preview deploys on every PR
+
+## Current Work
+- [Update this section as you work]</code></pre>
+            </div>
+
+            <p>This file is your project&rsquo;s brain. Every time Claude starts a new session, it reads this file and immediately understands your architecture, your conventions, and your current priorities. Without it, the agent starts from zero every single time.</p>
+
+            <h2>Step 3: Install Memory on Agent Startup</h2>
+
+            <p>With your memory file created, you need to load it into Claude&rsquo;s context at the start of every session. In Beam, click the <strong>&ldquo;Install Project Memory&rdquo;</strong> button in the toolbar. This writes the memory file contents into Claude&rsquo;s <code>.claude/</code> project configuration so the agent loads it automatically.</p>
+
+            <p>What happens behind the scenes: Beam reads your memory markdown file and installs it as a CLAUDE.md file in your project&rsquo;s <code>.claude/</code> directory. Claude Code automatically reads this file when starting a session in that directory.</p>
+
+            <div class="highlight">
+                <h3>Without Beam</h3>
+                <p>If you are not using Beam, you can manually create a <code>CLAUDE.md</code> file in your project root. Claude Code reads it automatically on startup. The key is to keep it updated — stale memory is worse than no memory.</p>
+            </div>
+
+            <h2>Step 4: Organize Your Terminal Layout</h2>
+
+            <p>An agentic workflow involves more than just one terminal. Set up tabs for each concern:</p>
+
+            <ul>
+                <li><strong>Tab 1: &ldquo;Agent&rdquo;</strong> — your Claude Code session, where the AI does its work</li>
+                <li><strong>Tab 2: &ldquo;Dev Server&rdquo;</strong> — your local development server running (<code>npm run dev</code>)</li>
+                <li><strong>Tab 3: &ldquo;Git&rdquo;</strong> — for reviewing changes, staging commits, pushing code</li>
+                <li><strong>Tab 4: &ldquo;Tests&rdquo;</strong> — run your test suite here to verify the agent&rsquo;s work</li>
+            </ul>
+
+            <p>Once your tabs are arranged, save the layout with <span class="kbd">&#8984;S</span>. Tomorrow, when you sit down to work, load the layout and everything is exactly where you left it.</p>
+
+            <div class="tip">
+                <strong>Pro tip:</strong> Use split panes (<span class="kbd">&#8984;D</span>) to put your Agent tab and Test tab side by side. Tell Claude to make a change, then immediately run tests in the adjacent pane. This tight feedback loop is where agentic coding shines.
+            </div>
+
+            <h2>Step 5: The Agentic Workflow Loop</h2>
+
+            <p>Now the real work begins. The agentic workflow follows a five-phase loop. Once you internalize this pattern, it becomes second nature.</p>
+
+            <div class="highlight">
+                <h3>Phase 1: Intent</h3>
+                <p>Tell the agent <strong>what you want</strong>, not how to do it. Be specific about the outcome, not the implementation. Example: &ldquo;Add a user settings page where users can update their display name and email. Include form validation and a success toast.&rdquo;</p>
+            </div>
+
+            <div class="highlight">
+                <h3>Phase 2: Spec</h3>
+                <p>The agent <strong>creates a plan</strong>. It will outline which files to create or modify, what the approach will be, and any questions it has. Review this carefully — catching a wrong direction here saves 10 minutes of wasted implementation.</p>
+            </div>
+
+            <div class="highlight">
+                <h3>Phase 3: Implement</h3>
+                <p>The agent <strong>writes the code</strong>. It reads existing files, understands patterns from your memory file, and generates code that follows your conventions. Let it work. Resist the urge to micromanage individual lines.</p>
+            </div>
+
+            <div class="highlight">
+                <h3>Phase 4: Verify</h3>
+                <p>The agent <strong>tests its own work</strong>. It runs your test suite, checks for lint errors, and verifies the build passes. If something fails, it fixes it automatically. This is where the &ldquo;agentic&rdquo; part really shows — the agent iterates without you.</p>
+            </div>
+
+            <div class="highlight">
+                <h3>Phase 5: Review</h3>
+                <p><strong>You review the result.</strong> Switch to your Git tab, run <code>git diff</code>, and read through the changes. Check the dev server to see the feature in action. This is your quality gate — the agent proposes, you approve.</p>
+            </div>
+
+            <p>This loop repeats for every feature, bug fix, or refactor. Intent, Spec, Implement, Verify, Review. The agent does 80% of the work. You do 20% — the critical 20% that ensures quality.</p>
+
+            <h2>Step 6: Save Context Back to Memory</h2>
+
+            <p>After a productive session, your project has changed. New components, new API routes, new architectural decisions. If you do not save this context, the next session starts without knowing what happened.</p>
+
+            <p>In Beam, click the <strong>&ldquo;Save Project Memory&rdquo;</strong> toolbar button. This updates your memory file with the current state of the project — new files, recent decisions, and anything the agent learned during the session.</p>
+
+            <p>If you are doing this manually, open your <code>~/YourProjectName.md</code> file and update the &ldquo;Current Work&rdquo; and &ldquo;Key Decisions&rdquo; sections. Add any new conventions that emerged. Note any architectural changes.</p>
+
+            <div class="warning">
+                <strong>Do not skip this step.</strong> The difference between a good agentic workflow and a frustrating one is continuity. Memory is what makes the agent smarter over time instead of resetting to zero every session.
+            </div>
+
+            <h2>Step 7: Multi-Agent Scaling</h2>
+
+            <p>Once you are comfortable with the single-agent workflow, you can scale up. Here is when to add more agents:</p>
+
+            <ul>
+                <li><strong>Separate concerns</strong> — one agent works on the frontend while another handles the backend API</li>
+                <li><strong>Parallel features</strong> — two independent features that do not touch the same files</li>
+                <li><strong>Code + tests</strong> — one agent writes implementation, another writes comprehensive tests</li>
+            </ul>
+
+            <p>Coordination is key. Give each agent its own Beam workspace tab. Make sure their memory files include which areas of the codebase they own. And always have one agent finish before another touches the same files — merge conflicts between AI agents are no fun.</p>
+
+            <h2>Common Mistakes</h2>
+
+            <div class="highlight">
+                <h3>Pitfalls to Avoid</h3>
+                <ul>
+                    <li><strong>No memory file</strong> — the agent starts from scratch every session, wasting the first 5 minutes rediscovering your project. Always maintain a memory file.</li>
+                    <li><strong>No terminal organization</strong> — 8 tabs all named &ldquo;zsh&rdquo; with no way to find anything. Use named workspaces and tabs, or you will spend more time searching than coding.</li>
+                    <li><strong>Micromanaging the agent</strong> — telling Claude exactly which lines to change defeats the purpose. Describe the outcome and let the agent figure out the implementation.</li>
+                    <li><strong>Skipping the review phase</strong> — trusting agent output blindly leads to subtle bugs and technical debt. Always review the diff before committing.</li>
+                    <li><strong>Never updating memory</strong> — stale memory is almost worse than no memory. The agent makes decisions based on outdated information. Keep it current.</li>
+                    <li><strong>Running multiple agents on the same files</strong> — guaranteed merge conflicts and wasted work. Divide the codebase into clear ownership zones.</li>
+                </ul>
+            </div>
+
+            <div class="cta-box">
+                <h3>Ready to Build? Start with the Right Workflow.</h3>
+                <p>Beam gives you workspaces, project memory, and terminal organization built for agentic coding. Set up once, build faster forever.</p>
+                <a href="../" class="btn">Download Beam Free</a>
+            </div>
+
+            <h2>Summary</h2>
+
+            <p>An agentic coding workflow is not magic — it is a system. The seven steps:</p>
+
+            <ol>
+                <li><strong>Create a project workspace</strong> — isolate your project in a clean environment</li>
+                <li><strong>Initialize project memory</strong> — give the agent everything it needs to understand your codebase</li>
+                <li><strong>Install memory on startup</strong> — so every session begins with full context</li>
+                <li><strong>Organize your terminal layout</strong> — separate concerns into dedicated tabs</li>
+                <li><strong>Follow the workflow loop</strong> — Intent, Spec, Implement, Verify, Review</li>
+                <li><strong>Save context back to memory</strong> — so the next session picks up where you left off</li>
+                <li><strong>Scale to multiple agents</strong> — when you are ready for parallel execution</li>
+            </ol>
+
+            <p>The developers who are shipping the fastest in 2026 are not the ones writing the most code. They are the ones with the best systems. Set up your workflow once, refine it over time, and let the agents do the heavy lifting.</p>
+
+            <div class="related-articles">
+                <h2>Related Articles</h2>
+                <div class="related-grid">
+                    <a href="organizing-claude-code-sessions.html" class="related-card">
+                        <h4>Organizing Claude Code Sessions</h4>
+                        <p>Tips for managing multiple Claude Code instances across projects.</p>
+                    </a>
+                    <a href="vibe-coding-to-agentic-engineering.html" class="related-card">
+                        <h4>From Vibe Coding to Agentic Engineering</h4>
+                        <p>How the best developers evolved past vibe coding into structured workflows.</p>
+                    </a>
+                    <a href="beam-claude-code-setup.html" class="related-card">
+                        <h4>Setting Up Beam for Claude Code</h4>
+                        <p>Step-by-step guide to organizing your Claude Code workflow with Beam.</p>
+                    </a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>
+                <a href="../">Beam</a> &bull; Terminal Organizer for macOS &bull;
+                <a href="mailto:frank@nextuptechnologies.co">Contact</a>
+            </p>
+
+            <p style="margin-top: 12px; font-size: 0.8rem;">
+                <a href="/privacy.html" style="color: #71717a; text-decoration: none;">Privacy Policy</a> &bull;
+                <a href="/terms.html" style="color: #71717a; text-decoration: none;">Terms of Service</a>
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>

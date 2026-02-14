@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D0XH8B0RKL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-D0XH8B0RKL');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Give AI Agents Project Memory: The CLAUDE.md Guide | Beam</title>
+    <meta name="description" content="AI agents forget everything between sessions. Learn how to create a CLAUDE.md project memory file that gives Claude Code persistent context — architecture, conventions, and decisions that carry over.">
+    <meta name="keywords" content="CLAUDE.md guide, AI agent project memory, Claude Code memory file, persistent AI context, Claude Code CLAUDE.md, AI coding memory">
+    <meta name="author" content="NextUp Technologies">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://getbeam.dev/blog/ai-agent-project-memory-guide.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://getbeam.dev/blog/ai-agent-project-memory-guide.html">
+    <meta property="og:title" content="How to Give AI Agents Project Memory: The CLAUDE.md Guide">
+    <meta property="og:description" content="AI agents forget everything between sessions. Learn how to create a CLAUDE.md project memory file that gives Claude Code persistent context.">
+    <meta property="og:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="How to Give AI Agents Project Memory: The CLAUDE.md Guide">
+    <meta name="twitter:description" content="AI agents forget everything between sessions. Learn how to create a CLAUDE.md project memory file that gives Claude Code persistent context.">
+    <meta name="twitter:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "How to Give AI Agents Project Memory: The CLAUDE.md Guide",
+        "description": "AI agents forget everything between sessions. Learn how to create a CLAUDE.md project memory file that gives Claude Code persistent context — architecture, conventions, and decisions that carry over.",
+        "author": {
+            "@type": "Organization",
+            "name": "NextUp Technologies"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Beam"
+        },
+        "datePublished": "2026-02-11",
+        "keywords": "CLAUDE.md guide, AI agent project memory, Claude Code memory file, persistent AI context"
+    }
+    </script>
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #111113;
+            --bg-tertiary: #1a1a1d;
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.4);
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --border: #27272a;
+            --success: #22c55e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        header {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 60px;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1.5rem;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            background: var(--accent);
+            color: white;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+        }
+
+        article {
+            padding-bottom: 80px;
+        }
+
+        .breadcrumb {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+        }
+
+        .breadcrumb a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .meta {
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            font-size: 0.95rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 48px 0 20px;
+            color: var(--text-primary);
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        ul, ol {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            padding-left: 24px;
+        }
+
+        li {
+            margin-bottom: 12px;
+        }
+
+        .highlight {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 32px 0;
+        }
+
+        .highlight h3 {
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .kbd {
+            display: inline-block;
+            padding: 2px 8px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+        }
+
+        code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 2px 6px;
+        }
+
+        .code-block {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 32px 0;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            line-height: 1.7;
+            color: var(--text-secondary);
+            overflow-x: auto;
+            white-space: pre;
+        }
+
+        .code-block .comment {
+            color: var(--text-muted);
+        }
+
+        .code-block .heading {
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        .code-block .subheading {
+            color: #a78bfa;
+            font-weight: 500;
+        }
+
+        .code-block .value {
+            color: var(--success);
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .cta-box h3 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+        }
+
+        .cta-box p {
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 24px;
+        }
+
+        .cta-box .btn {
+            background: white;
+            color: var(--accent);
+        }
+
+        .blog-visual {
+            margin: 40px 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .blog-visual svg {
+            max-width: 100%;
+            height: auto;
+        }
+
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+
+        .related-articles { margin-top: 60px; padding-top: 40px; border-top: 1px solid var(--border); }
+        .related-articles h2 { font-size: 1.5rem; margin-bottom: 24px; }
+        .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .related-card { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-decoration: none; transition: border-color 0.2s; }
+        .related-card:hover { border-color: var(--accent); }
+        .related-card h4 { color: white; font-size: 1rem; margin: 0 0 8px 0; }
+        .related-card p { color: var(--text-muted); font-size: 0.85rem; margin: 0; }
+        @media (max-width: 600px) {
+            .related-grid { grid-template-columns: 1fr; }
+            h1 { font-size: 1.8rem; }
+            .blog-visual svg { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="../" class="logo">
+                <div class="logo-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round">
+                        <path d="M4 17l6-6-6-6M12 19h8"/>
+                    </svg>
+                </div>
+                Beam
+            </a>
+            <a href="../" class="btn">Download Beam</a>
+        </div>
+    </header>
+
+    <main>
+        <article class="container">
+            <div class="breadcrumb">
+                <a href="../">Beam</a> / <a href="../#guides">Guides</a> / CLAUDE.md Guide
+            </div>
+
+            <h1>How to Give AI Agents Project Memory: The CLAUDE.md Guide</h1>
+            <p class="meta">February 2026 &bull; 8 min read</p>
+
+            <p>Every Claude Code session starts with amnesia. Your AI agent doesn't know your project uses Prisma instead of TypeORM. It doesn't know your API responses always follow a specific shape. It doesn't know that the auth module was just refactored last week. It has no memory of the conventions you've established, the architectural decisions you've made, or the gotchas that have bitten you before. Every session, you start over.</p>
+
+            <p>CLAUDE.md fixes this. It's a simple markdown file that gives Claude Code persistent memory across sessions &mdash; and it transforms the quality of AI-assisted development. Instead of spending the first five minutes of every session re-explaining your project, Claude reads your memory file and already knows everything it needs to know. This guide shows you exactly what to put in it.</p>
+
+            <!-- Visual: CLAUDE.md concept diagram -->
+            <div class="blog-visual">
+                <svg width="720" height="460" viewBox="0 0 720 460" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Background -->
+                    <rect width="720" height="460" rx="16" fill="#111113"/>
+                    <rect x="0.5" y="0.5" width="719" height="459" rx="15.5" stroke="#27272a"/>
+
+                    <!-- Central document icon -->
+                    <rect x="290" y="60" width="140" height="170" rx="10" fill="#1a1a1d" stroke="#3b82f6" stroke-width="2"/>
+                    <!-- Document fold -->
+                    <path d="M400 60 L430 90 L400 90 Z" fill="#1a1a1d" stroke="#3b82f6" stroke-width="2"/>
+                    <path d="M400 60 L400 90 L430 90" fill="none" stroke="#3b82f6" stroke-width="2"/>
+                    <!-- Document lines -->
+                    <line x1="310" y1="110" x2="400" y2="110" stroke="#3b82f6" stroke-width="1.5" opacity="0.5"/>
+                    <line x1="310" y1="128" x2="390" y2="128" stroke="#3b82f6" stroke-width="1.5" opacity="0.3"/>
+                    <line x1="310" y1="146" x2="395" y2="146" stroke="#3b82f6" stroke-width="1.5" opacity="0.3"/>
+                    <line x1="310" y1="164" x2="380" y2="164" stroke="#3b82f6" stroke-width="1.5" opacity="0.3"/>
+                    <line x1="310" y1="182" x2="388" y2="182" stroke="#3b82f6" stroke-width="1.5" opacity="0.3"/>
+                    <line x1="310" y1="200" x2="370" y2="200" stroke="#3b82f6" stroke-width="1.5" opacity="0.3"/>
+
+                    <!-- Brain/memory symbol on document -->
+                    <circle cx="360" cy="155" r="30" fill="none" stroke="#3b82f6" stroke-width="1.5" opacity="0.15"/>
+                    <!-- CLAUDE.md label -->
+                    <text x="360" y="155" text-anchor="middle" fill="#3b82f6" font-family="JetBrains Mono, monospace" font-size="14" font-weight="600">CLAUDE</text>
+                    <text x="360" y="173" text-anchor="middle" fill="#3b82f6" font-family="JetBrains Mono, monospace" font-size="14" font-weight="600">.md</text>
+
+                    <!-- Radiating section boxes with connecting lines -->
+
+                    <!-- Stack - top left -->
+                    <line x1="290" y1="120" x2="165" y2="80" stroke="#27272a" stroke-width="1.5"/>
+                    <rect x="80" y="60" width="90" height="38" rx="8" fill="#1a1a1d" stroke="#22c55e" stroke-width="1.5"/>
+                    <text x="125" y="84" text-anchor="middle" fill="#22c55e" font-family="Space Grotesk, sans-serif" font-size="13" font-weight="600">Stack</text>
+
+                    <!-- Architecture - top right -->
+                    <line x1="430" y1="120" x2="555" y2="80" stroke="#27272a" stroke-width="1.5"/>
+                    <rect x="500" y="60" width="130" height="38" rx="8" fill="#1a1a1d" stroke="#f59e0b" stroke-width="1.5"/>
+                    <text x="565" y="84" text-anchor="middle" fill="#f59e0b" font-family="Space Grotesk, sans-serif" font-size="13" font-weight="600">Architecture</text>
+
+                    <!-- Conventions - middle left -->
+                    <line x1="290" y1="170" x2="165" y2="175" stroke="#27272a" stroke-width="1.5"/>
+                    <rect x="50" y="156" width="120" height="38" rx="8" fill="#1a1a1d" stroke="#a78bfa" stroke-width="1.5"/>
+                    <text x="110" y="180" text-anchor="middle" fill="#a78bfa" font-family="Space Grotesk, sans-serif" font-size="13" font-weight="600">Conventions</text>
+
+                    <!-- Decisions - middle right -->
+                    <line x1="430" y1="170" x2="555" y2="175" stroke="#27272a" stroke-width="1.5"/>
+                    <rect x="510" y="156" width="120" height="38" rx="8" fill="#1a1a1d" stroke="#ec4899" stroke-width="1.5"/>
+                    <text x="570" y="180" text-anchor="middle" fill="#ec4899" font-family="Space Grotesk, sans-serif" font-size="13" font-weight="600">Decisions</text>
+
+                    <!-- Gotchas - bottom center -->
+                    <line x1="360" y1="230" x2="360" y2="262" stroke="#27272a" stroke-width="1.5"/>
+                    <rect x="310" y="262" width="100" height="38" rx="8" fill="#1a1a1d" stroke="#ef4444" stroke-width="1.5"/>
+                    <text x="360" y="286" text-anchor="middle" fill="#ef4444" font-family="Space Grotesk, sans-serif" font-size="13" font-weight="600">Gotchas</text>
+
+                    <!-- Arrow pointing down -->
+                    <line x1="360" y1="316" x2="360" y2="350" stroke="#3b82f6" stroke-width="2"/>
+                    <polygon points="350,345 360,360 370,345" fill="#3b82f6"/>
+
+                    <!-- Terminal box at bottom -->
+                    <rect x="220" y="370" width="280" height="60" rx="10" fill="#1a1a1d" stroke="#27272a" stroke-width="1.5"/>
+                    <!-- Terminal dots -->
+                    <circle cx="240" cy="385" r="4" fill="#ef4444"/>
+                    <circle cx="254" cy="385" r="4" fill="#f59e0b"/>
+                    <circle cx="268" cy="385" r="4" fill="#22c55e"/>
+                    <!-- Terminal text -->
+                    <text x="240" y="415" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="11">$</text>
+                    <text x="256" y="415" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="11">claude</text>
+                    <text x="308" y="415" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="11">// reads automatically</text>
+
+                    <!-- "reads automatically" label -->
+                    <text x="360" y="345" text-anchor="middle" fill="#3b82f6" font-family="Space Grotesk, sans-serif" font-size="11" opacity="0.8">Claude Code reads automatically</text>
+                </svg>
+            </div>
+
+            <h2>The Amnesia Problem</h2>
+
+            <p>AI coding agents are stateless by default. Every time you start a new Claude Code session, it knows nothing about your project beyond what it can infer from the files it reads. It doesn't carry context from yesterday's session. It doesn't remember that you spent twenty minutes explaining your authentication flow, or that you decided to use server actions instead of API routes for mutations.</p>
+
+            <p>The result is a frustrating ritual at the start of every session. You find yourself repeating the same things over and over: "We use Express with TypeScript." "Our tests use Vitest, not Jest." "The database is PostgreSQL with Prisma." "API responses always follow this shape." You become a human readme, manually loading context into your AI assistant every single time you sit down to code.</p>
+
+            <p>This doesn't just waste time &mdash; it leads to inconsistent code. When Claude doesn't know your conventions, it makes assumptions. It might generate Jest tests when you use Vitest. It might suggest TypeORM patterns when you use Prisma. It might put business logic in your route handlers when you have a dedicated service layer. Each wrong assumption costs you time to correct, and some slip through entirely.</p>
+
+            <p>The fix is surprisingly simple: write it down once and let Claude read it automatically at the start of every session.</p>
+
+            <h2>What Is CLAUDE.md?</h2>
+
+            <p>CLAUDE.md is a markdown file placed in your project root that Claude Code reads automatically at the start of every session. It contains everything Claude needs to know about your project &mdash; your tech stack, architecture, coding conventions, key decisions, and known gotchas. Think of it as an onboarding document, but for your AI assistant.</p>
+
+            <p>When Claude Code starts a new session and detects a CLAUDE.md file in your working directory, it reads the file before doing anything else. This means Claude already has full context about your project before you type your first prompt. No re-explaining, no correcting wrong assumptions, no wasted time.</p>
+
+            <p>Creating one is straightforward. If you use Beam, the "Install Project Memory" toolbar button creates a CLAUDE.md with a structured template &mdash; fill in the sections and you're done. You can also create it manually: just add a file called <code>CLAUDE.md</code> to your project root and start writing. There's no special syntax or format required. It's just markdown.</p>
+
+            <h2>What to Put in Your CLAUDE.md</h2>
+
+            <p>The most effective CLAUDE.md files share a common structure. They cover five key areas, each serving a distinct purpose in giving Claude the context it needs. Let's walk through each one.</p>
+
+            <div class="highlight">
+                <h3>Project Overview</h3>
+                <p>Start with the basics: what is this project, and what is it built with? Include the project name, a one-line description of its purpose, and a complete list of your tech stack. This section is short but critical &mdash; it immediately grounds Claude in the right mental model for your project.</p>
+                <p>A good project overview looks something like: "InvoiceFlow &mdash; A B2B invoicing platform. Stack: Next.js 14 (App Router), PostgreSQL via Prisma, NextAuth.js with JWT, Stripe for payments, Tailwind CSS, Vitest for testing." In just two lines, Claude knows the framework, database layer, auth strategy, payment provider, styling approach, and test runner. That's enough to prevent dozens of wrong assumptions.</p>
+            </div>
+
+            <div class="highlight">
+                <h3>Architecture</h3>
+                <p>Describe how your project is structured: the key directories, the layers of abstraction, and how data flows through the system. This section prevents Claude from putting code in the wrong place, which is one of the most common problems when working with AI agents on established codebases.</p>
+                <p>Be specific about directory purposes: "app/ contains Next.js pages and API routes. src/services/ contains business logic with no framework dependencies. src/db/ contains the Prisma client, models, and migrations. src/lib/ contains shared utilities." If you have a clear data flow pattern, state it explicitly: "Requests flow through middleware, then router, then handler, then service, then repository." Claude will follow this architecture instead of inventing its own.</p>
+            </div>
+
+            <div class="highlight">
+                <h3>Coding Conventions</h3>
+                <p>This is where you define the patterns Claude should follow when generating code. Cover naming conventions, error handling patterns, API response shapes, and test patterns. The more specific you are here, the less time you spend reformatting Claude's output to match your codebase.</p>
+                <p>Good entries include: "File names use kebab-case (invoice-service.ts). Component names use PascalCase (InvoiceTable.tsx). All errors use the AppError class with a status code and message. API routes return { data: T } for success and { error: string, code: number } for errors. Tests use one file per module with describe/it blocks and factory functions for test data." These conventions become Claude's default behavior for your project.</p>
+            </div>
+
+            <div class="highlight">
+                <h3>Key Decisions</h3>
+                <p>Document the architectural and tooling decisions you've already made, especially the ones where Claude might suggest an alternative. This section acts as guardrails that prevent Claude from going down wrong paths.</p>
+                <p>For example: "We chose Prisma over TypeORM for type safety" stops Claude from suggesting TypeORM patterns. "Auth uses JWT with refresh tokens, not sessions" prevents Claude from adding session middleware. "We deploy to Vercel, not AWS" ensures Claude generates the right configuration files and deployment scripts. "Server actions are used for mutations, not API routes" keeps Claude from creating unnecessary API endpoints. Each decision you record here saves a future correction.</p>
+            </div>
+
+            <div class="highlight">
+                <h3>Known Gotchas</h3>
+                <p>Every project has quirks that trip people up &mdash; and they trip up AI agents too. Document the things that are surprising, non-obvious, or different from the defaults. This section saves debugging time by preventing mistakes before they happen.</p>
+                <p>Common entries include: "The ORM auto-pluralizes table names &mdash; the 'User' model maps to the 'users' table." "Dev server runs on port 3001, not 3000, because 3000 is used by the API." "The environment variable is DATABASE_URL, not DB_URL." "Prisma needs npx prisma generate after any schema change." "The Stripe webhook secret differs between dev and prod &mdash; always check .env." These are the kinds of things you'd tell a new developer on their first day. Tell Claude too.</p>
+            </div>
+
+            <h2>A Complete CLAUDE.md Example</h2>
+
+            <p>Here's what a fully fleshed-out CLAUDE.md looks like for a realistic project. You can use this as a starting template and adapt it to your own codebase.</p>
+
+            <div class="code-block"><span class="heading"># InvoiceFlow &mdash; B2B Invoicing Platform</span>
+
+<span class="subheading">## Stack</span>
+<span class="value">- Framework: Next.js 14 (App Router)</span>
+<span class="value">- Database: PostgreSQL via Prisma</span>
+<span class="value">- Auth: NextAuth.js with JWT strategy</span>
+<span class="value">- Payments: Stripe API</span>
+<span class="value">- Styling: Tailwind CSS</span>
+<span class="value">- Testing: Vitest + Testing Library</span>
+
+<span class="subheading">## Architecture</span>
+- app/             &mdash; Next.js pages and API routes
+- src/services/    &mdash; Business logic (no framework deps)
+- src/db/          &mdash; Prisma client, models, migrations
+- src/lib/         &mdash; Shared utilities
+- src/components/  &mdash; React components (PascalCase)
+
+<span class="subheading">## Conventions</span>
+- API routes return: <span class="value">{ data: T }</span> or <span class="value">{ error: string, code: number }</span>
+- Use server actions for mutations, not API routes
+- All database queries go through service layer, never from components
+- File names: <span class="value">kebab-case</span> (invoice-service.ts)
+- Component names: <span class="value">PascalCase</span> (InvoiceTable.tsx)
+- Error handling: always use AppError class with status code + message
+- Tests: one file per module, describe/it blocks, factory functions for data
+
+<span class="subheading">## Key Decisions</span>
+- Prisma over TypeORM <span class="comment">(type safety, better DX)</span>
+- Server actions over API routes for mutations <span class="comment">(simpler, type-safe)</span>
+- JWT over sessions <span class="comment">(stateless, easier to scale)</span>
+- Vercel deployment <span class="comment">(not AWS &mdash; all config is vercel.json)</span>
+- Stripe webhooks in app/api/webhooks/stripe/route.ts
+
+<span class="subheading">## Gotchas</span>
+- Dev: API on <span class="value">:3001</span>, frontend on <span class="value">:3000</span>
+- Prisma needs <span class="value">npx prisma generate</span> after schema changes
+- Stripe webhook secret differs between dev and prod <span class="comment">(check .env)</span>
+- NextAuth session callback must include user.id for auth checks
+- The "invoices" table uses soft deletes &mdash; filter by deletedAt IS NULL</div>
+
+            <p>Notice how every section is concise and scannable. You don't need to write paragraphs &mdash; bullet points work best. The goal is to give Claude the highest-signal information in the smallest number of lines. A CLAUDE.md file between 30 and 80 lines covers most projects well.</p>
+
+            <h2>Keeping Your Memory File Updated</h2>
+
+            <p>CLAUDE.md is a living document, not a one-time setup. As your project evolves, your memory file should evolve with it. The most effective teams treat it the same way they treat their code &mdash; it gets updated alongside the changes it documents.</p>
+
+            <p>Get into the habit of updating CLAUDE.md at key moments. After making a major architectural decision, add it to the Key Decisions section so Claude doesn't suggest the approach you just moved away from. After discovering a gotcha that cost you debugging time, add it to the Gotchas section so it never happens again. After introducing a new convention, add it to Conventions so all future code follows the same pattern.</p>
+
+            <p>Beam's "Save Project Memory" toolbar button makes this easy &mdash; it helps you update the file without breaking your flow. You can also ask Claude directly: "Add to CLAUDE.md that we switched from REST to GraphQL for the admin API." Claude will update the file for you, and every future session will know about the change.</p>
+
+            <p>It's worth reviewing your CLAUDE.md monthly. Remove information that's no longer accurate, update sections that have drifted from reality, and add new patterns you've established. A stale memory file is worse than no memory file &mdash; it actively misleads Claude into generating wrong code.</p>
+
+            <h2>Memory Files for Multiple Projects</h2>
+
+            <p>Each project gets its own CLAUDE.md in its own root directory. This creates complete isolation between project contexts &mdash; exactly what you want when switching between different codebases with different conventions.</p>
+
+            <p>When you switch between projects, each Claude Code session reads only the CLAUDE.md in its working directory. Your SaaS app's Claude knows about Next.js and Prisma. Your CLI tool's Claude knows about Node.js and Commander. Your open source contribution's Claude knows about the upstream conventions and contribution guidelines. There's no cross-contamination between contexts.</p>
+
+            <p>If you use Beam's workspace feature, this maps perfectly. Each workspace points to a different project directory, and each workspace's Claude Code sessions automatically load the right memory file. Switch from your frontend workspace to your backend workspace, and Claude's context switches with you. No manual re-explaining required.</p>
+
+            <p>For monorepos or multi-package projects, you can place a CLAUDE.md at the root level with shared conventions, and additional CLAUDE.md files in subdirectories for package-specific context. Claude reads the nearest one to its working directory.</p>
+
+            <h2>Beyond CLAUDE.md: Interoperable Memory</h2>
+
+            <p>CLAUDE.md works with Claude Code, but the underlying concept &mdash; giving AI agents persistent project context through a file &mdash; works with any AI coding agent. The idea is universal even if the file name differs.</p>
+
+            <p>OpenAI's Codex CLI reads a file called <code>.codex-instructions</code> at the project root. Google's Jules looks for similar configuration files. Other agents have their own conventions. The content is almost identical across all of them &mdash; it's the same project context, just read by different tools.</p>
+
+            <p>You can maintain a single source of truth by using a shared file like <code>project-memory.md</code> that all agents can read, or you can create agent-specific files that reference common content. Some teams keep a <code>CLAUDE.md</code> for Claude Code and a <code>.codex-instructions</code> for Codex, with both files containing the same information.</p>
+
+            <p>Beam's memory management works across all agents. The "Install Project Memory" button creates a memory file that any agent can read, and the "Save Project Memory" button updates it universally. One button, one file, every agent gets the same context. Whether you're using Claude Code, Codex CLI, or switching between them, your AI assistants share the same understanding of your project.</p>
+
+            <div class="cta-box">
+                <h3>Give Your AI Agent a Memory</h3>
+                <p>Download Beam and use Install Project Memory to create your first CLAUDE.md in one click.</p>
+                <a href="../" class="btn">Download Beam for macOS</a>
+            </div>
+
+            <h2>Summary</h2>
+
+            <p>A well-crafted CLAUDE.md file eliminates the amnesia problem and makes every Claude Code session productive from the first prompt. Here's what to include:</p>
+
+            <ul>
+                <li><strong>Project Overview</strong> &mdash; name, purpose, and complete tech stack</li>
+                <li><strong>Architecture</strong> &mdash; directory structure, layers, and data flow</li>
+                <li><strong>Coding Conventions</strong> &mdash; naming, error handling, API shapes, and test patterns</li>
+                <li><strong>Key Decisions</strong> &mdash; choices you've already made that Claude should respect</li>
+                <li><strong>Known Gotchas</strong> &mdash; quirks, non-obvious defaults, and common pitfalls</li>
+            </ul>
+
+            <p>Keep it concise, keep it current, and keep it in your project root. That single file is the difference between an AI assistant that knows your project and one that's guessing.</p>
+
+            <div class="related-articles">
+                <h2>Related Articles</h2>
+                <div class="related-grid">
+                    <a href="ai-agent-memory-management.html" class="related-card">
+                        <h4>AI Agent Memory Management</h4>
+                        <p>How persistent memory transforms AI-assisted development workflows.</p>
+                    </a>
+                    <a href="interoperable-ai-agent-memory.html" class="related-card">
+                        <h4>Interoperable Memory Across AI Agents</h4>
+                        <p>Share project context between Claude Code, Codex, and other AI agents.</p>
+                    </a>
+                    <a href="claude-code-and-codex-together.html" class="related-card">
+                        <h4>Claude Code and Codex Together</h4>
+                        <p>Run multiple AI coding agents side by side with shared memory.</p>
+                    </a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>
+                <a href="../">Beam</a> &bull; Terminal Organizer for macOS &bull;
+                <a href="mailto:frank@nextuptechnologies.co">Contact</a>
+            </p>
+
+            <p style="margin-top: 12px; font-size: 0.8rem;">
+                <a href="/privacy.html" style="color: #71717a; text-decoration: none;">Privacy Policy</a> &bull;
+                <a href="/terms.html" style="color: #71717a; text-decoration: none;">Terms of Service</a>
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>

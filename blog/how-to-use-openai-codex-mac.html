@@ -559,14 +559,14 @@ codex --model gpt-5.1-codex-mini</code></pre>
 
             <p>Once you start using Codex regularly, you will quickly find yourself running multiple sessions across different projects. One Codex instance for the backend, another for the frontend, maybe a third for writing tests. Without organization, your terminal becomes a mess of unnamed tabs with no way to find anything.</p>
 
-            <p>Beam solves this with <strong>subwindows</strong> -- separate, named terminal windows that group related terminals together. Each subwindow can contain multiple tabs and split panes, giving you a complete workspace for each project.</p>
+            <p>Beam solves this with <strong>workspaces</strong> -- separate, named terminal windows that group related terminals together. Each workspace can contain multiple tabs and split panes, giving you a complete workspace for each project.</p>
 
             <h3>Setting Up a Codex Workspace</h3>
 
             <p>Here is a practical setup for full-stack development with Codex:</p>
 
             <div class="highlight">
-                <h3>Subwindow 1: "Backend" (<span class="kbd">⌘1</span>)</h3>
+                <h3>Workspace 1: "Backend" (<span class="kbd">⌘1</span>)</h3>
                 <ul>
                     <li><strong>Tab 1: "Codex"</strong> -- Codex session pointed at your API codebase</li>
                     <li><strong>Tab 2: "Server"</strong> -- Dev server running (<code>npm run dev</code>)</li>
@@ -575,7 +575,7 @@ codex --model gpt-5.1-codex-mini</code></pre>
             </div>
 
             <div class="highlight">
-                <h3>Subwindow 2: "Frontend" (<span class="kbd">⌘2</span>)</h3>
+                <h3>Workspace 2: "Frontend" (<span class="kbd">⌘2</span>)</h3>
                 <ul>
                     <li><strong>Tab 1: "Codex"</strong> -- Codex session for your React/Vue/Next.js app</li>
                     <li><strong>Tab 2: "Dev Server"</strong> -- Frontend dev server with hot reload</li>
@@ -587,11 +587,11 @@ codex --model gpt-5.1-codex-mini</code></pre>
 
             <h3>Save and Restore Your Layout</h3>
 
-            <p>Once you have your subwindows and tabs arranged, press <span class="kbd">⌘S</span> to save the layout. Give it a name like "Codex Full Stack." Tomorrow, when you sit down to work, press <span class="kbd">⌘⇧L</span> and select your saved layout. Everything is restored exactly as you left it.</p>
+            <p>Once you have your workspaces and tabs arranged, press <span class="kbd">⌘S</span> to save the layout. Give it a name like "Codex Full Stack." Tomorrow, when you sit down to work, press <span class="kbd">⌘⇧L</span> and select your saved layout. Everything is restored exactly as you left it.</p>
 
             <h3>Use the Full Stack Dev Template</h3>
 
-            <p>Beam includes built-in workspace templates that set up common layouts automatically. The <strong>Full Stack Dev</strong> template creates subwindows for frontend, backend, and infrastructure -- each pre-configured with useful tabs. Press <span class="kbd">⌘⇧N</span> to open the template picker, or use the Quick Switcher (<span class="kbd">⌘P</span>) and search for "Full Stack."</p>
+            <p>Beam includes built-in workspace templates that set up common layouts automatically. The <strong>Full Stack Dev</strong> template creates workspaces for frontend, backend, and infrastructure -- each pre-configured with useful tabs. Press <span class="kbd">⌘⇧N</span> to open the template picker, or use the Quick Switcher (<span class="kbd">⌘P</span>) and search for "Full Stack."</p>
 
             <p>Templates can even auto-run commands when they load. You could create a custom template that launches Codex in one pane and starts your dev server in another, giving you a complete AI-assisted development environment with a single keyboard shortcut.</p>
 
@@ -640,7 +640,7 @@ codex "fix the email validation in signup handler"</code></pre>
 
             <h2 id="conclusion">Conclusion</h2>
 
-            <p>OpenAI Codex brings the intelligence of GPT models directly into your terminal workflow. It reads your codebase, understands natural language instructions, and applies changes right where you work -- no copy-pasting, no context switching. Combined with Beam, you get a complete AI-powered development environment: organized subwindows for each project, one-click Codex launching, saved layouts you can restore in seconds, and keyboard shortcuts that keep you in flow.</p>
+            <p>OpenAI Codex brings the intelligence of GPT models directly into your terminal workflow. It reads your codebase, understands natural language instructions, and applies changes right where you work -- no copy-pasting, no context switching. Combined with Beam, you get a complete AI-powered development environment: organized workspaces for each project, one-click Codex launching, saved layouts you can restore in seconds, and keyboard shortcuts that keep you in flow.</p>
 
             <p>The setup is straightforward: install Node.js, install Codex via npm, set your API key, and start coding. Or skip all of that and let Beam handle the installation with a single right-click. Either way, you will be writing code with AI assistance in minutes.</p>
 
@@ -655,7 +655,7 @@ codex "fix the email validation in signup handler"</code></pre>
                 <div class="related-grid">
                     <a href="beam-claude-code-setup.html" class="related-card">
                         <h4>Setting Up Beam for Claude Code Development</h4>
-                        <p>Organize your Claude Code sessions with subwindows, layouts, and keyboard shortcuts.</p>
+                        <p>Organize your Claude Code sessions with workspaces, layouts, and keyboard shortcuts.</p>
                     </a>
                     <a href="claude-code-vs-cursor-vs-codex.html" class="related-card">
                         <h4>Claude Code vs Cursor vs Codex: Which AI Coding Tool is Best?</h4>
@@ -673,9 +673,15 @@ codex "fix the email validation in signup handler"</code></pre>
     <footer>
         <div class="container">
             <p>
-                <a href="../">Beam</a> · Built by <a href="https://nextuptechnologies.co">NextUp Technologies</a>
+                <a href="../">Beam</a> · Built by NextUp Technologies
+            </p>
+
+            <p style="margin-top: 12px; font-size: 0.8rem;">
+                <a href="/privacy.html" style="color: #71717a; text-decoration: none;">Privacy Policy</a> &bull;
+                <a href="/terms.html" style="color: #71717a; text-decoration: none;">Terms of Service</a>
             </p>
         </div>
     </footer>
+
 </body>
 </html>

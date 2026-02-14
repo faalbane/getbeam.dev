@@ -413,7 +413,7 @@
                 <h3>The Long-Time Favorite</h3>
                 <p>iTerm2 has been the go-to macOS terminal replacement for over a decade, and for good reason. It offers deep customization, profiles, split panes, search, triggers, and a robust set of features that power users love.</p>
                 <p>For AI coding, iTerm2 is a significant step up from Terminal.app. You get split panes so you can watch Claude Code work while monitoring your server logs. Profiles let you configure different color schemes or fonts per context. The hotkey window is great for quick access.</p>
-                <p>But iTerm2 was designed before AI agents existed. It has no concept of subwindows or project-based grouping. You cannot save a complex multi-project layout and restore it tomorrow. There is no built-in way to launch AI agents. You are still managing everything through a flat tab bar, and when you have 15 tabs open across three projects, finding the right one is a chore.</p>
+                <p>But iTerm2 was designed before AI agents existed. It has no concept of workspaces or project-based grouping. You cannot save a complex multi-project layout and restore it tomorrow. There is no built-in way to launch AI agents. You are still managing everything through a flat tab bar, and when you have 15 tabs open across three projects, finding the right one is a chore.</p>
                 <p><span class="rating rating-mid">6 / 10</span></p>
             </div>
 
@@ -452,9 +452,9 @@
 
             <div class="highlight">
                 <h3>Built for the AI Era</h3>
-                <p>Beam is the only terminal on this list that was designed from the ground up for the way developers work in 2026. Its core concept — the subwindow — is the missing organizational layer that every other terminal lacks. A subwindow is not just a tab. It is a named, independent workspace that contains its own tabs and split panes, visually separated from other subwindows.</p>
-                <p>This maps perfectly to AI coding workflows. Your "Backend" subwindow has Claude Code in one tab and your API server in another. Your "Frontend" subwindow has Codex running alongside your Vite dev server. Your "Infrastructure" subwindow has deployment scripts and SSH sessions. Each is a self-contained unit, and you jump between them with <span class="kbd">&#8984;1</span> through <span class="kbd">&#8984;9</span>.</p>
-                <p>Beam lets you save your entire arrangement — every subwindow, every tab, every split pane, every position — as a named layout. Tomorrow morning, one shortcut restores everything. It also includes one-click AI agent launching (Claude Code, OpenAI Codex, OpenClaw) and workspace templates that set up an entire multi-agent environment in seconds.</p>
+                <p>Beam is the only terminal on this list that was designed from the ground up for the way developers work in 2026. Its core concept — the workspace — is the missing organizational layer that every other terminal lacks. A workspace is not just a tab. It is a named, independent workspace that contains its own tabs and split panes, visually separated from other workspaces.</p>
+                <p>This maps perfectly to AI coding workflows. Your "Backend" workspace has Claude Code in one tab and your API server in another. Your "Frontend" workspace has Codex running alongside your Vite dev server. Your "Infrastructure" workspace has deployment scripts and SSH sessions. Each is a self-contained unit, and you jump between them with <span class="kbd">&#8984;1</span> through <span class="kbd">&#8984;9</span>.</p>
+                <p>Beam lets you save your entire arrangement — every workspace, every tab, every split pane, every position — as a named layout. Tomorrow morning, one shortcut restores everything. It also includes one-click AI agent launching (Claude Code, OpenAI Codex, OpenClaw) and workspace templates that set up an entire multi-agent environment in seconds.</p>
                 <p>Built natively in Swift and SwiftUI, it is fast and feels like a real macOS application. No Electron, no web views, no GPU framework overhead.</p>
                 <p><span class="rating rating-high">9 / 10</span></p>
             </div>
@@ -463,13 +463,13 @@
 
             <p>The ratings above tell part of the story, but the real difference becomes clear when you look at the specific features Beam provides for AI-powered development workflows.</p>
 
-            <h3>Subwindows, Not Just Tabs</h3>
+            <h3>Workspaces, Not Just Tabs</h3>
 
-            <p>Every terminal on this list gives you tabs. Tabs are flat. When you have 12 of them, they are nearly useless — you are scanning tiny labels trying to find the right one. Beam's subwindows add a layer of hierarchy. Each subwindow is a named group of tabs, and you can think of it as a project or context. This is the same organizational leap that IDEs made when they introduced "projects" instead of just "open files."</p>
+            <p>Every terminal on this list gives you tabs. Tabs are flat. When you have 12 of them, they are nearly useless — you are scanning tiny labels trying to find the right one. Beam's workspaces add a layer of hierarchy. Each workspace is a named group of tabs, and you can think of it as a project or context. This is the same organizational leap that IDEs made when they introduced "projects" instead of just "open files."</p>
 
             <h3>Saveable Layouts</h3>
 
-            <p>iTerm2 lets you save window arrangements, but it does not capture the full context of a multi-subwindow setup. tmux sessions persist, but you need scripts to rebuild the layout. Beam's layout system captures everything — subwindow names, tab names, split configurations, window positions — and restores it with <span class="kbd">&#8984;&#8679;L</span>. You can have multiple saved layouts for different modes of work: "Deep Focus" with one project, "Full Stack" with everything, "Code Review" with git-focused windows.</p>
+            <p>iTerm2 lets you save window arrangements, but it does not capture the full context of a multi-workspace setup. tmux sessions persist, but you need scripts to rebuild the layout. Beam's layout system captures everything — workspace names, tab names, split configurations, window positions — and restores it with <span class="kbd">&#8984;&#8679;L</span>. You can have multiple saved layouts for different modes of work: "Deep Focus" with one project, "Full Stack" with everything, "Code Review" with git-focused windows.</p>
 
             <h3>One-Click AI Agents</h3>
 
@@ -477,7 +477,7 @@
 
             <h3>Workspace Templates</h3>
 
-            <p>Templates take it a step further. Instead of manually creating subwindows and launching agents, you select a template — like "Full Stack" or "Claude Code" — and Beam creates the entire workspace for you. Multiple subwindows, tabs pre-named, agents auto-launched, directories pre-set. Press <span class="kbd">&#8984;&#8679;N</span> to open the template picker, and you are working in seconds.</p>
+            <p>Templates take it a step further. Instead of manually creating workspaces and launching agents, you select a template — like "Full Stack" or "Claude Code" — and Beam creates the entire workspace for you. Multiple workspaces, tabs pre-named, agents auto-launched, directories pre-set. Press <span class="kbd">&#8984;&#8679;N</span> to open the template picker, and you are working in seconds.</p>
 
             <h3>Native macOS Performance</h3>
 
@@ -491,11 +491,11 @@
 
             <div class="highlight">
                 <h3>9:00 AM — Starting the Day</h3>
-                <p>Sarah opens Beam and presses <span class="kbd">&#8984;&#8679;L</span>. She selects her "Full Stack" layout. Three subwindows appear instantly:</p>
+                <p>Sarah opens Beam and presses <span class="kbd">&#8984;&#8679;L</span>. She selects her "Full Stack" layout. Three workspaces appear instantly:</p>
                 <ul>
-                    <li><strong>Subwindow 1: "Backend"</strong> — Tab 1 is Claude Code, already in her Go project directory. Tab 2 is the API server.</li>
-                    <li><strong>Subwindow 2: "Frontend"</strong> — Tab 1 is Codex, pointed at the Next.js repo. Tab 2 is the Vite dev server.</li>
-                    <li><strong>Subwindow 3: "Ops"</strong> — Tab 1 has git status across both repos. Tab 2 has a production SSH tunnel.</li>
+                    <li><strong>Workspace 1: "Backend"</strong> — Tab 1 is Claude Code, already in her Go project directory. Tab 2 is the API server.</li>
+                    <li><strong>Workspace 2: "Frontend"</strong> — Tab 1 is Codex, pointed at the Next.js repo. Tab 2 is the Vite dev server.</li>
+                    <li><strong>Workspace 3: "Ops"</strong> — Tab 1 has git status across both repos. Tab 2 has a production SSH tunnel.</li>
                 </ul>
                 <p>Total setup time: under 3 seconds.</p>
             </div>
@@ -508,7 +508,7 @@
 
             <div class="highlight">
                 <h3>2:00 PM — Testing and Debugging</h3>
-                <p>The feature is built. Sarah uses split panes in the Backend subwindow — Claude Code on the left, <code>go test ./...</code> running on the right — so she can see test output while asking Claude to fix failures. She presses <span class="kbd">&#8984;D</span> for a vertical split and has both views side by side.</p>
+                <p>The feature is built. Sarah uses split panes in the Backend workspace — Claude Code on the left, <code>go test ./...</code> running on the right — so she can see test output while asking Claude to fix failures. She presses <span class="kbd">&#8984;D</span> for a vertical split and has both views side by side.</p>
             </div>
 
             <div class="highlight">
@@ -530,14 +530,14 @@
                 <li><strong>Warp</strong> is innovative but focused on a different problem (making the terminal itself smarter) rather than organizing AI agent workflows.</li>
                 <li><strong>Ghostty</strong> is the fastest option and a pleasure to use, but it stops at the building blocks and does not provide the workspace layer.</li>
                 <li><strong>tmux/zellij</strong> can do almost anything if you invest the time, but the setup and maintenance cost is high and there is no native GUI experience.</li>
-                <li><strong>Beam</strong> is the only terminal purpose-built for the AI coding era. Subwindows, saveable layouts, one-click agents, workspace templates, and native macOS performance. It is the right tool for how developers actually work in 2026.</li>
+                <li><strong>Beam</strong> is the only terminal purpose-built for the AI coding era. Workspaces, saveable layouts, one-click agents, workspace templates, and native macOS performance. It is the right tool for how developers actually work in 2026.</li>
             </ul>
 
             <p>The terminal is not going away. If anything, it is becoming more central to how software gets built. The question is whether your terminal app has kept up with that shift. For most developers using AI coding tools, Beam is the answer.</p>
 
             <div class="cta-box">
                 <h3>Try the Best Terminal for AI Coding</h3>
-                <p>Download Beam free and see why developers are switching. Subwindows, saveable layouts, one-click AI agents, and native macOS performance — built for the way you work now.</p>
+                <p>Download Beam free and see why developers are switching. Workspaces, saveable layouts, one-click AI agents, and native macOS performance — built for the way you work now.</p>
                 <a href="../" class="btn">Download Beam Free</a>
             </div>
 
@@ -546,7 +546,7 @@
                 <div class="related-grid">
                     <a href="beam-claude-code-setup.html" class="related-card">
                         <h3>Setting Up Beam for Claude Code Development</h3>
-                        <p>A step-by-step guide to organizing your Claude Code sessions with subwindows, layouts, and keyboard shortcuts.</p>
+                        <p>A step-by-step guide to organizing your Claude Code sessions with workspaces, layouts, and keyboard shortcuts.</p>
                     </a>
                     <a href="how-to-use-openai-codex-mac.html" class="related-card">
                         <h3>How to Use OpenAI Codex on Mac</h3>
@@ -563,8 +563,14 @@
 
     <footer>
         <div class="container">
-            <p><a href="../">Beam</a> &middot; Built by <a href="https://nextuptechnologies.co">NextUp Technologies</a></p>
+            <p><a href="../">Beam</a> &middot; Built by NextUp Technologies</p>
+
+            <p style="margin-top: 12px; font-size: 0.8rem;">
+                <a href="/privacy.html" style="color: #71717a; text-decoration: none;">Privacy Policy</a> &bull;
+                <a href="/terms.html" style="color: #71717a; text-decoration: none;">Terms of Service</a>
+            </p>
         </div>
     </footer>
+
 </body>
 </html>

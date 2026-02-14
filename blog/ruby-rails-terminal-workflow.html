@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D0XH8B0RKL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-D0XH8B0RKL');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ruby on Rails 8 Terminal Workflow: Server, Console, Tests, and AI | Beam</title>
+    <meta name="description" content="Set up the perfect Rails 8 terminal workflow with Beam. Organize rails server, console, test runner, Solid Queue, and Claude Code sessions in one workspace.">
+    <meta name="keywords" content="Rails 8 terminal, Ruby on Rails workflow, Rails developer setup 2026, Rails terminal management, Rails 8 development, Rails AI coding, Ruby terminal organizer">
+    <meta name="author" content="NextUp Technologies">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://getbeam.dev/blog/ruby-rails-terminal-workflow.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://getbeam.dev/blog/ruby-rails-terminal-workflow.html">
+    <meta property="og:title" content="Ruby on Rails 8 Terminal Workflow: Server, Console, Tests, and AI">
+    <meta property="og:description" content="Organize rails server, console, tests, Solid Queue, and Claude Code in one workspace with Beam.">
+    <meta property="og:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Ruby on Rails 8 Terminal Workflow: Server, Console, Tests, and AI">
+    <meta name="twitter:description" content="Organize rails server, console, tests, Solid Queue, and Claude Code in one workspace with Beam.">
+    <meta name="twitter:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Ruby on Rails 8 Terminal Workflow: Server, Console, Tests, and AI — All Organized",
+        "description": "Set up the perfect Rails 8 terminal workflow with Beam. Organize rails server, console, test runner, Solid Queue, and Claude Code sessions in one workspace.",
+        "author": {
+            "@type": "Organization",
+            "name": "NextUp Technologies"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Beam"
+        },
+        "datePublished": "2026-02-11",
+        "keywords": "Rails 8 terminal, Ruby on Rails workflow, Rails developer setup 2026, Rails terminal management, Rails 8 development"
+    }
+    </script>
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #111113;
+            --bg-tertiary: #1a1a1d;
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.4);
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --border: #27272a;
+            --success: #22c55e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        header {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 60px;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1.5rem;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            background: var(--accent);
+            color: white;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+        }
+
+        article {
+            padding-bottom: 80px;
+        }
+
+        .breadcrumb {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+        }
+
+        .breadcrumb a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .meta {
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            font-size: 0.95rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 48px 0 20px;
+            color: var(--text-primary);
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        ul, ol {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            padding-left: 24px;
+        }
+
+        li {
+            margin-bottom: 12px;
+        }
+
+        .highlight {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 32px 0;
+        }
+
+        .highlight h3 {
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .tip-box {
+            background: rgba(59, 130, 246, 0.08);
+            border: 1px solid rgba(59, 130, 246, 0.25);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 32px 0;
+        }
+
+        .tip-box h3 {
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            color: var(--accent);
+        }
+
+        code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            background: var(--bg-tertiary);
+            padding: 2px 8px;
+            border-radius: 4px;
+            border: 1px solid var(--border);
+        }
+
+        pre {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px 24px;
+            overflow-x: auto;
+            margin: 24px 0;
+        }
+
+        pre code {
+            background: none;
+            border: none;
+            padding: 0;
+            font-size: 0.9rem;
+            line-height: 1.7;
+            color: var(--text-secondary);
+        }
+
+        .kbd {
+            display: inline-block;
+            padding: 2px 8px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .cta-box h3 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+        }
+
+        .cta-box p {
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 24px;
+        }
+
+        .cta-box .btn {
+            background: white;
+            color: var(--accent);
+        }
+
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+
+        .related-articles { margin-top: 60px; padding-top: 40px; border-top: 1px solid var(--border); }
+        .related-articles h2 { font-size: 1.5rem; margin-bottom: 24px; }
+        .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .related-card { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-decoration: none; transition: border-color 0.2s; }
+        .related-card:hover { border-color: var(--accent); }
+        .related-card h4 { color: white; font-size: 1rem; margin: 0 0 8px 0; }
+        .related-card p { color: var(--text-muted); font-size: 0.85rem; margin: 0; }
+        @media (max-width: 600px) { .related-grid { grid-template-columns: 1fr; } h1 { font-size: 1.8rem; } }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="../" class="logo">
+                <div class="logo-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round">
+                        <path d="M4 17l6-6-6-6M12 19h8"/>
+                    </svg>
+                </div>
+                Beam
+            </a>
+            <a href="../" class="btn">Download Beam</a>
+        </div>
+    </header>
+
+    <main>
+        <article class="container">
+            <div class="breadcrumb">
+                <a href="../">Beam</a> / <a href="../#guides">Guides</a> / Ruby on Rails 8 Terminal Workflow
+            </div>
+
+            <h1>Ruby on Rails 8 Terminal Workflow: Server, Console, Tests, and AI -- All Organized</h1>
+            <p class="meta">February 11, 2026 &bull; NextUp Technologies &bull; 8 min read</p>
+
+            <p>Rails is experiencing a genuine renaissance. With Rails 8 shipping Solid Queue, Solid Cache, and Solid Cable out of the box, the framework has never been more self-contained or productive. You can build a full production application with background jobs, caching, and WebSockets without touching Redis or Memcached.</p>
+
+            <p>But there is one area where Rails development has always been messy: the terminal. A typical Rails dev session demands four to six concurrent processes, and with AI coding assistants like Claude Code entering the picture, that number only grows. This guide shows you how to tame the chaos with Beam.</p>
+
+            <h2>The Rails Terminal Problem</h2>
+
+            <p>Every Rails developer knows the drill. You sit down, open your project, and within five minutes you have a constellation of terminal windows scattered across your screen:</p>
+
+            <ul>
+                <li><strong>Rails server</strong> -- <code>bin/rails server</code> running Puma, watching for requests</li>
+                <li><strong>Rails console</strong> -- <code>bin/rails console</code> for poking at models and debugging ActiveRecord queries</li>
+                <li><strong>Test runner</strong> -- <code>bin/rails test</code> or <code>bundle exec rspec</code> running continuously with Guard</li>
+                <li><strong>Asset pipeline</strong> -- <code>bin/dev</code> running esbuild, Tailwind CSS watcher, or Propshaft</li>
+                <li><strong>Background jobs</strong> -- Solid Queue worker or Sidekiq processing jobs</li>
+                <li><strong>Git operations</strong> -- Staging, committing, rebasing, managing branches</li>
+            </ul>
+
+            <p>That is six processes minimum. In a standard terminal, they become a jumble of tabs with identical names. You Command-Tab between them, squinting at output to figure out which is which. When you accidentally close one, you lose your scrollback and have to restart.</p>
+
+            <h2>Why AI Makes This Worse</h2>
+
+            <p>Now add Claude Code to the mix. You are not just running passive processes anymore -- you have an active AI coding session that needs to read your server output, check test results, and understand your application state.</p>
+
+            <p>A realistic Rails 8 + AI workflow looks like this:</p>
+
+            <ul>
+                <li><strong>Claude Code session</strong> -- Working on your feature branch, modifying models, controllers, views</li>
+                <li><strong>Rails server</strong> -- So Claude Code can verify its changes work</li>
+                <li><strong>Test runner</strong> -- So you can validate Claude Code's output against your test suite</li>
+                <li><strong>Rails console</strong> -- For quick data checks and ActiveRecord experiments</li>
+                <li><strong>Solid Queue monitor</strong> -- Watching background job execution</li>
+                <li><strong>Git terminal</strong> -- For committing Claude Code's changes incrementally</li>
+            </ul>
+
+            <p>That is six or more processes that are deeply interrelated. You need to see server logs while Claude Code is making changes. You need to run tests after each AI modification. The context switching cost is enormous -- unless you organize everything properly.</p>
+
+            <h2>The Beam Workspace Setup for Rails 8</h2>
+
+            <p>Here is the workspace layout that keeps a Rails 8 project fully organized. Press <span class="kbd">&#8984;N</span> to create a new workspace and name it after your app.</p>
+
+            <div class="highlight">
+                <h3>Workspace: "MyRailsApp"</h3>
+                <p><strong>Tab 1: Rails Server</strong> -- Your Puma process with auto-reload</p>
+                <pre><code>cd ~/Projects/my_rails_app
+bin/dev</code></pre>
+                <p>Using <code>bin/dev</code> starts Puma alongside your CSS and JS watchers via Foreman or a Procfile.dev. All asset compilation output and server logs appear in one tab.</p>
+
+                <p><strong>Tab 2: Rails Console</strong> -- Interactive Ruby with your full app loaded</p>
+                <pre><code>cd ~/Projects/my_rails_app
+bin/rails console</code></pre>
+                <p>Keep this open all day. Test ActiveRecord queries, inspect Solid Queue jobs, and verify data changes that Claude Code makes.</p>
+
+                <p><strong>Tab 3: Test Runner</strong> -- Continuous testing with Guard</p>
+                <pre><code>cd ~/Projects/my_rails_app
+bundle exec guard</code></pre>
+                <p>Or run tests manually as needed:</p>
+                <pre><code># Minitest
+bin/rails test test/models/user_test.rb
+
+# RSpec
+bundle exec rspec spec/models/user_spec.rb --format documentation</code></pre>
+
+                <p><strong>Tab 4: Claude Code</strong> -- Your AI coding companion</p>
+                <pre><code>cd ~/Projects/my_rails_app
+claude</code></pre>
+                <p>This is where the magic happens. Claude Code understands your Rails conventions, reads your Gemfile, and generates code that fits your application patterns.</p>
+
+                <p><strong>Tab 5: Git Operations</strong> -- Version control workflow</p>
+                <pre><code>cd ~/Projects/my_rails_app
+git status</code></pre>
+                <p>Keep a dedicated tab for staging, committing, and pushing. After Claude Code generates a feature, review the diff here before committing.</p>
+            </div>
+
+            <p>Switch between tabs instantly with <span class="kbd">&#8984;1</span> through <span class="kbd">&#8984;5</span>. No hunting, no guessing.</p>
+
+            <h2>Split Pane Workflows for Rails</h2>
+
+            <p>Tabs keep things organized, but split panes let you see multiple processes at once. Press <span class="kbd">&#8984;&#8997;&#8963;T</span> to split a tab vertically. Here are the most useful combinations for Rails development:</p>
+
+            <p><strong>Server + Console side by side:</strong> Split Tab 1 and run <code>bin/rails console</code> in the right pane. Watch server logs on the left while testing queries on the right. When you call an endpoint from the console, see the request/response cycle in real time.</p>
+
+            <p><strong>Claude Code + Tests side by side:</strong> Split Tab 4 and run your test suite in the right pane. As Claude Code modifies a model, immediately run the corresponding tests in the adjacent pane. This tight feedback loop catches issues before they compound.</p>
+
+            <p><strong>Server logs + Solid Queue output:</strong> Monitor your HTTP requests alongside background job processing. This is essential when debugging features that enqueue work -- like sending emails or processing uploads.</p>
+
+            <div class="tip-box">
+                <h3>Tip: Use bin/dev for Rails 8</h3>
+                <p>Rails 8 generates a <code>Procfile.dev</code> that starts your server, CSS watcher, and JS bundler together. Running <code>bin/dev</code> instead of <code>bin/rails server</code> keeps everything in one process. Combine this with Beam's split panes and you can dedicate the second pane to Solid Queue:</p>
+                <pre><code>bin/jobs</code></pre>
+                <p>Or run the worker directly:</p>
+                <pre><code>bin/rails solid_queue:start</code></pre>
+            </div>
+
+            <h2>Quick Switcher: Jump Between Rails Projects</h2>
+
+            <p>Many Rails developers work on multiple apps -- a main monolith, an API service, a microservice or two. In Beam, each project gets its own workspace. Press <span class="kbd">&#8984;P</span> to open the Quick Switcher and type a few characters to find any tab in any workspace.</p>
+
+            <p>Working on the main app's user model but need to check the API service's authentication endpoint? Type "api" in the Quick Switcher and jump directly to that workspace's console tab. No hunting through dozens of terminal windows.</p>
+
+            <p>Switch between workspaces with <span class="kbd">&#8984;&#8997;&#8592;&#8594;</span> to move laterally between your Rails projects while keeping every process running in the background.</p>
+
+            <h2>Rails 8 Specifics: Solid Queue, Kamal, and Thruster</h2>
+
+            <p>Rails 8 introduces infrastructure that lives inside your application instead of requiring external services. This is great for simplicity but means more processes to monitor in development.</p>
+
+            <div class="highlight">
+                <h3>Solid Queue Worker Monitoring</h3>
+                <p>Solid Queue replaces Sidekiq/Redis for many applications. In development, monitor job processing in a dedicated tab or split pane:</p>
+                <pre><code># Start the Solid Queue supervisor
+bin/rails solid_queue:start
+
+# Or monitor jobs from the console
+SolidQueue::Job.where(finished_at: nil).count
+SolidQueue::FailedExecution.last(5).each { |f| puts f.error }</code></pre>
+                <p>Keep this visible alongside your server tab so you can see jobs being enqueued and processed as you develop features.</p>
+            </div>
+
+            <div class="highlight">
+                <h3>Kamal Deployment from Beam</h3>
+                <p>Rails 8 ships with Kamal 2 for deployment. Keep a dedicated tab for deployment operations:</p>
+                <pre><code># Deploy to production
+kamal deploy
+
+# Check server logs
+kamal app logs
+
+# Open a remote Rails console
+kamal app exec --interactive "bin/rails console"
+
+# Roll back if needed
+kamal rollback</code></pre>
+                <p>Having deployment in its own tab means your server, tests, and Claude Code keep running undisturbed while you ship.</p>
+            </div>
+
+            <div class="highlight">
+                <h3>Thruster and Puma</h3>
+                <p>Rails 8 includes Thruster, an HTTP/2 proxy that sits in front of Puma. In production this handles SSL and asset caching, but in development you can test the full stack:</p>
+                <pre><code># Start with Thruster (production-like)
+thrust bin/rails server
+
+# Standard development server
+bin/dev</code></pre>
+            </div>
+
+            <h2>Project Memory: Teaching Claude Code Your Rails Conventions</h2>
+
+            <p>Every Rails app has its own conventions beyond the framework defaults. Maybe you use service objects in <code>app/services/</code>. Maybe you follow the Interactor pattern. Maybe your team uses ViewComponent instead of partials.</p>
+
+            <p>With Beam's Project Memory feature, you can persist context about your Rails app so Claude Code understands your patterns from the start of every session:</p>
+
+            <pre><code># Example CLAUDE.md for a Rails 8 project
+
+## Project: MyRailsApp
+- Ruby 3.3.0, Rails 8.0
+- Database: PostgreSQL 16, SQLite for Solid Queue/Cache/Cable
+- Testing: Minitest with FactoryBot, system tests with Capybara
+- Background jobs: Solid Queue (no Redis)
+- Deployment: Kamal 2 to Hetzner VPS
+
+## Conventions
+- Service objects in app/services/ (call method pattern)
+- Form objects in app/forms/ for complex validations
+- Query objects in app/queries/ for complex scopes
+- Stimulus controllers for all JS behavior
+- Turbo Frames for partial page updates
+
+## Commands
+- bin/dev          -- start full dev environment
+- bin/rails test   -- run all tests
+- bin/ci           -- full CI suite (rubocop + tests)
+- kamal deploy     -- deploy to production</code></pre>
+
+            <p>This file tells Claude Code exactly how your team works. When it generates a new feature, it will follow your service object pattern, use your preferred testing style, and know that you are on Solid Queue instead of Sidekiq.</p>
+
+            <div class="tip-box">
+                <h3>Tip: Save and Restore Your Daily Workflow</h3>
+                <p>Once you have your Rails workspace set up -- server, console, tests, Claude Code, git -- press <span class="kbd">&#8984;S</span> to save the layout. Tomorrow morning, open Beam and restore your entire workspace with one click. Every tab opens in the right directory. Your Rails development day starts in seconds instead of minutes.</p>
+            </div>
+
+            <h2>A Complete Rails 8 Development Session</h2>
+
+            <p>Here is what a productive Rails 8 session looks like with Beam:</p>
+
+            <ol>
+                <li><strong>Open Beam and restore your "MyRailsApp" layout.</strong> Five tabs appear: server, console, tests, Claude Code, git. Each one <code>cd</code>'d to your project directory.</li>
+                <li><strong>Tab 1 starts your dev server.</strong> Puma boots, Tailwind CSS watcher starts, esbuild is ready. You see "Listening on http://127.0.0.1:3000" in seconds.</li>
+                <li><strong>Tab 4: ask Claude Code to build a feature.</strong> "Add a notifications system using Solid Queue. Users should receive in-app notifications when someone comments on their post."</li>
+                <li><strong>Tab 3: run the generated tests.</strong> <code>bin/rails test test/models/notification_test.rb</code> -- verify Claude Code's output.</li>
+                <li><strong>Tab 2: inspect the data.</strong> <code>Notification.last</code> in the console to verify the record was created correctly.</li>
+                <li><strong>Tab 1: check the server logs.</strong> Split the pane to also monitor Solid Queue processing the notification delivery job.</li>
+                <li><strong>Tab 5: commit the working feature.</strong> <code>git add -p</code> to review each change, then commit with a descriptive message.</li>
+                <li><strong>Repeat.</strong> Context switch between tabs with keyboard shortcuts. Everything stays in place.</li>
+            </ol>
+
+            <p>No lost terminals. No guessing which window is which. No restarting processes because you accidentally closed the wrong tab.</p>
+
+            <h2>The Rails Renaissance + AI: Terminal-First Is Back</h2>
+
+            <p>Rails 8 represents a philosophical return to simplicity. Solid Queue, Solid Cache, and Solid Cable eliminate external dependencies. Kamal eliminates complex deployment pipelines. Thruster eliminates separate proxy configuration. The framework is saying: you do not need a dozen services to build a great app.</p>
+
+            <p>Claude Code carries that same philosophy into AI-assisted development. No browser-based IDE. No cloud dependency. Just your terminal, your code, and an AI that understands both. It is the most Rails-like approach to AI coding -- convention over configuration, local-first, and deeply integrated with your existing workflow.</p>
+
+            <p>Beam ties it all together. Your Rails server, your console, your tests, your AI assistant, your deployment -- all organized in one window with keyboard-driven navigation. It is the terminal setup that the Rails renaissance deserves.</p>
+
+            <div class="cta-box">
+                <h3>Build Rails Apps Faster with Beam</h3>
+                <p>Download Beam free and set up your Rails 8 workspace in minutes. Server, console, tests, and Claude Code -- all organized.</p>
+                <a href="../" class="btn">Download Beam for macOS</a>
+            </div>
+
+            <h2>Summary</h2>
+
+            <p>Rails 8 is the most productive version of the framework ever released, and pairing it with Claude Code and Beam creates a development workflow that is fast, organized, and enjoyable:</p>
+
+            <ul>
+                <li>Use <strong>Beam workspaces</strong> to give each Rails project its own isolated environment</li>
+                <li>Use <strong>tabs</strong> for server, console, tests, Claude Code, and git -- switch with <span class="kbd">&#8984;1</span> through <span class="kbd">&#8984;5</span></li>
+                <li>Use <strong>split panes</strong> to watch server logs alongside your console or test output</li>
+                <li>Use <strong>Project Memory</strong> to teach Claude Code your Rails conventions and gem choices</li>
+                <li>Use <strong>saved layouts</strong> (<span class="kbd">&#8984;S</span>) to restore your entire workspace with one click</li>
+                <li>Use the <strong>Quick Switcher</strong> (<span class="kbd">&#8984;P</span>) to jump between multiple Rails projects instantly</li>
+            </ul>
+
+            <p>The Rails renaissance is here. Your terminal setup should match it.</p>
+
+            <div class="related-articles">
+                <h2>Related Articles</h2>
+                <div class="related-grid">
+                    <a href="beam-claude-code-setup.html" class="related-card">
+                        <h4>Setting Up Beam for Claude Code</h4>
+                        <p>Step-by-step guide to configuring Beam for AI-assisted development.</p>
+                    </a>
+                    <a href="vibe-coding-mac-setup-2026.html" class="related-card">
+                        <h4>Vibe Coding Mac Setup 2026</h4>
+                        <p>The complete macOS setup for productive AI-assisted coding.</p>
+                    </a>
+                    <a href="complete-guide-beam-workspaces.html" class="related-card">
+                        <h4>Complete Guide to Beam Workspaces</h4>
+                        <p>Master workspaces, tabs, splits, and layouts for any workflow.</p>
+                    </a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>
+                <a href="../">Beam</a> &bull; Terminal Organizer for macOS &bull;
+                Built by <a href="https://nextuptechnologies.co">NextUp Technologies</a> &bull;
+                <a href="mailto:frank@nextuptechnologies.co">Contact</a>
+            </p>
+
+            <p style="margin-top: 12px; font-size: 0.8rem;">
+                <a href="/privacy.html" style="color: #71717a; text-decoration: none;">Privacy Policy</a> &bull;
+                <a href="/terms.html" style="color: #71717a; text-decoration: none;">Terms of Service</a>
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>

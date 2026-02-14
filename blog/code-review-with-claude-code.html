@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D0XH8B0RKL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-D0XH8B0RKL');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Do Code Review with Claude Code | Beam Terminal Organizer</title>
+    <meta name="description" content="Use Claude Code as your AI code reviewer. Catch bugs, spot anti-patterns, review PRs, and improve code quality — whether you're a solo dev or working on a team.">
+    <meta name="keywords" content="Claude Code code review, AI code review, Claude Code PR review, automated code review AI, Claude Code quality, AI pair programming review">
+    <meta name="author" content="NextUp Technologies">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://getbeam.dev/blog/code-review-with-claude-code.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://getbeam.dev/blog/code-review-with-claude-code.html">
+    <meta property="og:title" content="How to Do Code Review with Claude Code">
+    <meta property="og:description" content="Use Claude Code as your AI code reviewer. Catch bugs, spot anti-patterns, review PRs, and improve code quality.">
+    <meta property="og:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="How to Do Code Review with Claude Code">
+    <meta name="twitter:description" content="Use Claude Code as your AI code reviewer. Catch bugs, spot anti-patterns, review PRs, and improve code quality.">
+    <meta name="twitter:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "How to Do Code Review with Claude Code",
+        "description": "Use Claude Code as your AI code reviewer. Catch bugs, spot anti-patterns, review PRs, and improve code quality.",
+        "author": {
+            "@type": "Organization",
+            "name": "NextUp Technologies"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Beam"
+        },
+        "datePublished": "2026-02-11",
+        "keywords": "Claude Code code review, AI code review, Claude Code PR review, automated code review AI"
+    }
+    </script>
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #111113;
+            --bg-tertiary: #1a1a1d;
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.4);
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --border: #27272a;
+            --success: #22c55e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        header {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 60px;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1.5rem;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            background: var(--accent);
+            color: white;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+        }
+
+        article {
+            padding-bottom: 80px;
+        }
+
+        .breadcrumb {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+        }
+
+        .breadcrumb a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .meta {
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            font-size: 0.95rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 48px 0 20px;
+            color: var(--text-primary);
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        ul, ol {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            padding-left: 24px;
+        }
+
+        li {
+            margin-bottom: 12px;
+        }
+
+        code {
+            font-family: 'JetBrains Mono', monospace;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 2px 8px;
+            font-size: 0.88rem;
+            color: var(--accent);
+        }
+
+        .code-block {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 24px 0;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            overflow-x: auto;
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+
+        .highlight {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 32px 0;
+        }
+
+        .highlight h3 {
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .highlight-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 32px 0;
+        }
+
+        .highlight-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+        }
+
+        .highlight-card h3 {
+            font-size: 1.05rem;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .highlight-card ul {
+            margin-bottom: 0;
+            padding-left: 20px;
+        }
+
+        .highlight-card li {
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+
+        .severity-dot {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .severity-critical { background: #ef4444; }
+        .severity-warning { background: #f59e0b; }
+        .severity-info { background: #3b82f6; }
+        .severity-quality { background: #8b5cf6; }
+        .severity-arch { background: #22c55e; }
+
+        .kbd {
+            display: inline-block;
+            padding: 2px 8px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+        }
+
+        .blog-visual {
+            margin: 40px 0;
+        }
+
+        .blog-visual svg {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .cta-box h3 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+        }
+
+        .cta-box p {
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 24px;
+        }
+
+        .cta-box .btn {
+            background: white;
+            color: var(--accent);
+        }
+
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+
+        .related-articles { margin-top: 60px; padding-top: 40px; border-top: 1px solid var(--border); }
+        .related-articles h2 { font-size: 1.5rem; margin-bottom: 24px; }
+        .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .related-card { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-decoration: none; transition: border-color 0.2s; }
+        .related-card:hover { border-color: var(--accent); }
+        .related-card h4 { color: white; font-size: 1rem; margin: 0 0 8px 0; }
+        .related-card p { color: var(--text-muted); font-size: 0.85rem; margin: 0; }
+        @media (max-width: 600px) {
+            .related-grid { grid-template-columns: 1fr; }
+            .highlight-grid { grid-template-columns: 1fr; }
+            h1 { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="../" class="logo">
+                <div class="logo-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round">
+                        <path d="M4 17l6-6-6-6M12 19h8"/>
+                    </svg>
+                </div>
+                Beam
+            </a>
+            <a href="../" class="btn">Download Beam</a>
+        </div>
+    </header>
+
+    <main>
+        <article class="container">
+            <div class="breadcrumb">
+                <a href="../">Beam</a> / <a href="../#guides">Guides</a> / Code Review with Claude Code
+            </div>
+
+            <h1>How to Do Code Review with Claude Code</h1>
+            <p class="meta">February 2026 &bull; 7 min read</p>
+
+            <p>Code review is one of the most valuable engineering practices -- and one of the hardest to maintain consistently. Solo developers have no one to review their code. Small teams face bottlenecks where a single senior engineer becomes the gatekeeper for every pull request. Large teams develop a culture of rubber-stamp approvals where reviewers glance at the diff, leave a "LGTM," and move on. None of these are real code review.</p>
+
+            <p>Claude Code changes this equation entirely. It reviews code with the thoroughness of a senior engineer who never gets tired, never rushes through a Friday afternoon review, and reads every single line of the diff. It catches the kinds of issues that slip through when humans are fatigued, distracted, or just eager to merge. Here is how to add AI code review to your development workflow and start shipping better code immediately.</p>
+
+            <!-- Code Review Workflow Visual -->
+            <div class="blog-visual">
+                <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" fill="none">
+                    <!-- Background -->
+                    <rect width="800" height="420" rx="12" fill="#111113"/>
+
+                    <!-- Diff panel -->
+                    <rect x="30" y="20" width="380" height="380" rx="10" fill="#0a0a0b" stroke="#27272a" stroke-width="1"/>
+                    <!-- Diff title bar -->
+                    <rect x="30" y="20" width="380" height="36" rx="10" fill="#1a1a1d"/>
+                    <rect x="30" y="46" width="380" height="10" fill="#1a1a1d"/>
+                    <circle cx="50" cy="38" r="5" fill="#ef4444" opacity="0.8"/>
+                    <circle cx="66" cy="38" r="5" fill="#f59e0b" opacity="0.8"/>
+                    <circle cx="82" cy="38" r="5" fill="#22c55e" opacity="0.8"/>
+                    <text x="210" y="42" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="11" text-anchor="middle">auth/middleware.ts</text>
+
+                    <!-- Line numbers and diff lines -->
+                    <text x="44" y="78" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="10">14</text>
+                    <text x="68" y="78" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="10.5">  const token = req.headers.auth;</text>
+
+                    <text x="44" y="98" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="10">15</text>
+                    <rect x="62" y="87" width="340" height="16" rx="2" fill="#ef4444" opacity="0.1"/>
+                    <text x="68" y="98" fill="#ef4444" font-family="JetBrains Mono, monospace" font-size="10.5">- const user = db.query(token);</text>
+
+                    <text x="44" y="118" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="10">16</text>
+                    <rect x="62" y="107" width="340" height="16" rx="2" fill="#22c55e" opacity="0.1"/>
+                    <text x="68" y="118" fill="#22c55e" font-family="JetBrains Mono, monospace" font-size="10.5">+ const user = await db.query(token);</text>
+
+                    <text x="44" y="138" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="10">17</text>
+                    <text x="68" y="138" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="10.5">  if (user) {</text>
+
+                    <text x="44" y="158" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="10">18</text>
+                    <rect x="62" y="147" width="340" height="16" rx="2" fill="#22c55e" opacity="0.1"/>
+                    <text x="68" y="158" fill="#22c55e" font-family="JetBrains Mono, monospace" font-size="10.5">+   req.user = user;</text>
+
+                    <text x="44" y="178" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="10">19</text>
+                    <text x="68" y="178" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="10.5">    next();</text>
+
+                    <text x="44" y="198" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="10">20</text>
+                    <text x="68" y="198" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="10.5">  } else {</text>
+
+                    <text x="44" y="218" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="10">21</text>
+                    <rect x="62" y="207" width="340" height="16" rx="2" fill="#ef4444" opacity="0.1"/>
+                    <text x="68" y="218" fill="#ef4444" font-family="JetBrains Mono, monospace" font-size="10.5">-   res.send("Unauthorized");</text>
+
+                    <text x="44" y="238" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="10">22</text>
+                    <rect x="62" y="227" width="340" height="16" rx="2" fill="#22c55e" opacity="0.1"/>
+                    <text x="68" y="238" fill="#22c55e" font-family="JetBrains Mono, monospace" font-size="10.5">+   res.status(401).json({ error: ... });</text>
+
+                    <text x="44" y="258" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="10">23</text>
+                    <text x="68" y="258" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="10.5">  }</text>
+
+                    <text x="44" y="278" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="10">24</text>
+                    <text x="68" y="278" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="10.5">  return;</text>
+
+                    <text x="44" y="298" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="10">25</text>
+                    <rect x="62" y="287" width="340" height="16" rx="2" fill="#22c55e" opacity="0.1"/>
+                    <text x="68" y="298" fill="#22c55e" font-family="JetBrains Mono, monospace" font-size="10.5">+ } catch (err) {</text>
+
+                    <text x="44" y="318" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="10">26</text>
+                    <rect x="62" y="307" width="340" height="16" rx="2" fill="#22c55e" opacity="0.1"/>
+                    <text x="68" y="318" fill="#22c55e" font-family="JetBrains Mono, monospace" font-size="10.5">+   logger.error("Auth failed", err);</text>
+
+                    <text x="44" y="338" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="10">27</text>
+                    <text x="68" y="338" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="10.5">}</text>
+
+                    <text x="44" y="358" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="10">28</text>
+                    <text x="68" y="358" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="10.5">module.exports = authMiddleware;</text>
+
+                    <!-- Review comment bubbles panel -->
+                    <rect x="430" y="20" width="340" height="380" rx="10" fill="#0a0a0b" stroke="#27272a" stroke-width="1"/>
+                    <rect x="430" y="20" width="340" height="36" rx="10" fill="#1a1a1d"/>
+                    <rect x="430" y="46" width="340" height="10" fill="#1a1a1d"/>
+                    <text x="600" y="42" fill="#f59e0b" font-family="JetBrains Mono, monospace" font-size="11" text-anchor="middle">Claude Code Review</text>
+
+                    <!-- Bug comment (red) - line 15 -->
+                    <rect x="448" y="70" width="306" height="62" rx="8" fill="#1a1a1d" stroke="#ef4444" stroke-width="1" opacity="0.9"/>
+                    <circle cx="464" cy="86" r="7" fill="#ef4444"/>
+                    <text x="462" y="90" fill="white" font-family="Space Grotesk, sans-serif" font-size="9" font-weight="700" text-anchor="middle">!</text>
+                    <text x="480" y="90" fill="#ef4444" font-family="Space Grotesk, sans-serif" font-size="11" font-weight="600">Bug: Missing await on line 15</text>
+                    <text x="448" y="108" fill="#a1a1aa" font-family="Space Grotesk, sans-serif" font-size="9.5">
+                        <tspan x="458" dy="0">db.query() is async but was called without</tspan>
+                        <tspan x="458" dy="14">await. This returns a Promise, not the user.</tspan>
+                    </text>
+
+                    <!-- Warning comment (yellow) - line 21 -->
+                    <rect x="448" y="148" width="306" height="62" rx="8" fill="#1a1a1d" stroke="#f59e0b" stroke-width="1" opacity="0.9"/>
+                    <path d="M457 172 l7-12 l7 12 z" fill="#f59e0b"/>
+                    <text x="464" y="170" fill="#1a1a1d" font-family="Space Grotesk, sans-serif" font-size="8" font-weight="700" text-anchor="middle">!</text>
+                    <text x="480" y="170" fill="#f59e0b" font-family="Space Grotesk, sans-serif" font-size="11" font-weight="600">Security: No status code on error</text>
+                    <text x="448" y="188" fill="#a1a1aa" font-family="Space Grotesk, sans-serif" font-size="9.5">
+                        <tspan x="458" dy="0">Response defaults to 200 OK even on auth</tspan>
+                        <tspan x="458" dy="14">failure. Should return 401 Unauthorized.</tspan>
+                    </text>
+
+                    <!-- Info comment (blue) - line 24 -->
+                    <rect x="448" y="226" width="306" height="62" rx="8" fill="#1a1a1d" stroke="#3b82f6" stroke-width="1" opacity="0.9"/>
+                    <circle cx="464" cy="244" r="7" fill="#3b82f6"/>
+                    <text x="464" y="248" fill="white" font-family="Space Grotesk, sans-serif" font-size="10" font-weight="700" text-anchor="middle">i</text>
+                    <text x="480" y="248" fill="#3b82f6" font-family="Space Grotesk, sans-serif" font-size="11" font-weight="600">Suggestion: Add try/catch</text>
+                    <text x="448" y="266" fill="#a1a1aa" font-family="Space Grotesk, sans-serif" font-size="9.5">
+                        <tspan x="458" dy="0">db.query() can throw. Wrap in try/catch</tspan>
+                        <tspan x="458" dy="14">to handle database connection failures.</tspan>
+                    </text>
+
+                    <!-- Positive comment (green) -->
+                    <rect x="448" y="304" width="306" height="48" rx="8" fill="#1a1a1d" stroke="#22c55e" stroke-width="1" opacity="0.9"/>
+                    <circle cx="464" cy="328" r="7" fill="#22c55e"/>
+                    <text x="464" y="332" fill="white" font-family="Space Grotesk, sans-serif" font-size="11" font-weight="700" text-anchor="middle">+</text>
+                    <text x="480" y="324" fill="#22c55e" font-family="Space Grotesk, sans-serif" font-size="11" font-weight="600">Good: Error logging added</text>
+                    <text x="458" y="340" fill="#a1a1aa" font-family="Space Grotesk, sans-serif" font-size="9.5">Structured logging with context is solid.</text>
+
+                    <!-- Connector lines from diff to comments -->
+                    <line x1="410" y1="95" x2="448" y2="95" stroke="#ef4444" stroke-width="1" stroke-dasharray="4,3" opacity="0.5"/>
+                    <line x1="410" y1="215" x2="448" y2="175" stroke="#f59e0b" stroke-width="1" stroke-dasharray="4,3" opacity="0.5"/>
+                    <line x1="410" y1="275" x2="448" y2="255" stroke="#3b82f6" stroke-width="1" stroke-dasharray="4,3" opacity="0.5"/>
+                    <line x1="410" y1="315" x2="448" y2="325" stroke="#22c55e" stroke-width="1" stroke-dasharray="4,3" opacity="0.5"/>
+
+                    <!-- Legend -->
+                    <circle cx="462" cy="380" r="4" fill="#ef4444"/>
+                    <text x="472" y="383" fill="#71717a" font-family="Space Grotesk, sans-serif" font-size="9">Bug</text>
+                    <path d="M510 384 l4-7 l4 7 z" fill="#f59e0b"/>
+                    <text x="524" y="383" fill="#71717a" font-family="Space Grotesk, sans-serif" font-size="9">Warning</text>
+                    <circle cx="584" cy="380" r="4" fill="#3b82f6"/>
+                    <text x="594" y="383" fill="#71717a" font-family="Space Grotesk, sans-serif" font-size="9">Suggestion</text>
+                    <circle cx="664" cy="380" r="4" fill="#22c55e"/>
+                    <text x="674" y="383" fill="#71717a" font-family="Space Grotesk, sans-serif" font-size="9">Good</text>
+                </svg>
+            </div>
+
+            <h2>Why AI Code Review Works</h2>
+
+            <p>Human reviewers are good at understanding intent, evaluating architecture decisions, and reasoning about business logic. But they are terrible at reading every line of a 500-line diff with equal attention. Humans skim. They get distracted. They spend more mental energy on the first few files and rush through the last ones. Claude Code does not have this problem.</p>
+
+            <p>When Claude Code reviews a diff, it reads the entire thing. Not just the changed lines -- it understands the surrounding context, what the code does, how it fits into the broader architecture, and what patterns the project follows. It catches security issues, performance problems, edge cases, naming inconsistencies, missing error handling, and subtle logic bugs that human reviewers routinely miss.</p>
+
+            <p>Most importantly, it is consistent. It applies the same rigor at 9am and 5pm, on Monday morning and Friday afternoon. There is no review fatigue, no impatience, no "this looks fine" when a reviewer is eager to get to lunch. That consistency is what makes AI code review genuinely valuable -- not as a replacement for human review, but as a first pass that catches the 80% of issues that are mechanical in nature, freeing human reviewers to focus on the 20% that requires judgment and experience.</p>
+
+            <h2>Quick Review: The One-Liner</h2>
+
+            <p>The simplest way to get a code review from Claude Code takes about five seconds to set up and thirty seconds to run. Before you commit, pipe your diff directly into Claude with a review prompt:</p>
+
+            <div class="code-block">git diff | claude "Review this diff for bugs, security issues, and improvements"</div>
+
+            <p>Claude reads the entire diff and provides a structured review. It will call out specific lines, explain what the issue is, rate its severity, and suggest a fix. This is not a vague "looks good" -- it is a line-by-line analysis that catches things like unhandled null values, missing input validation, incorrect error codes, and inconsistent naming.</p>
+
+            <p>This approach is perfect for self-review before committing. It takes thirty seconds, costs almost nothing, and catches the obvious issues that you are too close to the code to notice. Make it a habit: write the code, run the diff review, fix the issues, then commit. Your commit quality goes up immediately.</p>
+
+            <h2>Deep Review: Full Module Analysis</h2>
+
+            <p>Sometimes you need more than a diff review. Maybe you have been working on a module for weeks and want a fresh perspective on the whole thing. Maybe you inherited code from someone who left the team and need to understand its quality before building on it. This is where Claude Code's deep review capability shines.</p>
+
+            <p>Start Claude Code in your project directory and give it a focused review prompt:</p>
+
+            <div class="code-block">claude
+> Review the auth module for security vulnerabilities, performance issues, and code quality</div>
+
+            <p>Claude reads all the files in the module, analyzes the relationships between them, traces the flow of data through the system, and identifies issues that would only be visible by reading multiple files together. It provides severity ratings for each finding, references specific lines, and suggests concrete fixes. A race condition in your session handling might not be visible in any single file but becomes obvious when Claude traces the flow across the middleware, the session store, and the route handler.</p>
+
+            <p>The real power of deep review is that Claude can then apply the fixes for you. After presenting its findings, you can say "fix the critical and high severity issues" and it will make the changes, maintaining consistency with your existing code style. Review and fix in one session.</p>
+
+            <h2>PR Review Workflow</h2>
+
+            <p>Pull request review is where AI code review delivers the most value to teams. The workflow is straightforward: check out the PR branch, start Claude Code, and ask it to review everything that changed relative to main.</p>
+
+            <div class="code-block">git checkout feature/new-auth
+claude
+> Review all changes in this branch compared to main. Focus on bugs, security, and architectural consistency.</div>
+
+            <p>Claude runs <code>git diff main...HEAD</code>, reads all changed files in their full context, and provides a structured review. It organizes findings into critical issues that must be fixed before merging, suggestions that would improve the code but are not blocking, and positive feedback on things done well. It checks that the changes are consistent with the project's existing patterns and flags anything that introduces a new pattern without justification.</p>
+
+            <p>The best time to run this is before requesting human review. Fix the easy stuff first -- the missing error handling, the inconsistent naming, the potential null pointer. When the human reviewer sits down with the PR, they can focus entirely on architecture, design decisions, and business logic correctness. This speeds up the review cycle dramatically because humans are no longer spending time on issues that a machine can catch.</p>
+
+            <h2>What Claude Code Catches</h2>
+
+            <div class="highlight-grid">
+                <div class="highlight-card">
+                    <h3><span class="severity-dot severity-critical"></span> Security</h3>
+                    <ul>
+                        <li>SQL injection vectors</li>
+                        <li>Cross-site scripting (XSS)</li>
+                        <li>Improper auth checks</li>
+                        <li>Exposed secrets and keys</li>
+                        <li>Insecure default configs</li>
+                    </ul>
+                </div>
+                <div class="highlight-card">
+                    <h3><span class="severity-dot severity-critical"></span> Bugs</h3>
+                    <ul>
+                        <li>Off-by-one errors</li>
+                        <li>Null pointer risks</li>
+                        <li>Race conditions</li>
+                        <li>Missing error handling</li>
+                        <li>Incorrect type coercion</li>
+                    </ul>
+                </div>
+                <div class="highlight-card">
+                    <h3><span class="severity-dot severity-warning"></span> Performance</h3>
+                    <ul>
+                        <li>N+1 query patterns</li>
+                        <li>Unnecessary re-renders</li>
+                        <li>Missing database indexes</li>
+                        <li>Memory leaks</li>
+                        <li>Unbounded list operations</li>
+                    </ul>
+                </div>
+                <div class="highlight-card">
+                    <h3><span class="severity-dot severity-info"></span> Code Quality</h3>
+                    <ul>
+                        <li>Inconsistent naming</li>
+                        <li>Dead code paths</li>
+                        <li>Code duplication</li>
+                        <li>Overly complex logic</li>
+                        <li>Missing type annotations</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="highlight-card" style="margin-bottom: 20px;">
+                <h3><span class="severity-dot severity-arch"></span> Architecture</h3>
+                <ul>
+                    <li>Violations of project patterns (e.g., business logic in controllers)</li>
+                    <li>Logic placed in the wrong layer of the stack</li>
+                    <li>Tight coupling between modules that should be independent</li>
+                    <li>Circular dependencies introduced by new changes</li>
+                    <li>Inconsistent API design across endpoints</li>
+                </ul>
+            </div>
+
+            <h2>The Review Workspace</h2>
+
+            <p>Code review is a multi-tool activity. You need the review output, the actual code, the running app to verify fixes, and a test runner to confirm nothing breaks. Beam lets you organize all of this into a single dedicated workspace so you are not constantly switching windows and losing context.</p>
+
+            <p>Set up a Beam workspace called "Code Review" with this layout:</p>
+
+            <ul>
+                <li><strong>Tab 1: Claude Code</strong> -- The reviewer. This is where you run review commands and read findings.</li>
+                <li><strong>Tab 2: Git diff / PR changes</strong> -- The raw diff so you can cross-reference Claude's findings with the actual code.</li>
+                <li><strong>Tab 3: App</strong> -- Your running application so you can verify fixes and test edge cases.</li>
+                <li><strong>Tab 4: Tests</strong> -- Run your test suite after applying fixes to make sure nothing regresses.</li>
+            </ul>
+
+            <p>Use Beam's split pane feature to put Claude's review on the left and the code in your editor on the right. Read a finding, look at the code, decide whether to fix it, and move on. The entire review loop happens without leaving the workspace. Save this layout with <span class="kbd">&#8984;S</span> so you can restore it instantly next time you need to do a review.</p>
+
+            <h2>Self-Review: Solo Dev's Best Friend</h2>
+
+            <p>If you are a solo developer, you probably know the uncomfortable feeling of merging code that nobody has looked at except you. You wrote it, you tested it, and you merged it. Maybe you missed something. Maybe you did not. You will find out in production.</p>
+
+            <p>Claude Code eliminates this uncertainty. Build a review cadence into your solo workflow and stick to it:</p>
+
+            <ul>
+                <li><strong>Before every commit:</strong> "Review the staged changes for bugs and security issues"</li>
+                <li><strong>Before every PR merge:</strong> "Review all changes on this branch compared to main"</li>
+                <li><strong>Weekly:</strong> "Review the entire auth module for issues I might have missed"</li>
+                <li><strong>Before releases:</strong> "Review all changes since the last release tag for anything critical"</li>
+            </ul>
+
+            <p>The compound effect is significant. Every review catches a few things you would have missed. Over weeks and months, your code quality steadily improves because Claude catches the same patterns repeatedly and you start avoiding them instinctively. You are getting the benefit of a senior reviewer's feedback without having a senior reviewer on the team.</p>
+
+            <h2>Team Review: Augmenting Human Reviewers</h2>
+
+            <p>On a team, AI code review is not about replacing human reviewers -- it is about making the entire review process faster and more effective. The workflow is simple: Claude does the first pass, humans do the second.</p>
+
+            <p>Claude's first pass catches formatting issues, common bug patterns, security vulnerabilities, missing error handling, and inconsistencies with project conventions. It handles the mechanical review work that humans find tedious and error-prone. When the human reviewer opens the PR, all the easy stuff is already fixed. They can focus entirely on the things that require human judgment: is this the right architecture? Does this design decision make sense for the long term? Is the business logic actually correct?</p>
+
+            <p>This division of labor speeds up the review cycle dramatically. Human reviewers spend less time on obvious issues and more time on meaningful feedback. PRs move through review faster. The team ships more confidently because every change gets both a thorough mechanical review and a thoughtful human review.</p>
+
+            <p>For teams that want to go further, add Claude review to your CI/CD pipeline. Run it as an automated step on every PR and post the findings as a comment. By the time a human reviewer looks at the PR, the AI review is already there as a starting point.</p>
+
+            <h2>Memory File: Review Standards</h2>
+
+            <p>Claude Code's review quality improves dramatically when you give it your team's specific standards. Without context, it reviews against generic best practices. With a CLAUDE.md memory file, it reviews against your team's actual rules, patterns, and preferences.</p>
+
+            <p>Add a review section to your project's CLAUDE.md file:</p>
+
+            <div class="code-block"># Code Review Standards
+
+## Style Rules
+- Use camelCase for variables, PascalCase for types
+- Max function length: 30 lines (flag anything longer)
+- Prefer early returns over nested if/else
+
+## Security Requirements
+- All database queries must use parameterized statements
+- Auth tokens must be validated on every protected route
+- User input must be sanitized before rendering
+
+## Performance Thresholds
+- No database queries inside loops (flag N+1 patterns)
+- API responses must be paginated for list endpoints
+- Images must use lazy loading
+
+## Architecture Boundaries
+- Controllers handle HTTP only — no business logic
+- Services contain business logic — no direct DB access
+- Repositories handle all database operations</div>
+
+            <p>Now when Claude reviews code, it applies your team's standards, not generic advice. It will flag a controller that contains business logic, a query that is not parameterized, or a function that exceeds thirty lines. This is the difference between a generic code review tool and a reviewer that understands your project. The memory file makes Claude Code act like a team member who has read and internalized your entire style guide.</p>
+
+            <div class="cta-box">
+                <h3>Never Ship Without a Review</h3>
+                <p>Download Beam and add AI code review to every commit. Even solo devs deserve a second pair of eyes.</p>
+                <a href="../" class="btn">Download Beam for macOS</a>
+            </div>
+
+            <h2>Summary</h2>
+
+            <p>AI code review with Claude Code is not a novelty -- it is a practical upgrade to how you write and ship software. Whether you are a solo developer who has never had a reviewer or a team lead looking to speed up your review cycle, Claude Code fills the gap.</p>
+
+            <ul>
+                <li>Use <strong>quick review</strong> (<code>git diff | claude</code>) for fast pre-commit checks</li>
+                <li>Use <strong>deep review</strong> for full module analysis and inherited code audits</li>
+                <li>Use <strong>PR review workflow</strong> to clean up PRs before human review</li>
+                <li>Set up a <strong>Beam review workspace</strong> with tabs for Claude, diffs, app, and tests</li>
+                <li>Build a <strong>self-review cadence</strong> as a solo dev to catch issues before production</li>
+                <li>Use <strong>CLAUDE.md</strong> to encode your team's review standards so Claude applies your rules</li>
+            </ul>
+
+            <p>Every code review catches something. The only bad review is the one that never happens.</p>
+
+            <div class="related-articles">
+                <h2>Related Articles</h2>
+                <div class="related-grid">
+                    <a href="write-tests-with-claude-code.html" class="related-card">
+                        <h4>Write Tests with Claude Code</h4>
+                        <p>Generate comprehensive test suites with AI-assisted test writing.</p>
+                    </a>
+                    <a href="refactor-legacy-code-claude-code.html" class="related-card">
+                        <h4>Refactor Legacy Code with Claude Code</h4>
+                        <p>Modernize old codebases safely with AI-guided refactoring.</p>
+                    </a>
+                    <a href="claude-code-keyboard-shortcuts.html" class="related-card">
+                        <h4>Claude Code Keyboard Shortcuts</h4>
+                        <p>Master every shortcut to speed up your Claude Code workflow.</p>
+                    </a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>
+                <a href="../">Beam</a> &bull; Terminal Organizer for macOS &bull;
+                <a href="mailto:frank@nextuptechnologies.co">Contact</a>
+            </p>
+
+            <p style="margin-top: 12px; font-size: 0.8rem;">
+                <a href="/privacy.html" style="color: #71717a; text-decoration: none;">Privacy Policy</a> &bull;
+                <a href="/terms.html" style="color: #71717a; text-decoration: none;">Terms of Service</a>
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>

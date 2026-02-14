@@ -1,0 +1,6 @@
+# Binary release artifacts (served by Firebase, not git)
+*.dmg
+*.exe
+*.AppImage
+*.zip
+.firebase/

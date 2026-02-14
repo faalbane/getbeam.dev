@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D0XH8B0RKL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-D0XH8B0RKL');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Use Claude Code for Python & Data Science | Beam Terminal Organizer</title>
+    <meta name="description" content="Use Claude Code for Python development and data science workflows. Generate scripts, analyze data, build pipelines, and manage experiments — all organized in Beam terminal workspaces.">
+    <meta name="keywords" content="Claude Code Python, Claude Code data science, AI Python development, Claude Code pandas, Claude Code machine learning, Python AI workflow">
+    <meta name="author" content="NextUp Technologies">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://getbeam.dev/blog/claude-code-python-data-science.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://getbeam.dev/blog/claude-code-python-data-science.html">
+    <meta property="og:title" content="How to Use Claude Code for Python & Data Science">
+    <meta property="og:description" content="Use Claude Code for Python development and data science workflows. Generate scripts, analyze data, build pipelines, and manage experiments — all organized in Beam terminal workspaces.">
+    <meta property="og:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="How to Use Claude Code for Python & Data Science">
+    <meta name="twitter:description" content="Use Claude Code for Python development and data science workflows. Generate scripts, analyze data, build pipelines, and manage experiments.">
+    <meta name="twitter:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "How to Use Claude Code for Python & Data Science",
+        "description": "Use Claude Code for Python development and data science workflows. Generate scripts, analyze data, build pipelines, and manage experiments — all organized in Beam terminal workspaces.",
+        "author": {
+            "@type": "Organization",
+            "name": "NextUp Technologies"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Beam"
+        },
+        "datePublished": "2026-02-11",
+        "keywords": "Claude Code Python, Claude Code data science, AI Python development, Claude Code pandas, Claude Code machine learning, Python AI workflow"
+    }
+    </script>
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #111113;
+            --bg-tertiary: #1a1a1d;
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.4);
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --border: #27272a;
+            --success: #22c55e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        header {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 60px;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1.5rem;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            background: var(--accent);
+            color: white;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+        }
+
+        article {
+            padding-bottom: 80px;
+        }
+
+        .breadcrumb {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+        }
+
+        .breadcrumb a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .meta {
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            font-size: 0.95rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 48px 0 20px;
+            color: var(--text-primary);
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        ul, ol {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            padding-left: 24px;
+        }
+
+        li {
+            margin-bottom: 12px;
+        }
+
+        .highlight {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 32px 0;
+        }
+
+        .highlight h3 {
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .kbd {
+            display: inline-block;
+            padding: 2px 8px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .cta-box h3 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+        }
+
+        .cta-box p {
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 24px;
+        }
+
+        .cta-box .btn {
+            background: white;
+            color: var(--accent);
+        }
+
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+
+        .blog-visual { margin: 40px 0; text-align: center; }
+        .blog-visual svg { max-width: 100%; height: auto; border-radius: 12px; }
+
+        .related-articles { margin-top: 60px; padding-top: 40px; border-top: 1px solid var(--border); }
+        .related-articles h2 { font-size: 1.5rem; margin-bottom: 24px; }
+        .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .related-card { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-decoration: none; transition: border-color 0.2s; }
+        .related-card:hover { border-color: var(--accent); }
+        .related-card h4 { color: white; font-size: 1rem; margin: 0 0 8px 0; }
+        .related-card p { color: var(--text-muted); font-size: 0.85rem; margin: 0; }
+        @media (max-width: 600px) { .related-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="../" class="logo">
+                <div class="logo-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round">
+                        <path d="M4 17l6-6-6-6M12 19h8"/>
+                    </svg>
+                </div>
+                Beam
+            </a>
+            <a href="../" class="btn">Download Beam</a>
+        </div>
+    </header>
+
+    <main>
+        <article class="container">
+            <div class="breadcrumb">
+                <a href="../">Beam</a> / <a href="../#guides">Guides</a> / Claude Code for Python & Data Science
+            </div>
+
+            <h1>How to Use Claude Code for Python & Data Science</h1>
+            <p class="meta">February 2026 &bull; 8 min read</p>
+
+            <p>Python developers and data scientists have a unique relationship with the terminal. Between Jupyter notebooks, virtual environments, data pipelines, and model training, you are juggling more terminal sessions than most. Claude Code understands Python deeply -- from pandas DataFrames to scikit-learn pipelines to FastAPI endpoints. Here is how to use it effectively, with Beam keeping your chaotic Python workflow organized.</p>
+
+            <div class="blog-visual">
+                <svg width="720" height="440" viewBox="0 0 720 440" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Window frame -->
+                    <rect x="0" y="0" width="720" height="440" rx="12" fill="#0a0a0b" stroke="#27272a" stroke-width="1.5"/>
+                    <!-- Title bar -->
+                    <rect x="0" y="0" width="720" height="36" rx="12" fill="#111113"/>
+                    <rect x="0" y="12" width="720" height="24" fill="#111113"/>
+                    <!-- Window controls -->
+                    <circle cx="20" cy="18" r="6" fill="#ef4444"/>
+                    <circle cx="40" cy="18" r="6" fill="#eab308"/>
+                    <circle cx="60" cy="18" r="6" fill="#22c55e"/>
+                    <!-- Window title -->
+                    <text x="360" y="22" text-anchor="middle" fill="#a1a1aa" font-family="Space Grotesk, sans-serif" font-size="12" font-weight="500">Beam - Python Project</text>
+                    <!-- Divider below title bar -->
+                    <line x1="0" y1="36" x2="720" y2="36" stroke="#27272a" stroke-width="1"/>
+
+                    <!-- Tab bar -->
+                    <rect x="0" y="36" width="720" height="30" fill="#111113"/>
+                    <line x1="0" y1="66" x2="720" y2="66" stroke="#27272a" stroke-width="1"/>
+
+                    <!-- Tab 1: Claude Code (active) -->
+                    <rect x="8" y="40" width="110" height="22" rx="4" fill="#D97706" opacity="0.2"/>
+                    <text x="63" y="55" text-anchor="middle" fill="#D97706" font-family="JetBrains Mono, monospace" font-size="10" font-weight="500">Claude Code</text>
+
+                    <!-- Tab 2: Python REPL -->
+                    <rect x="124" y="40" width="100" height="22" rx="4" fill="#3776AB" opacity="0.15"/>
+                    <text x="174" y="55" text-anchor="middle" fill="#3776AB" font-family="JetBrains Mono, monospace" font-size="10" font-weight="500">Python REPL</text>
+
+                    <!-- Tab 3: Server -->
+                    <rect x="230" y="40" width="64" height="22" rx="4" fill="#22c55e" opacity="0.1"/>
+                    <text x="262" y="55" text-anchor="middle" fill="#22c55e" font-family="JetBrains Mono, monospace" font-size="10">Server</text>
+
+                    <!-- Tab 4: Git -->
+                    <rect x="300" y="40" width="50" height="22" rx="4" fill="transparent"/>
+                    <text x="325" y="55" text-anchor="middle" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="10">Git</text>
+
+                    <!-- Split pane divider (vertical) -->
+                    <line x1="380" y1="66" x2="380" y2="400" stroke="#27272a" stroke-width="1.5"/>
+
+                    <!-- LEFT PANE: Claude Code -->
+                    <!-- Pane label -->
+                    <rect x="8" y="72" width="100" height="22" rx="4" fill="#D97706" opacity="0.15"/>
+                    <text x="58" y="87" text-anchor="middle" fill="#D97706" font-family="JetBrains Mono, monospace" font-size="10" font-weight="500">Claude Code</text>
+
+                    <!-- Claude prompt -->
+                    <text x="16" y="116" fill="#D97706" font-family="JetBrains Mono, monospace" font-size="11" font-weight="500">claude&gt;</text>
+                    <text x="72" y="116" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="10">Build a pandas pipeline for</text>
+                    <text x="72" y="130" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="10">cleaning and transforming churn data</text>
+
+                    <!-- Generated Python code -->
+                    <text x="16" y="156" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="10"># data_pipeline.py</text>
+
+                    <text x="16" y="172" fill="#c084fc" font-family="JetBrains Mono, monospace" font-size="10">import</text>
+                    <text x="56" y="172" fill="#fafafa" font-family="JetBrains Mono, monospace" font-size="10">pandas </text>
+                    <text x="100" y="172" fill="#c084fc" font-family="JetBrains Mono, monospace" font-size="10">as</text>
+                    <text x="116" y="172" fill="#fafafa" font-family="JetBrains Mono, monospace" font-size="10">pd</text>
+
+                    <text x="16" y="188" fill="#c084fc" font-family="JetBrains Mono, monospace" font-size="10">from</text>
+                    <text x="44" y="188" fill="#fafafa" font-family="JetBrains Mono, monospace" font-size="10">sklearn.pipeline </text>
+                    <text x="172" y="188" fill="#c084fc" font-family="JetBrains Mono, monospace" font-size="10">import</text>
+                    <text x="212" y="188" fill="#fafafa" font-family="JetBrains Mono, monospace" font-size="10">Pipeline</text>
+
+                    <text x="16" y="208" fill="#c084fc" font-family="JetBrains Mono, monospace" font-size="10">def</text>
+                    <text x="38" y="208" fill="#FFD43B" font-family="JetBrains Mono, monospace" font-size="10">clean_data</text>
+                    <text x="108" y="208" fill="#fafafa" font-family="JetBrains Mono, monospace" font-size="10">(df: pd.DataFrame):</text>
+
+                    <text x="28" y="224" fill="#fafafa" font-family="JetBrains Mono, monospace" font-size="10">df = df.dropna(subset=[</text>
+                    <text x="190" y="224" fill="#22c55e" font-family="JetBrains Mono, monospace" font-size="10">'id'</text>
+                    <text x="216" y="224" fill="#fafafa" font-family="JetBrains Mono, monospace" font-size="10">])</text>
+
+                    <text x="28" y="240" fill="#fafafa" font-family="JetBrains Mono, monospace" font-size="10">df[</text>
+                    <text x="50" y="240" fill="#22c55e" font-family="JetBrains Mono, monospace" font-size="10">'tenure'</text>
+                    <text x="102" y="240" fill="#fafafa" font-family="JetBrains Mono, monospace" font-size="10">].fillna(</text>
+                    <text x="160" y="240" fill="#3b82f6" font-family="JetBrains Mono, monospace" font-size="10">0</text>
+                    <text x="168" y="240" fill="#fafafa" font-family="JetBrains Mono, monospace" font-size="10">)</text>
+
+                    <text x="28" y="256" fill="#c084fc" font-family="JetBrains Mono, monospace" font-size="10">return</text>
+                    <text x="68" y="256" fill="#fafafa" font-family="JetBrains Mono, monospace" font-size="10">df</text>
+
+                    <text x="16" y="280" fill="#c084fc" font-family="JetBrains Mono, monospace" font-size="10">def</text>
+                    <text x="38" y="280" fill="#FFD43B" font-family="JetBrains Mono, monospace" font-size="10">build_pipeline</text>
+                    <text x="128" y="280" fill="#fafafa" font-family="JetBrains Mono, monospace" font-size="10">():</text>
+
+                    <text x="28" y="296" fill="#c084fc" font-family="JetBrains Mono, monospace" font-size="10">return</text>
+                    <text x="68" y="296" fill="#fafafa" font-family="JetBrains Mono, monospace" font-size="10">Pipeline([</text>
+
+                    <text x="40" y="312" fill="#fafafa" font-family="JetBrains Mono, monospace" font-size="10">(</text>
+                    <text x="48" y="312" fill="#22c55e" font-family="JetBrains Mono, monospace" font-size="10">'scaler'</text>
+                    <text x="104" y="312" fill="#fafafa" font-family="JetBrains Mono, monospace" font-size="10">, StandardScaler()),</text>
+
+                    <text x="40" y="328" fill="#fafafa" font-family="JetBrains Mono, monospace" font-size="10">(</text>
+                    <text x="48" y="328" fill="#22c55e" font-family="JetBrains Mono, monospace" font-size="10">'model'</text>
+                    <text x="98" y="328" fill="#fafafa" font-family="JetBrains Mono, monospace" font-size="10">, GradientBoosting...</text>
+
+                    <!-- Cursor blink -->
+                    <rect x="16" y="344" width="8" height="14" rx="1" fill="#D97706" opacity="0.8"/>
+
+                    <!-- File creation status -->
+                    <text x="16" y="376" fill="#22c55e" font-family="JetBrains Mono, monospace" font-size="10">+ Created data_pipeline.py</text>
+                    <text x="16" y="392" fill="#D97706" font-family="JetBrains Mono, monospace" font-size="10">  Writing train_model.py...</text>
+
+                    <!-- RIGHT PANE: Python REPL -->
+                    <!-- Pane label -->
+                    <rect x="388" y="72" width="100" height="22" rx="4" fill="#3776AB" opacity="0.15"/>
+                    <text x="438" y="87" text-anchor="middle" fill="#3776AB" font-family="JetBrains Mono, monospace" font-size="10" font-weight="500">Python REPL</text>
+
+                    <!-- Python REPL prompt -->
+                    <text x="396" y="116" fill="#3776AB" font-family="JetBrains Mono, monospace" font-size="11" font-weight="500">&gt;&gt;&gt;</text>
+                    <text x="424" y="116" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="10">df.describe()</text>
+
+                    <!-- DataFrame table header -->
+                    <rect x="396" y="126" width="308" height="18" rx="2" fill="#1a1a1d"/>
+                    <text x="404" y="139" fill="#FFD43B" font-family="JetBrains Mono, monospace" font-size="9" font-weight="500">       tenure  charges  churn</text>
+
+                    <!-- DataFrame rows -->
+                    <text x="404" y="157" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="9">count</text>
+                    <text x="460" y="157" fill="#fafafa" font-family="JetBrains Mono, monospace" font-size="9">7043     7043   7043</text>
+
+                    <text x="404" y="171" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="9">mean</text>
+                    <text x="460" y="171" fill="#fafafa" font-family="JetBrains Mono, monospace" font-size="9">32.37   64.76   0.27</text>
+
+                    <text x="404" y="185" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="9">std</text>
+                    <text x="460" y="185" fill="#fafafa" font-family="JetBrains Mono, monospace" font-size="9">24.56   30.09   0.44</text>
+
+                    <text x="404" y="199" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="9">min</text>
+                    <text x="460" y="199" fill="#fafafa" font-family="JetBrains Mono, monospace" font-size="9"> 0.00   18.25   0.00</text>
+
+                    <text x="404" y="213" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="9">max</text>
+                    <text x="460" y="213" fill="#fafafa" font-family="JetBrains Mono, monospace" font-size="9">72.00  118.75   1.00</text>
+
+                    <!-- Second REPL command -->
+                    <text x="396" y="240" fill="#3776AB" font-family="JetBrains Mono, monospace" font-size="11" font-weight="500">&gt;&gt;&gt;</text>
+                    <text x="424" y="240" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="10">df.isnull().sum()</text>
+
+                    <!-- Null count output -->
+                    <text x="404" y="260" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="9">customer_id</text>
+                    <text x="510" y="260" fill="#22c55e" font-family="JetBrains Mono, monospace" font-size="9">0</text>
+
+                    <text x="404" y="274" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="9">tenure</text>
+                    <text x="510" y="274" fill="#ef4444" font-family="JetBrains Mono, monospace" font-size="9">142</text>
+
+                    <text x="404" y="288" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="9">charges</text>
+                    <text x="510" y="288" fill="#22c55e" font-family="JetBrains Mono, monospace" font-size="9">0</text>
+
+                    <text x="404" y="302" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="9">churn</text>
+                    <text x="510" y="302" fill="#22c55e" font-family="JetBrains Mono, monospace" font-size="9">0</text>
+
+                    <!-- Third REPL command -->
+                    <text x="396" y="328" fill="#3776AB" font-family="JetBrains Mono, monospace" font-size="11" font-weight="500">&gt;&gt;&gt;</text>
+                    <text x="424" y="328" fill="#a1a1aa" font-family="JetBrains Mono, monospace" font-size="10">print(f"Accuracy: {score:.3f}")</text>
+
+                    <text x="404" y="348" fill="#22c55e" font-family="JetBrains Mono, monospace" font-size="10">Accuracy: 0.847</text>
+
+                    <!-- Python logo accent -->
+                    <g transform="translate(670, 396)">
+                        <rect x="0" y="0" width="10" height="10" rx="2" fill="#3776AB"/>
+                        <rect x="10" y="0" width="10" height="10" rx="2" fill="#FFD43B"/>
+                        <rect x="0" y="10" width="10" height="10" rx="2" fill="#FFD43B"/>
+                        <rect x="10" y="10" width="10" height="10" rx="2" fill="#3776AB"/>
+                    </g>
+
+                    <!-- Bottom status bar -->
+                    <rect x="0" y="410" width="720" height="30" rx="0" fill="#111113"/>
+                    <rect x="0" y="428" width="720" height="12" rx="12" fill="#111113"/>
+                    <line x1="0" y1="410" x2="720" y2="410" stroke="#27272a" stroke-width="1"/>
+                    <text x="16" y="428" fill="#3776AB" font-family="JetBrains Mono, monospace" font-size="9">Python 3.12</text>
+                    <text x="110" y="428" fill="#71717a" font-family="JetBrains Mono, monospace" font-size="9">venv: churn-project</text>
+                    <text x="600" y="428" fill="#22c55e" font-family="JetBrains Mono, monospace" font-size="9">2 files created</text>
+                </svg>
+            </div>
+
+            <h2>Claude Code's Python Strengths</h2>
+
+            <p>Claude Code is not just a code autocomplete for Python -- it is a genuine pair programmer that understands the language at a deep level. It knows Python idioms, type hinting conventions, and the difference between a quick script and production-grade code. Ask it for a one-liner and it will give you something Pythonic. Ask it for a library and it will generate proper package structure with <span class="kbd">__init__.py</span> files, docstrings, and type annotations.</p>
+
+            <p>The framework coverage is broad and current. Claude Code is comfortable with the entire data science stack -- pandas, NumPy, scikit-learn, PyTorch, TensorFlow -- as well as web frameworks like FastAPI, Django, and Flask. It understands the differences between them and will match its output to whichever you are using. Ask for a FastAPI endpoint and you get Pydantic models and async handlers. Ask for a Django view and you get class-based views with proper serializers.</p>
+
+            <p>Perhaps most importantly for Python developers, Claude Code understands the ecosystem tooling. It generates proper <span class="kbd">requirements.txt</span>, <span class="kbd">pyproject.toml</span>, and <span class="kbd">setup.cfg</span> files. It knows how to set up virtual environments, configure pytest, and write Makefiles for common tasks. This means you spend less time on boilerplate and more time on the logic that matters.</p>
+
+            <h2>The Python Development Workspace</h2>
+
+            <p>Python workflows are inherently multi-terminal. You need your AI assistant, a REPL for quick experiments, possibly a running server, and a place for package management. Beam lets you organize all of this into a single workspace instead of hunting through a dozen scattered terminal windows.</p>
+
+            <p>Here is the workspace layout that works well for Python and data science projects, set up as a Beam workspace called "Python Project":</p>
+
+            <ul>
+                <li><strong>Tab 1: Claude Code</strong> -- your AI pair programmer, generating code and answering questions about your codebase</li>
+                <li><strong>Tab 2: Python REPL or Jupyter</strong> -- run <span class="kbd">jupyter lab</span> or <span class="kbd">ipython</span> for interactive exploration and quick verification of what Claude generates</li>
+                <li><strong>Tab 3: Server/Application</strong> -- if you are building a web app, keep <span class="kbd">uvicorn main:app --reload</span> running here to see changes in real time</li>
+                <li><strong>Tab 4: Virtual env management</strong> -- dedicated to pip installs, dependency resolution, and environment troubleshooting</li>
+                <li><strong>Tab 5: Git</strong> -- version control operations, branch management, and diffs</li>
+            </ul>
+
+            <p>The real power move is using Beam's split pane feature: put Claude Code on the left and your Python REPL on the right with <span class="kbd">&#8984;&#8997;&#8963;T</span>. When Claude generates a function, you can immediately paste it into the REPL to test it with your actual data. This instant feedback loop is what turns Claude Code from a suggestion engine into a true development accelerator.</p>
+
+            <h2>Data Science Workflow</h2>
+
+            <p>Data science projects follow a natural progression -- explore, clean, engineer features, train models, evaluate -- and Claude Code can assist at every stage. The key is working step by step and verifying each stage in your REPL tab before moving on.</p>
+
+            <p><strong>Step 1: Exploratory Data Analysis.</strong> Start by telling Claude Code what you are working with: "Load and explore this CSV dataset. Show summary stats, check for missing values, and suggest cleaning steps." Claude will write a complete EDA script using pandas that loads your data, runs <span class="kbd">df.describe()</span> and <span class="kbd">df.info()</span>, identifies columns with null values, flags potential data quality issues, and even suggests transformations based on the data types it sees. Run this in your REPL tab and review the output before proceeding.</p>
+
+            <p><strong>Step 2: Feature Engineering.</strong> Once you understand your data, tell Claude what you want to predict: "Build a feature engineering pipeline for predicting customer churn. Use sklearn transformers." Claude will create a proper scikit-learn Pipeline with ColumnTransformer, applying OneHotEncoder to categorical features, StandardScaler to numeric ones, and handling missing values with appropriate imputation strategies. The code it generates follows sklearn best practices -- no data leakage, proper train/test splits, and reusable transformer objects.</p>
+
+            <p><strong>Step 3: Model Training and Evaluation.</strong> Now for the core of the workflow: "Train and evaluate three models -- logistic regression, random forest, and gradient boosting. Show comparison metrics." Claude generates training code with cross-validation, computes precision, recall, F1-score, and AUC-ROC for each model, and presents the results in a clean comparison table. It even knows to use stratified splits for imbalanced datasets. Run each training step in your REPL to verify the results, then ask Claude to refine the best-performing model with hyperparameter tuning.</p>
+
+            <h2>Building Python APIs</h2>
+
+            <p>Data science does not end with a Jupyter notebook. Sooner or later you need to deploy your model or build a service around your data. Claude Code is excellent at generating production-ready Python APIs, particularly with FastAPI.</p>
+
+            <p>Try a prompt like: "Create a FastAPI app with endpoints for user CRUD, JWT authentication, and SQLAlchemy models." Claude will generate a complete project structure -- <span class="kbd">main.py</span>, models, Pydantic schemas, route files, and authentication middleware. It understands FastAPI's patterns deeply: dependency injection for database sessions, Pydantic models for request/response validation, async/await for non-blocking operations, and proper HTTP status codes for each endpoint.</p>
+
+            <p>This is where the multi-tab Beam workspace really pays off. While Claude is generating your API code in Tab 1, your server is auto-reloading in Tab 3. You can watch endpoints come alive as Claude creates them, test them with <span class="kbd">curl</span> or your HTTP client, and ask Claude to fix issues you spot -- all without leaving your workspace. The server tab gives you immediate visibility into whether the generated code actually runs, catches import errors in real time, and shows you request logs as you test.</p>
+
+            <h2>Script Generation and Automation</h2>
+
+            <p>Python is the scripting language of choice for automation, and Claude Code excels at generating robust scripts that handle real-world edge cases. This is where it shines compared to writing scripts from scratch -- Claude adds the error handling, logging, and edge case management that you might skip when writing a quick script yourself.</p>
+
+            <p>Consider a common task: "Write a Python script that watches a directory for new CSV files, validates the schema, transforms the data, and loads it into PostgreSQL." Claude will generate a script using the watchdog library for file system monitoring, pandas for validation and transformation, and SQLAlchemy for bulk inserts. It handles file locking, corrupt files, schema mismatches, and connection retries -- all the things that would take you an hour to think through and implement.</p>
+
+            <p>CLI tools are another sweet spot. Ask Claude to "create a CLI tool using Click for managing database migrations" and it generates proper CLI structure with commands, subcommands, options, help text, and even shell completion. The code follows Click best practices with proper context management and error handling. You can test the CLI immediately in your dedicated Beam tab while Claude continues refining the implementation.</p>
+
+            <h2>Virtual Environment and Dependency Management</h2>
+
+            <div class="highlight">
+                <h3>Taming Python's Packaging Ecosystem</h3>
+                <p>Claude Code knows the Python packaging ecosystem thoroughly. Tell it "Set up a new Python project with pyproject.toml, virtual env, and these dependencies: fastapi, sqlalchemy, alembic, pytest" and it will generate the full project scaffold -- directory structure, configuration files, and the exact commands to create and activate your virtual environment. It knows the difference between <span class="kbd">pip</span>, <span class="kbd">poetry</span>, and <span class="kbd">conda</span>, and will match its output to whichever tool you specify.</p>
+                <p>Keep your virtual environment management in a dedicated Beam tab. Package installs, dependency conflicts, and version resolution can be noisy and time-consuming. By isolating these operations from your code work, you avoid cluttering your Claude Code session with pip output and can handle environment issues without interrupting your coding flow.</p>
+            </div>
+
+            <p>One particularly useful pattern is asking Claude to audit your dependencies: "Review my requirements.txt and suggest version pinning, identify unused packages, and flag any known security vulnerabilities." Claude will analyze your dependency file, suggest compatible version ranges, and point out packages that could be replaced with lighter alternatives. This kind of maintenance task is tedious by hand but takes Claude seconds.</p>
+
+            <h2>Testing Python Code</h2>
+
+            <p>Testing is where Claude Code saves the most time in a Python workflow. Writing tests is important but repetitive, and Claude is remarkably good at generating thorough test suites that catch real bugs. Ask it to "write pytest tests for the user service with fixtures, parametrize, and async test support" and it generates a complete test file with proper fixtures, parametrized test cases covering edge conditions, and async test configuration using pytest-asyncio.</p>
+
+            <p>The generated tests are not surface-level. Claude creates a <span class="kbd">conftest.py</span> with reusable fixtures, uses factory patterns for test data, mocks external dependencies correctly, and structures tests into logical classes. It knows to test both the happy path and failure cases -- invalid input, missing records, permission errors, and database constraint violations.</p>
+
+            <p>For data science code specifically, try asking Claude to "add property-based tests using Hypothesis for the data transformation functions." Property-based testing is powerful for validating data pipelines but rarely written because the setup is non-trivial. Claude generates Hypothesis strategies that match your data schema, tests invariants like "output should have the same number of rows as input" or "all values should be within expected ranges," and catches edge cases that unit tests miss. Run the test suite in your dedicated testing tab and watch the results come in while you continue working in Claude Code.</p>
+
+            <h2>Memory File: Python Project Conventions</h2>
+
+            <p>Every Python project has its own conventions -- which formatter you use, how strict your type hints are, which testing patterns you follow. A <span class="kbd">CLAUDE.md</span> file at the root of your project tells Claude Code these conventions upfront so it generates code that matches your project from the first prompt.</p>
+
+            <p>Here is what to include in your CLAUDE.md for a Python project:</p>
+
+            <ul>
+                <li><strong>Python version</strong> -- e.g., Python 3.12, so Claude uses the right syntax features</li>
+                <li><strong>Virtual environment tool</strong> -- venv, poetry, or conda, so Claude generates the right commands</li>
+                <li><strong>Framework</strong> -- FastAPI, Django, or Flask, so Claude follows the right patterns</li>
+                <li><strong>ORM and database</strong> -- SQLAlchemy with PostgreSQL, Django ORM with SQLite, etc.</li>
+                <li><strong>Testing framework and patterns</strong> -- pytest with fixtures, unittest style, or custom patterns</li>
+                <li><strong>Type hint policy</strong> -- strict (mypy --strict) or gradual adoption</li>
+                <li><strong>Linting and formatting</strong> -- black, ruff, isort, mypy configurations and any custom rules</li>
+            </ul>
+
+            <p>With this file in place, every piece of code Claude generates will be formatted with black, typed according to your policy, tested in your preferred style, and structured to match the rest of your codebase. It turns Claude from a generic Python assistant into one that knows your project.</p>
+
+            <div class="cta-box">
+                <h3>Supercharge Your Python Workflow</h3>
+                <p>Download Beam and organize Claude Code alongside your REPL, servers, and data pipelines.</p>
+                <a href="../" class="btn">Download Beam for macOS</a>
+            </div>
+
+            <h2>Summary</h2>
+
+            <p>Claude Code and Python are a natural fit. The language's expressiveness, the richness of the data science ecosystem, and the multi-tool nature of Python workflows all benefit from having an AI pair programmer that genuinely understands the stack. With Beam organizing your workspace, you get:</p>
+
+            <ul>
+                <li><strong>Side-by-side verification</strong> -- split Claude Code and your Python REPL to test generated code instantly</li>
+                <li><strong>Isolated environments</strong> -- keep pip installs, server logs, and git operations in separate tabs</li>
+                <li><strong>End-to-end data science</strong> -- from EDA through model training, all in one workspace</li>
+                <li><strong>Production-ready APIs</strong> -- watch FastAPI endpoints come alive as Claude generates them</li>
+                <li><strong>Comprehensive testing</strong> -- generate and run pytest suites without leaving your flow</li>
+                <li><strong>Project memory</strong> -- use CLAUDE.md to ensure consistent code style across your entire project</li>
+            </ul>
+
+            <p>Set up your Python workspace in Beam, teach Claude your project conventions with a CLAUDE.md file, and start building. The combination of AI-assisted coding with an organized terminal workspace turns a chaotic Python development process into a streamlined one.</p>
+
+            <div class="related-articles">
+                <h2>Related Articles</h2>
+                <div class="related-grid">
+                    <a href="claude-code-api-development.html" class="related-card">
+                        <h4>Claude Code for API Development</h4>
+                        <p>Build REST APIs faster with Claude Code as your AI pair programmer.</p>
+                    </a>
+                    <a href="debug-with-claude-code.html" class="related-card">
+                        <h4>Debug with Claude Code</h4>
+                        <p>Systematic debugging with AI assistance for faster bug resolution.</p>
+                    </a>
+                    <a href="ai-agent-project-memory-guide.html" class="related-card">
+                        <h4>The CLAUDE.md Guide</h4>
+                        <p>Master project memory files for consistent AI-assisted development.</p>
+                    </a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>
+                <a href="../">Beam</a> &bull; Terminal Organizer for macOS &bull;
+                <a href="mailto:frank@nextuptechnologies.co">Contact</a>
+            </p>
+
+            <p style="margin-top: 12px; font-size: 0.8rem;">
+                <a href="/privacy.html" style="color: #71717a; text-decoration: none;">Privacy Policy</a> &bull;
+                <a href="/terms.html" style="color: #71717a; text-decoration: none;">Terms of Service</a>
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>

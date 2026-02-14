@@ -48,7 +48,7 @@
             {
                 "@type": "HowToStep",
                 "name": "Set Up Beam Workspace",
-                "text": "Create subwindows and tabs for Gateway, Agent, and Logs"
+                "text": "Create workspaces and tabs for Gateway, Agent, and Logs"
             },
             {
                 "@type": "HowToStep",
@@ -415,14 +415,14 @@
 
             <p><strong>OpenClaw</strong> is the open-source AI assistant everyone's talking about. It runs locally on your machine, connects to your messaging apps, and handles everything from email management to browser automation — all while keeping your data private.</p>
 
-            <p>The best way to install and manage OpenClaw is with <strong>Beam</strong> — a terminal organizer for macOS. With Beam, you can run your OpenClaw Gateway, Agent, and logs in organized subwindows, save your setup as a layout, and switch between sessions with keyboard shortcuts.</p>
+            <p>The best way to install and manage OpenClaw is with <strong>Beam</strong> — a terminal organizer for macOS. With Beam, you can run your OpenClaw Gateway, Agent, and logs in organized workspaces, save your setup as a layout, and switch between sessions with keyboard shortcuts.</p>
 
             <p>This guide walks you through the complete setup: install Beam first, then install OpenClaw inside Beam's terminal.</p>
 
             <div class="cta-box" style="margin: 32px 0;">
                 <h3>Step 0: Download Beam</h3>
                 <p>Get Beam first — you'll install OpenClaw inside it.</p>
-                <a href="../Beam-v1.9.12-alpha.dmg" class="btn">Download Beam Free</a>
+                <a href="../Beam-v2.5.0.dmg" class="btn">Download Beam Free</a>
             </div>
 
             <div class="toc">
@@ -495,15 +495,15 @@
 
             <ol>
                 <li><strong>Download Beam</strong> from <a href="../">getbeam.dev</a> and drag it to your Applications folder</li>
-                <li><strong>Open Beam</strong> — you'll see your first terminal subwindow</li>
-                <li><strong>Create a subwindow</strong> (<span class="kbd">⌘N</span>) and rename it "OpenClaw" (<span class="kbd">⌘I</span>)</li>
+                <li><strong>Open Beam</strong> — you'll see your first terminal workspace</li>
+                <li><strong>Create a workspace</strong> (<span class="kbd">⌘N</span>) and rename it "OpenClaw" (<span class="kbd">⌘I</span>)</li>
                 <li><strong>Create tabs</strong> (<span class="kbd">⌘T</span>) for: Gateway, Agent, and Logs</li>
             </ol>
 
             <p>Your Beam workspace should look like this:</p>
 
             <div class="highlight">
-                <h3>Subwindow: "OpenClaw"</h3>
+                <h3>Workspace: "OpenClaw"</h3>
                 <ul>
                     <li><strong>Tab 1: "Gateway"</strong> — Will run the OpenClaw daemon</li>
                     <li><strong>Tab 2: "Agent"</strong> — Interactive chat with OpenClaw</li>
@@ -741,7 +741,7 @@ source ~/.zshrc</code></pre>
 
             <ol>
                 <li><strong>Download Beam</strong> from <a href="../">getbeam.dev</a></li>
-                <li><strong>Set up your OpenClaw workspace</strong> with subwindows for Gateway, Agent, and Logs</li>
+                <li><strong>Set up your OpenClaw workspace</strong> with workspaces for Gateway, Agent, and Logs</li>
                 <li><strong>Install OpenClaw</strong> with <code>npm install -g openclaw@latest</code></li>
                 <li><strong>Run onboarding</strong> with <code>openclaw onboard --install-daemon</code></li>
                 <li><strong>Connect your messaging apps</strong> and start chatting</li>
@@ -754,7 +754,7 @@ source ~/.zshrc</code></pre>
 
             <div class="cta-box">
                 <h3>Organize Your OpenClaw Workflow with Beam</h3>
-                <p>Download Beam free and set up the perfect terminal environment for OpenClaw. Subwindows, layouts, and keyboard navigation — everything you need.</p>
+                <p>Download Beam free and set up the perfect terminal environment for OpenClaw. Workspaces, layouts, and keyboard navigation — everything you need.</p>
                 <a href="../" class="btn">Download Beam Free</a>
             </div>
 
@@ -780,7 +780,7 @@ source ~/.zshrc</code></pre>
                     </a>
                     <a href="beam-claude-code-setup.html" class="related-card">
                         <h4>Setting Up Beam for Claude Code</h4>
-                        <p>Organize your AI sessions with subwindows and layouts.</p>
+                        <p>Organize your AI sessions with workspaces and layouts.</p>
                     </a>
                 </div>
             </div>
@@ -790,9 +790,15 @@ source ~/.zshrc</code></pre>
     <footer>
         <div class="container">
             <p>
-                <a href="../">Beam</a> · Built by <a href="https://nextuptechnologies.co">NextUp Technologies</a>
+                <a href="../">Beam</a> · Built by NextUp Technologies
+            </p>
+
+            <p style="margin-top: 12px; font-size: 0.8rem;">
+                <a href="/privacy.html" style="color: #71717a; text-decoration: none;">Privacy Policy</a> &bull;
+                <a href="/terms.html" style="color: #71717a; text-decoration: none;">Terms of Service</a>
             </p>
         </div>
     </footer>
+
 </body>
 </html>

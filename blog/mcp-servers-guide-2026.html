@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D0XH8B0RKL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-D0XH8B0RKL');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Complete Guide to MCP Servers in 2026: Google, Apple, and 50+ Integrations | Beam</title>
+    <meta name="description" content="MCP (Model Context Protocol) is becoming the universal standard for AI tool integrations. Google and Apple just adopted it. Here's everything you need to know.">
+    <meta name="keywords" content="MCP servers, Model Context Protocol, Claude Code MCP, Google MCP server, Apple MCP Xcode, AI tool integrations 2026">
+    <meta name="author" content="NextUp Technologies">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://getbeam.dev/blog/mcp-servers-guide-2026.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://getbeam.dev/blog/mcp-servers-guide-2026.html">
+    <meta property="og:title" content="The Complete Guide to MCP Servers in 2026: Google, Apple, and 50+ Integrations">
+    <meta property="og:description" content="MCP (Model Context Protocol) is becoming the universal standard for AI tool integrations. Google and Apple just adopted it. Here's everything you need to know.">
+    <meta property="og:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="The Complete Guide to MCP Servers in 2026: Google, Apple, and 50+ Integrations">
+    <meta name="twitter:description" content="MCP (Model Context Protocol) is becoming the universal standard for AI tool integrations. Google and Apple just adopted it. Here's everything you need to know.">
+    <meta name="twitter:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "The Complete Guide to MCP Servers in 2026: Google, Apple, and 50+ Integrations",
+        "description": "MCP (Model Context Protocol) is becoming the universal standard for AI tool integrations. Google and Apple just adopted it. Here's everything you need to know.",
+        "author": {
+            "@type": "Organization",
+            "name": "NextUp Technologies"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Beam"
+        },
+        "datePublished": "2026-02-12",
+        "keywords": "MCP servers, Model Context Protocol, Claude Code MCP, Google MCP server, Apple MCP Xcode, AI tool integrations 2026"
+    }
+    </script>
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #111113;
+            --bg-tertiary: #1a1a1d;
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.4);
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --border: #27272a;
+            --success: #22c55e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        header {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 60px;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1.5rem;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            background: var(--accent);
+            color: white;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+        }
+
+        article {
+            padding-bottom: 80px;
+        }
+
+        .breadcrumb {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+        }
+
+        .breadcrumb a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .meta {
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            font-size: 0.95rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 48px 0 20px;
+            color: var(--text-primary);
+        }
+
+        h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 32px 0 12px;
+            color: var(--text-primary);
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        ul, ol {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            padding-left: 24px;
+        }
+
+        li {
+            margin-bottom: 12px;
+        }
+
+        code {
+            font-family: 'JetBrains Mono', monospace;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 2px 6px;
+            font-size: 0.88rem;
+            color: var(--accent);
+        }
+
+        pre {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 20px;
+            margin: 24px 0;
+            overflow-x: auto;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.88rem;
+            line-height: 1.6;
+            color: var(--text-secondary);
+        }
+
+        pre code {
+            background: none;
+            border: none;
+            padding: 0;
+            color: inherit;
+        }
+
+        .highlight {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 32px 0;
+        }
+
+        .highlight h3 {
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .kbd {
+            display: inline-block;
+            padding: 2px 8px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .cta-box h3 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+        }
+
+        .cta-box p {
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 24px;
+        }
+
+        .cta-box .btn {
+            background: white;
+            color: var(--accent);
+        }
+
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+
+        .related-articles { margin-top: 60px; padding-top: 40px; border-top: 1px solid var(--border); }
+        .related-articles h2 { font-size: 1.5rem; margin-bottom: 24px; }
+        .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .related-card { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-decoration: none; transition: border-color 0.2s; }
+        .related-card:hover { border-color: var(--accent); }
+        .related-card h4 { color: white; font-size: 1rem; margin: 0 0 8px 0; }
+        .related-card p { color: var(--text-muted); font-size: 0.85rem; margin: 0; }
+        @media (max-width: 600px) { .related-grid { grid-template-columns: 1fr; } h1 { font-size: 1.8rem; } }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="../" class="logo">
+                <div class="logo-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round">
+                        <path d="M4 17l6-6-6-6M12 19h8"/>
+                    </svg>
+                </div>
+                Beam
+            </a>
+            <a href="../" class="btn">Download Beam</a>
+        </div>
+    </header>
+
+    <main>
+        <article class="container">
+            <div class="breadcrumb">
+                <a href="../">Beam</a> / <a href="../#guides">Guides</a> / MCP Servers Guide 2026
+            </div>
+
+            <h1>The Complete Guide to MCP Servers in 2026: Google, Apple, and 50+ Integrations</h1>
+            <p class="meta">February 2026 &bull; 11 min read</p>
+
+            <p>In less than 18 months, the Model Context Protocol has gone from an Anthropic experiment to the universal standard for connecting AI agents to external tools and data. Google launched their Developer Knowledge MCP server on February 4. Apple integrated MCP into Xcode 26.3 on February 3. There are now over 50 publicly available MCP servers spanning databases, APIs, productivity tools, and cloud platforms.</p>
+
+            <p>If you are building with AI coding tools in 2026 and you are not using MCP, you are leaving enormous capability on the table. This guide covers everything: what MCP is, why it matters, the servers you should know about, and how to set them up in your workflow.</p>
+
+            <h2>What Is MCP?</h2>
+
+            <p>The Model Context Protocol is a standardized way for AI agents to connect to external tools, data sources, and services. Think of it as USB-C for AI -- a single, universal interface that lets any compatible AI tool talk to any compatible server.</p>
+
+            <p>Before MCP, every AI tool had its own way of integrating with external systems. Want Claude Code to query your database? Custom integration. Want it to check your GitHub PRs? Another custom integration. Each tool, each service, each combination required bespoke glue code.</p>
+
+            <p>MCP replaces all of that with a single protocol. An MCP server exposes a set of capabilities -- reading files, querying databases, calling APIs -- and any MCP-compatible client (Claude Code, Cursor, and others) can use those capabilities automatically. One server, many clients. One protocol, unlimited integrations.</p>
+
+            <div class="highlight">
+                <h3>The USB-C Analogy</h3>
+                <p>Before USB-C, every device had its own charger. MCP does for AI what USB-C did for hardware: one standard connector that works with everything. Write an MCP server once, and every compatible AI tool can use it. Install an MCP server once, and every AI agent in your workflow benefits.</p>
+            </div>
+
+            <h2>The MCP Ecosystem in 2026</h2>
+
+            <p>The ecosystem has grown rapidly. Here is how the 50+ available MCP servers break down by category:</p>
+
+            <ul>
+                <li><strong>Development Tools:</strong> GitHub, GitLab, Bitbucket, Linear, Jira -- manage issues, PRs, and project boards directly from your AI agent</li>
+                <li><strong>Databases:</strong> PostgreSQL, MongoDB, MySQL, Redis, Supabase -- query, inspect schemas, and even run migrations through natural language</li>
+                <li><strong>APIs and Testing:</strong> Apidog, Postman collections, OpenAPI spec readers -- let your AI agent understand and test your API surface</li>
+                <li><strong>Productivity:</strong> Slack, Notion (via Rube), Google Calendar, Todoist -- connect your AI workflow to your team communication and planning tools</li>
+                <li><strong>Documentation:</strong> Google Developer Knowledge, MDN Web Docs, custom documentation servers -- give your AI agent access to up-to-date reference material</li>
+                <li><strong>Cloud and Infrastructure:</strong> AWS, Google Cloud, Vercel, Cloudflare -- manage deployments and infrastructure through your AI agent</li>
+                <li><strong>File Systems and Search:</strong> Local filesystem, Brave Search, web scraping servers -- let agents read, write, and search beyond their training data</li>
+            </ul>
+
+            <h2>Top 10 Must-Have MCP Servers for Developers</h2>
+
+            <p>If you are setting up MCP for the first time, these ten servers deliver the most value for a typical development workflow:</p>
+
+            <ol>
+                <li><strong>GitHub MCP Server</strong> -- Create PRs, review diffs, manage issues, and check CI status without leaving your AI session. This is the single most useful MCP server for most developers</li>
+                <li><strong>Google Developer Knowledge</strong> -- Access official Google documentation in Markdown format, optimized for AI consumption. No more hallucinated API signatures</li>
+                <li><strong>PostgreSQL / Database Server</strong> -- Inspect your database schema, run read queries, and let your AI agent understand your data model when writing code</li>
+                <li><strong>Filesystem Server</strong> -- Controlled read/write access to your local files. Essential for agents that need to work with files outside the current project directory</li>
+                <li><strong>Brave Search</strong> -- Give your AI agent the ability to search the web for current documentation, Stack Overflow answers, and package information</li>
+                <li><strong>Slack MCP Server</strong> -- Read channel messages and post updates. Useful for agents that need to report progress or pull context from team discussions</li>
+                <li><strong>Linear / Jira Server</strong> -- Pull ticket details, acceptance criteria, and project context directly into your AI coding session</li>
+                <li><strong>Apidog / OpenAPI Server</strong> -- Load your API specification so your AI agent knows every endpoint, parameter, and response type before writing integration code</li>
+                <li><strong>Docker MCP Server</strong> -- Manage containers, inspect logs, and control your local development environment through natural language</li>
+                <li><strong>Vercel / Cloudflare Server</strong> -- Deploy, check build status, and manage environment variables from your AI session</li>
+            </ol>
+
+            <div class="highlight">
+                <h3>Start with Three</h3>
+                <p>You do not need all 50+ servers on day one. Start with GitHub, a database server for your primary database, and filesystem. These three cover the vast majority of integration needs for a typical development workflow. Add more as specific needs arise.</p>
+            </div>
+
+            <h2>Google&rsquo;s Developer Knowledge MCP Server</h2>
+
+            <p>Google&rsquo;s February 4 launch of the Developer Knowledge MCP server is a significant milestone. It is the first time a major platform vendor has shipped an official MCP server for their documentation.</p>
+
+            <p>What it does: the server provides access to Google&rsquo;s developer documentation -- Android, Firebase, Google Cloud, Flutter, and more -- in a clean Markdown format specifically structured for AI consumption. Instead of your AI agent scraping documentation websites and guessing at formatting, it gets structured, authoritative content directly from Google.</p>
+
+            <p>Why it matters: documentation hallucination is one of the biggest pain points with AI coding tools. The model confidently suggests an API call that does not exist, or uses deprecated syntax from two years ago. With the Google Developer Knowledge server connected, Claude Code can look up the actual current documentation before generating code.</p>
+
+            <p>Setup is straightforward. Add the server to your MCP configuration, authenticate with your Google account, and the documentation is immediately available to any MCP-compatible agent in your workflow.</p>
+
+            <h2>Apple&rsquo;s MCP Integration in Xcode</h2>
+
+            <p>Apple&rsquo;s approach with Xcode 26.3 is different from Google&rsquo;s -- and arguably more ambitious. Rather than creating an MCP server that exposes documentation, Apple has made Xcode itself an MCP-aware tool. Xcode 26.3 can both consume MCP servers and expose its own capabilities as an MCP server.</p>
+
+            <p>This means your AI agent can interact with Xcode&rsquo;s build system, code signing, simulator management, and Instruments profiling. Ask Claude Code to &ldquo;build the project and run it in the iOS 19 simulator&rdquo; and, with the Xcode MCP connection active, it can actually do that -- triggering a real build, launching the simulator, and reporting back the result.</p>
+
+            <p>On the consumption side, Xcode&rsquo;s built-in AI assistant can now connect to any MCP server. Connect the GitHub server, and Xcode&rsquo;s AI can create pull requests. Connect the PostgreSQL server, and it can inspect your backend database while you write your Swift networking layer.</p>
+
+            <div class="highlight">
+                <h3>What This Means for iOS/macOS Developers</h3>
+                <p>Apple adopting MCP is the clearest signal yet that this protocol is here to stay. If you are an iOS or macOS developer, Xcode 26.3&rsquo;s MCP integration means you can use Claude Code&rsquo;s terminal-based power alongside Xcode&rsquo;s native capabilities. The two tools can share context through MCP, creating a workflow that is greater than the sum of its parts.</p>
+            </div>
+
+            <h2>Using MCP Servers with Claude Code</h2>
+
+            <p>Claude Code has the most mature MCP client implementation as of February 2026. Here is how to set up MCP servers:</p>
+
+            <p><strong>Step 1: Configure your MCP servers.</strong> Add server configurations to your project&rsquo;s <code>.mcp.json</code> file or your global Claude Code settings. Each server entry specifies the command to launch the server and any required environment variables:</p>
+
+<pre><code>{
+  "mcpServers": {
+    "github": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-github"],
+      "env": { "GITHUB_TOKEN": "your-token-here" }
+    },
+    "postgres": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-postgres"],
+      "env": { "DATABASE_URL": "postgresql://..." }
+    }
+  }
+}</code></pre>
+
+            <p><strong>Step 2: Restart Claude Code.</strong> After updating your configuration, restart your Claude Code session. The MCP servers will launch automatically and their capabilities become available to the agent.</p>
+
+            <p><strong>Step 3: Use naturally.</strong> You do not need special syntax. Just ask Claude Code to do things that require the server&rsquo;s capabilities. &ldquo;Check if there are any open PRs on this repo&rdquo; will automatically use the GitHub MCP server. &ldquo;What tables are in the production database?&rdquo; will use the PostgreSQL server.</p>
+
+            <p><strong>Step 4: Verify connections.</strong> Run <span class="kbd">/mcp</span> in your Claude Code session to see a list of connected servers and their available tools. This is useful for confirming that everything is working.</p>
+
+            <h2>Organizing MCP-Powered Workflows in Beam</h2>
+
+            <p>As your MCP setup grows, so does the number of terminal sessions and processes you need to manage. A typical MCP-heavy workflow might involve Claude Code connected to five MCP servers, a dev server, a database client, and a log tail -- all for a single project.</p>
+
+            <p>Here is how to keep it organized with Beam:</p>
+
+            <ul>
+                <li><strong>Workspace per integration context.</strong> Create a &ldquo;Backend&rdquo; workspace with Claude Code connected to your database and API servers. Create a &ldquo;Frontend&rdquo; workspace with Claude Code connected to your CMS and design system servers. Each workspace has its own MCP configuration</li>
+                <li><strong>Split panes for monitoring.</strong> Run Claude Code in the main pane and keep your MCP server logs visible in a split. When something goes wrong with a server connection, you see the error immediately</li>
+                <li><strong>Dedicated tabs for server management.</strong> Keep a tab open for managing MCP servers -- installing new ones, checking versions, reviewing configurations. This keeps maintenance separate from your actual coding work</li>
+                <li><strong>Save and restore layouts.</strong> Hit <span class="kbd">&#8984;S</span> to save your full MCP-powered workspace layout. Restore it tomorrow with everything connected and ready to go. No re-setup required</li>
+            </ul>
+
+            <p>The goal is to make MCP invisible. You should not be thinking about protocols and server connections. You should be thinking about your code, and the AI agent handles the rest. Beam helps by keeping the infrastructure organized so the complexity does not spill into your workflow.</p>
+
+            <div class="cta-box">
+                <h3>Organize Your MCP-Powered Workflow</h3>
+                <p>Beam workspaces keep your Claude Code sessions, MCP servers, and dev tools organized. Stop losing track of terminal windows.</p>
+                <a href="../" class="btn">Download Beam for macOS</a>
+            </div>
+
+            <h2>Summary</h2>
+
+            <p>MCP has matured from an interesting experiment into the connective tissue of the AI development ecosystem. Here is what you need to know:</p>
+
+            <ul>
+                <li><strong>MCP is the universal standard</strong> for connecting AI agents to external tools. Google and Apple adopting it confirms this is not a temporary trend</li>
+                <li><strong>50+ servers are available</strong> covering development tools, databases, APIs, productivity apps, cloud platforms, and documentation</li>
+                <li><strong>Start with GitHub, a database server, and filesystem</strong> -- these three cover most development workflows. Add more as needed</li>
+                <li><strong>Google&rsquo;s Developer Knowledge server</strong> gives your AI agent access to authoritative, current documentation. No more hallucinated API signatures</li>
+                <li><strong>Apple&rsquo;s Xcode 26.3 integration</strong> makes Xcode both an MCP consumer and provider, bridging native development tooling with AI agents</li>
+                <li><strong>Claude Code has the most mature MCP support</strong> -- configure servers in <code>.mcp.json</code> and use them naturally through conversation</li>
+            </ul>
+
+            <p>The developers building the most sophisticated AI workflows in 2026 are not just using better models -- they are connecting those models to better tools through MCP. The protocol handles the plumbing. You focus on the code.</p>
+
+            <div class="related-articles">
+                <h2>Related Articles</h2>
+                <div class="related-grid">
+                    <a href="beam-claude-code-setup.html" class="related-card">
+                        <h4>Setting Up Beam with Claude Code</h4>
+                        <p>Complete guide to configuring Beam workspaces for Claude Code development.</p>
+                    </a>
+                    <a href="best-ai-coding-tool-2026.html" class="related-card">
+                        <h4>Best AI Coding Tool in 2026</h4>
+                        <p>Claude Code vs Cursor vs Copilot -- the definitive comparison for developers.</p>
+                    </a>
+                    <a href="agentic-engineering-guide.html" class="related-card">
+                        <h4>The Agentic Engineering Guide</h4>
+                        <p>How to build effective workflows with autonomous AI coding agents.</p>
+                    </a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>
+                <a href="../">Beam</a> &bull; Terminal Organizer for macOS &bull;
+                <a href="mailto:frank@nextuptechnologies.co">Contact</a>
+            </p>
+
+            <p style="margin-top: 12px; font-size: 0.8rem;">
+                <a href="/privacy.html" style="color: #71717a; text-decoration: none;">Privacy Policy</a> &bull;
+                <a href="/terms.html" style="color: #71717a; text-decoration: none;">Terms of Service</a>
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>
