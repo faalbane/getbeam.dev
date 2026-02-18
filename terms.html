@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Service | Beam — Terminal Organizer for macOS</title>
+    <meta name="description" content="Terms of Service for Beam, a macOS terminal emulator and organizer by NextUp Technologies.">
+    <meta name="author" content="NextUp Technologies">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://getbeam.dev/terms.html">
+
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #111113;
+            --bg-tertiary: #1a1a1d;
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.4);
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --border: #27272a;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        a, button { cursor: pointer; }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        header {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 60px;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1.5rem;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            background: var(--accent);
+            color: white;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+        }
+
+        .terms-content {
+            padding-bottom: 80px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .meta {
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            font-size: 0.95rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 48px 0 20px;
+            color: var(--text-primary);
+        }
+
+        h3 {
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin: 28px 0 12px;
+            color: var(--text-primary);
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        ul, ol {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            padding-left: 24px;
+        }
+
+        li {
+            margin-bottom: 12px;
+        }
+
+        strong {
+            color: var(--text-primary);
+        }
+
+        a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .highlight {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 32px 0;
+        }
+
+        .highlight h3 {
+            font-size: 1.1rem;
+            margin: 0 0 12px 0;
+            color: var(--text-primary);
+        }
+
+        .highlight p:last-child {
+            margin-bottom: 0;
+        }
+
+        .tier-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 24px 0 32px;
+        }
+
+        .tier-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+        }
+
+        .tier-card.pro {
+            border-color: var(--accent);
+        }
+
+        .tier-card h3 {
+            margin: 0 0 8px 0;
+            font-size: 1.15rem;
+        }
+
+        .tier-card .price {
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+        }
+
+        .tier-card ul {
+            margin-bottom: 0;
+            padding-left: 20px;
+        }
+
+        .tier-card li {
+            margin-bottom: 6px;
+            font-size: 0.95rem;
+        }
+
+        code {
+            font-family: 'JetBrains Mono', monospace;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 2px 6px;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 1.8rem; }
+            .tier-grid { grid-template-columns: 1fr; }
+        }
+
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="./" class="logo">
+                <div class="logo-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round">
+                        <path d="M4 17l6-6-6-6M12 19h8"/>
+                    </svg>
+                </div>
+                Beam
+            </a>
+            <a href="./" class="btn">Download Beam</a>
+        </div>
+    </header>
+
+    <main>
+        <div class="container terms-content">
+            <h1>Terms of Service</h1>
+            <p class="meta">Effective Date: February 11, 2026</p>
+
+            <!-- 1. Introduction -->
+            <h2>1. Introduction &amp; Agreement to Terms</h2>
+            <p>Welcome to Beam. These Terms of Service ("Terms") constitute a legally binding agreement between you ("User," "you," or "your") and NextUp Technologies ("Company," "we," "us," or "our"), governing your access to and use of the Beam desktop application and related services (collectively, the "Service").</p>
+            <p>By downloading, installing, or using Beam, you acknowledge that you have read, understood, and agree to be bound by these Terms. If you do not agree to these Terms, you must not download, install, or use Beam.</p>
+            <p>We may update these Terms from time to time. Continued use of Beam after any such changes constitutes your acceptance of the revised Terms.</p>
+
+            <!-- 2. Description of Service -->
+            <h2>2. Description of Service</h2>
+            <p>Beam is a macOS desktop application that functions as a terminal emulator and organizer. It is designed to help developers manage multiple terminal sessions through workspaces, tabs, split panes, and saveable layouts.</p>
+            <div class="highlight">
+                <h3>Key Product Details</h3>
+                <ul>
+                    <li><strong>Platform:</strong> macOS only. Beam requires macOS 13 (Ventura) or later.</li>
+                    <li><strong>Desktop application:</strong> Beam runs entirely on your local machine. All terminal data, session content, and shell history remain on your device. Beam does not transmit, collect, or store your terminal content on any external server.</li>
+                    <li><strong>Availability:</strong> Beam is offered in two tiers &mdash; a free tier and a paid Pro tier &mdash; as described in Section 4 below.</li>
+                </ul>
+            </div>
+
+            <!-- 3. Account and License -->
+            <h2>3. Account and License</h2>
+            <p>To access certain features of Beam, including the Pro tier, you may be required to create an account and provide accurate, complete, and current information. You are responsible for maintaining the confidentiality of your account credentials and for all activities that occur under your account.</p>
+            <h3>License Grant</h3>
+            <p>Subject to your compliance with these Terms, we grant you a limited, non-exclusive, non-transferable, revocable license to download, install, and use Beam on a single macOS device for your personal or professional use.</p>
+            <h3>One License, One Device</h3>
+            <p>Each Beam license is valid for use on <strong>one (1) device</strong> at a time. If you wish to use Beam on a different device, you may deactivate your license on the current device and reactivate it on the new device. Simultaneous use on multiple devices under a single license is not permitted.</p>
+            <h3>Restrictions</h3>
+            <p>You may not:</p>
+            <ul>
+                <li>Copy, modify, distribute, sell, or lease any part of Beam or its software.</li>
+                <li>Reverse-engineer, decompile, or disassemble the application, except to the extent permitted by applicable law.</li>
+                <li>Circumvent or disable any licensing, authentication, or security mechanisms within Beam.</li>
+                <li>Use Beam for any unlawful purpose or in violation of any applicable local, state, national, or international law.</li>
+            </ul>
+
+            <!-- 4. Free and Pro Tiers -->
+            <h2>4. Free and Pro Tiers</h2>
+            <p>Beam is available in two tiers:</p>
+
+            <div class="tier-grid">
+                <div class="tier-card">
+                    <h3>Free Tier</h3>
+                    <div class="price">$0 / forever</div>
+                    <ul>
+                        <li>1 workspace</li>
+                        <li>1 project</li>
+                        <li>Unlimited tabs</li>
+                        <li>No split panes</li>
+                    </ul>
+                </div>
+                <div class="tier-card pro">
+                    <h3>Beam Pro</h3>
+                    <div class="price">$10 / month</div>
+                    <ul>
+                        <li>Unlimited workspaces</li>
+                        <li>Unlimited projects</li>
+                        <li>Unlimited split panes</li>
+                        <li>AI agent quick-start</li>
+                        <li>Templates</li>
+                    </ul>
+                </div>
+            </div>
+
+            <p>We reserve the right to modify, add, or remove features from either tier at any time. Any changes to pricing will be communicated to existing subscribers in advance, and the new pricing will take effect at the start of the next billing cycle following the notice period.</p>
+
+            <!-- 5. Payment and Billing -->
+            <h2>5. Payment and Billing</h2>
+            <h3>Subscription</h3>
+            <p>Beam Pro is offered as a monthly subscription at <strong>$10 per month</strong>. All payments are processed securely through <strong>Stripe</strong>. By subscribing to Beam Pro, you authorize us to charge your payment method on a recurring monthly basis until you cancel your subscription.</p>
+            <h3>Cancellation</h3>
+            <p>You may cancel your Beam Pro subscription at any time. Upon cancellation, you will retain access to Pro features until the end of your current billing period. After that, your account will revert to the Free tier.</p>
+            <h3>Refunds</h3>
+            <p>Refund requests are handled through Stripe. If you believe you are entitled to a refund, please contact us at <a href="mailto:frank@nextuptechnologies.co">frank@nextuptechnologies.co</a> and we will work with you to resolve the matter. Refunds are provided at our discretion and are generally considered for billing errors or extenuating circumstances.</p>
+            <h3>Taxes</h3>
+            <p>All prices are exclusive of applicable taxes unless otherwise stated. You are responsible for any taxes, duties, or other governmental levies associated with your purchase.</p>
+
+            <!-- 6. Intellectual Property -->
+            <h2>6. Intellectual Property</h2>
+            <p>Beam, including its source code, design, graphics, logos, trademarks, and all associated intellectual property, is and shall remain the exclusive property of NextUp Technologies. These Terms do not grant you any right, title, or interest in Beam beyond the limited license described in Section 3.</p>
+            <p>All feedback, suggestions, or ideas you provide regarding Beam may be used by us without obligation or compensation to you.</p>
+
+            <!-- 7. User Responsibilities -->
+            <h2>7. User Responsibilities</h2>
+            <p>As a user of Beam, you agree to:</p>
+            <ul>
+                <li>Use Beam in compliance with all applicable laws and regulations.</li>
+                <li>Maintain the security of your account credentials and not share them with third parties.</li>
+                <li>Not attempt to gain unauthorized access to any systems or networks connected to Beam's licensing or payment infrastructure.</li>
+                <li>Not use Beam to facilitate any activity that is harmful, fraudulent, or infringing upon the rights of others.</li>
+                <li>Keep your macOS operating system updated to a supported version (macOS 13 or later) to ensure compatibility and security.</li>
+            </ul>
+            <p>You acknowledge that Beam is a terminal emulator and that you are solely responsible for any commands you execute, scripts you run, or actions you perform within Beam's terminal sessions.</p>
+
+            <!-- 8. Limitation of Liability -->
+            <h2>8. Limitation of Liability</h2>
+            <p>To the maximum extent permitted by applicable law, in no event shall NextUp Technologies, its officers, directors, employees, agents, or affiliates be liable for any indirect, incidental, special, consequential, or punitive damages, including but not limited to loss of profits, data, use, goodwill, or other intangible losses, arising out of or in connection with:</p>
+            <ul>
+                <li>Your access to, use of, or inability to use Beam.</li>
+                <li>Any conduct or content of any third party in connection with Beam.</li>
+                <li>Any commands, scripts, or processes executed within Beam's terminal environment.</li>
+                <li>Unauthorized access to or alteration of your data or transmissions.</li>
+            </ul>
+            <p>In no event shall our total aggregate liability to you for all claims arising out of or relating to these Terms or your use of Beam exceed the amount you have paid to us in the <strong>twelve (12) months</strong> preceding the event giving rise to the claim, or <strong>$100</strong>, whichever is greater.</p>
+
+            <!-- 9. Disclaimer of Warranties -->
+            <h2>9. Disclaimer of Warranties</h2>
+            <p>Beam is provided on an <strong>"as is"</strong> and <strong>"as available"</strong> basis, without warranties of any kind, whether express, implied, or statutory. We specifically disclaim all implied warranties of merchantability, fitness for a particular purpose, title, and non-infringement.</p>
+            <p>Without limiting the foregoing, we do not warrant that:</p>
+            <ul>
+                <li>Beam will meet your specific requirements or expectations.</li>
+                <li>Beam will be uninterrupted, timely, secure, or error-free.</li>
+                <li>Any defects or errors in Beam will be corrected.</li>
+                <li>Beam will be compatible with any specific third-party software, shells, or terminal tools.</li>
+            </ul>
+            <p>You use Beam at your own risk. You are solely responsible for any damage to your computer system or loss of data resulting from your use of Beam.</p>
+
+            <!-- 10. Termination -->
+            <h2>10. Termination</h2>
+            <p>We may suspend or terminate your access to Beam at any time, with or without cause, and with or without notice. Grounds for termination include, but are not limited to:</p>
+            <ul>
+                <li>Violation of these Terms.</li>
+                <li>Fraudulent, abusive, or illegal activity.</li>
+                <li>Failure to pay subscription fees when due.</li>
+                <li>Attempts to circumvent licensing restrictions.</li>
+            </ul>
+            <p>Upon termination, your license to use Beam is immediately revoked. Sections 6 (Intellectual Property), 8 (Limitation of Liability), 9 (Disclaimer of Warranties), and 12 (Governing Law) shall survive any termination of these Terms.</p>
+            <p>You may terminate your relationship with us at any time by uninstalling Beam and, if applicable, canceling your subscription.</p>
+
+            <!-- 11. Changes to Terms -->
+            <h2>11. Changes to Terms</h2>
+            <p>We reserve the right to modify these Terms at any time. When we make material changes, we will update the "Effective Date" at the top of this page and, where appropriate, notify you via the Beam application or by email.</p>
+            <p>Your continued use of Beam following the posting of revised Terms constitutes your acceptance of those changes. If you do not agree to the updated Terms, you must discontinue use of Beam.</p>
+
+            <!-- 12. Governing Law -->
+            <h2>12. Governing Law</h2>
+            <p>These Terms shall be governed by and construed in accordance with the laws of the State of Delaware, United States, without regard to its conflict of law provisions.</p>
+            <p>Any disputes arising out of or relating to these Terms or your use of Beam shall be resolved exclusively in the state or federal courts located in the State of Delaware. You consent to the personal jurisdiction of such courts and waive any objections to venue.</p>
+
+            <!-- 13. Contact Us -->
+            <h2>13. Contact Us</h2>
+            <p>If you have any questions, concerns, or requests regarding these Terms of Service, please contact us at:</p>
+            <div class="highlight">
+                <p><strong>NextUp Technologies</strong><br>
+                Email: <a href="mailto:frank@nextuptechnologies.co">frank@nextuptechnologies.co</a><br>
+                Website: <a href="https://getbeam.dev">https://getbeam.dev</a></p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>
+                <a href="./">Beam</a> &bull; Terminal Organizer for macOS &bull;
+                <a href="mailto:frank@nextuptechnologies.co">Contact</a>
+            </p>
+        </div>
+    </footer>
+</body>
+</html>

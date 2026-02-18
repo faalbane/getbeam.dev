@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D0XH8B0RKL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-D0XH8B0RKL');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Set Up Beam on Windows for Agentic Engineering | Beam Terminal Organizer</title>
+    <meta name="description" content="Set up Beam on Windows for agentic engineering workflows. Organize Claude Code, Codex, and multi-agent sessions with workspaces, tabs, and split panes on Windows 11.">
+    <meta name="keywords" content="Beam Windows, agentic engineering Windows, Claude Code Windows, terminal organizer Windows, AI coding Windows, vibe coding Windows, multi-agent Windows">
+    <meta name="author" content="NextUp Technologies">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://getbeam.dev/blog/beam-windows-agentic-engineering-setup.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://getbeam.dev/blog/beam-windows-agentic-engineering-setup.html">
+    <meta property="og:title" content="How to Set Up Beam on Windows for Agentic Engineering">
+    <meta property="og:description" content="Set up Beam on Windows for agentic engineering workflows. Organize Claude Code and multi-agent sessions with workspaces, tabs, and split panes.">
+    <meta property="og:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="How to Set Up Beam on Windows for Agentic Engineering">
+    <meta name="twitter:description" content="Set up Beam on Windows for agentic engineering workflows. Organize Claude Code and multi-agent sessions with workspaces, tabs, and split panes.">
+    <meta name="twitter:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "How to Set Up Beam on Windows for Agentic Engineering",
+        "description": "Set up Beam on Windows for agentic engineering workflows with Claude Code and multi-agent sessions.",
+        "author": {
+            "@type": "Organization",
+            "name": "NextUp Technologies"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Beam"
+        },
+        "datePublished": "2026-02-14",
+        "keywords": "Beam Windows, agentic engineering, Claude Code Windows, terminal organizer"
+    }
+    </script>
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #111113;
+            --bg-tertiary: #1a1a1d;
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.4);
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --border: #27272a;
+            --success: #22c55e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        a, button, .btn, .related-card, .post-card, .editorial-card { cursor: pointer; }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        header {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 60px;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1.5rem;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            background: var(--accent);
+            color: white;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+        }
+
+        article {
+            padding-bottom: 80px;
+        }
+
+        .breadcrumb {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+        }
+
+        .breadcrumb a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .meta {
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            font-size: 0.95rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 48px 0 20px;
+            color: var(--text-primary);
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        ul, ol {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            padding-left: 24px;
+        }
+
+        li {
+            margin-bottom: 12px;
+        }
+
+        .highlight {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 32px 0;
+        }
+
+        .highlight h3 {
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .kbd {
+            display: inline-block;
+            padding: 2px 8px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .cta-box h3 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+        }
+
+        .cta-box p {
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 24px;
+        }
+
+        .cta-box .btn {
+            background: white;
+            color: var(--accent);
+        }
+
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+
+        .related-articles { margin-top: 60px; padding-top: 40px; border-top: 1px solid var(--border); }
+        .related-articles h2 { font-size: 1.5rem; margin-bottom: 24px; }
+        .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .related-card { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-decoration: none; transition: border-color 0.2s; }
+        .related-card:hover { border-color: var(--accent); }
+        .related-card h4 { color: white; font-size: 1rem; margin: 0 0 8px 0; }
+        .related-card p { color: var(--text-muted); font-size: 0.85rem; margin: 0; }
+        @media (max-width: 600px) { .related-grid { grid-template-columns: 1fr; } .workspace-diagram { grid-template-columns: 1fr; } .chaos-grid { grid-template-columns: repeat(4, 1fr); } .compare-row { flex-direction: column; } h1 { font-size: 1.8rem; } }
+
+        /* ── Problem Visualization: Tab Soup ── */
+        .problem-visual {
+            margin: 32px 0;
+            padding: 28px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        .problem-visual-label {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-family: 'JetBrains Mono', monospace;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+            background: rgba(255,255,255,0.04);
+            padding: 3px 10px;
+            border-radius: 4px;
+            border: 1px solid rgba(255,255,255,0.06);
+        }
+        .chaos-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 6px;
+            margin-bottom: 20px;
+        }
+        .chaos-tab {
+            background: #1e1e2e;
+            border: 1px solid #333;
+            border-radius: 4px 4px 0 0;
+            padding: 6px 4px;
+            text-align: center;
+            font-size: 0.65rem;
+            font-family: 'JetBrains Mono', monospace;
+            color: #666;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .chaos-tab.active {
+            background: #2a2a3e;
+            border-color: #444;
+            color: #888;
+        }
+        .chaos-caption {
+            text-align: center;
+            font-size: 0.85rem;
+            color: #ef4444;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        /* ── Workspace Architecture Diagram ── */
+        .workspace-diagram {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin: 32px 0;
+        }
+        .ws-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 0;
+            overflow: hidden;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        .ws-card:hover {
+            border-color: var(--accent);
+            box-shadow: 0 0 24px rgba(59, 130, 246, 0.1);
+        }
+        .ws-card-header {
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 1px solid var(--border);
+        }
+        .ws-card-icon {
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .ws-card-icon.hub { background: rgba(139, 92, 246, 0.15); }
+        .ws-card-icon.build { background: rgba(34, 197, 94, 0.15); }
+        .ws-card-icon.infra { background: rgba(249, 115, 22, 0.15); }
+        .ws-card-title {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        .ws-card-body {
+            padding: 12px 16px;
+        }
+        .ws-tab-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 5px 0;
+            font-size: 0.78rem;
+            color: var(--text-muted);
+        }
+        .ws-tab-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+        .ws-tab-dot.purple { background: #8b5cf6; }
+        .ws-tab-dot.green { background: #22c55e; }
+        .ws-tab-dot.orange { background: #f97316; }
+        .ws-tab-dot.blue { background: var(--accent); }
+        .ws-tab-dot.yellow { background: #eab308; }
+        .ws-tab-dot.red { background: #ef4444; }
+        .ws-tab-dot.cyan { background: #06b6d4; }
+        .ws-tab-dot.pink { background: #ec4899; }
+        .ws-tab-dot.gray { background: #71717a; }
+
+        /* ── Workflow Timeline ── */
+        .workflow-timeline {
+            position: relative;
+            margin: 32px 0;
+            padding-left: 40px;
+        }
+        .workflow-timeline::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 8px;
+            bottom: 8px;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--accent), #8b5cf6, var(--success));
+            border-radius: 2px;
+        }
+        .wf-step {
+            position: relative;
+            padding: 12px 0 12px 24px;
+        }
+        .wf-step::before {
+            content: '';
+            position: absolute;
+            left: -31px;
+            top: 18px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--bg-primary);
+            border: 2px solid var(--accent);
+        }
+        .wf-step:last-child::before {
+            border-color: var(--success);
+            background: var(--success);
+            box-shadow: 0 0 12px rgba(34, 197, 94, 0.4);
+        }
+        .wf-step p {
+            margin: 0;
+            font-size: 0.95rem;
+        }
+        .wf-step .wf-kbd {
+            display: inline-block;
+            padding: 1px 6px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 3px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.78rem;
+            color: var(--text-muted);
+        }
+
+        /* ── Comparison Table ── */
+        .compare-table {
+            margin: 32px 0;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            background: var(--bg-secondary);
+        }
+        .compare-header {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            border-bottom: 1px solid var(--border);
+        }
+        .compare-header span {
+            padding: 14px 16px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: var(--text-primary);
+        }
+        .compare-header span:first-child {
+            color: var(--text-muted);
+        }
+        .compare-header span:nth-child(2) {
+            border-left: 1px solid var(--border);
+            border-right: 1px solid var(--border);
+        }
+        .compare-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            border-bottom: 1px solid rgba(39, 39, 42, 0.5);
+        }
+        .compare-row:last-child {
+            border-bottom: none;
+        }
+        .compare-row span {
+            padding: 10px 16px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .compare-row span:first-child {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+        .compare-row span:nth-child(2) {
+            border-left: 1px solid rgba(39, 39, 42, 0.5);
+            border-right: 1px solid rgba(39, 39, 42, 0.5);
+        }
+        .cmp-yes { color: var(--success) !important; }
+        .cmp-no { color: #ef4444 !important; }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="../" class="logo">
+                <div class="logo-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round">
+                        <path d="M4 17l6-6-6-6M12 19h8"/>
+                    </svg>
+                </div>
+                Beam
+            </a>
+            <a href="../" class="btn">Download Beam</a>
+        </div>
+    </header>
+
+    <main>
+        <article class="container">
+            <div class="breadcrumb">
+                <a href="../">Beam</a> / <a href="../#guides">Guides</a> / Beam on Windows for Agentic Engineering
+            </div>
+
+            <h1>How to Set Up Beam on Windows for Agentic Engineering</h1>
+            <p class="meta">February 2026 &bull; 6 min read</p>
+
+            <p>Agentic engineering &mdash; the practice of orchestrating AI agents to build software autonomously &mdash; is exploding on Windows. With Claude Code, OpenAI Codex, and a growing ecosystem of terminal-based AI tools now available on Windows, the missing piece has been a terminal that can actually keep up.</p>
+
+            <p>Beam is now available on Windows. This guide walks you through setting up Beam as your agentic engineering command center on Windows 11.</p>
+
+            <h2>Why Windows Developers Need Beam</h2>
+
+            <p>Windows Terminal is fine for a single shell. But agentic engineering isn't a single shell &mdash; it's 5, 10, sometimes 15 concurrent terminal sessions: Claude Code agents working on different modules, dev servers, build watchers, database consoles, and log tails.</p>
+
+            <p>Without a terminal organizer, you end up with:</p>
+
+            <ul>
+                <li><strong>Tab soup</strong> &mdash; 12 identical "PowerShell" tabs with no way to tell them apart</li>
+                <li><strong>Lost agents</strong> &mdash; Your Claude Code session is behind 8 other tabs and you can't find it</li>
+                <li><strong>Context collapse</strong> &mdash; Frontend agent output mixed in with backend logs</li>
+                <li><strong>No persistence</strong> &mdash; Close your terminal and your entire workspace layout is gone</li>
+            </ul>
+
+            <!-- Tab Soup Visualization -->
+            <div class="problem-visual">
+                <div class="problem-visual-label">What 15 sessions looks like in Windows Terminal</div>
+                <div class="chaos-grid">
+                    <div class="chaos-tab active">PowerShell</div>
+                    <div class="chaos-tab">PowerShell</div>
+                    <div class="chaos-tab">PowerShell</div>
+                    <div class="chaos-tab">PowerShell</div>
+                    <div class="chaos-tab">PowerShell</div>
+                    <div class="chaos-tab">PowerShell</div>
+                    <div class="chaos-tab">PowerShell</div>
+                    <div class="chaos-tab">PowerShell</div>
+                    <div class="chaos-tab">PowerShell</div>
+                    <div class="chaos-tab">PowerShell</div>
+                    <div class="chaos-tab">PowerShell</div>
+                    <div class="chaos-tab">PowerShell</div>
+                </div>
+                <div class="chaos-caption">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#ef4444" stroke-width="1.5"/><path d="M8 4.5v4M8 11v.5" stroke="#ef4444" stroke-width="1.5" stroke-linecap="round"/></svg>
+                    Which one is Claude Code? Which is the dev server?
+                </div>
+            </div>
+
+            <p>Beam solves all of this with workspaces, named tabs, split panes, and saveable project layouts.</p>
+
+            <h2>Step 1: Install Beam on Windows</h2>
+
+            <ol>
+                <li>Download the Windows installer from <a href="https://getbeam.dev" style="color: var(--accent);">getbeam.dev</a></li>
+                <li>Run <strong>Beam-v3.0.1-setup.exe</strong></li>
+                <li>Beam installs to your user directory &mdash; no admin privileges required</li>
+                <li>Launch Beam from the Start Menu or pin it to your taskbar</li>
+            </ol>
+
+            <div class="highlight">
+                <h3>Windows SmartScreen Notice</h3>
+                <p>On first launch, Windows SmartScreen may show a warning because Beam doesn&rsquo;t yet have an EV code signing certificate. Click &ldquo;More info&rdquo; then &ldquo;Run anyway.&rdquo; This is a one-time prompt. <a href="windows-installation-guide.html" style="color: var(--accent);">Full installation guide &rarr;</a></p>
+            </div>
+
+            <h2>Step 2: Install Claude Code</h2>
+
+            <p>Claude Code runs natively on Windows via npm:</p>
+
+            <ol>
+                <li>Install Node.js from <a href="https://nodejs.org" style="color: var(--accent);">nodejs.org</a> (LTS recommended)</li>
+                <li>Open Beam and create a new tab with <span class="kbd">Ctrl+T</span></li>
+                <li>Run: <span class="kbd">npm install -g @anthropic-ai/claude-code</span></li>
+                <li>Authenticate: <span class="kbd">claude login</span></li>
+            </ol>
+
+            <h2>Step 3: Create Your Agentic Engineering Workspace</h2>
+
+            <p>Here's the workspace layout that power users swear by for multi-agent development on Windows:</p>
+
+            <p><strong>Workspace 1: "Agent Hub"</strong></p>
+            <ul>
+                <li>Tab 1: Claude Code &mdash; your primary AI agent (code generation, architecture decisions)</li>
+                <li>Tab 2: Secondary agent &mdash; a second Claude Code session for parallel tasks</li>
+                <li>Tab 3: Agent monitoring &mdash; watching file changes in real time</li>
+            </ul>
+
+            <p><strong>Workspace 2: "Build &amp; Test"</strong></p>
+            <ul>
+                <li>Tab 1: Dev server (<span class="kbd">npm run dev</span> or <span class="kbd">dotnet watch</span>)</li>
+                <li>Tab 2: Test runner &mdash; split pane with <span class="kbd">Ctrl+Alt+Shift+T</span></li>
+                <li>Tab 3: Build output / CI logs</li>
+            </ul>
+
+            <p><strong>Workspace 3: "Infrastructure"</strong></p>
+            <ul>
+                <li>Tab 1: Docker Desktop / container logs</li>
+                <li>Tab 2: Database CLI (SQL Server, PostgreSQL, etc.)</li>
+                <li>Tab 3: Git operations</li>
+            </ul>
+
+            <!-- Workspace Architecture Diagram -->
+            <div class="workspace-diagram">
+                <div class="ws-card">
+                    <div class="ws-card-header">
+                        <div class="ws-card-icon hub">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="5" r="3" stroke="#8b5cf6" stroke-width="1.5"/><path d="M2 14c0-3.3 2.7-6 6-6s6 2.7 6 6" stroke="#8b5cf6" stroke-width="1.5" stroke-linecap="round"/></svg>
+                        </div>
+                        <span class="ws-card-title">Agent Hub</span>
+                    </div>
+                    <div class="ws-card-body">
+                        <div class="ws-tab-row"><span class="ws-tab-dot purple"></span> Claude Code (primary)</div>
+                        <div class="ws-tab-row"><span class="ws-tab-dot blue"></span> Claude Code (secondary)</div>
+                        <div class="ws-tab-row"><span class="ws-tab-dot cyan"></span> File watcher</div>
+                    </div>
+                </div>
+                <div class="ws-card">
+                    <div class="ws-card-header">
+                        <div class="ws-card-icon build">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M8 3v10" stroke="#22c55e" stroke-width="1.5" stroke-linecap="round"/></svg>
+                        </div>
+                        <span class="ws-card-title">Build &amp; Test</span>
+                    </div>
+                    <div class="ws-card-body">
+                        <div class="ws-tab-row"><span class="ws-tab-dot green"></span> Dev server</div>
+                        <div class="ws-tab-row"><span class="ws-tab-dot yellow"></span> Test runner</div>
+                        <div class="ws-tab-row"><span class="ws-tab-dot orange"></span> Build output</div>
+                    </div>
+                </div>
+                <div class="ws-card">
+                    <div class="ws-card-header">
+                        <div class="ws-card-icon infra">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="3" width="12" height="4" rx="1" stroke="#f97316" stroke-width="1.5"/><rect x="2" y="9" width="12" height="4" rx="1" stroke="#f97316" stroke-width="1.5"/><circle cx="5" cy="5" r="1" fill="#f97316"/><circle cx="5" cy="11" r="1" fill="#f97316"/></svg>
+                        </div>
+                        <span class="ws-card-title">Infrastructure</span>
+                    </div>
+                    <div class="ws-card-body">
+                        <div class="ws-tab-row"><span class="ws-tab-dot red"></span> Docker logs</div>
+                        <div class="ws-tab-row"><span class="ws-tab-dot pink"></span> Database CLI</div>
+                        <div class="ws-tab-row"><span class="ws-tab-dot gray"></span> Git operations</div>
+                    </div>
+                </div>
+            </div>
+
+            <p>Switch between workspaces instantly with <span class="kbd">Ctrl+Alt+&larr;&rarr;</span>. Each workspace is completely isolated &mdash; your agent sessions never get mixed up with your infrastructure tabs.</p>
+
+            <h2>Step 4: Save Your Layout as a Project</h2>
+
+            <p>Once your workspace is configured, press <span class="kbd">Ctrl+S</span> to save it as a project. Tomorrow when you open Beam, restore your entire multi-agent setup with one click &mdash; all workspaces, tabs, splits, and working directories exactly where you left them.</p>
+
+            <div class="highlight">
+                <h3>Pro Tip: AI Memory on Windows</h3>
+                <p>Beam's memory system works on Windows too. Each project gets a <span class="kbd">ProjectName.md</span> file that persists context across Claude Code sessions. Your agents remember your architecture, conventions, and decisions &mdash; even after a reboot.</p>
+            </div>
+
+            <h2>Agentic Engineering Workflow on Windows</h2>
+
+            <p>Here&rsquo;s a real agentic engineering workflow using Beam on Windows:</p>
+
+            <!-- Workflow Timeline -->
+            <div class="workflow-timeline">
+                <div class="wf-step">
+                    <p><strong>Open Beam</strong> and restore your project layout</p>
+                </div>
+                <div class="wf-step">
+                    <p><strong>Start Claude Code</strong> in your Agent Hub workspace: <span class="wf-kbd">claude</span></p>
+                </div>
+                <div class="wf-step">
+                    <p><strong>Describe your task</strong> &mdash; &ldquo;Add user authentication with JWT to the Express API&rdquo;</p>
+                </div>
+                <div class="wf-step">
+                    <p><strong>Switch to Build workspace</strong> <span class="wf-kbd">Ctrl+Alt+&rarr;</span> to watch the dev server hot-reload</p>
+                </div>
+                <div class="wf-step">
+                    <p><strong>Open a second Claude Code</strong> in another tab to work on the frontend auth flow in parallel</p>
+                </div>
+                <div class="wf-step">
+                    <p><strong>Use Quick Switcher</strong> <span class="wf-kbd">Ctrl+P</span> to jump between any session instantly</p>
+                </div>
+                <div class="wf-step">
+                    <p><strong>Save your progress</strong> <span class="wf-kbd">Ctrl+S</span> when you&rsquo;re done for the day</p>
+                </div>
+            </div>
+
+            <h2>Why Beam Beats Windows Terminal for Agents</h2>
+
+            <p>Windows Terminal is a solid general-purpose terminal. But it wasn&rsquo;t designed for agentic workflows:</p>
+
+            <!-- Comparison Table -->
+            <div class="compare-table">
+                <div class="compare-header">
+                    <span>Feature</span>
+                    <span>Beam</span>
+                    <span>Windows Terminal</span>
+                </div>
+                <div class="compare-row">
+                    <span>Workspaces</span>
+                    <span class="cmp-yes"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7l3 3 5-5" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Built-in</span>
+                    <span class="cmp-no"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3.5 3.5l7 7M10.5 3.5l-7 7" stroke="#ef4444" stroke-width="1.5" stroke-linecap="round"/></svg> No</span>
+                </div>
+                <div class="compare-row">
+                    <span>Project persistence</span>
+                    <span class="cmp-yes"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7l3 3 5-5" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Save &amp; restore</span>
+                    <span class="cmp-no"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3.5 3.5l7 7M10.5 3.5l-7 7" stroke="#ef4444" stroke-width="1.5" stroke-linecap="round"/></svg> No</span>
+                </div>
+                <div class="compare-row">
+                    <span>Quick Switcher</span>
+                    <span class="cmp-yes"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7l3 3 5-5" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Ctrl+P</span>
+                    <span class="cmp-no"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3.5 3.5l7 7M10.5 3.5l-7 7" stroke="#ef4444" stroke-width="1.5" stroke-linecap="round"/></svg> No</span>
+                </div>
+                <div class="compare-row">
+                    <span>AI memory</span>
+                    <span class="cmp-yes"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7l3 3 5-5" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Per-project</span>
+                    <span class="cmp-no"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3.5 3.5l7 7M10.5 3.5l-7 7" stroke="#ef4444" stroke-width="1.5" stroke-linecap="round"/></svg> No</span>
+                </div>
+                <div class="compare-row">
+                    <span>Undo close tab</span>
+                    <span class="cmp-yes"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7l3 3 5-5" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Ctrl+Z</span>
+                    <span class="cmp-no"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3.5 3.5l7 7M10.5 3.5l-7 7" stroke="#ef4444" stroke-width="1.5" stroke-linecap="round"/></svg> No</span>
+                </div>
+                <div class="compare-row">
+                    <span>Tabs &amp; splits</span>
+                    <span class="cmp-yes"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7l3 3 5-5" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Yes</span>
+                    <span class="cmp-yes"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7l3 3 5-5" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Yes</span>
+                </div>
+            </div>
+
+            <div class="cta-box">
+                <h3>Ready to Build with AI Agents on Windows?</h3>
+                <p>Download Beam for Windows and set up your agentic engineering workspace in minutes.</p>
+                <a href="../" class="btn">Download Beam for Windows</a>
+            </div>
+
+            <h2>Summary</h2>
+
+            <p>Agentic engineering on Windows is here. With Beam + Claude Code, you get:</p>
+
+            <ul>
+                <li><strong>Workspaces</strong> to isolate agent sessions by concern</li>
+                <li><strong>Named tabs and splits</strong> to keep parallel agents organized</li>
+                <li><strong>Project layouts</strong> to save and restore your entire multi-agent setup</li>
+                <li><strong>Quick Switcher</strong> to jump to any agent session instantly</li>
+                <li><strong>AI memory</strong> to give your agents persistent project context</li>
+            </ul>
+
+            <p>Stop fighting your terminal. Start engineering with agents.</p>
+
+            <div class="related-articles">
+                <h2>Related Articles</h2>
+                <div class="related-grid">
+                    <a href="vibe-coding-windows-setup-2026.html" class="related-card">
+                        <h4>Vibe Coding on Windows: The Complete 2026 Stack</h4>
+                        <p>The full vibe coding setup for Windows developers in 2026.</p>
+                    </a>
+                    <a href="agentic-engineering-guide.html" class="related-card">
+                        <h4>What Is Agentic Engineering?</h4>
+                        <p>The definitive guide to agentic engineering in 2026.</p>
+                    </a>
+                    <a href="beam-linux-ai-coding-workflow.html" class="related-card">
+                        <h4>Beam on Linux: AI Coding Workflow</h4>
+                        <p>Set up Beam on Linux for AI-powered development.</p>
+                    </a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>
+                <a href="../">Beam</a> &bull; Terminal Organizer for macOS, Windows &amp; Linux &bull;
+                <a href="mailto:frank@nextuptechnologies.co">Contact</a>
+            </p>
+
+            <p style="margin-top: 12px; font-size: 0.8rem;">
+                <a href="/privacy.html" style="color: #71717a; text-decoration: none;">Privacy Policy</a> &bull;
+                <a href="/terms.html" style="color: #71717a; text-decoration: none;">Terms of Service</a>
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>

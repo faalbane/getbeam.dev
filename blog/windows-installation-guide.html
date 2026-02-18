@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D0XH8B0RKL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-D0XH8B0RKL');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Install Beam on Windows — Step by Step | Beam Terminal Organizer</title>
+    <meta name="description" content="Install Beam on Windows in 2 minutes. Step-by-step guide including how to handle the Windows SmartScreen warning on first launch.">
+    <meta name="keywords" content="install Beam Windows, Beam Windows SmartScreen, Beam setup Windows, terminal organizer Windows, Beam Windows guide">
+    <meta name="author" content="NextUp Technologies">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://getbeam.dev/blog/windows-installation-guide.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://getbeam.dev/blog/windows-installation-guide.html">
+    <meta property="og:title" content="How to Install Beam on Windows — Step by Step">
+    <meta property="og:description" content="Install Beam on Windows in 2 minutes. Step-by-step guide including how to handle the Windows SmartScreen warning on first launch.">
+    <meta property="og:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="How to Install Beam on Windows — Step by Step">
+    <meta name="twitter:description" content="Install Beam on Windows in 2 minutes. Step-by-step guide including how to handle the Windows SmartScreen warning on first launch.">
+    <meta name="twitter:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "How to Install Beam on Windows — Step by Step",
+        "description": "Install Beam on Windows in 2 minutes. Step-by-step guide including how to handle the Windows SmartScreen warning on first launch.",
+        "author": {
+            "@type": "Organization",
+            "name": "NextUp Technologies"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Beam"
+        },
+        "datePublished": "2026-02-15",
+        "keywords": "install Beam Windows, Beam Windows SmartScreen, Beam setup Windows, terminal organizer"
+    }
+    </script>
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #111113;
+            --bg-tertiary: #1a1a1d;
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.4);
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --border: #27272a;
+            --success: #22c55e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        a, button, .btn, .related-card, .post-card, .editorial-card { cursor: pointer; }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        header {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 60px;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1.5rem;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            background: var(--accent);
+            color: white;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+        }
+
+        article {
+            padding-bottom: 80px;
+        }
+
+        .breadcrumb {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+        }
+
+        .breadcrumb a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .meta {
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            font-size: 0.95rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 48px 0 20px;
+            color: var(--text-primary);
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        ul, ol {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            padding-left: 24px;
+        }
+
+        li {
+            margin-bottom: 12px;
+        }
+
+        .highlight {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 32px 0;
+        }
+
+        .highlight h3 {
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .highlight-warning {
+            border-color: #f59e0b44;
+            background: linear-gradient(135deg, #f59e0b08, var(--bg-secondary));
+        }
+
+        .kbd {
+            display: inline-block;
+            padding: 2px 8px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+        }
+
+        .step-num {
+            flex-shrink: 0;
+            width: 32px;
+            height: 32px;
+            background: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: white;
+        }
+
+        .step-card p {
+            margin: 0;
+        }
+
+        .step-card strong {
+            color: var(--text-primary);
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .cta-box h3 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+        }
+
+        .cta-box p {
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 24px;
+        }
+
+        .cta-box .btn {
+            background: white;
+            color: var(--accent);
+        }
+
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+
+        .related-articles { margin-top: 60px; padding-top: 40px; border-top: 1px solid var(--border); }
+        .related-articles h2 { font-size: 1.5rem; margin-bottom: 24px; }
+        .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .related-card { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-decoration: none; transition: border-color 0.2s; }
+        .related-card:hover { border-color: var(--accent); }
+        .related-card h4 { color: white; font-size: 1rem; margin: 0 0 8px 0; }
+        .related-card p { color: var(--text-muted); font-size: 0.85rem; margin: 0; }
+        @media (max-width: 600px) { .related-grid { grid-template-columns: 1fr; } h1 { font-size: 1.8rem; } .smartscreen-mockup { padding: 28px 20px; } .ss-title { font-size: 1rem; } .ss-subtitle { font-size: 0.8rem; } }
+
+        /* ── SmartScreen Dialog Mockup ── */
+        .smartscreen-mockup {
+            position: relative;
+            background: #001f5c;
+            border-radius: 4px;
+            padding: 40px 36px 32px;
+            margin: 32px 0;
+            overflow: hidden;
+            box-shadow: 0 8px 40px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.05);
+        }
+        .smartscreen-mockup::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: #0078d4;
+        }
+        .ss-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 4px;
+            padding: 3px 10px;
+            font-size: 0.7rem;
+            font-family: 'JetBrains Mono', monospace;
+            color: rgba(255,255,255,0.45);
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+        }
+        .ss-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            margin-bottom: 16px;
+        }
+        .ss-shield {
+            flex-shrink: 0;
+            width: 48px;
+            height: 48px;
+            margin-top: 2px;
+        }
+        .ss-title {
+            font-family: 'Segoe UI', 'Space Grotesk', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #fff;
+            margin: 0 0 8px 0;
+            line-height: 1.3;
+        }
+        .ss-subtitle {
+            font-family: 'Segoe UI', 'Space Grotesk', sans-serif;
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.6);
+            margin: 0;
+            line-height: 1.5;
+        }
+        .ss-actions {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            margin-top: 28px;
+            padding-left: 68px;
+        }
+        .ss-btn-fake {
+            display: inline-block;
+            padding: 6px 32px;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 3px;
+            color: #fff;
+            font-family: 'Segoe UI', 'Space Grotesk', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        .ss-link-fake {
+            font-family: 'Segoe UI', 'Space Grotesk', sans-serif;
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.5);
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+        .ss-annotation {
+            position: relative;
+            margin-top: 20px;
+            padding: 12px 16px 12px 68px;
+            background: rgba(59, 130, 246, 0.08);
+            border-left: 3px solid var(--accent);
+            border-radius: 0 6px 6px 0;
+        }
+        .ss-annotation p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: var(--accent);
+        }
+        .ss-annotation-arrow {
+            position: absolute;
+            left: 36px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        /* ── Timeline Steps ── */
+        .steps-visual {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            margin: 28px 0 32px;
+            position: relative;
+        }
+        .step-card {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        .step-connector {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4px 0;
+            position: relative;
+            z-index: 0;
+        }
+        .step-connector svg {
+            opacity: 0.35;
+        }
+
+        /* ── Success Badge ── */
+        .success-badge {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin: 24px 0 8px;
+            padding: 16px;
+        }
+        .success-circle {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--success);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: successPulse 2.5s ease-in-out infinite;
+            box-shadow: 0 0 20px rgba(34, 197, 94, 0.3);
+        }
+        .success-text {
+            font-size: 0.95rem;
+            color: var(--success);
+            font-weight: 600;
+        }
+        @keyframes successPulse {
+            0%, 100% { box-shadow: 0 0 20px rgba(34, 197, 94, 0.25); transform: scale(1); }
+            50% { box-shadow: 0 0 32px rgba(34, 197, 94, 0.45); transform: scale(1.05); }
+        }
+
+        /* ── Trust Badge ── */
+        .trust-badge-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+        .trust-shield {
+            flex-shrink: 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="../" class="logo">
+                <div class="logo-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round">
+                        <path d="M4 17l6-6-6-6M12 19h8"/>
+                    </svg>
+                </div>
+                Beam
+            </a>
+            <a href="../" class="btn">Download Beam</a>
+        </div>
+    </header>
+
+    <main>
+        <article class="container">
+            <div class="breadcrumb">
+                <a href="../">Beam</a> / <a href="../#guides">Guides</a> / Windows Installation Guide
+            </div>
+
+            <h1>How to Install Beam on Windows &mdash; Step by Step</h1>
+            <p class="meta">February 2026 &bull; 3 min read</p>
+
+            <p>Beam is available on Windows as a standard installer. The whole process takes about 2 minutes. This guide walks you through every step &mdash; including the Windows SmartScreen prompt you'll see on first launch.</p>
+
+            <h2>Step 1: Download the Installer</h2>
+
+            <ol>
+                <li>Go to <a href="https://getbeam.dev" style="color: var(--accent);">getbeam.dev</a></li>
+                <li>Click the <strong>Windows</strong> download button</li>
+                <li>Save <span class="kbd">Beam-v3.0.1-setup.exe</span> to your Downloads folder</li>
+            </ol>
+
+            <h2>Step 2: Handle the SmartScreen Warning</h2>
+
+            <p>When you double-click the installer, Windows Defender SmartScreen will likely show a blue dialog that says <strong>&ldquo;Windows protected your PC.&rdquo;</strong> This looks alarming, but it's completely normal.</p>
+
+            <div class="highlight highlight-warning">
+                <div class="trust-badge-row">
+                    <svg class="trust-shield" width="28" height="28" viewBox="0 0 24 24" fill="none">
+                        <path d="M12 2L3 7v5c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-9-5z" fill="#22c55e" opacity="0.15" stroke="#22c55e" stroke-width="1.5"/>
+                        <path d="M9 12l2 2 4-4" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <h3 style="margin-bottom: 0;">Why does this happen?</h3>
+                </div>
+                <p>SmartScreen flags apps that don't have an Extended Validation (EV) code signing certificate &mdash; which costs $300&ndash;600/year. Most indie developer tools show this warning. Beam is built by NextUp Technologies LLC and is used by developers worldwide. The app is safe to install.</p>
+            </div>
+
+            <p>Here&rsquo;s what you&rsquo;ll see:</p>
+
+            <!-- SmartScreen Dialog Mockup -->
+            <div class="smartscreen-mockup">
+                <div class="ss-badge">Preview &mdash; what the dialog looks like</div>
+                <div class="ss-header">
+                    <svg class="ss-shield" width="48" height="48" viewBox="0 0 48 48" fill="none">
+                        <path d="M24 4L6 14v10c0 11.1 7.68 21.48 18 24 10.32-2.52 18-12.9 18-24V14L24 4z" fill="#0078d4" opacity="0.25"/>
+                        <path d="M24 4L6 14v10c0 11.1 7.68 21.48 18 24 10.32-2.52 18-12.9 18-24V14L24 4z" stroke="#4da3ff" stroke-width="1.5" fill="none"/>
+                        <rect x="22" y="15" width="4" height="12" rx="2" fill="#fff" opacity="0.9"/>
+                        <circle cx="24" cy="33" r="2.5" fill="#fff" opacity="0.9"/>
+                    </svg>
+                    <div>
+                        <div class="ss-title">Windows protected your PC</div>
+                        <p class="ss-subtitle">Microsoft Defender SmartScreen prevented an unrecognized app from starting. Running this app might put your PC at risk.</p>
+                    </div>
+                </div>
+                <div class="ss-actions">
+                    <span class="ss-btn-fake">Don&rsquo;t run</span>
+                    <span class="ss-link-fake">More info</span>
+                </div>
+                <div class="ss-annotation">
+                    <svg class="ss-annotation-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                        <path d="M8 2v8M4 6l4-4 4 4" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <p>Click &ldquo;More info&rdquo; &mdash; this reveals the &ldquo;Run anyway&rdquo; button</p>
+                </div>
+            </div>
+
+            <p>Here&rsquo;s how to get past it:</p>
+
+            <div class="steps-visual">
+                <div class="step-card">
+                    <div class="step-num">1</div>
+                    <p>You&rsquo;ll see <strong>&ldquo;Windows protected your PC&rdquo;</strong> with only a <strong>&ldquo;Don&rsquo;t run&rdquo;</strong> button. Look for the small <strong>&ldquo;More info&rdquo;</strong> text link underneath the warning message and click it.</p>
+                </div>
+                <div class="step-connector">
+                    <svg width="20" height="28" viewBox="0 0 20 28" fill="none"><path d="M10 0v20M5 16l5 5 5-5" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">2</div>
+                    <p>A <strong>&ldquo;Run anyway&rdquo;</strong> button appears. Click it. This tells Windows you trust the publisher.</p>
+                </div>
+                <div class="step-connector">
+                    <svg width="20" height="28" viewBox="0 0 20 28" fill="none"><path d="M10 0v20M5 16l5 5 5-5" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <div class="step-card">
+                    <div class="step-num">3</div>
+                    <p>The Beam installer launches. <strong>You&rsquo;ll only see this SmartScreen prompt once</strong> &mdash; future updates won&rsquo;t trigger it again.</p>
+                </div>
+            </div>
+
+            <div class="success-badge">
+                <div class="success-circle">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M6 12l4 4 8-8" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <span class="success-text">You&rsquo;re through &mdash; Beam is installing</span>
+            </div>
+
+            <h2>Step 3: Run the Installer</h2>
+
+            <p>The Beam installer (NSIS) is straightforward:</p>
+
+            <ol>
+                <li>Choose your install directory (defaults to your user folder &mdash; <strong>no admin privileges required</strong>)</li>
+                <li>Optionally create a desktop shortcut</li>
+                <li>Click <strong>Install</strong> and wait a few seconds</li>
+                <li>Beam launches automatically when done</li>
+            </ol>
+
+            <p>You can also find Beam in your Start Menu after installation.</p>
+
+            <h2>Step 4: Create Your First Project</h2>
+
+            <p>On first launch, Beam will ask you to create a project. Give it a name and a working directory &mdash; this is where your terminal sessions will open by default. You can create more projects later with <span class="kbd">Ctrl+L</span>.</p>
+
+            <p>From there, you're ready to go. Open tabs with <span class="kbd">Ctrl+T</span>, split panes with <span class="kbd">Ctrl+Shift+T</span>, and jump between anything with <span class="kbd">Ctrl+P</span>.</p>
+
+            <div class="highlight">
+                <h3>Next: Set Up AI Agents</h3>
+                <p>If you want to run Claude Code, OpenAI Codex, or OpenClaw in Beam, check out the <a href="beam-windows-agentic-engineering-setup.html" style="color: var(--accent);">Agentic Engineering on Windows</a> guide &mdash; it covers installing Claude Code and setting up a multi-agent workspace.</p>
+            </div>
+
+            <h2>Troubleshooting</h2>
+
+            <div class="highlight highlight-warning">
+                <h3>SmartScreen completely blocks the app</h3>
+                <p>If SmartScreen won't show "More info" at all (this can happen on managed corporate machines), try this: right-click <span class="kbd">Beam-v3.0.1-setup.exe</span> in File Explorer &rarr; click <strong>Properties</strong> &rarr; check the <strong>"Unblock"</strong> checkbox at the bottom of the General tab &rarr; click <strong>Apply</strong> &rarr; double-click the installer again.</p>
+            </div>
+
+            <div class="highlight highlight-warning">
+                <h3>Antivirus flags the installer</h3>
+                <p>Some antivirus software flags unsigned Windows executables as potentially unwanted. This is a false positive. You can add an exception for <span class="kbd">Beam-v3.0.1-setup.exe</span> in your antivirus settings, or temporarily disable real-time protection during installation.</p>
+            </div>
+
+            <div class="highlight highlight-warning">
+                <h3>Need help?</h3>
+                <p>If you run into any issues not covered here, email <a href="mailto:frank@nextuptechnologies.co" style="color: var(--accent);">frank@nextuptechnologies.co</a> and we'll get you sorted.</p>
+            </div>
+
+            <div class="cta-box">
+                <h3>Ready to get started?</h3>
+                <p>Download Beam for Windows and set up your terminal workspace in minutes.</p>
+                <a href="../Beam-v3.0.1-setup.exe" class="btn">Download for Windows</a>
+            </div>
+
+            <div class="related-articles">
+                <h2>Related Articles</h2>
+                <div class="related-grid">
+                    <a href="beam-windows-agentic-engineering-setup.html" class="related-card">
+                        <h4>Beam on Windows: Agentic Engineering</h4>
+                        <p>Set up a multi-agent AI coding workspace on Windows.</p>
+                    </a>
+                    <a href="vibe-coding-windows-setup-2026.html" class="related-card">
+                        <h4>Vibe Coding on Windows 2026</h4>
+                        <p>The complete vibe coding stack for Windows developers.</p>
+                    </a>
+                    <a href="agentic-engineering-windows-terminal.html" class="related-card">
+                        <h4>Terminal > IDE on Windows</h4>
+                        <p>Why terminal-first workflows are winning on Windows.</p>
+                    </a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>
+                <a href="../">Beam</a> &bull; Terminal Organizer for macOS, Windows &amp; Linux &bull;
+                <a href="mailto:frank@nextuptechnologies.co">Contact</a>
+            </p>
+
+            <p style="margin-top: 12px; font-size: 0.8rem;">
+                <a href="/privacy.html" style="color: #71717a; text-decoration: none;">Privacy Policy</a> &bull;
+                <a href="/terms.html" style="color: #71717a; text-decoration: none;">Terms of Service</a>
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>

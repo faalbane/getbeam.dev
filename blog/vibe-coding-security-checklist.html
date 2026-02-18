@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D0XH8B0RKL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-D0XH8B0RKL');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vibe Coding Security: 2.74x More Vulnerabilities and How to Fix It | Beam</title>
+    <meta name="description" content="AI-generated code has 2.74x more security vulnerabilities than human-written code. Here&rsquo;s the 10-point checklist to secure your vibe-coded projects.">
+    <meta name="keywords" content="vibe coding security, AI code vulnerabilities, CodeRabbit, secure AI coding, vibe coding risks">
+    <meta name="author" content="NextUp Technologies">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://getbeam.dev/blog/vibe-coding-security-checklist.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://getbeam.dev/blog/vibe-coding-security-checklist.html">
+    <meta property="og:title" content="Vibe Coding Security: 2.74x More Vulnerabilities and How to Fix It">
+    <meta property="og:description" content="AI-generated code has 2.74x more security vulnerabilities. Here&rsquo;s the 10-point checklist to secure your vibe-coded projects.">
+    <meta property="og:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Vibe Coding Security: 2.74x More Vulnerabilities and How to Fix It">
+    <meta name="twitter:description" content="AI-generated code has 2.74x more security vulnerabilities. Here&rsquo;s the 10-point checklist to secure your vibe-coded projects.">
+    <meta name="twitter:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Vibe Coding Security: 2.74x More Vulnerabilities and How to Fix It",
+        "description": "AI-generated code has 2.74x more security vulnerabilities than human-written code. Here's the 10-point checklist to secure your vibe-coded projects.",
+        "author": {
+            "@type": "Organization",
+            "name": "NextUp Technologies"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Beam"
+        },
+        "datePublished": "2026-02-15",
+        "keywords": "vibe coding security, AI code vulnerabilities, CodeRabbit, secure AI coding, vibe coding risks"
+    }
+    </script>
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #111113;
+            --bg-tertiary: #1a1a1d;
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.4);
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --border: #27272a;
+            --success: #22c55e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        a, button, .btn, .related-card, .post-card, .editorial-card { cursor: pointer; }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        header {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 60px;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1.5rem;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            background: var(--accent);
+            color: white;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+        }
+
+        article {
+            padding-bottom: 80px;
+        }
+
+        .breadcrumb {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+        }
+
+        .breadcrumb a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .meta {
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            font-size: 0.95rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 48px 0 20px;
+            color: var(--text-primary);
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        ul, ol {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            padding-left: 24px;
+        }
+
+        li {
+            margin-bottom: 12px;
+        }
+
+        .highlight {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 32px 0;
+        }
+
+        .highlight h3 {
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .kbd {
+            display: inline-block;
+            padding: 2px 8px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .cta-box h3 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+        }
+
+        .cta-box p {
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 24px;
+        }
+
+        .cta-box .btn {
+            background: white;
+            color: var(--accent);
+        }
+
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+
+        .related-articles { margin-top: 60px; padding-top: 40px; border-top: 1px solid var(--border); }
+        .related-articles h2 { font-size: 1.5rem; margin-bottom: 24px; }
+        .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .related-card { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-decoration: none; transition: border-color 0.2s; }
+        .related-card:hover { border-color: var(--accent); }
+        .related-card h4 { color: white; font-size: 1rem; margin: 0 0 8px 0; }
+        .related-card p { color: var(--text-muted); font-size: 0.85rem; margin: 0; }
+        @media (max-width: 600px) { .related-grid { grid-template-columns: 1fr; } h1 { font-size: 1.8rem; } }
+
+        blockquote {
+            border-left: 3px solid var(--accent);
+            padding-left: 20px;
+            margin: 24px 0;
+            font-style: italic;
+        }
+
+        blockquote p {
+            color: var(--text-secondary);
+        }
+
+        code {
+            font-family: 'JetBrains Mono', monospace;
+            background: var(--bg-tertiary);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.88rem;
+            border: 1px solid var(--border);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="../" class="logo">
+                <div class="logo-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round">
+                        <path d="M4 17l6-6-6-6M12 19h8"/>
+                    </svg>
+                </div>
+                Beam
+            </a>
+            <a href="../" class="btn">Download Beam</a>
+        </div>
+    </header>
+
+    <main>
+        <article class="container">
+            <div class="breadcrumb">
+                <a href="../">Beam</a> / <a href="../#guides">Guides</a> / Vibe Coding Security Checklist
+            </div>
+
+            <h1>Vibe Coding Security: 2.74x More Vulnerabilities and How to Fix It</h1>
+            <p class="meta">February 2026 &bull; 11 min read</p>
+
+            <p>Here&rsquo;s the number that should change how you work: AI-generated code contains <strong>2.74 times more security vulnerabilities</strong> than human-written code. Not 10% more. Not &ldquo;slightly elevated risk.&rdquo; Nearly three times the attack surface, shipping straight into production every time you hit accept.</p>
+
+            <p>That finding comes from CodeRabbit&rsquo;s analysis of 470 GitHub pull requests &mdash; 320 AI co-authored, 150 human-only. The AI-generated PRs averaged <strong>10.83 issues per PR</strong> compared to 6.45 for human-written code. And the types of issues weren&rsquo;t trivial style complaints. They were the kinds of vulnerabilities that get your company into headlines: SQL injection, authentication bypasses, hardcoded credentials, and broken input validation.</p>
+
+            <p>Meanwhile, 92% of developers are using AI coding tools daily. That&rsquo;s not going to change. Nobody&rsquo;s going back to writing everything by hand. So the question isn&rsquo;t whether to use AI for coding &mdash; it&rsquo;s how to use it without shipping a security disaster.</p>
+
+            <p>This post breaks down exactly what&rsquo;s going wrong, why it&rsquo;s going wrong, and gives you a concrete 10-point checklist to fix it.</p>
+
+            <div class="visualization" style="margin: 40px 0; background: #111113; border: 1px solid #27272a; border-radius: 12px; padding: 32px; position: relative;">
+                <style>
+                    @keyframes barGrow {
+                        from { width: 0; }
+                        to { width: var(--bar-width); }
+                    }
+                    @keyframes fadeInUp {
+                        from { opacity: 0; transform: translateY(12px); }
+                        to { opacity: 1; transform: translateY(0); }
+                    }
+                    @keyframes badgePop {
+                        0% { opacity: 0; transform: scale(0.5); }
+                        70% { transform: scale(1.08); }
+                        100% { opacity: 1; transform: scale(1); }
+                    }
+                    .viz-title {
+                        font-size: 0.85rem;
+                        color: #a1a1aa;
+                        text-transform: uppercase;
+                        letter-spacing: 0.05em;
+                        margin-bottom: 28px;
+                        font-weight: 500;
+                    }
+                    .viz-bar-group {
+                        margin-bottom: 20px;
+                    }
+                    .viz-bar-label {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: baseline;
+                        margin-bottom: 8px;
+                    }
+                    .viz-bar-label-text {
+                        font-size: 0.95rem;
+                        color: #fafafa;
+                        font-weight: 500;
+                    }
+                    .viz-bar-label-value {
+                        font-family: 'JetBrains Mono', monospace;
+                        font-size: 0.95rem;
+                        font-weight: 600;
+                    }
+                    .viz-bar-track {
+                        width: 100%;
+                        height: 36px;
+                        background: rgba(255, 255, 255, 0.04);
+                        border-radius: 6px;
+                        overflow: hidden;
+                        position: relative;
+                    }
+                    .viz-bar-fill {
+                        height: 100%;
+                        border-radius: 6px;
+                        animation: barGrow 1.5s ease-out forwards;
+                        width: 0;
+                    }
+                    .viz-bar-fill.human {
+                        --bar-width: 59.5%;
+                        background: linear-gradient(90deg, #22c55e, #16a34a);
+                        box-shadow: 0 0 20px rgba(34, 197, 94, 0.15);
+                    }
+                    .viz-bar-fill.ai {
+                        --bar-width: 100%;
+                        background: linear-gradient(90deg, #ef4444, #dc2626);
+                        box-shadow: 0 0 20px rgba(239, 68, 68, 0.15);
+                        animation-delay: 0.3s;
+                    }
+                    .viz-badge-container {
+                        display: flex;
+                        justify-content: center;
+                        margin-top: 24px;
+                    }
+                    .viz-badge {
+                        display: inline-flex;
+                        align-items: center;
+                        gap: 10px;
+                        background: rgba(239, 68, 68, 0.1);
+                        border: 1px solid rgba(239, 68, 68, 0.25);
+                        border-radius: 10px;
+                        padding: 12px 24px;
+                        animation: badgePop 0.5s ease-out 1.8s both;
+                    }
+                    .viz-badge-number {
+                        font-family: 'JetBrains Mono', monospace;
+                        font-size: 2rem;
+                        font-weight: 700;
+                        color: #ef4444;
+                        line-height: 1;
+                    }
+                    .viz-badge-text {
+                        font-size: 0.85rem;
+                        color: #a1a1aa;
+                        line-height: 1.3;
+                    }
+                    .viz-source {
+                        text-align: center;
+                        margin-top: 16px;
+                        font-size: 0.75rem;
+                        color: #71717a;
+                        animation: fadeInUp 0.5s ease-out 2.1s both;
+                    }
+                    @media (max-width: 600px) {
+                        .viz-badge-number { font-size: 1.5rem; }
+                        .viz-badge { padding: 10px 18px; }
+                    }
+                </style>
+                <div class="viz-title">Issues per Pull Request</div>
+                <div class="viz-bar-group">
+                    <div class="viz-bar-label">
+                        <span class="viz-bar-label-text">Human-Written Code</span>
+                        <span class="viz-bar-label-value" style="color: #22c55e;">6.45</span>
+                    </div>
+                    <div class="viz-bar-track">
+                        <div class="viz-bar-fill human"></div>
+                    </div>
+                </div>
+                <div class="viz-bar-group" style="margin-bottom: 0;">
+                    <div class="viz-bar-label">
+                        <span class="viz-bar-label-text">AI Co-Authored Code</span>
+                        <span class="viz-bar-label-value" style="color: #ef4444;">10.83</span>
+                    </div>
+                    <div class="viz-bar-track">
+                        <div class="viz-bar-fill ai"></div>
+                    </div>
+                </div>
+                <div class="viz-badge-container">
+                    <div class="viz-badge">
+                        <span class="viz-badge-number">2.74&times;</span>
+                        <span class="viz-badge-text">more vulnerabilities<br>in AI-generated code</span>
+                    </div>
+                </div>
+                <div class="viz-source">CodeRabbit &mdash; 470 PRs analyzed (320 AI co-authored, 150 human-only)</div>
+            </div>
+
+            <h2>The Vulnerability Landscape: What the Data Actually Shows</h2>
+
+            <p>Let&rsquo;s get specific about what &ldquo;2.74x more vulnerabilities&rdquo; actually looks like in practice. The CodeRabbit study didn&rsquo;t just count bugs &mdash; it categorized them. And the pattern is damning.</p>
+
+            <div class="highlight">
+                <h3>Most Common AI-Generated Vulnerabilities</h3>
+                <ul>
+                    <li><strong>Improper password handling</strong> &mdash; passwords stored in plaintext, weak hashing algorithms, missing salt, no rate limiting on auth endpoints</li>
+                    <li><strong>Input validation failures</strong> &mdash; unsanitized user input flowing directly into database queries, file paths, or shell commands</li>
+                    <li><strong>Authentication bypasses</strong> &mdash; broken session management, missing token verification, JWT tokens that never expire</li>
+                    <li><strong>SQL injection</strong> &mdash; string concatenation in queries instead of parameterized statements, because the training data is full of Stack Overflow answers from 2014</li>
+                    <li><strong>Hardcoded credentials</strong> &mdash; API keys, database passwords, and secret tokens dropped directly into source files</li>
+                </ul>
+            </div>
+
+            <p>A separate assessment from December 2025 reinforced these findings. Researchers tested 15 applications built entirely with vibe coding tools and found <strong>69 vulnerabilities</strong> across them &mdash; an average of 4.6 exploitable security holes per app. These weren&rsquo;t theoretical. They were working exploits against shipping software.</p>
+
+            <p>Perhaps the most unsettling data point comes from academic research on SWE-Agent, one of the more capable autonomous coding agents. Of the solutions it generates, <strong>61% are functionally correct</strong> &mdash; they pass the tests, they produce the right output. But only <strong>10.5% are actually secure</strong>. That means roughly five out of six &ldquo;working&rdquo; solutions have a security flaw. The code works. It just also happens to be exploitable.</p>
+
+            <p>This is the core problem with vibe coding security: <strong>functional correctness and security are almost entirely decoupled</strong>. Your code runs, your tests pass, your feature works &mdash; and you&rsquo;re still vulnerable.</p>
+
+            <h2>Why AI Generates Insecure Code</h2>
+
+            <p>AI doesn&rsquo;t generate insecure code because it&rsquo;s &ldquo;bad at coding.&rdquo; It generates insecure code for structural reasons that are worth understanding, because they tell you exactly where to focus your review effort.</p>
+
+            <p><strong>Training data reflects the internet, not best practices.</strong> Large language models learn from billions of lines of open-source code, Stack Overflow answers, tutorials, and blog posts. Most of that code was never written with security in mind. The quick answer on Stack Overflow that shows you how to build a login form rarely includes rate limiting, CSRF protection, or proper session management. The model learned from those answers, and it reproduces those patterns.</p>
+
+            <p><strong>AI optimizes for &ldquo;works,&rdquo; not &ldquo;safe.&rdquo;</strong> When you ask an AI to build a user registration endpoint, its objective function is to produce code that compiles, handles the happy path, and matches the pattern you described. Security is a constraint that was never explicitly stated in the prompt. The model doesn&rsquo;t think, &ldquo;What could go wrong here?&rdquo; It thinks, &ldquo;What code pattern matches this description?&rdquo;</p>
+
+            <p><strong>No awareness of your threat model.</strong> A human developer working on a banking application thinks differently about input validation than one building a personal blog. They know the stakes. They know the attackers. They know the compliance requirements. An AI model has zero context about what your application does, who uses it, or what the consequences of a breach would be. It applies the same generic patterns to a payment processor and a todo list.</p>
+
+            <p><strong>Context window limitations hide security-relevant code.</strong> Security vulnerabilities are often about what&rsquo;s happening <em>elsewhere</em> in the codebase. Is that auth middleware actually applied to this route? Does the CORS configuration allow the origin this endpoint is serving? Is the rate limiter upstream of this handler? An AI generating a single function doesn&rsquo;t have visibility into these cross-cutting concerns, even when the rest of the codebase is in its context window.</p>
+
+            <p><strong>The &ldquo;accept all&rdquo; culture.</strong> This one isn&rsquo;t the AI&rsquo;s fault. Vibe coding&rsquo;s ethos &mdash; move fast, trust the output, iterate on vibes &mdash; actively discourages the kind of careful, skeptical review that catches security issues. When the culture says &ldquo;just accept and ship,&rdquo; nobody&rsquo;s reading the auth logic line by line.</p>
+
+            <h2>The 10-Point Security Checklist for Vibe-Coded Projects</h2>
+
+            <p>You&rsquo;re not going to stop using AI to write code. You shouldn&rsquo;t. But you need guardrails. This checklist is designed to be practical &mdash; things you can actually do on every project, not aspirational security theater.</p>
+
+            <p><strong>1. Never accept authentication or authorization code without manual review.</strong> This is the single most important rule. Any code that handles login, session management, password storage, token generation, role checks, or access control gets read by a human, line by line. Period. No exceptions. The AI is statistically worst at exactly this category of code.</p>
+
+            <p><strong>2. Run a SAST scanner on every PR.</strong> Static Application Security Testing tools like Semgrep, CodeQL, or Snyk catch the low-hanging fruit automatically. Set them up in your CI pipeline so they run on every pull request. They won&rsquo;t catch everything, but they&rsquo;ll catch the hardcoded credentials and SQL injection patterns that AI loves to produce. If CodeRabbit&rsquo;s data tells us anything, it&rsquo;s that automated scanning pays for itself immediately on AI-generated code.</p>
+
+            <p><strong>3. Treat all AI-generated environment and secret handling as wrong until proven right.</strong> Any time the AI touches <code>.env</code> files, configuration files, API key management, or secret storage, assume the implementation is insecure. Check that secrets aren&rsquo;t hardcoded. Check that <code>.env</code> is in <code>.gitignore</code>. Check that API keys aren&rsquo;t logged. Check that credentials aren&rsquo;t passed in URL parameters. This takes 60 seconds and prevents the most embarrassing class of vulnerability.</p>
+
+            <p><strong>4. Validate every database query.</strong> Look for string concatenation in SQL queries. Look for ORM methods that accept raw input. Look for missing parameterization. This is a simple pattern match that takes seconds per query, and it&rsquo;s the difference between a working app and a data breach. AI models <em>still</em> generate string-concatenated SQL in 2026 because their training data is full of it.</p>
+
+            <p><strong>5. Audit input validation at every boundary.</strong> Every endpoint that accepts user input &mdash; form fields, URL parameters, file uploads, API request bodies &mdash; needs validation. Check that the AI actually validates types, lengths, and formats. Check that file uploads are restricted by type and size. Check that URL parameters are sanitized before use. AI-generated code consistently skips or under-implements input validation.</p>
+
+            <p><strong>6. Run a dedicated security review agent pass.</strong> After your implementation agent finishes, run a separate AI session specifically for security review. Give it a prompt like: &ldquo;Review this codebase for security vulnerabilities. Focus on authentication, input validation, SQL injection, XSS, CSRF, secrets management, and access control. List every issue with file, line number, and severity.&rdquo; Using one AI to audit another AI catches a surprising amount.</p>
+
+            <p><strong>7. Check dependency versions and known vulnerabilities.</strong> AI agents pull in packages without checking whether they&rsquo;re maintained, up to date, or have known CVEs. Run <code>npm audit</code>, <code>pip audit</code>, or <code>cargo audit</code> after every AI session that modifies your dependency tree. Lock your dependency versions. Don&rsquo;t accept <code>*</code> or <code>latest</code> as version specifiers.</p>
+
+            <p><strong>8. Verify CORS, CSP, and HTTP security headers.</strong> AI-generated backend code routinely sets <code>Access-Control-Allow-Origin: *</code> because it&rsquo;s the path of least resistance during development. Check that CORS is locked down to your actual domains. Check that Content-Security-Policy headers are present. Check that cookies have <code>HttpOnly</code>, <code>Secure</code>, and <code>SameSite</code> flags. These take minutes to verify and prevent entire classes of attack.</p>
+
+            <p><strong>9. Test the unhappy paths.</strong> AI-generated tests almost exclusively cover the happy path. Write or generate tests that specifically target: What happens with malformed input? What happens with an expired token? What happens when a user tries to access another user&rsquo;s data? What happens when the request body is 10MB? If your test suite only proves the feature works, it proves nothing about security.</p>
+
+            <p><strong>10. Maintain a security-focused <code>CLAUDE.md</code> section.</strong> Add explicit security requirements to your project&rsquo;s memory file. List your authentication approach, your input validation standards, your secrets management strategy, and your known threat model. When every agent session starts by reading these requirements, you get meaningfully better security in the generated output. The AI follows instructions &mdash; you just have to give them.</p>
+
+            <div class="highlight">
+                <h3>Quick Reference: The Non-Negotiable Three</h3>
+                <p>If you only do three things from this list, do these:</p>
+                <ul>
+                    <li><strong>Manually review all auth code</strong> &mdash; the highest-impact, lowest-effort security check you can make</li>
+                    <li><strong>Run SAST in CI</strong> &mdash; catches the mechanical vulnerabilities automatically, on every PR</li>
+                    <li><strong>Run a security-focused agent pass</strong> &mdash; uses AI&rsquo;s own strength against its weaknesses</li>
+                </ul>
+            </div>
+
+            <h2>Using AI Agents for Security (Not Just Against It)</h2>
+
+            <p>Here&rsquo;s the counterintuitive part: AI is simultaneously the cause of and the best available solution to the vibe coding security problem.</p>
+
+            <p>Databricks published a paper called &ldquo;Passing the Security Vibe Check&rdquo; that makes this point clearly. The same models that generate insecure code can also <em>find</em> insecure code &mdash; when given the right instructions and the right framing. The problem isn&rsquo;t capability. It&rsquo;s that nobody asks.</p>
+
+            <p><strong>Set up a dedicated security review agent.</strong> In your development workflow, create a distinct agent session whose only job is security auditing. Don&rsquo;t mix it with your implementation session. The implementation agent&rsquo;s job is to make features work. The security agent&rsquo;s job is to break them. Give the security agent your threat model, your compliance requirements, and explicit instructions to be adversarial.</p>
+
+            <p><strong>Use Claude Code to audit your own code.</strong> Point Claude Code at your codebase and ask it to find vulnerabilities. Ask it to trace data flow from user input to database query. Ask it to check whether every authenticated route actually verifies the session token. Ask it to list every place a secret is referenced. These are the exact tasks that are tedious for humans and trivial for AI &mdash; as long as you actually run them.</p>
+
+            <p><strong>Automate security checks as pre-commit hooks.</strong> Use an AI agent to generate a pre-commit configuration that checks for common security antipatterns: hardcoded strings that look like secrets, SQL queries built with string concatenation, <code>eval()</code> calls with user input, overly permissive CORS headers. These hooks run before code ever reaches your repository.</p>
+
+            <p>The pattern is clear: use AI for implementation, then use AI again &mdash; with different instructions and a different mindset &mdash; for security review. Two passes, two perspectives, dramatically fewer vulnerabilities.</p>
+
+            <div class="cta-box">
+                <h3>Organize Your Security Reviews in Beam</h3>
+                <p>Dedicate a workspace tab to security auditing. Run your implementation agent and your security review agent side by side, switch between them instantly, and never lose track of what&rsquo;s been reviewed.</p>
+                <a href="../" class="btn">Download Beam Free</a>
+            </div>
+
+            <h2>Key Takeaways</h2>
+
+            <p>The security problem in AI-generated code is real, measurable, and not going away on its own. But it is manageable &mdash; if you build the right habits.</p>
+
+            <ul>
+                <li><strong>AI-generated code has 2.74x more security vulnerabilities</strong> than human-written code, based on CodeRabbit&rsquo;s analysis of 470 GitHub PRs. This isn&rsquo;t speculation. It&rsquo;s measured.</li>
+                <li><strong>Functional correctness doesn&rsquo;t mean security.</strong> Only 10.5% of SWE-Agent&rsquo;s working solutions are actually secure. Your tests passing tells you nothing about whether your auth is exploitable.</li>
+                <li><strong>The vulnerability types are predictable</strong> &mdash; improper password handling, missing input validation, authentication bypasses, SQL injection, and hardcoded credentials. They&rsquo;re the same categories every time, which means they&rsquo;re checklistable.</li>
+                <li><strong>AI generates insecure code for structural reasons:</strong> training data bias, optimization for function over safety, no threat model awareness, and context window limits. Understanding why helps you know where to look.</li>
+                <li><strong>The 10-point checklist works because it targets exactly where AI fails.</strong> Manual auth review, SAST in CI, security agent passes, dependency auditing, and unhappy-path testing address the specific blind spots in AI-generated code.</li>
+                <li><strong>Use AI to fix what AI broke.</strong> A dedicated security review agent, running with adversarial instructions against your implementation agent&rsquo;s output, catches a significant percentage of the vulnerabilities. Two passes, two perspectives.</li>
+                <li><strong>Stopping isn&rsquo;t realistic.</strong> 92% of developers use AI coding tools daily. The answer is better process, not less AI. Build security into your workflow and it becomes automatic, not burdensome.</li>
+            </ul>
+
+            <div class="related-articles">
+                <h2>Related Articles</h2>
+                <div class="related-grid">
+                    <a href="are-ai-coding-tools-getting-worse.html" class="related-card">
+                        <h4>Are AI Coding Tools Getting Worse?</h4>
+                        <p>Examining the evidence behind claims that AI coding assistants are declining in quality and reliability.</p>
+                    </a>
+                    <a href="code-review-with-claude-code.html" class="related-card">
+                        <h4>Code Review with Claude Code</h4>
+                        <p>How to use Claude Code as a thorough, tireless code reviewer for your pull requests and commits.</p>
+                    </a>
+                    <a href="vibe-coding-honeymoon-over.html" class="related-card">
+                        <h4>The Vibe Coding Honeymoon Is Over</h4>
+                        <p>What happens after the initial excitement fades and the real challenges of AI-generated codebases emerge.</p>
+                    </a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>
+                <a href="../">Beam</a> &bull; Terminal Organizer for macOS, Windows &amp; Linux &bull;
+                <a href="mailto:frank@nextuptechnologies.co">Contact</a>
+            </p>
+
+            <p style="margin-top: 12px; font-size: 0.8rem;">
+                <a href="/privacy.html" style="color: #71717a; text-decoration: none;">Privacy Policy</a> &bull;
+                <a href="/terms.html" style="color: #71717a; text-decoration: none;">Terms of Service</a>
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>

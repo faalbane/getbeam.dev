@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D0XH8B0RKL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-D0XH8B0RKL');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Set Up Beam on Linux for AI-Powered Development | Beam Terminal Organizer</title>
+    <meta name="description" content="Set up Beam on Linux for AI-powered development with Claude Code. Organize agentic engineering workflows with workspaces, tabs, and split panes on Ubuntu, Fedora, and Arch.">
+    <meta name="keywords" content="Beam Linux, Linux terminal organizer, Claude Code Linux, AI coding Linux, agentic engineering Linux, vibe coding Linux, AppImage terminal, Ubuntu terminal AI">
+    <meta name="author" content="NextUp Technologies">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://getbeam.dev/blog/beam-linux-ai-coding-workflow.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://getbeam.dev/blog/beam-linux-ai-coding-workflow.html">
+    <meta property="og:title" content="How to Set Up Beam on Linux for AI-Powered Development">
+    <meta property="og:description" content="Set up Beam on Linux for agentic engineering and AI-powered coding workflows with Claude Code.">
+    <meta property="og:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="How to Set Up Beam on Linux for AI-Powered Development">
+    <meta name="twitter:description" content="Set up Beam on Linux for agentic engineering and AI-powered coding workflows with Claude Code.">
+    <meta name="twitter:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "How to Set Up Beam on Linux for AI-Powered Development",
+        "description": "Set up Beam on Linux for AI-powered development with Claude Code and agentic engineering workflows.",
+        "author": {
+            "@type": "Organization",
+            "name": "NextUp Technologies"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Beam"
+        },
+        "datePublished": "2026-02-14",
+        "keywords": "Beam Linux, Claude Code Linux, agentic engineering Linux, terminal organizer"
+    }
+    </script>
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #111113;
+            --bg-tertiary: #1a1a1d;
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.4);
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --border: #27272a;
+            --success: #22c55e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        a, button, .btn, .related-card, .post-card, .editorial-card { cursor: pointer; }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        header {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 60px;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1.5rem;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            background: var(--accent);
+            color: white;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+        }
+
+        article {
+            padding-bottom: 80px;
+        }
+
+        .breadcrumb {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+        }
+
+        .breadcrumb a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .meta {
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            font-size: 0.95rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 48px 0 20px;
+            color: var(--text-primary);
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        ul, ol {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            padding-left: 24px;
+        }
+
+        li {
+            margin-bottom: 12px;
+        }
+
+        .highlight {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 32px 0;
+        }
+
+        .highlight h3 {
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .kbd {
+            display: inline-block;
+            padding: 2px 8px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+        }
+
+        code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            background: var(--bg-tertiary);
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: var(--accent);
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .cta-box h3 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+        }
+
+        .cta-box p {
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 24px;
+        }
+
+        .cta-box .btn {
+            background: white;
+            color: var(--accent);
+        }
+
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+
+        .related-articles { margin-top: 60px; padding-top: 40px; border-top: 1px solid var(--border); }
+        .related-articles h2 { font-size: 1.5rem; margin-bottom: 24px; }
+        .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .related-card { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-decoration: none; transition: border-color 0.2s; }
+        .related-card:hover { border-color: var(--accent); }
+        .related-card h4 { color: white; font-size: 1rem; margin: 0 0 8px 0; }
+        .related-card p { color: var(--text-muted); font-size: 0.85rem; margin: 0; }
+        @media (max-width: 600px) { .related-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="../" class="logo">
+                <div class="logo-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round">
+                        <path d="M4 17l6-6-6-6M12 19h8"/>
+                    </svg>
+                </div>
+                Beam
+            </a>
+            <a href="../" class="btn">Download Beam</a>
+        </div>
+    </header>
+
+    <main>
+        <article class="container">
+            <div class="breadcrumb">
+                <a href="../">Beam</a> / <a href="../#guides">Guides</a> / Beam on Linux
+            </div>
+
+            <h1>How to Set Up Beam on Linux for AI-Powered Development</h1>
+            <p class="meta">February 2026 &bull; 6 min read</p>
+
+            <p>Linux developers love their terminals. But the rise of agentic engineering &mdash; running multiple AI agents simultaneously across different parts of your codebase &mdash; has outgrown what GNOME Terminal, Konsole, Alacritty, or even tmux can comfortably handle.</p>
+
+            <p>Beam is now available on Linux as an AppImage. Here's how to set it up as your AI coding command center.</p>
+
+            <h2>Why Linux Developers Need Beam</h2>
+
+            <p>If you're a Linux user, you're already comfortable with the terminal. But agentic engineering introduces new challenges that traditional Linux terminals weren't designed for:</p>
+
+            <ul>
+                <li><strong>Multiple concurrent AI agents</strong> &mdash; 3-5 Claude Code sessions running in parallel, each working on a different module</li>
+                <li><strong>Context isolation</strong> &mdash; Agent sessions need to be separated from build tools, logs, and infrastructure</li>
+                <li><strong>Layout persistence</strong> &mdash; Your multi-agent workspace needs to survive reboots</li>
+                <li><strong>Fast navigation</strong> &mdash; Jumping between 10+ terminals needs to be instant, not sequential</li>
+            </ul>
+
+            <p>tmux gets you halfway there with panes and sessions. But Beam gives you workspaces, named tabs, Quick Switcher, project persistence, and AI memory management &mdash; all with a modern GUI that doesn't sacrifice the terminal-native experience Linux devs demand.</p>
+
+            <h2>Step 1: Install Beam on Linux</h2>
+
+            <p>Beam ships as an AppImage &mdash; a universal Linux package that works on any distro without dependencies.</p>
+
+            <ol>
+                <li>Download <code>Beam-v3.0.1.AppImage</code> from <a href="https://getbeam.dev" style="color: var(--accent);">getbeam.dev</a></li>
+                <li>Make it executable: <span class="kbd">chmod +x Beam-v3.0.1.AppImage</span></li>
+                <li>Run it: <span class="kbd">./Beam-v3.0.1.AppImage</span></li>
+            </ol>
+
+            <div class="highlight">
+                <h3>Optional: Add to PATH or Application Menu</h3>
+                <p>Move the AppImage to <code>~/.local/bin/</code> and create a <code>.desktop</code> file in <code>~/.local/share/applications/</code> for launcher integration. Or use <a href="https://github.com/TheAssassin/AppImageLauncher" style="color: var(--accent);">AppImageLauncher</a> to integrate it automatically.</p>
+            </div>
+
+            <p>Beam works on X11 and Wayland. Tested on Ubuntu 22.04+, Fedora 38+, Arch Linux, and Debian 12+.</p>
+
+            <h2>Step 2: Install Claude Code</h2>
+
+            <ol>
+                <li>Install Node.js via your package manager or <a href="https://github.com/nvm-sh/nvm" style="color: var(--accent);">nvm</a>:
+                    <br><span class="kbd">curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.0/install.sh | bash</span>
+                    <br><span class="kbd">nvm install --lts</span>
+                </li>
+                <li>Install Claude Code globally: <span class="kbd">npm install -g @anthropic-ai/claude-code</span></li>
+                <li>Authenticate: <span class="kbd">claude login</span></li>
+            </ol>
+
+            <h2>Step 3: Set Up Your AI Workspace</h2>
+
+            <p>Here's a workspace layout optimized for Linux development with AI agents:</p>
+
+            <p><strong>Workspace 1: "Agents"</strong></p>
+            <ul>
+                <li>Tab 1: Claude Code &mdash; primary agent session</li>
+                <li>Tab 2: Claude Code &mdash; secondary agent for parallel tasks (tests, docs, reviews)</li>
+                <li>Tab 3: File watcher (<span class="kbd">inotifywait</span> or similar)</li>
+            </ul>
+
+            <p><strong>Workspace 2: "Dev"</strong></p>
+            <ul>
+                <li>Tab 1: Dev server (Node, Python, Go, Rust &mdash; whatever your stack)</li>
+                <li>Tab 2: Build output / compiler</li>
+                <li>Tab 3: Test runner &mdash; split pane with <span class="kbd">Ctrl+Alt+Shift+T</span></li>
+            </ul>
+
+            <p><strong>Workspace 3: "Ops"</strong></p>
+            <ul>
+                <li>Tab 1: Docker / Podman containers</li>
+                <li>Tab 2: Database CLI (psql, mysql, redis-cli)</li>
+                <li>Tab 3: System monitoring (htop, journalctl)</li>
+            </ul>
+
+            <p>Switch between workspaces with <span class="kbd">Ctrl+Alt+&larr;&rarr;</span>. Each workspace is completely isolated.</p>
+
+            <h2>Beam vs tmux for AI Workflows</h2>
+
+            <p>Linux users often ask: "Why not just use tmux?" Fair question. Here's the honest comparison for agentic engineering:</p>
+
+            <ul>
+                <li><strong>Workspaces</strong> &mdash; Beam has true workspaces. tmux has sessions, but switching between them is slower and requires remembering session names</li>
+                <li><strong>Quick Switcher</strong> &mdash; Beam's <span class="kbd">Ctrl+P</span> lets you fuzzy-search all terminals across all workspaces. tmux requires <span class="kbd">Ctrl+b s</span> then manual navigation</li>
+                <li><strong>Named tabs</strong> &mdash; Beam lets you double-click to rename. tmux requires <span class="kbd">Ctrl+b ,</span> and the names aren't persistent by default</li>
+                <li><strong>Project persistence</strong> &mdash; Beam saves and restores entire multi-workspace layouts with one keystroke. tmux requires tmux-resurrect plus manual configuration</li>
+                <li><strong>AI memory</strong> &mdash; Built into Beam. No equivalent in tmux</li>
+                <li><strong>Learning curve</strong> &mdash; Beam works immediately. tmux requires memorizing dozens of keybindings</li>
+            </ul>
+
+            <p>tmux is still great for remote servers over SSH. But for local AI development, Beam is the better tool.</p>
+
+            <h2>Linux-Specific Tips</h2>
+
+            <ul>
+                <li><strong>Shell</strong> &mdash; Beam uses your default shell (bash, zsh, fish). If you use zsh with Oh My Zsh, everything works out of the box</li>
+                <li><strong>Keyboard shortcuts</strong> &mdash; Linux uses <span class="kbd">Ctrl</span> where macOS uses <span class="kbd">Cmd</span>. All shortcuts follow Linux conventions: <span class="kbd">Ctrl+T</span> (new tab), <span class="kbd">Ctrl+N</span> (new workspace), <span class="kbd">Ctrl+P</span> (Quick Switcher)</li>
+                <li><strong>Font rendering</strong> &mdash; Beam uses your system font config. For the best experience, install JetBrains Mono: <span class="kbd">sudo apt install fonts-jetbrains-mono</span> (Ubuntu/Debian) or <span class="kbd">sudo dnf install jetbrains-mono-fonts</span> (Fedora)</li>
+                <li><strong>Tiling WMs</strong> &mdash; Beam plays nicely with i3, Sway, Hyprland, and other tiling window managers. Beam's workspaces complement your WM's workspace system &mdash; think of them as terminal-level virtual desktops within a single window</li>
+            </ul>
+
+            <div class="highlight">
+                <h3>Pro Tip: Beam + Neovim + Claude Code</h3>
+                <p>Many Linux developers use Neovim as their editor. The perfect combo: Beam for terminal organization, Claude Code for AI-assisted coding, Neovim in a split pane for manual edits. All keyboard-driven, all terminal-native. No GUI editor needed.</p>
+            </div>
+
+            <h2>Agentic Engineering Workflow on Linux</h2>
+
+            <ol>
+                <li><strong>Launch Beam</strong> and restore your project layout</li>
+                <li><strong>Start Claude Code</strong> in your Agents workspace</li>
+                <li><strong>Describe your task</strong>: "Implement the WebSocket server for real-time notifications"</li>
+                <li><strong>Switch to Dev workspace</strong> (<span class="kbd">Ctrl+Alt+&rarr;</span>) to check the server output</li>
+                <li><strong>Open a second agent</strong> in parallel: "Write integration tests for the WebSocket handlers"</li>
+                <li><strong>Quick Switcher</strong> (<span class="kbd">Ctrl+P</span>) to jump between agents</li>
+                <li><strong>Save your layout</strong> (<span class="kbd">Ctrl+S</span>) when done</li>
+            </ol>
+
+            <div class="cta-box">
+                <h3>Ready for AI-Powered Development on Linux?</h3>
+                <p>Download Beam as an AppImage &mdash; works on any Linux distro, no dependencies required.</p>
+                <a href="../" class="btn">Download Beam for Linux</a>
+            </div>
+
+            <h2>Summary</h2>
+
+            <p>Linux developers already live in the terminal. Beam makes it a better place for AI-powered development:</p>
+
+            <ul>
+                <li><strong>AppImage</strong> &mdash; works on any distro, no root access needed</li>
+                <li><strong>Workspaces</strong> for isolating agent sessions, dev tools, and infrastructure</li>
+                <li><strong>Quick Switcher</strong> for instant navigation across all terminals</li>
+                <li><strong>Project layouts</strong> for saving and restoring your multi-agent setup</li>
+                <li><strong>AI memory</strong> for persistent context across Claude Code sessions</li>
+                <li><strong>Plays nicely</strong> with tiling WMs, Neovim, and the Linux ecosystem</li>
+            </ul>
+
+            <p>Your terminal is already your IDE. Now give it superpowers.</p>
+
+            <div class="related-articles">
+                <h2>Related Articles</h2>
+                <div class="related-grid">
+                    <a href="beam-windows-agentic-engineering-setup.html" class="related-card">
+                        <h4>Beam on Windows: Agentic Engineering</h4>
+                        <p>Set up Beam for multi-agent workflows on Windows.</p>
+                    </a>
+                    <a href="beam-vs-tmux.html" class="related-card">
+                        <h4>Beam vs tmux: When to Use Each</h4>
+                        <p>A detailed comparison of Beam and tmux for terminal organization.</p>
+                    </a>
+                    <a href="neovim-claude-code-beam-workflow.html" class="related-card">
+                        <h4>Neovim + Claude Code + Beam</h4>
+                        <p>The ultimate keyboard-driven AI development workflow.</p>
+                    </a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>
+                <a href="../">Beam</a> &bull; Terminal Organizer for macOS, Windows &amp; Linux &bull;
+                <a href="mailto:frank@nextuptechnologies.co">Contact</a>
+            </p>
+
+            <p style="margin-top: 12px; font-size: 0.8rem;">
+                <a href="/privacy.html" style="color: #71717a; text-decoration: none;">Privacy Policy</a> &bull;
+                <a href="/terms.html" style="color: #71717a; text-decoration: none;">Terms of Service</a>
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>

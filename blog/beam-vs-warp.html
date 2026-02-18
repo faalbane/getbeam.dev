@@ -72,6 +72,7 @@
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        a, button, .btn, .related-card, .post-card, .editorial-card { cursor: pointer; }
 
         body {
             font-family: 'Space Grotesk', -apple-system, sans-serif;
@@ -265,7 +266,428 @@
         .related-card:hover { border-color: var(--accent); }
         .related-card h4 { color: white; font-size: 1rem; margin: 0 0 8px 0; }
         .related-card p { color: var(--text-muted); font-size: 0.85rem; margin: 0; }
-        @media (max-width: 600px) { .related-grid { grid-template-columns: 1fr; } h1 { font-size: 1.8rem; } }
+        /* Philosophy Cards */
+        .philosophy-cards {
+            display: flex;
+            gap: 20px;
+            margin: 32px 0;
+        }
+        .phil-card {
+            flex: 1;
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            padding: 28px 24px;
+            border: 2px solid;
+            position: relative;
+            overflow: hidden;
+        }
+        .phil-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: inherit;
+        }
+        .phil-card.warp-card {
+            border-color: rgba(249, 115, 22, 0.35);
+        }
+        .phil-card.warp-card::before { background: #f97316; }
+        .phil-card.beam-card {
+            border-color: rgba(59, 130, 246, 0.35);
+        }
+        .phil-card.beam-card::before { background: #3b82f6; }
+        .phil-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+        }
+        .warp-card .phil-icon { background: rgba(249, 115, 22, 0.12); }
+        .beam-card .phil-icon { background: rgba(59, 130, 246, 0.12); }
+        .phil-card h4 {
+            font-size: 1.15rem;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+        .phil-card .phil-subtitle {
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        .warp-card .phil-subtitle { color: #f97316; }
+        .beam-card .phil-subtitle { color: #3b82f6; }
+        .phil-card .phil-desc {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        /* Session Organization Comparison */
+        .session-compare {
+            display: flex;
+            gap: 20px;
+            margin: 32px 0;
+        }
+        .sc-side {
+            flex: 1;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            overflow: hidden;
+        }
+        .sc-side h4 {
+            font-size: 0.95rem;
+            margin-bottom: 16px;
+            text-align: center;
+        }
+        .sc-side.warp-side h4 { color: #f97316; }
+        .sc-side.beam-side h4 { color: #3b82f6; }
+
+        /* Flat Tabs (Warp) */
+        .flat-tabs {
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            padding: 8px;
+            display: flex;
+            gap: 4px;
+            overflow: hidden;
+        }
+        .flat-tabs .ft-tab {
+            flex-shrink: 0;
+            background: rgba(249, 115, 22, 0.08);
+            border: 1px solid rgba(249, 115, 22, 0.2);
+            border-radius: 5px;
+            padding: 6px 10px;
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            font-family: 'JetBrains Mono', monospace;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 72px;
+        }
+        .flat-tabs .ft-tab:nth-child(7),
+        .flat-tabs .ft-tab:nth-child(8) {
+            max-width: 48px;
+        }
+        .flat-tabs-label {
+            text-align: center;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-top: 12px;
+            font-style: italic;
+        }
+
+        /* Grouped Tabs (Beam) */
+        .grouped-tabs {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .gt-workspace {
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            padding: 10px 12px;
+            border-left: 3px solid #3b82f6;
+        }
+        .gt-workspace-name {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #3b82f6;
+            margin-bottom: 8px;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .gt-tabs-row {
+            display: flex;
+            gap: 4px;
+            flex-wrap: wrap;
+        }
+        .gt-tab {
+            background: rgba(59, 130, 246, 0.08);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 5px;
+            padding: 4px 8px;
+            font-size: 0.65rem;
+            color: var(--text-secondary);
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .grouped-tabs-label {
+            text-align: center;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-top: 12px;
+            font-style: italic;
+        }
+
+        /* Layout Persistence Visual */
+        .layout-visual {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 32px 24px;
+            margin: 32px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0;
+        }
+        .layout-save-icon {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            flex-shrink: 0;
+        }
+        .layout-save-icon .icon-circle {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: rgba(59, 130, 246, 0.12);
+            border: 2px solid rgba(59, 130, 246, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .layout-save-icon span {
+            font-size: 0.75rem;
+            color: #3b82f6;
+            font-weight: 600;
+        }
+        .layout-connector {
+            display: flex;
+            align-items: center;
+            width: 60px;
+            flex-shrink: 0;
+        }
+        .layout-connector .dash-line {
+            width: 100%;
+            height: 0;
+            border-top: 2px dashed rgba(59, 130, 246, 0.35);
+        }
+        .layout-cards-group {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .layout-card {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 14px 16px;
+            min-width: 130px;
+            text-align: center;
+            transition: border-color 0.2s;
+        }
+        .layout-card:hover {
+            border-color: rgba(59, 130, 246, 0.4);
+        }
+        .layout-card h5 {
+            font-size: 0.8rem;
+            color: var(--text-primary);
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        .layout-card .layout-preview {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3px;
+            width: 60px;
+            margin: 0 auto;
+        }
+        .layout-card .layout-preview .lp-block {
+            height: 12px;
+            border-radius: 2px;
+            opacity: 0.7;
+        }
+        .layout-card:nth-child(1) .lp-block { background: #3b82f6; }
+        .layout-card:nth-child(2) .lp-block { background: #8b5cf6; }
+        .layout-card:nth-child(3) .lp-block { background: #22c55e; }
+        .layout-card:nth-child(1) .lp-block:nth-child(3) { grid-column: 1 / -1; }
+        .layout-card:nth-child(2) .lp-block:nth-child(1) { grid-column: 1 / -1; }
+        .layout-card:nth-child(3) .lp-block:nth-child(2) { grid-column: 1 / -1; }
+
+        /* Project Memory Visual */
+        .memory-visual {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 32px 24px;
+            margin: 32px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 24px;
+        }
+        .memory-doc {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            flex-shrink: 0;
+        }
+        .memory-doc .doc-icon {
+            width: 56px;
+            height: 68px;
+            background: var(--bg-tertiary);
+            border: 2px solid rgba(59, 130, 246, 0.3);
+            border-radius: 6px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .memory-doc .doc-icon::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 16px;
+            height: 16px;
+            background: linear-gradient(225deg, var(--bg-secondary) 50%, rgba(59, 130, 246, 0.3) 50%);
+            border-bottom-left-radius: 4px;
+        }
+        .memory-doc .doc-icon .doc-lines {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+            margin-top: 6px;
+        }
+        .memory-doc .doc-icon .doc-line {
+            height: 2px;
+            background: rgba(59, 130, 246, 0.3);
+            border-radius: 1px;
+        }
+        .memory-doc .doc-icon .doc-line:nth-child(1) { width: 28px; }
+        .memory-doc .doc-icon .doc-line:nth-child(2) { width: 22px; }
+        .memory-doc .doc-icon .doc-line:nth-child(3) { width: 26px; }
+        .memory-doc .doc-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            color: #3b82f6;
+            font-weight: 500;
+        }
+        .memory-branches {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            position: relative;
+        }
+        .memory-branches::before {
+            content: '';
+            position: absolute;
+            left: -16px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 16px;
+            height: 0;
+            border-top: 2px dashed rgba(59, 130, 246, 0.3);
+        }
+        .memory-bubble {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 8px 18px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+            position: relative;
+            transition: border-color 0.2s, background 0.2s;
+        }
+        .memory-bubble:hover {
+            border-color: rgba(59, 130, 246, 0.4);
+            background: rgba(59, 130, 246, 0.05);
+        }
+        .memory-bubble::before {
+            content: '';
+            position: absolute;
+            left: -10px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 10px;
+            height: 0;
+            border-top: 1px dashed rgba(59, 130, 246, 0.25);
+        }
+        .memory-cta {
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            margin-left: 8px;
+        }
+        .memory-cta .install-btn {
+            background: rgba(59, 130, 246, 0.12);
+            border: 1px solid rgba(59, 130, 246, 0.35);
+            border-radius: 8px;
+            padding: 10px 16px;
+            color: #3b82f6;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            white-space: nowrap;
+        }
+        .memory-cta .install-btn .btn-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #3b82f6;
+            animation: memPulse 2s ease-in-out infinite;
+        }
+        @keyframes memPulse {
+            0%, 100% { opacity: 0.4; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.3); }
+        }
+        .memory-cta span {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+        }
+
+        @media (max-width: 600px) {
+            .related-grid { grid-template-columns: 1fr; }
+            h1 { font-size: 1.8rem; }
+            .philosophy-cards { flex-direction: column; }
+            .session-compare { flex-direction: column; }
+            .layout-visual {
+                flex-direction: column;
+                gap: 16px;
+            }
+            .layout-connector {
+                width: 0;
+                height: 30px;
+                border-top: none;
+            }
+            .layout-connector .dash-line {
+                width: 0;
+                height: 100%;
+                border-top: none;
+                border-left: 2px dashed rgba(59, 130, 246, 0.35);
+            }
+            .memory-visual {
+                flex-direction: column;
+                gap: 16px;
+            }
+            .memory-branches::before {
+                left: 50%;
+                top: -10px;
+                transform: translateX(-50%);
+                width: 0;
+                height: 10px;
+                border-top: none;
+                border-left: 2px dashed rgba(59, 130, 246, 0.3);
+            }
+            .memory-bubble::before { display: none; }
+            .memory-cta { margin-left: 0; margin-top: 4px; }
+        }
     </style>
 </head>
 <body>
@@ -366,6 +788,38 @@
 
             <p>Both are native Mac apps, and both feel fast and modern. Neither is built on Electron. That shared commitment to native performance means this comparison really comes down to workflow philosophy, not speed.</p>
 
+            <!-- Philosophy Cards Visual -->
+            <div class="philosophy-cards">
+                <div class="phil-card warp-card">
+                    <div class="phil-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2L14.09 8.26L20 9.27L15.55 13.97L16.91 20L12 16.9L7.09 20L8.45 13.97L4 9.27L9.91 8.26L12 2Z" stroke="#f97316" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M5 3L6 5M19 3L18 5M3 10H5M19 10H21" stroke="#f97316" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+                        </svg>
+                    </div>
+                    <h4>Warp</h4>
+                    <p class="phil-subtitle">AI Inside the Terminal</p>
+                    <p class="phil-desc">Built-in AI, command blocks, collaboration</p>
+                </div>
+                <div class="phil-card beam-card">
+                    <div class="phil-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="3" y="3" width="7" height="7" rx="1.5" stroke="#3b82f6" stroke-width="1.8"/>
+                            <rect x="14" y="3" width="7" height="7" rx="1.5" stroke="#3b82f6" stroke-width="1.8"/>
+                            <rect x="3" y="14" width="7" height="7" rx="1.5" stroke="#3b82f6" stroke-width="1.8"/>
+                            <rect x="14" y="14" width="7" height="7" rx="1.5" stroke="#3b82f6" stroke-width="1.8"/>
+                            <circle cx="6.5" cy="6.5" r="1" fill="#3b82f6" opacity="0.5"/>
+                            <circle cx="17.5" cy="6.5" r="1" fill="#3b82f6" opacity="0.5"/>
+                            <circle cx="6.5" cy="17.5" r="1" fill="#3b82f6" opacity="0.5"/>
+                            <circle cx="17.5" cy="17.5" r="1" fill="#3b82f6" opacity="0.5"/>
+                        </svg>
+                    </div>
+                    <h4>Beam</h4>
+                    <p class="phil-subtitle">Organizer for AI Workflows</p>
+                    <p class="phil-desc">Workspaces, layouts, project memory</p>
+                </div>
+            </div>
+
             <h2>Session Organization</h2>
 
             <p>This is where the biggest difference shows up in daily use. Warp gives you tabs and split panes, and its "blocks" feature segments individual command outputs so you can collapse, copy, or share them. For working within a single session, blocks are genuinely useful -- they bring structure to what is normally a wall of scrolling text.</p>
@@ -373,6 +827,48 @@
             <p>Beam adds a layer above tabs: workspaces. The hierarchy is Workspaces, then Tabs, then Split Panes -- three levels of organization instead of two. This means you can group an entire project's terminals under one workspace and switch between projects as a unit. If you're running Claude Code on three different projects, Beam gives each one its own workspace with its own set of tabs, and you can flip between them with a keyboard shortcut.</p>
 
             <p>With Warp, those same three projects live in a single flat tab bar. That's fine when you have three or four tabs, but once you're running ten or more terminals across multiple projects -- which is common in AI agent workflows -- the flat list becomes harder to navigate. Beam's workspace grouping keeps things clean at scale.</p>
+
+            <!-- Session Organization Comparison Visual -->
+            <div class="session-compare">
+                <div class="sc-side warp-side">
+                    <h4>Warp</h4>
+                    <div class="flat-tabs">
+                        <div class="ft-tab">api-serv...</div>
+                        <div class="ft-tab">frontend</div>
+                        <div class="ft-tab">claude-1</div>
+                        <div class="ft-tab">db-migr...</div>
+                        <div class="ft-tab">tests</div>
+                        <div class="ft-tab">deploy</div>
+                        <div class="ft-tab">git</div>
+                        <div class="ft-tab">logs</div>
+                    </div>
+                    <p class="flat-tabs-label">8 tabs in a single flat row</p>
+                </div>
+                <div class="sc-side beam-side">
+                    <h4>Beam</h4>
+                    <div class="grouped-tabs">
+                        <div class="gt-workspace">
+                            <div class="gt-workspace-name">Client API</div>
+                            <div class="gt-tabs-row">
+                                <div class="gt-tab">api-server</div>
+                                <div class="gt-tab">claude-code</div>
+                                <div class="gt-tab">db-migrate</div>
+                                <div class="gt-tab">tests</div>
+                            </div>
+                        </div>
+                        <div class="gt-workspace">
+                            <div class="gt-workspace-name">Frontend App</div>
+                            <div class="gt-tabs-row">
+                                <div class="gt-tab">frontend</div>
+                                <div class="gt-tab">deploy</div>
+                                <div class="gt-tab">git</div>
+                                <div class="gt-tab">logs</div>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="grouped-tabs-label">Grouped by workspace</p>
+                </div>
+            </div>
 
             <h2>AI Features</h2>
 
@@ -390,11 +886,80 @@
 
             <p>For developers who context-switch between project sets -- say, client work on weekdays and open source on weekends -- Beam's saved layouts eliminate the daily setup overhead that Warp still requires.</p>
 
+            <!-- Layout Persistence Visual -->
+            <div class="layout-visual">
+                <div class="layout-save-icon">
+                    <div class="icon-circle">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M19 21H5C4.45 21 4 20.55 4 20V4C4 3.45 4.45 3 5 3H16L20 7V20C20 20.55 19.55 21 19 21Z" stroke="#3b82f6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M8 3V8H15V3" stroke="#3b82f6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
+                            <rect x="7" y="13" width="10" height="5" rx="1" stroke="#3b82f6" stroke-width="1.5" opacity="0.6"/>
+                        </svg>
+                    </div>
+                    <span>Save Layout</span>
+                </div>
+                <div class="layout-connector">
+                    <div class="dash-line"></div>
+                </div>
+                <div class="layout-cards-group">
+                    <div class="layout-card">
+                        <h5>Client Work</h5>
+                        <div class="layout-preview">
+                            <div class="lp-block"></div>
+                            <div class="lp-block"></div>
+                            <div class="lp-block"></div>
+                        </div>
+                    </div>
+                    <div class="layout-card">
+                        <h5>Open Source</h5>
+                        <div class="layout-preview">
+                            <div class="lp-block"></div>
+                            <div class="lp-block"></div>
+                            <div class="lp-block"></div>
+                        </div>
+                    </div>
+                    <div class="layout-card">
+                        <h5>Side Project</h5>
+                        <div class="layout-preview">
+                            <div class="lp-block"></div>
+                            <div class="lp-block"></div>
+                            <div class="lp-block"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <h2>Project Memory Integration</h2>
 
             <p>One of Beam's more unique features is its project memory system. The toolbar includes "Install Project Memory" and "Save Project Memory" buttons that create and manage CLAUDE.md files -- the memory files that give AI agents like Claude Code persistent context about your project. This means your AI agent remembers your project's architecture, conventions, and preferences across sessions.</p>
 
             <p>Warp has no equivalent feature. If you're using Claude Code through Warp, you'd need to manage memory files manually -- creating CLAUDE.md files by hand, keeping them updated, and making sure they're in the right directory. It works, but it's friction that adds up over time.</p>
+
+            <!-- Project Memory Visual -->
+            <div class="memory-visual">
+                <div class="memory-doc">
+                    <div class="doc-icon">
+                        <div class="doc-lines">
+                            <div class="doc-line"></div>
+                            <div class="doc-line"></div>
+                            <div class="doc-line"></div>
+                        </div>
+                    </div>
+                    <span class="doc-label">CLAUDE.md</span>
+                </div>
+                <div class="memory-branches">
+                    <div class="memory-bubble">Architecture</div>
+                    <div class="memory-bubble">Conventions</div>
+                    <div class="memory-bubble">Preferences</div>
+                </div>
+                <div class="memory-cta">
+                    <div class="install-btn">
+                        <span class="btn-dot"></span>
+                        Install Project Memory
+                    </div>
+                    <span>One-click setup</span>
+                </div>
+            </div>
 
             <p>This matters more than it might seem. Persistent memory is what transforms an AI coding agent from "a smart autocomplete that forgets everything" into "a collaborator that understands your project." Beam's one-click memory management makes that transition effortless.</p>
 

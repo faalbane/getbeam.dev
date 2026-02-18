@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D0XH8B0RKL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-D0XH8B0RKL');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Agentic Engineering Setup (2026) — Video Walkthrough | Beam</title>
+    <meta name="description" content="Watch how I use Beam for agentic engineering in 2026. A quick walkthrough of persistent AI agent memory, project organization, and the terminal workflow that makes it all work.">
+    <meta name="keywords" content="agentic engineering setup, Beam terminal demo, Claude Code workflow, AI agent memory, terminal organizer, agentic coding setup 2026, Beam walkthrough">
+    <meta name="author" content="NextUp Technologies">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://getbeam.dev/blog/agentic-engineering-setup-beam-demo.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://getbeam.dev/blog/agentic-engineering-setup-beam-demo.html">
+    <meta property="og:title" content="My Agentic Engineering Setup (2026) — Video Walkthrough">
+    <meta property="og:description" content="Watch how I use Beam for agentic engineering. Persistent AI agent memory, project organization, and the terminal workflow.">
+    <meta property="og:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="My Agentic Engineering Setup (2026) — Video Walkthrough">
+    <meta name="twitter:description" content="Watch how I use Beam for agentic engineering. Persistent AI agent memory, project organization, and the terminal workflow.">
+    <meta name="twitter:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "My Agentic Engineering Setup (2026) — Video Walkthrough",
+        "description": "Watch how I use Beam for agentic engineering with persistent AI agent memory and organized terminal workflows.",
+        "author": {
+            "@type": "Organization",
+            "name": "NextUp Technologies"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Beam"
+        },
+        "datePublished": "2026-02-14",
+        "keywords": "agentic engineering setup, Beam demo, Claude Code workflow, AI agent memory"
+    }
+    </script>
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #111113;
+            --bg-tertiary: #1a1a1d;
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.4);
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --border: #27272a;
+            --success: #22c55e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        a, button, .btn, .related-card, .post-card, .editorial-card { cursor: pointer; }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        header {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 60px;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1.5rem;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            background: var(--accent);
+            color: white;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+        }
+
+        article {
+            padding-bottom: 80px;
+        }
+
+        .breadcrumb {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+        }
+
+        .breadcrumb a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .meta {
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            font-size: 0.95rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 48px 0 20px;
+            color: var(--text-primary);
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        ul, ol {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            padding-left: 24px;
+        }
+
+        li {
+            margin-bottom: 12px;
+        }
+
+        .video-embed {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            margin: 32px 0;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        .video-embed iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .highlight {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 32px 0;
+        }
+
+        .highlight h3 {
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .kbd {
+            display: inline-block;
+            padding: 2px 8px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .cta-box h3 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+        }
+
+        .cta-box p {
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 24px;
+        }
+
+        .cta-box .btn {
+            background: white;
+            color: var(--accent);
+        }
+
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+
+        .related-articles { margin-top: 60px; padding-top: 40px; border-top: 1px solid var(--border); }
+        .related-articles h2 { font-size: 1.5rem; margin-bottom: 24px; }
+        .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .related-card { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-decoration: none; transition: border-color 0.2s; }
+        .related-card:hover { border-color: var(--accent); }
+        .related-card h4 { color: white; font-size: 1rem; margin: 0 0 8px 0; }
+        .related-card p { color: var(--text-muted); font-size: 0.85rem; margin: 0; }
+        @media (max-width: 600px) { .related-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="../" class="logo">
+                <div class="logo-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round">
+                        <path d="M4 17l6-6-6-6M12 19h8"/>
+                    </svg>
+                </div>
+                Beam
+            </a>
+            <a href="../" class="btn">Download Beam</a>
+        </div>
+    </header>
+
+    <main>
+        <article class="container">
+            <div class="breadcrumb">
+                <a href="../">Beam</a> / <a href="../#guides">Guides</a> / Agentic Engineering Setup
+            </div>
+
+            <h1>My Agentic Engineering Setup (2026)</h1>
+            <p class="meta">February 2026 &bull; 3 min watch</p>
+
+            <p>A quick walkthrough of how I use Beam for day-to-day agentic engineering. This video covers the core workflow: persistent AI agent memory across sessions, one project per agent, and how the terminal setup keeps everything organized.</p>
+
+            <div class="video-embed">
+                <iframe src="https://www.youtube.com/embed/iICy6yU1Os0" title="My Agentic Engineering Setup (2026)" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+            </div>
+
+            <h2>The Problem: Agents Forget Everything</h2>
+
+            <p>Every time you start a new Claude Code or Codex session, the agent starts from zero. No knowledge of your architecture, no memory of the conventions you agreed on yesterday, no context about the decisions you've already made. You end up re-explaining the same things over and over.</p>
+
+            <p>This is the problem Beam was built to solve.</p>
+
+            <h2>The Solution: One Project, One Agent, One Memory File</h2>
+
+            <p>In Beam, every project gets a persistent memory file &mdash; a plain Markdown document that lives on disk at <span class="kbd">~/ProjectName.md</span>. This file stores your project's architecture, conventions, key decisions, and anything else your agents need to know.</p>
+
+            <p>When you start a new agent session, Beam loads the memory file automatically. Your agent picks up right where the last session left off &mdash; no re-explaining required.</p>
+
+            <div class="highlight">
+                <h3>Why Plain Markdown?</h3>
+                <p>The memory file is deliberately plain Markdown on disk. Any agent can read it &mdash; Claude Code, Codex, OpenClaw, Aider. It's not locked to a proprietary format or a specific AI provider. It's just a file. You can edit it manually, version control it with Git, or let your agents update it themselves.</p>
+            </div>
+
+            <h2>The Workflow</h2>
+
+            <ol>
+                <li><strong>Create a project</strong> in Beam &mdash; give it a name and a working directory</li>
+                <li><strong>Beam creates the memory file</strong> at <span class="kbd">~/ProjectName.md</span></li>
+                <li><strong>Start an AI agent</strong> &mdash; Beam loads the memory prompt into the session</li>
+                <li><strong>Build, iterate, ship</strong> &mdash; the agent knows your project inside and out</li>
+                <li><strong>Save your workspace</strong> &mdash; tabs, splits, and layout persist across restarts</li>
+                <li><strong>Next session</strong> &mdash; restore the project, start the agent, memory is already loaded</li>
+            </ol>
+
+            <p>The result: your AI agents compound knowledge over time instead of starting fresh every session. Architecture decisions from last week, coding conventions from last month, bug fixes from yesterday &mdash; it's all in the memory file, ready to go.</p>
+
+            <h2>What's in the Video</h2>
+
+            <ul>
+                <li>How Beam organizes projects with named tabs and workspaces</li>
+                <li>The memory file system and why it works</li>
+                <li>Starting an AI agent with persistent context</li>
+                <li>The day-to-day workflow for building with agentic engineering</li>
+            </ul>
+
+            <div class="cta-box">
+                <h3>Try Beam for Your Agentic Workflow</h3>
+                <p>Download Beam free and give your AI agents persistent memory across every session.</p>
+                <a href="../" class="btn">Download Beam</a>
+            </div>
+
+            <div class="related-articles">
+                <h2>Related Articles</h2>
+                <div class="related-grid">
+                    <a href="beam-windows-agentic-engineering-setup.html" class="related-card">
+                        <h4>Beam on Windows for Agentic Engineering</h4>
+                        <p>Set up Beam for multi-agent workflows on Windows.</p>
+                    </a>
+                    <a href="ai-agent-memory-management.html" class="related-card">
+                        <h4>AI Agent Memory Management</h4>
+                        <p>How Beam gives Claude Code persistent project context.</p>
+                    </a>
+                    <a href="agentic-engineering-guide.html" class="related-card">
+                        <h4>What Is Agentic Engineering?</h4>
+                        <p>The definitive guide to agentic engineering in 2026.</p>
+                    </a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>
+                <a href="../">Beam</a> &bull; Terminal Organizer for macOS, Windows &amp; Linux &bull;
+                <a href="mailto:frank@nextuptechnologies.co">Contact</a>
+            </p>
+
+            <p style="margin-top: 12px; font-size: 0.8rem;">
+                <a href="/privacy.html" style="color: #71717a; text-decoration: none;">Privacy Policy</a> &bull;
+                <a href="/terms.html" style="color: #71717a; text-decoration: none;">Terms of Service</a>
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>

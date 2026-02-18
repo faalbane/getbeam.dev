@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy | Beam — Terminal Organizer for macOS</title>
+    <meta name="description" content="Privacy Policy for Beam, the terminal organizer for macOS. Learn how we collect, use, and protect your data.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://getbeam.dev/privacy.html">
+
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #111113;
+            --bg-tertiary: #1a1a1d;
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.4);
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --border: #27272a;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        a, button { cursor: pointer; }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        header {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 60px;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1.5rem;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            background: var(--accent);
+            color: white;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+        }
+
+        .policy-content {
+            padding-bottom: 80px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .meta {
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            font-size: 0.95rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 48px 0 20px;
+            color: var(--text-primary);
+        }
+
+        h3 {
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin: 28px 0 12px;
+            color: var(--text-primary);
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        ul, ol {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            padding-left: 24px;
+        }
+
+        li {
+            margin-bottom: 12px;
+        }
+
+        strong {
+            color: var(--text-primary);
+        }
+
+        a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .highlight {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 32px 0;
+        }
+
+        .highlight h3 {
+            font-size: 1.1rem;
+            margin: 0 0 12px 0;
+            color: var(--text-primary);
+        }
+
+        .highlight p:last-child {
+            margin-bottom: 0;
+        }
+
+        code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9em;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 2px 6px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0 28px;
+            font-size: 0.95rem;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        th {
+            color: var(--text-primary);
+            font-weight: 600;
+            background: var(--bg-secondary);
+        }
+
+        td {
+            color: var(--text-secondary);
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 1.8rem; }
+            h2 { font-size: 1.3rem; }
+            table { font-size: 0.85rem; }
+            th, td { padding: 8px 10px; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="./" class="logo">
+                <div class="logo-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round">
+                        <path d="M4 17l6-6-6-6M12 19h8"/>
+                    </svg>
+                </div>
+                Beam
+            </a>
+            <a href="./" class="btn">Download Beam</a>
+        </div>
+    </header>
+
+    <main>
+        <div class="policy-content container">
+            <h1>Privacy Policy</h1>
+            <p class="meta">Effective Date: February 11, 2026</p>
+
+            <!-- 1. Introduction -->
+            <h2>1. Introduction</h2>
+            <p>Beam is a terminal organizer for macOS that helps developers manage multiple terminal sessions, workspaces, and layouts. Beam is developed by NextUp Technologies ("we," "us," or "our").</p>
+            <p>This Privacy Policy explains how we collect, use, and protect your information when you use the Beam desktop application, the getbeam.dev website, and any related services. We are committed to being transparent about our data practices and respecting your privacy.</p>
+
+            <!-- 2. Information We Collect -->
+            <h2>2. Information We Collect</h2>
+
+            <h3>Information Collected by the Beam Desktop App</h3>
+            <p>The Beam macOS application is designed with privacy in mind. <strong>Beam does not collect telemetry, does not track your usage, and does not phone home.</strong> All of your terminal data, workspaces, tabs, splits, and layouts remain entirely on your local machine.</p>
+            <p>The only network request the Beam app makes is for <strong>license validation</strong> when you activate Beam Pro. This request sends your license key and a machine-specific instance ID to our license validation server. No personal data beyond what is strictly necessary for license activation is transmitted.</p>
+
+            <h3>Information Collected on the Website</h3>
+            <p>When you visit getbeam.dev, we collect the following information through third-party services:</p>
+            <ul>
+                <li><strong>Analytics data</strong> via Google Analytics (GA4): page views, session duration, device type, browser type, operating system, screen resolution, and approximate geographic location (city/country level, derived from IP address).</li>
+                <li><strong>Server logs</strong> via Firebase Hosting: our hosting provider (Google Firebase) may log your IP address and request metadata in standard server logs.</li>
+            </ul>
+
+            <h3>Information You Provide</h3>
+            <ul>
+                <li><strong>Payment information</strong>: If you subscribe to Beam Pro ($10/month), your payment is processed by Stripe. Stripe collects your payment card details, email address, and billing address. We do not store your payment card data on our servers -- Stripe handles all payment card processing and storage.</li>
+                <li><strong>Newsletter signup</strong>: If you subscribe to our newsletter, we collect your email address via an embedded Google Forms form. Your email is stored in Google Sheets.</li>
+                <li><strong>Support inquiries</strong>: If you contact us at frank@nextuptechnologies.co, we receive your email address and the content of your message.</li>
+            </ul>
+
+            <!-- 3. How We Use Your Information -->
+            <h2>3. How We Use Your Information</h2>
+            <p>We use the information we collect for the following purposes:</p>
+            <ul>
+                <li><strong>Website analytics</strong>: To understand how visitors interact with getbeam.dev, identify popular content, and improve the user experience. We use this data in aggregate and do not use it to identify individual users.</li>
+                <li><strong>Payment processing</strong>: To process Beam Pro subscriptions and manage billing through Stripe.</li>
+                <li><strong>License validation</strong>: To verify that Beam Pro license keys are valid and to enforce per-seat licensing.</li>
+                <li><strong>Newsletter</strong>: To send you product updates, tips, and announcements if you have opted in.</li>
+                <li><strong>Customer support</strong>: To respond to your questions and resolve issues.</li>
+            </ul>
+            <p><strong>We do not sell your personal data to anyone.</strong></p>
+
+            <!-- 4. Cookies and Tracking Technologies -->
+            <h2>4. Cookies and Tracking Technologies</h2>
+            <p>The getbeam.dev website uses the following cookies and local storage:</p>
+
+            <table>
+                <tr>
+                    <th>Cookie / Key</th>
+                    <th>Provider</th>
+                    <th>Purpose</th>
+                    <th>Duration</th>
+                </tr>
+                <tr>
+                    <td><code>_ga</code></td>
+                    <td>Google Analytics</td>
+                    <td>Distinguishes unique visitors</td>
+                    <td>2 years</td>
+                </tr>
+                <tr>
+                    <td><code>_ga_*</code></td>
+                    <td>Google Analytics</td>
+                    <td>Maintains session state</td>
+                    <td>2 years</td>
+                </tr>
+                <tr>
+                    <td><code>cookieConsent</code></td>
+                    <td>getbeam.dev</td>
+                    <td>Remembers your cookie consent preference</td>
+                    <td>Persistent (localStorage)</td>
+                </tr>
+            </table>
+
+            <p>We do not use any third-party advertising cookies. There are no ad trackers on getbeam.dev.</p>
+            <p>You can control cookies through your browser settings. Disabling cookies may affect the accuracy of our analytics but will not impact your ability to use the website or download Beam.</p>
+
+            <!-- 5. Third-Party Services -->
+            <h2>5. Third-Party Services</h2>
+            <p>We use the following third-party services that may process your data:</p>
+
+            <h3>Google Analytics (GA4)</h3>
+            <p>We use Google Analytics 4 to collect anonymous website usage statistics. Google Analytics uses cookies to track visitor interactions. The data collected is sent to and processed on Google's servers. Google's privacy policy is available at <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a>. You can opt out of Google Analytics by installing the <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener">Google Analytics Opt-out Browser Add-on</a>.</p>
+
+            <h3>Stripe</h3>
+            <p>We use Stripe for payment processing of Beam Pro subscriptions. When you make a purchase, your payment information is sent directly to Stripe and is subject to Stripe's privacy policy, available at <a href="https://stripe.com/privacy" target="_blank" rel="noopener">stripe.com/privacy</a>. We receive only a limited set of information from Stripe (such as the last four digits of your card, your email, and subscription status). We never have access to your full card number.</p>
+
+            <h3>Firebase Hosting</h3>
+            <p>The getbeam.dev website is hosted on Google Firebase. Firebase may collect IP addresses and request metadata in standard server logs. Firebase's terms and privacy information are available at <a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener">firebase.google.com/support/privacy</a>.</p>
+
+            <h3>Google Cloud Functions</h3>
+            <p>Our license validation API runs on Google Cloud Functions. When the Beam app validates a license, it sends only the license key and a machine instance ID. No personal information is collected or stored by this service beyond what is needed for license validation.</p>
+
+            <h3>Google Forms / Google Sheets</h3>
+            <p>Newsletter signups are collected through an embedded Google Forms form. Submitted email addresses are stored in Google Sheets. Google's privacy policy applies to this data and is available at <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a>.</p>
+
+            <!-- 6. Data Retention -->
+            <h2>6. Data Retention</h2>
+            <ul>
+                <li><strong>Google Analytics data</strong>: Retained for 14 months (the GA4 default), after which it is automatically deleted.</li>
+                <li><strong>Stripe payment data</strong>: Retained by Stripe in accordance with their data retention policies and applicable financial regulations.</li>
+                <li><strong>Firebase server logs</strong>: Retained by Google in accordance with Firebase's data retention policies.</li>
+                <li><strong>License validation records</strong>: Retained for as long as your Beam Pro subscription is active, plus a reasonable period afterward for support purposes.</li>
+                <li><strong>Newsletter email addresses</strong>: Retained until you unsubscribe or request deletion.</li>
+                <li><strong>Support correspondence</strong>: Retained for as long as necessary to resolve your inquiry and for a reasonable period afterward.</li>
+            </ul>
+
+            <!-- 7. Your Rights -->
+            <h2>7. Your Rights</h2>
+
+            <h3>For EU/EEA Residents (GDPR)</h3>
+            <p>If you are located in the European Union or European Economic Area, you have the following rights under the General Data Protection Regulation (GDPR):</p>
+            <ul>
+                <li><strong>Right of access</strong> -- You can request a copy of the personal data we hold about you.</li>
+                <li><strong>Right to rectification</strong> -- You can ask us to correct inaccurate data.</li>
+                <li><strong>Right to erasure</strong> -- You can ask us to delete your personal data.</li>
+                <li><strong>Right to restrict processing</strong> -- You can ask us to limit how we use your data.</li>
+                <li><strong>Right to data portability</strong> -- You can request your data in a machine-readable format.</li>
+                <li><strong>Right to object</strong> -- You can object to the processing of your data for certain purposes.</li>
+                <li><strong>Right to withdraw consent</strong> -- Where processing is based on consent, you can withdraw that consent at any time.</li>
+            </ul>
+
+            <h3>For California Residents (CCPA)</h3>
+            <p>If you are a California resident, you have the following rights under the California Consumer Privacy Act (CCPA):</p>
+            <ul>
+                <li><strong>Right to know</strong> -- You can request information about the categories and specific pieces of personal data we have collected about you.</li>
+                <li><strong>Right to delete</strong> -- You can request that we delete your personal data.</li>
+                <li><strong>Right to opt out of sale</strong> -- We do not sell your personal data. There is nothing to opt out of.</li>
+                <li><strong>Right to non-discrimination</strong> -- We will not discriminate against you for exercising any of your rights.</li>
+            </ul>
+
+            <p>To exercise any of these rights, please contact us at <a href="mailto:frank@nextuptechnologies.co">frank@nextuptechnologies.co</a>. We will respond to your request within 30 days.</p>
+
+            <!-- 8. Children's Privacy -->
+            <h2>8. Children's Privacy</h2>
+            <p>Beam and getbeam.dev are not directed at children under the age of 13. We do not knowingly collect personal information from children under 13. If you believe we have inadvertently collected data from a child under 13, please contact us at <a href="mailto:frank@nextuptechnologies.co">frank@nextuptechnologies.co</a> and we will promptly delete the information.</p>
+
+            <!-- 9. Changes to This Policy -->
+            <h2>9. Changes to This Policy</h2>
+            <p>We may update this Privacy Policy from time to time to reflect changes in our practices or applicable laws. When we make changes, we will update the "Effective Date" at the top of this page. We encourage you to review this policy periodically. Your continued use of Beam or getbeam.dev after any changes constitutes your acceptance of the updated policy.</p>
+
+            <!-- 10. Contact Us -->
+            <h2>10. Contact Us</h2>
+            <p>If you have any questions, concerns, or requests regarding this Privacy Policy or our data practices, please contact us:</p>
+            <div class="highlight">
+                <h3>NextUp Technologies</h3>
+                <p>Email: <a href="mailto:frank@nextuptechnologies.co">frank@nextuptechnologies.co</a></p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>
+                <a href="./">Beam</a> &bull; Terminal Organizer for macOS &bull;
+                <a href="mailto:frank@nextuptechnologies.co">Contact</a>
+            </p>
+        </div>
+    </footer>
+</body>
+</html>

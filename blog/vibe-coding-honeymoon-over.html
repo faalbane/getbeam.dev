@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D0XH8B0RKL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-D0XH8B0RKL');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Vibe Coding Honeymoon Is Over &mdash; Here's What Comes Next | Beam</title>
+    <meta name="description" content="Vibe coding hit the reality wall: 2.74x more security vulnerabilities, maintenance nightmares, and Linus Torvalds calling it horrible. Here's what developers should do next.">
+    <meta name="keywords" content="vibe coding problems, vibe coding security, vibe coding maintenance, AI coding 2026">
+    <meta name="author" content="NextUp Technologies">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://getbeam.dev/blog/vibe-coding-honeymoon-over.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://getbeam.dev/blog/vibe-coding-honeymoon-over.html">
+    <meta property="og:title" content="The Vibe Coding Honeymoon Is Over &mdash; Here's What Comes Next">
+    <meta property="og:description" content="Vibe coding hit the reality wall: 2.74x more security vulnerabilities, maintenance nightmares, and Linus Torvalds calling it horrible. Here's what developers should do next.">
+    <meta property="og:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="The Vibe Coding Honeymoon Is Over &mdash; Here's What Comes Next">
+    <meta name="twitter:description" content="Vibe coding hit the reality wall: 2.74x more security vulnerabilities, maintenance nightmares, and Linus Torvalds calling it horrible. Here's what developers should do next.">
+    <meta name="twitter:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "The Vibe Coding Honeymoon Is Over \u2014 Here's What Comes Next",
+        "description": "Vibe coding hit the reality wall: 2.74x more security vulnerabilities, maintenance nightmares, and Linus Torvalds calling it horrible. Here's what developers should do next.",
+        "author": {
+            "@type": "Organization",
+            "name": "NextUp Technologies"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Beam"
+        },
+        "datePublished": "2026-02-15",
+        "keywords": "vibe coding problems, vibe coding security, vibe coding maintenance, AI coding 2026"
+    }
+    </script>
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #111113;
+            --bg-tertiary: #1a1a1d;
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.4);
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --border: #27272a;
+            --success: #22c55e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        a, button, .btn, .related-card, .post-card, .editorial-card { cursor: pointer; }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        header {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 60px;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1.5rem;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            background: var(--accent);
+            color: white;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+        }
+
+        article {
+            padding-bottom: 80px;
+        }
+
+        .breadcrumb {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+        }
+
+        .breadcrumb a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .meta {
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            font-size: 0.95rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 48px 0 20px;
+            color: var(--text-primary);
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        ul, ol {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            padding-left: 24px;
+        }
+
+        li {
+            margin-bottom: 12px;
+        }
+
+        .highlight {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 32px 0;
+        }
+
+        .highlight h3 {
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .kbd {
+            display: inline-block;
+            padding: 2px 8px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .cta-box h3 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+        }
+
+        .cta-box p {
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 24px;
+        }
+
+        .cta-box .btn {
+            background: white;
+            color: var(--accent);
+        }
+
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+
+        .related-articles { margin-top: 60px; padding-top: 40px; border-top: 1px solid var(--border); }
+        .related-articles h2 { font-size: 1.5rem; margin-bottom: 24px; }
+        .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .related-card { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-decoration: none; transition: border-color 0.2s; }
+        .related-card:hover { border-color: var(--accent); }
+        .related-card h4 { color: white; font-size: 1rem; margin: 0 0 8px 0; }
+        .related-card p { color: var(--text-muted); font-size: 0.85rem; margin: 0; }
+        @media (max-width: 600px) { .related-grid { grid-template-columns: 1fr; } h1 { font-size: 1.8rem; } }
+
+        blockquote {
+            border-left: 3px solid var(--accent);
+            padding-left: 20px;
+            margin: 24px 0;
+            font-style: italic;
+        }
+
+        blockquote p {
+            color: var(--text-secondary);
+        }
+
+        code {
+            font-family: 'JetBrains Mono', monospace;
+            background: var(--bg-tertiary);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.88rem;
+            border: 1px solid var(--border);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="../" class="logo">
+                <div class="logo-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round">
+                        <path d="M4 17l6-6-6-6M12 19h8"/>
+                    </svg>
+                </div>
+                Beam
+            </a>
+            <a href="../" class="btn">Download Beam</a>
+        </div>
+    </header>
+
+    <main>
+        <article class="container">
+            <div class="breadcrumb">
+                <a href="../">Beam</a> / <a href="../#guides">Guides</a> / The Vibe Coding Honeymoon Is Over
+            </div>
+
+            <h1>The Vibe Coding Honeymoon Is Over &mdash; Here&rsquo;s What Comes Next</h1>
+            <p class="meta">February 2026 &bull; 11 min read</p>
+
+            <p>Six months ago, vibe coding was going to change everything. Founders who couldn&rsquo;t write a for-loop were shipping SaaS products. Jensen Huang told the world that &ldquo;programming is just typing&rdquo; and everyone should learn to prompt instead of code. Y Combinator&rsquo;s latest batch was 25% AI-generated codebases. The hype was so thick you could cut it with a semicolon.</p>
+
+            <p>Then reality showed up.</p>
+
+            <p>The New Stack just published &ldquo;Vibe Coding, Six Months Later: The Honeymoon&rsquo;s Over&rdquo; &mdash; and it reads like the hangover after the industry&rsquo;s biggest party. Linus Torvalds is calling vibe coding a &ldquo;horrible idea for maintenance.&rdquo; Security researchers at CodeRabbit found that AI co-authored code has <strong>2.74x higher security vulnerability rates</strong> than human-written code. A December 2025 assessment turned up <strong>69 vulnerabilities across just 15 test applications</strong>.</p>
+
+            <p>The dream didn&rsquo;t die. But it grew up. And that&rsquo;s actually a good thing.</p>
+
+            <!-- Vibe Coding Reality Check Visualization -->
+            <div class="visualization" style="margin: 40px 0;">
+                <style>
+                    @keyframes vizFadeIn {
+                        from { opacity: 0; transform: translateY(16px); }
+                        to { opacity: 1; transform: translateY(0); }
+                    }
+                    @keyframes vizPulse {
+                        0%, 100% { opacity: 1; }
+                        50% { opacity: 0.7; }
+                    }
+                    @keyframes vizGlowRed {
+                        0%, 100% { text-shadow: 0 0 8px rgba(239, 68, 68, 0.3); }
+                        50% { text-shadow: 0 0 20px rgba(239, 68, 68, 0.6); }
+                    }
+                    .viz-container {
+                        background: #111113;
+                        border: 1px solid #27272a;
+                        border-radius: 16px;
+                        overflow: hidden;
+                        animation: vizFadeIn 0.8s ease-out both;
+                    }
+                    .viz-header {
+                        text-align: center;
+                        padding: 28px 24px 20px;
+                        border-bottom: 1px solid #27272a;
+                    }
+                    .viz-header h3 {
+                        font-family: 'Space Grotesk', sans-serif;
+                        font-size: 1.2rem;
+                        font-weight: 700;
+                        color: #fafafa;
+                        margin: 0 0 4px;
+                        letter-spacing: -0.01em;
+                    }
+                    .viz-header p {
+                        font-size: 0.85rem;
+                        color: #71717a;
+                        margin: 0;
+                    }
+                    .viz-panels {
+                        display: grid;
+                        grid-template-columns: 1fr auto 1fr;
+                        min-height: 320px;
+                    }
+                    .viz-panel {
+                        padding: 28px 24px;
+                        animation: vizFadeIn 0.8s ease-out both;
+                    }
+                    .viz-panel--promise {
+                        animation-delay: 0.2s;
+                    }
+                    .viz-panel--reality {
+                        animation-delay: 0.4s;
+                    }
+                    .viz-panel-label {
+                        display: flex;
+                        align-items: center;
+                        gap: 8px;
+                        margin-bottom: 20px;
+                    }
+                    .viz-panel-label span {
+                        font-family: 'Space Grotesk', sans-serif;
+                        font-size: 0.8rem;
+                        font-weight: 600;
+                        text-transform: uppercase;
+                        letter-spacing: 0.08em;
+                    }
+                    .viz-panel--promise .viz-panel-label span { color: #22c55e; }
+                    .viz-panel--reality .viz-panel-label span { color: #ef4444; }
+                    .viz-divider {
+                        width: 1px;
+                        background: linear-gradient(to bottom, transparent, #27272a 20%, #27272a 80%, transparent);
+                        position: relative;
+                    }
+                    .viz-divider::after {
+                        content: 'VS';
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                        background: #111113;
+                        color: #71717a;
+                        font-family: 'Space Grotesk', sans-serif;
+                        font-size: 0.7rem;
+                        font-weight: 700;
+                        letter-spacing: 0.1em;
+                        padding: 10px 0;
+                    }
+                    .viz-item {
+                        display: flex;
+                        align-items: flex-start;
+                        gap: 12px;
+                        margin-bottom: 18px;
+                        animation: vizFadeIn 0.6s ease-out both;
+                    }
+                    .viz-panel--promise .viz-item:nth-child(2) { animation-delay: 0.35s; }
+                    .viz-panel--promise .viz-item:nth-child(3) { animation-delay: 0.5s; }
+                    .viz-panel--promise .viz-item:nth-child(4) { animation-delay: 0.65s; }
+                    .viz-panel--reality .viz-item:nth-child(2) { animation-delay: 0.55s; }
+                    .viz-panel--reality .viz-item:nth-child(3) { animation-delay: 0.7s; }
+                    .viz-panel--reality .viz-item:nth-child(4) { animation-delay: 0.85s; }
+                    .viz-icon {
+                        flex-shrink: 0;
+                        width: 32px;
+                        height: 32px;
+                        border-radius: 8px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                    }
+                    .viz-icon--success {
+                        background: rgba(34, 197, 94, 0.12);
+                    }
+                    .viz-icon--warning {
+                        background: rgba(239, 68, 68, 0.12);
+                    }
+                    .viz-item-text h4 {
+                        font-family: 'Space Grotesk', sans-serif;
+                        font-size: 0.95rem;
+                        font-weight: 600;
+                        color: #fafafa;
+                        margin: 0 0 2px;
+                        line-height: 1.3;
+                    }
+                    .viz-item-text p {
+                        font-size: 0.82rem;
+                        color: #a1a1aa;
+                        margin: 0;
+                        line-height: 1.5;
+                    }
+                    .viz-stat-banner {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        gap: 16px;
+                        padding: 20px 24px;
+                        border-top: 1px solid #27272a;
+                        background: rgba(239, 68, 68, 0.04);
+                        animation: vizFadeIn 1s ease-out 0.9s both;
+                    }
+                    .viz-stat-number {
+                        font-family: 'JetBrains Mono', 'Space Grotesk', monospace;
+                        font-size: 2.4rem;
+                        font-weight: 700;
+                        color: #ef4444;
+                        line-height: 1;
+                        animation: vizGlowRed 3s ease-in-out infinite;
+                    }
+                    .viz-stat-desc {
+                        text-align: left;
+                    }
+                    .viz-stat-desc strong {
+                        display: block;
+                        font-family: 'Space Grotesk', sans-serif;
+                        font-size: 0.9rem;
+                        color: #fafafa;
+                        font-weight: 600;
+                    }
+                    .viz-stat-desc span {
+                        font-size: 0.8rem;
+                        color: #a1a1aa;
+                    }
+                    @media (max-width: 640px) {
+                        .viz-panels {
+                            grid-template-columns: 1fr;
+                            min-height: auto;
+                        }
+                        .viz-divider {
+                            width: 100%;
+                            height: 1px;
+                            background: linear-gradient(to right, transparent, #27272a 20%, #27272a 80%, transparent);
+                        }
+                        .viz-divider::after {
+                            padding: 0 10px;
+                        }
+                        .viz-panel {
+                            padding: 24px 20px;
+                        }
+                        .viz-stat-number {
+                            font-size: 2rem;
+                        }
+                    }
+                </style>
+                <div class="viz-container">
+                    <div class="viz-header">
+                        <h3>Vibe Coding Reality Check</h3>
+                        <p>What we were told vs. what the data shows</p>
+                    </div>
+                    <div class="viz-panels">
+                        <!-- LEFT: The Promise -->
+                        <div class="viz-panel viz-panel--promise">
+                            <div class="viz-panel-label">
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                    <circle cx="8" cy="8" r="7" stroke="#22c55e" stroke-width="1.5" fill="rgba(34,197,94,0.1)"/>
+                                    <path d="M8 11V5" stroke="#22c55e" stroke-width="1.5" stroke-linecap="round"/>
+                                    <path d="M5.5 7.5L8 5L10.5 7.5" stroke="#22c55e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                <span>The Promise</span>
+                            </div>
+                            <div class="viz-item">
+                                <div class="viz-icon viz-icon--success">
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                        <path d="M3 8.5L6.5 12L13 4" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                                <div class="viz-item-text">
+                                    <h4>Ship 10x Faster</h4>
+                                    <p>Prompt to production in hours, not weeks. Non-coders building SaaS products.</p>
+                                </div>
+                            </div>
+                            <div class="viz-item">
+                                <div class="viz-icon viz-icon--success">
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                        <path d="M3 8.5L6.5 12L13 4" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                                <div class="viz-item-text">
+                                    <h4>Easy Prototyping</h4>
+                                    <p>Describe an idea in English and watch it come to life. No learning curve.</p>
+                                </div>
+                            </div>
+                            <div class="viz-item">
+                                <div class="viz-icon viz-icon--success">
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                        <path d="M3 8.5L6.5 12L13 4" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </div>
+                                <div class="viz-item-text">
+                                    <h4>Barrier Demolished</h4>
+                                    <p>CEOs building tools. PMs shipping demos. Everyone becomes a developer.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- DIVIDER -->
+                        <div class="viz-divider"></div>
+                        <!-- RIGHT: The Reality -->
+                        <div class="viz-panel viz-panel--reality">
+                            <div class="viz-panel-label">
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                    <path d="M8 1.5L14.5 13H1.5L8 1.5Z" stroke="#ef4444" stroke-width="1.5" stroke-linejoin="round" fill="rgba(239,68,68,0.1)"/>
+                                    <path d="M8 6V9" stroke="#ef4444" stroke-width="1.5" stroke-linecap="round"/>
+                                    <circle cx="8" cy="11" r="0.75" fill="#ef4444"/>
+                                </svg>
+                                <span>The Reality</span>
+                            </div>
+                            <div class="viz-item">
+                                <div class="viz-icon viz-icon--warning">
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                        <path d="M8 1.5L14.5 13H1.5L8 1.5Z" stroke="#ef4444" stroke-width="1.5" stroke-linejoin="round"/>
+                                        <path d="M8 6V9" stroke="#ef4444" stroke-width="1.5" stroke-linecap="round"/>
+                                        <circle cx="8" cy="11" r="0.75" fill="#ef4444"/>
+                                    </svg>
+                                </div>
+                                <div class="viz-item-text">
+                                    <h4>Security Nightmare</h4>
+                                    <p>2.74x more vulnerabilities. SQL injection, hardcoded credentials, insecure patterns.</p>
+                                </div>
+                            </div>
+                            <div class="viz-item">
+                                <div class="viz-icon viz-icon--warning">
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                        <path d="M8 1.5L14.5 13H1.5L8 1.5Z" stroke="#ef4444" stroke-width="1.5" stroke-linejoin="round"/>
+                                        <path d="M8 6V9" stroke="#ef4444" stroke-width="1.5" stroke-linecap="round"/>
+                                        <circle cx="8" cy="11" r="0.75" fill="#ef4444"/>
+                                    </svg>
+                                </div>
+                                <div class="viz-item-text">
+                                    <h4>Maintenance Black Box</h4>
+                                    <p>Torvalds called it &ldquo;horrible.&rdquo; Code nobody understands, structured by chance.</p>
+                                </div>
+                            </div>
+                            <div class="viz-item">
+                                <div class="viz-icon viz-icon--warning">
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                        <path d="M8 1.5L14.5 13H1.5L8 1.5Z" stroke="#ef4444" stroke-width="1.5" stroke-linejoin="round"/>
+                                        <path d="M8 6V9" stroke="#ef4444" stroke-width="1.5" stroke-linecap="round"/>
+                                        <circle cx="8" cy="11" r="0.75" fill="#ef4444"/>
+                                    </svg>
+                                </div>
+                                <div class="viz-item-text">
+                                    <h4>Invisible Tech Debt</h4>
+                                    <p>Trade-offs you didn&rsquo;t know you made. Debt that compounds in the dark.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Bottom stat banner -->
+                    <div class="viz-stat-banner">
+                        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" style="flex-shrink:0; animation: vizPulse 2.5s ease-in-out infinite;">
+                            <path d="M14 3L25 24H3L14 3Z" stroke="#ef4444" stroke-width="2" stroke-linejoin="round" fill="rgba(239,68,68,0.15)"/>
+                            <path d="M14 10V16" stroke="#ef4444" stroke-width="2" stroke-linecap="round"/>
+                            <circle cx="14" cy="20" r="1.25" fill="#ef4444"/>
+                        </svg>
+                        <div class="viz-stat-number">2.74&times;</div>
+                        <div class="viz-stat-desc">
+                            <strong>Higher vulnerability rate</strong>
+                            <span>in AI co-authored code &mdash; CodeRabbit, Dec 2025</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Visualization -->
+
+            <h2>The Cracks Nobody Wanted to Talk About</h2>
+
+            <p>Let&rsquo;s be honest about what went wrong. Not because vibe coding was a fraud &mdash; it wasn&rsquo;t &mdash; but because you can&rsquo;t fix what you won&rsquo;t name.</p>
+
+            <p><strong>The maintenance problem is real.</strong> Torvalds didn&rsquo;t mince words, and he didn&rsquo;t need to. Anyone who&rsquo;s inherited a vibe-coded project knows the feeling: thousands of lines of code that technically work, generated by a model that no longer remembers why it made any of its decisions, documented by nobody, structured according to whatever pattern the LLM defaulted to that day. Modifying one function breaks three others because the original &ldquo;developer&rdquo; never understood the coupling in the first place &mdash; they just accepted the diff and moved on.</p>
+
+            <p><strong>The security problem is worse than real.</strong> CodeRabbit&rsquo;s numbers are damning. A 2.74x increase in security vulnerabilities isn&rsquo;t a rounding error. It&rsquo;s a systemic issue. LLMs generate code that <em>looks</em> correct, passes basic tests, and runs without errors &mdash; while quietly introducing SQL injection vectors, insecure deserialization, and hardcoded credentials. The models are trained on the entire internet, including every bad practice ever committed to a public repo. They reproduce those patterns with supreme confidence.</p>
+
+            <p><strong>The tech debt compounds faster than anyone expected.</strong> In traditional development, tech debt accumulates gradually. You make conscious trade-offs: &ldquo;We&rsquo;ll clean this up next sprint.&rdquo; With vibe coding, the debt is invisible because the person who accepted the code never fully understood it. You can&rsquo;t consciously manage trade-offs you didn&rsquo;t know you were making. Six months later, teams are discovering that their AI-generated codebases are essentially black boxes with a nice UI on top.</p>
+
+            <div class="highlight">
+                <h3>The Numbers That Sobered Up the Industry</h3>
+                <ul>
+                    <li><strong>2.74x higher vulnerability rate</strong> in AI co-authored code (CodeRabbit research)</li>
+                    <li><strong>69 vulnerabilities</strong> found across 15 test applications in a single December 2025 assessment</li>
+                    <li><strong>Linus Torvalds</strong> publicly called vibe coding a &ldquo;horrible idea for maintenance&rdquo;</li>
+                    <li><strong>The New Stack</strong> declared the honeymoon officially over in their February 2026 analysis</li>
+                </ul>
+            </div>
+
+            <h2>But Here&rsquo;s the Thing: The Numbers Still Don&rsquo;t Lie</h2>
+
+            <p>If vibe coding were actually dying, the market would show it. It&rsquo;s not.</p>
+
+            <p>Lovable &mdash; the AI app builder that lets you go from prompt to deployed product &mdash; just crossed <strong>$300M in annual recurring revenue</strong>. That&rsquo;s not hype. That&rsquo;s hundreds of thousands of people paying real money every month to build software with natural language. Cursor is everywhere. Replit&rsquo;s agent mode is getting better by the week. Claude Code went from a beta curiosity to the backbone of production engineering workflows at serious companies.</p>
+
+            <p>Jensen Huang keeps doubling down. CEOs who never touched a terminal are building internal tool prototypes over the weekend and presenting them on Monday morning. Product managers are shipping working demos instead of slide decks. The barrier to creating software has genuinely, permanently come down &mdash; and no amount of hand-wringing about security vulnerabilities is going to push it back up.</p>
+
+            <p>So we have a contradiction. The critics are right: vibe coding in its raw form produces fragile, insecure, unmaintainable code. And the market is also right: AI-assisted development is accelerating, not slowing down.</p>
+
+            <p>Both things can be true. The resolution isn&rsquo;t to pick a side. It&rsquo;s to evolve.</p>
+
+            <h2>The Real Problem Was Never the AI</h2>
+
+            <p>Here&rsquo;s the take that&rsquo;s going to annoy both camps: the problem with vibe coding was never the models. It was the workflow &mdash; or more accurately, the complete absence of one.</p>
+
+            <p>Vibe coding as practiced by most people in 2025 looked like this: open a chat window, describe what you want, accept the output, paste it into your project, repeat until something works. No architecture planning. No code review. No testing strategy. No persistent context between sessions. No memory of past decisions. Just vibes.</p>
+
+            <p>Of course that produces bad code. It would produce bad code even if the AI were perfect, because <em>the process itself has no quality gates</em>.</p>
+
+            <p>Think about what happens when a junior developer joins a team with no code review, no CI/CD pipeline, no style guide, and no senior oversight. They produce exactly the same problems: insecure code, unmaintainable architecture, accumulating debt. We don&rsquo;t blame the junior developer and say &ldquo;humans can&rsquo;t code.&rdquo; We blame the process and fix it.</p>
+
+            <p>The same logic applies here. The AI is a powerful but junior contributor. It needs structure around it. The tools that are winning in 2026 aren&rsquo;t the ones that generate code the fastest &mdash; they&rsquo;re the ones that make it easiest to review, organize, and iterate on AI-generated output.</p>
+
+            <h2>From Vibe Coding to Structured Agentic Engineering</h2>
+
+            <p>The answer that&rsquo;s emerging from the teams that are actually shipping production software with AI isn&rsquo;t &ldquo;stop using AI.&rdquo; It&rsquo;s &ldquo;stop using AI without structure.&rdquo; The workflow needs to mature even as the models keep improving.</p>
+
+            <p>Here&rsquo;s what that looks like in practice.</p>
+
+            <p><strong>1. Memory files are non-negotiable.</strong> Every project needs a <code>CLAUDE.md</code> or equivalent file that documents your architecture, conventions, and past decisions. When your AI agent starts a new session, it should know your project&rsquo;s history. Without persistent memory, every session starts from zero &mdash; and the AI makes the same architectural mistakes you already corrected last week. This is the single highest-leverage fix. It takes 20 minutes to set up and saves hours of rework.</p>
+
+            <p><strong>2. Code review agents catch what you miss.</strong> Tools like CodeRabbit exist precisely because human review of AI-generated code isn&rsquo;t enough. When you&rsquo;re reviewing 500 lines of generated code, your eyes glaze over. You check that it works, not that it&rsquo;s secure. A dedicated review agent that scans for vulnerability patterns, checks for common anti-patterns, and flags suspicious constructs is no longer optional. It&rsquo;s your safety net.</p>
+
+            <p><strong>3. Organized workspaces prevent the chaos spiral.</strong> The moment you&rsquo;re running more than one AI session &mdash; and if you&rsquo;re doing agentic engineering, you will be &mdash; you need a way to keep track of what&rsquo;s happening where. Five terminal windows with no labels, no grouping, and no way to switch context quickly is how things fall through the cracks. One agent is refactoring your auth module, another is writing tests, a third is exploring a new API integration. If you can&rsquo;t see all three at a glance and switch between them instantly, you&rsquo;re not orchestrating. You&rsquo;re just hoping.</p>
+
+            <p><strong>4. Decompose before you delegate.</strong> The biggest skill gap in agentic engineering isn&rsquo;t prompting. It&rsquo;s task decomposition. Before you fire up an agent, you should know: what are the discrete sub-tasks? What can run in parallel? What has dependencies? What needs human review before the next step starts? This is the architecture work that turns vibe coding into engineering.</p>
+
+            <p><strong>5. Set checkpoints, not just endpoints.</strong> Don&rsquo;t let an agent run to completion on a large task without intermediate review. Check the plan before implementation. Check the implementation before testing. Check the test results before merging. Every checkpoint is an opportunity to catch the kinds of issues &mdash; the security holes, the architectural drift, the silent coupling &mdash; that vibe coding let slip through.</p>
+
+            <div class="highlight">
+                <h3>The Vibe Coder vs. The Agentic Engineer</h3>
+                <ul>
+                    <li><strong>Vibe coder:</strong> &ldquo;Build me a user authentication system&rdquo; &rarr; accepts 400 lines of code &rarr; ships it</li>
+                    <li><strong>Agentic engineer:</strong> Documents auth requirements in memory file &rarr; has agent plan the architecture &rarr; reviews the plan &rarr; has agent implement with tests &rarr; runs security review agent &rarr; reviews diff &rarr; ships it</li>
+                    <li><strong>Same AI. Same output quality from the model. Radically different outcome.</strong></li>
+                </ul>
+            </div>
+
+            <h2>A Practical Setup That Actually Works</h2>
+
+            <p>Here&rsquo;s the workflow I&rsquo;d recommend if you&rsquo;re trying to get the speed benefits of AI coding without the maintenance and security nightmares.</p>
+
+            <p><strong>Project memory file.</strong> Create a <code>CLAUDE.md</code> (or whatever your agent reads) in the root of every project. Include: tech stack, directory structure, naming conventions, API patterns, known gotchas, and architectural decisions. Update it as decisions change. This is your institutional memory.</p>
+
+            <p><strong>Dedicated workspaces per project.</strong> In Beam, create a workspace for each project you&rsquo;re actively developing. Inside that workspace, set up tabs for distinct roles: &ldquo;Planning,&rdquo; &ldquo;Implementation,&rdquo; &ldquo;Testing,&rdquo; &ldquo;Review.&rdquo; This separation prevents context bleed between tasks and gives you a mental model of where each workstream stands.</p>
+
+            <p><strong>Review before merge, every time.</strong> Run <code>git diff</code> on every AI-generated change. Use a code review agent as a second pair of eyes. If the diff is more than 200 lines, break it into smaller pieces and review each one. Yes, this slows you down. It also prevents the 69-vulnerabilities-in-15-apps scenario.</p>
+
+            <p><strong>Test-driven prompting.</strong> Instead of describing what you want the code to do, describe what tests it should pass. Write the test first (or have the agent write it and review it), then have the agent implement to pass the tests. This flips the vibe coding pattern on its head: instead of &ldquo;generate code and hope it works,&rdquo; it&rsquo;s &ldquo;define correctness and implement to spec.&rdquo;</p>
+
+            <p><strong>Session persistence.</strong> Save your workspace layouts so you can pick up exactly where you left off. Your carefully organized multi-agent setup shouldn&rsquo;t disappear when you close your laptop. In Beam, <span class="kbd">&#8984;S</span> saves the entire workspace state &mdash; tabs, splits, naming, everything &mdash; and you restore it tomorrow morning in one click.</p>
+
+            <div class="cta-box">
+                <h3>Vibe Coding Responsibly Starts with Organization</h3>
+                <p>Multiple AI agents need structured workspaces, persistent sessions, and instant context switching. Beam gives you the infrastructure to orchestrate without drowning.</p>
+                <a href="../" class="btn">Download Beam Free</a>
+            </div>
+
+            <h2>Key Takeaways</h2>
+
+            <p>The vibe coding honeymoon is over. That&rsquo;s not a death sentence &mdash; it&rsquo;s a graduation. Here&rsquo;s what matters now:</p>
+
+            <ul>
+                <li><strong>The problems are real and documented.</strong> 2.74x higher security vulnerability rates. 69 vulnerabilities in 15 test apps. Linus Torvalds calling it a maintenance nightmare. These aren&rsquo;t hypothetical concerns. They&rsquo;re measured outcomes.</li>
+                <li><strong>The adoption isn&rsquo;t slowing down.</strong> Lovable crossed $300M ARR. CEOs are building prototypes. The tools keep getting better and cheaper. AI-assisted development is permanent infrastructure now, not a fad.</li>
+                <li><strong>The blame belongs to the workflow, not the models.</strong> Vibe coding failed where it had no structure: no memory, no review, no organization, no checkpoints. The AI is a powerful junior contributor. Treat it like one.</li>
+                <li><strong>Memory files are the highest-leverage fix.</strong> A <code>CLAUDE.md</code> file takes 20 minutes to create and prevents your AI agent from repeating mistakes and losing architectural context between sessions.</li>
+                <li><strong>Code review agents are now mandatory.</strong> Human review alone isn&rsquo;t enough for AI-generated code at scale. Automated security scanning catches what tired eyes miss.</li>
+                <li><strong>Workspace organization determines success at scale.</strong> The moment you&rsquo;re running multiple agents in parallel &mdash; and you will be &mdash; you need structured workspaces with clear separation, fast switching, and persistent layouts. Unorganized terminals are where security bugs hide.</li>
+                <li><strong>The future belongs to agentic engineers, not vibe coders.</strong> The developers who build structured, reviewable, organized AI workflows now will be the ones running engineering teams in six months. The ones who keep prompting and praying will be the ones explaining those 69 vulnerabilities to their CTO.</li>
+            </ul>
+
+            <div class="related-articles">
+                <h2>Related Articles</h2>
+                <div class="related-grid">
+                    <a href="vibe-coding-to-agentic-engineering.html" class="related-card">
+                        <h4>From Vibe Coding to Agentic Engineering: What Karpathy&rsquo;s New Term Means for You</h4>
+                        <p>Karpathy declared vibe coding pass&eacute;. Here&rsquo;s what agentic engineering means and how to adapt your workflow.</p>
+                    </a>
+                    <a href="are-ai-coding-tools-getting-worse.html" class="related-card">
+                        <h4>Are AI Coding Tools Getting Worse?</h4>
+                        <p>Developers report declining quality from AI assistants. We investigated what&rsquo;s actually happening and what to do about it.</p>
+                    </a>
+                    <a href="vibe-coding-setup.html" class="related-card">
+                        <h4>The Perfect Vibe Coding Setup for Flow State Development</h4>
+                        <p>Optimize your environment for AI-assisted coding with the right tools, layout, and workflow.</p>
+                    </a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>
+                <a href="../">Beam</a> &bull; Terminal Organizer for macOS, Windows &amp; Linux &bull;
+                <a href="mailto:frank@nextuptechnologies.co">Contact</a>
+            </p>
+
+            <p style="margin-top: 12px; font-size: 0.8rem;">
+                <a href="/privacy.html" style="color: #71717a; text-decoration: none;">Privacy Policy</a> &bull;
+                <a href="/terms.html" style="color: #71717a; text-decoration: none;">Terms of Service</a>
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>

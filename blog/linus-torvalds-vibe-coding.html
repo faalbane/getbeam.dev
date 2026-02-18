@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D0XH8B0RKL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-D0XH8B0RKL');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linus Torvalds Was Right About Vibe Coding | Beam</title>
+    <meta name="description" content="Torvalds called vibe coding &ldquo;horrible for maintenance&rdquo; &mdash; then used AI to write a Python visualizer. Here&rsquo;s why both moves make perfect sense.">
+    <meta name="keywords" content="Linus Torvalds vibe coding, vibe coding maintenance, AI coding criticism, vibe coding problems">
+    <meta name="author" content="NextUp Technologies">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://getbeam.dev/blog/linus-torvalds-vibe-coding.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://getbeam.dev/blog/linus-torvalds-vibe-coding.html">
+    <meta property="og:title" content="Linus Torvalds Was Right About Vibe Coding">
+    <meta property="og:description" content="Torvalds called vibe coding horrible for maintenance, then used AI to write a Python visualizer. Here's why both moves make perfect sense.">
+    <meta property="og:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Linus Torvalds Was Right About Vibe Coding">
+    <meta name="twitter:description" content="Torvalds called vibe coding horrible for maintenance, then used AI to write a Python visualizer. Here's why both moves make perfect sense.">
+    <meta name="twitter:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Linus Torvalds Was Right About Vibe Coding",
+        "description": "Torvalds called vibe coding 'horrible for maintenance' then used AI to write a Python visualizer. Here's why both moves make perfect sense.",
+        "author": {
+            "@type": "Organization",
+            "name": "NextUp Technologies"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Beam"
+        },
+        "datePublished": "2026-02-15",
+        "keywords": "Linus Torvalds vibe coding, vibe coding maintenance, AI coding criticism, vibe coding problems"
+    }
+    </script>
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #111113;
+            --bg-tertiary: #1a1a1d;
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.4);
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --border: #27272a;
+            --success: #22c55e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        a, button, .btn, .related-card, .post-card, .editorial-card { cursor: pointer; }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        header {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 60px;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1.5rem;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            background: var(--accent);
+            color: white;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+        }
+
+        article {
+            padding-bottom: 80px;
+        }
+
+        .breadcrumb {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+        }
+
+        .breadcrumb a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .meta {
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            font-size: 0.95rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 48px 0 20px;
+            color: var(--text-primary);
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        ul, ol {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            padding-left: 24px;
+        }
+
+        li {
+            margin-bottom: 12px;
+        }
+
+        .highlight {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 32px 0;
+        }
+
+        .highlight h3 {
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .kbd {
+            display: inline-block;
+            padding: 2px 8px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .cta-box h3 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+        }
+
+        .cta-box p {
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 24px;
+        }
+
+        .cta-box .btn {
+            background: white;
+            color: var(--accent);
+        }
+
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+
+        .related-articles { margin-top: 60px; padding-top: 40px; border-top: 1px solid var(--border); }
+        .related-articles h2 { font-size: 1.5rem; margin-bottom: 24px; }
+        .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .related-card { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-decoration: none; transition: border-color 0.2s; }
+        .related-card:hover { border-color: var(--accent); }
+        .related-card h4 { color: white; font-size: 1rem; margin: 0 0 8px 0; }
+        .related-card p { color: var(--text-muted); font-size: 0.85rem; margin: 0; }
+        @media (max-width: 600px) { .related-grid { grid-template-columns: 1fr; } h1 { font-size: 1.8rem; } }
+
+        blockquote {
+            border-left: 3px solid var(--accent);
+            padding-left: 20px;
+            margin: 24px 0;
+            font-style: italic;
+        }
+
+        blockquote p {
+            color: var(--text-secondary);
+        }
+
+        code {
+            font-family: 'JetBrains Mono', monospace;
+            background: var(--bg-tertiary);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.88rem;
+            border: 1px solid var(--border);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="../" class="logo">
+                <div class="logo-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round">
+                        <path d="M4 17l6-6-6-6M12 19h8"/>
+                    </svg>
+                </div>
+                Beam
+            </a>
+            <a href="../" class="btn">Download Beam</a>
+        </div>
+    </header>
+
+    <main>
+        <article class="container">
+            <div class="breadcrumb">
+                <a href="../">Beam</a> / <a href="../#guides">Blog</a> / Linus Torvalds Was Right About Vibe Coding
+            </div>
+
+            <h1>Linus Torvalds Was Right About Vibe Coding</h1>
+            <p class="meta">February 15, 2026 &bull; 11 min read</p>
+
+            <p>&ldquo;Even Linus Torvalds Is Vibe Coding Now.&rdquo;</p>
+
+            <p>That was the Slashdot headline in late January 2026, and it went exactly as viral as you&rsquo;d expect. The creator of Linux and Git&mdash;a man who has spent three decades insisting that you read the code, understand the code, and take personal responsibility for the code&mdash;was caught using an AI tool to generate a Python project. The internet had a field day. The irony was too perfect. Even Linus caved.</p>
+
+            <p>Except he didn&rsquo;t cave. He was making exactly the point he&rsquo;d been making all along. And if you look past the headline and into what he actually did, the story isn&rsquo;t about hypocrisy. It&rsquo;s about judgment. It&rsquo;s about knowing the difference between a script and a system&mdash;and treating them accordingly.</p>
+
+            <p>Torvalds was right about vibe coding. Not because vibe coding is bad, but because most people use it without the discipline it requires. And until you understand where that line is, you&rsquo;re going to keep building things that work on Tuesday and collapse by Friday.</p>
+
+            <h2>What Torvalds Actually Said</h2>
+
+            <p>Before the Slashdot headline, before the Python project, there was a talk. In November 2025, Torvalds spoke at the Linux Foundation Open Source Summit in Seoul. And he didn&rsquo;t mince words about AI-generated code.</p>
+
+            <blockquote>
+                <p>&ldquo;It&rsquo;s fine for getting started. But it&rsquo;s a horrible, horrible idea from a maintenance standpoint.&rdquo;</p>
+                <p><strong>&mdash; Linus Torvalds, Open Source Summit, Seoul, November 2025</strong></p>
+            </blockquote>
+
+            <p>That&rsquo;s the full quote. Not &ldquo;AI is bad.&rdquo; Not &ldquo;vibe coding is a toy.&rdquo; Not &ldquo;real programmers don&rsquo;t use LLMs.&rdquo; He said it&rsquo;s fine for getting started. And he said it&rsquo;s horrible for maintenance. Both of those things are true, and the tension between them is the entire point.</p>
+
+            <p>Torvalds has maintained the Linux kernel for over thirty years. He reviews patches from thousands of contributors. He has seen what happens when someone submits code they don&rsquo;t fully understand&mdash;and he&rsquo;s seen it at scale, across decades. When he says &ldquo;maintenance standpoint,&rdquo; he&rsquo;s not speaking theoretically. He&rsquo;s speaking from the lived experience of managing one of the largest, most critical software projects in human history.</p>
+
+            <p>So when the same man turns around two months later and uses Google&rsquo;s Antigravity AI to generate a Python audio visualizer, the question isn&rsquo;t &ldquo;is he a hypocrite?&rdquo; The question is &ldquo;why did he think that was fine?&rdquo;</p>
+
+            <h2>The Python vs. C Distinction</h2>
+
+            <p>Here&rsquo;s what actually happened. Torvalds has a hobby project called AudioNoise&mdash;a personal audio visualization tool. In January 2026, he used Google&rsquo;s Antigravity AI to vibe-code the Python components: the visualization layer, the UI scaffolding, the glue scripts that wire audio input to graphical output.</p>
+
+            <p>He hand-wrote all the C components himself.</p>
+
+            <p>That distinction is not accidental. It&rsquo;s the entire philosophy in a single decision. The Python code is a display layer. If it breaks, you restart it. If it has a bug, you regenerate it. If it needs to change, you throw it away and describe the new version. The blast radius of a failure is small. The cost of replacement is low. The maintenance burden is something one person can carry without deep structural knowledge of every line.</p>
+
+            <p>The C code is different. The C code is the audio processing pipeline. It deals with memory management, buffer handling, timing, and system-level interfaces. A bug in that layer doesn&rsquo;t produce a glitchy animation. It produces a segfault, a memory leak, or silent data corruption that shows up three months later under conditions you can&rsquo;t reproduce. That code demands that the author understand what every line does and why.</p>
+
+            <p>Torvalds didn&rsquo;t vibe-code the parts that matter for longevity. He vibe-coded the parts that are, by design, disposable.</p>
+
+            <h2>The Maintenance Problem</h2>
+
+            <p>The Seoul talk wasn&rsquo;t really about AI. It was about a pattern Torvalds has been fighting for decades: people submitting code they don&rsquo;t understand.</p>
+
+            <p>Before AI tools, the problem was copy-pasting from Stack Overflow. Before that, it was cargo-culting from textbooks. The tool changes; the failure mode is the same. Someone puts code into a project, the code works today, and nobody can explain why it works&mdash;which means nobody can fix it when it stops working.</p>
+
+            <p>Vibe coding accelerates this failure mode by an order of magnitude. Instead of copying one function from Stack Overflow, you generate an entire module from a prompt. Instead of not understanding ten lines, you don&rsquo;t understand two hundred. And because the generated code works immediately&mdash;because LLMs are very good at producing code that passes the first test&mdash;there&rsquo;s no friction to slow you down. No moment where you have to stop and think &ldquo;wait, what does this actually do?&rdquo;</p>
+
+            <p>Six months later, the person who generated the code has moved on to another project, another company, or another prompt. The person who inherits the codebase opens it and finds a thousand lines with no comments, no documentation, and no one alive who can explain the architectural decisions baked into the structure. Not because the decisions were bad&mdash;the AI might have made perfectly reasonable choices&mdash;but because nobody recorded <em>why</em> those choices were made.</p>
+
+            <p>This is what Torvalds means by &ldquo;horrible from a maintenance standpoint.&rdquo; And he&rsquo;s right. In February 2026, Hackaday ran an article titled &ldquo;How Vibe Coding Is Killing Open Source&rdquo; that cataloged exactly this pattern: repositories flooded with AI-generated pull requests that introduced subtle bugs, broke backward compatibility, or added features that conflicted with the project&rsquo;s architecture&mdash;all submitted by people who couldn&rsquo;t respond to review comments because they didn&rsquo;t understand what they&rsquo;d submitted.</p>
+
+            <p>The problem isn&rsquo;t that AI wrote the code. The problem is that no human took responsibility for it.</p>
+
+            <h2>Torvalds&rsquo; Implicit Framework</h2>
+
+            <p>Torvalds never published a blog post titled &ldquo;When to Use AI and When Not To.&rdquo; He doesn&rsquo;t do frameworks or methodologies. But if you look at what he said in Seoul and what he did with AudioNoise, the framework writes itself.</p>
+
+            <div class="highlight">
+                <h3>When Vibe Coding Makes Sense</h3>
+                <ul>
+                    <li><strong>Prototypes and experiments</strong> &mdash; Code that exists to test an idea, not to run in production. If the whole thing gets deleted next week, who cares how it was written?</li>
+                    <li><strong>Scripting and glue code</strong> &mdash; Shell scripts, data transformation pipelines, one-off automation. Code with a short lifespan and a small blast radius.</li>
+                    <li><strong>Visualization and UI scaffolding</strong> &mdash; Display layers where the worst failure mode is &ldquo;it looks wrong&rdquo; rather than &ldquo;it corrupts data.&rdquo;</li>
+                    <li><strong>Personal projects with a single maintainer</strong> &mdash; If you&rsquo;re the only person who will ever touch it, the maintenance burden is yours to accept.</li>
+                    <li><strong>Learning and exploration</strong> &mdash; Using AI to generate examples you then study, modify, and internalize.</li>
+                </ul>
+            </div>
+
+            <div class="highlight">
+                <h3>When Vibe Coding Is Dangerous</h3>
+                <ul>
+                    <li><strong>Systems code and infrastructure</strong> &mdash; Anything involving memory management, concurrency, security, or data integrity. Code where failures are silent and consequences are severe.</li>
+                    <li><strong>Shared codebases with multiple maintainers</strong> &mdash; If someone else will need to debug your code, they need to be able to understand it. AI-generated code without human review and documentation is a trap for the next developer.</li>
+                    <li><strong>Long-lived production systems</strong> &mdash; Code that will run for years needs to be maintainable for years. The ten minutes you saved generating it will cost you ten hours debugging it in month eight.</li>
+                    <li><strong>Open-source projects accepting contributions</strong> &mdash; AI-generated PRs from people who can&rsquo;t explain their own changes are already straining maintainer capacity across the ecosystem.</li>
+                    <li><strong>Anything where you can&rsquo;t explain the failure modes</strong> &mdash; If you don&rsquo;t know how the code breaks, you don&rsquo;t know it well enough to ship it.</li>
+                </ul>
+            </div>
+
+            <!-- Torvalds Framework Decision Matrix Visualization -->
+            <div class="visualization" style="margin: 40px 0;">
+                <style>
+                    @keyframes vizFadeIn {
+                        from { opacity: 0; transform: translateY(16px); }
+                        to { opacity: 1; transform: translateY(0); }
+                    }
+                    .viz-matrix {
+                        display: grid;
+                        grid-template-columns: 1fr 1fr;
+                        gap: 0;
+                        border-radius: 14px;
+                        overflow: hidden;
+                        border: 1px solid #27272a;
+                        animation: vizFadeIn 0.6s ease-out both;
+                    }
+                    .viz-matrix-title {
+                        grid-column: 1 / -1;
+                        background: #111113;
+                        padding: 20px 24px 16px;
+                        border-bottom: 1px solid #27272a;
+                        text-align: center;
+                    }
+                    .viz-matrix-title h3 {
+                        font-family: 'Space Grotesk', -apple-system, sans-serif;
+                        font-size: 1.15rem;
+                        font-weight: 600;
+                        color: #fafafa;
+                        margin: 0;
+                        letter-spacing: -0.01em;
+                    }
+                    .viz-matrix-title span {
+                        font-size: 0.85rem;
+                        color: #71717a;
+                        display: block;
+                        margin-top: 4px;
+                    }
+                    .viz-col {
+                        background: #111113;
+                        padding: 24px;
+                        transition: transform 0.25s ease, box-shadow 0.25s ease;
+                    }
+                    .viz-col:hover {
+                        transform: scale(1.015);
+                        box-shadow: 0 4px 24px rgba(0,0,0,0.3);
+                        z-index: 1;
+                    }
+                    .viz-col-green {
+                        border-right: 1px solid #27272a;
+                    }
+                    .viz-col-header {
+                        display: flex;
+                        align-items: center;
+                        gap: 10px;
+                        margin-bottom: 18px;
+                    }
+                    .viz-col-header h4 {
+                        font-family: 'Space Grotesk', -apple-system, sans-serif;
+                        font-size: 1.05rem;
+                        font-weight: 600;
+                        margin: 0;
+                    }
+                    .viz-col-green .viz-col-header h4 { color: #22c55e; }
+                    .viz-col-red .viz-col-header h4 { color: #ef4444; }
+                    .viz-icon {
+                        width: 32px;
+                        height: 32px;
+                        border-radius: 8px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        flex-shrink: 0;
+                    }
+                    .viz-icon-green { background: rgba(34,197,94,0.12); }
+                    .viz-icon-red { background: rgba(239,68,68,0.12); }
+                    .viz-item {
+                        display: flex;
+                        align-items: center;
+                        gap: 10px;
+                        padding: 10px 12px;
+                        border-radius: 8px;
+                        margin-bottom: 6px;
+                        font-size: 0.92rem;
+                        font-family: 'Space Grotesk', -apple-system, sans-serif;
+                        color: #a1a1aa;
+                        transition: background 0.2s;
+                    }
+                    .viz-col-green .viz-item:hover { background: rgba(34,197,94,0.06); }
+                    .viz-col-red .viz-item:hover { background: rgba(239,68,68,0.06); }
+                    .viz-item-dot {
+                        width: 6px;
+                        height: 6px;
+                        border-radius: 50%;
+                        flex-shrink: 0;
+                    }
+                    .viz-col-green .viz-item-dot { background: #22c55e; }
+                    .viz-col-red .viz-item-dot { background: #ef4444; }
+                    .viz-quote {
+                        grid-column: 1 / -1;
+                        background: #0a0a0b;
+                        border-top: 1px solid #27272a;
+                        padding: 18px 24px;
+                        text-align: center;
+                    }
+                    .viz-quote p {
+                        font-family: 'Space Grotesk', -apple-system, sans-serif;
+                        font-style: italic;
+                        font-size: 0.9rem;
+                        color: #71717a;
+                        margin: 0;
+                        line-height: 1.6;
+                    }
+                    .viz-quote strong {
+                        color: #a1a1aa;
+                        font-weight: 500;
+                    }
+                    @media (max-width: 600px) {
+                        .viz-matrix {
+                            grid-template-columns: 1fr;
+                        }
+                        .viz-col-green {
+                            border-right: none;
+                            border-bottom: 1px solid #27272a;
+                        }
+                    }
+                </style>
+                <div class="viz-matrix">
+                    <div class="viz-matrix-title">
+                        <h3>The Torvalds Framework</h3>
+                        <span>A decision matrix for AI-generated code</span>
+                    </div>
+                    <div class="viz-col viz-col-green">
+                        <div class="viz-col-header">
+                            <div class="viz-icon viz-icon-green">
+                                <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                                    <path d="M4 9.5L7.5 13L14 5" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <h4>Vibe Code This</h4>
+                        </div>
+                        <div class="viz-item"><span class="viz-item-dot"></span>Scripts &amp; automation</div>
+                        <div class="viz-item"><span class="viz-item-dot"></span>Prototypes &amp; experiments</div>
+                        <div class="viz-item"><span class="viz-item-dot"></span>Visualizers &amp; UI scaffolding</div>
+                        <div class="viz-item"><span class="viz-item-dot"></span>Personal tools &amp; utilities</div>
+                        <div class="viz-item"><span class="viz-item-dot"></span>One-off data transforms</div>
+                    </div>
+                    <div class="viz-col viz-col-red">
+                        <div class="viz-col-header">
+                            <div class="viz-icon viz-icon-red">
+                                <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                                    <path d="M5 5L13 13M13 5L5 13" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <h4>Hand-Write This</h4>
+                        </div>
+                        <div class="viz-item"><span class="viz-item-dot"></span>Systems code &amp; infrastructure</div>
+                        <div class="viz-item"><span class="viz-item-dot"></span>Security-critical paths</div>
+                        <div class="viz-item"><span class="viz-item-dot"></span>Production APIs &amp; services</div>
+                        <div class="viz-item"><span class="viz-item-dot"></span>Shared / team codebases</div>
+                        <div class="viz-item"><span class="viz-item-dot"></span>Anything you&rsquo;ll maintain long-term</div>
+                    </div>
+                    <div class="viz-quote">
+                        <p>&ldquo;Fine for getting started, horrible for maintenance.&rdquo; &mdash; <strong>Linus Torvalds</strong></p>
+                    </div>
+                </div>
+            </div>
+            <!-- End Torvalds Framework Visualization -->
+
+            <p>The line isn&rsquo;t &ldquo;AI vs. no AI.&rdquo; The line is <strong>disposable vs. durable</strong>. Code that&rsquo;s meant to be thrown away can be generated however you like. Code that&rsquo;s meant to last demands understanding. Torvalds drew that line instinctively, because he&rsquo;s been drawing it for thirty years. The rest of us need to learn to draw it deliberately.</p>
+
+            <h2>How Agentic Engineering Addresses His Concerns</h2>
+
+            <p>Here&rsquo;s where things get interesting. Torvalds&rsquo; critique was aimed at a specific workflow: one person, one prompt, one blob of generated code, no review, no documentation, no accountability. That&rsquo;s vibe coding at its worst. But the field hasn&rsquo;t stood still since he gave that talk.</p>
+
+            <p>The shift from vibe coding to <strong>agentic engineering</strong>&mdash;a term Andrej Karpathy introduced in early February 2026&mdash;directly addresses the maintenance problem Torvalds identified. Not by abandoning AI-generated code, but by wrapping it in the kind of engineering discipline that makes it survivable.</p>
+
+            <p><strong>Persistent memory solves the context problem.</strong> One of Torvalds&rsquo; core objections is that nobody can explain why the code was written the way it was. With project memory files like <code>CLAUDE.md</code>, every AI session starts with full context about the project&rsquo;s architecture, conventions, and past decisions. The &ldquo;why&rdquo; is documented before the code is generated, not lost after the chat window closes.</p>
+
+            <p><strong>Structured review solves the accountability problem.</strong> In an agentic workflow, the developer doesn&rsquo;t accept generated code blindly. They review plans before implementation, check implementations before tests run, and verify test results before merging. The human is the quality gate, not a rubber stamp. This is exactly how Torvalds runs the Linux kernel&mdash;every patch gets reviewed by someone who understands what it does and why.</p>
+
+            <p><strong>Task decomposition solves the comprehension problem.</strong> Instead of prompting an AI to &ldquo;build me a user authentication system&rdquo; and accepting whatever comes back, agentic engineering breaks that into discrete, reviewable pieces: design the schema, implement the token flow, write the middleware, add the tests. Each piece is small enough for a human to understand. Each piece gets reviewed independently. The result is AI-generated code that a human can actually maintain, because the human was involved at every stage.</p>
+
+            <p><strong>Session organization solves the oversight problem.</strong> When you&rsquo;re running multiple agents on different parts of a codebase, you need to know what each one is doing at all times. Organized workspaces, labeled sessions, and persistent state mean you can pick up any agent&rsquo;s work, review its output, and course-correct before it goes too far. The chaos that Torvalds warned about&mdash;code that nobody understands or controls&mdash;is a tooling problem as much as a discipline problem.</p>
+
+            <h2>Practical Tips: Torvalds-Approved Vibe Coding</h2>
+
+            <p>If you take Torvalds&rsquo; position seriously&mdash;and you should&mdash;the goal isn&rsquo;t to stop using AI for code generation. It&rsquo;s to use it with the kind of judgment that a thirty-year kernel maintainer would recognize as responsible. Here&rsquo;s what that looks like in practice.</p>
+
+            <p><strong>1. Classify before you generate.</strong> Before you type a prompt, ask yourself: is this code disposable or durable? If it&rsquo;s a script, a prototype, or a visualization&mdash;vibe away. If it&rsquo;s going into a production system, a shared codebase, or infrastructure&mdash;slow down and apply engineering rigor.</p>
+
+            <p><strong>2. Organize your projects with intent.</strong> Every project you work on with AI should have a dedicated workspace with clear structure. In Beam, create a workspace per project with <span class="kbd">&#8984;N</span> and separate tabs for different workstreams. When you revisit the project next week, you should be able to see exactly where you left off and what each agent was doing.</p>
+
+            <p><strong>3. Set up project memory from the start.</strong> Create a <code>CLAUDE.md</code> or equivalent file in your project root before your first AI session. Document your architecture decisions, your conventions, your dependencies, and your constraints. This is the institutional knowledge that prevents the maintenance nightmare Torvalds described. Every agent that touches your project should read this file first.</p>
+
+            <p><strong>4. Review at checkpoints, not at the end.</strong> Don&rsquo;t let an agent generate five hundred lines and then try to review them all at once. Break the work into stages. Review the plan. Review the implementation of each component. Review the tests. Use split panes in Beam (<span class="kbd">&#8984;D</span>) to keep your review terminal next to your agent terminal. Catch problems early, when they&rsquo;re cheap to fix.</p>
+
+            <p><strong>5. Keep a maintenance journal.</strong> For any AI-generated code that&rsquo;s going to live longer than a week, document what it does, why it was built this way, and what the known limitations are. This can live in comments, in a project wiki, or in your memory file. The point is that six months from now, someone&mdash;including future you&mdash;can open this code and understand it without having to reverse-engineer the original prompt.</p>
+
+            <p><strong>6. Know what you can&rsquo;t delegate.</strong> Torvalds hand-wrote the C components of AudioNoise because those components required understanding that can&rsquo;t be prompted into existence. Security-critical code, performance-sensitive algorithms, and system-level interfaces are areas where you need to write the code yourself or, at minimum, understand every generated line well enough to explain it in a code review. If you can&rsquo;t explain it, you shouldn&rsquo;t ship it.</p>
+
+            <div class="highlight">
+                <h3>The Torvalds Test for AI-Generated Code</h3>
+                <p>Before you commit any AI-generated code, ask yourself these three questions:</p>
+                <ul>
+                    <li><strong>Can I explain what this code does to another developer?</strong> If not, you don&rsquo;t understand it well enough to maintain it.</li>
+                    <li><strong>Can I explain why it was written this way instead of another way?</strong> If not, you can&rsquo;t defend the architectural decisions when they&rsquo;re questioned.</li>
+                    <li><strong>Can I predict how this code will fail?</strong> If not, you can&rsquo;t debug it when it does.</li>
+                </ul>
+                <p>If you can answer all three, ship it. If you can&rsquo;t, you have more work to do&mdash;whether that means reading the generated code more carefully, rewriting parts of it yourself, or adding documentation that captures the reasoning.</p>
+            </div>
+
+            <div class="cta-box">
+                <h3>Organize Your AI Coding Workflow Like Torvalds Would</h3>
+                <p>Persistent workspaces, labeled sessions, split panes for review, and project memory. Beam gives you the structure to vibe-code responsibly&mdash;with the discipline that production code demands.</p>
+                <a href="../" class="btn">Download Beam</a>
+            </div>
+
+            <h2>Key Takeaways</h2>
+
+            <p>Torvalds isn&rsquo;t anti-vibe-coding. He&rsquo;s pro-knowing-when-to-use-it. That&rsquo;s a more useful position than either &ldquo;AI will replace developers&rdquo; or &ldquo;AI code is garbage.&rdquo; Here&rsquo;s what to take from his example:</p>
+
+            <ul>
+                <li><strong>Torvalds used AI for Python visualization code and hand-wrote the C components himself.</strong> That&rsquo;s not hypocrisy. It&rsquo;s a clear-eyed assessment of which code needs human understanding and which doesn&rsquo;t.</li>
+                <li><strong>The maintenance problem is real and getting worse.</strong> AI-generated code that nobody understands is already straining open-source projects and production systems. Hackaday&rsquo;s &ldquo;How Vibe Coding Is Killing Open Source&rdquo; captured a pattern that every experienced maintainer recognizes.</li>
+                <li><strong>The line is disposable vs. durable, not AI vs. human.</strong> Scripts, prototypes, and visualization layers can be vibe-coded freely. Production systems, shared codebases, and infrastructure demand engineering discipline&mdash;whether the code is AI-generated or not.</li>
+                <li><strong>Agentic engineering addresses the concerns Torvalds raised.</strong> Persistent memory, structured review, task decomposition, and organized workspaces wrap AI-generated code in the kind of process that makes it maintainable.</li>
+                <li><strong>The Torvalds test is simple: can you explain it, defend it, and predict its failures?</strong> If you can, the code is yours regardless of who (or what) typed it. If you can&rsquo;t, you&rsquo;re shipping a liability.</li>
+                <li><strong>Tooling matters.</strong> Organized workspaces, persistent sessions, and structured review environments aren&rsquo;t luxuries. They&rsquo;re the infrastructure that separates responsible AI-assisted development from the chaos Torvalds warned about.</li>
+            </ul>
+
+            <p>The Slashdot headline got it wrong. Linus Torvalds isn&rsquo;t vibe coding. He&rsquo;s doing what he&rsquo;s always done: using the right tool for the job and refusing to compromise on the code that matters. The rest of us would do well to follow that example.</p>
+
+            <div class="related-articles">
+                <h2>Related Articles</h2>
+                <div class="related-grid">
+                    <a href="vibe-coding-to-agentic-engineering.html" class="related-card">
+                        <h4>From Vibe Coding to Agentic Engineering</h4>
+                        <p>What Karpathy&rsquo;s new term means for your workflow and why the paradigm shifted.</p>
+                    </a>
+                    <a href="vibe-coding-honeymoon-over.html" class="related-card">
+                        <h4>The Vibe Coding Honeymoon Is Over</h4>
+                        <p>What happens when the initial excitement fades and you&rsquo;re left maintaining what you built.</p>
+                    </a>
+                    <a href="terminal-is-the-new-ide.html" class="related-card">
+                        <h4>The Terminal Is the New IDE</h4>
+                        <p>Why agentic engineering is pulling developers back to the command line.</p>
+                    </a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>
+                <a href="../">Beam</a> &bull; Terminal Organizer for macOS, Windows &amp; Linux &bull;
+                <a href="mailto:frank@nextuptechnologies.co">Contact</a>
+            </p>
+
+            <p style="margin-top: 12px; font-size: 0.8rem;">
+                <a href="/privacy.html" style="color: #71717a; text-decoration: none;">Privacy Policy</a> &bull;
+                <a href="/terms.html" style="color: #71717a; text-decoration: none;">Terms of Service</a>
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>

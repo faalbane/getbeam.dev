@@ -71,6 +71,7 @@
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        a, button, .btn, .related-card, .post-card, .editorial-card { cursor: pointer; }
 
         body {
             font-family: 'Space Grotesk', -apple-system, sans-serif;
@@ -301,7 +302,269 @@
         .related-card:hover { border-color: var(--accent); }
         .related-card h4 { color: white; font-size: 1rem; margin: 0 0 8px 0; }
         .related-card p { color: var(--text-muted); font-size: 0.85rem; margin: 0; }
-        @media (max-width: 600px) { .related-grid { grid-template-columns: 1fr; } }
+
+        /* Workspace hierarchy visual */
+        .hierarchy-visual {
+            display: flex;
+            gap: 24px;
+            margin: 32px 0;
+        }
+
+        .hierarchy-side {
+            flex: 1;
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            padding: 24px;
+            border: 1px solid var(--border);
+        }
+
+        .hierarchy-label {
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-bottom: 16px;
+            text-align: center;
+            letter-spacing: 0.02em;
+        }
+
+        .hierarchy-side.iterm .hierarchy-label { color: var(--text-muted); }
+        .hierarchy-side.beam .hierarchy-label { color: var(--accent); }
+
+        .hierarchy-flow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .hierarchy-flow .hf-box {
+            padding: 8px 14px;
+            border-radius: 6px;
+            font-size: 0.82rem;
+            font-family: 'JetBrains Mono', monospace;
+            text-align: center;
+            white-space: nowrap;
+        }
+
+        .hierarchy-side.iterm .hf-box {
+            border: 1px solid var(--text-muted);
+            color: var(--text-muted);
+            background: transparent;
+        }
+
+        .hierarchy-flow .hf-arrow {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            flex-shrink: 0;
+        }
+
+        .hierarchy-side.beam .hierarchy-flow {
+            flex-direction: column;
+            gap: 0;
+            align-items: stretch;
+        }
+
+        .hierarchy-side.beam .hf-level {
+            border: 1px solid var(--accent);
+            border-radius: 8px;
+            padding: 10px;
+            position: relative;
+        }
+
+        .hierarchy-side.beam .hf-level .hf-level-label {
+            font-size: 0.75rem;
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--accent);
+            margin-bottom: 6px;
+            opacity: 0.85;
+        }
+
+        .hierarchy-side.beam .hf-level .hf-level {
+            border-color: rgba(59, 130, 246, 0.5);
+            background: rgba(59, 130, 246, 0.04);
+        }
+
+        .hierarchy-side.beam .hf-level .hf-level .hf-level {
+            border-color: rgba(59, 130, 246, 0.3);
+            background: rgba(59, 130, 246, 0.08);
+        }
+
+        .hierarchy-side.beam .hf-level .hf-level .hf-level .hf-level-label {
+            margin-bottom: 0;
+        }
+
+        /* Comparison table icon cells */
+        .cell-check {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .cell-check svg {
+            flex-shrink: 0;
+        }
+
+        /* Migration timeline */
+        .migration-timeline {
+            position: relative;
+            margin: 32px 0;
+            padding-left: 48px;
+        }
+
+        .mt-line {
+            position: absolute;
+            left: 18px;
+            top: 20px;
+            bottom: 20px;
+            width: 3px;
+            background: linear-gradient(to bottom, var(--accent), var(--success));
+            border-radius: 2px;
+        }
+
+        .mt-step {
+            position: relative;
+            margin-bottom: 28px;
+            padding: 4px 0;
+        }
+
+        .mt-step:last-child {
+            margin-bottom: 0;
+        }
+
+        .mt-number {
+            position: absolute;
+            left: -48px;
+            top: 0;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--bg-primary);
+            border: 2px solid var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: var(--accent);
+            font-family: 'JetBrains Mono', monospace;
+            z-index: 1;
+        }
+
+        .mt-step:last-child .mt-number {
+            border-color: var(--success);
+            color: var(--success);
+        }
+
+        .mt-step .mt-text {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            padding-top: 6px;
+        }
+
+        .mt-step .mt-text .kbd {
+            display: inline-block;
+            padding: 2px 8px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+        }
+
+        /* Quick Switcher mock */
+        .quick-switcher-mock {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 0;
+            margin: 32px auto;
+            max-width: 380px;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(59, 130, 246, 0.15);
+        }
+
+        .qs-input-bar {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 16px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .qs-input-bar svg {
+            flex-shrink: 0;
+            opacity: 0.5;
+        }
+
+        .qs-input-bar .qs-placeholder {
+            flex: 1;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .qs-input-bar .qs-shortcut {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 2px 8px;
+        }
+
+        .qs-result {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 16px;
+            border-bottom: 1px solid rgba(39, 39, 42, 0.5);
+            transition: background 0.15s;
+        }
+
+        .qs-result:last-child {
+            border-bottom: none;
+        }
+
+        .qs-result.active {
+            background: rgba(59, 130, 246, 0.1);
+        }
+
+        .qs-result .qs-icon {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .qs-result .qs-name {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .qs-result.active .qs-name {
+            color: var(--text-primary);
+        }
+
+        .qs-result .qs-type {
+            margin-left: auto;
+            font-size: 0.72rem;
+            color: var(--text-muted);
+        }
+
+        .qs-caption {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-top: 12px;
+        }
+
+        @media (max-width: 600px) {
+            .related-grid { grid-template-columns: 1fr; }
+            .hierarchy-visual { flex-direction: column; }
+            .hierarchy-flow { flex-wrap: wrap; justify-content: center; }
+            .quick-switcher-mock { max-width: 100%; }
+            .migration-timeline { padding-left: 44px; }
+        }
     </style>
 </head>
 <body>
@@ -348,12 +611,63 @@
                 <li>Save the entire arrangement as a "layout"</li>
             </ul>
 
+            <div class="hierarchy-visual">
+                <div class="hierarchy-side iterm">
+                    <div class="hierarchy-label">iTerm2</div>
+                    <div class="hierarchy-flow">
+                        <div class="hf-box">Window</div>
+                        <span class="hf-arrow">&rarr;</span>
+                        <div class="hf-box">Tabs</div>
+                        <span class="hf-arrow">&rarr;</span>
+                        <div class="hf-box">Splits</div>
+                    </div>
+                </div>
+                <div class="hierarchy-side beam">
+                    <div class="hierarchy-label">Beam</div>
+                    <div class="hierarchy-flow">
+                        <div class="hf-level">
+                            <div class="hf-level-label">Workspace</div>
+                            <div class="hf-level">
+                                <div class="hf-level-label">Tab</div>
+                                <div class="hf-level">
+                                    <div class="hf-level-label">Split Panes</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <p>This lets you organize by project: one workspace for your frontend, one for your backend API, one for your database tools. When you're done for the day, save the layout. Tomorrow, restore it and pick up exactly where you left off.</p>
 
             <div class="highlight-box">
                 <h4>Think of it this way</h4>
                 <p>iTerm2 is a terminal with great tab/split management. Beam is a terminal with workspace management built on top – like having a window manager inside your terminal app.</p>
             </div>
+
+            <div class="quick-switcher-mock">
+                <div class="qs-input-bar">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="#71717a" stroke-width="1.5" stroke-linecap="round"><circle cx="7" cy="7" r="4.5"/><line x1="10.2" y1="10.2" x2="14" y2="14"/></svg>
+                    <span class="qs-placeholder">Switch workspace...</span>
+                    <span class="qs-shortcut">&#8984;P</span>
+                </div>
+                <div class="qs-result active">
+                    <div class="qs-icon" style="background: #3b82f6;"></div>
+                    <span class="qs-name">frontend</span>
+                    <span class="qs-type">workspace</span>
+                </div>
+                <div class="qs-result">
+                    <div class="qs-icon" style="background: #22c55e;"></div>
+                    <span class="qs-name">backend-api</span>
+                    <span class="qs-type">workspace</span>
+                </div>
+                <div class="qs-result">
+                    <div class="qs-icon" style="background: #a855f7;"></div>
+                    <span class="qs-name">database</span>
+                    <span class="qs-type">workspace</span>
+                </div>
+            </div>
+            <p class="qs-caption">Beam's Quick Switcher lets you jump between workspaces instantly.</p>
 
             <h2>Feature comparison</h2>
 
@@ -383,28 +697,28 @@
                     </tr>
                     <tr>
                         <td><strong>Workspaces</strong></td>
-                        <td>No (use separate windows)</td>
-                        <td>Yes – floating windows within app</td>
+                        <td><span class="cell-check"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><line x1="3" y1="7" x2="11" y2="7" stroke="#71717a" stroke-width="2" stroke-linecap="round"/></svg> No (use separate windows)</span></td>
+                        <td><span class="cell-check"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7.5L5.5 10L11 4" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Yes – floating windows within app</span></td>
                     </tr>
                     <tr>
                         <td><strong>Saveable layouts</strong></td>
-                        <td>Window arrangements only</td>
-                        <td>Full workspace layouts with names</td>
+                        <td><span class="cell-check"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><line x1="3" y1="7" x2="11" y2="7" stroke="#71717a" stroke-width="2" stroke-linecap="round"/></svg> Window arrangements only</span></td>
+                        <td><span class="cell-check"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7.5L5.5 10L11 4" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Full workspace layouts with names</span></td>
                     </tr>
                     <tr>
                         <td><strong>Quick switcher</strong></td>
-                        <td>Requires scripting/plugins</td>
-                        <td>Built-in (<span class="kbd">⌘P</span>)</td>
+                        <td><span class="cell-check"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><line x1="3" y1="7" x2="11" y2="7" stroke="#71717a" stroke-width="2" stroke-linecap="round"/></svg> Requires scripting/plugins</span></td>
+                        <td><span class="cell-check"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7.5L5.5 10L11 4" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Built-in (<span class="kbd">⌘P</span>)</span></td>
                     </tr>
                     <tr>
                         <td><strong>Rename tabs easily</strong></td>
-                        <td>Possible but not obvious</td>
-                        <td>Double-click or <span class="kbd">⌘⇧I</span></td>
+                        <td><span class="cell-check"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><line x1="3" y1="7" x2="11" y2="7" stroke="#71717a" stroke-width="2" stroke-linecap="round"/></svg> Possible but not obvious</span></td>
+                        <td><span class="cell-check"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7.5L5.5 10L11 4" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Double-click or <span class="kbd">⌘⇧I</span></span></td>
                     </tr>
                     <tr>
                         <td><strong>Undo close</strong></td>
-                        <td>No</td>
-                        <td>Yes (<span class="kbd">⌘Z</span>)</td>
+                        <td><span class="cell-check"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><line x1="3" y1="7" x2="11" y2="7" stroke="#71717a" stroke-width="2" stroke-linecap="round"/></svg> No</span></td>
+                        <td><span class="cell-check"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 7.5L5.5 10L11 4" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Yes (<span class="kbd">⌘Z</span>)</span></td>
                     </tr>
                     <tr>
                         <td><strong>Configuration</strong></td>
@@ -448,13 +762,29 @@
 
             <p>Beam doesn't import iTerm2 profiles or configurations. But there's not much to migrate:</p>
 
-            <ol>
-                <li>Download Beam and open it</li>
-                <li>Create workspaces for your projects (<span class="kbd">⌘N</span>)</li>
-                <li>Rename them by double-clicking the title bar</li>
-                <li>Save your layout (<span class="kbd">⌘S</span>)</li>
-                <li>That's it – you're organized</li>
-            </ol>
+            <div class="migration-timeline">
+                <div class="mt-line"></div>
+                <div class="mt-step">
+                    <div class="mt-number">1</div>
+                    <div class="mt-text">Download Beam and open it</div>
+                </div>
+                <div class="mt-step">
+                    <div class="mt-number">2</div>
+                    <div class="mt-text">Create workspaces for your projects <span class="kbd">⌘N</span></div>
+                </div>
+                <div class="mt-step">
+                    <div class="mt-number">3</div>
+                    <div class="mt-text">Rename them by double-clicking the title bar</div>
+                </div>
+                <div class="mt-step">
+                    <div class="mt-number">4</div>
+                    <div class="mt-text">Save your layout <span class="kbd">⌘S</span></div>
+                </div>
+                <div class="mt-step">
+                    <div class="mt-number">5</div>
+                    <div class="mt-text">That's it -- you're organized</div>
+                </div>
+            </div>
 
             <p>Your shell, aliases, and dotfiles work the same way. Beam is just a different container for your terminal sessions.</p>
 
