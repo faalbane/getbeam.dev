@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D0XH8B0RKL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-D0XH8B0RKL');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beam Now Supports Gemini CLI — Auto-Install Any AI Agent in One Click | Beam</title>
+    <meta name="description" content="Beam v3.1.0 adds Google Gemini CLI support with one-click auto-install. Run Claude Code, Gemini, Codex, and any AI agent from a single terminal organizer.">
+    <meta name="keywords" content="Gemini CLI, Google Gemini, Claude Code, Codex CLI, AI coding agent, terminal organizer, Beam, auto-install AI agent, agentic engineering">
+    <meta name="author" content="Frank Albanese">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://getbeam.dev/blog/beam-gemini-cli-support.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://getbeam.dev/blog/beam-gemini-cli-support.html">
+    <meta property="og:title" content="Beam Now Supports Gemini CLI — Auto-Install Any AI Agent in One Click">
+    <meta property="og:description" content="Run Claude Code, Gemini CLI, Codex, and any AI agent from a single app. One-click auto-install included.">
+    <meta property="og:image" content="https://getbeam.dev/gemini-screenshot.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Beam Now Supports Gemini CLI — Auto-Install Any AI Agent in One Click">
+    <meta name="twitter:description" content="Run Claude Code, Gemini CLI, Codex, and any AI agent from a single app. One-click auto-install included.">
+    <meta name="twitter:image" content="https://getbeam.dev/gemini-screenshot.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Beam Now Supports Gemini CLI — Auto-Install Any AI Agent in One Click",
+        "description": "Beam v3.1.0 adds Google Gemini CLI support with one-click auto-install for all AI coding agents.",
+        "author": {
+            "@type": "Person",
+            "name": "Frank Albanese"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Beam"
+        },
+        "datePublished": "2026-02-18",
+        "image": "https://getbeam.dev/gemini-screenshot.png",
+        "keywords": "Gemini CLI, Claude Code, Codex, AI coding agent, terminal organizer"
+    }
+    </script>
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #111113;
+            --bg-tertiary: #1a1a1d;
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.4);
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --border: #27272a;
+            --success: #22c55e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        a, button, .btn, .related-card, .post-card, .editorial-card { cursor: pointer; }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        header {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 60px;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1.5rem;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            background: var(--accent);
+            color: white;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+        }
+
+        article {
+            padding-bottom: 80px;
+        }
+
+        .breadcrumb {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+        }
+
+        .breadcrumb a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .meta {
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            font-size: 0.95rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 48px 0 20px;
+            color: var(--text-primary);
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        ul, ol {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            padding-left: 24px;
+        }
+
+        li {
+            margin-bottom: 12px;
+        }
+
+        code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9em;
+            background: var(--bg-tertiary);
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: var(--accent);
+        }
+
+        .highlight {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 32px 0;
+        }
+
+        .highlight h3 {
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .highlight p:last-child {
+            margin-bottom: 0;
+        }
+
+        .kbd {
+            display: inline-block;
+            padding: 2px 8px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+        }
+
+        .screenshot-wrap {
+            margin: 40px 0;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+        }
+
+        .screenshot-wrap img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .screenshot-caption {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-top: 12px;
+        }
+
+        .agent-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin: 32px 0;
+        }
+
+        .agent-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .agent-card .agent-name {
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 4px;
+            color: var(--text-primary);
+        }
+
+        .agent-card .agent-org {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .agent-card .agent-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .cta-box h3 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+        }
+
+        .cta-box p {
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 24px;
+        }
+
+        .cta-box .btn {
+            background: white;
+            color: var(--accent);
+        }
+
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+
+        .related-articles { margin-top: 60px; padding-top: 40px; border-top: 1px solid var(--border); }
+        .related-articles h2 { font-size: 1.5rem; margin-bottom: 24px; }
+        .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .related-card { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-decoration: none; transition: border-color 0.2s; }
+        .related-card:hover { border-color: var(--accent); }
+        .related-card h4 { color: white; font-size: 1rem; margin: 0 0 8px 0; }
+        .related-card p { color: var(--text-muted); font-size: 0.85rem; margin: 0; }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 1.8rem; }
+            .agent-grid { grid-template-columns: 1fr; }
+            .related-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="../" class="logo">
+                <div class="logo-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round">
+                        <path d="M4 17l6-6-6-6M12 19h8"/>
+                    </svg>
+                </div>
+                Beam
+            </a>
+            <a href="../" class="btn">Download Beam</a>
+        </div>
+    </header>
+
+    <main>
+        <article class="container">
+            <div class="breadcrumb">
+                <a href="../">Beam</a> / <a href="../#guides">Guides</a> / Gemini CLI Support
+            </div>
+
+            <h1>Beam Now Supports Gemini CLI &mdash; Auto-Install Any AI Agent in One Click</h1>
+            <p class="meta">February 18, 2026 &bull; Frank Albanese &bull; 4 min read</p>
+
+            <p>Beam v3.1.0 is here, and with it comes first-class support for <strong>Google's Gemini CLI</strong> alongside Claude Code and Codex. Even better: if an agent isn't installed on your machine, Beam will install it for you automatically.</p>
+
+            <div class="screenshot-wrap">
+                <img src="../gemini-screenshot.png" alt="Beam running Gemini CLI with one-click auto-install" width="1280" height="900" loading="lazy" />
+            </div>
+            <p class="screenshot-caption">Beam auto-installs Gemini CLI and launches it in your project directory</p>
+
+            <h2>Three Agents, One App</h2>
+
+            <p>The AI coding agent landscape is expanding fast. Instead of picking one and committing, Beam lets you run all of them from the same interface:</p>
+
+            <div class="agent-grid">
+                <div class="agent-card">
+                    <div class="agent-dot" style="background:#3b82f6;"></div>
+                    <div class="agent-name">Claude Code</div>
+                    <div class="agent-org">Anthropic</div>
+                </div>
+                <div class="agent-card">
+                    <div class="agent-dot" style="background:#34a853;"></div>
+                    <div class="agent-name">Gemini CLI</div>
+                    <div class="agent-org">Google</div>
+                </div>
+                <div class="agent-card">
+                    <div class="agent-dot" style="background:#8b5cf6;"></div>
+                    <div class="agent-name">Codex CLI</div>
+                    <div class="agent-org">OpenAI</div>
+                </div>
+            </div>
+
+            <p>Each agent has its own strengths. Claude Code excels at complex multi-file refactors. Gemini brings Google's latest models to the terminal. Codex offers OpenAI's approach to agentic coding. With Beam, switching between them is trivial &mdash; just pick the one you want when creating a project.</p>
+
+            <h2>One-Click Auto-Install</h2>
+
+            <p>This is the headline feature of v3.1.0. When you select an AI agent that isn't installed on your machine, Beam doesn't just show an error &mdash; it <strong>installs it for you and launches it</strong>, all in one step.</p>
+
+            <p>Click <strong>Gemini CLI</strong> in the AI Agent dropdown. If it's not installed, Beam runs:</p>
+
+            <div class="highlight">
+                <h3>What happens behind the scenes</h3>
+                <p><code>npm install -g @google/gemini-cli && gemini</code></p>
+                <p>Beam chains the install and launch commands so you go from zero to running in a single click. This works for every supported agent &mdash; Claude Code, Gemini, Codex, and any custom agent you configure.</p>
+            </div>
+
+            <p>No more copying npm commands from docs. No more wondering if you have the right package name. Just click and go.</p>
+
+            <h2>Fixed: Agent Detection for Homebrew</h2>
+
+            <p>A bug in previous versions caused agents installed via <strong>Homebrew</strong> (or nvm, pyenv, etc.) to show "Not found" in the AI Agent dropdown, even though they worked fine when launched manually.</p>
+
+            <p>The root cause: Electron's main process doesn't inherit your shell's full PATH. Agents installed at <code>/opt/homebrew/bin/</code> were invisible to the app.</p>
+
+            <p>In v3.1.0, Beam now uses your login shell for agent detection, so it picks up every binary your terminal can find. If you can run <code>gemini</code> in your terminal, Beam will detect it.</p>
+
+            <h2>How to Use It</h2>
+
+            <p>There are two ways to launch Gemini (or any agent) in Beam:</p>
+
+            <p><strong>From the toolbar:</strong></p>
+            <ol>
+                <li>Click the <strong>AI Agent</strong> button in the toolbar</li>
+                <li>Select <strong>Gemini CLI</strong> from the dropdown</li>
+                <li>It launches in your active terminal (auto-installs if needed)</li>
+            </ol>
+
+            <p><strong>When creating a new project:</strong></p>
+            <ol>
+                <li>Click <strong>+ New Project</strong> in the sidebar (or press <span class="kbd">&#8984;L</span>)</li>
+                <li>Set your project name and working directory</li>
+                <li>Under "Start With", select <strong>Gemini CLI</strong></li>
+                <li>Click <strong>Create Project</strong> &mdash; Beam creates the project and launches Gemini in one step</li>
+            </ol>
+
+            <div class="highlight">
+                <h3>Custom Agents Too</h3>
+                <p>Don't see your preferred agent? Select <strong>Custom</strong> in the New Project setup and enter any command. Beam will run it in the terminal when the project is created. Works with aider, mentat, or any CLI tool.</p>
+            </div>
+
+            <h2>What's Next</h2>
+
+            <p>We're watching the AI agent space closely. As new agents emerge, we'll add first-class support. The auto-install pattern means you can try any new agent the day it launches without leaving Beam.</p>
+
+            <p>If there's an agent you'd like to see supported, <a href="mailto:frank@nextuptechnologies.co" style="color:var(--accent);">let us know</a>.</p>
+
+            <div class="cta-box">
+                <h3>Try Gemini CLI in Beam</h3>
+                <p>Download Beam v3.1.0 and run any AI coding agent with one click.</p>
+                <a href="../" class="btn">Download Beam Free</a>
+            </div>
+
+            <div class="related-articles">
+                <h2>Related Articles</h2>
+                <div class="related-grid">
+                    <a href="beam-claude-code-setup.html" class="related-card">
+                        <h4>Setting Up Beam for Claude Code</h4>
+                        <p>Step-by-step guide to getting started with Claude Code in Beam.</p>
+                    </a>
+                    <a href="claude-code-vs-cursor-vs-codex.html" class="related-card">
+                        <h4>Claude Code vs Cursor vs Codex</h4>
+                        <p>How the top AI coding tools compare in 2026.</p>
+                    </a>
+                    <a href="organizing-claude-code-sessions.html" class="related-card">
+                        <h4>Organizing Claude Code Sessions</h4>
+                        <p>Keep your AI coding workflow clean with workspaces and tabs.</p>
+                    </a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>
+                <a href="../">Beam</a> &bull; Terminal Organizer for macOS, Windows & Linux &bull;
+                <a href="mailto:frank@nextuptechnologies.co">Contact</a>
+            </p>
+            <p style="margin-top: 12px; font-size: 0.8rem;">
+                <a href="/privacy.html" style="color: #71717a; text-decoration: none;">Privacy Policy</a> &bull;
+                <a href="/terms.html" style="color: #71717a; text-decoration: none;">Terms of Service</a>
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>
