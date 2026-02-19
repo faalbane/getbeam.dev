@@ -172,12 +172,25 @@
         .logo {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 14px;
             font-weight: 700;
             font-size: 1.5rem;
             letter-spacing: -0.02em;
             text-decoration: none;
             color: var(--text-primary);
+        }
+
+        .logo-text {
+            font-size: 1.35rem;
+            font-weight: 800;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            background: linear-gradient(180deg, #ffffff 0%, #ffffff 40%, #a0aec0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.15));
+            position: relative;
         }
 
         .logo-icon {
@@ -211,6 +224,121 @@
 
         nav a:hover {
             color: var(--text-primary);
+        }
+
+        /* Nav download — matches hero btn-primary style */
+        .nav-download-wrap {
+            position: relative;
+            display: inline-flex;
+            align-items: stretch;
+            height: 38px;
+            border-radius: 8px;
+            background: var(--accent);
+            border: none;
+            box-shadow: 0 0 20px var(--accent-glow);
+            transition: all 0.2s;
+        }
+        .nav-download-wrap:hover {
+            background: #2563eb;
+            transform: translateY(-1px);
+            box-shadow: 0 0 30px var(--accent-glow);
+        }
+        .nav-dl-btn {
+            display: inline-flex !important;
+            align-items: center !important;
+            gap: 8px !important;
+            padding: 0 14px 0 16px !important;
+            background: none !important;
+            border: none !important;
+            border-radius: 8px 0 0 8px !important;
+            box-shadow: none !important;
+            color: #fff !important;
+            font-size: 0.88rem !important;
+            font-weight: 600 !important;
+            text-decoration: none;
+            white-space: nowrap;
+            transition: color 0.2s;
+        }
+        .nav-dl-btn:hover {
+            transform: none !important;
+            color: #fff !important;
+            background: none !important;
+            box-shadow: none !important;
+        }
+        .nav-dl-btn svg {
+            opacity: 0.9;
+            flex-shrink: 0;
+        }
+        .nav-dl-chevron {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            background: none;
+            color: rgba(255, 255, 255, 0.7);
+            border: none;
+            border-left: 1px solid rgba(255,255,255,0.18);
+            border-radius: 0 8px 8px 0;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+        .nav-dl-chevron:hover {
+            color: #fff;
+            background: rgba(255,255,255,0.1);
+        }
+        .nav-dl-dropdown {
+            display: none;
+            position: absolute;
+            top: calc(100% + 8px);
+            right: 0;
+            background: #161618;
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 11px;
+            padding: 4px;
+            min-width: 224px;
+            box-shadow:
+                0 16px 48px rgba(0,0,0,0.55),
+                0 0 0 1px rgba(255,255,255,0.04) inset;
+            z-index: 200;
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+        }
+        .nav-dl-dropdown.open {
+            display: block;
+            animation: navDropIn 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        @keyframes navDropIn {
+            from { opacity: 0; transform: translateY(-6px) scale(0.98); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        .nav-dl-dropdown a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 11px;
+            color: #9ca3af !important;
+            text-decoration: none;
+            font-size: 0.82rem;
+            font-weight: 500;
+            border-radius: 7px;
+            transition: all 0.12s;
+        }
+        .nav-dl-dropdown a:hover {
+            background: rgba(255,255,255,0.06);
+            color: #f0f0f0 !important;
+        }
+        .nav-dl-dropdown a svg {
+            opacity: 0.45;
+            flex-shrink: 0;
+            transition: opacity 0.12s;
+        }
+        .nav-dl-dropdown a:hover svg {
+            opacity: 0.85;
+        }
+        .nav-dl-sep {
+            height: 1px;
+            background: rgba(255,255,255,0.06);
+            margin: 3px 10px;
         }
 
         .btn {
@@ -1837,12 +1965,14 @@
         }
 
         /* ── PRICING CINEMA ── */
-        .pricing-section {
-            padding: 140px 0 100px;
+        /* Final CTA — atmospheric beacon */
+        .final-cta {
+            padding: 80px 0;
             position: relative;
+            text-align: center;
+            overflow: hidden;
         }
-
-        .pricing-section::before {
+        .final-cta::before {
             content: '';
             position: absolute;
             top: 0;
@@ -1851,178 +1981,130 @@
             height: 1px;
             background: linear-gradient(90deg, transparent, var(--border), transparent);
         }
-
-        .pricing-header {
-            text-align: center;
-            margin-bottom: 72px;
-        }
-
-        .pricing-duo {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2px;
-            max-width: 860px;
-            margin: 0 auto;
-            border-radius: 24px;
-            overflow: hidden;
-            border: 1px solid var(--border);
-            background: var(--border);
-        }
-
-        .pricing-tier {
-            background: var(--bg-secondary);
-            padding: 48px 40px;
-            position: relative;
-        }
-
-        .pricing-tier.pro {
-            background: linear-gradient(180deg, rgba(59, 130, 246, 0.06) 0%, var(--bg-secondary) 100%);
-        }
-
-        .pricing-tier.pro::before {
+        .final-cta::after {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, var(--accent), #8b5cf6);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 300px;
+            background: radial-gradient(ellipse, rgba(59, 130, 246, 0.08) 0%, transparent 70%);
+            pointer-events: none;
         }
-
-        .pricing-tier-badge {
-            display: inline-block;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.7rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--text-muted);
-            margin-bottom: 12px;
-        }
-
-        .pricing-tier.pro .pricing-tier-badge {
-            color: var(--accent);
-        }
-
-        .pricing-amount {
-            font-size: 3.5rem;
+        .final-cta h2 {
+            font-size: 2rem;
             font-weight: 700;
             letter-spacing: -0.03em;
-            margin-bottom: 4px;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
         }
-
-        .pricing-amount small {
-            font-size: 1rem;
-            font-weight: 400;
+        .final-cta-sub {
             color: var(--text-muted);
+            font-size: 0.88rem;
+            margin-bottom: 28px;
+            position: relative;
+            z-index: 1;
         }
-
-        .pricing-note {
-            color: var(--text-muted);
-            font-size: 0.85rem;
-            margin-bottom: 32px;
+        .final-cta-sub span {
+            margin: 0 6px;
+            opacity: 0.4;
         }
-
-        .pricing-list {
-            list-style: none;
-            margin-bottom: 36px;
-        }
-
-        .pricing-list li {
+        .final-cta-actions {
             display: flex;
-            align-items: flex-start;
-            gap: 10px;
-            padding: 10px 0;
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-        }
-
-        .pricing-list li:last-child {
-            border-bottom: none;
-        }
-
-        .pricing-list .check-icon {
-            color: var(--success);
-            font-size: 1rem;
-            flex-shrink: 0;
-            margin-top: 1px;
-        }
-
-        .pricing-list li strong {
-            color: var(--text-primary);
-        }
-
-        .pricing-tier .btn {
-            width: 100%;
+            align-items: center;
             justify-content: center;
+            gap: 16px;
+            position: relative;
+            z-index: 1;
         }
-
-        /* Pricing comparison — dramatic */
-        .pricing-versus {
-            max-width: 720px;
-            margin: 80px auto 0;
-            text-align: center;
+        .final-cta-wrap {
+            display: inline-flex;
+            align-items: stretch;
+            height: 42px;
+            border-radius: 10px;
+            background: linear-gradient(174deg, #4a90f7 0%, #2563eb 50%, #1d4ed8 100%);
+            box-shadow: 0 1px 2px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.08) inset, 0 1px 0 rgba(255,255,255,0.1) inset;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
         }
-
-        .pricing-versus h3 {
-            font-size: 1.6rem;
-            font-weight: 700;
-            letter-spacing: -0.02em;
-            margin-bottom: 8px;
+        .final-cta-wrap:hover {
+            background: linear-gradient(174deg, #5b9df8 0%, #3b82f6 50%, #2563eb 100%);
+            box-shadow: 0 4px 16px rgba(37,99,235,0.35), 0 0 0 1px rgba(255,255,255,0.1) inset, 0 1px 0 rgba(255,255,255,0.15) inset;
+            transform: translateY(-1px);
         }
-
-        .pricing-versus > p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            margin-bottom: 36px;
-        }
-
-        .versus-table {
-            width: 100%;
-            border-collapse: separate;
-            border-spacing: 0;
-            border-radius: 16px;
-            overflow: hidden;
-            border: 1px solid var(--border);
-        }
-
-        .versus-table thead {
-            background: rgba(255, 255, 255, 0.02);
-        }
-
-        .versus-table th {
-            padding: 16px 24px;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.7rem;
+        .final-cta-dl {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 0 18px 0 20px;
+            background: none;
+            border: none;
+            border-radius: 9px 0 0 9px;
+            color: #fff;
+            font-size: 0.9rem;
             font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+        .final-cta-dl svg { opacity: 0.9; flex-shrink: 0; }
+        .final-cta-chevron {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 34px;
+            background: none;
+            color: rgba(255,255,255,0.7);
+            border: none;
+            border-left: 1px solid rgba(255,255,255,0.15);
+            border-radius: 0 9px 9px 0;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+        .final-cta-chevron:hover {
+            color: #fff;
+            background: rgba(255,255,255,0.08);
+        }
+        .final-cta-dropdown {
+            display: none;
+            position: absolute;
+            top: calc(100% + 8px);
+            left: 50%;
+            transform: translateX(-50%);
+            background: #161618;
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 11px;
+            padding: 4px;
+            min-width: 224px;
+            box-shadow: 0 16px 48px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.04) inset;
+            z-index: 200;
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+        }
+        .final-cta-dropdown.open {
+            display: block;
+            animation: ctaDropUp 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        @keyframes ctaDropUp {
+            from { opacity: 0; transform: translateX(-50%) translateY(-6px) scale(0.98); }
+            to { opacity: 1; transform: translateX(-50%) translateY(0) scale(1); }
+        }
+        .final-cta-dropdown a {
+            display: flex; align-items: center; gap: 10px; padding: 8px 11px;
+            color: #9ca3af; text-decoration: none; font-size: 0.82rem; font-weight: 500;
+            border-radius: 7px; transition: all 0.12s;
+        }
+        .final-cta-dropdown a:hover { background: rgba(255,255,255,0.06); color: #f0f0f0; }
+        .final-cta-dropdown a svg { opacity: 0.45; flex-shrink: 0; transition: opacity 0.12s; }
+        .final-cta-dropdown a:hover svg { opacity: 0.85; }
+        .final-cta-pricing {
             color: var(--text-muted);
-            border-bottom: 1px solid var(--border);
-            text-align: left;
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.2s;
         }
-
-        .versus-table td {
-            padding: 16px 24px;
-            font-size: 0.95rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+        .final-cta-pricing:hover {
             color: var(--text-secondary);
-            background: var(--bg-secondary);
-        }
-
-        .versus-table tr:last-child td {
-            border-bottom: none;
-        }
-
-        .versus-table .beam-winner {
-            background: rgba(59, 130, 246, 0.06);
-        }
-
-        .versus-table .beam-winner td {
-            color: var(--text-primary);
-            font-weight: 700;
-            background: rgba(59, 130, 246, 0.06);
         }
 
 
@@ -2401,6 +2483,7 @@
             text-align: center;
             margin-bottom: 100px;
             position: relative;
+            z-index: 10;
         }
 
         /* ── The construction scene SVG ── */
@@ -3132,10 +3215,6 @@
             .bento-card.span-4,
             .bento-card.span-3 { grid-column: span 1; }
 
-            .pricing-duo {
-                grid-template-columns: 1fr;
-            }
-
             .section-heading {
                 font-size: 1.8rem;
             }
@@ -3449,9 +3528,6 @@
                 grid-template-columns: 1fr;
             }
 
-            .pricing-cards {
-                grid-template-columns: 1fr;
-            }
         }
     </style>
 </head>
@@ -3466,14 +3542,41 @@
                         <path d="M4 17l6-6-6-6M12 19h8"/>
                     </svg>
                 </div>
-                Beam
+                <span class="logo-text">BEAM</span>
             </a>
             <nav>
                 <a href="#memory">Features</a>
                 <a href="#guides">Guides</a>
                 <a href="/blog/">Blog</a>
-                <a href="#pricing">Pricing</a>
-                <a href="#pricing" class="btn btn-primary">Download</a>
+                <a href="/pricing.html">Pricing</a>
+                <div class="nav-download-wrap">
+                    <a href="Beam-v3.1.1.dmg" onclick="trackDownload(navDetectedPlatform)" class="nav-dl-btn" id="navDownloadBtn">
+                        <svg id="navDlIcon" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"></svg>
+                        <span id="navDlText">Download</span>
+                    </a>
+                    <button class="nav-dl-chevron" onclick="toggleNavDropdown(event)" aria-label="Other platforms">
+                        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+                    </button>
+                    <div class="nav-dl-dropdown" id="navDlDropdown">
+                        <a href="Beam-v3.1.1.dmg" onclick="trackDownload('macOS')">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+                            macOS (Apple Silicon)
+                        </a>
+                        <a href="Beam-v3.1.1-x64.dmg" onclick="trackDownload('macOS-Intel')">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+                            macOS (Intel)
+                        </a>
+                        <div class="nav-dl-sep"></div>
+                        <a href="Beam-v3.1.1-setup.exe" onclick="trackDownload('Windows')">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M3 12V6.75l6-1.32v6.48L3 12zm6.2.09v6.63l-6.2-1.32V12.1l6.2-.01zm.8 6.72V12.1l11 .01v7.2L10 18.81zm11-7.71l-11 .01V4.2L21 3v8.1z"/></svg>
+                            Windows
+                        </a>
+                        <a href="Beam-v3.1.1.AppImage" onclick="trackDownload('Linux')">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12.5 2c-1.82 0-3.53.5-5 1.37l2.07 3.58a5.96 5.96 0 015.86 0L17.5 3.37A9.93 9.93 0 0012.5 2zM4.42 5.8A9.92 9.92 0 002.5 11h4.13c.16-1.99 1.09-3.77 2.47-5.03L4.42 5.8zm16.16 0l-4.68.17a7.95 7.95 0 012.47 5.03h4.13a9.92 9.92 0 00-1.92-5.2zM6.63 13H2.5c.22 2.3 1.37 4.34 3.08 5.72l2.28-3.94A7.9 7.9 0 016.63 13zm10.74 0c-.17.65-.44 1.26-.8 1.8 0 0 2.28 3.92 2.28 3.94A9.92 9.92 0 0021.5 13h-4.13zm-7.22 3.34L8.08 20.3A9.93 9.93 0 0012.5 22a9.93 9.93 0 004.42-1.7l-2.07-3.58a5.94 5.94 0 01-4.7-.38z"/></svg>
+                            Linux
+                        </a>
+                    </div>
+                </div>
             </nav>
         </div>
     </header>
@@ -3484,7 +3587,7 @@
                 <div class="hero-content">
                     <div class="badge">
                         <span class="badge-dot"></span>
-                        v3.1.0 — Now Cross-Platform
+                        v3.1.1 — Now Cross-Platform
                     </div>
                     <h1>1-Click AI Agents.<br><span>Memory that persists.</span></h1>
                     <div class="hero-category">Agentic Engineering Platform</div>
@@ -3494,17 +3597,17 @@
                     <div class="hero-buttons">
                         <div class="platform-downloads">
                             <div class="download-row">
-                                <a href="Beam-v3.1.0.dmg" onclick="trackDownload('macOS')" class="btn btn-primary">
+                                <a href="Beam-v3.1.1.dmg" onclick="trackDownload('macOS')" class="btn btn-primary">
                                     <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
                                     Download for macOS
                                 </a>
-                                <a href="Beam-v3.1.0-setup.exe" onclick="trackDownload('Windows')" class="btn btn-secondary">
+                                <a href="Beam-v3.1.1-setup.exe" onclick="trackDownload('Windows')" class="btn btn-secondary">
                                     <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M3 12V6.75l6-1.32v6.48L3 12zm6.2.09v6.63l-6.2-1.32V12.1l6.2-.01zm.8 6.72V12.1l11 .01v7.2L10 18.81zm11-7.71l-11 .01V4.2L21 3v8.1z"/></svg>
                                     Windows
                                 </a>
                             </div>
                             <div class="platform-note">
-                                <span>Also available for <a href="Beam-v3.1.0.AppImage">Linux</a></span>
+                                <span>Also available for <a href="Beam-v3.1.1.AppImage">Linux</a></span>
                                 <span>&middot;</span>
                                 <a href="https://youtu.be/eMCpb1V5xGo" target="_blank" rel="noopener">Watch Demo</a>
                                 <span>&middot;</span>
@@ -3517,7 +3620,7 @@
                 </div>
                 <div class="hero-screenshot">
                     <div class="screenshot" style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;">
-                        <iframe src="https://www.youtube.com/embed/eMCpb1V5xGo?rel=0&modestbranding=1" title="Beam v3.1.0 Walkthrough" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:12px;"></iframe>
+                        <iframe src="https://www.youtube.com/embed/eMCpb1V5xGo?rel=0&modestbranding=1" title="Beam v3.1.1 Walkthrough" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:12px;"></iframe>
                     </div>
                 </div>
             </div>
@@ -3529,7 +3632,7 @@
         <section class="gemini-section" id="gemini">
             <div class="container">
                 <div class="reveal" style="text-align:center;margin-bottom:3rem;">
-                    <span class="section-eyebrow" style="background:linear-gradient(135deg,#4285f4,#ea4335,#fbbc05,#34a853);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">New in v3.1.0</span>
+                    <span class="section-eyebrow" style="background:linear-gradient(135deg,#4285f4,#ea4335,#fbbc05,#34a853);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">New in v3.1.1</span>
                     <h2 class="section-heading" style="font-size:clamp(2rem,4vw,3rem);">Now with Gemini CLI.</h2>
                     <p class="section-subtitle center" style="margin:0 auto;max-width:600px;">
                         Run Google's Gemini, Anthropic's Claude Code, and OpenAI's Codex — all from one app. Auto-install any agent with a single click.
@@ -3944,89 +4047,26 @@
                     </div>
                 </div>
         </section>
-
-        <!-- Workspace/Features section removed — covered by screenshots and hero -->
-
-        <!-- ═══ PRICING ═══ -->
-        <section class="pricing-section" id="pricing">
+        <!-- ═══ MID-PAGE CTA ═══ -->
+        <section class="final-cta">
             <div class="container">
-                <div class="pricing-header reveal">
-                    <span class="section-eyebrow">Pricing</span>
-                    <h2 class="section-heading">Simple pricing</h2>
-                    <p class="section-subtitle center" style="margin:0 auto;">Try everything free. Subscribe when you're ready.</p>
-                </div>
-
-                <div class="pricing-duo reveal reveal-delay-1">
-                    <div class="pricing-tier">
-                        <div class="pricing-tier-badge">Free</div>
-                        <div class="pricing-amount">$0</div>
-                        <p class="pricing-note">Try before you buy</p>
-                        <ul class="pricing-list">
-                            <li><span class="check-icon">✓</span> 1 project workspace</li>
-                            <li><span class="check-icon">✓</span> 1 saved setup</li>
-                            <li><span class="check-icon">✓</span> Unlimited tabs</li>
-                            <li><span class="check-icon">✓</span> Search & jump to anything</li>
-                            <li><span class="check-icon">✓</span> All keyboard shortcuts</li>
-                        </ul>
-                        <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center;">
-                            <a href="Beam-v3.1.0.dmg" onclick="trackDownload('macOS')" class="btn btn-secondary" style="font-size:0.85rem;padding:10px 16px;">
-                                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-                                macOS
-                            </a>
-                            <a href="Beam-v3.1.0-setup.exe" onclick="trackDownload('Windows')" class="btn btn-secondary" style="font-size:0.85rem;padding:10px 16px;">
-                                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M3 12V6.75l6-1.32v6.48L3 12zm6.2.09v6.63l-6.2-1.32V12.1l6.2-.01zm.8 6.72V12.1l11 .01v7.2L10 18.81zm11-7.71l-11 .01V4.2L21 3v8.1z"/></svg>
-                                Windows
-                            </a>
+                <div class="final-cta-actions reveal">
+                    <div class="final-cta-wrap" style="position:relative;">
+                        <a href="Beam-v3.1.1.dmg" onclick="trackDownload(navDetectedPlatform)" class="final-cta-dl" id="midCtaDl">
+                            <svg id="midCtaIcon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"></svg>
+                            <span id="midCtaText">Download for macOS</span>
+                        </a>
+                        <button class="final-cta-chevron" onclick="toggleMidDropdown(event)" aria-label="Other platforms">
+                            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+                        </button>
+                        <div class="final-cta-dropdown" id="midCtaDropdown">
+                            <a href="Beam-v3.1.1.dmg" onclick="trackDownload('macOS')"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg> macOS (Apple Silicon)</a>
+                            <a href="Beam-v3.1.1-x64.dmg" onclick="trackDownload('macOS-Intel')"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg> macOS (Intel)</a>
+                            <div class="nav-dl-sep"></div>
+                            <a href="Beam-v3.1.1-setup.exe" onclick="trackDownload('Windows')"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M3 12V6.75l6-1.32v6.48L3 12zm6.2.09v6.63l-6.2-1.32V12.1l6.2-.01zm.8 6.72V12.1l11 .01v7.2L10 18.81zm11-7.71l-11 .01V4.2L21 3v8.1z"/></svg> Windows</a>
+                            <a href="Beam-v3.1.1.AppImage" onclick="trackDownload('Linux')"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12.5 2c-1.82 0-3.53.5-5 1.37l2.07 3.58a5.96 5.96 0 015.86 0L17.5 3.37A9.93 9.93 0 0012.5 2zM4.42 5.8A9.92 9.92 0 002.5 11h4.13c.16-1.99 1.09-3.77 2.47-5.03L4.42 5.8zm16.16 0l-4.68.17a7.95 7.95 0 012.47 5.03h4.13a9.92 9.92 0 00-1.92-5.2zM6.63 13H2.5c.22 2.3 1.37 4.34 3.08 5.72l2.28-3.94A7.9 7.9 0 016.63 13zm10.74 0c-.17.65-.44 1.26-.8 1.8 0 0 2.28 3.92 2.28 3.94A9.92 9.92 0 0021.5 13h-4.13zm-7.22 3.34L8.08 20.3A9.93 9.93 0 0012.5 22a9.93 9.93 0 004.42-1.7l-2.07-3.58a5.94 5.94 0 01-4.7-.38z"/></svg> Linux</a>
                         </div>
                     </div>
-                    <div class="pricing-tier pro">
-                        <div class="pricing-tier-badge">Beam Pro</div>
-                        <div class="pricing-amount">$10 <small>/month</small></div>
-                        <p class="pricing-note">Cancel anytime</p>
-                        <ul class="pricing-list">
-                            <li><span class="check-icon">✓</span> <strong>Unlimited</strong> project workspaces</li>
-                            <li><span class="check-icon">✓</span> <strong>Unlimited</strong> saved setups</li>
-                            <li><span class="check-icon">✓</span> <strong>Side-by-side views</strong> in any tab</li>
-                            <li><span class="check-icon">✓</span> <strong>1-click AI agents</strong> (Claude, Codex, OpenClaw)</li>
-                            <li><span class="check-icon">✓</span> <strong>Ready-made templates</strong> to start instantly</li>
-                            <li><span class="check-icon">✓</span> <strong>AI memory management</strong> across sessions</li>
-                            <li><span class="check-icon">✓</span> Unlimited tabs</li>
-                            <li><span class="check-icon">✓</span> Search & jump to anything</li>
-                            <li><span class="check-icon">✓</span> Support indie development</li>
-                        </ul>
-                        <a href="https://buy.stripe.com/28E28scXy9Jp5wP1xo4Rq03" class="btn btn-primary">Get Beam Pro</a>
-                    </div>
-                </div>
-
-                <div class="pricing-versus reveal reveal-delay-2">
-                    <h3>How Beam compares</h3>
-                    <p>See how Beam Pro compares to other dev tools.</p>
-                    <table class="versus-table">
-                        <thead>
-                            <tr>
-                                <th>Tool</th>
-                                <th>Price</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Cursor Pro</td>
-                                <td>$20/mo</td>
-                            </tr>
-                            <tr>
-                                <td>Windsurf Pro</td>
-                                <td>$15/mo</td>
-                            </tr>
-                            <tr>
-                                <td>Warp Build</td>
-                                <td>$20/mo</td>
-                            </tr>
-                            <tr class="beam-winner">
-                                <td>Beam Pro</td>
-                                <td>$10/mo</td>
-                            </tr>
-                        </tbody>
-                    </table>
                 </div>
             </div>
         </section>
@@ -4046,9 +4086,9 @@
                         <div class="blog-icon-large">🧠</div>
                     </div>
                     <div class="editorial-featured-body">
-                        <div class="editorial-tag">New in v3.1.0</div>
+                        <div class="editorial-tag">New in v3.1.1</div>
                         <h3>AI Agent Memory Management: Persistent Context for Every Session</h3>
-                        <p>AI agents forget everything between sessions. Beam v3.1.0 gives every agent persistent project memory &mdash; architecture, conventions, and decisions loaded automatically on startup.</p>
+                        <p>AI agents forget everything between sessions. Beam v3.1.1 gives every agent persistent project memory &mdash; architecture, conventions, and decisions loaded automatically on startup.</p>
                     </div>
                 </a>
 
@@ -4058,7 +4098,7 @@
                         <div class="editorial-icon"><svg viewBox="0 0 48 48" fill="none" width="32" height="32"><path d="M24 8l2 6h6l-5 4 2 6-5-4-5 4 2-6-5-4h6l2-6z" stroke="#4285F4" stroke-width="2" fill="none"/><path d="M12 28h24M16 34h16" stroke="#3b82f6" stroke-width="2" stroke-linecap="round"/><path d="M20 40h8" stroke="#22c55e" stroke-width="2" stroke-linecap="round"/></svg></div>
                         <div>
                             <h3>Beam Now Supports Gemini CLI &mdash; Auto-Install Any AI Agent in One Click</h3>
-                            <p>Beam v3.1.0 adds Gemini CLI support with one-click auto-install for all AI coding agents.</p>
+                            <p>Beam v3.1.1 adds Gemini CLI support with one-click auto-install for all AI coding agents.</p>
                         </div>
                         <div class="editorial-card-tags"><span>Beam</span><span>New</span></div>
                     </a>
@@ -4732,10 +4772,11 @@
             </div>
         </section>
 
+
         <!-- ═══ DREAM BUILD ENJOY ═══ -->
         <section class="dbe-section">
             <div class="container">
-                <div class="dbe-headline reveal" aria-label="Dream. Build. Enjoy.">
+                <div class="dbe-headline visible" aria-label="Dream. Build. Enjoy.">
 
                     <!-- ═══ Single SVG Construction Scene ═══ -->
                     <svg class="dbe-scene-svg" viewBox="0 0 1060 360" xmlns="http://www.w3.org/2000/svg" role="heading" aria-level="2">
@@ -6419,7 +6460,7 @@
                 <div class="dbe-cards">
 
                     <!-- DREAM -->
-                    <div class="dbe-card dbe-card--dream reveal reveal-delay-1">
+                    <div class="dbe-card dbe-card--dream visible">
                         <span class="dbe-step-num">01</span>
                         <div class="dbe-particle dbe-particle--1"></div>
                         <div class="dbe-particle dbe-particle--4"></div>
@@ -6498,7 +6539,7 @@
                     </div>
 
                     <!-- BUILD -->
-                    <div class="dbe-card dbe-card--build reveal reveal-delay-2">
+                    <div class="dbe-card dbe-card--build visible">
                         <span class="dbe-step-num">02</span>
                         <div class="dbe-particle dbe-particle--2"></div>
                         <div class="dbe-illust">
@@ -6575,7 +6616,7 @@
                     </div>
 
                     <!-- ENJOY -->
-                    <div class="dbe-card dbe-card--enjoy reveal reveal-delay-3">
+                    <div class="dbe-card dbe-card--enjoy visible">
                         <span class="dbe-step-num">03</span>
                         <div class="dbe-particle dbe-particle--3"></div>
                         <div class="dbe-illust">
@@ -6678,7 +6719,7 @@
         <div id="changelogModal" class="modal" onclick="hideChangelog(event)">
             <div class="modal-content" onclick="event.stopPropagation()">
                 <div class="modal-header">
-                    <h2>What's New in v3.1.0</h2>
+                    <h2>What's New in v3.1.1</h2>
                     <button class="modal-close" onclick="hideChangelog()">&times;</button>
                 </div>
                 <div class="modal-body">
@@ -6756,7 +6797,7 @@
                     </svg>
                     Close
                 </button>
-                <img src="beam-screenshot-1.9.8.png" alt="Beam v3.1.0 - Full resolution preview">
+                <img src="beam-screenshot-1.9.8.png" alt="Beam v3.1.1 - Full resolution preview">
                 <p class="lightbox-hint">Click anywhere or press Esc to close</p>
             </div>
         </div>
@@ -6838,6 +6879,57 @@
         }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
         document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+    </script>
+
+    <script>
+        // Platform detection for nav Download button
+        var navDetectedPlatform = 'macOS';
+        (function() {
+            var ua = navigator.userAgent || '';
+            var p = navigator.platform || '';
+            var btn = document.getElementById('navDownloadBtn');
+            var icon = document.getElementById('navDlIcon');
+            var text = document.getElementById('navDlText');
+            var btn2 = document.getElementById('midCtaDl');
+            var icon2 = document.getElementById('midCtaIcon');
+            var text2 = document.getElementById('midCtaText');
+            if (!btn) return;
+
+            var macIcon = '<path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>';
+            var winIcon = '<path d="M3 12V6.75l6-1.32v6.48L3 12zm6.2.09v6.63l-6.2-1.32V12.1l6.2-.01zm.8 6.72V12.1l11 .01v7.2L10 18.81zm11-7.71l-11 .01V4.2L21 3v8.1z"/>';
+            var linIcon = '<path d="M12.5 2c-1.82 0-3.53.5-5 1.37l2.07 3.58a5.96 5.96 0 015.86 0L17.5 3.37A9.93 9.93 0 0012.5 2zM4.42 5.8A9.92 9.92 0 002.5 11h4.13c.16-1.99 1.09-3.77 2.47-5.03L4.42 5.8zm16.16 0l-4.68.17a7.95 7.95 0 012.47 5.03h4.13a9.92 9.92 0 00-1.92-5.2zM6.63 13H2.5c.22 2.3 1.37 4.34 3.08 5.72l2.28-3.94A7.9 7.9 0 016.63 13zm10.74 0c-.17.65-.44 1.26-.8 1.8 0 0 2.28 3.92 2.28 3.94A9.92 9.92 0 0021.5 13h-4.13zm-7.22 3.34L8.08 20.3A9.93 9.93 0 0012.5 22a9.93 9.93 0 004.42-1.7l-2.07-3.58a5.94 5.94 0 01-4.7-.38z"/>';
+
+            function setAll(href, iconSvg, label, platform) {
+                navDetectedPlatform = platform;
+                btn.href = href; icon.innerHTML = iconSvg; text.textContent = label;
+                if (btn2) { btn2.href = href; icon2.innerHTML = iconSvg; text2.textContent = label; }
+            }
+            if (/Win/.test(p) || /Windows/.test(ua)) {
+                setAll('Beam-v3.1.1-setup.exe', winIcon, 'Download for Windows', 'Windows');
+            } else if (/Linux/.test(p) || /Linux/.test(ua)) {
+                setAll('Beam-v3.1.1.AppImage', linIcon, 'Download for Linux', 'Linux');
+            } else {
+                setAll('Beam-v3.1.1.dmg', macIcon, 'Download for macOS', 'macOS');
+            }
+        })();
+
+        function toggleNavDropdown(e) {
+            e.stopPropagation();
+            document.getElementById('navDlDropdown').classList.toggle('open');
+            var cdd = document.getElementById('midCtaDropdown');
+            if (cdd) cdd.classList.remove('open');
+        }
+        function toggleMidDropdown(e) {
+            e.stopPropagation();
+            document.getElementById('midCtaDropdown').classList.toggle('open');
+            document.getElementById('navDlDropdown').classList.remove('open');
+        }
+        document.addEventListener('click', function() {
+            var dd = document.getElementById('navDlDropdown');
+            var cdd = document.getElementById('midCtaDropdown');
+            if (dd) dd.classList.remove('open');
+            if (cdd) cdd.classList.remove('open');
+        });
     </script>
 
     <footer>
