@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-G8JR34JSW9"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-G8JR34JSW9');
+        function trackDownload(platform) {
+            gtag('event', 'download', { 'event_category': 'engagement', 'event_label': (platform || 'macOS') + ' Download' });
+        }
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing — Beam</title>
+    <meta name="description" content="Simple pricing for Beam. Free to try, $10/month for Pro. Unlimited projects, AI agents, split panes, and more.">
+    <link rel="canonical" href="https://getbeam.dev/pricing.html">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #111113;
+            --bg-tertiary: #1a1a1d;
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.4);
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --border: #27272a;
+            --success: #22c55e;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        a, button { cursor: pointer; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Space Grotesk', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+
+        /* Header */
+        header {
+            padding: 24px 0;
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            background: var(--bg-primary);
+            border-bottom: 1px solid var(--border);
+        }
+        header .container { display: flex; justify-content: space-between; align-items: center; }
+
+        .logo {
+            display: flex; align-items: center; gap: 14px;
+            font-weight: 700; font-size: 1.5rem;
+            text-decoration: none; color: var(--text-primary);
+        }
+        .logo-text {
+            font-size: 1.35rem; font-weight: 800; letter-spacing: 0.18em; text-transform: uppercase;
+            background: linear-gradient(180deg, #ffffff 0%, #ffffff 40%, #a0aec0 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+            filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.15));
+        }
+        .logo-icon {
+            width: 36px; height: 36px;
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 8px; display: flex; align-items: center; justify-content: center;
+        }
+        .logo-icon svg { width: 20px; height: 20px; }
+
+        nav { display: flex; align-items: center; gap: 32px; }
+        nav a { color: var(--text-secondary); text-decoration: none; font-size: 0.95rem; font-weight: 500; transition: color 0.2s; }
+        nav a:hover { color: var(--text-primary); }
+
+        /* Nav download button (same as homepage) */
+        .nav-download-wrap {
+            position: relative; display: inline-flex; align-items: stretch; height: 35px; border-radius: 9px;
+            background: linear-gradient(174deg, #4a90f7 0%, #2563eb 50%, #1d4ed8 100%); border: none;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.08) inset, 0 1px 0 rgba(255,255,255,0.1) inset;
+            transition: all 0.2s;
+        }
+        .nav-download-wrap:hover {
+            background: linear-gradient(174deg, #5b9df8 0%, #3b82f6 50%, #2563eb 100%);
+            box-shadow: 0 2px 8px rgba(37,99,235,0.35), 0 0 0 1px rgba(255,255,255,0.1) inset, 0 1px 0 rgba(255,255,255,0.15) inset;
+            transform: translateY(-1px);
+        }
+        .nav-dl-btn {
+            display: inline-flex; align-items: center; gap: 7px; padding: 0 13px 0 14px;
+            background: none; border: none; border-radius: 8px 0 0 8px; box-shadow: none;
+            color: #fff; font-size: 0.82rem; font-weight: 600; text-decoration: none; white-space: nowrap;
+        }
+        .nav-dl-btn svg { opacity: 0.9; flex-shrink: 0; }
+        .nav-dl-chevron {
+            display: flex; align-items: center; justify-content: center; width: 28px;
+            background: none; color: rgba(255,255,255,0.7); border: none;
+            border-left: 1px solid rgba(255,255,255,0.15); border-radius: 0 8px 8px 0;
+            cursor: pointer; transition: all 0.15s;
+        }
+        .nav-dl-chevron:hover { color: #fff; background: rgba(255,255,255,0.08); }
+        .nav-dl-dropdown {
+            display: none; position: absolute; top: calc(100% + 8px); right: 0;
+            background: #161618; border: 1px solid rgba(255,255,255,0.08); border-radius: 11px;
+            padding: 4px; min-width: 224px;
+            box-shadow: 0 16px 48px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.04) inset;
+            z-index: 200; backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+        }
+        .nav-dl-dropdown.open { display: block; animation: navDropIn 0.18s cubic-bezier(0.16, 1, 0.3, 1); }
+        @keyframes navDropIn { from { opacity: 0; transform: translateY(-6px) scale(0.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
+        .nav-dl-dropdown a {
+            display: flex; align-items: center; gap: 10px; padding: 8px 11px;
+            color: #9ca3af; text-decoration: none; font-size: 0.82rem; font-weight: 500; border-radius: 7px; transition: all 0.12s;
+        }
+        .nav-dl-dropdown a:hover { background: rgba(255,255,255,0.06); color: #f0f0f0; }
+        .nav-dl-dropdown a svg { opacity: 0.45; flex-shrink: 0; transition: opacity 0.12s; }
+        .nav-dl-dropdown a:hover svg { opacity: 0.85; }
+        .nav-dl-sep { height: 1px; background: rgba(255,255,255,0.06); margin: 3px 10px; }
+
+        /* ── Page hero ── */
+        .pricing-hero {
+            padding: 160px 0 80px;
+            text-align: center;
+            position: relative;
+        }
+        .pricing-hero::after {
+            content: '';
+            position: absolute;
+            top: 30%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 800px;
+            height: 400px;
+            background: radial-gradient(ellipse, rgba(59, 130, 246, 0.06) 0%, transparent 65%);
+            pointer-events: none;
+        }
+        .pricing-hero h1 {
+            font-size: 3.2rem;
+            font-weight: 700;
+            letter-spacing: -0.04em;
+            line-height: 1.1;
+            margin-bottom: 16px;
+            position: relative; z-index: 1;
+        }
+        .pricing-hero p {
+            color: var(--text-secondary);
+            font-size: 1.15rem;
+            max-width: 480px;
+            margin: 0 auto;
+            position: relative; z-index: 1;
+        }
+
+        /* ── Tiers ── */
+        .tiers {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+            max-width: 880px;
+            margin: 0 auto 100px;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            position: relative;
+        }
+
+        .tier {
+            padding: 52px 44px;
+            background: var(--bg-secondary);
+            position: relative;
+        }
+        .tier + .tier {
+            border-left: 1px solid var(--border);
+        }
+        .tier.featured {
+            background: linear-gradient(180deg, rgba(59, 130, 246, 0.05) 0%, var(--bg-secondary) 100%);
+        }
+        .tier.featured::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent), #818cf8);
+        }
+
+        .tier-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+        }
+        .tier.featured .tier-label { color: var(--accent); }
+
+        .tier-price {
+            font-size: 3.8rem;
+            font-weight: 700;
+            letter-spacing: -0.04em;
+            line-height: 1;
+            margin-bottom: 6px;
+        }
+        .tier-price small {
+            font-size: 1rem;
+            font-weight: 400;
+            color: var(--text-muted);
+            letter-spacing: 0;
+        }
+
+        .tier-desc {
+            color: var(--text-muted);
+            font-size: 0.88rem;
+            margin-bottom: 36px;
+        }
+
+        .tier-features {
+            list-style: none;
+            margin-bottom: 40px;
+        }
+        .tier-features li {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 11px 0;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+        }
+        .tier-features li:last-child { border-bottom: none; }
+        .tier-features li strong { color: var(--text-primary); }
+        .tier-features .ck {
+            color: var(--success);
+            font-size: 0.95rem;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .tier-btn {
+            display: flex; align-items: center; justify-content: center; gap: 8px;
+            width: 100%; padding: 13px 24px; border-radius: 10px;
+            font-weight: 600; font-size: 0.92rem; text-decoration: none;
+            transition: all 0.2s; border: none; cursor: pointer;
+        }
+        .tier-btn.secondary {
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+        }
+        .tier-btn.secondary:hover { background: var(--border); }
+        .tier-btn.primary {
+            background: linear-gradient(174deg, #4a90f7 0%, #2563eb 50%, #1d4ed8 100%);
+            color: #fff;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.08) inset;
+        }
+        .tier-btn.primary:hover {
+            background: linear-gradient(174deg, #5b9df8 0%, #3b82f6 50%, #2563eb 100%);
+            box-shadow: 0 4px 16px rgba(37,99,235,0.3), 0 0 0 1px rgba(255,255,255,0.1) inset;
+            transform: translateY(-1px);
+        }
+
+        /* ── Comparison ── */
+        .compare {
+            max-width: 720px;
+            margin: 0 auto 120px;
+            text-align: center;
+        }
+        .compare h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            margin-bottom: 8px;
+        }
+        .compare > p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 40px;
+        }
+        .compare-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            border-radius: 14px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            text-align: left;
+        }
+        .compare-table thead { background: rgba(255,255,255,0.02); }
+        .compare-table th {
+            padding: 14px 24px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.68rem; font-weight: 600;
+            text-transform: uppercase; letter-spacing: 0.1em;
+            color: var(--text-muted);
+            border-bottom: 1px solid var(--border);
+        }
+        .compare-table td {
+            padding: 15px 24px;
+            font-size: 0.92rem;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+            color: var(--text-secondary);
+            background: var(--bg-secondary);
+        }
+        .compare-table tr:last-child td { border-bottom: none; }
+        .compare-table .winner { background: rgba(59, 130, 246, 0.06); }
+        .compare-table .winner td { color: var(--text-primary); font-weight: 700; background: rgba(59, 130, 246, 0.06); }
+
+        /* ── FAQ ── */
+        .faq {
+            max-width: 640px;
+            margin: 0 auto 120px;
+        }
+        .faq h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            text-align: center;
+            margin-bottom: 48px;
+        }
+        .faq-item {
+            border-bottom: 1px solid var(--border);
+            padding: 20px 0;
+        }
+        .faq-item:first-of-type { border-top: 1px solid var(--border); }
+        .faq-q {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+        }
+        .faq-q::after {
+            content: '+';
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            flex-shrink: 0;
+            transition: transform 0.2s;
+        }
+        .faq-item.open .faq-q::after {
+            content: '−';
+        }
+        .faq-a {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.7;
+        }
+        .faq-item.open .faq-a {
+            max-height: 200px;
+            padding-top: 14px;
+        }
+
+        /* Footer */
+        footer {
+            padding: 40px 0;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            border-top: 1px solid var(--border);
+        }
+        footer a { color: var(--text-muted); text-decoration: none; }
+        footer a:hover { color: var(--text-secondary); }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav { display: none; }
+            .pricing-hero { padding: 120px 0 60px; }
+            .pricing-hero h1 { font-size: 2.2rem; }
+            .tiers { grid-template-columns: 1fr; max-width: 440px; }
+            .tier + .tier { border-left: none; border-top: 1px solid var(--border); }
+            .tier { padding: 40px 28px; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="/" class="logo">
+                <div class="logo-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round">
+                        <path d="M4 17l6-6-6-6M12 19h8"/>
+                    </svg>
+                </div>
+                <span class="logo-text">BEAM</span>
+            </a>
+            <nav>
+                <a href="/#memory">Features</a>
+                <a href="/#guides">Guides</a>
+                <a href="/blog/">Blog</a>
+                <div class="nav-download-wrap">
+                    <a href="Beam-v3.1.0.dmg" onclick="trackDownload(navDetectedPlatform)" class="nav-dl-btn" id="navDownloadBtn">
+                        <svg id="navDlIcon" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"></svg>
+                        <span id="navDlText">Download</span>
+                    </a>
+                    <button class="nav-dl-chevron" onclick="toggleNavDropdown(event)" aria-label="Other platforms">
+                        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+                    </button>
+                    <div class="nav-dl-dropdown" id="navDlDropdown">
+                        <a href="Beam-v3.1.0.dmg" onclick="trackDownload('macOS')">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+                            macOS (Apple Silicon)
+                        </a>
+                        <a href="Beam-v3.1.0-x64.dmg" onclick="trackDownload('macOS-Intel')">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+                            macOS (Intel)
+                        </a>
+                        <div class="nav-dl-sep"></div>
+                        <a href="Beam-v3.1.0-setup.exe" onclick="trackDownload('Windows')">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M3 12V6.75l6-1.32v6.48L3 12zm6.2.09v6.63l-6.2-1.32V12.1l6.2-.01zm.8 6.72V12.1l11 .01v7.2L10 18.81zm11-7.71l-11 .01V4.2L21 3v8.1z"/></svg>
+                            Windows
+                        </a>
+                        <a href="Beam-v3.1.0.AppImage" onclick="trackDownload('Linux')">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12.5 2c-1.82 0-3.53.5-5 1.37l2.07 3.58a5.96 5.96 0 015.86 0L17.5 3.37A9.93 9.93 0 0012.5 2zM4.42 5.8A9.92 9.92 0 002.5 11h4.13c.16-1.99 1.09-3.77 2.47-5.03L4.42 5.8zm16.16 0l-4.68.17a7.95 7.95 0 012.47 5.03h4.13a9.92 9.92 0 00-1.92-5.2zM6.63 13H2.5c.22 2.3 1.37 4.34 3.08 5.72l2.28-3.94A7.9 7.9 0 016.63 13zm10.74 0c-.17.65-.44 1.26-.8 1.8 0 0 2.28 3.92 2.28 3.94A9.92 9.92 0 0021.5 13h-4.13zm-7.22 3.34L8.08 20.3A9.93 9.93 0 0012.5 22a9.93 9.93 0 004.42-1.7l-2.07-3.58a5.94 5.94 0 01-4.7-.38z"/></svg>
+                            Linux
+                        </a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="pricing-hero">
+            <div class="container">
+                <h1>Simple pricing</h1>
+                <p>Try everything free. Subscribe when you're ready to unlock the full toolkit.</p>
+            </div>
+        </section>
+
+        <section>
+            <div class="tiers">
+                <div class="tier">
+                    <div class="tier-label">Free</div>
+                    <div class="tier-price">$0</div>
+                    <p class="tier-desc">Try before you buy</p>
+                    <ul class="tier-features">
+                        <li><span class="ck">&#10003;</span> 1 project workspace</li>
+                        <li><span class="ck">&#10003;</span> 1 saved setup</li>
+                        <li><span class="ck">&#10003;</span> Unlimited tabs</li>
+                        <li><span class="ck">&#10003;</span> Search &amp; jump to anything</li>
+                        <li><span class="ck">&#10003;</span> All keyboard shortcuts</li>
+                    </ul>
+                    <a href="Beam-v3.1.0.dmg" onclick="trackDownload('macOS')" class="tier-btn secondary">Download Free</a>
+                </div>
+                <div class="tier featured">
+                    <div class="tier-label">Beam Pro</div>
+                    <div class="tier-price">$10 <small>/month</small></div>
+                    <p class="tier-desc">Cancel anytime</p>
+                    <ul class="tier-features">
+                        <li><span class="ck">&#10003;</span> <strong>Unlimited</strong> project workspaces</li>
+                        <li><span class="ck">&#10003;</span> <strong>Unlimited</strong> saved setups</li>
+                        <li><span class="ck">&#10003;</span> <strong>Side-by-side views</strong> in any tab</li>
+                        <li><span class="ck">&#10003;</span> <strong>1-click AI agents</strong> (Claude, Gemini, Codex)</li>
+                        <li><span class="ck">&#10003;</span> <strong>Ready-made templates</strong> to start instantly</li>
+                        <li><span class="ck">&#10003;</span> <strong>AI memory management</strong> across sessions</li>
+                        <li><span class="ck">&#10003;</span> Unlimited tabs</li>
+                        <li><span class="ck">&#10003;</span> Search &amp; jump to anything</li>
+                        <li><span class="ck">&#10003;</span> Support indie development</li>
+                    </ul>
+                    <a href="https://buy.stripe.com/28E28scXy9Jp5wP1xo4Rq03" class="tier-btn primary">Get Beam Pro</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="compare">
+            <h2>How Beam compares</h2>
+            <p>See how Beam Pro stacks up against other dev tools.</p>
+            <table class="compare-table">
+                <thead>
+                    <tr>
+                        <th>Tool</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Cursor Pro</td>
+                        <td>$20/mo</td>
+                    </tr>
+                    <tr>
+                        <td>Windsurf Pro</td>
+                        <td>$15/mo</td>
+                    </tr>
+                    <tr>
+                        <td>Warp Build</td>
+                        <td>$20/mo</td>
+                    </tr>
+                    <tr class="winner">
+                        <td>Beam Pro</td>
+                        <td>$10/mo</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="faq">
+            <h2>Questions</h2>
+            <div class="faq-item">
+                <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">What's included in Free?</div>
+                <div class="faq-a">You get 1 project workspace, 1 saved setup, unlimited tabs, all keyboard shortcuts, and search. It's the full app — just limited to a single project.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Can I cancel anytime?</div>
+                <div class="faq-a">Yes. Cancel from the app's Settings panel whenever you want. Your license stays active until the end of the billing period, then reverts to Free.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">Do I need separate AI subscriptions?</div>
+                <div class="faq-a">Yes — Beam organizes and launches AI agents, but you'll need your own API keys or subscriptions for Claude, Gemini, Codex, etc. Beam doesn't charge for AI usage.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">What platforms are supported?</div>
+                <div class="faq-a">Beam runs on macOS (13+), Windows 10/11, and Linux. The same license works across all platforms.</div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>
+                Built by <a href="https://nextuptechnologies.co">NextUp</a> &bull;
+                <a href="mailto:frank@nextuptechnologies.co">Feedback &amp; Bug Reports</a>
+            </p>
+            <p style="margin-top: 12px; font-size: 0.8rem;">
+                <a href="/privacy.html">Privacy Policy</a> &bull;
+                <a href="/terms.html">Terms of Service</a>
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        var navDetectedPlatform = 'macOS';
+        (function() {
+            var ua = navigator.userAgent || '', p = navigator.platform || '';
+            var btn = document.getElementById('navDownloadBtn');
+            var icon = document.getElementById('navDlIcon');
+            var text = document.getElementById('navDlText');
+            if (!btn) return;
+            var macIcon = '<path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>';
+            var winIcon = '<path d="M3 12V6.75l6-1.32v6.48L3 12zm6.2.09v6.63l-6.2-1.32V12.1l6.2-.01zm.8 6.72V12.1l11 .01v7.2L10 18.81zm11-7.71l-11 .01V4.2L21 3v8.1z"/>';
+            var linIcon = '<path d="M12.5 2c-1.82 0-3.53.5-5 1.37l2.07 3.58a5.96 5.96 0 015.86 0L17.5 3.37A9.93 9.93 0 0012.5 2zM4.42 5.8A9.92 9.92 0 002.5 11h4.13c.16-1.99 1.09-3.77 2.47-5.03L4.42 5.8zm16.16 0l-4.68.17a7.95 7.95 0 012.47 5.03h4.13a9.92 9.92 0 00-1.92-5.2zM6.63 13H2.5c.22 2.3 1.37 4.34 3.08 5.72l2.28-3.94A7.9 7.9 0 016.63 13zm10.74 0c-.17.65-.44 1.26-.8 1.8 0 0 2.28 3.92 2.28 3.94A9.92 9.92 0 0021.5 13h-4.13zm-7.22 3.34L8.08 20.3A9.93 9.93 0 0012.5 22a9.93 9.93 0 004.42-1.7l-2.07-3.58a5.94 5.94 0 01-4.7-.38z"/>';
+            if (/Win/.test(p) || /Windows/.test(ua)) {
+                navDetectedPlatform = 'Windows'; btn.href = 'Beam-v3.1.0-setup.exe'; icon.innerHTML = winIcon; text.textContent = 'Download for Windows';
+            } else if (/Linux/.test(p) || /Linux/.test(ua)) {
+                navDetectedPlatform = 'Linux'; btn.href = 'Beam-v3.1.0.AppImage'; icon.innerHTML = linIcon; text.textContent = 'Download for Linux';
+            } else {
+                navDetectedPlatform = 'macOS'; btn.href = 'Beam-v3.1.0.dmg'; icon.innerHTML = macIcon; text.textContent = 'Download for macOS';
+            }
+        })();
+        function toggleNavDropdown(e) { e.stopPropagation(); document.getElementById('navDlDropdown').classList.toggle('open'); }
+        document.addEventListener('click', function() { var dd = document.getElementById('navDlDropdown'); if (dd) dd.classList.remove('open'); });
+    </script>
+</body>
+</html>
