@@ -5,8 +5,48 @@
     <link>https://getbeam.dev/blog/</link>
     <description>Guides, tutorials, and tips for AI-assisted development with Claude Code, Codex, and more. Organized with Beam terminal.</description>
     <language>en-us</language>
-    <lastBuildDate>Tue, 18 Feb 2026 12:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 21 Feb 2026 12:00:00 +0000</lastBuildDate>
     <atom:link href="https://getbeam.dev/blog/feed.xml" rel="self" type="application/rss+xml"/>
+
+    <item>
+      <title>Multi-Agent Orchestration: The Microservices Revolution of AI Coding in 2026</title>
+      <link>https://getbeam.dev/blog/multi-agent-orchestration-2026.html</link>
+      <description>Gartner reports a 1,445% surge in multi-agent inquiries. Learn how specialized agent teams and the Plan-and-Execute pattern are cutting costs 90%.</description>
+      <pubDate>Sat, 21 Feb 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/multi-agent-orchestration-2026.html</guid>
+    </item>
+
+    <item>
+      <title>From Engineer to Orchestrator: How AI Agents Are Redefining Developer Roles in 2026</title>
+      <link>https://getbeam.dev/blog/engineer-to-orchestrator-2026.html</link>
+      <description>85% of developers use AI assistants. Microsoft writes 30% of code with AI. The developer role is evolving from creator to orchestrator. Here's how to adapt.</description>
+      <pubDate>Sat, 21 Feb 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/engineer-to-orchestrator-2026.html</guid>
+    </item>
+
+    <item>
+      <title>Claude Code vs Cursor vs Codex: The Definitive AI Coding Agent Comparison (2026)</title>
+      <link>https://getbeam.dev/blog/ai-coding-agents-comparison-2026.html</link>
+      <description>Agent-first vs IDE-first vs terminal-hybrid. A comprehensive comparison of Claude Code, Cursor, and OpenAI Codex CLI in 2026.</description>
+      <pubDate>Sat, 21 Feb 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/ai-coding-agents-comparison-2026.html</guid>
+    </item>
+
+    <item>
+      <title>The Complete Guide to Agentic Software Development in 2026</title>
+      <link>https://getbeam.dev/blog/agentic-sdlc-complete-guide.html</link>
+      <description>How AI agents are transforming every phase of the SDLC. From planning to deployment, learn parallel task execution, shadow testing, and GitHub Agentic Workflows.</description>
+      <pubDate>Sat, 21 Feb 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/agentic-sdlc-complete-guide.html</guid>
+    </item>
+
+    <item>
+      <title>Why 75% of AI Agent Projects Fail to Scale (And How to Fix It)</title>
+      <link>https://getbeam.dev/blog/scaling-ai-agents-production.html</link>
+      <description>Two-thirds of organizations experiment with AI agents, but less than a quarter scale beyond pilots. The 5 failure patterns and a proven playbook to fix them.</description>
+      <pubDate>Sat, 21 Feb 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/scaling-ai-agents-production.html</guid>
+    </item>
 
     <item>
       <title>Beam Now Supports Gemini CLI — Auto-Install Any AI Agent in One Click</title>
