@@ -20,9 +20,9 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Beam — 1-Click AI Agent Installs | Start Claude Code, Codex & OpenClaw Instantly</title>
-    <meta name="description" content="1-click AI agent installs. Start Claude Code, OpenAI Codex, and OpenClaw without touching the command line. Beam handles installation, organizes sessions into subwindows, and saves your layouts. Just right-click and go. $10/month.">
-    <meta name="keywords" content="agentic engineering platform, agentic engineering, Claude Code, OpenAI Codex, OpenClaw, AI coding, vibe coding, terminal organizer, macOS terminal, IDE for AI, start AI agent, terminal tabs, split panes, iTerm alternative, developer tools, AI workflow, terminal sessions">
+    <title>Beam — Run Every AI Agent From One Cockpit | Claude Code, Gemini, Codex Side by Side</title>
+    <meta name="description" content="Run Claude Code, Gemini CLI, and Codex side by side — each with its own task, shared memory across sessions. Multi-agent orchestration without the DIY. Already built for developers who know what they're doing.">
+    <meta name="keywords" content="multi-agent orchestration, agentic engineering, Claude Code, Gemini CLI, OpenAI Codex, AI coding agents, terminal organizer, run AI agents together, tmux alternative, iTerm alternative, developer tools, AI workflow, persistent memory, side by side agents">
     <meta name="author" content="NextUp Technologies">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://getbeam.dev/">
@@ -31,16 +31,16 @@
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://getbeam.dev/">
-    <meta property="og:title" content="Beam — 1-Click AI Agent Installs | Claude Code, Codex & OpenClaw">
-    <meta property="og:description" content="1-click AI agent installs. Start Claude Code, OpenAI Codex, and OpenClaw without touching the command line. Just right-click and go.">
+    <meta property="og:title" content="Beam — Run Every AI Agent From One Cockpit">
+    <meta property="og:description" content="Run Claude Code, Gemini CLI, and Codex side by side. Each agent gets its own task, shared memory persists across sessions. Already built for you.">
     <meta property="og:image" content="https://getbeam.dev/beam-screenshot-1.9.8.png">
     <meta property="og:site_name" content="Beam">
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:url" content="https://getbeam.dev/">
-    <meta name="twitter:title" content="Beam — 1-Click AI Agent Installs | Claude Code, Codex & OpenClaw">
-    <meta name="twitter:description" content="1-click AI agent installs. Start Claude Code, OpenAI Codex, and OpenClaw without touching the command line. Just right-click and go.">
+    <meta name="twitter:title" content="Beam — Run Every AI Agent From One Cockpit">
+    <meta name="twitter:description" content="Run Claude Code, Gemini CLI, and Codex side by side. Each agent gets its own task, shared memory persists across sessions. Already built for you.">
     <meta name="twitter:image" content="https://getbeam.dev/beam-screenshot-1.9.8.png">
 
     <!-- Structured Data -->
@@ -49,7 +49,7 @@
         "@context": "https://schema.org",
         "@type": "SoftwareApplication",
         "name": "Beam",
-        "description": "1-click AI agent installs. Start Claude Code, OpenAI Codex, and OpenClaw without touching the command line. Beam handles installation, organizes sessions into subwindows, and saves your layouts on macOS.",
+        "description": "Run Claude Code, Gemini CLI, and Codex side by side — each with its own task, shared memory across sessions. Multi-agent orchestration already built for developers.",
         "url": "https://getbeam.dev",
         "applicationCategory": "DeveloperApplication",
         "operatingSystem": "macOS",
@@ -2108,6 +2108,57 @@
         }
 
 
+        /* ── DIY COMPARISON ── */
+        .diy-section {
+            padding: 140px 0 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .diy-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(234, 179, 8, 0.4), transparent);
+        }
+
+        .diy-row {
+            display: grid;
+            grid-template-columns: 1fr 120px 120px;
+            padding: 0;
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border);
+            transition: background 0.2s;
+        }
+
+        .diy-row:hover {
+            background: var(--bg-tertiary);
+        }
+
+        .diy-feature {
+            padding: 16px 28px;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+        }
+
+        .diy-cell {
+            padding: 16px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @media (max-width: 768px) {
+            .diy-section { padding: 80px 0 40px; }
+            .diy-row { grid-template-columns: 1fr 80px 80px; }
+            .diy-feature { padding: 14px 16px; font-size: 0.82rem; }
+        }
+
         /* ── EDITORIAL GUIDES ── */
         .editorial {
             padding: 140px 0 100px;
@@ -3589,10 +3640,10 @@
                         <span class="badge-dot"></span>
                         v3.1.6 — Now Cross-Platform
                     </div>
-                    <h1>1-Click AI Agents.<br><span>Memory that persists.</span></h1>
-                    <div class="hero-category">Agentic Engineering Platform</div>
+                    <h1>Run every AI agent.<br><span>From one cockpit.</span></h1>
+                    <div class="hero-category">Multi-Agent Orchestration</div>
                     <p class="hero-subtitle">
-                        Install Claude Code, Gemini CLI, Codex, and more in one click. Persistent memory across every session. All your projects organized in one place.
+                        Claude Code for architecture. Gemini for research. Codex for tests. Each AI has strengths — Beam lets you run them side by side, each with its own task, with shared memory across every session. You could set this up yourself. But it's already built.
                     </p>
                     <div class="hero-buttons">
                         <div class="platform-downloads">
@@ -3628,40 +3679,51 @@
 
         <!-- AI Command Center removed — covered in hero subtitle -->
 
-        <!-- ═══ NEW: GEMINI CLI SUPPORT ═══ -->
+        <!-- ═══ MULTI-AGENT COCKPIT ═══ -->
         <section class="gemini-section" id="gemini">
             <div class="container">
                 <div class="reveal" style="text-align:center;margin-bottom:3rem;">
-                    <span class="section-eyebrow" style="background:linear-gradient(135deg,#4285f4,#ea4335,#fbbc05,#34a853);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">New in v3.1.6</span>
-                    <h2 class="section-heading" style="font-size:clamp(2rem,4vw,3rem);">Now with Gemini CLI.</h2>
-                    <p class="section-subtitle center" style="margin:0 auto;max-width:600px;">
-                        Run Google's Gemini, Anthropic's Claude Code, and OpenAI's Codex — all from one app. Auto-install any agent with a single click.
+                    <span class="section-eyebrow">The Level Up</span>
+                    <h2 class="section-heading" style="font-size:clamp(2rem,4vw,3rem);">Every agent has strengths.<br>Run them together.</h2>
+                    <p class="section-subtitle center" style="margin:0 auto;max-width:640px;">
+                        Claude Code is great at architecture. Gemini is fast at research. Codex nails test generation. Stop using one agent for everything — give each a focused task and let them work in parallel.
                     </p>
-                    <div style="display:flex;justify-content:center;gap:2rem;margin-top:2rem;flex-wrap:wrap;">
-                        <div style="display:flex;align-items:center;gap:0.5rem;color:var(--text-secondary);font-size:0.9rem;">
-                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#3b82f6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="7"/><path d="M7 10l2 2 4-4"/></svg>
-                            Claude Code
+                </div>
+
+                <!-- Agent strength cards -->
+                <div class="reveal reveal-delay-1" style="display:grid;grid-template-columns:repeat(3,1fr);gap:2px;border-radius:20px;overflow:hidden;border:1px solid var(--border);background:var(--border);margin-bottom:48px;">
+                    <div style="background:var(--bg-secondary);padding:36px 28px;text-align:left;transition:background 0.3s;">
+                        <div style="width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:20px;background:rgba(217,119,6,0.1);border:1px solid rgba(217,119,6,0.25);">
+                            <svg viewBox="0 0 24 24" fill="none" width="26" height="26"><path d="M12 2L2 7v10l10 5 10-5V7L12 2z" fill="#D97706"/></svg>
                         </div>
-                        <div style="display:flex;align-items:center;gap:0.5rem;color:var(--text-secondary);font-size:0.9rem;">
-                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#34a853" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="7"/><path d="M7 10l2 2 4-4"/></svg>
-                            Gemini CLI
+                        <h3 style="font-size:1.15rem;font-weight:700;margin-bottom:6px;">Claude Code</h3>
+                        <div style="font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:#D97706;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:12px;">Architecture &middot; Refactoring</div>
+                        <p style="color:var(--text-secondary);font-size:0.88rem;line-height:1.6;">Best for complex multi-file changes, system design, and deep codebase understanding.</p>
+                    </div>
+                    <div style="background:var(--bg-secondary);padding:36px 28px;text-align:left;transition:background 0.3s;">
+                        <div style="width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:20px;background:rgba(66,133,244,0.1);border:1px solid rgba(66,133,244,0.25);">
+                            <svg viewBox="0 0 24 24" fill="none" width="26" height="26"><path d="M12 2L2 7v10l10 5 10-5V7L12 2z" fill="#4285F4"/></svg>
                         </div>
-                        <div style="display:flex;align-items:center;gap:0.5rem;color:var(--text-secondary);font-size:0.9rem;">
-                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#8b5cf6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="7"/><path d="M7 10l2 2 4-4"/></svg>
-                            Codex CLI
+                        <h3 style="font-size:1.15rem;font-weight:700;margin-bottom:6px;">Gemini CLI</h3>
+                        <div style="font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:#4285F4;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:12px;">Research &middot; Exploration</div>
+                        <p style="color:var(--text-secondary);font-size:0.88rem;line-height:1.6;">Fast context windows, strong at code search, documentation, and broad exploration tasks.</p>
+                    </div>
+                    <div style="background:var(--bg-secondary);padding:36px 28px;text-align:left;transition:background 0.3s;">
+                        <div style="width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:20px;background:rgba(16,163,127,0.1);border:1px solid rgba(16,163,127,0.25);">
+                            <svg viewBox="0 0 24 24" fill="none" width="26" height="26"><path d="M12 2L2 7v10l10 5 10-5V7L12 2z" fill="#10A37F"/></svg>
                         </div>
-                        <div style="display:flex;align-items:center;gap:0.5rem;color:var(--text-secondary);font-size:0.9rem;">
-                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#ec4899" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="7"/><path d="M7 10l2 2 4-4"/></svg>
-                            Custom Agents
-                        </div>
+                        <h3 style="font-size:1.15rem;font-weight:700;margin-bottom:6px;">Codex CLI</h3>
+                        <div style="font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:#10A37F;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:12px;">Tests &middot; Boilerplate</div>
+                        <p style="color:var(--text-secondary);font-size:0.88rem;line-height:1.6;">Great at test generation, repetitive scaffolding, and focused single-file tasks.</p>
                     </div>
                 </div>
-                <div class="reveal reveal-delay-1" style="max-width:960px;margin:0 auto;">
+
+                <div class="reveal reveal-delay-2" style="max-width:960px;margin:0 auto;">
                     <div style="position:relative;border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,0.08);box-shadow:0 25px 80px rgba(0,0,0,0.5),0 0 40px rgba(59,130,246,0.1);">
-                        <img src="gemini-screenshot.png" alt="Beam running Gemini CLI with auto-install" width="1280" height="900" style="width:100%;height:auto;display:block;" loading="lazy" />
+                        <img src="gemini-screenshot.png" alt="Beam running multiple AI agents side by side" width="1280" height="900" style="width:100%;height:auto;display:block;" loading="lazy" />
                         <div style="position:absolute;inset:0;border-radius:16px;box-shadow:inset 0 1px 0 rgba(255,255,255,0.05);pointer-events:none;"></div>
                     </div>
-                    <p style="text-align:center;color:var(--text-muted);font-size:0.8rem;margin-top:1rem;">Beam auto-installs Gemini CLI and launches it in your project directory</p>
+                    <p style="text-align:center;color:var(--text-muted);font-size:0.8rem;margin-top:1rem;">Three agents, three tasks, one shared project memory — all running simultaneously</p>
                 </div>
             </div>
         </section>
@@ -3819,10 +3881,10 @@
                 </div>
 
                 <div class="proof-pullquote reveal reveal-delay-1">
-                    <blockquote>A more opinionated, guided layer on top of agent APIs to <span class="proof-highlight">reduce the friction</span> of auth, environment setup, and command chaining that trips up newcomers</blockquote>
+                    <blockquote>Each AI has its own things it's good at, so when you <span class="proof-highlight">combine them and give each its own small task</span>, it's a level up.</blockquote>
                     <div class="proof-attribution">
                         <div class="proof-reddit-avatar"><svg viewBox="0 0 24 24" fill="white"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm6.066 13.71c.147.047.28.128.39.236a1.154 1.154 0 0 1-.39 1.898 3.18 3.18 0 0 1-.735 1.348c-1.07 1.07-3.056 1.708-5.331 1.708s-4.26-.638-5.331-1.708a3.18 3.18 0 0 1-.735-1.348 1.154 1.154 0 0 1-.39-1.898c.11-.108.243-.189.39-.236a3.632 3.632 0 0 1-.052-.603c0-2.485 2.74-4.504 6.118-4.504s6.118 2.019 6.118 4.504c0 .206-.018.407-.052.603z"/></svg></div>
-                        <span>u/TechnicalSoup8578 on Reddit</span>
+                        <span>Beam user via survey</span>
                     </div>
                 </div>
 
@@ -4047,6 +4109,79 @@
                     </div>
                 </div>
         </section>
+        <!-- ═══ WHY NOT JUST tmux? ═══ -->
+        <section class="diy-section" id="why-beam">
+            <div class="container">
+                <div class="reveal" style="text-align:center;margin-bottom:64px;">
+                    <span class="section-eyebrow">Honest Question</span>
+                    <h2 class="section-heading">&ldquo;I could just use tmux.&rdquo;</h2>
+                    <p class="section-subtitle center" style="margin:0 auto;max-width:620px;">
+                        You absolutely could. You know your way around iTerm2, tmux panes, shell scripts. But here's what you'd be building yourself:
+                    </p>
+                </div>
+
+                <div class="reveal reveal-delay-1" style="max-width:900px;margin:0 auto;">
+                    <!-- Comparison table -->
+                    <div style="border-radius:20px;overflow:hidden;border:1px solid var(--border);background:var(--border);">
+                        <!-- Header -->
+                        <div style="display:grid;grid-template-columns:1fr 120px 120px;background:var(--bg-tertiary);padding:16px 28px;gap:2px;">
+                            <div style="font-family:'JetBrains Mono',monospace;font-size:0.75rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--text-muted);">What you need</div>
+                            <div style="font-family:'JetBrains Mono',monospace;font-size:0.75rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--text-muted);text-align:center;">DIY</div>
+                            <div style="font-family:'JetBrains Mono',monospace;font-size:0.75rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--accent);text-align:center;">Beam</div>
+                        </div>
+                        <!-- Rows -->
+                        <div class="diy-row">
+                            <div class="diy-feature">1-click agent install (Claude, Gemini, Codex)</div>
+                            <div class="diy-cell diy-no"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#71717a" stroke-width="2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg></div>
+                            <div class="diy-cell diy-yes"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round"><path d="M5 12l5 5L20 7"/></svg></div>
+                        </div>
+                        <div class="diy-row">
+                            <div class="diy-feature">Persistent project memory across sessions</div>
+                            <div class="diy-cell diy-no"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#71717a" stroke-width="2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg></div>
+                            <div class="diy-cell diy-yes"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round"><path d="M5 12l5 5L20 7"/></svg></div>
+                        </div>
+                        <div class="diy-row">
+                            <div class="diy-feature">Save &amp; restore workspace layouts per project</div>
+                            <div class="diy-cell diy-no"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#71717a" stroke-width="2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg></div>
+                            <div class="diy-cell diy-yes"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round"><path d="M5 12l5 5L20 7"/></svg></div>
+                        </div>
+                        <div class="diy-row">
+                            <div class="diy-feature">Named tabs, subwindows, split panes</div>
+                            <div class="diy-cell diy-partial"><span style="font-size:0.7rem;color:var(--text-muted);">Manual</span></div>
+                            <div class="diy-cell diy-yes"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round"><path d="M5 12l5 5L20 7"/></svg></div>
+                        </div>
+                        <div class="diy-row">
+                            <div class="diy-feature">Shared memory file across all agents</div>
+                            <div class="diy-cell diy-no"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#71717a" stroke-width="2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg></div>
+                            <div class="diy-cell diy-yes"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round"><path d="M5 12l5 5L20 7"/></svg></div>
+                        </div>
+                        <div class="diy-row">
+                            <div class="diy-feature">Quick switcher across all projects (<kbd class="kbd" style="font-size:0.7rem;">&#8984;K</kbd>)</div>
+                            <div class="diy-cell diy-no"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#71717a" stroke-width="2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg></div>
+                            <div class="diy-cell diy-yes"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round"><path d="M5 12l5 5L20 7"/></svg></div>
+                        </div>
+                        <div class="diy-row">
+                            <div class="diy-feature">50+ keyboard shortcuts out of the box</div>
+                            <div class="diy-cell diy-no"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#71717a" stroke-width="2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg></div>
+                            <div class="diy-cell diy-yes"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round"><path d="M5 12l5 5L20 7"/></svg></div>
+                        </div>
+                        <div class="diy-row" style="border-bottom:none;">
+                            <div class="diy-feature">Works on macOS, Windows, and Linux</div>
+                            <div class="diy-cell diy-partial"><span style="font-size:0.7rem;color:var(--text-muted);">Varies</span></div>
+                            <div class="diy-cell diy-yes"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round"><path d="M5 12l5 5L20 7"/></svg></div>
+                        </div>
+                    </div>
+
+                    <!-- Punchline -->
+                    <div class="reveal reveal-delay-2" style="text-align:center;margin-top:48px;">
+                        <p style="font-size:1.15rem;color:var(--text-secondary);line-height:1.7;max-width:560px;margin:0 auto;">
+                            You <em style="color:var(--text-primary);font-style:normal;">could</em> stitch all of this together with tmux configs, shell scripts, and a weekend of yak-shaving. Or you could download Beam and start building in 30 seconds.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- ═══ MID-PAGE CTA ═══ -->
         <section class="final-cta">
             <div class="container">
