@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D0XH8B0RKL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-D0XH8B0RKL');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Agent Orchestration for Solo Developers: A Practical Guide | Beam</title>
+    <meta name="description" content="A hands-on guide to running multiple AI agents as a solo developer. Learn task decomposition, the orchestration loop, and how to ship features faster with agent teams in 2026.">
+    <meta name="keywords" content="multi-agent orchestration, solo developer AI agents, run multiple AI agents, agent orchestration 2026, practical multi-agent workflow">
+    <meta name="author" content="Frank Albanese">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://getbeam.dev/blog/multi-agent-orchestration-practical-guide.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://getbeam.dev/blog/multi-agent-orchestration-practical-guide.html">
+    <meta property="og:title" content="Multi-Agent Orchestration for Solo Developers: A Practical Guide">
+    <meta property="og:description" content="A hands-on guide to running multiple AI agents as a solo developer. Learn task decomposition, the orchestration loop, and how to ship features faster with agent teams in 2026.">
+    <meta property="og:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Multi-Agent Orchestration for Solo Developers: A Practical Guide">
+    <meta name="twitter:description" content="A hands-on guide to running multiple AI agents as a solo developer. Learn task decomposition, the orchestration loop, and how to ship features faster with agent teams in 2026.">
+    <meta name="twitter:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Multi-Agent Orchestration for Solo Developers: A Practical Guide",
+        "description": "A hands-on guide to running multiple AI agents as a solo developer. Learn task decomposition, the orchestration loop, and how to ship features faster with agent teams in 2026.",
+        "author": {
+            "@type": "Person",
+            "name": "Frank Albanese"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Beam"
+        },
+        "datePublished": "2026-02-24",
+        "keywords": "multi-agent orchestration, solo developer AI agents, run multiple AI agents, agent orchestration 2026, practical multi-agent workflow"
+    }
+    </script>
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root { --bg-primary: #0a0a0b; --bg-secondary: #111113; --bg-tertiary: #1a1a1d; --accent: #3b82f6; --accent-glow: rgba(59, 130, 246, 0.4); --text-primary: #fafafa; --text-secondary: #a1a1aa; --text-muted: #71717a; --border: #27272a; --success: #22c55e; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        a, button, .btn, .related-card { cursor: pointer; }
+        body { font-family: 'Space Grotesk', -apple-system, sans-serif; background: var(--bg-primary); color: var(--text-primary); line-height: 1.8; }
+        .container { max-width: 800px; margin: 0 auto; padding: 0 24px; }
+        header { padding: 24px 0; border-bottom: 1px solid var(--border); margin-bottom: 60px; }
+        header .container { display: flex; justify-content: space-between; align-items: center; }
+        .logo { display: flex; align-items: center; gap: 12px; font-weight: 700; font-size: 1.5rem; text-decoration: none; color: var(--text-primary); }
+        .logo-icon { width: 36px; height: 36px; background: linear-gradient(135deg, var(--accent), #8b5cf6); border-radius: 8px; display: flex; align-items: center; justify-content: center; }
+        .btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; border-radius: 8px; font-weight: 600; font-size: 0.95rem; text-decoration: none; background: var(--accent); color: white; transition: all 0.2s; }
+        .btn:hover { background: #2563eb; transform: translateY(-2px); }
+        article { padding-bottom: 80px; }
+        .breadcrumb { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 24px; }
+        .breadcrumb a { color: var(--accent); text-decoration: none; }
+        h1 { font-size: 2.5rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 16px; line-height: 1.2; }
+        .meta { color: var(--text-muted); margin-bottom: 40px; font-size: 0.95rem; }
+        h2 { font-size: 1.5rem; font-weight: 600; margin: 48px 0 20px; color: var(--text-primary); }
+        h3 { font-size: 1.2rem; font-weight: 600; margin: 32px 0 16px; color: var(--text-primary); }
+        p { color: var(--text-secondary); margin-bottom: 20px; font-size: 1.05rem; }
+        ul, ol { color: var(--text-secondary); margin-bottom: 20px; padding-left: 24px; }
+        li { margin-bottom: 12px; }
+        code { font-family: 'JetBrains Mono', monospace; background: var(--bg-tertiary); padding: 2px 6px; border-radius: 4px; font-size: 0.9rem; }
+        pre { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 8px; padding: 20px; margin: 20px 0; overflow-x: auto; }
+        pre code { background: none; padding: 0; font-size: 0.85rem; line-height: 1.6; }
+        .highlight { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 24px; margin: 32px 0; }
+        .highlight h3 { font-size: 1.1rem; margin-bottom: 12px; margin-top: 0; color: var(--text-primary); }
+        .kbd { display: inline-block; padding: 2px 8px; background: var(--bg-tertiary); border: 1px solid var(--border); border-radius: 4px; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; }
+        .cta-box { background: linear-gradient(135deg, var(--accent), #8b5cf6); border-radius: 16px; padding: 40px; text-align: center; margin: 60px 0; }
+        .cta-box h3 { font-size: 1.5rem; margin-bottom: 12px; margin-top: 0; }
+        .cta-box p { color: rgba(255,255,255,0.8); margin-bottom: 24px; }
+        .cta-box .btn { background: white; color: var(--accent); }
+        footer { padding: 40px 0; border-top: 1px solid var(--border); text-align: center; color: var(--text-muted); font-size: 0.9rem; }
+        footer a { color: var(--text-secondary); text-decoration: none; }
+        .related-articles { margin-top: 60px; padding-top: 40px; border-top: 1px solid var(--border); }
+        .related-articles h2 { font-size: 1.5rem; margin-bottom: 24px; }
+        .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .related-card { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-decoration: none; transition: border-color 0.2s; }
+        .related-card:hover { border-color: var(--accent); }
+        .related-card h4 { color: white; font-size: 1rem; margin: 0 0 8px 0; }
+        .related-card p { color: var(--text-muted); font-size: 0.85rem; margin: 0; }
+        @media (max-width: 600px) { h1 { font-size: 1.8rem; } .related-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="../" class="logo">
+                <div class="logo-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round">
+                        <path d="M4 17l6-6-6-6M12 19h8"/>
+                    </svg>
+                </div>
+                Beam
+            </a>
+            <a href="../" class="btn">Download Beam</a>
+        </div>
+    </header>
+
+    <main>
+        <article class="container">
+            <div class="breadcrumb">
+                <a href="../">Beam</a> / <a href="../#guides">Blog</a> / Multi-Agent Orchestration for Solo Developers
+            </div>
+
+            <h1>Multi-Agent Orchestration for Solo Developers: A Practical Guide</h1>
+            <p class="meta">February 24, 2026 &bull; Frank Albanese &bull; 10 min read</p>
+
+            <p>You don&rsquo;t need a ten-person platform team to run multiple AI agents. You need a laptop, a clear plan, and the discipline to treat agents like what they actually are: fast, focused junior developers who never get tired but also never ask clarifying questions on their own.</p>
+
+            <p>Multi-agent orchestration sounds like something from an enterprise whitepaper. It&rsquo;s not. It&rsquo;s the single biggest productivity unlock available to solo developers in 2026, and you can start using it today with tools you already have. I&rsquo;ve been shipping features this way for months, and the difference between running one agent and running three in parallel is the difference between typing code and directing a team.</p>
+
+            <p>This guide is for people who ship. No architecture diagrams, no theoretical frameworks, no &ldquo;agentic mesh topologies.&rdquo; Just a practical workflow you can adopt this week.</p>
+
+            <h2>The Mental Model: Agents Are Junior Devs with Specialties</h2>
+
+            <p>The mistake most people make with multi-agent workflows is thinking of agents as one general-purpose tool they&rsquo;re running multiple copies of. That leads to duplicate work, conflicting outputs, and more time spent fixing merge conflicts than you saved by running agents in the first place.</p>
+
+            <p>Instead, think of each agent as a junior developer with a specific specialty. You wouldn&rsquo;t hire three full-stack generalists and point them all at the same codebase with no coordination. You&rsquo;d hire a backend dev, a frontend dev, and a QA engineer, give each one clear boundaries, and check in with them at defined intervals.</p>
+
+            <div class="highlight">
+                <h3>The Agent Roster for a Solo Dev</h3>
+                <ul>
+                    <li><strong>The Architect</strong> &mdash; Designs interfaces, writes specs, makes structural decisions. This agent reads your codebase and produces a plan. It never writes production code.</li>
+                    <li><strong>The Builder</strong> &mdash; Takes a spec and implements it. Focused, heads-down, working within a clearly scoped file set. You might run two of these in parallel on different parts of the stack.</li>
+                    <li><strong>The Tester</strong> &mdash; Writes tests against the spec (not the implementation). This agent catches drift between what you asked for and what the builder actually produced.</li>
+                </ul>
+            </div>
+
+            <p>You&rsquo;re the senior engineer. You review the architect&rsquo;s plan, unblock the builders when they get stuck, and make the final call on whether the tester&rsquo;s failures are real bugs or spec ambiguity. That&rsquo;s it. You don&rsquo;t write the code. You direct the people who do.</p>
+
+            <h2>Task Decomposition: Breaking Features into Agent-Sized Pieces</h2>
+
+            <p>The hardest part of multi-agent orchestration isn&rsquo;t running the agents. It&rsquo;s figuring out how to split the work so they don&rsquo;t step on each other.</p>
+
+            <p>Here&rsquo;s the rule: <strong>if two agents need to edit the same file at the same time, your decomposition is wrong.</strong> Go back and redraw the boundaries. Every agent should own a set of files (or at minimum, a set of functions) that no other agent touches during that work cycle.</p>
+
+            <p>Good decomposition follows the natural seams in your codebase:</p>
+
+            <ul>
+                <li><strong>By layer</strong> &mdash; One agent handles the API route and controller, another handles the database models and migrations, a third handles the frontend component. These touch different files.</li>
+                <li><strong>By feature boundary</strong> &mdash; If you&rsquo;re building two independent features, each agent gets one. They don&rsquo;t share state.</li>
+                <li><strong>By concern</strong> &mdash; Implementation in one agent, tests in another, documentation in a third. Same codebase, different file types.</li>
+            </ul>
+
+            <p>Before you spin up a single agent session, spend five minutes writing down which files each agent will touch. If there&rsquo;s overlap, resolve it first. This five-minute investment will save you an hour of conflict resolution later.</p>
+
+            <h2>The Orchestration Loop: Assign, Monitor, Merge, Iterate</h2>
+
+            <p>Once you have your decomposition, the actual workflow is a four-step loop that repeats until the feature is done.</p>
+
+            <h3>Step 1: Assign</h3>
+
+            <p>Open a terminal tab for each agent. Give each one its specific instructions, including exactly which files it owns and what the acceptance criteria are. Be explicit. &ldquo;Build the user endpoint&rdquo; is too vague. &ldquo;Create a POST /api/users endpoint in <code>src/routes/users.ts</code> that accepts <code>{ name, email }</code>, validates with Zod, and returns the created user with a 201 status&rdquo; is what a junior dev needs to hear.</p>
+
+            <pre><code># Tab 1: Architect (Claude Code)
+"Read the codebase and design a REST API for user management.
+Output a spec in SPEC.md with endpoints, request/response shapes,
+and error codes. Do not write any implementation code."
+
+# Tab 2: Builder - Backend (Claude Code)
+"Implement the endpoints described in SPEC.md.
+You own: src/routes/users.ts, src/models/user.ts, src/db/migrations/
+Do not modify any frontend files."
+
+# Tab 3: Builder - Frontend (Gemini or another agent)
+"Research the ShadCN form component docs and build a user
+registration form in src/components/UserForm.tsx that matches
+the API spec in SPEC.md. You own: src/components/UserForm.tsx,
+src/hooks/useCreateUser.ts"
+
+# Tab 4: Tester (Codex or Claude Code)
+"Write integration tests for the user management API in
+tests/api/users.test.ts. Test happy paths, validation errors,
+and duplicate email handling. Reference SPEC.md for expected behavior."</code></pre>
+
+            <h3>Step 2: Monitor</h3>
+
+            <p>Check in every few minutes. You&rsquo;re not reading every line of output &mdash; you&rsquo;re scanning for two things: <strong>is the agent stuck?</strong> and <strong>is the agent drifting from the spec?</strong> Stuck agents ask for input or start looping on the same error. Drifting agents start making architectural decisions you didn&rsquo;t authorize. Both need a quick intervention.</p>
+
+            <p>Jump between tabs with keyboard shortcuts (<span class="kbd">&#8984;1</span> through <span class="kbd">&#8984;4</span> in Beam) instead of reaching for the mouse. When you&rsquo;re monitoring four agents, the few seconds you save per switch add up fast.</p>
+
+            <h3>Step 3: Merge</h3>
+
+            <p>When agents finish, review their output against the spec. If you decomposed properly, merging is trivial &mdash; each agent touched different files, so there&rsquo;s nothing to conflict. Run the test suite. If the tester agent did its job, you&rsquo;ll know immediately whether the pieces fit together.</p>
+
+            <h3>Step 4: Iterate</h3>
+
+            <p>Tests fail? Great &mdash; that&rsquo;s the system working. Feed the failures back to the appropriate builder agent. &ldquo;The POST /api/users endpoint returns 500 when email is missing. The spec says it should return 422 with a validation error. Fix <code>src/routes/users.ts</code>.&rdquo; Specific, scoped, actionable. The agent fixes it in thirty seconds.</p>
+
+            <h2>Real Example: Building an API Endpoint with Three Agents</h2>
+
+            <p>Let me walk through a real session from last week. I needed to add a <code>/api/projects/:id/export</code> endpoint to an Express app &mdash; export a project&rsquo;s data as a ZIP file with JSON metadata and associated files.</p>
+
+            <div class="highlight">
+                <h3>How I Split the Work</h3>
+                <ul>
+                    <li><strong>Agent 1 (Claude Code &mdash; Architect):</strong> Read the existing codebase, designed the endpoint contract, chose the ZIP library, and wrote a spec file. Took about 90 seconds.</li>
+                    <li><strong>Agent 2 (Gemini &mdash; Researcher):</strong> I pointed Gemini at the archiver npm package docs and asked it to produce a utility module (<code>src/utils/zip.ts</code>) with a function that takes a file list and returns a readable stream. Gemini is great at reading library docs and producing focused utility code.</li>
+                    <li><strong>Agent 3 (Claude Code &mdash; Builder):</strong> Implemented the Express route handler in <code>src/routes/projects.ts</code>, using the zip utility from Agent 2 and following the spec from Agent 1. Also handled auth middleware and error cases.</li>
+                </ul>
+            </div>
+
+            <p>Agents 2 and 3 ran in parallel. Agent 3 started on the route handler structure and auth logic while Agent 2 was still writing the zip utility. By the time Agent 3 needed to call the zip function, Agent 2 was done. I copied the utility file into place, Agent 3 imported it, and the endpoint worked on the first test run.</p>
+
+            <p>Total time: about twelve minutes. If I&rsquo;d done this with a single agent, it would have been twenty-five to thirty minutes, because one agent would have had to context-switch between reading library docs, designing the API, and writing the implementation. Each switch costs clarity. Three focused agents avoided that tax entirely.</p>
+
+            <h2>Common Pitfalls (and How to Avoid Them)</h2>
+
+            <h3>Agents Overwriting Each Other</h3>
+
+            <p>This is the number-one failure mode. Two agents editing the same file means the second one to save wins and the first one&rsquo;s work is gone. The fix is simple: <strong>strict file ownership.</strong> If you catch yourself about to tell two agents to touch the same file, stop and refactor your decomposition. Create an interface file that both agents read but neither modifies, and have each agent implement its side behind that interface.</p>
+
+            <h3>Context Drift</h3>
+
+            <p>After thirty minutes of work, an agent has accumulated a lot of context about what it&rsquo;s done and why. That context exists only in its session. If you need to hand work from one agent to another, you need to transfer context explicitly &mdash; not by saying &ldquo;look at what Agent 1 did&rdquo; but by writing a summary: &ldquo;Agent 1 created <code>src/models/user.ts</code> with a Prisma model. The schema uses UUID primary keys and has a unique constraint on email. Pick up from here.&rdquo;</p>
+
+            <p>A shared <code>CLAUDE.md</code> or project memory file is the best tool for this. Every decision goes in the file. Every agent reads the file at the start of its session. Context stays synchronized.</p>
+
+            <h3>Merge Conflicts from Shared Config Files</h3>
+
+            <p>Even with good file ownership, you&rsquo;ll hit conflicts in shared config files &mdash; <code>package.json</code>, <code>tsconfig.json</code>, route registrations in <code>app.ts</code>. The solution: designate one agent as the config owner. All other agents note what they need added to config files, and the config owner makes those changes in a single pass at the end. This is the same pattern human teams use with a &ldquo;merge master.&rdquo;</p>
+
+            <h3>Running Too Many Agents Too Soon</h3>
+
+            <p>Start with two. Seriously. A planner and a builder. Get the rhythm down &mdash; spec, assign, monitor, merge. Once that feels natural (it takes a day or two), add a tester. Once that&rsquo;s smooth, try running two builders in parallel. If you jump straight to five agents, you&rsquo;ll spend more time orchestrating than building.</p>
+
+            <h2>Workspace Organization: The Infrastructure That Makes It Work</h2>
+
+            <p>Multi-agent orchestration lives or dies based on how well you can manage your terminal sessions. If you&rsquo;re alt-tabbing between six windows trying to remember which one is running your test agent, you&rsquo;ve already lost the productivity gains.</p>
+
+            <p>This is where workspace organization becomes critical. You need:</p>
+
+            <ul>
+                <li><strong>Named tabs</strong> that tell you at a glance which agent is in which tab (&ldquo;Architect,&rdquo; &ldquo;Backend Builder,&rdquo; &ldquo;Tester&rdquo;)</li>
+                <li><strong>Keyboard-driven switching</strong> so you can jump between agents without losing focus</li>
+                <li><strong>Persistent layouts</strong> that save your multi-agent setup so you don&rsquo;t rebuild it every morning</li>
+                <li><strong>Project-scoped workspaces</strong> that keep your agent sessions for Project A separate from Project B</li>
+            </ul>
+
+            <p>Beam was designed around exactly this workflow. Each project gets its own workspace. Each agent gets a named tab inside that workspace. Switching between agents is <span class="kbd">&#8984;1</span> through <span class="kbd">&#8984;9</span>. Your layout persists between sessions. When you sit down in the morning, you hit one shortcut and your entire orchestration environment is back &mdash; each agent in its tab, each tab labeled, your project memory file open and ready.</p>
+
+            <p>The shared memory system means every agent in your workspace can read the same project context. Decisions propagate. Specs stay in sync. No agent is working with stale information because you forgot to copy a file between windows.</p>
+
+            <div class="highlight">
+                <h3>A Typical Multi-Agent Layout in Beam</h3>
+                <ul>
+                    <li><strong>Tab 1:</strong> Architect / Planner &mdash; where you write specs and review plans</li>
+                    <li><strong>Tab 2:</strong> Backend Builder &mdash; Claude Code focused on server-side code</li>
+                    <li><strong>Tab 3:</strong> Frontend Builder &mdash; another agent handling UI components</li>
+                    <li><strong>Tab 4:</strong> Tester &mdash; running and writing tests against the spec</li>
+                    <li><strong>Tab 5:</strong> Git / DevOps &mdash; a plain terminal for commits, deploys, and monitoring</li>
+                </ul>
+            </div>
+
+            <h2>Getting Started This Week</h2>
+
+            <p>You don&rsquo;t need to overhaul your workflow. Just try this on your next feature:</p>
+
+            <ol>
+                <li><strong>Before you start coding, write a one-page spec.</strong> Use an agent to help &mdash; ask it to read your codebase and propose an implementation plan. Review the plan. Adjust it. This is your map.</li>
+                <li><strong>Split the work into two tracks.</strong> Implementation and tests. Give each track its own terminal tab with its own agent session. The implementer follows the spec. The tester writes tests against the spec (not the implementation).</li>
+                <li><strong>Run them in parallel.</strong> Check in every few minutes. When both are done, run the test suite. Feed failures back to the implementer.</li>
+                <li><strong>Notice how much faster it is.</strong> Not twice as fast &mdash; the gains compound because each agent maintains deeper focus within its specialty than a single agent context-switching between concerns.</li>
+            </ol>
+
+            <p>Once you&rsquo;ve done this three or four times, you&rsquo;ll never go back to single-agent workflows for anything beyond trivial tasks. The orchestration loop becomes second nature, and you&rsquo;ll start seeing every feature as a set of parallel work streams, not a single serial process.</p>
+
+            <p>That shift in thinking &mdash; from &ldquo;I&rsquo;m a developer who uses an AI tool&rdquo; to &ldquo;I&rsquo;m a tech lead who directs a team of agents&rdquo; &mdash; is the real unlock. The agents are the easy part. The orchestration mindset is what makes it work.</p>
+
+            <div class="cta-box">
+                <h3>Run Your Agent Team in Beam</h3>
+                <p>Named workspaces, dedicated agent tabs, keyboard-driven switching, shared project memory, and persistent layouts. Everything you need to orchestrate multiple AI agents without the chaos.</p>
+                <a href="../" class="btn">Download Beam Free</a>
+            </div>
+
+            <div class="related-articles">
+                <h2>Related Articles</h2>
+                <div class="related-grid">
+                    <a href="multi-agent-orchestration-2026.html" class="related-card">
+                        <h4>Multi-Agent Orchestration: The Microservices Revolution of AI Coding</h4>
+                        <p>How specialized agent teams and the Plan-and-Execute pattern are cutting costs 90%.</p>
+                    </a>
+                    <a href="manage-multiple-claude-code-sessions.html" class="related-card">
+                        <h4>Managing Multiple Claude Code Sessions</h4>
+                        <p>Practical tips for running concurrent AI coding sessions without losing track.</p>
+                    </a>
+                    <a href="claude-code-agent-teams-guide.html" class="related-card">
+                        <h4>Claude Code Agent Teams Guide</h4>
+                        <p>Set up and coordinate agent teams for complex development projects.</p>
+                    </a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>
+                <a href="../">Beam</a> &bull; Terminal Organizer for macOS, Windows &amp; Linux &bull;
+                <a href="mailto:frank@nextuptechnologies.co">Contact</a>
+            </p>
+            <p style="margin-top: 12px; font-size: 0.8rem;">
+                <a href="/privacy.html" style="color: #71717a; text-decoration: none;">Privacy Policy</a> &bull;
+                <a href="/terms.html" style="color: #71717a; text-decoration: none;">Terms of Service</a>
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>

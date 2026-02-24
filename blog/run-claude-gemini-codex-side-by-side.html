@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D0XH8B0RKL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-D0XH8B0RKL');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Run Claude Code, Gemini CLI, and Codex Side by Side (And Why You Should) | Beam</title>
+    <meta name="description" content="Learn how to run Claude Code, Gemini CLI, and OpenAI Codex side by side in a multi-agent coding workflow. Assign focused tasks to each agent and ship features faster.">
+    <meta name="keywords" content="run Claude Code Gemini Codex side by side, multi-agent coding workflow, AI agents together, Claude vs Gemini vs Codex when to use, multi-agent orchestration, agentic engineering">
+    <meta name="author" content="NextUp Technologies">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://getbeam.dev/blog/run-claude-gemini-codex-side-by-side.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://getbeam.dev/blog/run-claude-gemini-codex-side-by-side.html">
+    <meta property="og:title" content="How to Run Claude Code, Gemini CLI, and Codex Side by Side">
+    <meta property="og:description" content="Assign focused tasks to each AI agent and ship features faster with a multi-agent coding workflow.">
+    <meta property="og:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="How to Run Claude Code, Gemini CLI, and Codex Side by Side">
+    <meta name="twitter:description" content="Assign focused tasks to each AI agent and ship features faster with a multi-agent coding workflow.">
+    <meta name="twitter:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "How to Run Claude Code, Gemini CLI, and Codex Side by Side (And Why You Should)",
+        "description": "Learn how to run Claude Code, Gemini CLI, and OpenAI Codex side by side in a multi-agent coding workflow. Assign focused tasks to each agent and ship features faster.",
+        "author": {
+            "@type": "Organization",
+            "name": "NextUp Technologies"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Beam"
+        },
+        "datePublished": "2026-02-24",
+        "keywords": "run Claude Code Gemini Codex side by side, multi-agent coding workflow, AI agents together, Claude vs Gemini vs Codex when to use"
+    }
+    </script>
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #111113;
+            --bg-tertiary: #1a1a1d;
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.4);
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --border: #27272a;
+            --success: #22c55e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        a, button, .btn, .related-card { cursor: pointer; }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+
+        .container { max-width: 800px; margin: 0 auto; padding: 0 24px; }
+
+        header { padding: 24px 0; border-bottom: 1px solid var(--border); margin-bottom: 60px; }
+        header .container { display: flex; justify-content: space-between; align-items: center; }
+
+        .logo { display: flex; align-items: center; gap: 12px; font-weight: 700; font-size: 1.5rem; text-decoration: none; color: var(--text-primary); }
+        .logo-icon { width: 36px; height: 36px; background: linear-gradient(135deg, var(--accent), #8b5cf6); border-radius: 8px; display: flex; align-items: center; justify-content: center; }
+
+        .btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; border-radius: 8px; font-weight: 600; font-size: 0.95rem; text-decoration: none; background: var(--accent); color: white; transition: all 0.2s; }
+        .btn:hover { background: #2563eb; transform: translateY(-2px); }
+
+        article { padding-bottom: 80px; }
+
+        .breadcrumb { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 24px; }
+        .breadcrumb a { color: var(--accent); text-decoration: none; }
+
+        h1 { font-size: 2.5rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 16px; line-height: 1.2; }
+        .meta { color: var(--text-muted); margin-bottom: 40px; font-size: 0.95rem; }
+
+        h2 { font-size: 1.5rem; font-weight: 600; margin: 48px 0 20px; color: var(--text-primary); }
+        h3 { font-size: 1.2rem; font-weight: 600; margin: 32px 0 16px; color: var(--text-primary); }
+
+        p { color: var(--text-secondary); margin-bottom: 20px; font-size: 1.05rem; }
+        ul, ol { color: var(--text-secondary); margin-bottom: 20px; padding-left: 24px; }
+        li { margin-bottom: 12px; }
+
+        code { font-family: 'JetBrains Mono', monospace; background: var(--bg-tertiary); padding: 2px 6px; border-radius: 4px; font-size: 0.9rem; }
+        pre { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 8px; padding: 20px; margin: 20px 0; overflow-x: auto; }
+        pre code { background: none; padding: 0; font-size: 0.85rem; line-height: 1.6; }
+
+        .highlight { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 24px; margin: 32px 0; }
+        .highlight h3 { font-size: 1.1rem; margin-bottom: 12px; margin-top: 0; color: var(--text-primary); }
+
+        .kbd { display: inline-block; padding: 2px 8px; background: var(--bg-tertiary); border: 1px solid var(--border); border-radius: 4px; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; }
+
+        .cta-box { background: linear-gradient(135deg, var(--accent), #8b5cf6); border-radius: 16px; padding: 40px; text-align: center; margin: 60px 0; }
+        .cta-box h3 { font-size: 1.5rem; margin-bottom: 12px; margin-top: 0; }
+        .cta-box p { color: rgba(255,255,255,0.8); margin-bottom: 24px; }
+        .cta-box .btn { background: white; color: var(--accent); }
+
+        footer { padding: 40px 0; border-top: 1px solid var(--border); text-align: center; color: var(--text-muted); font-size: 0.9rem; }
+        footer a { color: var(--text-secondary); text-decoration: none; }
+
+        .related-articles { margin-top: 60px; padding-top: 40px; border-top: 1px solid var(--border); }
+        .related-articles h2 { font-size: 1.5rem; margin-bottom: 24px; }
+        .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .related-card { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-decoration: none; transition: border-color 0.2s; }
+        .related-card:hover { border-color: var(--accent); }
+        .related-card h4 { color: white; font-size: 1rem; margin: 0 0 8px 0; }
+        .related-card p { color: var(--text-muted); font-size: 0.85rem; margin: 0; }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 1.8rem; }
+            .related-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="../" class="logo">
+                <div class="logo-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round"><path d="M4 17l6-6-6-6M12 19h8"/></svg></div>
+                Beam
+            </a>
+            <a href="../" class="btn">Download Beam</a>
+        </div>
+    </header>
+
+    <main>
+        <article class="container">
+            <div class="breadcrumb">
+                <a href="../">Home</a> &rarr; <a href="./">Blog</a> &rarr; How to Run Claude Code, Gemini CLI, and Codex Side by Side
+            </div>
+
+            <h1>How to Run Claude Code, Gemini CLI, and Codex Side by Side (And Why You Should)</h1>
+            <div class="meta">February 24, 2026 &middot; 11 min read</div>
+
+            <p>You are probably already using at least one AI coding agent. Maybe you have Claude Code running in a terminal right now. But if you are only running one agent at a time, you are leaving serious throughput on the table.</p>
+
+            <p>The developers shipping the fastest in 2026 are not picking one agent and sticking with it. They are running <strong>Claude Code, Gemini CLI, and Codex simultaneously</strong>, each assigned to the task it handles best. Think of it less like choosing a favorite tool and more like staffing a team where each member has a different specialty.</p>
+
+            <p>This guide covers the practical how: which agent excels at what, how to split work between them without creating merge conflicts, and a real workflow for building a feature with three agents running in parallel.</p>
+
+            <h2>Why Single-Agent Workflows Hit a Ceiling</h2>
+
+            <p>Every AI coding agent has a latency floor. Even with the fastest models, a complex architectural change takes 30-90 seconds of agent thinking time. A test suite generation might take two minutes. Research across a large codebase can take even longer.</p>
+
+            <p>When you run a single agent, <strong>you are serializing work that could be parallel</strong>. You ask Claude to refactor a module, wait for it to finish, then ask it to write tests, wait again, then ask it to update the docs. Three sequential tasks that could have been three simultaneous tasks.</p>
+
+            <p>The math is straightforward. If each task takes 2 minutes of agent time:</p>
+
+            <ul>
+                <li><strong>Single agent, sequential:</strong> 6 minutes wall clock time</li>
+                <li><strong>Three agents, parallel:</strong> 2 minutes wall clock time</li>
+            </ul>
+
+            <p>That is a 3x speedup on every feature. Over a full day of development, the compounding effect is significant.</p>
+
+            <p>But raw parallelism is not the only reason. Each agent has <strong>different strengths</strong>, and assigning the right task to the right agent produces better output than forcing one model to do everything.</p>
+
+            <h2>What Each Agent Does Best</h2>
+
+            <p>After months of running these three agents side by side, clear patterns emerge in where each one excels. This is not about which agent is "better" overall -- it is about which one you want handling a specific category of work.</p>
+
+            <h3>Claude Code: Architecture and Refactoring</h3>
+
+            <p>Claude Code's strength is <strong>deep reasoning across interconnected files</strong>. When you need to refactor a module that touches six other files, Claude consistently produces changes that account for downstream effects. It is also the strongest at understanding existing architectural patterns and extending them consistently.</p>
+
+            <p>Best tasks for Claude Code:</p>
+            <ul>
+                <li>Large refactors that span multiple files</li>
+                <li>Designing new system architecture from requirements</li>
+                <li>Complex bug investigation (reading stack traces, tracing data flow)</li>
+                <li>Code review and identifying subtle issues</li>
+                <li>Writing migration scripts that need to handle edge cases</li>
+            </ul>
+
+            <h3>Gemini CLI: Research and Large Context</h3>
+
+            <p>Gemini's massive context window is its defining advantage. When you need an agent to <strong>ingest an entire codebase, a lengthy API specification, or multiple documentation pages</strong> before producing output, Gemini handles it without the truncation issues that plague smaller context windows.</p>
+
+            <p>Best tasks for Gemini CLI:</p>
+            <ul>
+                <li>Researching unfamiliar libraries or APIs before implementation</li>
+                <li>Analyzing large codebases to produce architectural summaries</li>
+                <li>Cross-referencing documentation with existing code</li>
+                <li>Generating comprehensive documentation from source</li>
+                <li>Understanding and working within monorepos</li>
+            </ul>
+
+            <h3>Codex: Tests, Scaffolding, and Repetitive Generation</h3>
+
+            <p>Codex excels at <strong>structured, pattern-based generation</strong>. Give it a clear specification and a pattern to follow, and it will produce consistent, well-structured output quickly. It is particularly strong at test generation where the structure is predictable but the coverage needs to be thorough.</p>
+
+            <p>Best tasks for Codex:</p>
+            <ul>
+                <li>Generating test suites from existing implementations</li>
+                <li>Scaffolding boilerplate (CRUD endpoints, model definitions, form components)</li>
+                <li>Converting between formats (REST to GraphQL, JSON to TypeScript types)</li>
+                <li>Batch file generation following an established pattern</li>
+                <li>Writing repetitive but necessary glue code</li>
+            </ul>
+
+            <div class="highlight">
+                <h3>Key Insight: Agents as Specialists, Not Generalists</h3>
+                <p>The biggest mistake in multi-agent workflows is giving each agent the same type of task. Instead, treat each agent like a team member with a specialty. Claude gets the hard architectural problems. Gemini gets the research-heavy tasks. Codex gets the high-volume generation work. This plays to each model's strengths and produces better results than any single agent could alone.</p>
+            </div>
+
+            <h2>The Multi-Agent Workflow: Assigning Focused Tasks</h2>
+
+            <p>Running three agents simultaneously is not just about opening three terminals. You need a system for <strong>dividing work so agents do not step on each other</strong>. Here is the framework that works.</p>
+
+            <h3>Rule 1: Separate by File Scope</h3>
+
+            <p>The simplest way to avoid conflicts is to assign each agent to different files or directories. If Claude is refactoring <code>src/api/</code>, Codex should not be touching those same files. Give Codex the test files in <code>tests/api/</code> instead.</p>
+
+            <h3>Rule 2: Use a Task Queue Pattern</h3>
+
+            <p>Before starting, break your feature into discrete tasks and assign them upfront:</p>
+
+<pre><code># Task assignments for "Add user notification preferences" feature
+
+# Claude Code (architecture + core logic)
+- Design the NotificationPreference data model
+- Implement the preference service with conflict resolution
+- Wire up the API routes with proper validation
+
+# Gemini CLI (research + documentation)
+- Research the push notification provider API docs
+- Analyze existing notification code for patterns to follow
+- Write the API documentation for the new endpoints
+
+# Codex (tests + scaffolding)
+- Generate the database migration files
+- Write unit tests for the preference service
+- Scaffold the React settings panel component</code></pre>
+
+            <h3>Rule 3: Sync Points</h3>
+
+            <p>Not everything can run in parallel. Identify <strong>dependencies between tasks</strong> and create sync points. For example, Codex cannot write tests for a service Claude has not finished yet. The workflow looks like:</p>
+
+            <ol>
+                <li><strong>Phase 1 (parallel):</strong> Claude designs the data model, Gemini researches the notification API, Codex scaffolds the migration</li>
+                <li><strong>Sync:</strong> Review Claude's data model, commit it</li>
+                <li><strong>Phase 2 (parallel):</strong> Claude implements the service, Gemini writes docs based on the model, Codex generates tests against the interfaces</li>
+                <li><strong>Sync:</strong> Run tests, review all output, merge</li>
+            </ol>
+
+            <h2>Practical Example: Building a Feature With Three Agents</h2>
+
+            <p>Let's walk through a concrete scenario. You are adding <strong>a real-time notification preferences system</strong> to a Node.js/React application. Here is exactly how this plays out with three agents.</p>
+
+            <h3>Phase 1: Foundation (All Three in Parallel)</h3>
+
+            <p><strong>Terminal 1 -- Claude Code:</strong></p>
+<pre><code>claude "Design a NotificationPreference model for our Prisma schema.
+Users should be able to set per-channel preferences (email, push, in-app)
+for each notification category (marketing, transactional, social).
+Include a priority override system. Follow the patterns in our existing
+schema at prisma/schema.prisma."</code></pre>
+
+            <p><strong>Terminal 2 -- Gemini CLI:</strong></p>
+<pre><code>gemini "Read the Firebase Cloud Messaging REST API docs and our existing
+notification sender at src/services/notifications/sender.ts. Produce a
+summary of: 1) what FCM endpoints we need for topic-based subscriptions,
+2) how our current sender would need to change to support per-user
+channel preferences, 3) rate limits we need to handle."</code></pre>
+
+            <p><strong>Terminal 3 -- Codex:</strong></p>
+<pre><code>codex "Generate a database migration that adds a notification_preferences
+table with columns for user_id, channel (enum: email, push, in_app),
+category (enum: marketing, transactional, social), enabled (boolean),
+and priority_override (integer, nullable). Add proper indexes and
+foreign key to users table. Follow our migration pattern in
+db/migrations/."</code></pre>
+
+            <p>All three are working simultaneously. While Claude is reasoning about the data model, Gemini is digesting API documentation, and Codex is producing the migration boilerplate.</p>
+
+            <h3>Phase 2: Implementation (After Sync)</h3>
+
+            <p>Once Phase 1 completes and you have reviewed the outputs:</p>
+
+            <p><strong>Terminal 1 -- Claude Code:</strong></p>
+<pre><code>claude "Implement the NotificationPreferenceService in
+src/services/notifications/preferences.ts. It should support
+getPreferences(userId), updatePreference(userId, channel, category,
+enabled), and resolveDeliveryChannels(userId, notificationType) which
+returns which channels a notification should be sent to based on user
+preferences and priority overrides. Use the Prisma model we just added."</code></pre>
+
+            <p><strong>Terminal 2 -- Gemini CLI:</strong></p>
+<pre><code>gemini "Based on the NotificationPreference model in our Prisma schema
+and the FCM research, write the OpenAPI spec for these endpoints:
+GET /api/notifications/preferences, PUT /api/notifications/preferences,
+POST /api/notifications/preferences/bulk-update. Include request/response
+schemas, error codes, and example payloads."</code></pre>
+
+            <p><strong>Terminal 3 -- Codex:</strong></p>
+<pre><code>codex "Write comprehensive unit tests for a NotificationPreferenceService
+with methods getPreferences, updatePreference, and resolveDeliveryChannels.
+Test edge cases: user with no preferences (should use defaults), conflicting
+priority overrides, bulk updates, and invalid channel/category combinations.
+Use our Jest setup in tests/ and mock Prisma following the pattern in
+tests/services/user.test.ts."</code></pre>
+
+            <div class="highlight">
+                <h3>The Result: 3x the Output, Better Quality</h3>
+                <p>In roughly 5 minutes of wall clock time, you have: a fully reasoned service implementation from Claude, comprehensive API documentation from Gemini that accounts for the actual provider limitations, and a thorough test suite from Codex that covers edge cases. Doing this sequentially with one agent would have taken 15+ minutes -- and the agent doing everything would not have produced the same quality as three specialists.</p>
+            </div>
+
+            <h2>Managing the Chaos: Terminal Organization</h2>
+
+            <p>The hard part of multi-agent workflows is not the agents themselves. It is <strong>keeping track of what is running where</strong>. If you have used tmux or iTerm2 split panes for this, you know the friction points:</p>
+
+            <ul>
+                <li>Panes get disorganized quickly when you have 3+ agents running</li>
+                <li>There is no visual indicator of which agent is in which pane</li>
+                <li>You cannot save and restore a multi-agent layout</li>
+                <li>Scrollback gets noisy when agents produce long output</li>
+                <li>Switching between agent sessions requires remembering which pane is which</li>
+            </ul>
+
+            <p>You can solve this with careful tmux configuration, custom status bars, and session naming scripts. Or you can use a tool built for exactly this workflow.</p>
+
+            <h3>How Beam Makes Multi-Agent Workflows Trivial</h3>
+
+            <p>Beam is a terminal organizer designed around the multi-agent use case. Here is what it does that matters for this workflow:</p>
+
+            <p><strong>1-click agent install.</strong> Beam auto-detects whether Claude Code, Gemini CLI, and Codex are installed. If they are not, it installs them for you. No <code>npm install -g</code>, no <code>pip install</code>, no PATH configuration. Open Beam, click the agent, and it is ready.</p>
+
+            <p><strong>Organized workspaces.</strong> Create a workspace for your feature, then open three tabs -- one for each agent. Name them "Claude - Service", "Gemini - Research", "Codex - Tests". The layout persists across sessions, so you can close Beam and reopen it tomorrow with everything exactly where you left it.</p>
+
+            <p><strong>Split panes with context.</strong> Run all three agents visible simultaneously in split panes within a single window. Each pane shows the agent name and current working directory, so there is no ambiguity about what is running where.</p>
+
+            <p><strong>Shared project memory.</strong> When you set a working directory for a workspace, every agent session within that workspace starts in the right place. No more <code>cd /path/to/project</code> in every new terminal.</p>
+
+            <p>The keyboard shortcuts keep things fast: <span class="kbd">Cmd+T</span> for a new tab, <span class="kbd">Cmd+D</span> for a vertical split, <span class="kbd">Cmd+Shift+D</span> for a horizontal split, and <span class="kbd">Cmd+1/2/3</span> to jump between tabs.</p>
+
+            <div class="highlight">
+                <h3>The Practical Difference</h3>
+                <p>With tmux, setting up a three-agent workspace takes 2-3 minutes of manual configuration every time. With Beam, you set it up once, save the workspace, and it is a single click to restore. Over weeks of development, that saved setup time compounds into hours.</p>
+            </div>
+
+            <h2>Tips for Getting the Most Out of Multi-Agent Workflows</h2>
+
+            <p>After running this workflow daily, here are the patterns that matter most:</p>
+
+            <p><strong>Keep agent prompts focused and scoped.</strong> The more specific your task assignment, the better the output. "Write the user service" is worse than "Implement getPreferences and updatePreference methods following our existing service pattern in src/services/user.ts."</p>
+
+            <p><strong>Use git branches as isolation boundaries.</strong> Each agent can work on its own branch. Merge them together after review. This gives you clean diffs and easy rollback if one agent's output is not up to par.</p>
+
+<pre><code># Create isolated branches for each agent's work
+git checkout -b feat/notifications-model    # for Claude
+git checkout -b feat/notifications-tests    # for Codex
+git checkout -b feat/notifications-docs     # for Gemini</code></pre>
+
+            <p><strong>Review output before letting agents build on each other's work.</strong> The sync points are not optional. If Claude produces a flawed data model, you do not want Codex writing 50 tests against it. Take 60 seconds to review before starting Phase 2.</p>
+
+            <p><strong>Match the agent to the model's training strengths.</strong> This will shift as models improve, but right now: Claude for anything requiring multi-step reasoning, Gemini for anything requiring large input processing, Codex for anything requiring structured pattern following.</p>
+
+            <p><strong>Do not over-parallelize.</strong> Three agents is the sweet spot for most features. More than that and the coordination overhead starts eating into the time savings. If a feature is complex enough to warrant more agents, it is probably complex enough to break into separate features.</p>
+
+            <h2>When to Use One Agent vs. Three</h2>
+
+            <p>Multi-agent workflows are not always the right call. Here is a quick decision framework:</p>
+
+            <p><strong>Use a single agent when:</strong></p>
+            <ul>
+                <li>The task is small and self-contained (a bug fix, a config change)</li>
+                <li>All the work touches the same files</li>
+                <li>You need deep back-and-forth conversation with context building</li>
+            </ul>
+
+            <p><strong>Use multiple agents when:</strong></p>
+            <ul>
+                <li>The feature naturally decomposes into independent subtasks</li>
+                <li>Different subtasks require different agent strengths</li>
+                <li>You are time-constrained and need parallel throughput</li>
+                <li>The work spans distinct parts of the codebase (API, tests, docs, frontend)</li>
+            </ul>
+
+            <p>Most feature work falls into the second category. If your feature touches both backend and frontend, if it needs tests and documentation, if it requires both research and implementation -- that is a multi-agent problem.</p>
+
+            <div class="cta-box">
+                <h3>Run All Your Agents From One Place</h3>
+                <p>Beam gives you multi-agent orchestration with organized workspaces, split panes, and 1-click agent installs. Set up your three-agent workflow once and reuse it on every feature.</p>
+                <a href="../" class="btn">Download Beam Free</a>
+            </div>
+
+            <div class="related-articles">
+                <h2>Related Articles</h2>
+                <div class="related-grid">
+                    <a href="claude-code-and-codex-together.html" class="related-card">
+                        <h4>How to Use Claude Code and Codex Together on One Project</h4>
+                        <p>Dual-agent workflows, shared memory, and organized workspaces.</p>
+                    </a>
+                    <a href="multi-agent-coding-orchestration-guide.html" class="related-card">
+                        <h4>Multi-Agent Coding Workflows: Orchestrate AI Agents</h4>
+                        <p>Coordinate multiple AI agents collaborating on your codebase.</p>
+                    </a>
+                    <a href="beam-gemini-cli-support.html" class="related-card">
+                        <h4>Beam Now Supports Gemini CLI</h4>
+                        <p>One-click auto-install for Claude Code, Gemini, Codex, and more.</p>
+                    </a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 <a href="../">Beam</a> by NextUp Technologies</p>
+        </div>
+    </footer>
+</body>
+</html>

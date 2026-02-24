@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D0XH8B0RKL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-D0XH8B0RKL');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Persistent Memory Pattern: How to Make AI Agents Remember Everything | Beam</title>
+    <meta name="description" content="AI coding agents forget everything between sessions. Learn the persistent memory pattern — a simple, file-based system that gives Claude Code, Gemini CLI, and Codex perfect recall across sessions.">
+    <meta name="keywords" content="AI agent persistent memory, Claude Code memory, AI agent context between sessions, project memory file, AI coding agent memory 2026">
+    <meta name="author" content="Frank Albanese">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://getbeam.dev/blog/persistent-memory-pattern-ai-agents.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://getbeam.dev/blog/persistent-memory-pattern-ai-agents.html">
+    <meta property="og:title" content="The Persistent Memory Pattern: How to Make AI Agents Remember Everything">
+    <meta property="og:description" content="AI coding agents forget everything between sessions. Learn the persistent memory pattern — one Markdown file that gives every agent perfect recall.">
+    <meta property="og:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="The Persistent Memory Pattern: How to Make AI Agents Remember Everything">
+    <meta name="twitter:description" content="AI coding agents forget everything between sessions. Learn the persistent memory pattern — one Markdown file that gives every agent perfect recall.">
+    <meta name="twitter:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "The Persistent Memory Pattern: How to Make AI Agents Remember Everything",
+        "description": "AI coding agents forget everything between sessions. Learn the persistent memory pattern — a simple, file-based system that gives Claude Code, Gemini CLI, and Codex perfect recall across sessions.",
+        "author": {
+            "@type": "Person",
+            "name": "Frank Albanese"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Beam"
+        },
+        "datePublished": "2026-02-24",
+        "keywords": "AI agent persistent memory, Claude Code memory, AI agent context between sessions, project memory file, AI coding agent memory 2026"
+    }
+    </script>
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root { --bg-primary: #0a0a0b; --bg-secondary: #111113; --bg-tertiary: #1a1a1d; --accent: #3b82f6; --accent-glow: rgba(59, 130, 246, 0.4); --text-primary: #fafafa; --text-secondary: #a1a1aa; --text-muted: #71717a; --border: #27272a; --success: #22c55e; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        a, button, .btn, .related-card { cursor: pointer; }
+        body { font-family: 'Space Grotesk', -apple-system, sans-serif; background: var(--bg-primary); color: var(--text-primary); line-height: 1.8; }
+        .container { max-width: 800px; margin: 0 auto; padding: 0 24px; }
+        header { padding: 24px 0; border-bottom: 1px solid var(--border); margin-bottom: 60px; }
+        header .container { display: flex; justify-content: space-between; align-items: center; }
+        .logo { display: flex; align-items: center; gap: 12px; font-weight: 700; font-size: 1.5rem; text-decoration: none; color: var(--text-primary); }
+        .logo-icon { width: 36px; height: 36px; background: linear-gradient(135deg, var(--accent), #8b5cf6); border-radius: 8px; display: flex; align-items: center; justify-content: center; }
+        .btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; border-radius: 8px; font-weight: 600; font-size: 0.95rem; text-decoration: none; background: var(--accent); color: white; transition: all 0.2s; }
+        .btn:hover { background: #2563eb; transform: translateY(-2px); }
+        article { padding-bottom: 80px; }
+        .breadcrumb { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 24px; }
+        .breadcrumb a { color: var(--accent); text-decoration: none; }
+        h1 { font-size: 2.5rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 16px; line-height: 1.2; }
+        .meta { color: var(--text-muted); margin-bottom: 40px; font-size: 0.95rem; }
+        h2 { font-size: 1.5rem; font-weight: 600; margin: 48px 0 20px; color: var(--text-primary); }
+        h3 { font-size: 1.2rem; font-weight: 600; margin: 32px 0 16px; color: var(--text-primary); }
+        p { color: var(--text-secondary); margin-bottom: 20px; font-size: 1.05rem; }
+        ul, ol { color: var(--text-secondary); margin-bottom: 20px; padding-left: 24px; }
+        li { margin-bottom: 12px; }
+        code { font-family: 'JetBrains Mono', monospace; background: var(--bg-tertiary); padding: 2px 6px; border-radius: 4px; font-size: 0.9rem; }
+        pre { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 8px; padding: 20px; margin: 20px 0; overflow-x: auto; }
+        pre code { background: none; padding: 0; font-size: 0.85rem; line-height: 1.6; }
+        .highlight { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 24px; margin: 32px 0; }
+        .highlight h3 { font-size: 1.1rem; margin-bottom: 12px; margin-top: 0; color: var(--text-primary); }
+        .kbd { display: inline-block; padding: 2px 8px; background: var(--bg-tertiary); border: 1px solid var(--border); border-radius: 4px; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; }
+        .cta-box { background: linear-gradient(135deg, var(--accent), #8b5cf6); border-radius: 16px; padding: 40px; text-align: center; margin: 60px 0; }
+        .cta-box h3 { font-size: 1.5rem; margin-bottom: 12px; margin-top: 0; }
+        .cta-box p { color: rgba(255,255,255,0.8); margin-bottom: 24px; }
+        .cta-box .btn { background: white; color: var(--accent); }
+        footer { padding: 40px 0; border-top: 1px solid var(--border); text-align: center; color: var(--text-muted); font-size: 0.9rem; }
+        footer a { color: var(--text-secondary); text-decoration: none; }
+        .related-articles { margin-top: 60px; padding-top: 40px; border-top: 1px solid var(--border); }
+        .related-articles h2 { font-size: 1.5rem; margin-bottom: 24px; }
+        .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .related-card { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-decoration: none; transition: border-color 0.2s; }
+        .related-card:hover { border-color: var(--accent); }
+        .related-card h4 { color: white; font-size: 1rem; margin: 0 0 8px 0; }
+        .related-card p { color: var(--text-muted); font-size: 0.85rem; margin: 0; }
+        @media (max-width: 600px) { h1 { font-size: 1.8rem; } .related-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="../" class="logo">
+                <div class="logo-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round">
+                        <path d="M4 17l6-6-6-6M12 19h8"/>
+                    </svg>
+                </div>
+                Beam
+            </a>
+            <a href="../" class="btn">Download Beam</a>
+        </div>
+    </header>
+
+    <main>
+        <article class="container">
+            <div class="breadcrumb">
+                <a href="../">Beam</a> / <a href="../#guides">Blog</a> / The Persistent Memory Pattern
+            </div>
+
+            <h1>The Persistent Memory Pattern: How to Make AI Agents Remember Everything</h1>
+            <p class="meta">February 24, 2026 &bull; Frank Albanese &bull; 9 min read</p>
+
+            <p>You spend twenty minutes explaining your project to Claude Code. The architecture, the naming conventions, the reason you chose Postgres over SQLite, the build command that actually works. The agent produces exactly what you need. You close the session. The next morning, you open a new session and type a follow-up question. The agent has no idea what you are talking about. Every decision from yesterday is gone.</p>
+
+            <p>This is the number one complaint developers have about AI coding agents in 2026. Not the quality of the code. Not the speed. The <strong>amnesia</strong>. And it is entirely solvable with a pattern so simple that once you learn it, you will wonder why it is not the default for every project.</p>
+
+            <h2>Why AI Agents Forget Everything</h2>
+
+            <p>Before the fix, it helps to understand the problem. AI coding agents like Claude Code, Gemini CLI, and OpenAI Codex are <strong>session-based</strong> by design. Each session is an isolated conversation with a fixed context window. When the session ends, the conversation is discarded. There is no built-in mechanism to carry state from one session to the next.</p>
+
+            <p>Three forces work against persistent context:</p>
+
+            <ul>
+                <li><strong>Session isolation.</strong> Each new terminal session starts a fresh conversation. The agent has zero knowledge of any prior session unless you explicitly provide it. This is a feature for privacy and safety, but a frustration for continuity.</li>
+                <li><strong>No built-in persistence.</strong> None of the major AI coding agents ship with a native, automatic memory system that persists project context to disk between sessions. Some have experimental memory features, but they are opt-in, partial, and inconsistent across tools.</li>
+                <li><strong>Token limits.</strong> Even within a single long session, the agent eventually hits its context window ceiling. Early conversation details get compressed or dropped. A four-hour session does not mean the agent remembers hour one with the same fidelity as hour four.</li>
+            </ul>
+
+            <p>The result is a paradox: the more you work with an agent, the more valuable the accumulated context becomes, and the more painful it is when that context vanishes.</p>
+
+            <h2>The Persistent Memory Pattern</h2>
+
+            <p>The fix is one Markdown file per project, stored on disk, read by the agent at the start of every session and updated at the end. That is the entire pattern. No database. No cloud sync. No proprietary format. One <code>.md</code> file that lives next to your code (or in your home directory) and acts as the agent&rsquo;s long-term memory.</p>
+
+            <p>The pattern works because every major AI coding agent can read files from disk. Claude Code reads <code>CLAUDE.md</code>. Gemini CLI reads <code>GEMINI.md</code>. Codex reads <code>AGENTS.md</code>. But the principle is universal: if you put a well-structured file where the agent can find it and tell the agent to read it, the agent will have context.</p>
+
+            <div class="highlight">
+                <h3>The core idea</h3>
+                <p>A persistent memory file is a plain Markdown document that captures everything an AI agent needs to know about your project to be productive from the first prompt. It is both human-readable and agent-readable. You and the agent co-maintain it.</p>
+            </div>
+
+            <h2>What Goes in the Memory File</h2>
+
+            <p>A good memory file is not a dump of your entire codebase. It is the <strong>minimum context the agent needs to make correct decisions</strong> without asking you to re-explain things. Through months of refining this pattern across dozens of projects, the following sections have proven essential:</p>
+
+            <ul>
+                <li><strong>Project overview.</strong> One paragraph: what the project is, what it does, what stage it is at. This orients the agent instantly.</li>
+                <li><strong>Tech stack.</strong> Languages, frameworks, major dependencies, and their versions. The agent needs to know whether you are on React 18 or React 19, whether you use npm or pnpm, whether your backend is Express or Hono.</li>
+                <li><strong>Architecture decisions.</strong> The choices that are not obvious from the code alone. Why you chose a monorepo. Why authentication is handled by a separate service. Why you use Zustand instead of Redux. These prevent the agent from suggesting alternatives you have already rejected.</li>
+                <li><strong>Key file paths.</strong> The ten to fifteen most important files in the project. Entry points, configuration files, the main router, the database schema. This saves the agent from exploring your entire file tree to find what matters.</li>
+                <li><strong>Conventions.</strong> Naming patterns, file organization rules, testing standards, commit message format. Anything that is implicit knowledge in your team&rsquo;s heads but is not enforced by a linter.</li>
+                <li><strong>Build and run commands.</strong> The exact commands to build, test, lint, and deploy. Not the commands in the README that are three versions out of date &mdash; the commands that actually work today.</li>
+                <li><strong>Current status and recent decisions.</strong> What you shipped last week, what you are working on now, what is blocked. This is the section that changes most often and provides the most value session to session.</li>
+            </ul>
+
+            <h2>A Real Memory File Template</h2>
+
+            <p>Here is a complete, production-tested template you can copy into any project. Every section is intentional. Remove what does not apply, but think carefully before removing anything &mdash; each section exists because its absence caused a real problem in a real project.</p>
+
+<pre><code># Project Memory &mdash; [Project Name]
+
+## Overview
+[One paragraph: what this project is, who it serves, current stage]
+
+## Tech Stack
+- **Language**: TypeScript 5.4
+- **Framework**: Next.js 15 (App Router)
+- **Database**: PostgreSQL 16 + Drizzle ORM
+- **Auth**: NextAuth.js v5
+- **Styling**: Tailwind CSS 4
+- **Package manager**: pnpm 9
+- **Node version**: 22 LTS
+
+## Architecture
+- Monorepo with apps/web and packages/shared
+- Server components by default, client only when interactive
+- API routes under app/api/, all return JSON
+- Database migrations in packages/shared/drizzle/
+- Feature-based folder structure inside app/
+
+## Key Files
+- `apps/web/app/layout.tsx` &mdash; root layout, providers
+- `apps/web/app/api/` &mdash; all API routes
+- `packages/shared/src/db/schema.ts` &mdash; database schema
+- `packages/shared/src/db/index.ts` &mdash; database client
+- `apps/web/middleware.ts` &mdash; auth + redirect logic
+- `drizzle.config.ts` &mdash; migration config
+- `turbo.json` &mdash; monorepo task config
+
+## Conventions
+- File names: kebab-case
+- Components: PascalCase, one per file
+- Server actions in dedicated .action.ts files
+- All database queries go through repository pattern
+- Tests: colocated __tests__ folders, Vitest
+- Commits: conventional commits (feat:, fix:, chore:)
+
+## Commands
+- `pnpm dev` &mdash; start dev server (port 3000)
+- `pnpm build` &mdash; production build
+- `pnpm test` &mdash; run all tests
+- `pnpm db:push` &mdash; push schema changes
+- `pnpm db:migrate` &mdash; run migrations
+- `pnpm lint` &mdash; ESLint + Prettier check
+
+## Current Status
+- **v2.1.0** shipped Feb 20 &mdash; added team invitations
+- Working on: billing integration (Stripe)
+- Blocked: waiting on Stripe webhook endpoint approval
+- Next: usage-based pricing tier (after billing ships)
+
+## Decisions Log
+- 2026-02-18: Chose Drizzle over Prisma for type-safe SQL
+- 2026-02-14: Switched from Redis to PostgreSQL for sessions
+- 2026-02-10: Moved to App Router from Pages Router
+- 2026-02-06: Adopted conventional commits for changelog gen</code></pre>
+
+            <p>This template runs around 350 tokens &mdash; roughly 1% of a typical context window. The return on that 1% investment is enormous. The agent understands your project from the first prompt instead of the tenth.</p>
+
+            <h2>The Workflow: Load, Work, Save</h2>
+
+            <p>The memory file is only useful if it stays current. Here is the three-step workflow that keeps it alive:</p>
+
+            <h3>1. Load at session start</h3>
+
+            <p>When you open a new agent session, the first thing you do (or the first thing your tooling does for you) is tell the agent to read the memory file. With Claude Code, this can be as simple as placing a <code>CLAUDE.md</code> file in your project root &mdash; the agent reads it automatically. For other agents, you can prompt it directly:</p>
+
+<pre><code>Read the file ~/MyProject.md for project context
+before starting any work.</code></pre>
+
+            <p>The agent ingests the file, and now it knows your architecture, your conventions, your current status, and every decision you have made. No re-explaining.</p>
+
+            <h3>2. Work normally</h3>
+
+            <p>During the session, work as you usually would. The agent has context, so its suggestions and code generation will be aligned with your project from the start. If you make a significant decision &mdash; a new dependency, an architecture change, a convention update &mdash; make a mental note.</p>
+
+            <h3>3. Save at session end</h3>
+
+            <p>Before closing the session, tell the agent to update the memory file with anything new:</p>
+
+<pre><code>Update ~/MyProject.md with what we accomplished today
+and any decisions we made.</code></pre>
+
+            <p>The agent appends the new information. The next session starts with everything the previous session knew, plus everything it learned. Knowledge accumulates. Your agent gets smarter over time.</p>
+
+            <div class="highlight">
+                <h3>Why this works better than chat history</h3>
+                <p>You might think that saving the full chat log would be better than a curated memory file. It is not. Chat logs are verbose, full of false starts and corrections, and quickly exceed token limits. A memory file is <strong>distilled knowledge</strong> &mdash; the conclusions without the conversation that led to them. It is dense, accurate, and fits in any context window.</p>
+            </div>
+
+            <h2>Interoperability: One File, Every Agent</h2>
+
+            <p>One of the most powerful properties of this pattern is that the memory file is <strong>agent-agnostic</strong>. It is plain Markdown. Any agent that can read a file can use it. This means you can switch between Claude Code, Gemini CLI, and Codex without losing project context.</p>
+
+            <p>In practice, here is what interoperability looks like:</p>
+
+            <ul>
+                <li><strong>Claude Code</strong> natively reads <code>CLAUDE.md</code> from your project root or <code>~/.claude/</code> directory. You can also point it at any file with a prompt.</li>
+                <li><strong>Gemini CLI</strong> reads <code>GEMINI.md</code> from the project root. It supports the same Markdown format.</li>
+                <li><strong>OpenAI Codex</strong> reads <code>AGENTS.md</code> from the project root or any file you reference.</li>
+            </ul>
+
+            <p>The simplest interoperability strategy is to maintain a single canonical memory file (for example, <code>PROJECT_MEMORY.md</code> in your project root) and either symlink it to the agent-specific filenames or reference it in your first prompt. The content is identical regardless of which agent reads it.</p>
+
+<pre><code># Symlink for all agents to read the same memory file
+ln -s PROJECT_MEMORY.md CLAUDE.md
+ln -s PROJECT_MEMORY.md GEMINI.md
+ln -s PROJECT_MEMORY.md AGENTS.md</code></pre>
+
+            <p>Now every agent that touches your project reads from the same source of truth. Decisions made in a Claude Code session are visible to Gemini CLI in the next session. There is no vendor lock-in on your project knowledge.</p>
+
+            <h2>How Beam Automates the Entire Pattern</h2>
+
+            <p>The persistent memory pattern is powerful even when managed manually. But manual management introduces friction: you have to remember to load the file, remember to save it, and keep it consistent across projects. Beam eliminates that friction entirely.</p>
+
+            <p><strong>1-click install.</strong> Click <strong>Install Project Memory</strong> in the Beam toolbar. Beam sends a prompt to your active agent session instructing it to read the project memory file. No copy-pasting file paths. No remembering which file to reference. One click.</p>
+
+            <p><strong>1-click save.</strong> At the end of a session, click <strong>Save Memory</strong>. Beam prompts the agent to update the memory file with new decisions, changes, and status. The next session starts with everything the last session knew.</p>
+
+            <p><strong>Memory Manager.</strong> Beam includes a visual Memory Manager that shows all your projects and their associated memory files. You can see which files exist, edit them directly, and customize the file path for each project.</p>
+
+            <p><strong>Shared across agents.</strong> Because Beam manages the memory file at the project level (not the agent level), the same file is available to every agent session in that project. Start a session with Claude Code, switch to Gemini CLI &mdash; the memory follows the project, not the tool.</p>
+
+            <p><strong>Works across workspaces.</strong> Beam&rsquo;s project system ties memory to your workspace. Open a project, and its memory is there. Switch to another project, and its memory is there. No manual file management, no path confusion.</p>
+
+            <div class="highlight">
+                <h3>The compound effect</h3>
+                <p>The real value of automated memory is not any single session. It is the accumulation over weeks and months. A memory file that has been maintained for 60 days contains architecture decisions, bug fix context, performance optimizations, and lessons learned that would take hours to re-explain manually. The agent that reads that file on day 61 is dramatically more useful than an agent starting cold.</p>
+            </div>
+
+            <h2>Common Mistakes to Avoid</h2>
+
+            <p>The pattern is simple, but there are pitfalls that reduce its effectiveness:</p>
+
+            <ul>
+                <li><strong>Putting too much in the file.</strong> A memory file is not documentation. It should be under 500 lines. If it grows beyond that, you are including implementation details that belong in code comments, not in the memory file. Keep it to decisions, conventions, and current status.</li>
+                <li><strong>Never updating it.</strong> A memory file from three weeks ago is worse than no memory file. It gives the agent confident but outdated context. If you switched from REST to GraphQL last week and the memory file still says REST, the agent will generate REST endpoints. Update the file or do not use it.</li>
+                <li><strong>Making it agent-specific.</strong> Do not write "Dear Claude, please remember..." in your memory file. Write it as a neutral project reference document. This keeps it usable across agents and readable by humans.</li>
+                <li><strong>Skipping the decisions log.</strong> The decisions log is the most valuable section for preventing repeated debates. Without it, the agent will suggest things you have already considered and rejected, and you will waste time explaining why.</li>
+            </ul>
+
+            <h2>Getting Started Today</h2>
+
+            <p>You can implement the persistent memory pattern in under five minutes:</p>
+
+            <ol>
+                <li><strong>Create the file.</strong> Copy the template from this article into a file called <code>CLAUDE.md</code> (or <code>PROJECT_MEMORY.md</code>) in your project root.</li>
+                <li><strong>Fill in the sections.</strong> Spend five minutes filling in your tech stack, key files, and current status. It does not need to be perfect. A partial memory file is infinitely better than no memory file.</li>
+                <li><strong>Tell the agent.</strong> At the start of your next session, tell the agent to read the file. Watch how different the interaction feels when the agent already knows your project.</li>
+                <li><strong>Update before closing.</strong> At the end of the session, tell the agent to update the file. The next session will be even better.</li>
+            </ol>
+
+            <p>Or, if you want it automated: download Beam, create a project, and click <strong>Install Project Memory</strong>. The workflow handles itself from there.</p>
+
+            <p>The persistent memory pattern is one of those ideas that feels obvious in retrospect. Of course the agent should remember what happened yesterday. Of course there should be a file on disk that carries context between sessions. The tools just have not made it automatic yet. Until they do, a Markdown file and a simple workflow will give you something that most developers still do not have: an AI agent that actually knows your project.</p>
+
+            <div class="cta-box">
+                <h3>Stop Re-Explaining Your Project Every Session</h3>
+                <p>Beam automates the persistent memory pattern. 1-click install, 1-click save, shared across every agent. Free to try.</p>
+                <a href="../" class="btn">Download Beam Free</a>
+            </div>
+
+            <div class="related-articles">
+                <h2>Related Articles</h2>
+                <div class="related-grid">
+                    <a href="ai-agent-memory-management.html" class="related-card">
+                        <h4>AI Agent Memory Management</h4>
+                        <p>How to give Claude Code persistent context with Beam's memory system.</p>
+                    </a>
+                    <a href="interoperable-ai-agent-memory.html" class="related-card">
+                        <h4>Interoperable AI Agent Memory</h4>
+                        <p>One memory file that works across Claude Code, Gemini CLI, and Codex.</p>
+                    </a>
+                    <a href="ai-agent-project-memory-guide.html" class="related-card">
+                        <h4>AI Agent Project Memory Guide</h4>
+                        <p>A complete guide to structuring project memory for AI coding agents.</p>
+                    </a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>
+                <a href="../">Beam</a> &bull; Terminal Organizer for macOS, Windows &amp; Linux &bull;
+                <a href="mailto:frank@nextuptechnologies.co">Contact</a>
+            </p>
+            <p style="margin-top: 12px; font-size: 0.8rem;">
+                <a href="/privacy.html" style="color: #71717a; text-decoration: none;">Privacy Policy</a> &bull;
+                <a href="/terms.html" style="color: #71717a; text-decoration: none;">Terms of Service</a>
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>

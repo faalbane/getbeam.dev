@@ -9,6 +9,46 @@
     <atom:link href="https://getbeam.dev/blog/feed.xml" rel="self" type="application/rss+xml"/>
 
     <item>
+      <title>How to Run Claude Code, Gemini CLI, and Codex Side by Side (And Why You Should)</title>
+      <link>https://getbeam.dev/blog/run-claude-gemini-codex-side-by-side.html</link>
+      <description>Each AI agent has strengths. Run them in parallel on focused tasks and ship features in a fraction of the time.</description>
+      <pubDate>Mon, 24 Feb 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/run-claude-gemini-codex-side-by-side.html</guid>
+    </item>
+
+    <item>
+      <title>I Used tmux for 10 Years. Here's Why I Switched to Beam for AI Agents.</title>
+      <link>https://getbeam.dev/blog/tmux-to-beam-multi-agent-upgrade.html</link>
+      <description>A love letter to tmux — and an honest look at where it falls short for multi-agent AI workflows.</description>
+      <pubDate>Mon, 24 Feb 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/tmux-to-beam-multi-agent-upgrade.html</guid>
+    </item>
+
+    <item>
+      <title>Claude Code vs Gemini CLI vs Codex: When to Use Each (A Practitioner's Guide)</title>
+      <link>https://getbeam.dev/blog/claude-code-vs-gemini-vs-codex-when-to-use-each.html</link>
+      <description>Decision matrix: which agent for which task. With real benchmarks and practical examples.</description>
+      <pubDate>Mon, 24 Feb 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/claude-code-vs-gemini-vs-codex-when-to-use-each.html</guid>
+    </item>
+
+    <item>
+      <title>Multi-Agent Orchestration for Solo Developers: A Practical Guide</title>
+      <link>https://getbeam.dev/blog/multi-agent-orchestration-practical-guide.html</link>
+      <description>Think of agents as junior devs with specialties. Decompose tasks, assign agents, merge results.</description>
+      <pubDate>Mon, 24 Feb 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/multi-agent-orchestration-practical-guide.html</guid>
+    </item>
+
+    <item>
+      <title>The Persistent Memory Pattern: How to Make AI Agents Remember Everything</title>
+      <link>https://getbeam.dev/blog/persistent-memory-pattern-ai-agents.html</link>
+      <description>One Markdown file per project. Load at start, save at end. Works across Claude, Gemini, and Codex.</description>
+      <pubDate>Mon, 24 Feb 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/persistent-memory-pattern-ai-agents.html</guid>
+    </item>
+
+    <item>
       <title>Multi-Agent Orchestration: The Microservices Revolution of AI Coding in 2026</title>
       <link>https://getbeam.dev/blog/multi-agent-orchestration-2026.html</link>
       <description>Gartner reports a 1,445% surge in multi-agent inquiries. Learn how specialized agent teams and the Plan-and-Execute pattern are cutting costs 90%.</description>

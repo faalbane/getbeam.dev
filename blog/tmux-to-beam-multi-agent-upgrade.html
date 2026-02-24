@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D0XH8B0RKL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-D0XH8B0RKL');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I Used tmux for 10 Years. Here's Why I Switched to Beam for AI Agents | Beam</title>
+    <meta name="description" content="A longtime tmux user explains why multi-agent AI workflows need a different kind of terminal. Honest comparison of tmux vs Beam for running Claude Code, Codex, and other AI coding agents.">
+    <meta name="keywords" content="tmux alternative AI agents, tmux vs Beam, switch from tmux, terminal for AI coding, multi-agent terminal, tmux AI workflow, Claude Code terminal">
+    <meta name="author" content="NextUp Technologies">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://getbeam.dev/blog/tmux-to-beam-multi-agent-upgrade.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://getbeam.dev/blog/tmux-to-beam-multi-agent-upgrade.html">
+    <meta property="og:title" content="I Used tmux for 10 Years. Here's Why I Switched to Beam for AI Agents">
+    <meta property="og:description" content="A longtime tmux user explains why multi-agent AI workflows need a different kind of terminal. Honest comparison of tmux vs Beam.">
+    <meta property="og:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="I Used tmux for 10 Years. Here's Why I Switched to Beam for AI Agents">
+    <meta name="twitter:description" content="A longtime tmux user explains why multi-agent AI workflows need a different kind of terminal. Honest comparison of tmux vs Beam.">
+    <meta name="twitter:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "I Used tmux for 10 Years. Here's Why I Switched to Beam for AI Agents",
+        "description": "A longtime tmux user explains why multi-agent AI workflows need a different kind of terminal. Honest comparison of tmux vs Beam for running Claude Code, Codex, and other AI coding agents.",
+        "author": {
+            "@type": "Organization",
+            "name": "NextUp Technologies"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Beam"
+        },
+        "datePublished": "2026-02-24",
+        "keywords": "tmux alternative AI agents, tmux vs Beam, switch from tmux, terminal for AI coding, multi-agent terminal"
+    }
+    </script>
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root { --bg-primary: #0a0a0b; --bg-secondary: #111113; --bg-tertiary: #1a1a1d; --accent: #3b82f6; --accent-glow: rgba(59, 130, 246, 0.4); --text-primary: #fafafa; --text-secondary: #a1a1aa; --text-muted: #71717a; --border: #27272a; --success: #22c55e; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        a, button, .btn, .related-card { cursor: pointer; }
+        body { font-family: 'Space Grotesk', -apple-system, sans-serif; background: var(--bg-primary); color: var(--text-primary); line-height: 1.8; }
+        .container { max-width: 800px; margin: 0 auto; padding: 0 24px; }
+        header { padding: 24px 0; border-bottom: 1px solid var(--border); margin-bottom: 60px; }
+        header .container { display: flex; justify-content: space-between; align-items: center; }
+        .logo { display: flex; align-items: center; gap: 12px; font-weight: 700; font-size: 1.5rem; text-decoration: none; color: var(--text-primary); }
+        .logo-icon { width: 36px; height: 36px; background: linear-gradient(135deg, var(--accent), #8b5cf6); border-radius: 8px; display: flex; align-items: center; justify-content: center; }
+        .btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; border-radius: 8px; font-weight: 600; font-size: 0.95rem; text-decoration: none; background: var(--accent); color: white; transition: all 0.2s; }
+        .btn:hover { background: #2563eb; transform: translateY(-2px); }
+        article { padding-bottom: 80px; }
+        .breadcrumb { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 24px; }
+        .breadcrumb a { color: var(--accent); text-decoration: none; }
+        h1 { font-size: 2.5rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 16px; line-height: 1.2; }
+        .meta { color: var(--text-muted); margin-bottom: 40px; font-size: 0.95rem; }
+        h2 { font-size: 1.5rem; font-weight: 600; margin: 48px 0 20px; color: var(--text-primary); }
+        h3 { font-size: 1.2rem; font-weight: 600; margin: 32px 0 16px; color: var(--text-primary); }
+        p { color: var(--text-secondary); margin-bottom: 20px; font-size: 1.05rem; }
+        ul, ol { color: var(--text-secondary); margin-bottom: 20px; padding-left: 24px; }
+        li { margin-bottom: 12px; }
+        code { font-family: 'JetBrains Mono', monospace; background: var(--bg-tertiary); padding: 2px 6px; border-radius: 4px; font-size: 0.9rem; }
+        pre { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 8px; padding: 20px; margin: 20px 0; overflow-x: auto; }
+        pre code { background: none; padding: 0; font-size: 0.85rem; line-height: 1.6; }
+        .highlight { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 24px; margin: 32px 0; }
+        .highlight h3 { font-size: 1.1rem; margin-bottom: 12px; margin-top: 0; color: var(--text-primary); }
+        .kbd { display: inline-block; padding: 2px 8px; background: var(--bg-tertiary); border: 1px solid var(--border); border-radius: 4px; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; }
+        .cta-box { background: linear-gradient(135deg, var(--accent), #8b5cf6); border-radius: 16px; padding: 40px; text-align: center; margin: 60px 0; }
+        .cta-box h3 { font-size: 1.5rem; margin-bottom: 12px; margin-top: 0; }
+        .cta-box p { color: rgba(255,255,255,0.8); margin-bottom: 24px; }
+        .cta-box .btn { background: white; color: var(--accent); }
+        footer { padding: 40px 0; border-top: 1px solid var(--border); text-align: center; color: var(--text-muted); font-size: 0.9rem; }
+        footer a { color: var(--text-secondary); text-decoration: none; }
+        .related-articles { margin-top: 60px; padding-top: 40px; border-top: 1px solid var(--border); }
+        .related-articles h2 { font-size: 1.5rem; margin-bottom: 24px; }
+        .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .related-card { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-decoration: none; transition: border-color 0.2s; }
+        .related-card:hover { border-color: var(--accent); }
+        .related-card h4 { color: white; font-size: 1rem; margin: 0 0 8px 0; }
+        .related-card p { color: var(--text-muted); font-size: 0.85rem; margin: 0; }
+        @media (max-width: 600px) { h1 { font-size: 1.8rem; } .related-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="../" class="logo">
+                <div class="logo-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round">
+                        <path d="M4 17l6-6-6-6M12 19h8"/>
+                    </svg>
+                </div>
+                Beam
+            </a>
+            <a href="../" class="btn">Download Beam</a>
+        </div>
+    </header>
+
+    <main>
+        <article class="container">
+            <div class="breadcrumb">
+                <a href="../">Beam</a> / <a href="../#guides">Guides</a> / tmux to Beam for AI Agents
+            </div>
+
+            <h1>I Used tmux for 10 Years. Here's Why I Switched to Beam for AI Agents</h1>
+            <p class="meta">February 24, 2026 &bull; 8 min read</p>
+
+            <p>Let me be clear up front: tmux is one of the finest pieces of software ever written. I have used it nearly every day for over a decade. My <code>.tmux.conf</code> is 200+ lines of carefully accumulated muscle memory. I still SSH into production boxes and immediately type <code>tmux attach</code> without thinking. None of that is changing.</p>
+
+            <p>But six months ago, my daily workflow shifted. I stopped writing most code by hand and started orchestrating AI agents instead. Claude Code in one terminal. A second agent reviewing its output. A dev server watching for changes. A git log tailing in a split pane. Multiply that by two or three active projects and suddenly my tmux setup &mdash; the setup I spent years perfecting &mdash; started to feel like the wrong tool for the job.</p>
+
+            <p>This is the story of what broke, what I tried, and why I eventually settled on Beam for my local multi-agent development workflow. I will be honest about the tradeoffs. tmux is not going anywhere, and for many tasks it remains unmatched.</p>
+
+            <h2>A Love Letter to tmux</h2>
+
+            <p>If you are reading this, you probably already know why tmux is great. But let me say it anyway, because I think the context matters.</p>
+
+            <p>tmux is the closest thing we have to a universal terminal multiplexer. It runs everywhere. It survives SSH disconnects. It has zero dependencies beyond a C compiler and libevent. The keybinding system is infinitely composable. The scripting API lets you automate anything. And it is rock-solid &mdash; I have had tmux sessions running for months on production servers without a single hiccup.</p>
+
+            <p>For server administration, remote pair programming, and long-running processes on headless machines, tmux is still the right answer. Full stop. Nothing I write below changes that.</p>
+
+            <p>The issue is not tmux itself. The issue is that AI agent workflows introduced a set of requirements that tmux was never designed to solve.</p>
+
+            <h2>Where tmux Falls Short for AI Agent Workflows</h2>
+
+            <p>When you run multiple AI coding agents simultaneously, a few friction points compound quickly:</p>
+
+            <h3>No 1-Click Agent Installation</h3>
+
+            <p>Every time I set up a new machine or helped a teammate get started, the same ritual played out: install Node, install the Claude CLI, configure API keys, set up the right shell integration. In tmux, each of those steps is manual. There is no concept of "this terminal should have Claude Code ready to go." You are always starting from raw shell.</p>
+
+            <h3>No Persistent Memory Across Sessions</h3>
+
+            <p>AI agents work best with context. Claude Code uses <code>CLAUDE.md</code> files, project-specific instructions, and memory that persists across conversations. But tmux sessions are ephemeral by nature. Kill the session, lose the context. Yes, you can script around this with <code>tmux-resurrect</code> or <code>tmux-continuum</code>, but those plugins restore pane layouts, not the semantic context your agents were operating in.</p>
+
+            <h3>No Project-Aware Workspaces</h3>
+
+            <p>tmux sessions are just named groups of windows. They have no concept of "this session is for Project X and should start in <code>/home/user/project-x</code> with these environment variables loaded." You can script this with <code>tmuxinator</code> or <code>tmux-sessionizer</code>, but now you are maintaining YAML files or shell scripts for every project. It works. It is also another thing to maintain.</p>
+
+            <h3>Manual Session Naming and Navigation</h3>
+
+            <p>With three projects and four agents each, you end up with a dozen tmux windows. Switching between them means either memorizing window numbers or using <code>prefix + w</code> to get a list. Compare that to a fuzzy-search quick switcher where you type "backend claude" and jump directly to the right pane.</p>
+
+            <h2>The Weekend of Yak-Shaving</h2>
+
+            <p>Naturally, my first instinct was to solve all of this inside tmux. I have done this before. I wrote custom scripts, set up <code>tmuxinator</code> configs for each project, built a little shell wrapper that would spawn a named session with the right working directory and pre-run <code>claude</code> in the first pane.</p>
+
+            <p>It looked something like this:</p>
+
+<pre><code># ~/.local/bin/agent-session
+#!/bin/bash
+PROJECT=$1
+SESSION="ai-${PROJECT}"
+
+tmux new-session -d -s "$SESSION" -c "$HOME/src/$PROJECT"
+tmux rename-window -t "$SESSION:0" "claude-1"
+tmux send-keys -t "$SESSION:0" "claude" Enter
+
+tmux new-window -t "$SESSION" -n "claude-2" -c "$HOME/src/$PROJECT"
+tmux send-keys -t "$SESSION:1" "claude" Enter
+
+tmux new-window -t "$SESSION" -n "devserver" -c "$HOME/src/$PROJECT"
+tmux send-keys -t "$SESSION:2" "npm run dev" Enter
+
+tmux new-window -t "$SESSION" -n "git" -c "$HOME/src/$PROJECT"
+
+tmux attach -t "$SESSION"</code></pre>
+
+            <p>This worked. For one project. Then I needed to handle the case where the session already exists. Then I wanted split panes instead of separate windows for certain layouts. Then I wanted to save and restore layouts per project. Then I wanted the agent sessions to auto-restart if they crashed.</p>
+
+            <p>I spent an entire weekend on this. By Sunday night I had a 400-line Bash script, three tmuxinator YAML files, and a growing suspicion that I was solving the wrong problem.</p>
+
+            <div class="highlight">
+                <h3>The Yak-Shaving Test</h3>
+                <p>If you are a tmux power user, ask yourself honestly: how many hours have you spent configuring your terminal environment versus actually using it to build things? There is a point where the meta-work exceeds the actual work. For me, multi-agent orchestration was that inflection point.</p>
+            </div>
+
+            <h2>What Beam Adds on Top</h2>
+
+            <p>Beam is not a tmux replacement in the way that, say, Zellij is. It is a different category. Beam is a native macOS terminal built specifically for the workflow where you are running multiple AI coding agents across multiple projects simultaneously. Here is what shifted my daily routine:</p>
+
+            <h3>Agent Auto-Install</h3>
+
+            <p>Open Beam, click the agent button, and Claude Code is installed and ready. No manual Node setup, no CLI configuration dance. The agent is a first-class citizen in the terminal, not a process you happen to run inside it.</p>
+
+            <h3>Project System with Working Directories</h3>
+
+            <p>Create a project in Beam and it remembers the working directory, the workspace layout, and which agents you had running. Switch between projects with <span class="kbd">&#8984;P</span> and the entire context snaps back &mdash; not just the pane layout, but the right directory, the right environment, and the right configuration.</p>
+
+            <h3>Shared Memory Files</h3>
+
+            <p>Beam understands the <code>CLAUDE.md</code> convention natively. Your agent memory persists across sessions and is visible to every agent in the project. In tmux, this is a file on disk that you manage yourself. In Beam, it is a first-class part of the workflow.</p>
+
+            <h3>50+ Keyboard Shortcuts</h3>
+
+            <p>I was worried about losing tmux's keyboard-driven workflow. That concern evaporated quickly. Beam has over 50 shortcuts: <span class="kbd">&#8984;T</span> for new tab, <span class="kbd">&#8984;N</span> for new workspace, <span class="kbd">&#8984;&#8997;&#8963;T</span> for split pane, <span class="kbd">&#8984;&#8997;&larr;&rarr;</span> to switch workspaces. The muscle memory transfers faster than you would expect because the keybindings follow macOS conventions you already know.</p>
+
+            <h3>Visual Workspace Hierarchy</h3>
+
+            <p>This is the one I did not know I needed. Beam gives you a sidebar showing all your workspaces, tabs, and split panes in a tree. When you have eight agents running across three projects, being able to glance at a sidebar and see the full picture is worth more than any status bar configuration.</p>
+
+            <h2>Side-by-Side: 3-Agent Workflow Setup</h2>
+
+            <p>Let me show the concrete difference. Same goal: set up a project with three Claude Code agents &mdash; one for frontend, one for backend, one for tests &mdash; plus a dev server.</p>
+
+            <div class="highlight">
+                <h3>tmux: ~15 Commands</h3>
+<pre><code># Create session
+tmux new-session -d -s myapp -c ~/src/myapp
+
+# Window 1: Frontend agent
+tmux rename-window -t myapp:0 "frontend"
+tmux send-keys -t myapp:0 "claude" Enter
+
+# Window 2: Backend agent
+tmux new-window -t myapp -n "backend" -c ~/src/myapp
+tmux send-keys -t myapp:1 "claude" Enter
+
+# Window 3: Test agent
+tmux new-window -t myapp -n "tests" -c ~/src/myapp
+tmux send-keys -t myapp:2 "claude" Enter
+
+# Window 4: Dev server
+tmux new-window -t myapp -n "devserver" -c ~/src/myapp
+tmux send-keys -t myapp:3 "npm run dev" Enter
+
+# Attach
+tmux attach -t myapp</code></pre>
+                <p>Plus you still need to manually tell each Claude instance what its role is, maintain your tmuxinator config if you want to reproduce this layout later, and hope you remember the window numbers when switching.</p>
+            </div>
+
+            <div class="highlight">
+                <h3>Beam: ~30 Seconds</h3>
+                <ol>
+                    <li>Open Beam. Create a project pointing to <code>~/src/myapp</code>.</li>
+                    <li>Press <span class="kbd">&#8984;T</span> three times to create four tabs. Rename each by double-clicking: Frontend, Backend, Tests, DevServer.</li>
+                    <li>In the first three tabs, launch Claude Code from the agent menu (or type <code>claude</code>).</li>
+                    <li>In the fourth tab, run <code>npm run dev</code>.</li>
+                    <li>Press <span class="kbd">&#8984;S</span> to save the layout.</li>
+                </ol>
+                <p>Tomorrow, open Beam, select the project, and the entire workspace is restored. Switch to a different project with <span class="kbd">&#8984;P</span> and come back whenever you want.</p>
+            </div>
+
+            <p>The difference is not that tmux cannot do this. It can. The difference is the number of moving parts you need to maintain and the cognitive overhead every time you sit down to work.</p>
+
+            <h2>When to Use tmux vs. When to Use Beam</h2>
+
+            <p>Here is my honest take after six months of using both:</p>
+
+            <h3>Use tmux when:</h3>
+            <ul>
+                <li><strong>You are on a remote server.</strong> Beam is a local macOS app. tmux runs anywhere with a terminal. For SSH work, server administration, and anything on a headless machine, tmux is the only real answer.</li>
+                <li><strong>You need session persistence across reboots on servers.</strong> tmux's ability to detach and reattach is genuinely irreplaceable for long-running remote processes.</li>
+                <li><strong>You are working in a constrained environment.</strong> Docker containers, minimal VMs, CI/CD runners &mdash; tmux's zero-dependency footprint is a huge advantage.</li>
+                <li><strong>You have a mature tmux config and your workflow is not agent-heavy.</strong> If you are not running multiple AI agents daily, there is no reason to switch. tmux is excellent at what it does.</li>
+            </ul>
+
+            <h3>Use Beam when:</h3>
+            <ul>
+                <li><strong>You are running multiple AI coding agents locally.</strong> The project system, agent integration, and workspace management are purpose-built for this workflow.</li>
+                <li><strong>You switch between projects frequently.</strong> Beam's quick switcher and project persistence eliminate the context-switching tax that tmux imposes.</li>
+                <li><strong>You want keyboard-driven efficiency without the configuration overhead.</strong> 50+ shortcuts out of the box, no <code>.tmux.conf</code> required.</li>
+                <li><strong>You are tired of maintaining shell scripts to automate your terminal layout.</strong> Beam saves and restores layouts natively.</li>
+                <li><strong>You value visual overview.</strong> The sidebar navigator gives you an at-a-glance view of every workspace, tab, and pane across all projects.</li>
+            </ul>
+
+            <div class="highlight">
+                <h3>They Can Coexist</h3>
+                <p>I still use tmux every day &mdash; on servers. My local development workflow, where I spend 80% of my time orchestrating AI agents, runs entirely in Beam. There is no rule that says you have to pick one. Use the tool that fits the context.</p>
+            </div>
+
+            <h2>The Real Question</h2>
+
+            <p>The question is not whether tmux is good. It is great. The question is whether your local multi-agent workflow deserves a purpose-built tool, or whether you want to keep maintaining the scaffolding yourself.</p>
+
+            <p>I maintained that scaffolding for years. I was good at it. But at some point, the time I spent configuring tmux for agent workflows was time I was not spending on the actual work those agents were helping me do. Beam gave me that time back.</p>
+
+            <p>If you are running even two AI coding agents regularly, it is worth trying. The muscle memory transfers faster than you think, and you can always <code>tmux attach</code> when you need to.</p>
+
+            <div class="cta-box">
+                <h3>Try Beam Free</h3>
+                <p>Keep tmux for your servers. Use Beam for your local multi-agent workflow. See the difference in one session.</p>
+                <a href="../" class="btn">Download Beam for macOS</a>
+            </div>
+
+            <div class="related-articles">
+                <h2>Related Articles</h2>
+                <div class="related-grid">
+                    <a href="beam-vs-tmux.html" class="related-card">
+                        <h4>Beam vs tmux: Full Comparison</h4>
+                        <p>Detailed feature-by-feature comparison for developers choosing between Beam and tmux.</p>
+                    </a>
+                    <a href="multi-agent-orchestration-2026.html" class="related-card">
+                        <h4>Multi-Agent Orchestration in 2026</h4>
+                        <p>How to run multiple AI coding agents in parallel without losing your mind.</p>
+                    </a>
+                    <a href="organizing-claude-code-sessions.html" class="related-card">
+                        <h4>Organizing Claude Code Sessions</h4>
+                        <p>Practical guide to keeping your Claude Code workflow clean with workspaces and layouts.</p>
+                    </a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>
+                <a href="../">Beam</a> &bull; Terminal Organizer for macOS &bull;
+                <a href="mailto:frank@nextuptechnologies.co">Contact</a>
+            </p>
+
+            <p style="margin-top: 12px; font-size: 0.8rem;">
+                <a href="/privacy.html" style="color: #71717a; text-decoration: none;">Privacy Policy</a> &bull;
+                <a href="/terms.html" style="color: #71717a; text-decoration: none;">Terms of Service</a>
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>
