@@ -1,9 +1,9 @@
-version: 3.1.9
+version: 3.1.10
 files:
-  - url: beam-v3.1.9.AppImage
-    sha512: rLmwMaY3FZB/cPPt+cV6HMqWmfso2yARrbJNgdDaQh/dZyWCBDJc6KFiWkB+DQmBjdtRuYWi2USEZ6o8Gdr9BA==
-    size: 111541192
-    blockMapSize: 117724
-path: beam-v3.1.9.AppImage
-sha512: rLmwMaY3FZB/cPPt+cV6HMqWmfso2yARrbJNgdDaQh/dZyWCBDJc6KFiWkB+DQmBjdtRuYWi2USEZ6o8Gdr9BA==
-releaseDate: '2026-02-28T16:31:39.079Z'
+  - url: beam-v3.1.10.AppImage
+    sha512: UkheKLQxTClZEtq44Un+rUN5KNo2ggclkXhH1Z8Jb0jQ9mW+EEmo+E5yGE7ak7euvehRGLFY46drmLKiD0lJBw==
+    size: 111541186
+    blockMapSize: 117718
+path: beam-v3.1.10.AppImage
+sha512: UkheKLQxTClZEtq44Un+rUN5KNo2ggclkXhH1Z8Jb0jQ9mW+EEmo+E5yGE7ak7euvehRGLFY46drmLKiD0lJBw==
+releaseDate: '2026-02-28T16:45:25.634Z'
