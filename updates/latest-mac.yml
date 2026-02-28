@@ -1,17 +1,17 @@
-version: 3.1.8
+version: 3.1.9
 files:
-  - url: Beam-3.1.8-arm64-mac.zip
-    sha512: LTGIEMWDf8xiA9BqUbyeaLNJMNQ8da+Ndo/JnKveD9L1LK4nnSqYzuuyWgR+lZhrCXd/sKuFjOyLDksL6/lVKA==
-    size: 97506919
-  - url: Beam-3.1.8-mac.zip
-    sha512: XN8X1/PTFwte8Wx1i6hzf1kWTBXVV4KcKp0UaFYKYsA9RzhtWywF7ZEIF3/3l0aRim1Pt7iLM0K/RW6/N+fp8g==
-    size: 104663201
-  - url: beam-v3.1.8-arm64.dmg
-    sha512: bPN5dqNMCfu+tw+z3gNwFxHvSUNjBQgoGwu5CUOuorn7s4sqo2G8EVsvn4NsVCjAQ78153H7k908okDvy0XBKg==
-    size: 101557996
-  - url: beam-v3.1.8-x64.dmg
-    sha512: 9mhXFrve/VAVTjLc78+40wi6U/qUqwemDaukYD0R11shTbAPYIstt6keD2ODzXCBU6/Eo5JaoW7FARtBMkBlYA==
-    size: 108695753
-path: Beam-3.1.8-arm64-mac.zip
-sha512: LTGIEMWDf8xiA9BqUbyeaLNJMNQ8da+Ndo/JnKveD9L1LK4nnSqYzuuyWgR+lZhrCXd/sKuFjOyLDksL6/lVKA==
-releaseDate: '2026-02-28T16:07:59.869Z'
+  - url: Beam-3.1.9-arm64-mac.zip
+    sha512: puLa8ETLybMht5xbV0HrQX9Cpqn+JGdBhe1oP6TEGCtJgaBfPfrRJAMjlOq6kKtMwg33NyFGGmz0kOhoH+GmzQ==
+    size: 97531379
+  - url: Beam-3.1.9-mac.zip
+    sha512: niAugrArh399K1e1gb+e1fZSfQXlkcsLeQc5SntjqTTyz89b77Vqav9SGNXuIyU0nHGWpkyoJwUqWKjx+ifszQ==
+    size: 104687714
+  - url: beam-v3.1.9-arm64.dmg
+    sha512: X5LyRKf5CwxUZLjrmMzQ+KVEx+TH3dGrsQcFJwZvJ4Zbsn2AGjiLeJ7t65R2gwMhiVZXZ6pRirIrVWgHnVHrAA==
+    size: 101575828
+  - url: beam-v3.1.9-x64.dmg
+    sha512: 8NCw0nRMZOntS/emwdaZH9uoy3oH3USNfWAnSolzxA3BKaJVBEjntRyjtnPqriW/UQmGV8yGmr3aD2W53vz6eg==
+    size: 108707083
+path: Beam-3.1.9-arm64-mac.zip
+sha512: puLa8ETLybMht5xbV0HrQX9Cpqn+JGdBhe1oP6TEGCtJgaBfPfrRJAMjlOq6kKtMwg33NyFGGmz0kOhoH+GmzQ==
+releaseDate: '2026-02-28T16:30:26.843Z'
