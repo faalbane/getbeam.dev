@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D0XH8B0RKL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-D0XH8B0RKL');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claude Code Worktrees: Run Parallel AI Agents Without Git Conflicts | Beam</title>
+    <meta name="description" content="Learn how to use Claude Code's worktree flag to run multiple isolated agent sessions in the same repo without merge conflicts. Step-by-step setup guide.">
+    <meta name="keywords" content="Claude Code worktree, parallel agents, git worktrees, Claude Code parallel sessions, agentic engineering, multiple AI agents">
+    <meta name="author" content="NextUp Technologies">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://getbeam.dev/blog/claude-code-worktrees-parallel-agents.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://getbeam.dev/blog/claude-code-worktrees-parallel-agents.html">
+    <meta property="og:title" content="Claude Code Worktrees: Run Parallel AI Agents Without Git Conflicts">
+    <meta property="og:description" content="Learn how to use Claude Code's worktree flag to run multiple isolated agent sessions in the same repo without merge conflicts. Step-by-step setup guide.">
+    <meta property="og:image" content="https://getbeam.dev/beam-screenshot-1.9.6.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Claude Code Worktrees: Run Parallel AI Agents Without Git Conflicts">
+    <meta name="twitter:description" content="Learn how to use Claude Code's worktree flag to run multiple isolated agent sessions in the same repo without merge conflicts. Step-by-step setup guide.">
+    <meta name="twitter:image" content="https://getbeam.dev/beam-screenshot-1.9.6.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Claude Code Worktrees: Run Parallel AI Agents Without Git Conflicts",
+        "description": "Learn how to use Claude Code's worktree flag to run multiple isolated agent sessions in the same repo without merge conflicts. Step-by-step setup guide.",
+        "author": {
+            "@type": "Organization",
+            "name": "NextUp Technologies"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Beam"
+        },
+        "datePublished": "2026-02-28",
+        "keywords": "Claude Code worktree, parallel agents, git worktrees, Claude Code parallel sessions, agentic engineering, multiple AI agents"
+    }
+    </script>
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #111113;
+            --bg-tertiary: #1a1a1d;
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.4);
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --border: #27272a;
+            --success: #22c55e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        a, button, .btn, .related-card, .post-card, .editorial-card { cursor: pointer; }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+
+        .container { max-width: 800px; margin: 0 auto; padding: 0 24px; }
+
+        header {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 60px;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1.5rem;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            background: var(--accent);
+            color: white;
+            transition: all 0.2s;
+        }
+
+        .btn:hover { background: #2563eb; transform: translateY(-2px); }
+
+        article { padding-bottom: 80px; }
+
+        .breadcrumb {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+        }
+
+        .breadcrumb a { color: var(--accent); text-decoration: none; }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .meta {
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            font-size: 0.95rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 48px 0 20px;
+            color: var(--text-primary);
+        }
+
+        h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 32px 0 16px;
+            color: var(--text-primary);
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        ul, ol {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            padding-left: 24px;
+        }
+
+        li { margin-bottom: 12px; }
+
+        strong { color: var(--text-primary); }
+
+        .highlight {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 32px 0;
+        }
+
+        .highlight h3 {
+            font-size: 1.1rem;
+            margin: 0 0 12px 0;
+            color: var(--text-primary);
+        }
+
+        .highlight p:last-child, .highlight ul:last-child {
+            margin-bottom: 0;
+        }
+
+        .kbd {
+            display: inline-block;
+            padding: 2px 8px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+        }
+
+        code {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 2px 6px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+        }
+
+        pre {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 20px;
+            overflow-x: auto;
+            margin: 24px 0;
+        }
+
+        pre code {
+            background: none;
+            border: none;
+            padding: 0;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            background: var(--accent);
+            color: white;
+            border-radius: 50%;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-right: 12px;
+        }
+
+        .tip {
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 24px 0;
+        }
+
+        .tip strong {
+            color: var(--success);
+        }
+
+        .warning {
+            background: rgba(234, 179, 8, 0.1);
+            border: 1px solid rgba(234, 179, 8, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 24px 0;
+        }
+
+        .warning strong {
+            color: #eab308;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .cta-box h3 { font-size: 1.5rem; margin-bottom: 12px; color: white; }
+        .cta-box p { color: rgba(255,255,255,0.8); margin-bottom: 24px; }
+        .cta-box .btn { background: white; color: var(--accent); }
+
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer a { color: var(--text-secondary); text-decoration: none; }
+
+        .related-articles { margin-top: 60px; padding-top: 40px; border-top: 1px solid var(--border); }
+        .related-articles h2 { font-size: 1.5rem; margin-bottom: 24px; }
+        .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .related-card { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-decoration: none; transition: border-color 0.2s; }
+        .related-card:hover { border-color: var(--accent); }
+        .related-card h4 { color: white; font-size: 1rem; margin: 0 0 8px 0; }
+        .related-card p { color: var(--text-muted); font-size: 0.85rem; margin: 0; }
+        @media (max-width: 600px) { .related-grid { grid-template-columns: 1fr; } h1 { font-size: 1.8rem; } }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="../" class="logo">
+                <div class="logo-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round">
+                        <path d="M4 17l6-6-6-6M12 19h8"/>
+                    </svg>
+                </div>
+                Beam
+            </a>
+            <a href="../" class="btn">Download Beam</a>
+        </div>
+    </header>
+
+    <main class="container">
+        <article>
+            <div class="breadcrumb">
+                <a href="../">Beam</a> / <a href="../#guides">Guides</a> / Claude Code Worktrees
+            </div>
+
+            <h1>Claude Code Worktrees: Run Parallel AI Agents Without Git Conflicts</h1>
+            <p class="meta">February 2026 &bull; 10 min read</p>
+
+            <p>You have three features to build. You spin up three Claude Code sessions, point them all at the same repo, and tell each one to get to work. Twenty minutes later, every session is stuck in merge conflict hell. One agent rewrote the imports another agent was editing. A third deleted a file the first one just created. Your &ldquo;parallel productivity&rdquo; experiment just tripled your workload.</p>
+
+            <p>This is the single most common failure mode in multi-agent development. The fix is not better prompts or smarter agents. It is <strong>git worktrees</strong> &mdash; and Claude Code has built-in support for them.</p>
+
+            <h2>The Problem: Shared Working Directory</h2>
+
+            <p>When two Claude Code sessions operate on the same repository checkout, they share a single working directory. Every file write from Agent A is immediately visible to Agent B. This creates three categories of failure:</p>
+
+            <ul>
+                <li><strong>Write conflicts</strong> &mdash; two agents edit the same file simultaneously, and the last write wins. The first agent&rsquo;s changes vanish silently.</li>
+                <li><strong>State corruption</strong> &mdash; Agent A installs a dependency. Agent B runs the build before <code>node_modules</code> finishes updating. The build fails, Agent B starts &ldquo;fixing&rdquo; it, and now you have two problems.</li>
+                <li><strong>Branch chaos</strong> &mdash; both agents are on the same branch. Their commits interleave unpredictably. Reverting one agent&rsquo;s work means cherry-picking through a tangled history.</li>
+            </ul>
+
+            <p>The root cause is simple: git was designed for one developer per working directory. Multiple agents need multiple working directories.</p>
+
+            <h2>The Solution: Git Worktrees</h2>
+
+            <p>Git worktrees let you check out multiple branches of the same repository into separate directories &mdash; without cloning the repo multiple times. Each worktree has its own working directory, its own index, and its own HEAD. But they all share the same <code>.git</code> object database, so there is no wasted disk space and no need to fetch twice.</p>
+
+            <pre><code># Create a worktree for a new feature branch
+git worktree add ../my-repo-feature-auth feature/auth
+
+# Create another worktree for a different feature
+git worktree add ../my-repo-feature-dashboard feature/dashboard
+
+# List all worktrees
+git worktree list</code></pre>
+
+            <p>Each worktree is a fully independent checkout. Agent A can rewrite every file in worktree 1 without affecting Agent B in worktree 2. When both are done, you merge their branches through normal git workflow &mdash; pull requests, code review, the usual process.</p>
+
+            <h2>Claude Code Worktree Support</h2>
+
+            <p>Claude Code has native worktree support. When you start a session, you can tell it to create and operate inside an isolated worktree automatically:</p>
+
+            <pre><code># Start Claude Code in a new worktree
+claude --worktree
+
+# Or specify a name for the worktree
+claude --worktree my-feature-branch</code></pre>
+
+            <p>When you use the <code>--worktree</code> flag, Claude Code does the following:</p>
+
+            <ol>
+                <li>Creates a new git worktree in <code>.claude/worktrees/</code> based on the current HEAD</li>
+                <li>Creates a new branch for the worktree automatically</li>
+                <li>Switches the session&rsquo;s working directory to the worktree</li>
+                <li>On session exit, prompts you to keep or remove the worktree</li>
+            </ol>
+
+            <p>This means every agent session is completely isolated from every other session. No shared files. No write conflicts. No interleaved commits.</p>
+
+            <h2>Step-by-Step: Parallel Agent Setup</h2>
+
+            <p>Here is the complete workflow for running three parallel Claude Code agents on the same project without conflicts.</p>
+
+            <h3>Step 1: Prepare Your Branches</h3>
+
+            <p>Before spawning agents, decide what each one will work on. The key rule: <strong>no two agents should touch the same files</strong>. Divide work by feature boundary, not by file type.</p>
+
+            <div class="highlight">
+                <h3>Good Division</h3>
+                <ul>
+                    <li>Agent 1: User authentication (auth routes, login components, session middleware)</li>
+                    <li>Agent 2: Dashboard analytics (charts, data fetching, dashboard layout)</li>
+                    <li>Agent 3: API documentation (OpenAPI spec, docs pages, example requests)</li>
+                </ul>
+            </div>
+
+            <div class="warning">
+                <strong>Bad Division:</strong> Agent 1 does frontend, Agent 2 does backend, Agent 3 does tests. This guarantees overlap because features span all three layers. Divide by feature, not by layer.
+            </div>
+
+            <h3>Step 2: Launch Worktree Sessions</h3>
+
+            <p>Open three terminal tabs (or use Beam&rsquo;s split pane layout) and launch each agent in its own worktree:</p>
+
+            <pre><code># Terminal 1
+cd /path/to/your/project
+claude --worktree auth-feature
+
+# Terminal 2
+cd /path/to/your/project
+claude --worktree dashboard-feature
+
+# Terminal 3
+cd /path/to/your/project
+claude --worktree api-docs</code></pre>
+
+            <p>Each agent now operates in a completely isolated directory. They can install different dependencies, modify shared config files, and make breaking changes &mdash; none of it affects the others.</p>
+
+            <h3>Step 3: Give Each Agent Its Task</h3>
+
+            <p>Be explicit about scope. Tell each agent exactly what it owns and what it should not touch:</p>
+
+            <pre><code># In the auth-feature worktree session
+"Build user authentication with email/password login. Create the auth
+routes in src/app/api/auth/, the login/signup components in
+src/components/auth/, and the session middleware in src/middleware.ts.
+Do not modify any dashboard or analytics files."</code></pre>
+
+            <h3>Step 4: Monitor and Merge</h3>
+
+            <p>As each agent completes its work, review the changes in its worktree branch. Then merge into main through your normal workflow:</p>
+
+            <pre><code># Review Agent 1's work
+cd ../my-repo-auth-feature
+git log --oneline
+git diff main
+
+# Create PR or merge directly
+git checkout main
+git merge feature/auth-feature</code></pre>
+
+            <div class="tip">
+                <strong>Pro tip:</strong> Merge agents one at a time, in order of least to most risk. Start with the documentation agent (lowest risk), then the isolated feature, then the one most likely to have conflicts. This way, if the last merge has issues, the other two are already safely integrated.
+            </div>
+
+            <h2>Managing Worktree Sessions in Beam</h2>
+
+            <p>Running parallel worktree sessions from raw terminals works, but it quickly becomes hard to track which terminal is which agent. Beam solves this with its workspace and tab system.</p>
+
+            <p>Create a workspace for your project, then open one tab per worktree agent. Name each tab after the feature it is working on. Use split panes to monitor two agents side by side. When an agent asks a question or hits an error, you can see it immediately without cycling through terminal windows.</p>
+
+            <p>The key advantage: <strong>visual monitoring</strong>. When you have three agents running in parallel, you need to see all of them at once. If Agent 2 goes off track, you catch it in 30 seconds instead of discovering the mess 20 minutes later. Beam&rsquo;s side-by-side layout gives you that visibility without any terminal management overhead.</p>
+
+            <h2>Worktree Cleanup</h2>
+
+            <p>After merging, clean up your worktrees to avoid clutter:</p>
+
+            <pre><code># Remove a specific worktree
+git worktree remove ../my-repo-auth-feature
+
+# Prune stale worktree references
+git worktree prune
+
+# List remaining worktrees
+git worktree list</code></pre>
+
+            <p>If you used Claude Code&rsquo;s <code>--worktree</code> flag, the session will prompt you to keep or remove the worktree when you exit. For manually created worktrees, run cleanup periodically so you do not end up with dozens of stale directories.</p>
+
+            <h2>When Worktrees Are Not Enough</h2>
+
+            <p>Worktrees solve the file-level isolation problem, but some conflicts happen at a higher level:</p>
+
+            <ul>
+                <li><strong>Database migrations</strong> &mdash; two agents adding migrations with the same sequence number. Solution: assign migration number ranges to each agent before starting.</li>
+                <li><strong>Shared config files</strong> &mdash; both agents need to modify <code>package.json</code> to add dependencies. Solution: have one agent install all dependencies first, or reconcile after merging.</li>
+                <li><strong>API contracts</strong> &mdash; Agent A changes the API response shape that Agent B depends on. Solution: define API contracts in a shared spec before agents start coding.</li>
+            </ul>
+
+            <p>The pattern is the same: resolve coordination at the planning stage, not during implementation. Worktrees give you file isolation. Good task decomposition gives you logical isolation.</p>
+
+            <h2>Performance Considerations</h2>
+
+            <p>Each worktree shares the git object database, so disk usage is minimal &mdash; only the working tree files are duplicated. However, each Claude Code session consumes its own API tokens and system resources. Running three agents in parallel means roughly 3x the token usage.</p>
+
+            <p>For most projects, the time savings far outweigh the token cost. Three agents completing three features in 30 minutes beats one agent doing them sequentially in 90 minutes. But monitor your token usage and set budgets per session to avoid surprises.</p>
+
+            <div class="cta-box">
+                <h3>Manage Parallel Agents Without the Chaos</h3>
+                <p>Beam gives you side-by-side terminals, named workspaces, and split panes built for running multiple Claude Code worktree sessions. See every agent at once.</p>
+                <a href="../" class="btn">Download Beam Free</a>
+            </div>
+
+            <h2>Summary</h2>
+
+            <p>Running parallel AI agents on the same codebase without worktrees is a recipe for merge conflicts and wasted time. Git worktrees give each agent its own isolated working directory while sharing the same repository. Claude Code&rsquo;s <code>--worktree</code> flag makes this seamless.</p>
+
+            <p>The workflow is straightforward: divide work by feature boundary, launch each agent in its own worktree, monitor progress side by side, and merge one branch at a time. Combined with a tool like Beam for visual monitoring, you can reliably run three or four agents in parallel and ship features at a pace that would be impossible with a single session.</p>
+
+            <div class="related-articles">
+                <h2>Related Articles</h2>
+                <div class="related-grid">
+                    <a href="multi-agent-coding-orchestration-guide.html" class="related-card">
+                        <h4>Multi-Agent Coding Orchestration Guide</h4>
+                        <p>Strategies for coordinating multiple AI coding agents across complex projects.</p>
+                    </a>
+                    <a href="manage-multiple-claude-code-sessions.html" class="related-card">
+                        <h4>Managing Multiple Claude Code Sessions</h4>
+                        <p>Best practices for running and organizing concurrent Claude Code instances.</p>
+                    </a>
+                    <a href="claude-code-git-workflows.html" class="related-card">
+                        <h4>Claude Code Git Workflows</h4>
+                        <p>How to integrate Claude Code into your existing git branching and review process.</p>
+                    </a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>
+                <a href="../">Beam</a> &bull; The Agentic Engineering Platform &bull;
+                <a href="mailto:frank@nextuptechnologies.co">Contact</a>
+            </p>
+
+            <p style="margin-top: 12px; font-size: 0.8rem;">
+                <a href="/privacy.html" style="color: #71717a; text-decoration: none;">Privacy Policy</a> &bull;
+                <a href="/terms.html" style="color: #71717a; text-decoration: none;">Terms of Service</a>
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>

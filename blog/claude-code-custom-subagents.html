@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D0XH8B0RKL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-D0XH8B0RKL');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claude Code Custom Subagents: Build Your Own AI Development Team | Beam</title>
+    <meta name="description" content="Step-by-step guide to creating custom Claude Code subagents with specialized roles. Build a security reviewer, test writer, and doc generator for your team.">
+    <meta name="keywords" content="Claude Code custom subagents guide, Claude Code subagent configuration, AI development team, Claude Code agent roles">
+    <meta name="author" content="NextUp Technologies">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://getbeam.dev/blog/claude-code-custom-subagents.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://getbeam.dev/blog/claude-code-custom-subagents.html">
+    <meta property="og:title" content="Claude Code Custom Subagents: Build Your Own AI Development Team">
+    <meta property="og:description" content="Step-by-step guide to creating custom Claude Code subagents with specialized roles. Build a security reviewer, test writer, and doc generator for your team.">
+    <meta property="og:image" content="https://getbeam.dev/beam-screenshot-1.9.6.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Claude Code Custom Subagents: Build Your Own AI Development Team">
+    <meta name="twitter:description" content="Step-by-step guide to creating custom Claude Code subagents with specialized roles. Build a security reviewer, test writer, and doc generator for your team.">
+    <meta name="twitter:image" content="https://getbeam.dev/beam-screenshot-1.9.6.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Claude Code Custom Subagents: Build Your Own AI Development Team",
+        "description": "Step-by-step guide to creating custom Claude Code subagents with specialized roles. Build a security reviewer, test writer, and doc generator for your team.",
+        "author": {
+            "@type": "Organization",
+            "name": "NextUp Technologies"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Beam"
+        },
+        "datePublished": "2026-02-28",
+        "keywords": "Claude Code custom subagents guide, Claude Code subagent configuration, AI development team, Claude Code agent roles"
+    }
+    </script>
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #111113;
+            --bg-tertiary: #1a1a1d;
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.4);
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --border: #27272a;
+            --success: #22c55e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        a, button, .btn, .related-card, .post-card, .editorial-card { cursor: pointer; }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+
+        .container { max-width: 800px; margin: 0 auto; padding: 0 24px; }
+
+        header {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 60px;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1.5rem;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            background: var(--accent);
+            color: white;
+            transition: all 0.2s;
+        }
+
+        .btn:hover { background: #2563eb; transform: translateY(-2px); }
+
+        article { padding-bottom: 80px; }
+
+        .breadcrumb {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+        }
+
+        .breadcrumb a { color: var(--accent); text-decoration: none; }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .meta {
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            font-size: 0.95rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 48px 0 20px;
+            color: var(--text-primary);
+        }
+
+        h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 32px 0 16px;
+            color: var(--text-primary);
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        ul, ol {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            padding-left: 24px;
+        }
+
+        li { margin-bottom: 12px; }
+
+        strong { color: var(--text-primary); }
+
+        .highlight {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 32px 0;
+        }
+
+        .highlight h3 {
+            font-size: 1.1rem;
+            margin: 0 0 12px 0;
+            color: var(--text-primary);
+        }
+
+        .highlight p:last-child, .highlight ul:last-child {
+            margin-bottom: 0;
+        }
+
+        .kbd {
+            display: inline-block;
+            padding: 2px 8px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+        }
+
+        code {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 2px 6px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+        }
+
+        pre {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 20px;
+            overflow-x: auto;
+            margin: 24px 0;
+        }
+
+        pre code {
+            background: none;
+            border: none;
+            padding: 0;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .tip {
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 24px 0;
+        }
+
+        .tip strong {
+            color: var(--success);
+        }
+
+        .warning {
+            background: rgba(234, 179, 8, 0.1);
+            border: 1px solid rgba(234, 179, 8, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 24px 0;
+        }
+
+        .warning strong {
+            color: #eab308;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .cta-box h3 { font-size: 1.5rem; margin-bottom: 12px; color: white; }
+        .cta-box p { color: rgba(255,255,255,0.8); margin-bottom: 24px; }
+        .cta-box .btn { background: white; color: var(--accent); }
+
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer a { color: var(--text-secondary); text-decoration: none; }
+
+        .related-articles { margin-top: 60px; padding-top: 40px; border-top: 1px solid var(--border); }
+        .related-articles h2 { font-size: 1.5rem; margin-bottom: 24px; }
+        .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .related-card { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-decoration: none; transition: border-color 0.2s; }
+        .related-card:hover { border-color: var(--accent); }
+        .related-card h4 { color: white; font-size: 1rem; margin: 0 0 8px 0; }
+        .related-card p { color: var(--text-muted); font-size: 0.85rem; margin: 0; }
+        @media (max-width: 600px) { .related-grid { grid-template-columns: 1fr; } h1 { font-size: 1.8rem; } }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="../" class="logo">
+                <div class="logo-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round">
+                        <path d="M4 17l6-6-6-6M12 19h8"/>
+                    </svg>
+                </div>
+                Beam
+            </a>
+            <a href="../" class="btn">Download Beam</a>
+        </div>
+    </header>
+
+    <main class="container">
+        <article>
+            <div class="breadcrumb">
+                <a href="../">Beam</a> / <a href="../#guides">Guides</a> / Claude Code Custom Subagents
+            </div>
+
+            <h1>Claude Code Custom Subagents: Build Your Own AI Development Team</h1>
+            <p class="meta">February 2026 &bull; 10 min read</p>
+
+            <p>Claude Code's subagent system lets you create specialized AI roles that handle distinct parts of your development workflow. Instead of one general-purpose agent doing everything -- coding, reviewing, testing, documenting -- you define focused agents with specific responsibilities, tool access, and behavioral constraints.</p>
+
+            <p>The result is an AI development team where each member has a clear role, and the quality of output improves dramatically because no single agent is trying to be everything at once.</p>
+
+            <h2>What Are Custom Subagents?</h2>
+
+            <p>Subagents in Claude Code are specialized instances that the main agent can delegate tasks to. Each subagent has its own system prompt, tool restrictions, and scope. When the main agent encounters a task that matches a subagent's specialty, it automatically delegates the work.</p>
+
+            <p>Think of it like a senior engineer who knows when to ask the security team for a review, when to hand off to QA for test writing, and when to loop in the technical writer. The main Claude Code agent becomes the orchestrator, and subagents become the specialists.</p>
+
+            <div class="highlight">
+                <h3>Why Subagents Beat One-Agent-Does-All</h3>
+                <ul>
+                    <li><strong>Focused context</strong> -- each subagent's prompt is optimized for one job, not diluted across many responsibilities</li>
+                    <li><strong>Tool restrictions</strong> -- a review subagent can read files but not modify them, preventing accidental changes during audits</li>
+                    <li><strong>Parallel execution</strong> -- subagents can work simultaneously on different aspects of the same task</li>
+                    <li><strong>Consistent quality</strong> -- each specialist applies the same standards every time, unlike a generalist that drifts</li>
+                </ul>
+            </div>
+
+            <h2>Setting Up Your First Subagent</h2>
+
+            <p>Subagent configuration lives in your project's <code>.claude/</code> directory. You define each subagent in your project's CLAUDE.md or settings configuration, specifying its role, permissions, and behavioral instructions.</p>
+
+            <p>Here is how to define a security reviewer subagent:</p>
+
+            <pre><code># In your CLAUDE.md or project configuration
+
+## Subagent: Security Reviewer
+
+When asked to review code for security issues, delegate to
+a subagent with the following instructions:
+
+Role: Security Auditor
+Scope: Read-only access to source files
+Focus areas:
+- Input validation and sanitization
+- Authentication and authorization checks
+- SQL injection, XSS, and CSRF vulnerabilities
+- Secrets or credentials in source code
+- Dependency vulnerabilities (check package.json/lock)
+- Unsafe deserialization
+- Path traversal risks
+
+Output format:
+- CRITICAL: issues that must be fixed before merge
+- WARNING: issues that should be addressed soon
+- INFO: suggestions for hardening
+
+Do NOT modify any files. Report findings only.</code></pre>
+
+            <p>With this configuration, when you tell Claude Code "review this PR for security issues," it delegates to the security subagent, which applies a focused security lens rather than a general code review perspective.</p>
+
+            <h2>The Essential Subagent Team</h2>
+
+            <p>After working with dozens of teams running subagent configurations, four roles consistently deliver the most value.</p>
+
+            <h3>1. The Security Reviewer</h3>
+
+            <p>Defined above. This subagent reads your code with a security-first mindset. It knows OWASP Top 10, understands common vulnerability patterns in your stack, and flags issues with severity levels. Critically, it has read-only access -- it cannot accidentally introduce changes while reviewing.</p>
+
+            <h3>2. The Test Writer</h3>
+
+            <p>This subagent specializes in writing comprehensive tests. Its configuration includes your project's testing conventions, preferred testing libraries, and coverage expectations.</p>
+
+            <pre><code>## Subagent: Test Writer
+
+Role: QA Engineer
+Scope: Can read all source files, can write only to
+       test files (*test*, *spec*, __tests__/)
+Conventions:
+- Use the testing framework already in the project
+- Write unit tests for pure functions
+- Write integration tests for API endpoints
+- Write component tests for UI elements
+- Include edge cases: empty inputs, null values,
+  boundary conditions, error states
+- Each test file mirrors the source file structure
+- Test descriptions use "should [expected behavior]
+  when [condition]" format
+
+Coverage target: minimum 80% line coverage for
+                 new code</code></pre>
+
+            <p>The key constraint is scope: this subagent can only write to test directories. It cannot modify source code, which prevents the common antipattern of an agent "fixing" code to make tests pass rather than writing tests that accurately validate behavior.</p>
+
+            <h3>3. The Documentation Generator</h3>
+
+            <p>This subagent turns code into documentation. It reads function signatures, class definitions, and module structures, then produces consistent documentation following your project's standards.</p>
+
+            <pre><code>## Subagent: Documentation Generator
+
+Role: Technical Writer
+Scope: Read all source files, write only to docs/
+       and inline comments
+Standards:
+- JSDoc/TSDoc for all exported functions
+- README sections for new modules
+- API documentation for new endpoints
+- Architecture decision records for significant changes
+- Keep language precise and free of jargon
+- Include usage examples for every public API
+- Document error handling and edge cases
+
+Do NOT change function behavior. Only add documentation.</code></pre>
+
+            <h3>4. The Refactoring Advisor</h3>
+
+            <p>This subagent identifies code smells, suggests improvements, and can execute targeted refactors with strict constraints.</p>
+
+            <pre><code>## Subagent: Refactoring Advisor
+
+Role: Senior Engineer (Code Quality)
+Scope: Read all files, modify only when explicitly
+       asked to refactor
+Analysis checklist:
+- Functions longer than 50 lines
+- Files with more than 300 lines
+- Duplicated logic across modules
+- Complex conditionals (cyclomatic complexity > 10)
+- Dead code and unused imports
+- Inconsistent naming conventions
+- Missing error handling
+
+Output: prioritized list of refactoring opportunities
+        with effort estimates (small/medium/large)</code></pre>
+
+            <h2>Automatic Delegation: The Orchestration Layer</h2>
+
+            <p>The real power of subagents emerges when delegation happens automatically. You can configure your main CLAUDE.md to include delegation rules that trigger subagents based on the type of work being done.</p>
+
+            <div class="highlight">
+                <h3>Delegation Rules Example</h3>
+                <pre><code>## Delegation Rules
+
+After implementing any new feature:
+1. Delegate to Security Reviewer for audit
+2. Delegate to Test Writer for test creation
+3. Delegate to Documentation Generator for docs
+
+After any refactoring:
+1. Delegate to Test Writer to verify existing
+   tests still pass and add missing coverage
+
+Before any PR is created:
+1. Run all subagent checks
+2. Compile findings into a summary</code></pre>
+            </div>
+
+            <p>With these rules, every feature you build automatically goes through security review, gets test coverage, and receives documentation -- without you having to remember to ask for each step.</p>
+
+            <h2>Worktree Isolation for Parallel Subagents</h2>
+
+            <p>When subagents modify files (like the test writer creating test files), you need isolation to prevent conflicts. Git worktrees solve this elegantly. Each subagent operates in its own worktree -- a separate checkout of your repository that shares git history but has an independent working directory.</p>
+
+            <p>Configure worktree-aware subagents by having each agent create or use a dedicated worktree:</p>
+
+            <pre><code># Main agent works in the primary worktree
+# Test writer works in .claude/worktrees/tests
+# Doc generator works in .claude/worktrees/docs
+
+# Changes are merged back via git after review</code></pre>
+
+            <p>This prevents the classic problem of two agents editing the same file simultaneously. Each subagent has its own workspace, and you merge the results when all agents have completed their work.</p>
+
+            <div class="tip">
+                <strong>Worktree tip:</strong> Claude Code natively supports worktrees via the <code>/worktree</code> command. Subagents can each spawn their own worktree, work in isolation, and the main agent merges the results. This eliminates file conflict issues entirely.
+            </div>
+
+            <h2>Organizing Subagent Output with Beam</h2>
+
+            <p>Running four subagents in a single terminal window is chaos. Each agent produces output, asks questions, and reports findings -- all interleaved in one stream. You lose track of which agent said what within seconds.</p>
+
+            <p>Beam solves this with dedicated panes for each subagent. Set up a workspace with four split panes:</p>
+
+            <ul>
+                <li><strong>Top left:</strong> Main Claude Code session (the orchestrator)</li>
+                <li><strong>Top right:</strong> Security reviewer output</li>
+                <li><strong>Bottom left:</strong> Test writer session</li>
+                <li><strong>Bottom right:</strong> Documentation generator</li>
+            </ul>
+
+            <p>Each subagent's output appears in its dedicated pane. You can see security findings, test results, and documentation updates all at once without scrolling through interleaved output. When a subagent finishes, its pane shows the summary while the others continue working.</p>
+
+            <p>Beam's workspace persistence means this layout saves between sessions. Tomorrow, when you open the same project, your four-pane subagent setup loads automatically with all project memory intact.</p>
+
+            <div class="cta-box">
+                <h3>Organize Your AI Development Team</h3>
+                <p>Beam gives you dedicated panes for every subagent, persistent project memory, and workspace layouts that save your multi-agent setup.</p>
+                <a href="../" class="btn">Download Beam Free</a>
+            </div>
+
+            <h2>Common Pitfalls</h2>
+
+            <ul>
+                <li><strong>Over-specialization</strong> -- creating 10 subagents with narrow scopes creates more coordination overhead than value. Start with 3-4 roles and expand only when you have clear evidence of need.</li>
+                <li><strong>Missing context in subagent prompts</strong> -- subagents need project-specific context, not just generic instructions. Include your actual testing framework, your actual code conventions, your actual architecture. Generic prompts produce generic output.</li>
+                <li><strong>No review of subagent output</strong> -- subagents improve quality, but they are not infallible. The security reviewer might miss a business logic vulnerability. The test writer might produce tests that pass but do not test meaningful behavior. Human review remains the final gate.</li>
+                <li><strong>Ignoring token costs</strong> -- each subagent consumes tokens independently. Four subagents reviewing a large codebase can burn through API credits quickly. Use targeted delegation (review only changed files) rather than full-codebase sweeps.</li>
+            </ul>
+
+            <h2>Getting Started Today</h2>
+
+            <p>You do not need to set up all four subagents at once. Start with the one that addresses your biggest pain point:</p>
+
+            <ol>
+                <li>If your code ships with security vulnerabilities, start with the <strong>Security Reviewer</strong></li>
+                <li>If your test coverage is low, start with the <strong>Test Writer</strong></li>
+                <li>If onboarding new developers is slow, start with the <strong>Documentation Generator</strong></li>
+                <li>If your codebase is growing unwieldy, start with the <strong>Refactoring Advisor</strong></li>
+            </ol>
+
+            <p>Add one subagent, let it run for a week, measure the impact, then add the next. Within a month, you will have a fully functioning AI development team that catches issues before they reach production, writes tests you would have skipped, and keeps documentation current without anyone remembering to update it.</p>
+
+            <div class="related-articles">
+                <h2>Related Articles</h2>
+                <div class="related-grid">
+                    <a href="claude-code-agent-teams-guide.html" class="related-card">
+                        <h4>Claude Code Agent Teams Guide</h4>
+                        <p>How to structure and manage teams of AI agents for complex projects.</p>
+                    </a>
+                    <a href="multi-agent-orchestration-practical-guide.html" class="related-card">
+                        <h4>Multi-Agent Orchestration Practical Guide</h4>
+                        <p>Hands-on strategies for coordinating multiple AI agents effectively.</p>
+                    </a>
+                    <a href="write-tests-with-claude-code.html" class="related-card">
+                        <h4>Write Tests with Claude Code</h4>
+                        <p>How to use Claude Code to generate comprehensive test suites for your projects.</p>
+                    </a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>
+                <a href="../">Beam</a> &bull; The Agentic Engineering Platform &bull;
+                <a href="mailto:frank@nextuptechnologies.co">Contact</a>
+            </p>
+            <p style="margin-top: 12px; font-size: 0.8rem;">
+                <a href="/privacy.html" style="color: #71717a; text-decoration: none;">Privacy Policy</a> &bull;
+                <a href="/terms.html" style="color: #71717a; text-decoration: none;">Terms of Service</a>
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>

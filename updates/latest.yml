@@ -1,0 +1,8 @@
+version: 3.1.8
+files:
+  - url: beam-v3.1.8-setup.exe
+    sha512: MCGr83MFs81v71Po6kmVGJ/ddxXOafBLXDBdH5XKrRxixaeCR2xQop6fYS3x6Z3b+jqz34N/sWVf187TqRZsNQ==
+    size: 86379710
+path: beam-v3.1.8-setup.exe
+sha512: MCGr83MFs81v71Po6kmVGJ/ddxXOafBLXDBdH5XKrRxixaeCR2xQop6fYS3x6Z3b+jqz34N/sWVf187TqRZsNQ==
+releaseDate: '2026-02-28T16:08:50.930Z'

@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D0XH8B0RKL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-D0XH8B0RKL');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Karpathy's Phase Change: Why AI Coding Agents 'Started Working' in Late 2025 | Beam</title>
+    <meta name="description" content="Tracing Karpathy's viral claim about the qualitative threshold AI coding agents crossed in late 2025 -- the models, tooling, and discipline that made it real.">
+    <meta name="keywords" content="Karpathy phase change AI coding agents December 2025, AI agents started working, agentic engineering, Claude Code, GPT-5.3, Copilot CLI">
+    <meta name="author" content="NextUp Technologies">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://getbeam.dev/blog/karpathy-phase-change-ai-coding-agents.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://getbeam.dev/blog/karpathy-phase-change-ai-coding-agents.html">
+    <meta property="og:title" content="Karpathy's Phase Change: Why AI Coding Agents 'Started Working' in Late 2025">
+    <meta property="og:description" content="Tracing Karpathy's viral claim about the qualitative threshold AI coding agents crossed in late 2025 -- the models, tooling, and discipline that made it real.">
+    <meta property="og:image" content="https://getbeam.dev/beam-screenshot-1.9.6.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Karpathy's Phase Change: Why AI Coding Agents 'Started Working' in Late 2025">
+    <meta name="twitter:description" content="Tracing Karpathy's viral claim about the qualitative threshold AI coding agents crossed in late 2025 -- the models, tooling, and discipline that made it real.">
+    <meta name="twitter:image" content="https://getbeam.dev/beam-screenshot-1.9.6.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Karpathy's Phase Change: Why AI Coding Agents 'Started Working' in Late 2025",
+        "description": "Tracing Karpathy's viral claim about the qualitative threshold AI coding agents crossed in late 2025 -- the models, tooling, and discipline that made it real.",
+        "author": {
+            "@type": "Organization",
+            "name": "NextUp Technologies"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Beam"
+        },
+        "datePublished": "2026-02-28",
+        "keywords": "Karpathy phase change AI coding agents December 2025, AI agents started working, agentic engineering, Claude Code, GPT-5.3, Copilot CLI"
+    }
+    </script>
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #111113;
+            --bg-tertiary: #1a1a1d;
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.4);
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --border: #27272a;
+            --success: #22c55e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        a, button, .btn, .related-card, .post-card, .editorial-card { cursor: pointer; }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+
+        .container { max-width: 800px; margin: 0 auto; padding: 0 24px; }
+
+        header {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 60px;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1.5rem;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            background: var(--accent);
+            color: white;
+            transition: all 0.2s;
+        }
+
+        .btn:hover { background: #2563eb; transform: translateY(-2px); }
+
+        article { padding-bottom: 80px; }
+
+        .breadcrumb {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+        }
+
+        .breadcrumb a { color: var(--accent); text-decoration: none; }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .meta {
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            font-size: 0.95rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 48px 0 20px;
+            color: var(--text-primary);
+        }
+
+        h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 32px 0 16px;
+            color: var(--text-primary);
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        ul, ol {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            padding-left: 24px;
+        }
+
+        li { margin-bottom: 12px; }
+
+        strong { color: var(--text-primary); }
+
+        .highlight {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 32px 0;
+        }
+
+        .highlight h3 {
+            font-size: 1.1rem;
+            margin: 0 0 12px 0;
+            color: var(--text-primary);
+        }
+
+        .highlight p:last-child, .highlight ul:last-child {
+            margin-bottom: 0;
+        }
+
+        .kbd {
+            display: inline-block;
+            padding: 2px 8px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+        }
+
+        code {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 2px 6px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+        }
+
+        pre {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 20px;
+            overflow-x: auto;
+            margin: 24px 0;
+        }
+
+        pre code {
+            background: none;
+            border: none;
+            padding: 0;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .cta-box h3 { font-size: 1.5rem; margin-bottom: 12px; color: white; }
+        .cta-box p { color: rgba(255,255,255,0.8); margin-bottom: 24px; }
+        .cta-box .btn { background: white; color: var(--accent); }
+
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer a { color: var(--text-secondary); text-decoration: none; }
+
+        .related-articles { margin-top: 60px; padding-top: 40px; border-top: 1px solid var(--border); }
+        .related-articles h2 { font-size: 1.5rem; margin-bottom: 24px; }
+        .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .related-card { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-decoration: none; transition: border-color 0.2s; }
+        .related-card:hover { border-color: var(--accent); }
+        .related-card h4 { color: white; font-size: 1rem; margin: 0 0 8px 0; }
+        .related-card p { color: var(--text-muted); font-size: 0.85rem; margin: 0; }
+        @media (max-width: 600px) { .related-grid { grid-template-columns: 1fr; } h1 { font-size: 1.8rem; } }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="../" class="logo">
+                <div class="logo-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round">
+                        <path d="M4 17l6-6-6-6M12 19h8"/>
+                    </svg>
+                </div>
+                Beam
+            </a>
+            <a href="../" class="btn">Download Beam</a>
+        </div>
+    </header>
+
+    <main class="container">
+        <article>
+            <div class="breadcrumb">
+                <a href="../">Beam</a> / <a href="../#guides">Guides</a> / Karpathy's Phase Change
+            </div>
+
+            <h1>Karpathy's Phase Change: Why AI Coding Agents 'Started Working' in Late 2025</h1>
+            <p class="meta">February 2026 &bull; 10 min read</p>
+
+            <p>In December 2025, Andrej Karpathy made a claim that ricocheted through every developer community on the internet: AI coding agents had undergone a "phase change." Not a gradual improvement. Not another incremental benchmark gain. A qualitative threshold where the tools crossed from "interesting demo" to "I actually ship production code with these."</p>
+
+            <p>Three months later, the data backs him up. The claim was not hype. Something genuinely shifted in the final quarter of 2025, and the developers who recognized it early are now operating at a fundamentally different velocity than those who did not. Here is exactly what changed, why it changed, and what it means for how you should be working right now.</p>
+
+            <h2>What Karpathy Actually Said</h2>
+
+            <p>Karpathy's observation was precise. He did not say AI got "better at coding." He said coding agents "started working" -- implying they had not been working before, at least not in any meaningful, reliable sense. The distinction matters because it frames the shift correctly: this was not a linear improvement on a curve. It was a step function.</p>
+
+            <p>Before December 2025, AI coding tools could generate snippets, autocomplete lines, and sometimes produce working functions. But they could not reliably take a high-level task -- "add OAuth to this app" or "refactor this module to use the repository pattern" -- and execute it end-to-end without constant hand-holding. The failure rate was too high. The context loss was too severe. The tools did not understand project-level architecture well enough to make changes that fit.</p>
+
+            <p>After December 2025, that changed. Not for every task and not for every developer, but for a critical mass of real-world workflows, the agents crossed the reliability threshold where trusting them became rational rather than reckless.</p>
+
+            <h2>The Three Drops That Triggered the Phase Change</h2>
+
+            <p>Phase changes in physics happen when multiple conditions align simultaneously. The same pattern played out in AI coding. Three things converged in late 2025:</p>
+
+            <h3>1. The Model Leap</h3>
+
+            <p>GPT-5.3 and the Claude 3.5 Opus family represented genuine capability jumps in code reasoning. Not just better autocomplete -- better understanding of codebases as systems. These models could hold architectural context across 200K+ token windows while maintaining coherent plans for multi-file changes. The error rate on SWE-bench tasks dropped below 30% for the first time, meaning the models were solving real GitHub issues more often than they were failing.</p>
+
+            <p>But the model improvements alone were not enough. Earlier models had been "smart" too, in isolated benchmarks. What changed was that the new models were smart enough to use tools reliably -- reading files, running tests, interpreting errors, and iterating without losing the thread.</p>
+
+            <h3>2. The Tooling Ecosystem</h3>
+
+            <p>Claude Code shipped tool use that actually worked in production codebases. Not toy demos with three-file projects -- real repositories with hundreds of files, complex build systems, and interdependent modules. The Model Context Protocol (MCP) gave agents standardized ways to interact with external services. Copilot CLI moved autocomplete out of the editor and into the terminal, where complex operations actually happen.</p>
+
+            <div class="highlight">
+                <h3>The Tooling Stack That Converged</h3>
+                <ul>
+                    <li><strong>Claude Code</strong> -- terminal-native agent with file editing, test execution, and git integration</li>
+                    <li><strong>MCP servers</strong> -- standardized protocol for agents to access databases, APIs, and services</li>
+                    <li><strong>Copilot CLI</strong> -- GitHub's move from editor autocomplete to terminal-level command generation</li>
+                    <li><strong>Cursor / Windsurf</strong> -- IDE-native agents with codebase-wide context</li>
+                    <li><strong>Agentic frameworks</strong> -- LangChain, CrewAI, and custom orchestration layers for multi-step tasks</li>
+                </ul>
+            </div>
+
+            <p>The tooling mattered because a brilliant model trapped in a chat window cannot do much. The tools gave the models hands. They could read your project structure, run your test suite, check build output, and iterate on failures -- the same loop a human developer follows, automated.</p>
+
+            <h3>3. The Workflow Discipline</h3>
+
+            <p>This is the factor most people overlook. The models got better. The tools got better. But developers also got better at using them. A discipline emerged -- what some now call "agentic engineering" -- that turned unreliable AI assistance into reliable AI collaboration.</p>
+
+            <p>The discipline included practices like: maintaining project memory files so agents start with context instead of guessing, structuring prompts as outcome specifications rather than step-by-step instructions, running multiple agents in parallel on different concerns, and verifying output through automated test suites rather than manual review.</p>
+
+            <p>None of these practices required new technology. They required developers to recognize that working with an AI agent is a skill, not a feature toggle. The phase change was partly the models crossing a threshold, and partly the user base learning how to meet them there.</p>
+
+            <h2>What "Started Working" Actually Means</h2>
+
+            <p>Karpathy's phrase is deliberately vague, and that vagueness is useful because the experience of "it works now" is different for different developers. But there are concrete behaviors that crossed the reliability threshold:</p>
+
+            <ul>
+                <li><strong>Multi-file edits that compile on the first try</strong> -- agents could modify 5-10 files in a coordinated change and have the build pass without manual fixes more than 70% of the time</li>
+                <li><strong>Test-driven iteration loops</strong> -- agents could write code, run the test suite, see failures, and fix them in 2-3 cycles without human intervention</li>
+                <li><strong>Architectural understanding</strong> -- agents could read a codebase and make changes that respected existing patterns, naming conventions, and module boundaries instead of generating isolated code blobs</li>
+                <li><strong>Error recovery</strong> -- when something went wrong, agents could diagnose the problem from error output and attempt a fix, rather than hallucinating a non-existent solution</li>
+            </ul>
+
+            <p>These behaviors are not magic. They are the baseline of what a competent junior developer does. The phase change was AI agents reaching the reliability level of a junior developer on a good day -- which, it turns out, is transformatively useful when that junior developer works at 100x speed, never gets tired, and can be cloned into 9 parallel instances.</p>
+
+            <h2>The Agentic Engineering Discipline That Emerged</h2>
+
+            <p>The most significant consequence of the phase change was not what the tools could do -- it was the new discipline that formed around them. Agentic engineering is not "using AI to code." It is a structured methodology for orchestrating AI agents as part of a software development workflow.</p>
+
+            <div class="highlight">
+                <h3>Core Principles of Agentic Engineering</h3>
+                <ul>
+                    <li><strong>Memory persistence</strong> -- every project maintains a living memory file that agents read on startup and update after sessions</li>
+                    <li><strong>Outcome-driven prompting</strong> -- specify what you want built, not how to build it; let the agent determine implementation</li>
+                    <li><strong>Parallel execution</strong> -- run multiple agents on independent tasks simultaneously, then merge results</li>
+                    <li><strong>Automated verification</strong> -- rely on test suites and build systems to validate agent output, not manual review alone</li>
+                    <li><strong>Context management</strong> -- actively manage what the agent knows and when, rather than dumping everything into context</li>
+                </ul>
+            </div>
+
+            <p>This discipline did not appear in a vacuum. It emerged from thousands of developers independently discovering the same patterns, sharing them on Twitter and in blog posts, and iterating on what worked. The developers who adopted these practices saw dramatically different results from the same models and tools.</p>
+
+            <h2>Why Beam Was Built for This Phase Change</h2>
+
+            <p>Beam exists because the phase change created a new problem: orchestrating multiple AI agents across complex projects requires infrastructure that traditional terminal apps and IDEs were never designed to provide.</p>
+
+            <p>When you are running three Claude Code instances in parallel -- one refactoring the backend, one writing tests, one updating documentation -- you need workspaces that keep them organized. You need project memory that persists between sessions. You need terminal layouts that let you see all agents working simultaneously. You need a way to save and restore the entire working context when you close your laptop and come back the next day.</p>
+
+            <p>That is what Beam provides. Not another AI coding tool -- an agentic engineering platform that makes the tools you already use dramatically more effective. The phase change made AI agents viable. Beam makes them manageable.</p>
+
+            <h2>What Comes Next</h2>
+
+            <p>Phase changes are irreversible. Water that has frozen does not spontaneously melt at the same temperature. The same applies here: AI coding agents are not going to "stop working." The trajectory is toward more reliability, more autonomy, and more complex tasks that agents can handle independently.</p>
+
+            <p>The developers who will benefit most are those who invest now in the agentic engineering discipline -- building the muscle memory, the workflows, and the infrastructure for a world where AI agents are a permanent part of their team. The phase change already happened. The only question is whether you have reorganized your workflow to take advantage of it.</p>
+
+            <div class="cta-box">
+                <h3>Built for the Phase Change</h3>
+                <p>Beam gives you workspaces, persistent memory, and multi-agent orchestration designed for the new era of AI-powered development.</p>
+                <a href="../" class="btn">Download Beam Free</a>
+            </div>
+
+            <div class="related-articles">
+                <h2>Related Articles</h2>
+                <div class="related-grid">
+                    <a href="vibe-coding-to-agentic-engineering.html" class="related-card">
+                        <h4>From Vibe Coding to Agentic Engineering</h4>
+                        <p>How the best developers evolved past vibe coding into structured agent workflows.</p>
+                    </a>
+                    <a href="agentic-engineering-guide.html" class="related-card">
+                        <h4>The Agentic Engineering Guide</h4>
+                        <p>A comprehensive guide to the discipline of working with AI coding agents.</p>
+                    </a>
+                    <a href="claude-code-vs-cursor-vs-codex.html" class="related-card">
+                        <h4>Claude Code vs Cursor vs Codex</h4>
+                        <p>Comparing the top AI coding tools that emerged from the phase change.</p>
+                    </a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p><a href="../">Beam</a> &bull; The Agentic Engineering Platform</p>
+        </div>
+    </footer>
+
+</body>
+</html>

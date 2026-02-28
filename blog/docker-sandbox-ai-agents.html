@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D0XH8B0RKL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-D0XH8B0RKL');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Docker Sandboxes for AI Agents: Secure Execution Without Sacrificing Speed | Beam</title>
+    <meta name="description" content="How to use Docker sandboxes and microVM isolation to run AI coding agents securely. Cover gVisor, filesystem snapshots, network policies, and Claude Code in containers.">
+    <meta name="keywords" content="Docker sandbox AI agents secure execution, AI agent sandboxing, Docker microVM AI coding, secure AI code execution">
+    <meta name="author" content="NextUp Technologies">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://getbeam.dev/blog/docker-sandbox-ai-agents.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://getbeam.dev/blog/docker-sandbox-ai-agents.html">
+    <meta property="og:title" content="Docker Sandboxes for AI Agents: Secure Execution Without Sacrificing Speed">
+    <meta property="og:description" content="How to use Docker sandboxes and microVM isolation to run AI coding agents securely. Cover gVisor, filesystem snapshots, network policies, and Claude Code in containers.">
+    <meta property="og:image" content="https://getbeam.dev/beam-screenshot-1.9.6.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Docker Sandboxes for AI Agents: Secure Execution Without Sacrificing Speed">
+    <meta name="twitter:description" content="How to use Docker sandboxes and microVM isolation to run AI coding agents securely. Cover gVisor, filesystem snapshots, network policies, and Claude Code in containers.">
+    <meta name="twitter:image" content="https://getbeam.dev/beam-screenshot-1.9.6.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Docker Sandboxes for AI Agents: Secure Execution Without Sacrificing Speed",
+        "description": "How to use Docker sandboxes and microVM isolation to run AI coding agents securely. Cover gVisor, filesystem snapshots, network policies, and Claude Code in containers.",
+        "author": {
+            "@type": "Organization",
+            "name": "NextUp Technologies"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Beam"
+        },
+        "datePublished": "2026-02-28",
+        "keywords": "Docker sandbox AI agents secure execution, AI agent sandboxing, Docker microVM AI coding, secure AI code execution"
+    }
+    </script>
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #111113;
+            --bg-tertiary: #1a1a1d;
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.4);
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --border: #27272a;
+            --success: #22c55e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        a, button, .btn, .related-card, .post-card, .editorial-card { cursor: pointer; }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+
+        .container { max-width: 800px; margin: 0 auto; padding: 0 24px; }
+
+        header {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 60px;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1.5rem;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            background: var(--accent);
+            color: white;
+            transition: all 0.2s;
+        }
+
+        .btn:hover { background: #2563eb; transform: translateY(-2px); }
+
+        article { padding-bottom: 80px; }
+
+        .breadcrumb {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+        }
+
+        .breadcrumb a { color: var(--accent); text-decoration: none; }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .meta {
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            font-size: 0.95rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 48px 0 20px;
+            color: var(--text-primary);
+        }
+
+        h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 32px 0 16px;
+            color: var(--text-primary);
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        ul, ol {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            padding-left: 24px;
+        }
+
+        li { margin-bottom: 12px; }
+
+        strong { color: var(--text-primary); }
+
+        .highlight {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 32px 0;
+        }
+
+        .highlight h3 {
+            font-size: 1.1rem;
+            margin: 0 0 12px 0;
+            color: var(--text-primary);
+        }
+
+        .highlight p:last-child, .highlight ul:last-child {
+            margin-bottom: 0;
+        }
+
+        .kbd {
+            display: inline-block;
+            padding: 2px 8px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+        }
+
+        code {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 2px 6px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+        }
+
+        pre {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 20px;
+            overflow-x: auto;
+            margin: 24px 0;
+        }
+
+        pre code {
+            background: none;
+            border: none;
+            padding: 0;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .tip {
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 24px 0;
+        }
+
+        .tip strong {
+            color: var(--success);
+        }
+
+        .warning {
+            background: rgba(234, 179, 8, 0.1);
+            border: 1px solid rgba(234, 179, 8, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 24px 0;
+        }
+
+        .warning strong {
+            color: #eab308;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .cta-box h3 { font-size: 1.5rem; margin-bottom: 12px; color: white; }
+        .cta-box p { color: rgba(255,255,255,0.8); margin-bottom: 24px; }
+        .cta-box .btn { background: white; color: var(--accent); }
+
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer a { color: var(--text-secondary); text-decoration: none; }
+
+        .related-articles { margin-top: 60px; padding-top: 40px; border-top: 1px solid var(--border); }
+        .related-articles h2 { font-size: 1.5rem; margin-bottom: 24px; }
+        .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .related-card { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-decoration: none; transition: border-color 0.2s; }
+        .related-card:hover { border-color: var(--accent); }
+        .related-card h4 { color: white; font-size: 1rem; margin: 0 0 8px 0; }
+        .related-card p { color: var(--text-muted); font-size: 0.85rem; margin: 0; }
+        @media (max-width: 600px) { .related-grid { grid-template-columns: 1fr; } h1 { font-size: 1.8rem; } }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="../" class="logo">
+                <div class="logo-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round">
+                        <path d="M4 17l6-6-6-6M12 19h8"/>
+                    </svg>
+                </div>
+                Beam
+            </a>
+            <a href="../" class="btn">Download Beam</a>
+        </div>
+    </header>
+
+    <main class="container">
+        <article>
+            <div class="breadcrumb">
+                <a href="../">Beam</a> / <a href="../#guides">Guides</a> / Docker Sandboxes for AI Agents
+            </div>
+
+            <h1>Docker Sandboxes for AI Agents: Secure Execution Without Sacrificing Speed</h1>
+            <p class="meta">February 2026 &bull; 10 min read</p>
+
+            <p>AI coding agents execute arbitrary commands on your machine. They install packages, run scripts, modify files, and interact with system services. When everything works correctly, this is powerful. When an agent hallucinates a destructive command or a malicious dependency sneaks in through a supply chain attack, the consequences range from lost work to compromised credentials.</p>
+
+            <p>Docker sandboxing solves this by giving each AI agent an isolated environment where it can do its work without access to your host system. The agent thinks it has a full Linux environment. In reality, it is running inside a container with strict boundaries on what it can touch.</p>
+
+            <h2>The Threat Model for AI Agents</h2>
+
+            <p>Before setting up sandboxes, it helps to understand what you are protecting against. AI coding agents face three categories of risk.</p>
+
+            <div class="highlight">
+                <h3>Risk Categories</h3>
+                <ul>
+                    <li><strong>Accidental destruction</strong> -- the agent runs <code>rm -rf /</code> or overwrites critical config files. This is the most common risk and usually stems from hallucinated paths or misunderstood context.</li>
+                    <li><strong>Supply chain attacks</strong> -- the agent installs a package that contains malware. The agent itself is not malicious, but it blindly executes <code>npm install</code> on packages it recommends, and those packages may be compromised.</li>
+                    <li><strong>Data exfiltration</strong> -- the agent reads sensitive files (SSH keys, environment variables, credentials) and includes them in its context, which gets sent to the API. Even without malicious intent, this leaks secrets to external servers.</li>
+                </ul>
+            </div>
+
+            <p>Traditional Docker containers address the first two categories well. With additional configuration -- specifically network policies and volume restrictions -- you can address the third.</p>
+
+            <h2>Basic Docker Sandbox Setup</h2>
+
+            <p>The simplest approach is running Claude Code inside a Docker container with your project mounted as a volume. Here is a minimal Dockerfile:</p>
+
+            <pre><code>FROM node:20-slim
+
+# Install Claude Code
+RUN npm install -g @anthropic-ai/claude-code
+
+# Create a non-root user
+RUN useradd -m -s /bin/bash agent
+USER agent
+WORKDIR /workspace
+
+# Entry point
+CMD ["claude"]</code></pre>
+
+            <p>Run it with your project directory mounted:</p>
+
+            <pre><code>docker run -it \
+  -v $(pwd):/workspace \
+  -e ANTHROPIC_API_KEY=$ANTHROPIC_API_KEY \
+  --name claude-sandbox \
+  claude-sandbox</code></pre>
+
+            <p>This gives the agent access to your project files but nothing else on your system. No SSH keys, no other project directories, no system configuration files. If the agent runs a destructive command, it affects only the mounted directory.</p>
+
+            <div class="warning">
+                <strong>Volume mount caveat:</strong> The default mount gives the container read-write access to your project directory. If the agent deletes project files, they are really deleted. For maximum safety, mount as read-only (<code>-v $(pwd):/workspace:ro</code>) and have the agent write to a separate output volume that you review before applying changes.
+            </div>
+
+            <h2>Zero-Trust Isolation with gVisor</h2>
+
+            <p>Standard Docker containers share the host kernel. A sufficiently sophisticated exploit can escape the container. For true zero-trust isolation, use gVisor -- a user-space kernel that intercepts all system calls from the container and implements them in a sandboxed environment.</p>
+
+            <pre><code># Install gVisor runtime
+sudo apt-get install -y runsc
+
+# Configure Docker to use gVisor
+sudo cat &gt; /etc/docker/daemon.json &lt;&lt;EOF
+{
+  "runtimes": {
+    "runsc": {
+      "path": "/usr/bin/runsc"
+    }
+  }
+}
+EOF
+
+# Run with gVisor runtime
+docker run -it --runtime=runsc \
+  -v $(pwd):/workspace \
+  -e ANTHROPIC_API_KEY=$ANTHROPIC_API_KEY \
+  claude-sandbox</code></pre>
+
+            <p>With gVisor, even if the agent finds a container escape vulnerability, it hits another layer of sandboxing. The performance overhead is roughly 5-10% for most development workloads -- negligible compared to the time spent waiting for API responses.</p>
+
+            <h2>Filesystem Snapshots for Rollback</h2>
+
+            <p>One of the most practical sandbox features for AI agent workflows is filesystem snapshotting. Before the agent makes changes, take a snapshot. If the changes are wrong, roll back instantly.</p>
+
+            <pre><code># Create a snapshot before agent runs
+docker commit claude-sandbox claude-snapshot-pre
+
+# Let the agent work...
+
+# If something goes wrong, restore
+docker stop claude-sandbox
+docker rm claude-sandbox
+docker run -it --name claude-sandbox \
+  claude-snapshot-pre</code></pre>
+
+            <p>For a more automated approach, use Docker volumes with overlay filesystems:</p>
+
+            <pre><code># Create a named volume for the workspace
+docker volume create agent-workspace
+
+# Copy project files into the volume
+docker run --rm \
+  -v $(pwd):/src:ro \
+  -v agent-workspace:/dest \
+  alpine cp -r /src/. /dest/
+
+# Run agent against the volume (original files untouched)
+docker run -it \
+  -v agent-workspace:/workspace \
+  -e ANTHROPIC_API_KEY=$ANTHROPIC_API_KEY \
+  claude-sandbox</code></pre>
+
+            <p>Your original project files remain untouched. The agent works on a copy inside the Docker volume. Once you review the changes, you can apply them to your real project selectively.</p>
+
+            <h2>Network Policies: Preventing Data Leaks</h2>
+
+            <p>By default, Docker containers have full network access. An AI agent running <code>curl</code> or making HTTP requests can send data anywhere. For sensitive codebases, you want to restrict network access to only what the agent needs.</p>
+
+            <pre><code># Run with no network access
+docker run -it --network=none \
+  -v $(pwd):/workspace \
+  -e ANTHROPIC_API_KEY=$ANTHROPIC_API_KEY \
+  claude-sandbox</code></pre>
+
+            <p>The problem: Claude Code needs network access to reach the Anthropic API. The solution is a custom network with restricted egress:</p>
+
+            <pre><code># Create a restricted network
+docker network create \
+  --driver bridge \
+  --opt com.docker.network.bridge.enable_ip_masquerade=true \
+  agent-network
+
+# Run with restricted network
+docker run -it \
+  --network=agent-network \
+  -v $(pwd):/workspace \
+  -e ANTHROPIC_API_KEY=$ANTHROPIC_API_KEY \
+  claude-sandbox</code></pre>
+
+            <p>Then use iptables rules or a proxy container to allow only traffic to <code>api.anthropic.com</code> and block everything else. This prevents the agent from reaching package registries (stopping supply chain attacks), external services, or data exfiltration endpoints.</p>
+
+            <div class="tip">
+                <strong>Balanced approach:</strong> Most teams allow outbound access to the AI API and package registries (npm, PyPI) but block all other egress. This lets the agent install dependencies and communicate with the model while preventing exfiltration of source code to arbitrary endpoints.
+            </div>
+
+            <h2>Running Claude Code Safely in Containers</h2>
+
+            <p>Here is a production-ready Docker Compose configuration that puts all the pieces together:</p>
+
+            <pre><code>version: '3.8'
+services:
+  claude-agent:
+    build: ./docker/claude-sandbox
+    volumes:
+      - ./project:/workspace
+      - agent-output:/output
+    environment:
+      - ANTHROPIC_API_KEY
+    networks:
+      - agent-restricted
+    deploy:
+      resources:
+        limits:
+          cpus: '2.0'
+          memory: 4G
+    security_opt:
+      - no-new-privileges:true
+    read_only: true
+    tmpfs:
+      - /tmp:size=512M
+
+volumes:
+  agent-output:
+
+networks:
+  agent-restricted:
+    driver: bridge</code></pre>
+
+            <p>This configuration enforces: read-only root filesystem (the agent can only write to <code>/workspace</code>, <code>/output</code>, and <code>/tmp</code>), CPU and memory limits (prevents runaway processes), no privilege escalation, and an isolated network.</p>
+
+            <h2>Multi-Container Agent Orchestration</h2>
+
+            <p>For multi-agent workflows, run each agent in its own container with its own sandbox boundaries:</p>
+
+            <pre><code>services:
+  implementer:
+    build: ./docker/claude-sandbox
+    volumes:
+      - ./project:/workspace
+    # Full read-write for implementation
+
+  reviewer:
+    build: ./docker/claude-sandbox
+    volumes:
+      - ./project:/workspace:ro
+    # Read-only: can review but not modify
+
+  tester:
+    build: ./docker/claude-sandbox
+    volumes:
+      - ./project:/workspace:ro
+      - ./tests:/tests
+    # Read-only project, write to tests only</code></pre>
+
+            <p>Each agent has precisely the access it needs and no more. The implementer can modify project files. The reviewer can only read them. The tester can read the project and write test files. This is the principle of least privilege applied to AI agents.</p>
+
+            <h2>Monitoring Sandboxed Agents with Beam</h2>
+
+            <p>Running AI agents in Docker containers means their output lives inside the container's terminal session. Without tooling, you are limited to <code>docker logs</code> and <code>docker attach</code> -- useful for one container, unmanageable for three or four running simultaneously.</p>
+
+            <p>Beam connects to each container's terminal session and displays them in organized panes within a single workspace. You configure each pane to attach to a specific container, and Beam handles the connection management. The result: a dashboard showing every sandboxed agent's activity in real time.</p>
+
+            <p>When an agent in the implementer container finishes a feature, you see it immediately. When the reviewer container flags a security issue, it appears in the adjacent pane. When tests pass or fail in the tester container, the results show in the third pane. All visible at once, all isolated from each other and from your host system.</p>
+
+            <div class="cta-box">
+                <h3>Monitor All Your Sandboxed Agents in One View</h3>
+                <p>Beam organizes multiple container sessions into a single workspace with split panes, persistent layouts, and project memory.</p>
+                <a href="../" class="btn">Download Beam Free</a>
+            </div>
+
+            <h2>When to Sandbox and When Not To</h2>
+
+            <p>Docker sandboxing adds setup complexity. Not every workflow needs it. Here is a practical decision framework:</p>
+
+            <ul>
+                <li><strong>Always sandbox</strong> when working with production credentials, customer data, or proprietary code that must not leak</li>
+                <li><strong>Always sandbox</strong> when running agents in fully autonomous mode without human approval of each command</li>
+                <li><strong>Consider sandboxing</strong> for open source projects or personal experiments where the risk is lower but you want clean isolation</li>
+                <li><strong>Skip sandboxing</strong> when using Claude Code's built-in permission system (it asks before executing commands) and you are actively supervising the session</li>
+            </ul>
+
+            <p>The supervised, human-in-the-loop workflow with Claude Code already provides a layer of safety -- you approve every file edit and command execution. Docker sandboxing adds defense-in-depth for scenarios where that human oversight is insufficient or impractical.</p>
+
+            <div class="related-articles">
+                <h2>Related Articles</h2>
+                <div class="related-grid">
+                    <a href="claude-code-with-docker.html" class="related-card">
+                        <h4>Claude Code with Docker</h4>
+                        <p>Getting started with running Claude Code inside Docker containers.</p>
+                    </a>
+                    <a href="vibe-coding-security-checklist.html" class="related-card">
+                        <h4>Vibe Coding Security Checklist</h4>
+                        <p>Essential security checks for AI-generated code before deployment.</p>
+                    </a>
+                    <a href="scaling-ai-agents-production.html" class="related-card">
+                        <h4>Scaling AI Agents in Production</h4>
+                        <p>Strategies for running AI coding agents at scale with proper safeguards.</p>
+                    </a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>
+                <a href="../">Beam</a> &bull; The Agentic Engineering Platform &bull;
+                <a href="mailto:frank@nextuptechnologies.co">Contact</a>
+            </p>
+            <p style="margin-top: 12px; font-size: 0.8rem;">
+                <a href="/privacy.html" style="color: #71717a; text-decoration: none;">Privacy Policy</a> &bull;
+                <a href="/terms.html" style="color: #71717a; text-decoration: none;">Terms of Service</a>
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>

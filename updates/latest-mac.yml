@@ -1,0 +1,17 @@
+version: 3.1.8
+files:
+  - url: Beam-3.1.8-arm64-mac.zip
+    sha512: LTGIEMWDf8xiA9BqUbyeaLNJMNQ8da+Ndo/JnKveD9L1LK4nnSqYzuuyWgR+lZhrCXd/sKuFjOyLDksL6/lVKA==
+    size: 97506919
+  - url: Beam-3.1.8-mac.zip
+    sha512: XN8X1/PTFwte8Wx1i6hzf1kWTBXVV4KcKp0UaFYKYsA9RzhtWywF7ZEIF3/3l0aRim1Pt7iLM0K/RW6/N+fp8g==
+    size: 104663201
+  - url: beam-v3.1.8-arm64.dmg
+    sha512: bPN5dqNMCfu+tw+z3gNwFxHvSUNjBQgoGwu5CUOuorn7s4sqo2G8EVsvn4NsVCjAQ78153H7k908okDvy0XBKg==
+    size: 101557996
+  - url: beam-v3.1.8-x64.dmg
+    sha512: 9mhXFrve/VAVTjLc78+40wi6U/qUqwemDaukYD0R11shTbAPYIstt6keD2ODzXCBU6/Eo5JaoW7FARtBMkBlYA==
+    size: 108695753
+path: Beam-3.1.8-arm64-mac.zip
+sha512: LTGIEMWDf8xiA9BqUbyeaLNJMNQ8da+Ndo/JnKveD9L1LK4nnSqYzuuyWgR+lZhrCXd/sKuFjOyLDksL6/lVKA==
+releaseDate: '2026-02-28T16:07:59.869Z'

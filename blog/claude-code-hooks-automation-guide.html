@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D0XH8B0RKL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-D0XH8B0RKL');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claude Code Hooks: 15 Automations Every Developer Should Set Up | Beam</title>
+    <meta name="description" content="A hands-on tutorial for configuring Claude Code hooks. 15 specific automations using PreToolUse, PostToolUse, and SessionStart hooks for formatting, safety, testing, and monitoring.">
+    <meta name="keywords" content="Claude Code hooks, Claude Code automation, PreToolUse hook, PostToolUse hook, SessionStart hook, Claude Code configuration guide">
+    <meta name="author" content="NextUp Technologies">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://getbeam.dev/blog/claude-code-hooks-automation-guide.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://getbeam.dev/blog/claude-code-hooks-automation-guide.html">
+    <meta property="og:title" content="Claude Code Hooks: 15 Automations Every Developer Should Set Up">
+    <meta property="og:description" content="A hands-on tutorial for configuring Claude Code hooks. 15 specific automations using PreToolUse, PostToolUse, and SessionStart hooks for formatting, safety, testing, and monitoring.">
+    <meta property="og:image" content="https://getbeam.dev/beam-screenshot-1.9.6.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Claude Code Hooks: 15 Automations Every Developer Should Set Up">
+    <meta name="twitter:description" content="A hands-on tutorial for configuring Claude Code hooks. 15 specific automations using PreToolUse, PostToolUse, and SessionStart hooks for formatting, safety, testing, and monitoring.">
+    <meta name="twitter:image" content="https://getbeam.dev/beam-screenshot-1.9.6.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Claude Code Hooks: 15 Automations Every Developer Should Set Up",
+        "description": "A hands-on tutorial for configuring Claude Code hooks. 15 specific automations using PreToolUse, PostToolUse, and SessionStart hooks for formatting, safety, testing, and monitoring.",
+        "author": {
+            "@type": "Organization",
+            "name": "NextUp Technologies"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Beam"
+        },
+        "datePublished": "2026-02-28",
+        "keywords": "Claude Code hooks, Claude Code automation, PreToolUse hook, PostToolUse hook, SessionStart hook, Claude Code configuration guide"
+    }
+    </script>
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #111113;
+            --bg-tertiary: #1a1a1d;
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.4);
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --border: #27272a;
+            --success: #22c55e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        a, button, .btn, .related-card, .post-card, .editorial-card { cursor: pointer; }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+
+        .container { max-width: 800px; margin: 0 auto; padding: 0 24px; }
+
+        header {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 60px;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1.5rem;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            background: var(--accent);
+            color: white;
+            transition: all 0.2s;
+        }
+
+        .btn:hover { background: #2563eb; transform: translateY(-2px); }
+
+        article { padding-bottom: 80px; }
+
+        .breadcrumb {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+        }
+
+        .breadcrumb a { color: var(--accent); text-decoration: none; }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .meta {
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            font-size: 0.95rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 48px 0 20px;
+            color: var(--text-primary);
+        }
+
+        h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 32px 0 16px;
+            color: var(--text-primary);
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        ul, ol {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            padding-left: 24px;
+        }
+
+        li { margin-bottom: 12px; }
+
+        strong { color: var(--text-primary); }
+
+        .highlight {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 32px 0;
+        }
+
+        .highlight h3 {
+            font-size: 1.1rem;
+            margin: 0 0 12px 0;
+            color: var(--text-primary);
+        }
+
+        .highlight p:last-child, .highlight ul:last-child {
+            margin-bottom: 0;
+        }
+
+        .kbd {
+            display: inline-block;
+            padding: 2px 8px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+        }
+
+        code {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 2px 6px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+        }
+
+        pre {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 20px;
+            overflow-x: auto;
+            margin: 24px 0;
+        }
+
+        pre code {
+            background: none;
+            border: none;
+            padding: 0;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            background: var(--accent);
+            color: white;
+            border-radius: 50%;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-right: 12px;
+        }
+
+        .tip {
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 24px 0;
+        }
+
+        .tip strong {
+            color: var(--success);
+        }
+
+        .warning {
+            background: rgba(234, 179, 8, 0.1);
+            border: 1px solid rgba(234, 179, 8, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 24px 0;
+        }
+
+        .warning strong {
+            color: #eab308;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .cta-box h3 { font-size: 1.5rem; margin-bottom: 12px; color: white; }
+        .cta-box p { color: rgba(255,255,255,0.8); margin-bottom: 24px; }
+        .cta-box .btn { background: white; color: var(--accent); }
+
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer a { color: var(--text-secondary); text-decoration: none; }
+
+        .related-articles { margin-top: 60px; padding-top: 40px; border-top: 1px solid var(--border); }
+        .related-articles h2 { font-size: 1.5rem; margin-bottom: 24px; }
+        .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .related-card { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-decoration: none; transition: border-color 0.2s; }
+        .related-card:hover { border-color: var(--accent); }
+        .related-card h4 { color: white; font-size: 1rem; margin: 0 0 8px 0; }
+        .related-card p { color: var(--text-muted); font-size: 0.85rem; margin: 0; }
+        @media (max-width: 600px) { .related-grid { grid-template-columns: 1fr; } h1 { font-size: 1.8rem; } }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="../" class="logo">
+                <div class="logo-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round">
+                        <path d="M4 17l6-6-6-6M12 19h8"/>
+                    </svg>
+                </div>
+                Beam
+            </a>
+            <a href="../" class="btn">Download Beam</a>
+        </div>
+    </header>
+
+    <main class="container">
+        <article>
+            <div class="breadcrumb">
+                <a href="../">Beam</a> / <a href="../#guides">Guides</a> / Claude Code Hooks Automation
+            </div>
+
+            <h1>Claude Code Hooks: 15 Automations Every Developer Should Set Up</h1>
+            <p class="meta">February 2026 &bull; 12 min read</p>
+
+            <p>Claude Code hooks let you run custom scripts at specific points in the agent&rsquo;s workflow &mdash; before a tool runs, after a tool completes, or when a session starts. They are the difference between an AI agent that needs constant supervision and one that enforces your standards automatically.</p>
+
+            <p>Most developers ignore hooks. They should not. A well-configured hook system catches dangerous commands before they execute, formats code automatically, runs tests after every change, and logs everything the agent does. Here are 15 hooks worth setting up, organized by category.</p>
+
+            <h2>How Hooks Work</h2>
+
+            <p>Claude Code supports three hook types, each firing at a different point in the agent&rsquo;s execution cycle:</p>
+
+            <div class="highlight">
+                <h3>Hook Types</h3>
+                <ul>
+                    <li><strong>PreToolUse</strong> &mdash; runs before the agent executes a tool. Can block the tool call by returning a non-zero exit code. Use for safety gates and validation.</li>
+                    <li><strong>PostToolUse</strong> &mdash; runs after a tool completes successfully. Use for formatting, testing, logging, and notifications.</li>
+                    <li><strong>SessionStart</strong> &mdash; runs once when a new Claude Code session begins. Use for environment setup, context loading, and verification checks.</li>
+                </ul>
+            </div>
+
+            <p>Hooks are configured in <code>.claude/settings.json</code> in your project directory or in <code>~/.claude/settings.json</code> for global hooks. Each hook specifies the event type, a matcher (which tools or patterns trigger it), and a command to run.</p>
+
+            <pre><code>// .claude/settings.json
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "bash",
+        "command": "/path/to/your/script.sh"
+      }
+    ]
+  }
+}</code></pre>
+
+            <p>The hook receives context about the tool call as JSON via stdin, including the tool name, parameters, and session metadata. Your script can read this, make decisions, and either allow or block the operation.</p>
+
+            <h2>Safety Hooks (1-5)</h2>
+
+            <h3>1. Block Dangerous Shell Commands</h3>
+
+            <p>The most important hook you will ever configure. Prevents the agent from running destructive commands like <code>rm -rf</code>, <code>git push --force</code>, or <code>DROP TABLE</code>.</p>
+
+            <pre><code>#!/bin/bash
+# hooks/block-dangerous.sh
+INPUT=$(cat)
+COMMAND=$(echo "$INPUT" | jq -r '.tool_input.command // empty')
+
+BLOCKED_PATTERNS=(
+  "rm -rf /"
+  "rm -rf ~"
+  "rm -rf \."
+  "git push.*--force"
+  "git reset --hard"
+  "DROP TABLE"
+  "DROP DATABASE"
+  "chmod 777"
+  "curl.*| bash"
+  "wget.*| sh"
+)
+
+for pattern in "${BLOCKED_PATTERNS[@]}"; do
+  if echo "$COMMAND" | grep -qiE "$pattern"; then
+    echo "BLOCKED: Command matches dangerous pattern: $pattern"
+    exit 1
+  fi
+done
+
+exit 0</code></pre>
+
+            <div class="warning">
+                <strong>This is not optional.</strong> Without this hook, a single hallucinated <code>rm -rf</code> can destroy your project. The agent is powerful. Guardrails are essential.
+            </div>
+
+            <h3>2. Prevent Writes to Protected Files</h3>
+
+            <p>Some files should never be modified by the agent: CI configurations, lock files, production environment configs. A PreToolUse hook on <code>write_file</code> can enforce this.</p>
+
+            <pre><code>#!/bin/bash
+# hooks/protect-files.sh
+INPUT=$(cat)
+FILE_PATH=$(echo "$INPUT" | jq -r '.tool_input.file_path // empty')
+
+PROTECTED=(
+  ".github/workflows/"
+  ".env.production"
+  "package-lock.json"
+  "yarn.lock"
+  "Dockerfile.production"
+)
+
+for protected in "${PROTECTED[@]}"; do
+  if [[ "$FILE_PATH" == *"$protected"* ]]; then
+    echo "BLOCKED: $FILE_PATH is a protected file"
+    exit 1
+  fi
+done
+
+exit 0</code></pre>
+
+            <h3>3. Require Confirmation for Destructive Git Operations</h3>
+
+            <p>Let the agent read git status and log freely, but block any operation that could destroy history or push code without review.</p>
+
+            <pre><code>#!/bin/bash
+# hooks/git-safety.sh
+INPUT=$(cat)
+COMMAND=$(echo "$INPUT" | jq -r '.tool_input.command // empty')
+
+if echo "$COMMAND" | grep -qE "^git (push|rebase|merge|reset|checkout --)"; then
+  echo "BLOCKED: Git write operation requires manual execution"
+  echo "Command was: $COMMAND"
+  exit 1
+fi
+
+exit 0</code></pre>
+
+            <h3>4. Block Network Requests to Unknown Hosts</h3>
+
+            <p>If the agent tries to curl or wget an unknown URL, block it. This prevents data exfiltration and supply chain attacks from compromised dependencies.</p>
+
+            <pre><code>#!/bin/bash
+# hooks/network-allowlist.sh
+INPUT=$(cat)
+COMMAND=$(echo "$INPUT" | jq -r '.tool_input.command // empty')
+
+ALLOWED_HOSTS=(
+  "github.com"
+  "registry.npmjs.org"
+  "api.anthropic.com"
+)
+
+if echo "$COMMAND" | grep -qE "(curl|wget|fetch|http)"; then
+  ALLOWED=false
+  for host in "${ALLOWED_HOSTS[@]}"; do
+    if echo "$COMMAND" | grep -q "$host"; then
+      ALLOWED=true
+      break
+    fi
+  done
+  if [ "$ALLOWED" = false ]; then
+    echo "BLOCKED: Network request to unapproved host"
+    exit 1
+  fi
+fi
+
+exit 0</code></pre>
+
+            <h3>5. Limit File Size on Writes</h3>
+
+            <p>Prevent the agent from generating massive files that could exhaust disk space or indicate something went wrong (like dumping a database into a source file).</p>
+
+            <pre><code>#!/bin/bash
+# hooks/file-size-limit.sh
+INPUT=$(cat)
+CONTENT=$(echo "$INPUT" | jq -r '.tool_input.content // empty')
+MAX_LINES=500
+
+LINE_COUNT=$(echo "$CONTENT" | wc -l)
+
+if [ "$LINE_COUNT" -gt "$MAX_LINES" ]; then
+  echo "BLOCKED: File write exceeds $MAX_LINES lines ($LINE_COUNT lines)"
+  echo "Consider splitting into multiple files"
+  exit 1
+fi
+
+exit 0</code></pre>
+
+            <h2>Quality Hooks (6-10)</h2>
+
+            <h3>6. Auto-Format After File Writes</h3>
+
+            <p>Run Prettier (or your formatter of choice) every time the agent writes a file. The agent&rsquo;s output is good but not always perfectly formatted. This hook ensures consistency.</p>
+
+            <pre><code>#!/bin/bash
+# hooks/auto-format.sh
+INPUT=$(cat)
+FILE_PATH=$(echo "$INPUT" | jq -r '.tool_input.file_path // empty')
+
+if [[ "$FILE_PATH" =~ \.(ts|tsx|js|jsx|json|css|md)$ ]]; then
+  npx prettier --write "$FILE_PATH" 2>/dev/null
+fi
+
+exit 0</code></pre>
+
+            <h3>7. Run Lint After Code Changes</h3>
+
+            <p>Catch lint errors immediately after the agent writes code, rather than discovering them during the next build.</p>
+
+            <pre><code>#!/bin/bash
+# hooks/auto-lint.sh
+INPUT=$(cat)
+FILE_PATH=$(echo "$INPUT" | jq -r '.tool_input.file_path // empty')
+
+if [[ "$FILE_PATH" =~ \.(ts|tsx|js|jsx)$ ]]; then
+  npx eslint "$FILE_PATH" --fix 2>/dev/null
+  if [ $? -ne 0 ]; then
+    echo "WARNING: Lint errors found in $FILE_PATH"
+  fi
+fi
+
+exit 0</code></pre>
+
+            <h3>8. Run Related Tests After Code Changes</h3>
+
+            <p>When the agent modifies a source file, automatically run the corresponding test file. This gives the agent immediate feedback on whether its changes break anything.</p>
+
+            <pre><code>#!/bin/bash
+# hooks/auto-test.sh
+INPUT=$(cat)
+FILE_PATH=$(echo "$INPUT" | jq -r '.tool_input.file_path // empty')
+
+# Skip if the modified file is itself a test
+if [[ "$FILE_PATH" =~ \.(test|spec)\.(ts|tsx|js|jsx)$ ]]; then
+  exit 0
+fi
+
+# Find corresponding test file
+TEST_FILE="${FILE_PATH%.*}.test.${FILE_PATH##*.}"
+
+if [ -f "$TEST_FILE" ]; then
+  npx jest "$TEST_FILE" --no-coverage 2>&1
+fi
+
+exit 0</code></pre>
+
+            <h3>9. Type Check After TypeScript Changes</h3>
+
+            <p>Run <code>tsc --noEmit</code> on modified TypeScript files to catch type errors before they accumulate.</p>
+
+            <pre><code>#!/bin/bash
+# hooks/type-check.sh
+INPUT=$(cat)
+FILE_PATH=$(echo "$INPUT" | jq -r '.tool_input.file_path // empty')
+
+if [[ "$FILE_PATH" =~ \.(ts|tsx)$ ]]; then
+  npx tsc --noEmit 2>&1 | head -20
+fi
+
+exit 0</code></pre>
+
+            <h3>10. Git Snapshot Before Major Changes</h3>
+
+            <p>Create an automatic git stash or commit before the agent starts making changes. This gives you a clean rollback point if things go wrong.</p>
+
+            <pre><code>#!/bin/bash
+# hooks/git-snapshot.sh
+# Run as a SessionStart hook
+TIMESTAMP=$(date +%Y%m%d_%H%M%S)
+
+# Only snapshot if there are changes
+if ! git diff --quiet 2>/dev/null; then
+  git stash push -m "pre-agent-snapshot-$TIMESTAMP" 2>/dev/null
+  git stash pop 2>/dev/null
+fi
+
+# Create a WIP commit as a checkpoint
+git add -A 2>/dev/null
+git commit -m "WIP: pre-agent checkpoint $TIMESTAMP" --no-verify 2>/dev/null
+
+exit 0</code></pre>
+
+            <h2>Monitoring Hooks (11-15)</h2>
+
+            <h3>11. Log All Tool Calls</h3>
+
+            <p>Keep a complete audit trail of every tool the agent calls, with timestamps and parameters. Invaluable for debugging and understanding agent behavior.</p>
+
+            <pre><code>#!/bin/bash
+# hooks/audit-log.sh
+INPUT=$(cat)
+TOOL=$(echo "$INPUT" | jq -r '.tool_name // "unknown"')
+TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+LOG_FILE=".claude/audit.log"
+
+echo "$INPUT" | jq -c "{timestamp: \"$TIMESTAMP\", tool: .tool_name, input: .tool_input}" \
+  >> "$LOG_FILE"
+
+exit 0</code></pre>
+
+            <h3>12. Track Token Usage Per Session</h3>
+
+            <p>Log token consumption so you can track costs and identify sessions that are burning through your budget.</p>
+
+            <pre><code>#!/bin/bash
+# hooks/token-tracker.sh
+INPUT=$(cat)
+SESSION_ID=$(echo "$INPUT" | jq -r '.session_id // "unknown"')
+TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+
+echo "$TIMESTAMP,$SESSION_ID,tool_call" >> ".claude/token-usage.csv"
+
+exit 0</code></pre>
+
+            <h3>13. Desktop Notification on Session Complete</h3>
+
+            <p>When running long agent tasks, get a native desktop notification so you do not have to keep checking the terminal.</p>
+
+            <pre><code>#!/bin/bash
+# hooks/notify-complete.sh
+INPUT=$(cat)
+TOOL=$(echo "$INPUT" | jq -r '.tool_name // "unknown"')
+
+# Only notify on the final tool call of a task
+if echo "$INPUT" | jq -e '.is_final_tool' > /dev/null 2>&1; then
+  osascript -e "display notification \"Agent task completed\" with title \"Claude Code\""
+fi
+
+exit 0</code></pre>
+
+            <h3>14. Auto-Compact on Context Window Threshold</h3>
+
+            <p>Monitor context window usage and trigger a compaction when it gets too high, preventing the agent from losing context mid-task.</p>
+
+            <pre><code>#!/bin/bash
+# hooks/auto-compact.sh
+INPUT=$(cat)
+CONTEXT_USED=$(echo "$INPUT" | jq -r '.context_window_usage // 0')
+
+if (( $(echo "$CONTEXT_USED > 0.8" | bc -l) )); then
+  echo "Context window at ${CONTEXT_USED}. Consider running /compact."
+fi
+
+exit 0</code></pre>
+
+            <h3>15. Session Environment Verification</h3>
+
+            <p>On session start, verify that all required tools and dependencies are available. Catch missing prerequisites before the agent wastes time hitting errors.</p>
+
+            <pre><code>#!/bin/bash
+# hooks/verify-env.sh
+ERRORS=0
+
+# Check Node.js
+if ! command -v node &> /dev/null; then
+  echo "ERROR: Node.js not found"
+  ERRORS=$((ERRORS + 1))
+fi
+
+# Check project dependencies
+if [ ! -d "node_modules" ]; then
+  echo "WARNING: node_modules not found, running npm install..."
+  npm install
+fi
+
+# Check required env vars
+for var in DATABASE_URL API_KEY; do
+  if [ -z "${!var}" ]; then
+    echo "WARNING: $var not set"
+  fi
+done
+
+# Check git status
+if ! git rev-parse --is-inside-work-tree &> /dev/null 2>&1; then
+  echo "WARNING: Not inside a git repository"
+fi
+
+exit $ERRORS</code></pre>
+
+            <h2>Putting It All Together</h2>
+
+            <p>Here is a complete <code>.claude/settings.json</code> configuration using these hooks:</p>
+
+            <pre><code>{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "bash",
+        "command": ".claude/hooks/block-dangerous.sh"
+      },
+      {
+        "matcher": "bash",
+        "command": ".claude/hooks/git-safety.sh"
+      },
+      {
+        "matcher": "bash",
+        "command": ".claude/hooks/network-allowlist.sh"
+      },
+      {
+        "matcher": "write_file",
+        "command": ".claude/hooks/protect-files.sh"
+      },
+      {
+        "matcher": "write_file",
+        "command": ".claude/hooks/file-size-limit.sh"
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "write_file",
+        "command": ".claude/hooks/auto-format.sh"
+      },
+      {
+        "matcher": "write_file",
+        "command": ".claude/hooks/auto-lint.sh"
+      },
+      {
+        "matcher": "write_file",
+        "command": ".claude/hooks/auto-test.sh"
+      },
+      {
+        "matcher": "*",
+        "command": ".claude/hooks/audit-log.sh"
+      }
+    ],
+    "SessionStart": [
+      {
+        "command": ".claude/hooks/verify-env.sh"
+      },
+      {
+        "command": ".claude/hooks/git-snapshot.sh"
+      }
+    ]
+  }
+}</code></pre>
+
+            <div class="tip">
+                <strong>Start small:</strong> Do not install all 15 hooks at once. Start with the safety hooks (1-3), add the quality hooks after a week, and then layer in monitoring. Each hook adds a small amount of latency to every tool call, so find the balance between automation and speed.
+            </div>
+
+            <h2>Monitoring Hooks Across Multiple Agents in Beam</h2>
+
+            <p>Hooks become even more powerful when you run multiple agent sessions. But they also become harder to monitor &mdash; 15 hooks across 3 agents means dozens of log files and notification streams.</p>
+
+            <p>Beam solves this by giving you a side-by-side view of all your agent sessions. When a hook blocks a dangerous command in one pane, you see it immediately without switching windows. When the auto-test hook reports a failure in another pane, you catch it in real time. The audit logs from all sessions are visible in their respective terminals, giving you a unified view of what every agent is doing.</p>
+
+            <p>This is the operational advantage of running agents in a proper workspace. Hooks automate the guardrails. Beam gives you the visibility to know the guardrails are working.</p>
+
+            <div class="cta-box">
+                <h3>Monitor Your Hook Output Across Every Agent</h3>
+                <p>Beam&rsquo;s side-by-side terminals let you see hook output from multiple Claude Code sessions simultaneously. Catch blocked commands, test failures, and audit events in real time.</p>
+                <a href="../" class="btn">Download Beam Free</a>
+            </div>
+
+            <h2>Summary</h2>
+
+            <p>Claude Code hooks transform the agent from a powerful but unsupervised tool into a controlled, automated workflow. The 15 hooks in this guide cover three critical areas:</p>
+
+            <ol>
+                <li><strong>Safety</strong> (hooks 1-5) &mdash; prevent destructive commands, protect critical files, and enforce security boundaries</li>
+                <li><strong>Quality</strong> (hooks 6-10) &mdash; auto-format, lint, test, and type-check after every change</li>
+                <li><strong>Monitoring</strong> (hooks 11-15) &mdash; log everything, track usage, get notifications, and verify the environment</li>
+            </ol>
+
+            <p>Set up the safety hooks today. Add quality hooks this week. Layer in monitoring as your workflow matures. The investment is small &mdash; a few shell scripts &mdash; and the payoff is an agent that enforces your standards automatically, every time, without exception.</p>
+
+            <div class="related-articles">
+                <h2>Related Articles</h2>
+                <div class="related-grid">
+                    <a href="automate-tasks-claude-code.html" class="related-card">
+                        <h4>Automate Tasks with Claude Code</h4>
+                        <p>A broader guide to automating your development workflow with Claude Code.</p>
+                    </a>
+                    <a href="claude-code-keyboard-shortcuts.html" class="related-card">
+                        <h4>Claude Code Keyboard Shortcuts</h4>
+                        <p>Master the keyboard shortcuts that make Claude Code sessions faster and more efficient.</p>
+                    </a>
+                    <a href="agentic-coding-workflow-setup-guide.html" class="related-card">
+                        <h4>Agentic Coding Workflow Setup Guide</h4>
+                        <p>The complete guide to setting up a productive agentic coding workflow from scratch.</p>
+                    </a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>
+                <a href="../">Beam</a> &bull; The Agentic Engineering Platform &bull;
+                <a href="mailto:frank@nextuptechnologies.co">Contact</a>
+            </p>
+
+            <p style="margin-top: 12px; font-size: 0.8rem;">
+                <a href="/privacy.html" style="color: #71717a; text-decoration: none;">Privacy Policy</a> &bull;
+                <a href="/terms.html" style="color: #71717a; text-decoration: none;">Terms of Service</a>
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>

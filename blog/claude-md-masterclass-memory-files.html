@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D0XH8B0RKL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-D0XH8B0RKL');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CLAUDE.md Masterclass: Write Memory Files That Actually Work | Beam</title>
+    <meta name="description" content="A data-driven guide to writing effective CLAUDE.md memory files. Learn the 200-line rule, imperative voice patterns, memory hierarchy, and team workflows.">
+    <meta name="keywords" content="CLAUDE.md best practices memory file guide, Claude Code memory, project memory, agentic engineering memory, CLAUDE.md template">
+    <meta name="author" content="NextUp Technologies">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://getbeam.dev/blog/claude-md-masterclass-memory-files.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://getbeam.dev/blog/claude-md-masterclass-memory-files.html">
+    <meta property="og:title" content="CLAUDE.md Masterclass: Write Memory Files That Actually Work">
+    <meta property="og:description" content="A data-driven guide to writing effective CLAUDE.md memory files. Learn the 200-line rule, imperative voice patterns, memory hierarchy, and team workflows.">
+    <meta property="og:image" content="https://getbeam.dev/beam-screenshot-1.9.6.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="CLAUDE.md Masterclass: Write Memory Files That Actually Work">
+    <meta name="twitter:description" content="A data-driven guide to writing effective CLAUDE.md memory files. Learn the 200-line rule, imperative voice patterns, memory hierarchy, and team workflows.">
+    <meta name="twitter:image" content="https://getbeam.dev/beam-screenshot-1.9.6.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "CLAUDE.md Masterclass: Write Memory Files That Actually Work",
+        "description": "A data-driven guide to writing effective CLAUDE.md memory files. Learn the 200-line rule, imperative voice patterns, memory hierarchy, and team workflows.",
+        "author": {
+            "@type": "Organization",
+            "name": "NextUp Technologies"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Beam"
+        },
+        "datePublished": "2026-02-28",
+        "keywords": "CLAUDE.md best practices memory file guide, Claude Code memory, project memory, agentic engineering memory, CLAUDE.md template"
+    }
+    </script>
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #111113;
+            --bg-tertiary: #1a1a1d;
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.4);
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --border: #27272a;
+            --success: #22c55e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        a, button, .btn, .related-card, .post-card, .editorial-card { cursor: pointer; }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+
+        .container { max-width: 800px; margin: 0 auto; padding: 0 24px; }
+
+        header {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 60px;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1.5rem;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            background: var(--accent);
+            color: white;
+            transition: all 0.2s;
+        }
+
+        .btn:hover { background: #2563eb; transform: translateY(-2px); }
+
+        article { padding-bottom: 80px; }
+
+        .breadcrumb {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+        }
+
+        .breadcrumb a { color: var(--accent); text-decoration: none; }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .meta {
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            font-size: 0.95rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 48px 0 20px;
+            color: var(--text-primary);
+        }
+
+        h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 32px 0 16px;
+            color: var(--text-primary);
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        ul, ol {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            padding-left: 24px;
+        }
+
+        li { margin-bottom: 12px; }
+
+        strong { color: var(--text-primary); }
+
+        .highlight {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 32px 0;
+        }
+
+        .highlight h3 {
+            font-size: 1.1rem;
+            margin: 0 0 12px 0;
+            color: var(--text-primary);
+        }
+
+        .highlight p:last-child, .highlight ul:last-child {
+            margin-bottom: 0;
+        }
+
+        .kbd {
+            display: inline-block;
+            padding: 2px 8px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+        }
+
+        code {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 2px 6px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+        }
+
+        pre {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 20px;
+            overflow-x: auto;
+            margin: 24px 0;
+        }
+
+        pre code {
+            background: none;
+            border: none;
+            padding: 0;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .tip {
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 24px 0;
+        }
+
+        .tip strong {
+            color: var(--success);
+        }
+
+        .warning {
+            background: rgba(234, 179, 8, 0.1);
+            border: 1px solid rgba(234, 179, 8, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 24px 0;
+        }
+
+        .warning strong {
+            color: #eab308;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .cta-box h3 { font-size: 1.5rem; margin-bottom: 12px; color: white; }
+        .cta-box p { color: rgba(255,255,255,0.8); margin-bottom: 24px; }
+        .cta-box .btn { background: white; color: var(--accent); }
+
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer a { color: var(--text-secondary); text-decoration: none; }
+
+        .related-articles { margin-top: 60px; padding-top: 40px; border-top: 1px solid var(--border); }
+        .related-articles h2 { font-size: 1.5rem; margin-bottom: 24px; }
+        .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .related-card { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-decoration: none; transition: border-color 0.2s; }
+        .related-card:hover { border-color: var(--accent); }
+        .related-card h4 { color: white; font-size: 1rem; margin: 0 0 8px 0; }
+        .related-card p { color: var(--text-muted); font-size: 0.85rem; margin: 0; }
+        @media (max-width: 600px) { .related-grid { grid-template-columns: 1fr; } h1 { font-size: 1.8rem; } }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="../" class="logo">
+                <div class="logo-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round">
+                        <path d="M4 17l6-6-6-6M12 19h8"/>
+                    </svg>
+                </div>
+                Beam
+            </a>
+            <a href="../" class="btn">Download Beam</a>
+        </div>
+    </header>
+
+    <main class="container">
+        <article>
+            <div class="breadcrumb">
+                <a href="../">Beam</a> / <a href="../#guides">Guides</a> / CLAUDE.md Masterclass
+            </div>
+
+            <h1>CLAUDE.md Masterclass: Write Memory Files That Actually Work</h1>
+            <p class="meta">February 2026 &bull; 11 min read</p>
+
+            <p>Every developer using Claude Code has a CLAUDE.md file. Most of them are bad. They are either too long, too vague, written in the wrong voice, or structured in a way that wastes context tokens. This guide covers what actually works, based on patterns from teams shipping production software with agentic workflows every day.</p>
+
+            <h2>The 200-Line Rule</h2>
+
+            <p>Your root CLAUDE.md file should be under 200 lines. This is not arbitrary. Claude Code loads this file into context at the start of every session, and every token in it competes with your actual conversation for attention. A 500-line CLAUDE.md filled with architectural details from six months ago actively hurts performance -- the model spends attention on stale context instead of your current task.</p>
+
+            <p>If you find yourself pushing past 200 lines, it is a signal that you need to split your memory into a hierarchy (covered below). The root file should contain only what applies to every single session, regardless of what you are working on.</p>
+
+            <div class="highlight">
+                <h3>What Belongs in the Root CLAUDE.md</h3>
+                <ul>
+                    <li><strong>Build commands</strong> -- how to run, test, lint, and deploy</li>
+                    <li><strong>Project structure</strong> -- key directories and what lives where</li>
+                    <li><strong>Coding conventions</strong> -- naming, file organization, patterns to follow</li>
+                    <li><strong>Hard rules</strong> -- things the agent must never do (e.g., never modify migration files directly)</li>
+                    <li><strong>Current priorities</strong> -- what you are actively working on this week</li>
+                </ul>
+            </div>
+
+            <div class="warning">
+                <strong>What does NOT belong:</strong> API documentation, full schema definitions, changelog history, onboarding guides for human developers, or anything that does not directly affect how the agent should write code. Move these to subdirectory memory files or external documentation.
+            </div>
+
+            <h2>Write in Imperative Voice</h2>
+
+            <p>This is the single highest-impact change most developers can make to their CLAUDE.md files. Compare these two approaches:</p>
+
+            <div class="highlight">
+                <h3>Passive (Weak)</h3>
+                <pre><code>The project uses TypeScript with strict mode enabled.
+Components are generally organized by feature.
+Tests should ideally be placed next to their source files.
+We prefer named exports over default exports.</code></pre>
+            </div>
+
+            <div class="highlight">
+                <h3>Imperative (Strong)</h3>
+                <pre><code>Use TypeScript strict mode. Never use `any`.
+Organize components by feature in src/features/.
+Place tests next to source: Component.test.tsx.
+Use named exports. Never use default exports.</code></pre>
+            </div>
+
+            <p>The imperative version is shorter, clearer, and leaves zero room for interpretation. When Claude reads "Tests should ideally be placed next to their source files," it treats this as a suggestion it can override. When it reads "Place tests next to source," it treats it as a rule. The difference in agent compliance is significant.</p>
+
+            <p>Write every line in your CLAUDE.md as if you are writing a build script, not a wiki page. Commands, not descriptions.</p>
+
+            <h2>Memory Hierarchy: Root, Subdirectory, and User</h2>
+
+            <p>Claude Code supports a three-level memory hierarchy, and using it properly is what separates a mediocre CLAUDE.md setup from a great one.</p>
+
+            <h3>Level 1: Project Root CLAUDE.md</h3>
+
+            <p>Lives at the project root. Loaded on every session. Contains global rules, build commands, and project-wide conventions. Under 200 lines.</p>
+
+            <h3>Level 2: Subdirectory CLAUDE.md Files</h3>
+
+            <p>Live inside specific directories (e.g., <code>src/api/CLAUDE.md</code>, <code>src/components/CLAUDE.md</code>). Only loaded when Claude reads or writes files in that directory. This is where you put domain-specific context.</p>
+
+            <pre><code># src/api/CLAUDE.md
+
+All API routes return { data, error } shape.
+Use Zod for request validation. Schema goes in route.schema.ts.
+Rate limiting is handled by middleware -- do not add per-route limits.
+Database queries go through src/lib/db.ts, never raw SQL in routes.</code></pre>
+
+            <p>Subdirectory files keep specialized knowledge scoped to where it is needed. The agent only sees the API conventions when it is working on API code, which keeps the context window focused.</p>
+
+            <h3>Level 3: User-Level Memory</h3>
+
+            <p>Lives at <code>~/.claude/CLAUDE.md</code>. Applies to every project. Use this sparingly -- only for universal preferences like your preferred commit message format, your timezone, or tools you always want available.</p>
+
+            <div class="tip">
+                <strong>Rule of thumb:</strong> If a memory item applies to all projects, put it in user-level memory. If it applies to the whole project, put it in root CLAUDE.md. If it applies to one area of the codebase, put it in a subdirectory CLAUDE.md.
+            </div>
+
+            <h2>Shared Team Patterns</h2>
+
+            <p>When a team shares a codebase, CLAUDE.md becomes a shared artifact -- and this introduces coordination challenges. Here are patterns that work well for teams.</p>
+
+            <h3>Commit the Root CLAUDE.md</h3>
+
+            <p>Your root CLAUDE.md should be version-controlled. It is project documentation, and it should evolve with the codebase. When someone adds a new convention or changes the build process, the CLAUDE.md update should be part of the same pull request.</p>
+
+            <h3>Use .claude/ for Personal Overrides</h3>
+
+            <p>Team members who want personal customizations can create <code>.claude/CLAUDE.md</code> (gitignored) for preferences that differ from the team standard. This keeps the shared file clean while allowing individual flexibility.</p>
+
+            <h3>Review CLAUDE.md Changes in PRs</h3>
+
+            <p>Treat CLAUDE.md changes with the same rigor as code changes. A bad memory entry can cause every team member's agent to produce subtly wrong output. Review memory changes carefully, and test them by running a session with the updated file before merging.</p>
+
+            <div class="highlight">
+                <h3>Team CLAUDE.md Anti-Patterns</h3>
+                <ul>
+                    <li><strong>One person owns it:</strong> CLAUDE.md should be a shared responsibility. If only one person updates it, it drifts from reality.</li>
+                    <li><strong>Never pruning:</strong> Old conventions accumulate. Schedule a monthly review to remove outdated entries.</li>
+                    <li><strong>Conflicting instructions:</strong> When two entries contradict each other, the agent picks one unpredictably. Resolve conflicts immediately.</li>
+                    <li><strong>Too many exceptions:</strong> If your CLAUDE.md is full of "except when X, then Y," simplify the rules or split into subdirectory files.</li>
+                </ul>
+            </div>
+
+            <h2>How Beam Streamlines the Workflow</h2>
+
+            <p>Managing CLAUDE.md files manually works, but it introduces friction. You have to remember to update the file after each session, remember to install it before starting a new one, and keep track of which memory applies to which project.</p>
+
+            <p>Beam's <strong>Install Memory</strong> and <strong>Save Memory</strong> buttons eliminate this friction. When you start a session, click Install Memory and Beam writes your project memory file into the correct <code>.claude/</code> location. When you finish a session, click Save Memory and Beam captures the current state -- new decisions, updated conventions, architectural changes -- back into your memory file.</p>
+
+            <p>This one-click workflow means your memory is always current. No forgetting to update. No stale context. No starting a session and realizing the agent does not know about the database migration you ran yesterday.</p>
+
+            <p>For teams, Beam's project system lets each workspace maintain its own memory configuration. Switch between projects and the correct CLAUDE.md is automatically scoped to the active workspace. No cross-contamination between projects.</p>
+
+            <h2>A Complete CLAUDE.md Template</h2>
+
+            <p>Here is a battle-tested template you can adapt for your own projects. It stays under 200 lines and covers everything an agent needs for a productive session.</p>
+
+            <pre><code># ProjectName
+
+## Build
+- Dev: npm run dev (port 3000)
+- Build: npm run build
+- Test: npm run test -- --watch
+- Lint: npm run lint -- --fix
+- Type check: npx tsc --noEmit
+
+## Structure
+- src/app/ -- Next.js routes and layouts
+- src/components/ -- Shared UI components
+- src/features/ -- Feature modules (auth, billing, dashboard)
+- src/lib/ -- Utilities, DB client, API helpers
+- prisma/ -- Schema and migrations
+
+## Rules
+- TypeScript strict mode. Never use `any` or `as unknown`.
+- Named exports only. No default exports.
+- Components: function declarations, not arrow functions.
+- Tests next to source: Feature.test.tsx.
+- Commits: conventional format (feat:, fix:, chore:).
+- Never edit prisma/migrations/ directly. Use `npx prisma migrate dev`.
+
+## Patterns
+- API: return { data, error } from all endpoints.
+- State: use server components by default. Add "use client" only for interactivity.
+- Auth: NextAuth v5 with GitHub provider. Session in src/lib/auth.ts.
+- Styling: Tailwind CSS. No inline styles. No CSS modules.
+
+## Current Sprint
+- Building user settings page (profile, notifications, billing)
+- Refactoring dashboard to use streaming with Suspense
+- Fix: timezone display bug in activity feed</code></pre>
+
+            <p>Adapt the sections to your stack, but keep the structure: Build, Structure, Rules, Patterns, Current Work. Every section earns its place by directly influencing how the agent writes code.</p>
+
+            <div class="cta-box">
+                <h3>One-Click Memory Management</h3>
+                <p>Beam's Install and Save Memory buttons keep your CLAUDE.md current across every session. No manual file editing, no stale context.</p>
+                <a href="../" class="btn">Download Beam Free</a>
+            </div>
+
+            <div class="related-articles">
+                <h2>Related Articles</h2>
+                <div class="related-grid">
+                    <a href="ai-agent-memory-management.html" class="related-card">
+                        <h4>AI Agent Memory Management</h4>
+                        <p>How to structure persistent memory for AI coding agents.</p>
+                    </a>
+                    <a href="persistent-memory-pattern-ai-agents.html" class="related-card">
+                        <h4>The Persistent Memory Pattern</h4>
+                        <p>Why persistent memory is the key differentiator in agentic workflows.</p>
+                    </a>
+                    <a href="agentic-coding-workflow-setup-guide.html" class="related-card">
+                        <h4>Agentic Coding Workflow Setup Guide</h4>
+                        <p>Step-by-step guide to setting up a complete agentic workflow.</p>
+                    </a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>
+                <a href="../">Beam</a> &bull; The Agentic Engineering Platform &bull;
+                <a href="mailto:frank@nextuptechnologies.co">Contact</a>
+            </p>
+            <p style="margin-top: 12px; font-size: 0.8rem;">
+                <a href="/privacy.html" style="color: #71717a; text-decoration: none;">Privacy Policy</a> &bull;
+                <a href="/terms.html" style="color: #71717a; text-decoration: none;">Terms of Service</a>
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>

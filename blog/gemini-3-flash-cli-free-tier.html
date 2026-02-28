@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D0XH8B0RKL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-D0XH8B0RKL');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gemini 3 Flash + CLI: Google's Free Tier That Beats Paid Alternatives | Beam</title>
+    <meta name="description" content="Review of Gemini CLI's free tier with 60 requests per minute, 1M token context, and Gemini 3 Flash scoring 78% on SWE-bench. Compare with paid alternatives and run it alongside Claude Code in Beam.">
+    <meta name="keywords" content="Gemini 3 Flash CLI free tier coding agent 2026">
+    <meta name="author" content="NextUp Technologies">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://getbeam.dev/blog/gemini-3-flash-cli-free-tier.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://getbeam.dev/blog/gemini-3-flash-cli-free-tier.html">
+    <meta property="og:title" content="Gemini 3 Flash + CLI: Google's Free Tier That Beats Paid Alternatives">
+    <meta property="og:description" content="Review of Gemini CLI's free tier with 60 requests per minute, 1M token context, and Gemini 3 Flash scoring 78% on SWE-bench. Compare with paid alternatives and run it alongside Claude Code in Beam.">
+    <meta property="og:image" content="https://getbeam.dev/beam-screenshot-1.9.6.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Gemini 3 Flash + CLI: Google's Free Tier That Beats Paid Alternatives">
+    <meta name="twitter:description" content="Review of Gemini CLI's free tier with 60 requests per minute, 1M token context, and Gemini 3 Flash scoring 78% on SWE-bench. Compare with paid alternatives and run it alongside Claude Code in Beam.">
+    <meta name="twitter:image" content="https://getbeam.dev/beam-screenshot-1.9.6.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Gemini 3 Flash + CLI: Google's Free Tier That Beats Paid Alternatives",
+        "description": "Review of Gemini CLI's free tier with 60 requests per minute, 1M token context, and Gemini 3 Flash scoring 78% on SWE-bench. Compare with paid alternatives and run it alongside Claude Code in Beam.",
+        "author": {
+            "@type": "Organization",
+            "name": "NextUp Technologies"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Beam"
+        },
+        "datePublished": "2026-02-28",
+        "keywords": "Gemini 3 Flash CLI free tier coding agent 2026"
+    }
+    </script>
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #111113;
+            --bg-tertiary: #1a1a1d;
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.4);
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --border: #27272a;
+            --success: #22c55e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        a, button, .btn, .related-card, .post-card, .editorial-card { cursor: pointer; }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+
+        .container { max-width: 800px; margin: 0 auto; padding: 0 24px; }
+
+        header {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 60px;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1.5rem;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            background: var(--accent);
+            color: white;
+            transition: all 0.2s;
+        }
+
+        .btn:hover { background: #2563eb; transform: translateY(-2px); }
+
+        article { padding-bottom: 80px; }
+
+        .breadcrumb {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+        }
+
+        .breadcrumb a { color: var(--accent); text-decoration: none; }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .meta {
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            font-size: 0.95rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 48px 0 20px;
+            color: var(--text-primary);
+        }
+
+        h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 32px 0 16px;
+            color: var(--text-primary);
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        ul, ol {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            padding-left: 24px;
+        }
+
+        li { margin-bottom: 12px; }
+
+        strong { color: var(--text-primary); }
+
+        .highlight {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 32px 0;
+        }
+
+        .highlight h3 {
+            font-size: 1.1rem;
+            margin: 0 0 12px 0;
+            color: var(--text-primary);
+        }
+
+        .highlight p:last-child, .highlight ul:last-child {
+            margin-bottom: 0;
+        }
+
+        .kbd {
+            display: inline-block;
+            padding: 2px 8px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+        }
+
+        code {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 2px 6px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+        }
+
+        pre {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 20px;
+            overflow-x: auto;
+            margin: 24px 0;
+        }
+
+        pre code {
+            background: none;
+            border: none;
+            padding: 0;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .tip {
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 24px 0;
+        }
+
+        .tip strong {
+            color: var(--success);
+        }
+
+        .warning {
+            background: rgba(234, 179, 8, 0.1);
+            border: 1px solid rgba(234, 179, 8, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 24px 0;
+        }
+
+        .warning strong {
+            color: #eab308;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .cta-box h3 { font-size: 1.5rem; margin-bottom: 12px; color: white; }
+        .cta-box p { color: rgba(255,255,255,0.8); margin-bottom: 24px; }
+        .cta-box .btn { background: white; color: var(--accent); }
+
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer a { color: var(--text-secondary); text-decoration: none; }
+
+        .related-articles { margin-top: 60px; padding-top: 40px; border-top: 1px solid var(--border); }
+        .related-articles h2 { font-size: 1.5rem; margin-bottom: 24px; }
+        .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .related-card { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-decoration: none; transition: border-color 0.2s; }
+        .related-card:hover { border-color: var(--accent); }
+        .related-card h4 { color: white; font-size: 1rem; margin: 0 0 8px 0; }
+        .related-card p { color: var(--text-muted); font-size: 0.85rem; margin: 0; }
+        @media (max-width: 600px) { .related-grid { grid-template-columns: 1fr; } h1 { font-size: 1.8rem; } }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="../" class="logo">
+                <div class="logo-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round">
+                        <path d="M4 17l6-6-6-6M12 19h8"/>
+                    </svg>
+                </div>
+                Beam
+            </a>
+            <a href="../" class="btn">Download Beam</a>
+        </div>
+    </header>
+
+    <main class="container">
+        <article>
+            <div class="breadcrumb">
+                <a href="../">Beam</a> / <a href="../#guides">Guides</a> / Gemini 3 Flash CLI Free Tier
+            </div>
+
+            <h1>Gemini 3 Flash + CLI: Google's Free Tier That Beats Paid Alternatives</h1>
+            <p class="meta">February 2026 &bull; 9 min read</p>
+
+            <p>Google did something unexpected. While every other AI provider races to charge more for better models, Google released Gemini CLI with a free tier so generous it makes paid alternatives look like bad deals. Sixty requests per minute. One million tokens of context. And a model -- Gemini 3 Flash -- that scores 78% on SWE-bench, putting it ahead of tools developers were paying $20 to $200 per month to use just six months ago.</p>
+
+            <p>This is not a toy demo tier with crippling rate limits. This is a production-capable coding agent you can run right now, for free, from your terminal. Here is what you need to know.</p>
+
+            <h2>What Gemini CLI Actually Offers</h2>
+
+            <p>Gemini CLI launched as an open-source, terminal-native coding agent that authenticates with your Google account. No API key management, no credit card, no usage-based billing surprises. The free tier includes:</p>
+
+            <ul>
+                <li><strong>60 requests per minute</strong> -- more than enough for sustained coding sessions without hitting throttles</li>
+                <li><strong>1 million token context window</strong> -- five times what most competitors offer, meaning it can ingest entire codebases without truncation</li>
+                <li><strong>Gemini 3 Flash model</strong> -- the latest Flash variant optimized for speed and coding tasks</li>
+                <li><strong>Full file system access</strong> -- reads and writes files, runs commands, iterates on errors</li>
+                <li><strong>MCP server support</strong> -- connects to external tools and data sources through the Model Context Protocol</li>
+            </ul>
+
+            <p>Installation is straightforward: <code>npm install -g @anthropic-ai/gemini-cli</code> or download directly from GitHub. First run triggers Google OAuth, and you are coding in under two minutes.</p>
+
+            <h2>The 78% SWE-bench Score in Context</h2>
+
+            <p>SWE-bench measures how well an AI agent can resolve real GitHub issues from popular open-source projects. A score of 78% means Gemini 3 Flash successfully resolves nearly four out of five real-world software engineering tasks. To understand how significant this is, consider the trajectory:</p>
+
+            <div class="highlight">
+                <h3>SWE-bench Progression (2024-2026)</h3>
+                <ul>
+                    <li><strong>Early 2024:</strong> GPT-4 scored around 33% -- the state of the art at the time</li>
+                    <li><strong>Mid 2024:</strong> Claude 3.5 Sonnet pushed to 49%, a major leap</li>
+                    <li><strong>Late 2024:</strong> Claude 3.5 Sonnet (new) hit 53% with improved tool use</li>
+                    <li><strong>Early 2025:</strong> Claude Sonnet 4 reached 72%, crossing the threshold of practical utility</li>
+                    <li><strong>2026:</strong> Gemini 3 Flash achieves 78% -- and it is the free tier model</li>
+                </ul>
+            </div>
+
+            <p>The model that is free today outperforms the best paid model from 18 months ago by a factor of two. That is not incremental progress. That is a generational shift in what free tools can do.</p>
+
+            <h2>GitHub Actions Integration</h2>
+
+            <p>Where Gemini CLI becomes genuinely powerful is in CI/CD pipelines. Google designed it to run headlessly in GitHub Actions without any authentication tokens or API keys -- it uses the GitHub-provided OIDC token automatically.</p>
+
+            <pre><code>name: Gemini Code Review
+on: [pull_request]
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run Gemini Review
+        run: |
+          npx gemini-cli review \
+            --diff $(git diff origin/main...HEAD) \
+            --prompt "Review for bugs, security issues, and performance"</code></pre>
+
+            <p>This means you can have an AI agent reviewing every pull request, writing test suggestions, and flagging security issues -- at no cost. For small teams and solo developers, this eliminates the need for paid code review tools entirely.</p>
+
+            <div class="tip">
+                <strong>Practical tip:</strong> Set up Gemini CLI as a required check on your pull requests. Configure it to focus on specific concerns: security vulnerabilities, missing error handling, or test coverage gaps. Narrow prompts produce more useful reviews than generic "review this code" instructions.
+            </div>
+
+            <h2>Comparison With Paid Alternatives</h2>
+
+            <p>The honest question every developer should ask: if Gemini CLI is free, why pay for anything else? The answer is nuanced, but here is how the landscape actually breaks down.</p>
+
+            <div class="highlight">
+                <h3>Gemini CLI Free vs. Claude Code ($20/mo Max plan)</h3>
+                <ul>
+                    <li><strong>Context window:</strong> Gemini wins at 1M tokens vs. 200K tokens</li>
+                    <li><strong>Code quality:</strong> Claude Code still leads on complex architectural decisions and multi-file refactors</li>
+                    <li><strong>Speed:</strong> Gemini 3 Flash is significantly faster for straightforward tasks</li>
+                    <li><strong>Reasoning depth:</strong> Claude excels at ambiguous requirements and nuanced trade-offs</li>
+                    <li><strong>Tool ecosystem:</strong> Both support MCP, but Claude Code has deeper integration with development workflows</li>
+                </ul>
+            </div>
+
+            <p>The takeaway is not that one replaces the other. The takeaway is that they serve different roles in a multi-agent workflow. Gemini handles the high-volume, fast-turnaround tasks: code reviews, test generation, documentation, boilerplate. Claude handles the deep-thinking tasks: architecture decisions, complex debugging, nuanced refactors.</p>
+
+            <h2>Running Gemini CLI Alongside Claude Code</h2>
+
+            <p>The real power move in 2026 is not choosing one agent. It is running multiple agents in parallel, each handling what it does best. This is where a terminal organizer becomes essential rather than optional.</p>
+
+            <p>Without organization, running two CLI agents means two terminal windows fighting for attention, no clear separation of concerns, and constant tab-switching confusion. With Beam, the workflow looks different:</p>
+
+            <ul>
+                <li><strong>Tab 1: Claude Code</strong> -- handling the primary feature implementation, architectural decisions, and complex problem-solving</li>
+                <li><strong>Tab 2: Gemini CLI</strong> -- running test generation, code reviews, and documentation in parallel</li>
+                <li><strong>Tab 3: Dev Server</strong> -- your application running locally for verification</li>
+                <li><strong>Tab 4: Git</strong> -- reviewing diffs before committing the combined output</li>
+            </ul>
+
+            <p>Beam detects both Claude Code and Gemini CLI sessions automatically through its shell integration. Each agent gets its own named tab, its own color coding, and its own context. You see both agents working simultaneously without confusion about which output belongs to which agent.</p>
+
+            <div class="highlight">
+                <h3>Cost Breakdown: Hybrid Workflow</h3>
+                <ul>
+                    <li><strong>Gemini CLI:</strong> $0/month -- handles 60-70% of routine coding tasks</li>
+                    <li><strong>Claude Code (Max plan):</strong> $20/month -- handles complex architecture and reasoning</li>
+                    <li><strong>Total:</strong> $20/month for a two-agent setup that outperforms any single agent alone</li>
+                </ul>
+            </div>
+
+            <h2>Limitations Worth Knowing</h2>
+
+            <p>The free tier is genuinely impressive, but it has edges you should understand before relying on it for production work:</p>
+
+            <ul>
+                <li><strong>Rate limits are per-account, not per-project.</strong> If you are running Gemini CLI across three projects simultaneously, those 60 requests per minute are shared across all of them.</li>
+                <li><strong>The 1M context window is not always fully utilized.</strong> Flash models prioritize speed, which means they sometimes skim long contexts rather than deeply processing every token. For critical analysis of large codebases, verify the agent actually read what you think it read.</li>
+                <li><strong>No guaranteed uptime SLA.</strong> The free tier can be rate-limited or degraded during peak usage. Do not put it in a critical path without fallback handling.</li>
+                <li><strong>Data usage policies differ from paid tiers.</strong> Free tier inputs may be used for model improvement. If you work with sensitive code, review Google's data handling terms carefully.</li>
+            </ul>
+
+            <div class="warning">
+                <strong>Important:</strong> The free tier is for individual developers. If your organization needs guaranteed availability, consistent performance, and enterprise data handling, you will still need a paid Vertex AI plan. The free tier is for building, experimenting, and personal productivity -- not for mission-critical enterprise pipelines.
+            </div>
+
+            <h2>Getting Started Today</h2>
+
+            <p>Here is the fastest path from zero to a working Gemini CLI setup:</p>
+
+            <ol>
+                <li><strong>Install Gemini CLI:</strong> <code>npm install -g @google/gemini-cli</code></li>
+                <li><strong>Authenticate:</strong> Run <code>gemini</code> in your terminal and follow the Google OAuth flow</li>
+                <li><strong>Test it:</strong> Navigate to a project directory and ask it to explain the codebase structure</li>
+                <li><strong>Set up in Beam:</strong> Create a dedicated tab for Gemini CLI alongside your existing Claude Code tab</li>
+                <li><strong>Configure for CI:</strong> Add the GitHub Actions workflow above to your repository</li>
+            </ol>
+
+            <p>The entire setup takes under five minutes. No credit card. No trial period. No usage caps that make you anxious about every request.</p>
+
+            <h2>What This Means for 2026</h2>
+
+            <p>Google giving away a 78% SWE-bench model is a strategic move that reshapes the entire AI coding landscape. It puts competitive pressure on every paid tool. It raises the floor for what developers should expect from free tooling. And it validates the multi-agent approach -- when one excellent model is free, the question stops being "which one should I use" and becomes "how do I use all of them together."</p>
+
+            <p>The developers shipping fastest in 2026 are not loyal to a single AI provider. They are orchestrating multiple agents, each handling what it does best, organized in a workflow that keeps everything visible and manageable. Gemini CLI is free. Claude Code is best-in-class for reasoning. Together, they are better than either one alone.</p>
+
+            <div class="cta-box">
+                <h3>Run Gemini CLI + Claude Code Side by Side</h3>
+                <p>Beam organizes your multi-agent terminal workflow. Dedicated tabs, shell integration, and project memory for every agent you run.</p>
+                <a href="../" class="btn">Download Beam Free</a>
+            </div>
+
+            <div class="related-articles">
+                <h2>Related Articles</h2>
+                <div class="related-grid">
+                    <a href="beam-gemini-cli-support.html" class="related-card">
+                        <h4>Beam's Gemini CLI Support</h4>
+                        <p>How Beam detects and organizes Gemini CLI sessions alongside other agents.</p>
+                    </a>
+                    <a href="run-claude-gemini-codex-side-by-side.html" class="related-card">
+                        <h4>Run Claude, Gemini, and Codex Side by Side</h4>
+                        <p>A practical guide to multi-agent workflows with three different AI coding tools.</p>
+                    </a>
+                    <a href="claude-code-vs-gemini-vs-codex-when-to-use-each.html" class="related-card">
+                        <h4>Claude vs Gemini vs Codex: When to Use Each</h4>
+                        <p>Choosing the right AI agent for each type of development task.</p>
+                    </a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>
+                <a href="../">Beam</a> &bull; The Agentic Engineering Platform &bull;
+                <a href="mailto:frank@nextuptechnologies.co">Contact</a>
+            </p>
+            <p style="margin-top: 12px; font-size: 0.8rem;">
+                <a href="/privacy.html" style="color: #71717a; text-decoration: none;">Privacy Policy</a> &bull;
+                <a href="/terms.html" style="color: #71717a; text-decoration: none;">Terms of Service</a>
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D0XH8B0RKL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-D0XH8B0RKL');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Context Engineering for AI Agents: Why Prompt Engineering Is Dead | Beam</title>
+    <meta name="description" content="The paradigm shift from prompt engineering to context engineering. Learn how to design full information systems for AI agents with tools, memory, APIs, and structured context.">
+    <meta name="keywords" content="context engineering, prompt engineering, context engineering vs prompt engineering 2026, AI agent context, CLAUDE.md, MCP servers, agentic engineering">
+    <meta name="author" content="NextUp Technologies">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://getbeam.dev/blog/context-engineering-vs-prompt-engineering.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://getbeam.dev/blog/context-engineering-vs-prompt-engineering.html">
+    <meta property="og:title" content="Context Engineering for AI Agents: Why Prompt Engineering Is Dead">
+    <meta property="og:description" content="The paradigm shift from prompt engineering to context engineering. Learn how to design full information systems for AI agents with tools, memory, APIs, and structured context.">
+    <meta property="og:image" content="https://getbeam.dev/beam-screenshot-1.9.6.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Context Engineering for AI Agents: Why Prompt Engineering Is Dead">
+    <meta name="twitter:description" content="The paradigm shift from prompt engineering to context engineering. Learn how to design full information systems for AI agents with tools, memory, APIs, and structured context.">
+    <meta name="twitter:image" content="https://getbeam.dev/beam-screenshot-1.9.6.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Context Engineering for AI Agents: Why Prompt Engineering Is Dead",
+        "description": "The paradigm shift from prompt engineering to context engineering. Learn how to design full information systems for AI agents with tools, memory, APIs, and structured context.",
+        "author": {
+            "@type": "Organization",
+            "name": "NextUp Technologies"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Beam"
+        },
+        "datePublished": "2026-02-28",
+        "keywords": "context engineering, prompt engineering, context engineering vs prompt engineering 2026, AI agent context, CLAUDE.md, MCP servers, agentic engineering"
+    }
+    </script>
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #111113;
+            --bg-tertiary: #1a1a1d;
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.4);
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --border: #27272a;
+            --success: #22c55e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        a, button, .btn, .related-card, .post-card, .editorial-card { cursor: pointer; }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+
+        .container { max-width: 800px; margin: 0 auto; padding: 0 24px; }
+
+        header {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 60px;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1.5rem;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            background: var(--accent);
+            color: white;
+            transition: all 0.2s;
+        }
+
+        .btn:hover { background: #2563eb; transform: translateY(-2px); }
+
+        article { padding-bottom: 80px; }
+
+        .breadcrumb {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+        }
+
+        .breadcrumb a { color: var(--accent); text-decoration: none; }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .meta {
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            font-size: 0.95rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 48px 0 20px;
+            color: var(--text-primary);
+        }
+
+        h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 32px 0 16px;
+            color: var(--text-primary);
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        ul, ol {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            padding-left: 24px;
+        }
+
+        li { margin-bottom: 12px; }
+
+        strong { color: var(--text-primary); }
+
+        .highlight {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 32px 0;
+        }
+
+        .highlight h3 {
+            font-size: 1.1rem;
+            margin: 0 0 12px 0;
+            color: var(--text-primary);
+        }
+
+        .highlight p:last-child, .highlight ul:last-child {
+            margin-bottom: 0;
+        }
+
+        .kbd {
+            display: inline-block;
+            padding: 2px 8px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+        }
+
+        code {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 2px 6px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+        }
+
+        pre {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 20px;
+            overflow-x: auto;
+            margin: 24px 0;
+        }
+
+        pre code {
+            background: none;
+            border: none;
+            padding: 0;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            background: var(--accent);
+            color: white;
+            border-radius: 50%;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-right: 12px;
+        }
+
+        .tip {
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 24px 0;
+        }
+
+        .tip strong {
+            color: var(--success);
+        }
+
+        .warning {
+            background: rgba(234, 179, 8, 0.1);
+            border: 1px solid rgba(234, 179, 8, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 24px 0;
+        }
+
+        .warning strong {
+            color: #eab308;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .cta-box h3 { font-size: 1.5rem; margin-bottom: 12px; color: white; }
+        .cta-box p { color: rgba(255,255,255,0.8); margin-bottom: 24px; }
+        .cta-box .btn { background: white; color: var(--accent); }
+
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer a { color: var(--text-secondary); text-decoration: none; }
+
+        .related-articles { margin-top: 60px; padding-top: 40px; border-top: 1px solid var(--border); }
+        .related-articles h2 { font-size: 1.5rem; margin-bottom: 24px; }
+        .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .related-card { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-decoration: none; transition: border-color 0.2s; }
+        .related-card:hover { border-color: var(--accent); }
+        .related-card h4 { color: white; font-size: 1rem; margin: 0 0 8px 0; }
+        .related-card p { color: var(--text-muted); font-size: 0.85rem; margin: 0; }
+        @media (max-width: 600px) { .related-grid { grid-template-columns: 1fr; } h1 { font-size: 1.8rem; } }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="../" class="logo">
+                <div class="logo-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round">
+                        <path d="M4 17l6-6-6-6M12 19h8"/>
+                    </svg>
+                </div>
+                Beam
+            </a>
+            <a href="../" class="btn">Download Beam</a>
+        </div>
+    </header>
+
+    <main class="container">
+        <article>
+            <div class="breadcrumb">
+                <a href="../">Beam</a> / <a href="../#guides">Guides</a> / Context Engineering vs Prompt Engineering
+            </div>
+
+            <h1>Context Engineering for AI Agents: Why Prompt Engineering Is Dead</h1>
+            <p class="meta">February 2026 &bull; 11 min read</p>
+
+            <p>In 2023, the hottest skill in tech was prompt engineering &mdash; the art of carefully crafting a single text input to coax the best output from an LLM. In 2026, prompt engineering is a footnote. The developers shipping the fastest have moved on to something fundamentally different: <strong>context engineering</strong>.</p>
+
+            <p>The distinction matters. Prompt engineering optimizes a single message. Context engineering designs the entire information environment an agent operates in &mdash; the tools it can call, the memory it can access, the APIs it can reach, the history it carries, and the constraints that guide its behavior. It is the difference between tuning a single guitar string and composing for an orchestra.</p>
+
+            <h2>What Changed</h2>
+
+            <p>Prompt engineering peaked when LLMs were stateless text-in, text-out systems. You typed a question, you got an answer, and that was the entire interaction surface. The only lever you had was the prompt itself.</p>
+
+            <p>Agents changed everything. A modern AI coding agent like Claude Code does not just receive text &mdash; it reads files, runs commands, calls APIs, remembers previous sessions, and executes multi-step plans. The prompt is maybe 5% of what determines the quality of the output. The other 95% is context: what information is available, what tools are connected, what constraints are in place, and what memory persists between sessions.</p>
+
+            <div class="highlight">
+                <h3>Prompt Engineering vs Context Engineering</h3>
+                <ul>
+                    <li><strong>Prompt engineering:</strong> &ldquo;Write a React component for a user settings page with form validation and a save button&rdquo;</li>
+                    <li><strong>Context engineering:</strong> The agent has access to your component library, knows your validation patterns from CLAUDE.md, can read your existing forms for consistency, has your design tokens loaded, and knows that your team uses React Hook Form &mdash; so you just say &ldquo;add a settings page&rdquo;</li>
+                </ul>
+            </div>
+
+            <p>The first approach requires you to specify everything in the prompt. The second approach requires you to build a rich context environment so the agent already knows what to do. Context engineering is upfront investment that pays dividends on every single interaction.</p>
+
+            <h2>The Five Layers of Context Engineering</h2>
+
+            <p>Effective context engineering operates across five layers. Most developers only think about the first one. The best developers design all five.</p>
+
+            <h3>Layer 1: Project Memory (CLAUDE.md)</h3>
+
+            <p>The most accessible layer. A <code>CLAUDE.md</code> file in your project root that tells the agent about your architecture, conventions, build commands, and current priorities. This file is automatically loaded at the start of every Claude Code session.</p>
+
+            <pre><code># Project: Acme Dashboard
+## Architecture
+- Next.js 14 App Router + TypeScript
+- Prisma ORM with PostgreSQL
+- Tailwind CSS + shadcn/ui components
+- React Hook Form for all forms
+
+## Conventions
+- Server components by default
+- Named exports only
+- All API routes return { data, error } shape
+- Tests colocated with source files
+
+## Current Sprint
+- Building user settings page
+- Migrating auth from NextAuth to Clerk</code></pre>
+
+            <p>Without this file, the agent spends its first 50 tool calls reading your codebase to figure out what you already know. With it, the agent starts working immediately with the right patterns.</p>
+
+            <h3>Layer 2: Tool Access (MCP Servers)</h3>
+
+            <p>The Model Context Protocol (MCP) lets you connect external tools and data sources to your agent. Instead of the agent being limited to file reads and terminal commands, you can give it access to your database, your issue tracker, your deployment system, and anything else with an API.</p>
+
+            <pre><code>// .claude/settings.json
+{
+  "mcpServers": {
+    "database": {
+      "command": "npx",
+      "args": ["@mcp/postgres", "--connection-string", "..."]
+    },
+    "github": {
+      "command": "npx",
+      "args": ["@mcp/github"]
+    },
+    "sentry": {
+      "command": "npx",
+      "args": ["@mcp/sentry", "--project", "acme-dashboard"]
+    }
+  }
+}</code></pre>
+
+            <p>Each MCP server adds new capabilities. The agent can now query production data, read GitHub issues, or check error rates in Sentry &mdash; all within the same session, without you copying and pasting anything.</p>
+
+            <h3>Layer 3: Conversation History</h3>
+
+            <p>Within a session, the agent accumulates context through the conversation. What files it has read, what changes it has made, what errors it has encountered and fixed. This rolling context is valuable but ephemeral &mdash; it vanishes when the session ends.</p>
+
+            <p>Smart context engineering means being deliberate about what enters the conversation window. Use the <code>/compact</code> command to summarize long sessions before they exhaust the context window. Front-load the most important information. Keep the signal-to-noise ratio high.</p>
+
+            <h3>Layer 4: Cross-Session Memory</h3>
+
+            <p>The hardest layer to get right. How does an agent remember what happened in previous sessions? The answer is structured memory files that persist between sessions and load automatically on startup.</p>
+
+            <p>This is where Beam&rsquo;s project memory system becomes critical. Beam lets you save and load project context between sessions, so the agent picks up exactly where the last session left off. No re-explaining your architecture. No re-discovering your conventions. No wasted tokens on information the agent already learned yesterday.</p>
+
+            <h3>Layer 5: Behavioral Constraints</h3>
+
+            <p>The final layer is telling the agent what <em>not</em> to do. Constraints are as important as capabilities. Without them, the agent makes reasonable-sounding decisions that violate your team&rsquo;s norms.</p>
+
+            <pre><code># Constraints (in CLAUDE.md)
+## Never Do
+- Never use default exports
+- Never add dependencies without asking
+- Never modify database migrations that are already deployed
+- Never commit directly to main
+- Never use any as a TypeScript type
+
+## Always Do
+- Run tests after every code change
+- Include JSDoc comments on exported functions
+- Use server components unless client interactivity is required</code></pre>
+
+            <p>These constraints act as guardrails. The agent internalizes them and follows them consistently &mdash; often more consistently than a human developer would.</p>
+
+            <h2>Context Engineering in Practice</h2>
+
+            <p>Here is what a fully context-engineered development environment looks like:</p>
+
+            <ol>
+                <li><strong>CLAUDE.md</strong> loaded automatically with project architecture, conventions, and constraints</li>
+                <li><strong>Three MCP servers</strong> connected: database for schema queries, GitHub for issue context, and a custom server for internal API docs</li>
+                <li><strong>Project memory</strong> persisted in Beam, carrying forward decisions and progress from previous sessions</li>
+                <li><strong>Hooks configured</strong> to auto-format code on save and block dangerous commands</li>
+                <li><strong>Multiple agent sessions</strong> running in Beam workspaces, each with their own context but shared project memory</li>
+            </ol>
+
+            <p>In this environment, you do not need clever prompts. You say &ldquo;fix the bug in issue #247&rdquo; and the agent reads the issue from GitHub, understands your codebase from memory, queries the database schema, writes the fix following your conventions, runs the tests, and opens a PR. The context did all the work.</p>
+
+            <h2>Why Most Developers Still Get This Wrong</h2>
+
+            <p>The most common mistake is treating context engineering as a one-time setup. It is not. Context engineering is an ongoing practice:</p>
+
+            <ul>
+                <li><strong>Update CLAUDE.md weekly</strong> as your architecture evolves. Stale context is worse than no context because the agent makes confidently wrong decisions.</li>
+                <li><strong>Add MCP servers incrementally</strong> as you discover friction points. If you keep pasting database schemas into the chat, connect a database MCP server instead.</li>
+                <li><strong>Review and prune memory</strong> after major refactors. If you renamed your API layer, your memory file should reflect that immediately.</li>
+                <li><strong>Test your constraints</strong> by deliberately asking the agent to violate them. If it does, your constraints are not specific enough.</li>
+            </ul>
+
+            <div class="warning">
+                <strong>The context decay trap:</strong> Your CLAUDE.md described your project perfectly three months ago. Since then, you migrated to a new ORM, changed your testing framework, and restructured the component library. The agent is still following the old patterns. Context engineering requires maintenance, just like code.
+            </div>
+
+            <h2>The Compound Effect</h2>
+
+            <p>The real power of context engineering compounds over time. Each session makes the context richer. Each decision gets recorded in memory. Each new MCP server adds capability. After a month of deliberate context engineering, your agent is not just a coding tool &mdash; it is a team member that understands your project deeply.</p>
+
+            <p>This is why prompt engineering is dead. You cannot achieve this with a clever prompt. No single message, no matter how carefully crafted, can encode the depth of context that a well-engineered environment provides. The developers who are still optimizing prompts are solving the wrong problem.</p>
+
+            <div class="cta-box">
+                <h3>Build the Context Layer Your Agents Need</h3>
+                <p>Beam&rsquo;s project memory, workspace system, and multi-agent layout give you the infrastructure for serious context engineering. Stop crafting prompts. Start engineering context.</p>
+                <a href="../" class="btn">Download Beam Free</a>
+            </div>
+
+            <h2>Getting Started</h2>
+
+            <p>If you are still in the prompt engineering mindset, here is how to transition:</p>
+
+            <ol>
+                <li><strong>Write a CLAUDE.md file today.</strong> Spend 30 minutes documenting your project architecture, conventions, and constraints. This single file will improve every future agent session.</li>
+                <li><strong>Connect one MCP server this week.</strong> Start with whatever you paste into the chat most often &mdash; database schemas, API docs, or issue tracker context.</li>
+                <li><strong>Set up persistent memory.</strong> Use Beam&rsquo;s project memory or manually maintain a memory file that carries context between sessions.</li>
+                <li><strong>Add behavioral constraints.</strong> Write down your &ldquo;never do&rdquo; and &ldquo;always do&rdquo; rules. The agent will follow them more consistently than you expect.</li>
+            </ol>
+
+            <p>Context engineering is not a skill you learn once. It is a practice you refine continuously. But the developers who invest in it are operating at a fundamentally different level than those still tweaking prompts.</p>
+
+            <div class="related-articles">
+                <h2>Related Articles</h2>
+                <div class="related-grid">
+                    <a href="ai-agent-memory-management.html" class="related-card">
+                        <h4>AI Agent Memory Management</h4>
+                        <p>How to design and maintain effective memory systems for AI coding agents.</p>
+                    </a>
+                    <a href="mcp-servers-guide-2026.html" class="related-card">
+                        <h4>MCP Servers Guide 2026</h4>
+                        <p>Everything you need to know about connecting tools to your AI agents via MCP.</p>
+                    </a>
+                    <a href="persistent-memory-pattern-ai-agents.html" class="related-card">
+                        <h4>Persistent Memory Patterns for AI Agents</h4>
+                        <p>Design patterns for cross-session memory that makes agents smarter over time.</p>
+                    </a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>
+                <a href="../">Beam</a> &bull; The Agentic Engineering Platform &bull;
+                <a href="mailto:frank@nextuptechnologies.co">Contact</a>
+            </p>
+
+            <p style="margin-top: 12px; font-size: 0.8rem;">
+                <a href="/privacy.html" style="color: #71717a; text-decoration: none;">Privacy Policy</a> &bull;
+                <a href="/terms.html" style="color: #71717a; text-decoration: none;">Terms of Service</a>
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D0XH8B0RKL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-D0XH8B0RKL');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claude Code /compact and Auto-Memory: Master Context Window Management | Beam</title>
+    <meta name="description" content="Practical guide to managing Claude Code's 200K token context window. Learn /compact for 60-70% reduction, auto-save memory, cost monitoring, and how Beam preserves context across sessions.">
+    <meta name="keywords" content="Claude Code compact auto-memory context management">
+    <meta name="author" content="NextUp Technologies">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://getbeam.dev/blog/claude-code-compact-context-management.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://getbeam.dev/blog/claude-code-compact-context-management.html">
+    <meta property="og:title" content="Claude Code /compact and Auto-Memory: Master Context Window Management">
+    <meta property="og:description" content="Practical guide to managing Claude Code's 200K token context window. Learn /compact for 60-70% reduction, auto-save memory, cost monitoring, and how Beam preserves context across sessions.">
+    <meta property="og:image" content="https://getbeam.dev/beam-screenshot-1.9.6.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Claude Code /compact and Auto-Memory: Master Context Window Management">
+    <meta name="twitter:description" content="Practical guide to managing Claude Code's 200K token context window. Learn /compact for 60-70% reduction, auto-save memory, cost monitoring, and how Beam preserves context across sessions.">
+    <meta name="twitter:image" content="https://getbeam.dev/beam-screenshot-1.9.6.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Claude Code /compact and Auto-Memory: Master Context Window Management",
+        "description": "Practical guide to managing Claude Code's 200K token context window. Learn /compact for 60-70% reduction, auto-save memory, cost monitoring, and how Beam preserves context across sessions.",
+        "author": {
+            "@type": "Organization",
+            "name": "NextUp Technologies"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Beam"
+        },
+        "datePublished": "2026-02-28",
+        "keywords": "Claude Code compact auto-memory context management"
+    }
+    </script>
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #111113;
+            --bg-tertiary: #1a1a1d;
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.4);
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --border: #27272a;
+            --success: #22c55e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        a, button, .btn, .related-card, .post-card, .editorial-card { cursor: pointer; }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+
+        .container { max-width: 800px; margin: 0 auto; padding: 0 24px; }
+
+        header {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 60px;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1.5rem;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            background: var(--accent);
+            color: white;
+            transition: all 0.2s;
+        }
+
+        .btn:hover { background: #2563eb; transform: translateY(-2px); }
+
+        article { padding-bottom: 80px; }
+
+        .breadcrumb {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+        }
+
+        .breadcrumb a { color: var(--accent); text-decoration: none; }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .meta {
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            font-size: 0.95rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 48px 0 20px;
+            color: var(--text-primary);
+        }
+
+        h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 32px 0 16px;
+            color: var(--text-primary);
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        ul, ol {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            padding-left: 24px;
+        }
+
+        li { margin-bottom: 12px; }
+
+        strong { color: var(--text-primary); }
+
+        .highlight {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 32px 0;
+        }
+
+        .highlight h3 {
+            font-size: 1.1rem;
+            margin: 0 0 12px 0;
+            color: var(--text-primary);
+        }
+
+        .highlight p:last-child, .highlight ul:last-child {
+            margin-bottom: 0;
+        }
+
+        .kbd {
+            display: inline-block;
+            padding: 2px 8px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+        }
+
+        code {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 2px 6px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+        }
+
+        pre {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 20px;
+            overflow-x: auto;
+            margin: 24px 0;
+        }
+
+        pre code {
+            background: none;
+            border: none;
+            padding: 0;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .tip {
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 24px 0;
+        }
+
+        .tip strong {
+            color: var(--success);
+        }
+
+        .warning {
+            background: rgba(234, 179, 8, 0.1);
+            border: 1px solid rgba(234, 179, 8, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 24px 0;
+        }
+
+        .warning strong {
+            color: #eab308;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .cta-box h3 { font-size: 1.5rem; margin-bottom: 12px; color: white; }
+        .cta-box p { color: rgba(255,255,255,0.8); margin-bottom: 24px; }
+        .cta-box .btn { background: white; color: var(--accent); }
+
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer a { color: var(--text-secondary); text-decoration: none; }
+
+        .related-articles { margin-top: 60px; padding-top: 40px; border-top: 1px solid var(--border); }
+        .related-articles h2 { font-size: 1.5rem; margin-bottom: 24px; }
+        .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .related-card { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-decoration: none; transition: border-color 0.2s; }
+        .related-card:hover { border-color: var(--accent); }
+        .related-card h4 { color: white; font-size: 1rem; margin: 0 0 8px 0; }
+        .related-card p { color: var(--text-muted); font-size: 0.85rem; margin: 0; }
+        @media (max-width: 600px) { .related-grid { grid-template-columns: 1fr; } h1 { font-size: 1.8rem; } }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="../" class="logo">
+                <div class="logo-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round">
+                        <path d="M4 17l6-6-6-6M12 19h8"/>
+                    </svg>
+                </div>
+                Beam
+            </a>
+            <a href="../" class="btn">Download Beam</a>
+        </div>
+    </header>
+
+    <main class="container">
+        <article>
+            <div class="breadcrumb">
+                <a href="../">Beam</a> / <a href="../#guides">Guides</a> / Claude Code Context Management
+            </div>
+
+            <h1>Claude Code /compact and Auto-Memory: Master Context Window Management</h1>
+            <p class="meta">February 2026 &bull; 10 min read</p>
+
+            <p>Every Claude Code session has a hard ceiling: 200,000 tokens of context. That sounds like a lot until you are deep in a complex refactor, reading dozens of files, running test suites, and iterating on implementations. At that point, the context window fills up fast, and when it does, the agent's quality degrades -- it forgets earlier decisions, repeats work, or contradicts itself.</p>
+
+            <p>Managing context is not optional. It is the difference between a productive 2-hour session and one where you restart three times because the agent lost track of what it was doing. Here is how to do it right.</p>
+
+            <h2>Understanding the 200K Token Budget</h2>
+
+            <p>Before optimizing, you need to understand where your tokens go. A typical Claude Code session consumes context in four categories:</p>
+
+            <div class="highlight">
+                <h3>Token Consumption Breakdown</h3>
+                <ul>
+                    <li><strong>System prompt and CLAUDE.md:</strong> 2,000-5,000 tokens (loaded once at session start)</li>
+                    <li><strong>File reads:</strong> 500-5,000 tokens per file (cumulative -- every file the agent reads stays in context)</li>
+                    <li><strong>Tool use and outputs:</strong> 200-2,000 tokens per tool call (bash commands, grep results, file edits)</li>
+                    <li><strong>Conversation history:</strong> Everything you type plus every response the agent generates</li>
+                </ul>
+            </div>
+
+            <p>A session that reads 30 files, runs 20 commands, and has 15 back-and-forth exchanges can easily consume 150,000 tokens. That leaves very little room for the agent to continue working effectively.</p>
+
+            <p>You can check your current usage at any time by running <code>/cost</code> in your Claude Code session. This shows token consumption and estimated spend -- both useful signals for knowing when to intervene.</p>
+
+            <h2>The /compact Command: What It Does and When to Use It</h2>
+
+            <p>The <code>/compact</code> command is your primary tool for context management. When you run it, Claude Code summarizes the entire conversation history into a compressed representation, typically achieving a 60-70% reduction in token usage. The agent retains the key decisions, file modifications, and current state while discarding the verbose intermediate steps.</p>
+
+            <p>Think of it as the agent writing itself a set of notes, then starting fresh with those notes as context. The notes contain what matters -- which files were changed, what the current objective is, what patterns to follow -- without the full transcript of how it got there.</p>
+
+            <h3>When to Compact</h3>
+
+            <ul>
+                <li><strong>After completing a distinct task.</strong> You finished implementing a feature and are about to start a new one. Compact before context from the first task pollutes the second.</li>
+                <li><strong>When you notice quality degradation.</strong> If the agent starts forgetting earlier decisions, repeating questions, or producing inconsistent code, your context window is likely saturated.</li>
+                <li><strong>At regular intervals during long sessions.</strong> A good rule of thumb: compact every 45-60 minutes of active work, or whenever <code>/cost</code> shows you are above 120K tokens.</li>
+                <li><strong>Before a complex operation.</strong> If you are about to ask the agent to refactor a large module or implement something that requires reading many files, compact first to give it maximum room.</li>
+            </ul>
+
+            <h3>When Not to Compact</h3>
+
+            <ul>
+                <li><strong>Mid-task.</strong> If the agent is in the middle of implementing something and you compact, it may lose important intermediate state. Let the current task complete first.</li>
+                <li><strong>When you need the agent to reference specific earlier dialogue.</strong> After compaction, the exact wording of earlier exchanges is gone. If you need the agent to recall precisely what you said three prompts ago, compact after that reference is no longer needed.</li>
+            </ul>
+
+            <div class="tip">
+                <strong>Pro tip:</strong> You can provide a custom focus to /compact by running <code>/compact focus on the authentication refactor</code>. This tells the summarizer to prioritize retaining context about a specific topic, which is useful when you know what the next phase of work will be.
+            </div>
+
+            <h2>Auto-Memory: Persistence Between Sessions</h2>
+
+            <p>Compaction solves the within-session problem. But what happens when you close the terminal and come back tomorrow? Without explicit memory, the next session starts from zero -- no knowledge of yesterday's decisions, no awareness of which files were changed, no recollection of the architectural direction you chose.</p>
+
+            <p>Claude Code's auto-memory feature addresses this through the <code>CLAUDE.md</code> file system. Here is how it works:</p>
+
+            <ol>
+                <li><strong>Project-level memory:</strong> A <code>CLAUDE.md</code> file in your project root is automatically loaded at session start. It contains project conventions, architecture decisions, and current state.</li>
+                <li><strong>User-level memory:</strong> A <code>~/.claude/CLAUDE.md</code> file persists across all projects. Use this for personal preferences, common patterns, and cross-project conventions.</li>
+                <li><strong>Session memory:</strong> During a session, the agent can update the CLAUDE.md file with new decisions and state. This is the "auto-save" mechanism -- tell the agent to "save this decision to memory" and it writes to the file.</li>
+            </ol>
+
+            <div class="highlight">
+                <h3>Effective Memory File Structure</h3>
+                <pre><code># Project: MyApp
+
+## Architecture
+- Next.js 14, App Router, TypeScript
+- Prisma ORM with PostgreSQL
+- Tailwind CSS for styling
+
+## Conventions
+- Named exports only
+- API routes return { data, error } shape
+- Tests colocated with source files
+
+## Current State (updated 2026-02-28)
+- Auth refactor: COMPLETE
+- Dashboard redesign: IN PROGRESS
+  - Header component done
+  - Sidebar navigation done
+  - Main content area: next task
+- Known issues: #142 (race condition in WebSocket handler)</code></pre>
+            </div>
+
+            <p>The "Current State" section is the most important part. Update it at the end of every session. When the next session starts, the agent immediately knows where you left off and what to work on next.</p>
+
+            <h2>Cost Monitoring: The /cost Command</h2>
+
+            <p>Context management is also cost management. Every token consumed costs money, and long sessions with bloated context are expensive. The <code>/cost</code> command gives you real-time visibility into your spending.</p>
+
+            <p>Develop a habit of checking <code>/cost</code> at regular intervals. Here is a practical monitoring schedule:</p>
+
+            <ul>
+                <li><strong>Every 30 minutes:</strong> Quick check. If you are under $2 for a 30-minute block, you are on track. If you are over $5, consider whether the agent is doing unnecessary file reads or generating overly verbose responses.</li>
+                <li><strong>Before compaction:</strong> Check the cost to establish a baseline. After compacting, check again -- you should see lower per-prompt costs going forward.</li>
+                <li><strong>End of session:</strong> Track daily spend to establish your personal baseline. Most developers using Claude Code actively spend $5-$15 per day. Spikes above that usually indicate context management issues.</li>
+            </ul>
+
+            <h2>Compact vs. Start Fresh: Decision Framework</h2>
+
+            <p>Sometimes <code>/compact</code> is not enough. Sometimes you need a completely fresh session. Here is how to decide:</p>
+
+            <div class="highlight">
+                <h3>Use /compact When:</h3>
+                <ul>
+                    <li>You are continuing the same project and general task area</li>
+                    <li>The agent has made decisions you want it to remember</li>
+                    <li>You are switching sub-tasks within the same feature</li>
+                    <li>Context usage is between 60-85% of capacity</li>
+                </ul>
+            </div>
+
+            <div class="highlight">
+                <h3>Start a Fresh Session When:</h3>
+                <ul>
+                    <li>You are switching to a completely different project or feature</li>
+                    <li>The agent's behavior has degraded significantly despite compaction</li>
+                    <li>You want to change the fundamental approach (compacted context carries forward old assumptions)</li>
+                    <li>Context has exceeded 90% and even compaction will not free enough space for the next task</li>
+                </ul>
+            </div>
+
+            <p>When starting fresh, make sure your memory file is up to date first. Run <code>/compact</code> one final time, ask the agent to update the CLAUDE.md with current state, then close the session and open a new one. The new session loads the updated memory file and picks up seamlessly.</p>
+
+            <h2>Shared-Context Patterns for Multi-Agent Workflows</h2>
+
+            <p>When running multiple agents on the same project -- one for frontend, one for backend, one for tests -- context management becomes a coordination problem. Each agent has its own 200K token window, but they need to stay aware of each other's changes.</p>
+
+            <p>The solution is shared memory through the file system. All agents read the same CLAUDE.md file. When one agent makes an architectural decision, it writes to the memory file. The other agents pick up the change on their next file read.</p>
+
+            <ul>
+                <li><strong>Shared project CLAUDE.md:</strong> Contains architecture, conventions, and current state. All agents read this on startup.</li>
+                <li><strong>Agent-specific sections:</strong> Add sections like "## Frontend Agent Notes" and "## Backend Agent Notes" so each agent can write without overwriting the others.</li>
+                <li><strong>Coordination signals:</strong> Use the memory file to leave messages between agents. "Backend API for /users endpoint is ready, schema is in src/types/user.ts" tells the frontend agent exactly what it needs.</li>
+            </ul>
+
+            <h2>Beam's Install/Save Memory Workflow</h2>
+
+            <p>Managing memory files manually works, but it adds friction. Every session start requires remembering to check the memory file. Every session end requires remembering to update it. Human memory is unreliable -- which is ironic when the goal is to manage AI memory.</p>
+
+            <p>Beam automates this with two toolbar buttons. <strong>Install Project Memory</strong> reads your memory file and installs it as the project's CLAUDE.md, ensuring every new session starts with full context. <strong>Save Project Memory</strong> captures the current session state and writes it back to the memory file.</p>
+
+            <p>The workflow becomes automatic:</p>
+
+            <ol>
+                <li>Open Beam, click Install Memory -- session starts with full project context</li>
+                <li>Work with Claude Code for an hour or two, compacting as needed</li>
+                <li>When you finish, click Save Memory -- session state is preserved</li>
+                <li>Tomorrow, repeat from step 1 -- zero context loss between days</li>
+            </ol>
+
+            <p>This eliminates the most common context management failure: forgetting to save state before closing a session. When saving is a single click rather than a manual file edit, it actually happens consistently.</p>
+
+            <p>Context window management is not glamorous. It is not the exciting part of agentic coding. But it is the part that determines whether your agent sessions are productive or frustrating, whether your costs are predictable or surprising, and whether your multi-day projects maintain coherence or restart from scratch every morning. Master <code>/compact</code>, maintain your memory files, and monitor your costs. Everything else in agentic coding gets easier when context is under control.</p>
+
+            <div class="cta-box">
+                <h3>Never Lose Context Again</h3>
+                <p>Beam's one-click Install and Save Memory workflow preserves your project context across every session. Stop restarting from scratch.</p>
+                <a href="../" class="btn">Download Beam Free</a>
+            </div>
+
+            <div class="related-articles">
+                <h2>Related Articles</h2>
+                <div class="related-grid">
+                    <a href="ai-agent-memory-management.html" class="related-card">
+                        <h4>AI Agent Memory Management</h4>
+                        <p>Deep dive into persistent memory patterns for AI coding agents.</p>
+                    </a>
+                    <a href="persistent-memory-pattern-ai-agents.html" class="related-card">
+                        <h4>The Persistent Memory Pattern</h4>
+                        <p>How shared memory files enable multi-agent coordination and continuity.</p>
+                    </a>
+                    <a href="manage-multiple-claude-code-sessions.html" class="related-card">
+                        <h4>Managing Multiple Claude Code Sessions</h4>
+                        <p>Organize parallel agent sessions without losing track of context or work.</p>
+                    </a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>
+                <a href="../">Beam</a> &bull; The Agentic Engineering Platform &bull;
+                <a href="mailto:frank@nextuptechnologies.co">Contact</a>
+            </p>
+            <p style="margin-top: 12px; font-size: 0.8rem;">
+                <a href="/privacy.html" style="color: #71717a; text-decoration: none;">Privacy Policy</a> &bull;
+                <a href="/terms.html" style="color: #71717a; text-decoration: none;">Terms of Service</a>
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>

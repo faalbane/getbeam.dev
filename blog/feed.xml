@@ -5,8 +5,208 @@
     <link>https://getbeam.dev/blog/</link>
     <description>Guides, tutorials, and tips for AI-assisted development with Claude Code, Codex, and more. Organized with Beam terminal.</description>
     <language>en-us</language>
-    <lastBuildDate>Sat, 21 Feb 2026 12:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 28 Feb 2026 12:00:00 +0000</lastBuildDate>
     <atom:link href="https://getbeam.dev/blog/feed.xml" rel="self" type="application/rss+xml"/>
+
+    <item>
+      <title>Claude Code Worktrees: Run Parallel AI Agents Without Git Conflicts</title>
+      <link>https://getbeam.dev/blog/claude-code-worktrees-parallel-agents.html</link>
+      <description>Step-by-step guide to using git worktrees for running multiple isolated agent sessions in the same repo.</description>
+      <pubDate>Sat, 28 Feb 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/claude-code-worktrees-parallel-agents.html</guid>
+    </item>
+
+    <item>
+      <title>Context Engineering for AI Agents: Why Prompt Engineering Is Dead</title>
+      <link>https://getbeam.dev/blog/context-engineering-vs-prompt-engineering.html</link>
+      <description>The paradigm shift from crafting single prompts to designing full information context for AI agents.</description>
+      <pubDate>Sat, 28 Feb 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/context-engineering-vs-prompt-engineering.html</guid>
+    </item>
+
+    <item>
+      <title>The Junior Developer Crisis: How AI Agents Are Reshaping the Talent Pipeline</title>
+      <link>https://getbeam.dev/blog/junior-developer-crisis-ai-2026.html</link>
+      <description>How AI coding agents are reshaping developer hiring and what companies should do about it.</description>
+      <pubDate>Sat, 28 Feb 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/junior-developer-crisis-ai-2026.html</guid>
+    </item>
+
+    <item>
+      <title>MCP Security in 2026: Tool Poisoning, Vulnerabilities, and How to Protect Your Agents</title>
+      <link>https://getbeam.dev/blog/mcp-security-vulnerabilities-2026.html</link>
+      <description>Defense strategies against MCP attack vectors including tool poisoning, shadowing, and RCE.</description>
+      <pubDate>Sat, 28 Feb 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/mcp-security-vulnerabilities-2026.html</guid>
+    </item>
+
+    <item>
+      <title>Claude Code Hooks: 15 Automations Every Developer Should Set Up</title>
+      <link>https://getbeam.dev/blog/claude-code-hooks-automation-guide.html</link>
+      <description>Configure PreToolUse, PostToolUse, and SessionStart hooks for safety, quality, and monitoring.</description>
+      <pubDate>Sat, 28 Feb 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/claude-code-hooks-automation-guide.html</guid>
+    </item>
+
+    <item>
+      <title>The AI Technical Debt Crisis: Why 40% of Vibe-Coded Projects Face Cancellation</title>
+      <link>https://getbeam.dev/blog/ai-technical-debt-vibe-coding.html</link>
+      <description>Governance strategies for AI-generated code debt and the three-agent architecture to prevent it.</description>
+      <pubDate>Sat, 28 Feb 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/ai-technical-debt-vibe-coding.html</guid>
+    </item>
+
+    <item>
+      <title>Devin vs Claude Code vs Codex: Which AI Agent Actually Ships in 2026?</title>
+      <link>https://getbeam.dev/blog/devin-vs-claude-code-vs-codex.html</link>
+      <description>Head-to-head comparison of autonomous, terminal-native, and CLI-first AI coding agent philosophies.</description>
+      <pubDate>Sat, 28 Feb 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/devin-vs-claude-code-vs-codex.html</guid>
+    </item>
+
+    <item>
+      <title>Claude Code Custom Subagents: Build Your Own AI Development Team</title>
+      <link>https://getbeam.dev/blog/claude-code-custom-subagents.html</link>
+      <description>Configure specialized subagents for security review, testing, documentation, and more.</description>
+      <pubDate>Sat, 28 Feb 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/claude-code-custom-subagents.html</guid>
+    </item>
+
+    <item>
+      <title>Docker Sandboxes for AI Agents: Secure Execution Without Sacrificing Speed</title>
+      <link>https://getbeam.dev/blog/docker-sandbox-ai-agents.html</link>
+      <description>Zero-trust isolation with Docker microVMs and gVisor for running AI agents safely.</description>
+      <pubDate>Sat, 28 Feb 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/docker-sandbox-ai-agents.html</guid>
+    </item>
+
+    <item>
+      <title>AI Agent Token Cost Optimization: How to Cut Spending by 65%</title>
+      <link>https://getbeam.dev/blog/ai-agent-token-cost-optimization.html</link>
+      <description>Prompt caching, model routing, and context compression strategies for production agent fleets.</description>
+      <pubDate>Sat, 28 Feb 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/ai-agent-token-cost-optimization.html</guid>
+    </item>
+
+    <item>
+      <title>The A2A Protocol Explained: How Google's Agent-to-Agent Standard Changes Everything</title>
+      <link>https://getbeam.dev/blog/a2a-protocol-multi-agent-explained.html</link>
+      <description>Agent-to-Agent communication vs MCP tool access, and what it means for multi-agent workflows.</description>
+      <pubDate>Sat, 28 Feb 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/a2a-protocol-multi-agent-explained.html</guid>
+    </item>
+
+    <item>
+      <title>CLAUDE.md Masterclass: Write Memory Files That Actually Work</title>
+      <link>https://getbeam.dev/blog/claude-md-masterclass-memory-files.html</link>
+      <description>The 200-line rule, imperative voice, memory hierarchy, and shared team patterns.</description>
+      <pubDate>Sat, 28 Feb 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/claude-md-masterclass-memory-files.html</guid>
+    </item>
+
+    <item>
+      <title>SWE-Bench 2026 Leaderboard: What the Scores Actually Mean for Your Workflow</title>
+      <link>https://getbeam.dev/blog/swe-bench-2026-what-scores-mean.html</link>
+      <description>Decoding Opus 4.6, Gemini 3 Flash, and GPT-5.3 Codex benchmark results for real-world use.</description>
+      <pubDate>Sat, 28 Feb 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/swe-bench-2026-what-scores-mean.html</guid>
+    </item>
+
+    <item>
+      <title>OpenCode: The Open-Source Claude Code Alternative Every Developer Should Know</title>
+      <link>https://getbeam.dev/blog/opencode-open-source-claude-code-alternative.html</link>
+      <description>70K+ GitHub stars, provider-agnostic architecture, and zero data storage.</description>
+      <pubDate>Sat, 28 Feb 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/opencode-open-source-claude-code-alternative.html</guid>
+    </item>
+
+    <item>
+      <title>Why AI Makes Developers Feel 20% Faster but Measure 19% Slower</title>
+      <link>https://getbeam.dev/blog/ai-developer-productivity-paradox.html</link>
+      <description>The counterintuitive research on perceived vs measured productivity with AI coding tools.</description>
+      <pubDate>Sat, 28 Feb 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/ai-developer-productivity-paradox.html</guid>
+    </item>
+
+    <item>
+      <title>Gemini 3 Flash + CLI: Google's Free Tier That Beats Paid Alternatives</title>
+      <link>https://getbeam.dev/blog/gemini-3-flash-cli-free-tier.html</link>
+      <description>60 req/min, 1M context, 78% SWE-bench — and it's completely free.</description>
+      <pubDate>Sat, 28 Feb 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/gemini-3-flash-cli-free-tier.html</guid>
+    </item>
+
+    <item>
+      <title>Agentic SDLC: Automating Every Phase from Planning to Deployment</title>
+      <link>https://getbeam.dev/blog/agentic-sdlc-automated-development.html</link>
+      <description>The delegate-review-own model across requirements, coding, testing, review, and deployment.</description>
+      <pubDate>Sat, 28 Feb 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/agentic-sdlc-automated-development.html</guid>
+    </item>
+
+    <item>
+      <title>Claude Code /compact and Auto-Memory: Master Context Window Management</title>
+      <link>https://getbeam.dev/blog/claude-code-compact-context-management.html</link>
+      <description>Managing the 200K token context window with /compact, auto-memory, and cost monitoring.</description>
+      <pubDate>Sat, 28 Feb 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/claude-code-compact-context-management.html</guid>
+    </item>
+
+    <item>
+      <title>The Bloomberg Productivity Panic: What AI Agents Mean for Engineering Careers</title>
+      <link>https://getbeam.dev/blog/bloomberg-ai-productivity-panic-developer-careers.html</link>
+      <description>Salary trends, career positioning, and the orchestrator path in the agentic era.</description>
+      <pubDate>Sat, 28 Feb 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/bloomberg-ai-productivity-panic-developer-careers.html</guid>
+    </item>
+
+    <item>
+      <title>Running AI Agents in Production: Cost, Safety, and Scaling Patterns</title>
+      <link>https://getbeam.dev/blog/ai-agents-production-deployment-scaling.html</link>
+      <description>Enterprise patterns for heterogeneous models, sandbox security, and production budgets.</description>
+      <pubDate>Sat, 28 Feb 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/ai-agents-production-deployment-scaling.html</guid>
+    </item>
+
+    <item>
+      <title>Karpathy's Phase Change: Why AI Coding Agents 'Started Working' in Late 2025</title>
+      <link>https://getbeam.dev/blog/karpathy-phase-change-ai-coding-agents.html</link>
+      <description>The qualitative threshold AI coding agents crossed and the discipline that emerged.</description>
+      <pubDate>Sat, 28 Feb 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/karpathy-phase-change-ai-coding-agents.html</guid>
+    </item>
+
+    <item>
+      <title>9 Parallel Subagents That Review Your Code Automatically</title>
+      <link>https://getbeam.dev/blog/parallel-claude-code-subagents-code-review.html</link>
+      <description>Security, performance, style, tests, docs, and 4 more specialized review agents running in parallel.</description>
+      <pubDate>Sat, 28 Feb 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/parallel-claude-code-subagents-code-review.html</guid>
+    </item>
+
+    <item>
+      <title>The Lost-in-the-Middle Problem: Why Your AI Agent Forgets Mid-Conversation</title>
+      <link>https://getbeam.dev/blog/lost-in-the-middle-ai-context-problem.html</link>
+      <description>The U-shaped accuracy curve and practical strategies to keep agents sharp throughout sessions.</description>
+      <pubDate>Sat, 28 Feb 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/lost-in-the-middle-ai-context-problem.html</guid>
+    </item>
+
+    <item>
+      <title>Augment Code vs Windsurf vs Claude Code: Terminal-Native vs IDE-First in 2026</title>
+      <link>https://getbeam.dev/blog/augment-code-vs-windsurf-vs-claude-code.html</link>
+      <description>Three architectural philosophies compared — context engines, standalone IDEs, and terminal-native agents.</description>
+      <pubDate>Sat, 28 Feb 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/augment-code-vs-windsurf-vs-claude-code.html</guid>
+    </item>
+
+    <item>
+      <title>Measuring Developer Productivity in the AI Agent Era: Beyond DORA Metrics</title>
+      <link>https://getbeam.dev/blog/developer-productivity-metrics-ai-agents.html</link>
+      <description>Rework rate as the 5th DORA metric, the SEQI framework, and what to actually measure.</description>
+      <pubDate>Sat, 28 Feb 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/developer-productivity-metrics-ai-agents.html</guid>
+    </item>
 
     <item>
       <title>How to Run Claude Code, Gemini CLI, and Codex Side by Side (And Why You Should)</title>

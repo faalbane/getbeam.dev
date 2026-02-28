@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D0XH8B0RKL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-D0XH8B0RKL');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Agent Token Cost Optimization: How to Cut Spending by 65% | Beam</title>
+    <meta name="description" content="Practical guide to reducing AI agent token costs by 65%. Covers prompt caching, model routing, context compression, and real production cost data from engineering teams.">
+    <meta name="keywords" content="AI agent token cost optimization 2026, reduce AI coding costs, prompt caching Claude Code, AI agent spending optimization">
+    <meta name="author" content="NextUp Technologies">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://getbeam.dev/blog/ai-agent-token-cost-optimization.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://getbeam.dev/blog/ai-agent-token-cost-optimization.html">
+    <meta property="og:title" content="AI Agent Token Cost Optimization: How to Cut Spending by 65%">
+    <meta property="og:description" content="Practical guide to reducing AI agent token costs by 65%. Covers prompt caching, model routing, context compression, and real production cost data from engineering teams.">
+    <meta property="og:image" content="https://getbeam.dev/beam-screenshot-1.9.6.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="AI Agent Token Cost Optimization: How to Cut Spending by 65%">
+    <meta name="twitter:description" content="Practical guide to reducing AI agent token costs by 65%. Covers prompt caching, model routing, context compression, and real production cost data from engineering teams.">
+    <meta name="twitter:image" content="https://getbeam.dev/beam-screenshot-1.9.6.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "AI Agent Token Cost Optimization: How to Cut Spending by 65%",
+        "description": "Practical guide to reducing AI agent token costs by 65%. Covers prompt caching, model routing, context compression, and real production cost data from engineering teams.",
+        "author": {
+            "@type": "Organization",
+            "name": "NextUp Technologies"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Beam"
+        },
+        "datePublished": "2026-02-28",
+        "keywords": "AI agent token cost optimization 2026, reduce AI coding costs, prompt caching Claude Code, AI agent spending optimization"
+    }
+    </script>
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #111113;
+            --bg-tertiary: #1a1a1d;
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.4);
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --border: #27272a;
+            --success: #22c55e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        a, button, .btn, .related-card, .post-card, .editorial-card { cursor: pointer; }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+
+        .container { max-width: 800px; margin: 0 auto; padding: 0 24px; }
+
+        header {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 60px;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1.5rem;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            background: var(--accent);
+            color: white;
+            transition: all 0.2s;
+        }
+
+        .btn:hover { background: #2563eb; transform: translateY(-2px); }
+
+        article { padding-bottom: 80px; }
+
+        .breadcrumb {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+        }
+
+        .breadcrumb a { color: var(--accent); text-decoration: none; }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .meta {
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            font-size: 0.95rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 48px 0 20px;
+            color: var(--text-primary);
+        }
+
+        h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 32px 0 16px;
+            color: var(--text-primary);
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        ul, ol {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            padding-left: 24px;
+        }
+
+        li { margin-bottom: 12px; }
+
+        strong { color: var(--text-primary); }
+
+        .highlight {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 32px 0;
+        }
+
+        .highlight h3 {
+            font-size: 1.1rem;
+            margin: 0 0 12px 0;
+            color: var(--text-primary);
+        }
+
+        .highlight p:last-child, .highlight ul:last-child {
+            margin-bottom: 0;
+        }
+
+        .kbd {
+            display: inline-block;
+            padding: 2px 8px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+        }
+
+        code {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 2px 6px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+        }
+
+        pre {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 20px;
+            overflow-x: auto;
+            margin: 24px 0;
+        }
+
+        pre code {
+            background: none;
+            border: none;
+            padding: 0;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .tip {
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 24px 0;
+        }
+
+        .tip strong {
+            color: var(--success);
+        }
+
+        .warning {
+            background: rgba(234, 179, 8, 0.1);
+            border: 1px solid rgba(234, 179, 8, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 24px 0;
+        }
+
+        .warning strong {
+            color: #eab308;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .cta-box h3 { font-size: 1.5rem; margin-bottom: 12px; color: white; }
+        .cta-box p { color: rgba(255,255,255,0.8); margin-bottom: 24px; }
+        .cta-box .btn { background: white; color: var(--accent); }
+
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer a { color: var(--text-secondary); text-decoration: none; }
+
+        .related-articles { margin-top: 60px; padding-top: 40px; border-top: 1px solid var(--border); }
+        .related-articles h2 { font-size: 1.5rem; margin-bottom: 24px; }
+        .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .related-card { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-decoration: none; transition: border-color 0.2s; }
+        .related-card:hover { border-color: var(--accent); }
+        .related-card h4 { color: white; font-size: 1rem; margin: 0 0 8px 0; }
+        .related-card p { color: var(--text-muted); font-size: 0.85rem; margin: 0; }
+        @media (max-width: 600px) { .related-grid { grid-template-columns: 1fr; } h1 { font-size: 1.8rem; } }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="../" class="logo">
+                <div class="logo-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round">
+                        <path d="M4 17l6-6-6-6M12 19h8"/>
+                    </svg>
+                </div>
+                Beam
+            </a>
+            <a href="../" class="btn">Download Beam</a>
+        </div>
+    </header>
+
+    <main class="container">
+        <article>
+            <div class="breadcrumb">
+                <a href="../">Beam</a> / <a href="../#guides">Guides</a> / AI Agent Token Cost Optimization
+            </div>
+
+            <h1>AI Agent Token Cost Optimization: How to Cut Spending by 65%</h1>
+            <p class="meta">February 2026 &bull; 11 min read</p>
+
+            <p>AI coding agents are transforming how software gets built. They are also transforming engineering budgets. A single developer running Claude Code full-time on a complex project can burn through $3,000-$13,000 per month in API costs. Multiply that by a team of five, and you are looking at $15,000-$65,000 monthly -- a line item that makes finance teams very uncomfortable.</p>
+
+            <p>The good news: most of that spending is waste. Redundant context loading, suboptimal model selection, bloated prompts, and unnecessary re-reads of unchanged files account for 60-70% of typical token consumption. With the right optimizations, you can cut costs by 65% without reducing output quality.</p>
+
+            <h2>Where the Tokens Go</h2>
+
+            <p>Before optimizing, you need to understand what drives cost. AI agent token consumption breaks down into four categories, and their relative weight surprises most developers.</p>
+
+            <div class="highlight">
+                <h3>Token Consumption Breakdown (Typical Session)</h3>
+                <ul>
+                    <li><strong>Context loading (45%)</strong> -- every time you ask the agent a question, it re-reads your project files, system prompt, and conversation history. On a large project, this can exceed 100K tokens per interaction.</li>
+                    <li><strong>Conversation history (25%)</strong> -- as your session progresses, every previous message is included in each new request. A 20-message conversation might carry 50K tokens of history.</li>
+                    <li><strong>Output generation (20%)</strong> -- the actual code and explanations the agent produces. This is the part you are paying for, and it is the smallest portion.</li>
+                    <li><strong>Retries and corrections (10%)</strong> -- when the agent makes a mistake and you ask it to fix the issue, all the context loads again plus the failed attempt.</li>
+                </ul>
+            </div>
+
+            <p>The insight is clear: 70% of your spending goes to repeatedly loading context that has not changed. This is the primary optimization target.</p>
+
+            <h2>Strategy 1: Prompt Caching (Save 90% on Input Costs)</h2>
+
+            <p>Prompt caching is the single highest-impact optimization available. Anthropic's prompt caching feature stores frequently-used context on their servers, reducing the cost of cached tokens by 90% on subsequent reads.</p>
+
+            <p>How it works: the first time your system prompt and project context are sent, they are processed at full price. On subsequent requests in the same session, cached tokens are served at 10% of the original cost. For a 100K-token system prompt that gets sent 50 times in a session, you pay full price once and 10% for the other 49 times.</p>
+
+            <div class="highlight">
+                <h3>Prompt Caching Math</h3>
+                <p><strong>Without caching:</strong> 100K tokens x 50 requests x $3/MTok = $15.00 per session</p>
+                <p><strong>With caching:</strong> 100K tokens x 1 full + 49 cached x $0.30/MTok = $3.00 + $1.47 = $4.47 per session</p>
+                <p><strong>Savings: 70% on input costs alone</strong></p>
+            </div>
+
+            <p>Claude Code enables prompt caching automatically when using the Anthropic API. The key to maximizing cache hits is structuring your prompts so the static content (system prompt, project memory, file contents that have not changed) comes first, and the dynamic content (your current question) comes last. This way, the static prefix matches the cache on every request.</p>
+
+            <div class="tip">
+                <strong>Maximize cache hits:</strong> Keep your CLAUDE.md file stable between requests. Every time you modify it, the cache invalidates and you pay full price again. Update project memory between sessions, not during them.
+            </div>
+
+            <h2>Strategy 2: Model Routing (Use the Right Model for the Job)</h2>
+
+            <p>Not every task requires a frontier model. Asking Claude Opus to rename a variable or add a console.log statement is like hiring a senior architect to move a desk. It works, but you are dramatically overpaying.</p>
+
+            <p>Model routing means directing tasks to the appropriate model based on complexity:</p>
+
+            <ul>
+                <li><strong>Frontier models (Claude Opus, GPT-4o)</strong> -- complex architecture decisions, multi-file refactors, debugging subtle race conditions, designing new systems. These tasks require deep reasoning and justify the higher token cost.</li>
+                <li><strong>Mid-tier models (Claude Sonnet, GPT-4o-mini)</strong> -- standard feature implementation, writing tests, code review, documentation. These are the bulk of daily tasks and mid-tier models handle them well at 5-10x lower cost.</li>
+                <li><strong>Lightweight models (Claude Haiku, GPT-3.5)</strong> -- code formatting, simple refactors, boilerplate generation, commit message writing, syntax fixes. These tasks do not benefit from deeper reasoning.</li>
+            </ul>
+
+            <div class="highlight">
+                <h3>Cost Comparison by Model Tier</h3>
+                <ul>
+                    <li><strong>Claude Opus 4:</strong> $15/MTok input, $75/MTok output -- reserve for complex reasoning</li>
+                    <li><strong>Claude Sonnet 4:</strong> $3/MTok input, $15/MTok output -- daily workhorse</li>
+                    <li><strong>Claude Haiku 3.5:</strong> $0.80/MTok input, $4/MTok output -- routine automation</li>
+                </ul>
+            </div>
+
+            <p>A typical development day might involve 2 hours of complex architectural work (Opus), 5 hours of standard feature work (Sonnet), and 1 hour of routine tasks (Haiku). Routing appropriately reduces the daily cost from $80-120 (all Opus) to $25-40 (routed), a 65% reduction.</p>
+
+            <h2>Strategy 3: Context Compression</h2>
+
+            <p>Large codebases generate enormous context windows. When Claude Code reads a 500-line file to understand a function, you pay for all 500 lines even though only 30 lines were relevant. Context compression reduces what gets sent to the model.</p>
+
+            <p><strong>The /compact command.</strong> Claude Code's built-in <code>/compact</code> command summarizes the current conversation into a condensed format, reducing token count by 50-80% while preserving the essential context. Use it whenever your conversation exceeds 20 messages or when you notice increasing latency.</p>
+
+            <pre><code># When your session gets long, compact the context
+/compact
+
+# You can also compact with a specific focus
+/compact focus on the authentication module changes</code></pre>
+
+            <p><strong>Selective file reading.</strong> Instead of letting the agent read entire files, direct it to specific functions or line ranges. "Read the handleSubmit function in UserForm.tsx" costs far fewer tokens than "Read UserForm.tsx" when the file is 400 lines long.</p>
+
+            <p><strong>Structured project memory.</strong> A well-organized CLAUDE.md file with clear section headers lets the agent find relevant information without reading irrelevant sections. Keep your project memory concise: architecture overview (20 lines), build commands (10 lines), conventions (15 lines), current priorities (10 lines). Total: under 60 lines.</p>
+
+            <div class="warning">
+                <strong>Do not over-compress.</strong> Removing too much context causes the agent to make assumptions, which leads to errors, which leads to correction cycles that cost more than the original context would have. Compress intelligently -- remove redundancy, not information.
+            </div>
+
+            <h2>Strategy 4: Session Management</h2>
+
+            <p>How you structure your work sessions has a direct impact on token consumption. Long, unfocused sessions are expensive. Short, targeted sessions are cheap.</p>
+
+            <p><strong>Task-based sessions.</strong> Start a new Claude Code session for each distinct task. "Add pagination to the users list" is one session. "Fix the login redirect bug" is a separate session. This prevents conversation history from one task inflating the context of another.</p>
+
+            <p><strong>Session checkpoints.</strong> When a session is going well, save the current state by asking the agent to summarize what has been accomplished and what remains. If you need to restart, you can paste the summary into a new session rather than replaying the entire conversation.</p>
+
+            <p><strong>Avoid exploratory sessions on the API.</strong> If you are exploring a codebase or brainstorming architecture, use the flat-rate Claude Max subscription rather than pay-per-token API access. Exploration is inherently token-heavy and unpredictable. Reserve API usage for focused execution.</p>
+
+            <h2>Real-World Cost Data</h2>
+
+            <p>Here is what teams actually spend, before and after optimization, based on data from engineering teams running agentic workflows in production.</p>
+
+            <div class="highlight">
+                <h3>Solo Developer (Full-Time Agentic Workflow)</h3>
+                <ul>
+                    <li><strong>Before optimization:</strong> $3,200/month (all Opus, no caching, long sessions)</li>
+                    <li><strong>After optimization:</strong> $1,100/month (model routing + caching + compact)</li>
+                    <li><strong>Savings: 66%</strong></li>
+                </ul>
+            </div>
+
+            <div class="highlight">
+                <h3>5-Person Engineering Team</h3>
+                <ul>
+                    <li><strong>Before optimization:</strong> $13,500/month (mixed usage, no governance)</li>
+                    <li><strong>After optimization:</strong> $4,700/month (routing + caching + session limits)</li>
+                    <li><strong>Savings: 65%</strong></li>
+                </ul>
+            </div>
+
+            <div class="highlight">
+                <h3>20-Person Engineering Org</h3>
+                <ul>
+                    <li><strong>Before optimization:</strong> $47,000/month</li>
+                    <li><strong>After optimization:</strong> $16,500/month (full governance stack)</li>
+                    <li><strong>Savings: 65%</strong></li>
+                </ul>
+            </div>
+
+            <p>The 65% savings number is remarkably consistent across team sizes. The optimizations scale linearly because the waste patterns are the same regardless of how many developers are involved.</p>
+
+            <h2>Tracking Token Usage Across Multiple Agents</h2>
+
+            <p>You cannot optimize what you do not measure. When running multiple AI agents simultaneously -- a common pattern in agentic engineering workflows -- tracking per-agent costs becomes critical for identifying which workflows are efficient and which are burning money.</p>
+
+            <p>Beam helps with this by organizing your agent sessions into labeled panes within workspaces. Each pane corresponds to a specific agent instance running a specific task. When you review your API usage dashboard, you can correlate cost spikes with specific panes and specific tasks, identifying which workflows need optimization.</p>
+
+            <p>For example, if your "test writer" agent consistently costs 3x more than your "implementer" agent, something is wrong. Maybe it is reading the entire test suite before writing each new test. Maybe it is using Opus when Haiku would suffice for test generation. Without per-agent visibility, you would never know where the waste lives.</p>
+
+            <div class="cta-box">
+                <h3>Track Every Agent, Optimize Every Dollar</h3>
+                <p>Beam organizes your multi-agent workflow into labeled panes so you can track which agents cost what and optimize intelligently.</p>
+                <a href="../" class="btn">Download Beam Free</a>
+            </div>
+
+            <h2>The Optimization Checklist</h2>
+
+            <p>Apply these in order. Each builds on the previous one.</p>
+
+            <ol>
+                <li><strong>Enable prompt caching</strong> -- if using the Anthropic API, this happens automatically. Ensure your system prompt is stable within sessions. Expected savings: 30-40%.</li>
+                <li><strong>Implement model routing</strong> -- use frontier models for complex tasks only. Route standard work to mid-tier models. Route routine tasks to lightweight models. Expected savings: 20-30%.</li>
+                <li><strong>Use /compact regularly</strong> -- run the compact command every 15-20 messages or when you notice increased latency. Expected savings: 10-15%.</li>
+                <li><strong>Structure sessions by task</strong> -- one task per session. Avoid letting sessions drift into multiple unrelated topics. Expected savings: 5-10%.</li>
+                <li><strong>Optimize project memory</strong> -- keep CLAUDE.md under 100 lines. Remove stale information. Be precise, not verbose. Expected savings: 5%.</li>
+            </ol>
+
+            <p>Combined, these five optimizations typically reduce token spending by 60-70%. The first two alone (caching and model routing) account for the majority of savings and take less than an hour to implement.</p>
+
+            <p>AI agents are worth the investment. But there is no reason to pay 3x more than necessary. Optimize your token usage, and the ROI of agentic engineering becomes impossible to argue against.</p>
+
+            <div class="related-articles">
+                <h2>Related Articles</h2>
+                <div class="related-grid">
+                    <a href="manage-multiple-claude-code-sessions.html" class="related-card">
+                        <h4>Manage Multiple Claude Code Sessions</h4>
+                        <p>How to run and organize multiple Claude Code instances efficiently.</p>
+                    </a>
+                    <a href="claude-code-vs-cursor-vs-opencode-2026.html" class="related-card">
+                        <h4>Claude Code vs Cursor vs OpenCode 2026</h4>
+                        <p>Comparing AI coding tools on price, performance, and developer experience.</p>
+                    </a>
+                    <a href="multi-agent-ai-coding-workflows.html" class="related-card">
+                        <h4>Multi-Agent AI Coding Workflows</h4>
+                        <p>Patterns for coordinating multiple AI agents on the same project.</p>
+                    </a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>
+                <a href="../">Beam</a> &bull; The Agentic Engineering Platform &bull;
+                <a href="mailto:frank@nextuptechnologies.co">Contact</a>
+            </p>
+            <p style="margin-top: 12px; font-size: 0.8rem;">
+                <a href="/privacy.html" style="color: #71717a; text-decoration: none;">Privacy Policy</a> &bull;
+                <a href="/terms.html" style="color: #71717a; text-decoration: none;">Terms of Service</a>
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,9 @@
+version: 3.1.8
+files:
+  - url: beam-v3.1.8.AppImage
+    sha512: gX+5TjO3nmpoa8pPheTGqAGSto2xqCGGWzU3lApJ9zo/d+cc909vZdyqefG6Auhg8/O3uRfkotP9r0oLsV4iWA==
+    size: 111524819
+    blockMapSize: 117735
+path: beam-v3.1.8.AppImage
+sha512: gX+5TjO3nmpoa8pPheTGqAGSto2xqCGGWzU3lApJ9zo/d+cc909vZdyqefG6Auhg8/O3uRfkotP9r0oLsV4iWA==
+releaseDate: '2026-02-28T16:09:01.012Z'
