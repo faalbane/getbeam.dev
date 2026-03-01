@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D0XH8B0RKL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-D0XH8B0RKL');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>From Vibe Coding to Production: A Step-by-Step Process for Shipping AI-Built Features | Beam</title>
+    <meta name="description" content="Transform vibe coding experiments into production-ready features. A complete workflow for reviewing, hardening, and shipping AI-generated code with CI/CD gates and quality checks.">
+    <meta name="keywords" content="vibe coding to production, shipping AI built features, AI code review workflow, production-ready AI code, vibe coding best practices">
+    <meta name="author" content="NextUp Technologies">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://getbeam.dev/blog/vibe-coding-to-production-workflow.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://getbeam.dev/blog/vibe-coding-to-production-workflow.html">
+    <meta property="og:title" content="From Vibe Coding to Production: A Step-by-Step Process for Shipping AI-Built Features">
+    <meta property="og:description" content="Transform vibe coding experiments into production-ready features. A complete workflow for reviewing, hardening, and shipping AI-generated code with CI/CD gates and quality checks.">
+    <meta property="og:image" content="https://getbeam.dev/beam-screenshot-1.9.6.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="From Vibe Coding to Production: A Step-by-Step Process for Shipping AI-Built Features">
+    <meta name="twitter:description" content="Transform vibe coding experiments into production-ready features. A complete workflow for reviewing, hardening, and shipping AI-generated code with CI/CD gates and quality checks.">
+    <meta name="twitter:image" content="https://getbeam.dev/beam-screenshot-1.9.6.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "From Vibe Coding to Production: A Step-by-Step Process for Shipping AI-Built Features",
+        "description": "Transform vibe coding experiments into production-ready features. A complete workflow for reviewing, hardening, and shipping AI-generated code with CI/CD gates and quality checks.",
+        "author": {
+            "@type": "Organization",
+            "name": "NextUp Technologies"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Beam"
+        },
+        "datePublished": "2026-03-01",
+        "keywords": "vibe coding to production, shipping AI built features, AI code review workflow, production-ready AI code, vibe coding best practices"
+    }
+    </script>
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #111113;
+            --bg-tertiary: #1a1a1d;
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.4);
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --border: #27272a;
+            --success: #22c55e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        a, button, .btn, .related-card, .post-card, .editorial-card { cursor: pointer; }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+
+        .container { max-width: 800px; margin: 0 auto; padding: 0 24px; }
+
+        header { padding: 24px 0; border-bottom: 1px solid var(--border); margin-bottom: 60px; }
+        header .container { display: flex; justify-content: space-between; align-items: center; }
+
+        .logo { display: flex; align-items: center; gap: 12px; font-weight: 700; font-size: 1.5rem; text-decoration: none; color: var(--text-primary); }
+        .logo-icon { width: 32px; height: 32px; background: linear-gradient(135deg, var(--accent), #8b5cf6); border-radius: 7px; display: flex; align-items: center; justify-content: center; }
+        .pixel-logo-wrap { display: flex; align-items: center; filter: drop-shadow(0 0 6px rgba(59, 130, 246, 0.45)); width: 79px; height: 19px; flex-shrink: 0; position: relative; overflow: visible; }
+        .pixel-logo { position: absolute; top: 0; left: 0; display: block; width: 3px; height: 3px; border-radius: 0.5px; background: #a0c4ff; box-shadow: 4px 0 0 0 #a2c5ff, 8px 0 0 0 #a4c6ff, 20px 0 0 0 #acc9ff, 24px 0 0 0 #aecaff, 28px 0 0 0 #b0cbff, 32px 0 0 0 #b2ccff, 44px 0 0 0 #bacfff, 48px 0 0 0 #bcd0ff, 60px 0 0 0 #c4d4ff, 76px 0 0 0 #d0daff, 0 4px 0 0 #96bdf8, 12px 4px 0 0 #9ec1f8, 20px 4px 0 0 #a4c4f8, 40px 4px 0 0 #b4ccf8, 52px 4px 0 0 #bcd0f8, 60px 4px 0 0 #c0d2f8, 64px 4px 0 0 #c2d3f8, 72px 4px 0 0 #c8d6f8, 76px 4px 0 0 #cad7f8, 0 8px 0 0 #8cb6f0, 4px 8px 0 0 #8eb7f0, 8px 8px 0 0 #90b8f0, 20px 8px 0 0 #9abef0, 24px 8px 0 0 #9cbff0, 28px 8px 0 0 #9ec0f0, 40px 8px 0 0 #aac6f0, 44px 8px 0 0 #acc7f0, 48px 8px 0 0 #aec8f0, 52px 8px 0 0 #b0c9f0, 60px 8px 0 0 #b6ccf0, 68px 8px 0 0 #bccff0, 76px 8px 0 0 #c4d3f0, 0 12px 0 0 #82afe8, 12px 12px 0 0 #8cb5e8, 20px 12px 0 0 #92b8e8, 40px 12px 0 0 #a2c0e8, 52px 12px 0 0 #aac4e8, 60px 12px 0 0 #aec6e8, 76px 12px 0 0 #bccde8, 0 16px 0 0 #78a8e0, 4px 16px 0 0 #7aa9e0, 8px 16px 0 0 #7caae0, 20px 16px 0 0 #88b0e0, 24px 16px 0 0 #8ab1e0, 28px 16px 0 0 #8cb2e0, 32px 16px 0 0 #8eb3e0, 40px 16px 0 0 #96b8e0, 52px 16px 0 0 #a0bce0, 60px 16px 0 0 #a4bee0, 76px 16px 0 0 #b4c6e0; }
+
+        .btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; border-radius: 8px; font-weight: 600; font-size: 0.95rem; text-decoration: none; background: var(--accent); color: white; transition: all 0.2s; }
+        .btn:hover { background: #2563eb; transform: translateY(-2px); }
+
+        article { padding-bottom: 80px; }
+        .breadcrumb { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 24px; }
+        .breadcrumb a { color: var(--accent); text-decoration: none; }
+
+        h1 { font-size: 2.5rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 16px; line-height: 1.2; }
+        .meta { color: var(--text-muted); margin-bottom: 40px; font-size: 0.95rem; }
+
+        h2 { font-size: 1.5rem; font-weight: 600; margin: 48px 0 20px; color: var(--text-primary); }
+        p { color: var(--text-secondary); margin-bottom: 20px; font-size: 1.05rem; }
+        ul, ol { color: var(--text-secondary); margin-bottom: 20px; padding-left: 24px; }
+        li { margin-bottom: 12px; }
+
+        .highlight { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 24px; margin: 32px 0; }
+        .highlight h3 { font-size: 1.1rem; margin-bottom: 12px; color: var(--text-primary); }
+
+        .kbd { display: inline-block; padding: 2px 8px; background: var(--bg-tertiary); border: 1px solid var(--border); border-radius: 4px; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; }
+
+        .cta-box { background: linear-gradient(135deg, var(--accent), #8b5cf6); border-radius: 16px; padding: 40px; text-align: center; margin: 60px 0; }
+        .cta-box h3 { font-size: 1.5rem; margin-bottom: 12px; }
+        .cta-box p { color: rgba(255,255,255,0.8); margin-bottom: 24px; }
+        .cta-box .btn { background: white; color: var(--accent); }
+
+        footer { padding: 40px 0; border-top: 1px solid var(--border); text-align: center; color: var(--text-muted); font-size: 0.9rem; }
+        footer a { color: var(--text-secondary); text-decoration: none; }
+
+        .related-articles { margin-top: 60px; padding-top: 40px; border-top: 1px solid var(--border); }
+        .related-articles h2 { font-size: 1.5rem; margin-bottom: 24px; }
+        .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .related-card { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-decoration: none; transition: border-color 0.2s; }
+        .related-card:hover { border-color: var(--accent); }
+        .related-card h4 { color: white; font-size: 1rem; margin: 0 0 8px 0; }
+        .related-card p { color: var(--text-muted); font-size: 0.85rem; margin: 0; }
+        @media (max-width: 600px) { .related-grid { grid-template-columns: 1fr; } }
+
+        blockquote { border-left: 3px solid var(--accent); padding-left: 20px; margin: 24px 0; font-style: italic; }
+        blockquote p { color: var(--text-secondary); }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="/" class="logo">
+                <div class="logo-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                </div>
+                <span class="pixel-logo-wrap"><span class="pixel-logo"></span></span>
+            </a>
+            <a href="/" class="btn">Download Beam</a>
+        </div>
+    </header>
+
+    <article>
+        <div class="container">
+            <div class="breadcrumb">
+                <a href="/">Home</a> / <a href="/blog/">Blog</a> / Vibe Coding to Production
+            </div>
+
+            <h1>From Vibe Coding to Production: A Step-by-Step Process for Shipping AI-Built Features</h1>
+            <div class="meta">March 1, 2026 &middot; 14 min read</div>
+
+            <p>Vibe coding is intoxicating. You describe what you want in natural language, an AI agent writes the code, and within minutes you have a working feature. The dopamine hit is real. But here is the uncomfortable truth that every developer eventually confronts: the code that makes a great demo rarely survives contact with production traffic, edge cases, and the expectations of real users.</p>
+
+            <p>This is not a critique of AI-generated code. It is a recognition that shipping software requires more than functional correctness. It requires error handling, input validation, security hardening, performance considerations, monitoring, and all the other things that separate a prototype from a product. The gap between vibe coding and production shipping is not a flaw -- it is an engineering challenge with a clear process to solve it.</p>
+
+            <p>This guide gives you that process. Step by step, from the moment an AI agent generates code to the moment it is running reliably in production.</p>
+
+            <h2>The Vibe Coding Productivity Trap</h2>
+
+            <p>First, let us understand the trap. Vibe coding accelerates the most visible part of software development -- writing the initial implementation. A feature that would take a developer two days to build from scratch can be generated in twenty minutes. The problem is that writing the initial implementation is typically only 30-40% of shipping a feature. The rest is testing, review, edge case handling, integration, and deployment.</p>
+
+            <p>When you vibe code, you compress that 30-40% into almost nothing. But the remaining 60-70% still exists. It does not go away just because the code was generated quickly. In fact, it often gets harder because AI-generated code can have subtle issues that hand-written code would not:</p>
+
+            <ul>
+                <li><strong>Plausible but incorrect logic:</strong> The code looks right, passes obvious test cases, but fails on boundary conditions the AI did not consider.</li>
+                <li><strong>Missing error handling:</strong> AI agents often generate the "happy path" beautifully but skip error states, timeouts, and retry logic.</li>
+                <li><strong>Outdated patterns:</strong> The model's training data may include deprecated APIs, insecure patterns, or inefficient approaches.</li>
+                <li><strong>Implicit assumptions:</strong> The generated code may assume certain environment variables exist, certain services are available, or certain data shapes are guaranteed -- without documenting or validating those assumptions.</li>
+            </ul>
+
+            <blockquote>
+                <p>"Vibe coding is not the end of the process. It is the beginning. The real engineering starts when you take that AI-generated code and make it production-worthy."</p>
+            </blockquote>
+
+            <h2>Step 1: The Generation Phase -- Constrained Prompting</h2>
+
+            <p>The production workflow starts before the AI writes a single line of code. How you prompt the agent dramatically affects the quality of what you get back. Unconstrained prompts produce unconstrained code.</p>
+
+            <div class="highlight">
+                <h3>Constrained Prompting Checklist</h3>
+                <ul>
+                    <li><strong>Specify error handling requirements:</strong> "Handle network failures with exponential backoff. Return typed error objects, not thrown exceptions."</li>
+                    <li><strong>Define input boundaries:</strong> "The user ID is a UUID string. Validate format before querying. The name field is max 255 characters, UTF-8."</li>
+                    <li><strong>Reference existing patterns:</strong> "Follow the same pattern used in <span class="kbd">src/services/userService.ts</span> for database access and error handling."</li>
+                    <li><strong>State performance expectations:</strong> "This endpoint will handle 500 requests per second. Use connection pooling. Cache results for 60 seconds."</li>
+                    <li><strong>Require tests:</strong> "Write unit tests covering the happy path, invalid input, network failure, and timeout scenarios."</li>
+                </ul>
+            </div>
+
+            <p>The more constraints you provide, the closer the generated code is to production-ready. Think of constraints not as limiting the AI but as giving it the engineering requirements that every production feature needs.</p>
+
+            <h2>Step 2: The Review Loop -- Human Inspection of AI Code</h2>
+
+            <p>Once the AI generates code, you enter the review loop. This is where most developers skip steps and pay for it later. A disciplined review loop catches issues that are cheap to fix now and expensive to fix after deployment.</p>
+
+            <p>The review loop has three passes:</p>
+
+            <ol>
+                <li><strong>Structural review (2-3 minutes):</strong> Does the code follow your project's architecture? Are files in the right directories? Are naming conventions consistent? Is the module boundary clean? This is a quick scan, not a deep read.</li>
+                <li><strong>Logic review (5-10 minutes):</strong> Read the actual implementation. Trace the data flow from input to output. Check edge cases: what happens with null input? Empty arrays? Duplicate entries? Concurrent access? This is where you catch the "plausible but incorrect" patterns.</li>
+                <li><strong>Security and performance review (3-5 minutes):</strong> Check for SQL injection, XSS vectors, unvalidated user input, missing authentication checks, unbounded queries, N+1 database calls, and missing rate limiting. AI agents are notorious for generating code that trusts user input.</li>
+            </ol>
+
+            <blockquote>
+                <p>"Review AI code the way you would review code from a talented but inexperienced junior developer. Trust the capability, verify the judgment."</p>
+            </blockquote>
+
+            <div class="highlight">
+                <h3>Red Flags in AI-Generated Code</h3>
+                <ul>
+                    <li>Direct string interpolation in SQL queries or shell commands</li>
+                    <li>Missing <span class="kbd">try/catch</span> blocks around external service calls</li>
+                    <li>Hardcoded configuration values that should be environment variables</li>
+                    <li>Missing input validation on public-facing endpoints</li>
+                    <li>Unbounded array operations (no pagination, no limits)</li>
+                    <li>Missing logging for error paths</li>
+                    <li>Synchronous operations that should be async</li>
+                    <li>Missing cleanup in error paths (unclosed connections, unreleased locks)</li>
+                </ul>
+            </div>
+
+            <h2>Step 3: The Hardening Phase -- Making It Production-Ready</h2>
+
+            <p>After the review loop identifies issues, you enter the hardening phase. This is where you take the AI-generated code and add the production armor it needs. You can use the same AI agent for this -- just give it specific hardening instructions based on your review findings.</p>
+
+            <p>Hardening covers five areas:</p>
+
+            <ul>
+                <li><strong>Error handling:</strong> Add try/catch blocks, retry logic, circuit breakers, and graceful degradation. Every external call should have a timeout and a fallback.</li>
+                <li><strong>Input validation:</strong> Validate all inputs at the boundary of your system. Use schema validation libraries (like Zod for TypeScript or Pydantic for Python) rather than manual checks.</li>
+                <li><strong>Observability:</strong> Add structured logging at key decision points. Add metrics for latency, error rates, and throughput. Add traces for cross-service calls.</li>
+                <li><strong>Security:</strong> Sanitize outputs, use parameterized queries, validate authentication tokens, check authorization for every resource access.</li>
+                <li><strong>Performance:</strong> Add caching where appropriate, use pagination for list endpoints, optimize database queries, add connection pooling.</li>
+            </ul>
+
+            <p>Here is the key insight: you can use the AI agent to do most of this hardening work. After your review, prompt the agent with specific instructions like: "Add error handling to the payment processing function. Wrap the Stripe API call in a try/catch with exponential backoff (3 retries, starting at 100ms). Log the error with the transaction ID. Return a typed error object to the caller."</p>
+
+            <h2>Step 4: The Testing Gate -- Automated Verification</h2>
+
+            <p>No code ships without tests. For AI-generated code, testing is even more important because you did not write the implementation yourself. Tests are your proof that the code does what it claims.</p>
+
+            <div class="highlight">
+                <h3>Testing Pyramid for AI-Generated Code</h3>
+                <ul>
+                    <li><strong>Unit tests (must have):</strong> Test individual functions with various inputs including edge cases. Aim for 80%+ coverage on new code.</li>
+                    <li><strong>Integration tests (must have):</strong> Test the feature end-to-end with real (or realistic) dependencies. Verify database queries, API calls, and message queue interactions.</li>
+                    <li><strong>Property-based tests (recommended):</strong> Generate random inputs to find edge cases you and the AI did not think of. Libraries like fast-check (TypeScript) or Hypothesis (Python) are invaluable here.</li>
+                    <li><strong>Snapshot tests (optional):</strong> For UI components, snapshot tests catch unintended visual changes when AI-generated components are modified later.</li>
+                </ul>
+            </div>
+
+            <p>A powerful technique is to have the AI write the tests, then manually review the test cases to ensure they cover the scenarios you care about. Often the AI generates comprehensive happy-path tests but misses adversarial inputs. Add those yourself or prompt the agent specifically: "Now write tests for these failure scenarios: invalid UUID format, database connection timeout, duplicate key violation, and concurrent update conflict."</p>
+
+            <h2>Step 5: CI/CD Gates -- Automated Quality Enforcement</h2>
+
+            <p>Your CI/CD pipeline is the final automated checkpoint before code reaches production. For AI-generated code, configure these gates:</p>
+
+            <ol>
+                <li><strong>Linting and formatting:</strong> Run ESLint, Prettier, or your language's equivalent. AI-generated code sometimes has inconsistent formatting or uses patterns your linter flags. Fix these before merge.</li>
+                <li><strong>Type checking:</strong> Run the TypeScript compiler or mypy in strict mode. AI agents sometimes generate code with loose types that pass at runtime but fail strict type checking.</li>
+                <li><strong>Test suite:</strong> All existing tests must pass, plus the new tests you wrote. No exceptions. A passing test suite means the new code does not break existing functionality.</li>
+                <li><strong>Security scanning:</strong> Run tools like Snyk, npm audit, or Trivy to catch known vulnerabilities in dependencies the AI may have added.</li>
+                <li><strong>Coverage threshold:</strong> Set a minimum coverage threshold (e.g., 80% for new files) and fail the build if it is not met.</li>
+                <li><strong>Performance benchmarks:</strong> For performance-sensitive code, run benchmarks and fail if latency exceeds thresholds.</li>
+            </ol>
+
+            <blockquote>
+                <p>"CI/CD gates are not bureaucracy. They are the safety net that lets you vibe code aggressively while still shipping reliable software. The faster your inner loop, the stronger your gates need to be."</p>
+            </blockquote>
+
+            <h2>Step 6: The Deployment Strategy -- Ship with a Safety Net</h2>
+
+            <p>Even after review, hardening, testing, and CI/CD gates, deploy AI-generated features cautiously. The recommended deployment strategy has three stages:</p>
+
+            <div class="highlight">
+                <h3>Progressive Deployment for AI-Generated Features</h3>
+                <ol>
+                    <li><strong>Canary deployment (1-5% of traffic):</strong> Route a small percentage of production traffic to the new code. Monitor error rates, latency, and business metrics for 30-60 minutes.</li>
+                    <li><strong>Staged rollout (25% -> 50% -> 100%):</strong> If the canary is clean, increase traffic in stages. At each stage, monitor for 15-30 minutes before proceeding.</li>
+                    <li><strong>Full deployment with rollback plan:</strong> Once at 100%, keep the previous version tagged and ready for instant rollback. Monitor closely for 24 hours.</li>
+                </ol>
+            </div>
+
+            <p>Set up alerts for the specific metrics that matter for the feature you shipped. If it is a new API endpoint, alert on 5xx error rates above 1%. If it is a data processing pipeline, alert on processing time exceeding 2x the baseline. Make your alerts specific to the change so you can distinguish issues with the new code from pre-existing problems.</p>
+
+            <h2>Step 7: The Post-Ship Review -- Learn and Improve</h2>
+
+            <p>After the feature is stable in production, do a brief retrospective. This is not a heavy process -- spend 10-15 minutes answering these questions:</p>
+
+            <ul>
+                <li>What issues did the review loop catch that the AI missed?</li>
+                <li>Were there production issues that no review stage caught?</li>
+                <li>How can you improve your prompting to get better initial code?</li>
+                <li>Should you add new CI/CD gates based on issues found?</li>
+                <li>What patterns should go into your CLAUDE.md or project memory so the AI gets it right next time?</li>
+            </ul>
+
+            <p>Over time, these retrospectives compound. You develop a library of constraints, review checklists, and CI gates that make each subsequent vibe coding session closer to production-ready from the start. The best agentic engineers are the ones who systematically close the gap between what the AI generates and what production demands.</p>
+
+            <h2>Putting the Workflow Together</h2>
+
+            <p>Here is the complete workflow in summary:</p>
+
+            <ol>
+                <li><strong>Constrained generation:</strong> Prompt with engineering requirements, not just feature descriptions.</li>
+                <li><strong>Three-pass review:</strong> Structural, logic, and security/performance.</li>
+                <li><strong>Hardening:</strong> Error handling, validation, observability, security, performance.</li>
+                <li><strong>Testing:</strong> Unit, integration, and property-based tests.</li>
+                <li><strong>CI/CD gates:</strong> Lint, type check, test, security scan, coverage threshold.</li>
+                <li><strong>Progressive deployment:</strong> Canary, staged rollout, monitored full deployment.</li>
+                <li><strong>Post-ship retrospective:</strong> Learn, document, improve for next time.</li>
+            </ol>
+
+            <p>This workflow takes a vibe-coded feature from "it works on my machine" to "it runs reliably in production." The total additional time is typically 30-60 minutes for a medium-complexity feature -- a small price for the confidence that your code will not wake you up at 3 AM.</p>
+
+            <h2>The Workflow in Practice: Real Example</h2>
+
+            <p>Let us walk through a concrete example. You want to add a webhook handler for processing order fulfillment events from a third-party logistics provider.</p>
+
+            <p><strong>Generation (5 minutes):</strong> You prompt Claude Code with detailed requirements: endpoint path, expected payload schema, idempotency requirement, database updates needed, notification triggers, error handling expectations. Claude generates the handler, database migration, and service layer in one session.</p>
+
+            <p><strong>Review (10 minutes):</strong> You scan the structure (looks good, files in the right places), trace the logic (catches a missing check for duplicate webhook deliveries), and check security (the payload signature verification is present but missing a timing-safe comparison -- flag it).</p>
+
+            <p><strong>Hardening (15 minutes):</strong> You prompt Claude to fix the timing-safe comparison, add structured logging with correlation IDs, add a dead letter queue for failed processing, and add retry logic for the database write. Claude makes the changes.</p>
+
+            <p><strong>Testing (10 minutes):</strong> You have Claude write tests for: valid payload, invalid signature, duplicate delivery, database failure, malformed payload, and missing required fields. You add one more test case for a race condition scenario.</p>
+
+            <p><strong>CI/CD (automated, 5 minutes):</strong> Push the branch. CI runs linting, type checking, all tests. Everything passes. Coverage is at 87% for the new files.</p>
+
+            <p><strong>Deployment (30 minutes monitoring):</strong> Canary deploy to 5% of traffic. No errors after 30 minutes. Roll to 100%.</p>
+
+            <p>Total time from prompt to production: about 75 minutes. The equivalent feature built entirely by hand would take a full day or more. Vibe coding gave you the speed. The production workflow gave you the reliability.</p>
+
+            <h2>Using Beam to Manage the Workflow</h2>
+
+            <p>A tool like Beam makes this workflow significantly smoother. With split panes, you can have the AI agent generating code in one pane while you review its output in another. The project system lets you group all the terminals for a single feature -- the agent session, the test runner, the CI logs, and the deployment monitor -- into one project that you can switch to and from without losing context.</p>
+
+            <p>For the testing and CI stages, having multiple terminal tabs means you can run tests locally while monitoring the CI pipeline, all within the same workspace. When it is time to deploy, open another pane for your deployment tool and watch the rollout in real time alongside your monitoring dashboard.</p>
+
+            <p>The key advantage is not any single feature -- it is the ability to maintain visibility across the entire workflow from generation to deployment without constantly switching windows and losing your place.</p>
+
+            <div class="cta-box">
+                <h3>Ready to Level Up Your Agentic Workflow?</h3>
+                <p>Beam gives you the workspace to run every AI agent from one cockpit — split panes, tabs, projects, and more.</p>
+                <a href="/" class="btn">Download Beam Free</a>
+            </div>
+
+            <div class="related-articles">
+                <h2>Related Articles</h2>
+                <div class="related-grid">
+                    <a href="/blog/ai-technical-debt-vibe-coding.html" class="related-card">
+                        <h4>AI Technical Debt and the Vibe Coding Problem</h4>
+                        <p>Understanding the hidden costs of unchecked AI-generated code.</p>
+                    </a>
+                    <a href="/blog/code-review-with-claude-code.html" class="related-card">
+                        <h4>Code Review with Claude Code</h4>
+                        <p>How to use AI agents to review AI-generated code effectively.</p>
+                    </a>
+                    <a href="/blog/claude-code-devops-cicd.html" class="related-card">
+                        <h4>Claude Code for DevOps and CI/CD</h4>
+                        <p>Integrate AI agents into your deployment pipeline.</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </article>
+
+    <footer>
+        <div class="container">
+            <p>Beam — The Agentic Engineering Platform</p>
+            <p style="margin-top: 8px;">
+                <a href="/">Home</a> · <a href="/blog/">Blog</a> · Built by NextUp Technologies
+            </p>
+        </div>
+    </footer>
+</body>
+</html>

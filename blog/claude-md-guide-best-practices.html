@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D0XH8B0RKL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-D0XH8B0RKL');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The CLAUDE.md Guide: How Top Developers Configure Claude Code for Maximum Productivity | Beam</title>
+    <meta name="description" content="Master the CLAUDE.md configuration file with real examples, the WHY/WHAT/HOW framework, progressive disclosure patterns, and multi-project management strategies used by top developers in 2026.">
+    <meta name="keywords" content="CLAUDE.md best practices, Claude Code configuration guide, CLAUDE.md examples, Claude Code setup 2026, Claude Code memory file">
+    <meta name="author" content="NextUp Technologies">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://getbeam.dev/blog/claude-md-guide-best-practices.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://getbeam.dev/blog/claude-md-guide-best-practices.html">
+    <meta property="og:title" content="The CLAUDE.md Guide: How Top Developers Configure Claude Code for Maximum Productivity">
+    <meta property="og:description" content="Real CLAUDE.md examples, the WHY/WHAT/HOW framework, and advanced configuration patterns from top developers.">
+    <meta property="og:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="The CLAUDE.md Guide: How Top Developers Configure Claude Code for Maximum Productivity">
+    <meta name="twitter:description" content="Real CLAUDE.md examples, the WHY/WHAT/HOW framework, and advanced configuration patterns from top developers.">
+    <meta name="twitter:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "The CLAUDE.md Guide: How Top Developers Configure Claude Code for Maximum Productivity",
+        "description": "Master the CLAUDE.md configuration file with real examples, the WHY/WHAT/HOW framework, progressive disclosure patterns, and multi-project management strategies.",
+        "author": {
+            "@type": "Organization",
+            "name": "NextUp Technologies"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Beam"
+        },
+        "datePublished": "2026-03-01",
+        "keywords": "CLAUDE.md best practices, Claude Code configuration guide, CLAUDE.md examples, Claude Code setup 2026"
+    }
+    </script>
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #111113;
+            --bg-tertiary: #1a1a1d;
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.4);
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --border: #27272a;
+            --success: #22c55e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        a, button, .btn, .related-card, .post-card, .editorial-card { cursor: pointer; }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        header {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 60px;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1.5rem;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 7px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .pixel-logo-wrap {
+            display: flex;
+            align-items: center;
+            filter: drop-shadow(0 0 6px rgba(59, 130, 246, 0.45));
+            width: 79px;
+            height: 19px;
+            flex-shrink: 0;
+            position: relative;
+            overflow: visible;
+        }
+
+        .pixel-logo {
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: block;
+            width: 3px;
+            height: 3px;
+            border-radius: 0.5px;
+            background: #a0c4ff;
+            box-shadow:
+                4px 0 0 0 #a2c5ff, 8px 0 0 0 #a4c6ff,
+                20px 0 0 0 #acc9ff, 24px 0 0 0 #aecaff, 28px 0 0 0 #b0cbff, 32px 0 0 0 #b2ccff,
+                44px 0 0 0 #bacfff, 48px 0 0 0 #bcd0ff,
+                60px 0 0 0 #c4d4ff,
+                76px 0 0 0 #d0daff,
+                0 4px 0 0 #96bdf8, 12px 4px 0 0 #9ec1f8,
+                20px 4px 0 0 #a4c4f8,
+                40px 4px 0 0 #b4ccf8, 52px 4px 0 0 #bcd0f8,
+                60px 4px 0 0 #c0d2f8, 64px 4px 0 0 #c2d3f8,
+                72px 4px 0 0 #c8d6f8, 76px 4px 0 0 #cad7f8,
+                0 8px 0 0 #8cb6f0, 4px 8px 0 0 #8eb7f0, 8px 8px 0 0 #90b8f0,
+                20px 8px 0 0 #9abef0, 24px 8px 0 0 #9cbff0, 28px 8px 0 0 #9ec0f0,
+                40px 8px 0 0 #aac6f0, 44px 8px 0 0 #acc7f0, 48px 8px 0 0 #aec8f0, 52px 8px 0 0 #b0c9f0,
+                60px 8px 0 0 #b6ccf0, 68px 8px 0 0 #bccff0,
+                76px 8px 0 0 #c4d3f0,
+                0 12px 0 0 #82afe8, 12px 12px 0 0 #8cb5e8,
+                20px 12px 0 0 #92b8e8,
+                40px 12px 0 0 #a2c0e8, 52px 12px 0 0 #aac4e8,
+                60px 12px 0 0 #aec6e8,
+                76px 12px 0 0 #bccde8,
+                0 16px 0 0 #78a8e0, 4px 16px 0 0 #7aa9e0, 8px 16px 0 0 #7caae0,
+                20px 16px 0 0 #88b0e0, 24px 16px 0 0 #8ab1e0, 28px 16px 0 0 #8cb2e0, 32px 16px 0 0 #8eb3e0,
+                40px 16px 0 0 #96b8e0, 52px 16px 0 0 #a0bce0,
+                60px 16px 0 0 #a4bee0,
+                76px 16px 0 0 #b4c6e0;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            background: var(--accent);
+            color: white;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+        }
+
+        article {
+            padding-bottom: 80px;
+        }
+
+        .breadcrumb {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+        }
+
+        .breadcrumb a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .meta {
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            font-size: 0.95rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 48px 0 20px;
+            color: var(--text-primary);
+        }
+
+        h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 32px 0 16px;
+            color: var(--text-primary);
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        ul, ol {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            padding-left: 24px;
+        }
+
+        li {
+            margin-bottom: 12px;
+        }
+
+        .highlight {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 32px 0;
+        }
+
+        .highlight h3 {
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            margin-top: 0;
+            color: var(--text-primary);
+        }
+
+        .kbd {
+            display: inline-block;
+            padding: 2px 8px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .cta-box h3 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+            margin-top: 0;
+        }
+
+        .cta-box p {
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 24px;
+        }
+
+        .cta-box .btn {
+            background: white;
+            color: var(--accent);
+        }
+
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+
+        .related-articles { margin-top: 60px; padding-top: 40px; border-top: 1px solid var(--border); }
+        .related-articles h2 { font-size: 1.5rem; margin-bottom: 24px; }
+        .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .related-card { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-decoration: none; transition: border-color 0.2s; }
+        .related-card:hover { border-color: var(--accent); }
+        .related-card h4 { color: white; font-size: 1rem; margin: 0 0 8px 0; }
+        .related-card p { color: var(--text-muted); font-size: 0.85rem; margin: 0; }
+        @media (max-width: 600px) { .related-grid { grid-template-columns: 1fr; } h1 { font-size: 1.8rem; } }
+
+        blockquote {
+            border-left: 3px solid var(--accent);
+            padding-left: 20px;
+            margin: 24px 0;
+            font-style: italic;
+        }
+
+        blockquote p {
+            color: var(--text-secondary);
+        }
+
+        code {
+            font-family: 'JetBrains Mono', monospace;
+            background: var(--bg-tertiary);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.88rem;
+            border: 1px solid var(--border);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="/" class="logo">
+                <div class="logo-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                </div>
+                <span class="pixel-logo-wrap"><span class="pixel-logo"></span></span>
+            </a>
+            <a href="/" class="btn">Download Beam</a>
+        </div>
+    </header>
+
+    <main>
+        <article class="container">
+            <div class="breadcrumb">
+                <a href="/">Beam</a> / <a href="/blog/">Blog</a> / CLAUDE.md Guide
+            </div>
+
+            <h1>The CLAUDE.md Guide: How Top Developers Configure Claude Code for Maximum Productivity</h1>
+            <p class="meta">March 1, 2026 &bull; 15 min read</p>
+
+            <p>The difference between a Claude Code session that fights you and one that reads your mind often comes down to a single file: <code>CLAUDE.md</code>. This is the memory file that Claude Code reads at the start of every session, and it is the single highest-leverage configuration you can make as a developer. A well-crafted CLAUDE.md transforms Claude Code from a generic AI assistant into a context-aware partner that understands your project, your conventions, and your preferences.</p>
+
+            <p>Yet most developers either don't use CLAUDE.md at all, or they use it as a dumping ground for random notes that don't meaningfully improve their workflow. This guide covers the framework, patterns, and real examples that top developers use to get maximum productivity out of their CLAUDE.md configuration.</p>
+
+            <h2>Understanding the CLAUDE.md Hierarchy</h2>
+
+            <p>Before diving into what to put in your CLAUDE.md, you need to understand where it lives. Claude Code reads memory files from multiple locations, in order of specificity:</p>
+
+            <ul>
+                <li><strong><code>~/.claude/CLAUDE.md</code></strong> -- Your personal global configuration. Applies to every Claude Code session on your machine. Put your universal preferences here: coding style, communication preferences, tools you always use.</li>
+                <li><strong><code>PROJECT_ROOT/CLAUDE.md</code></strong> -- Project-level configuration. Applies to every session in this project. Put architecture decisions, tech stack details, coding conventions, and project-specific instructions here. This file is typically committed to version control so the whole team benefits.</li>
+                <li><strong><code>~/.claude/projects/PROJECT_PATH/CLAUDE.md</code></strong> -- Your personal project-specific overrides. Applies only to you, only in this project. Put your personal notes, local paths, and individual preferences here without affecting teammates.</li>
+            </ul>
+
+            <p>The hierarchy is additive: Claude Code sees all three files merged together. This means you can put universal preferences at the global level and project-specific context at the project level, without repetition.</p>
+
+            <div class="highlight">
+                <h3>The Hierarchy in Practice</h3>
+                <p><strong>Global (~/.claude/CLAUDE.md):</strong> "Always use TypeScript strict mode. Prefer functional patterns. Write concise commit messages. Use conventional commits format."</p>
+                <p><strong>Project (./CLAUDE.md):</strong> "This is a Next.js 15 app using App Router, Prisma ORM, and Tailwind CSS. The API layer is in /app/api/. Authentication uses NextAuth v5."</p>
+                <p style="margin-bottom: 0;"><strong>Personal project (~/.claude/projects/.../CLAUDE.md):</strong> "My local Postgres runs on port 5433. I use pnpm, not npm. My preferred test runner is vitest."</p>
+            </div>
+
+            <h2>The WHY / WHAT / HOW Framework</h2>
+
+            <p>The most effective CLAUDE.md files follow a three-layer structure that mirrors how a senior developer would onboard a new team member. We call it the WHY / WHAT / HOW framework:</p>
+
+            <p><strong>WHY: Project Context and Purpose</strong></p>
+            <p>Start with why the project exists and what it does. This gives Claude Code the big-picture context needed to make good architectural decisions. Without the WHY, Claude Code can implement features correctly at the code level but incorrectly at the product level.</p>
+
+            <ul>
+                <li>What is this project? (one paragraph)</li>
+                <li>Who are the users?</li>
+                <li>What are the key business constraints?</li>
+                <li>What stage is the project in? (prototype / growth / mature)</li>
+            </ul>
+
+            <p><strong>WHAT: Architecture and Standards</strong></p>
+            <p>Next, describe the technical architecture and the standards the team follows. This is where most of the CLAUDE.md value lives. Be specific and concrete:</p>
+
+            <ul>
+                <li>Tech stack with versions</li>
+                <li>Directory structure and what goes where</li>
+                <li>Naming conventions (files, variables, functions, components)</li>
+                <li>Error handling patterns</li>
+                <li>Testing strategy (unit vs integration vs E2E, coverage requirements)</li>
+                <li>Security requirements (input validation, authentication patterns)</li>
+                <li>Performance constraints</li>
+            </ul>
+
+            <p><strong>HOW: Commands and Workflows</strong></p>
+            <p>Finally, list the practical commands and workflows that Claude Code needs to know. This is the operational knowledge that saves time on every interaction:</p>
+
+            <ul>
+                <li>How to run the project locally</li>
+                <li>How to run tests (unit, integration, E2E)</li>
+                <li>How to build and deploy</li>
+                <li>How to run linting and formatting</li>
+                <li>Common development tasks and their commands</li>
+                <li>Git workflow (branch naming, commit format, PR process)</li>
+            </ul>
+
+            <h2>Real-World CLAUDE.md Examples</h2>
+
+            <p>Theory is useful, but examples are better. Here are annotated excerpts from real CLAUDE.md files used in production projects.</p>
+
+            <h3>Example 1: Full-Stack SaaS Application</h3>
+
+            <div class="highlight">
+                <h3>CLAUDE.md -- Payments Platform</h3>
+                <p><strong># Project Overview</strong></p>
+                <p>Multi-tenant SaaS payment processing platform. Handles $2M+ daily transaction volume. Zero tolerance for data loss or security vulnerabilities. All changes to payment processing code require explicit user approval before execution.</p>
+                <p><strong># Architecture</strong></p>
+                <p>- Next.js 15 (App Router) + TypeScript strict mode<br>
+                - PostgreSQL via Prisma ORM (parameterized queries ONLY)<br>
+                - Redis for session management and rate limiting<br>
+                - Stripe SDK for payment processing (never raw API calls)<br>
+                - API routes in /app/api/ follow REST conventions</p>
+                <p><strong># Critical Rules</strong></p>
+                <p>- NEVER use string concatenation for SQL queries<br>
+                - NEVER log personally identifiable information (PII)<br>
+                - ALL user input must be validated with Zod schemas<br>
+                - Payment amounts must use integer cents, never floats<br>
+                - Every API route must include rate limiting middleware</p>
+                <p><strong># Commands</strong></p>
+                <p style="margin-bottom: 0;">- Dev: <code>pnpm dev</code><br>
+                - Test: <code>pnpm test</code> (unit), <code>pnpm test:e2e</code> (Playwright)<br>
+                - Lint: <code>pnpm lint && pnpm typecheck</code><br>
+                - Migrate: <code>pnpm prisma migrate dev</code></p>
+            </div>
+
+            <p>Notice the "Critical Rules" section. This is where the WHY/WHAT/HOW framework pays off most -- you are encoding security and correctness requirements directly into the agent's context. Every Claude Code session in this project will know that SQL must use parameterized queries, that PII must never be logged, and that payment amounts use integer cents. These rules prevent entire categories of bugs.</p>
+
+            <h3>Example 2: Open-Source CLI Tool</h3>
+
+            <div class="highlight">
+                <h3>CLAUDE.md -- CLI Tool</h3>
+                <p><strong># Project</strong></p>
+                <p>Open-source CLI tool for managing Kubernetes deployments. Target audience: DevOps engineers. Priority: reliability over features. The tool manages production infrastructure, so any bug is a potential outage.</p>
+                <p><strong># Tech Stack</strong></p>
+                <p>- Go 1.22 with standard library preferred over external deps<br>
+                - Cobra for CLI framework<br>
+                - Minimal dependencies (every new dep needs justification)<br>
+                - Table-driven tests for all public functions</p>
+                <p><strong># Conventions</strong></p>
+                <p>- Error messages must include context: fmt.Errorf("failed to deploy %s: %w", name, err)<br>
+                - All public functions need godoc comments<br>
+                - No panics in library code (return errors instead)<br>
+                - CLI output: human-readable by default, --json flag for machine-readable</p>
+                <p><strong># Testing</strong></p>
+                <p style="margin-bottom: 0;">- Run tests: <code>go test ./...</code><br>
+                - Run with race detector: <code>go test -race ./...</code><br>
+                - Coverage must stay above 80%<br>
+                - Integration tests require KUBE_CONTEXT env var</p>
+            </div>
+
+            <h2>Progressive Disclosure: Keeping CLAUDE.md Effective as It Grows</h2>
+
+            <p>One common failure mode is the CLAUDE.md that grows to 2,000 lines and becomes a wall of text that dilutes the important information. The solution is <strong>progressive disclosure</strong> -- structuring your CLAUDE.md so the most critical information is at the top, with deeper details organized in sections that Claude Code can reference as needed.</p>
+
+            <p>Here is the pattern:</p>
+
+            <ol>
+                <li><strong>Top section (always read):</strong> 10-20 lines of the most critical context. Project purpose, tech stack, critical rules. This is the information Claude Code needs for <em>every</em> task.</li>
+                <li><strong>Middle sections (task-specific):</strong> Organized by area -- API conventions, frontend patterns, database rules, testing strategy. Claude Code reads the relevant section when working on that area.</li>
+                <li><strong>Bottom section (reference):</strong> Commands, environment setup, deployment process, team contacts. Consulted as needed, not read cover-to-cover.</li>
+            </ol>
+
+            <p>The key insight: Claude Code is good at scanning for relevant sections. Structure your CLAUDE.md with clear headers and it will find what it needs. But the critical rules at the top should be concise enough that they are always in active context.</p>
+
+            <blockquote>
+                <p>"Treat your CLAUDE.md like you would treat onboarding docs for a brilliant contractor who has never seen your codebase. They need the big picture fast, the rules explicitly stated, and the operational details accessible but not overwhelming."</p>
+            </blockquote>
+
+            <h2>Multi-Project Management with CLAUDE.md</h2>
+
+            <p>If you work across multiple projects -- and most professional developers do -- the global CLAUDE.md becomes your secret weapon. Here is how to structure it:</p>
+
+            <div class="highlight">
+                <h3>Global CLAUDE.md for Multi-Project Developers</h3>
+                <p><strong># Universal Preferences</strong></p>
+                <p>- Write TypeScript with strict mode<br>
+                - Prefer composition over inheritance<br>
+                - Use conventional commit messages (feat:, fix:, refactor:, etc.)<br>
+                - Never commit secrets, API keys, or credentials to git<br>
+                - Always run tests before suggesting a commit</p>
+                <p><strong># Communication Style</strong></p>
+                <p>- Be concise. Skip preambles.<br>
+                - When making changes, explain the WHY briefly, not the WHAT<br>
+                - If unsure about a design decision, ask rather than guess<br>
+                - Show diffs when modifying existing code</p>
+                <p><strong># Tool Preferences</strong></p>
+                <p style="margin-bottom: 0;">- Package manager: pnpm (not npm or yarn)<br>
+                - Formatting: Prettier with default config<br>
+                - Linting: ESLint with strict TypeScript rules<br>
+                - Testing: Vitest for unit tests, Playwright for E2E</p>
+            </div>
+
+            <p>With this global configuration, every Claude Code session -- regardless of which project you are in -- starts with your universal preferences loaded. The project-level CLAUDE.md then adds project-specific context on top.</p>
+
+            <p>In <a href="/" style="color: var(--accent);">Beam</a>, this multi-project pattern works particularly well because each project gets its own workspace. When you switch workspaces, Claude Code automatically picks up the right project-level CLAUDE.md. Your global preferences travel with you, and the project context switches automatically.</p>
+
+            <h2>Advanced Patterns: Dynamic CLAUDE.md</h2>
+
+            <p>Once you are comfortable with static CLAUDE.md files, there are advanced patterns worth exploring:</p>
+
+            <p><strong>Pattern 1: Phase-Based Instructions</strong></p>
+            <p>Add a "Current Phase" section at the top of your CLAUDE.md that you update as the project evolves:</p>
+            <ul>
+                <li>"We are currently in the v2 migration phase. Prioritize backward compatibility. Do not break the v1 API."</li>
+                <li>"We are in performance optimization phase. Profile before changing, benchmark after. No premature optimization."</li>
+                <li>"We are in feature freeze. Only bug fixes. No new features, no refactoring."</li>
+            </ul>
+
+            <p><strong>Pattern 2: Team Role Context</strong></p>
+            <p>Use the personal project-level CLAUDE.md to define your role on the team:</p>
+            <ul>
+                <li>"I am the frontend lead. I review all component changes. Focus on accessibility and performance in UI work."</li>
+                <li>"I am responsible for the data pipeline. Prioritize data integrity and idempotency in all operations."</li>
+            </ul>
+
+            <p><strong>Pattern 3: Anti-Patterns Section</strong></p>
+            <p>Explicitly list things Claude Code should NOT do. This is surprisingly effective because it prevents recurring mistakes:</p>
+            <ul>
+                <li>"Do NOT use any from TypeScript -- always use explicit types"</li>
+                <li>"Do NOT add new npm dependencies without asking first"</li>
+                <li>"Do NOT modify the database schema without migration files"</li>
+                <li>"Do NOT use console.log for debugging -- use the project logger"</li>
+            </ul>
+
+            <p><strong>Pattern 4: Architecture Decision Records (ADRs)</strong></p>
+            <p>Include a brief ADR section that explains <em>why</em> certain decisions were made. This prevents Claude Code from "improving" things that were intentionally designed a certain way:</p>
+            <ul>
+                <li>"We use REST instead of GraphQL because our clients are all internal and the simplicity tradeoff is worth it."</li>
+                <li>"We chose SQLite over PostgreSQL for the local development database to simplify contributor onboarding."</li>
+                <li>"The auth module uses a custom implementation (not NextAuth) because we need SAML support that NextAuth doesn't provide."</li>
+            </ul>
+
+            <h2>Measuring CLAUDE.md Effectiveness</h2>
+
+            <p>How do you know if your CLAUDE.md is actually working? Here are the signals to watch for:</p>
+
+            <p><strong>Positive signals (your CLAUDE.md is effective):</strong></p>
+            <ul>
+                <li>Claude Code uses the right tools and commands without being told</li>
+                <li>Generated code follows your project's conventions without corrections</li>
+                <li>Security patterns are applied automatically (parameterized queries, input validation)</li>
+                <li>Claude Code asks good questions rather than making wrong assumptions</li>
+                <li>New team members can start contributing faster because the CLAUDE.md serves as onboarding</li>
+            </ul>
+
+            <p><strong>Negative signals (your CLAUDE.md needs work):</strong></p>
+            <ul>
+                <li>You keep correcting the same mistakes across sessions</li>
+                <li>Claude Code uses npm when you use pnpm, or uses the wrong test runner</li>
+                <li>Generated code does not match your project's patterns</li>
+                <li>Claude Code makes assumptions about architecture that are wrong for your project</li>
+                <li>You spend time explaining context that should be in the CLAUDE.md</li>
+            </ul>
+
+            <p>Every time you correct Claude Code for something that should have been in the CLAUDE.md, add it. Your CLAUDE.md should be a living document that evolves with your project. The <code>/memory</code> command in Claude Code makes this even easier -- it lets you add information to your CLAUDE.md mid-session without interrupting your workflow.</p>
+
+            <blockquote>
+                <p>"Your CLAUDE.md is the most underrated productivity tool in your development stack. Spending 30 minutes writing a good one saves hours across every future session. It's the highest-ROI investment you can make in your AI coding workflow."</p>
+            </blockquote>
+
+            <h2>Getting Started: Your First CLAUDE.md in 10 Minutes</h2>
+
+            <p>If you don't have a CLAUDE.md yet, here is the fastest path to a useful one:</p>
+
+            <ol>
+                <li><strong>Create the file</strong> in your project root: <code>touch CLAUDE.md</code></li>
+                <li><strong>Write three sections:</strong> Project overview (2-3 sentences), tech stack (bulleted list), and key commands (dev, test, build, lint)</li>
+                <li><strong>Add your top 3 rules</strong> -- the things you most often have to correct Claude Code about</li>
+                <li><strong>Commit it</strong> to version control so your team benefits</li>
+                <li><strong>Iterate</strong> -- every time you correct Claude Code, add the correction to CLAUDE.md</li>
+            </ol>
+
+            <p>Start small, iterate often. A 20-line CLAUDE.md that covers the essentials is vastly more valuable than no CLAUDE.md at all. You can refine it over time as you discover what context Claude Code needs most.</p>
+
+            <div class="cta-box">
+                <h3>Ready to Level Up Your Agentic Workflow?</h3>
+                <p>Beam gives you the workspace to run every AI agent from one cockpit -- split panes, tabs, projects, and more.</p>
+                <a href="/" class="btn">Download Beam Free</a>
+            </div>
+
+            <div class="related-articles">
+                <h2>Related Articles</h2>
+                <div class="related-grid">
+                    <a href="claude-md-masterclass-memory-files.html" class="related-card">
+                        <h4>CLAUDE.md Masterclass: Memory Files</h4>
+                        <p>Advanced techniques for using Claude Code's memory system across projects.</p>
+                    </a>
+                    <a href="vibe-coding-breaking-production-security.html" class="related-card">
+                        <h4>Vibe Coding Is Breaking Production</h4>
+                        <p>How to encode security requirements in your CLAUDE.md to prevent vulnerabilities.</p>
+                    </a>
+                    <a href="claude-code-hooks-automation-guide.html" class="related-card">
+                        <h4>Claude Code Hooks Automation Guide</h4>
+                        <p>Automate quality checks and workflows with Claude Code's hook system.</p>
+                    </a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>Beam -- The Agentic Engineering Platform</p>
+            <p style="margin-top: 8px;">
+                <a href="/">Home</a> · <a href="/blog/">Blog</a> · Built by NextUp Technologies
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>

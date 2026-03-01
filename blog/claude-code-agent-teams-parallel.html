@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D0XH8B0RKL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-D0XH8B0RKL');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claude Code Agent Teams: How to Run Parallel Agents on Your Codebase | Beam</title>
+    <meta name="description" content="Learn how to set up Claude Code agent teams for parallel development. Run multiple Claude Code agents simultaneously with coordination, task splitting, and merge strategies.">
+    <meta name="keywords" content="Claude Code agent teams, parallel Claude Code agents, multiple Claude agents, Claude Code parallel development, agent orchestration Claude">
+    <meta name="author" content="NextUp Technologies">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://getbeam.dev/blog/claude-code-agent-teams-parallel.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://getbeam.dev/blog/claude-code-agent-teams-parallel.html">
+    <meta property="og:title" content="Claude Code Agent Teams: How to Run Parallel Agents on Your Codebase">
+    <meta property="og:description" content="Learn how to set up Claude Code agent teams for parallel development. Run multiple Claude Code agents simultaneously with coordination, task splitting, and merge strategies.">
+    <meta property="og:image" content="https://getbeam.dev/beam-screenshot-1.9.6.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Claude Code Agent Teams: How to Run Parallel Agents on Your Codebase">
+    <meta name="twitter:description" content="Learn how to set up Claude Code agent teams for parallel development. Run multiple Claude Code agents simultaneously with coordination, task splitting, and merge strategies.">
+    <meta name="twitter:image" content="https://getbeam.dev/beam-screenshot-1.9.6.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Claude Code Agent Teams: How to Run Parallel Agents on Your Codebase",
+        "description": "Learn how to set up Claude Code agent teams for parallel development. Run multiple Claude Code agents simultaneously with coordination, task splitting, and merge strategies.",
+        "author": {
+            "@type": "Organization",
+            "name": "NextUp Technologies"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Beam"
+        },
+        "datePublished": "2026-03-01",
+        "keywords": "Claude Code agent teams, parallel Claude Code agents, multiple Claude agents, Claude Code parallel development, agent orchestration Claude"
+    }
+    </script>
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #111113;
+            --bg-tertiary: #1a1a1d;
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.4);
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --border: #27272a;
+            --success: #22c55e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        a, button, .btn, .related-card, .post-card, .editorial-card { cursor: pointer; }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+
+        .container { max-width: 800px; margin: 0 auto; padding: 0 24px; }
+
+        header { padding: 24px 0; border-bottom: 1px solid var(--border); margin-bottom: 60px; }
+        header .container { display: flex; justify-content: space-between; align-items: center; }
+
+        .logo { display: flex; align-items: center; gap: 12px; font-weight: 700; font-size: 1.5rem; text-decoration: none; color: var(--text-primary); }
+        .logo-icon { width: 32px; height: 32px; background: linear-gradient(135deg, var(--accent), #8b5cf6); border-radius: 7px; display: flex; align-items: center; justify-content: center; }
+        .pixel-logo-wrap { display: flex; align-items: center; filter: drop-shadow(0 0 6px rgba(59, 130, 246, 0.45)); width: 79px; height: 19px; flex-shrink: 0; position: relative; overflow: visible; }
+        .pixel-logo { position: absolute; top: 0; left: 0; display: block; width: 3px; height: 3px; border-radius: 0.5px; background: #a0c4ff; box-shadow: 4px 0 0 0 #a2c5ff, 8px 0 0 0 #a4c6ff, 20px 0 0 0 #acc9ff, 24px 0 0 0 #aecaff, 28px 0 0 0 #b0cbff, 32px 0 0 0 #b2ccff, 44px 0 0 0 #bacfff, 48px 0 0 0 #bcd0ff, 60px 0 0 0 #c4d4ff, 76px 0 0 0 #d0daff, 0 4px 0 0 #96bdf8, 12px 4px 0 0 #9ec1f8, 20px 4px 0 0 #a4c4f8, 40px 4px 0 0 #b4ccf8, 52px 4px 0 0 #bcd0f8, 60px 4px 0 0 #c0d2f8, 64px 4px 0 0 #c2d3f8, 72px 4px 0 0 #c8d6f8, 76px 4px 0 0 #cad7f8, 0 8px 0 0 #8cb6f0, 4px 8px 0 0 #8eb7f0, 8px 8px 0 0 #90b8f0, 20px 8px 0 0 #9abef0, 24px 8px 0 0 #9cbff0, 28px 8px 0 0 #9ec0f0, 40px 8px 0 0 #aac6f0, 44px 8px 0 0 #acc7f0, 48px 8px 0 0 #aec8f0, 52px 8px 0 0 #b0c9f0, 60px 8px 0 0 #b6ccf0, 68px 8px 0 0 #bccff0, 76px 8px 0 0 #c4d3f0, 0 12px 0 0 #82afe8, 12px 12px 0 0 #8cb5e8, 20px 12px 0 0 #92b8e8, 40px 12px 0 0 #a2c0e8, 52px 12px 0 0 #aac4e8, 60px 12px 0 0 #aec6e8, 76px 12px 0 0 #bccde8, 0 16px 0 0 #78a8e0, 4px 16px 0 0 #7aa9e0, 8px 16px 0 0 #7caae0, 20px 16px 0 0 #88b0e0, 24px 16px 0 0 #8ab1e0, 28px 16px 0 0 #8cb2e0, 32px 16px 0 0 #8eb3e0, 40px 16px 0 0 #96b8e0, 52px 16px 0 0 #a0bce0, 60px 16px 0 0 #a4bee0, 76px 16px 0 0 #b4c6e0; }
+
+        .btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; border-radius: 8px; font-weight: 600; font-size: 0.95rem; text-decoration: none; background: var(--accent); color: white; transition: all 0.2s; }
+        .btn:hover { background: #2563eb; transform: translateY(-2px); }
+
+        article { padding-bottom: 80px; }
+        .breadcrumb { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 24px; }
+        .breadcrumb a { color: var(--accent); text-decoration: none; }
+
+        h1 { font-size: 2.5rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 16px; line-height: 1.2; }
+        .meta { color: var(--text-muted); margin-bottom: 40px; font-size: 0.95rem; }
+
+        h2 { font-size: 1.5rem; font-weight: 600; margin: 48px 0 20px; color: var(--text-primary); }
+        p { color: var(--text-secondary); margin-bottom: 20px; font-size: 1.05rem; }
+        ul, ol { color: var(--text-secondary); margin-bottom: 20px; padding-left: 24px; }
+        li { margin-bottom: 12px; }
+
+        .highlight { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 24px; margin: 32px 0; }
+        .highlight h3 { font-size: 1.1rem; margin-bottom: 12px; color: var(--text-primary); }
+
+        .kbd { display: inline-block; padding: 2px 8px; background: var(--bg-tertiary); border: 1px solid var(--border); border-radius: 4px; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; }
+
+        .cta-box { background: linear-gradient(135deg, var(--accent), #8b5cf6); border-radius: 16px; padding: 40px; text-align: center; margin: 60px 0; }
+        .cta-box h3 { font-size: 1.5rem; margin-bottom: 12px; }
+        .cta-box p { color: rgba(255,255,255,0.8); margin-bottom: 24px; }
+        .cta-box .btn { background: white; color: var(--accent); }
+
+        footer { padding: 40px 0; border-top: 1px solid var(--border); text-align: center; color: var(--text-muted); font-size: 0.9rem; }
+        footer a { color: var(--text-secondary); text-decoration: none; }
+
+        .related-articles { margin-top: 60px; padding-top: 40px; border-top: 1px solid var(--border); }
+        .related-articles h2 { font-size: 1.5rem; margin-bottom: 24px; }
+        .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .related-card { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-decoration: none; transition: border-color 0.2s; }
+        .related-card:hover { border-color: var(--accent); }
+        .related-card h4 { color: white; font-size: 1rem; margin: 0 0 8px 0; }
+        .related-card p { color: var(--text-muted); font-size: 0.85rem; margin: 0; }
+        @media (max-width: 600px) { .related-grid { grid-template-columns: 1fr; } }
+
+        blockquote { border-left: 3px solid var(--accent); padding-left: 20px; margin: 24px 0; font-style: italic; }
+        blockquote p { color: var(--text-secondary); }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="/" class="logo">
+                <div class="logo-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                </div>
+                <span class="pixel-logo-wrap"><span class="pixel-logo"></span></span>
+            </a>
+            <a href="/" class="btn">Download Beam</a>
+        </div>
+    </header>
+
+    <article>
+        <div class="container">
+            <div class="breadcrumb">
+                <a href="/">Home</a> / <a href="/blog/">Blog</a> / Claude Code Agent Teams
+            </div>
+
+            <h1>Claude Code Agent Teams: How to Run Parallel Agents on Your Codebase</h1>
+            <div class="meta">March 1, 2026 &middot; 13 min read</div>
+
+            <p>A single Claude Code session is a capable developer. Multiple Claude Code sessions running in parallel on the same codebase are a development team. The concept of "agent teams" -- coordinated groups of AI agents working simultaneously on different parts of a project -- has moved from theoretical to practical in 2026. This guide shows you how to set up, coordinate, and get maximum value from parallel Claude Code agents.</p>
+
+            <p>The idea is straightforward: instead of feeding tasks to a single agent sequentially, you split work across multiple agents that execute concurrently. One agent builds the backend API, another creates the frontend components, a third writes tests, and a fourth handles documentation. What would take a single agent (or a single developer) hours to complete sequentially finishes in the time it takes the slowest agent to complete its task.</p>
+
+            <h2>What Are Claude Code Agent Teams?</h2>
+
+            <p>An agent team is a set of Claude Code sessions, each running in its own terminal and its own isolated working directory, coordinated to work on related parts of the same project. Each agent has its own branch, its own context, and its own task. The coordination happens through branch strategy, shared memory files, and a human orchestrator who monitors progress and manages the merge.</p>
+
+            <div class="highlight">
+                <h3>Agent Team Components</h3>
+                <ul>
+                    <li><strong>Individual agents:</strong> Each Claude Code session running in its own terminal, pointed at its own git worktree or branch.</li>
+                    <li><strong>Shared context:</strong> A <span class="kbd">CLAUDE.md</span> file or project memory that all agents can read, containing architecture decisions, coding standards, and interface contracts.</li>
+                    <li><strong>Task assignments:</strong> Each agent gets a specific, well-scoped task with clear boundaries (which files to create/modify, which interfaces to implement).</li>
+                    <li><strong>Orchestrator:</strong> You, the developer, monitoring all agents, answering questions, and managing the merge workflow.</li>
+                    <li><strong>Integration plan:</strong> A predefined strategy for how the agents' work will be merged together, including interface contracts and dependency ordering.</li>
+                </ul>
+            </div>
+
+            <p>The key distinction from just "running multiple terminals" is coordination. Agent teams work on pieces of a larger whole, and the pieces need to fit together. This requires planning before you launch the agents and active monitoring while they run.</p>
+
+            <h2>When Agent Teams Make Sense</h2>
+
+            <p>Agent teams are not always the right approach. They add coordination overhead that only pays off when the work is genuinely parallelizable. Here are the scenarios where agent teams deliver the most value:</p>
+
+            <ul>
+                <li><strong>Full-stack feature development:</strong> Backend API, frontend UI, and tests can be developed simultaneously because they have clear interface boundaries (the API contract).</li>
+                <li><strong>Large refactoring across modules:</strong> When you need to update 10 modules to use a new pattern, each agent can handle 2-3 modules independently.</li>
+                <li><strong>Sprint acceleration:</strong> Multiple independent sprint items can each be assigned to an agent, completing a week of work in an afternoon.</li>
+                <li><strong>Documentation + implementation:</strong> One agent builds the feature while another writes documentation, API docs, and user guides based on the shared specification.</li>
+                <li><strong>Migration projects:</strong> Migrating from one framework or library to another across multiple packages, where each agent handles a package.</li>
+            </ul>
+
+            <blockquote>
+                <p>"Agent teams work best when the tasks are loosely coupled but share a common goal. If the tasks require constant back-and-forth between agents, you are better off with a single agent working sequentially."</p>
+            </blockquote>
+
+            <h2>Setting Up Your Agent Team: Step by Step</h2>
+
+            <p>Here is the complete setup process for a three-agent team working on a full-stack feature: a new dashboard page with backend API, frontend components, and comprehensive tests.</p>
+
+            <h2>Step 1: Define the Interface Contract</h2>
+
+            <p>Before launching any agent, define the interfaces that connect the agents' work. For our dashboard example, this means specifying the API endpoints, request/response shapes, and component props.</p>
+
+            <div class="highlight">
+                <h3>Interface Contract Example</h3>
+                <p>Create a shared specification document that all agents will reference:</p>
+                <ul>
+                    <li><strong>API endpoint:</strong> <span class="kbd">GET /api/v1/dashboard/metrics</span> returns <span class="kbd">{ totalUsers: number, activeToday: number, revenue: number, chartData: DataPoint[] }</span></li>
+                    <li><strong>Component interface:</strong> <span class="kbd">&lt;DashboardPage /&gt;</span> fetches from the API and renders <span class="kbd">&lt;MetricsGrid /&gt;</span> and <span class="kbd">&lt;RevenueChart /&gt;</span></li>
+                    <li><strong>Test scope:</strong> Unit tests for the API handler, component tests for the UI, and an integration test that connects them</li>
+                </ul>
+                <p>Put this specification in your <span class="kbd">CLAUDE.md</span> file so every agent has access to it.</p>
+            </div>
+
+            <h2>Step 2: Create Isolated Working Directories</h2>
+
+            <p>Each agent needs its own working directory to avoid file conflicts. Git worktrees are the recommended approach:</p>
+
+            <ul>
+                <li><span class="kbd">git worktree add ../dashboard-api -b feature/dashboard-api</span></li>
+                <li><span class="kbd">git worktree add ../dashboard-ui -b feature/dashboard-ui</span></li>
+                <li><span class="kbd">git worktree add ../dashboard-tests -b feature/dashboard-tests</span></li>
+            </ul>
+
+            <p>Copy any necessary environment files into each worktree and run <span class="kbd">npm install</span> (or your package manager equivalent) in each one. The agents need a working development environment, not just the source code.</p>
+
+            <h2>Step 3: Launch Agents with Specific Tasks</h2>
+
+            <p>Open three terminal sessions (this is where a tool like Beam with split panes becomes essential) and launch Claude Code in each worktree with a specific, detailed prompt:</p>
+
+            <div class="highlight">
+                <h3>Agent Task Prompts</h3>
+                <ul>
+                    <li><strong>Agent 1 (API):</strong> "Implement the dashboard metrics API endpoint at GET /api/v1/dashboard/metrics. Follow the specification in CLAUDE.md for the response shape. Use the existing database service pattern from src/services/. Include input validation, error handling with proper HTTP status codes, and caching with a 60-second TTL."</li>
+                    <li><strong>Agent 2 (UI):</strong> "Create the DashboardPage component at src/pages/Dashboard/. It should fetch data from GET /api/v1/dashboard/metrics (use the response shape from CLAUDE.md). Create MetricsGrid and RevenueChart sub-components. Follow the existing component patterns in src/pages/. Use the design system components from src/components/ui/."</li>
+                    <li><strong>Agent 3 (Tests):</strong> "Write comprehensive tests for the dashboard feature. Create unit tests for the dashboard API handler (mock the database), component tests for DashboardPage, MetricsGrid, and RevenueChart (mock the API), and one integration test that verifies the full flow. Reference the API contract in CLAUDE.md for expected data shapes."</li>
+                </ul>
+            </div>
+
+            <p>Notice how each prompt references the shared specification and points to existing patterns in the codebase. This gives each agent enough context to produce compatible output without needing to communicate with the other agents directly.</p>
+
+            <h2>Monitoring Your Agent Team</h2>
+
+            <p>Once all three agents are running, your role shifts from developer to orchestrator. You are monitoring progress, answering questions, and ensuring the agents stay on track.</p>
+
+            <p>Effective monitoring means watching all agents simultaneously. In a split-pane terminal setup, you can see all three agents' output at once. Look for:</p>
+
+            <ul>
+                <li><strong>Questions or clarifications:</strong> Claude Code will sometimes ask for clarification. Answer promptly so the agent does not stall.</li>
+                <li><strong>Scope creep:</strong> If an agent starts modifying files outside its assigned area, redirect it. "Focus only on the API handler. Do not modify the frontend routing."</li>
+                <li><strong>Error patterns:</strong> If an agent is struggling with a particular approach, intervene early with guidance rather than letting it spin.</li>
+                <li><strong>Completion order:</strong> Note which agents finish first. You may want to start the merge process before all agents are done.</li>
+            </ul>
+
+            <blockquote>
+                <p>"The orchestrator's job is not to write code. It is to maintain alignment across agents, clear blockers fast, and make sure the pieces will fit together when it is time to merge."</p>
+            </blockquote>
+
+            <h2>Best Practices for Agent Coordination</h2>
+
+            <p>After running dozens of agent team sessions, these practices consistently produce the best results:</p>
+
+            <div class="highlight">
+                <h3>Coordination Best Practices</h3>
+                <ol>
+                    <li><strong>Define interfaces before implementation:</strong> Spend 10-15 minutes writing the interface contract. This single investment prevents hours of merge conflicts and incompatible code.</li>
+                    <li><strong>Use additive file patterns:</strong> Design tasks so agents create new files rather than modifying the same existing files. New files never conflict.</li>
+                    <li><strong>Share types and constants:</strong> If multiple agents need the same TypeScript types or constants, define them in the shared CLAUDE.md so each agent creates compatible definitions.</li>
+                    <li><strong>Stagger agent starts if needed:</strong> Sometimes Agent 2 depends on Agent 1's output (e.g., the UI agent needs the API types). In this case, start Agent 1 first, let it define the types, commit them, and then start Agent 2 on that branch.</li>
+                    <li><strong>Keep tasks focused:</strong> A task that takes a single agent 15-30 minutes is ideal. Longer tasks increase the chance of divergence and conflicts.</li>
+                    <li><strong>Use consistent prompting style:</strong> All agents should receive the same level of detail and the same references to project conventions. Inconsistent prompting produces inconsistent code.</li>
+                </ol>
+            </div>
+
+            <h2>The Merge Strategy: Bringing It All Together</h2>
+
+            <p>Merging agent team output is where coordination pays off (or where lack of coordination becomes painful). Here is the recommended merge workflow:</p>
+
+            <ol>
+                <li><strong>Merge the foundation first:</strong> Start with the agent whose work others depend on. In our example, merge the API branch first because the tests and UI reference its types and endpoints.</li>
+                <li><strong>Rebase dependent branches:</strong> After merging the API branch, rebase the UI and test branches onto the updated main. This incorporates the actual types and endpoint definitions.</li>
+                <li><strong>Fix integration seams:</strong> After rebasing, there may be minor incompatibilities -- a field name mismatch, a missing import, a slightly different function signature. These are typically quick fixes.</li>
+                <li><strong>Run the full test suite:</strong> After all branches are merged, run the complete test suite. The integration test (written by Agent 3) validates that the API and UI work together correctly.</li>
+                <li><strong>Use a final Claude Code session for cleanup:</strong> Open a single Claude Code session on the merged result and ask it to "Review the recently merged dashboard feature for consistency, fix any import issues, and ensure all components use the correct data shapes."</li>
+            </ol>
+
+            <div class="highlight">
+                <h3>Merge Order for Our Dashboard Example</h3>
+                <ol>
+                    <li>Merge <span class="kbd">feature/dashboard-api</span> into main (foundation layer)</li>
+                    <li>Rebase <span class="kbd">feature/dashboard-ui</span> onto updated main, resolve any conflicts, merge</li>
+                    <li>Rebase <span class="kbd">feature/dashboard-tests</span> onto updated main, resolve any conflicts, merge</li>
+                    <li>Run full test suite on merged main</li>
+                    <li>Single cleanup session to fix any integration issues</li>
+                </ol>
+            </div>
+
+            <h2>Scaling Agent Teams: From 3 to 5+ Agents</h2>
+
+            <p>Three agents is a comfortable starting point. As you gain experience, you can scale to five or more agents for larger projects. The coordination principles remain the same, but the orchestration complexity increases.</p>
+
+            <p>For larger teams, consider these additional structures:</p>
+
+            <ul>
+                <li><strong>Agent groups:</strong> Instead of one flat team, organize agents into sub-teams. A "backend group" of two agents and a "frontend group" of two agents, each with their own interface contract.</li>
+                <li><strong>Pipeline agents:</strong> Some agents work in sequence rather than in parallel. An "architecture agent" defines the structure, then "implementation agents" build it, then a "review agent" checks the result.</li>
+                <li><strong>Specialist agents:</strong> Assign specific roles: one agent for database migrations, one for API handlers, one for UI components, one for tests, one for documentation. Each specialist accumulates context in its domain.</li>
+            </ul>
+
+            <p>The practical limit depends on your ability to orchestrate. Most developers find that 3-5 simultaneous agents is manageable with a good terminal setup. Beyond 5, you need either exceptional working memory or automation to track what each agent is doing.</p>
+
+            <h2>Common Pitfalls and How to Avoid Them</h2>
+
+            <div class="highlight">
+                <h3>Agent Team Anti-Patterns</h3>
+                <ul>
+                    <li><strong>Launching without interface contracts:</strong> Agents produce incompatible code when they do not share a common specification. Always define interfaces first.</li>
+                    <li><strong>Overlapping file responsibilities:</strong> Two agents modifying the same file guarantees merge conflicts. Split tasks by file ownership, not by feature slice.</li>
+                    <li><strong>Ignoring agent output:</strong> Launching agents and walking away leads to wasted tokens and divergent implementations. Stay engaged as the orchestrator.</li>
+                    <li><strong>Using a single working directory:</strong> Running multiple Claude Code sessions in the same directory causes file corruption and nonsensical diffs. Always use worktrees or separate clones.</li>
+                    <li><strong>Overly coupled tasks:</strong> If Agent 2 cannot start until Agent 1 finishes, they are not parallel. Restructure the tasks to be independent.</li>
+                    <li><strong>Skipping the final integration review:</strong> Merging all branches and calling it done without a review pass misses integration issues that only surface when the pieces connect.</li>
+                </ul>
+            </div>
+
+            <h2>Real-World Performance: Agent Teams vs. Sequential Development</h2>
+
+            <p>Here are real timing comparisons from a mid-size TypeScript project:</p>
+
+            <ul>
+                <li><strong>Feature: User settings page with API, UI, and tests</strong>
+                    <ul>
+                        <li>Sequential (single agent): 45 minutes total</li>
+                        <li>Agent team (3 agents): 20 minutes total (limited by the slowest agent)</li>
+                        <li>Speed improvement: 2.25x</li>
+                    </ul>
+                </li>
+                <li><strong>Feature: Migrate 8 API endpoints from Express to Hono</strong>
+                    <ul>
+                        <li>Sequential: 90 minutes total</li>
+                        <li>Agent team (4 agents, 2 endpoints each): 28 minutes total</li>
+                        <li>Speed improvement: 3.2x</li>
+                    </ul>
+                </li>
+                <li><strong>Feature: Add comprehensive test coverage to 12 existing modules</strong>
+                    <ul>
+                        <li>Sequential: 120 minutes total</li>
+                        <li>Agent team (4 agents, 3 modules each): 35 minutes total</li>
+                        <li>Speed improvement: 3.4x</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <p>The speed improvement is not linear with the number of agents because of coordination overhead (setup, monitoring, merging). But the 2-3.5x improvement is consistent across different types of work and is a genuine multiplier on developer throughput.</p>
+
+            <h2>Using Beam for Agent Team Orchestration</h2>
+
+            <p>Managing multiple Claude Code agents requires a terminal environment built for parallel workflows. Beam's workspace features map directly to agent team needs:</p>
+
+            <ul>
+                <li><strong>Split panes:</strong> See all agents working simultaneously. Three vertical panes for a three-agent team gives you real-time visibility into every session.</li>
+                <li><strong>Projects:</strong> Group all the terminals for a single agent team into one project. Switch between the agent team and your other work without losing any context.</li>
+                <li><strong>Tabs:</strong> Within a project, use tabs for different views -- one tab with the agent panes, another with your merge terminal, another with your test runner.</li>
+                <li><strong>Terminal customization:</strong> Color-code each agent's terminal for instant visual identification. Blue for the API agent, green for the UI agent, amber for the test agent.</li>
+            </ul>
+
+            <p>The difference between orchestrating agents in a basic terminal and orchestrating them in Beam is the difference between directing traffic at an intersection and watching it from a control tower. Both get the job done, but one gives you the visibility to make better decisions faster.</p>
+
+            <div class="cta-box">
+                <h3>Ready to Level Up Your Agentic Workflow?</h3>
+                <p>Beam gives you the workspace to run every AI agent from one cockpit — split panes, tabs, projects, and more.</p>
+                <a href="/" class="btn">Download Beam Free</a>
+            </div>
+
+            <div class="related-articles">
+                <h2>Related Articles</h2>
+                <div class="related-grid">
+                    <a href="/blog/claude-code-agent-teams-guide.html" class="related-card">
+                        <h4>Claude Code Agent Teams Guide</h4>
+                        <p>The foundational guide to Claude Code's multi-agent capabilities.</p>
+                    </a>
+                    <a href="/blog/multi-agent-orchestration-practical-guide.html" class="related-card">
+                        <h4>Multi-Agent Orchestration: Practical Guide</h4>
+                        <p>Patterns and strategies for coordinating multiple AI agents.</p>
+                    </a>
+                    <a href="/blog/parallel-claude-code-subagents-code-review.html" class="related-card">
+                        <h4>Parallel Claude Code Subagents for Code Review</h4>
+                        <p>Use agent parallelism to accelerate your code review process.</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </article>
+
+    <footer>
+        <div class="container">
+            <p>Beam — The Agentic Engineering Platform</p>
+            <p style="margin-top: 8px;">
+                <a href="/">Home</a> · <a href="/blog/">Blog</a> · Built by NextUp Technologies
+            </p>
+        </div>
+    </footer>
+</body>
+</html>

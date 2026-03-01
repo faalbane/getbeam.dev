@@ -5,8 +5,208 @@
     <link>https://getbeam.dev/blog/</link>
     <description>Guides, tutorials, and tips for AI-assisted development with Claude Code, Codex, and more. Organized with Beam terminal.</description>
     <language>en-us</language>
-    <lastBuildDate>Sat, 28 Feb 2026 12:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 01 Mar 2026 12:00:00 +0000</lastBuildDate>
     <atom:link href="https://getbeam.dev/blog/feed.xml" rel="self" type="application/rss+xml"/>
+
+    <item>
+      <title>Claude Code vs Cursor vs Windsurf in 2026: Which AI Coding Tool Should You Actually Use?</title>
+      <link>https://getbeam.dev/blog/claude-code-vs-cursor-vs-windsurf-2026.html</link>
+      <description>Architecture differences, real-world comparison, and pricing for the top 3 AI coding tools.</description>
+      <pubDate>Sat, 01 Mar 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/claude-code-vs-cursor-vs-windsurf-2026.html</guid>
+    </item>
+
+    <item>
+      <title>How to Run Multiple AI Coding Agents in Parallel (The 2026 Guide)</title>
+      <link>https://getbeam.dev/blog/run-multiple-ai-agents-parallel-guide.html</link>
+      <description>Git worktrees, tool comparison, and step-by-step setup for parallel coding agents.</description>
+      <pubDate>Sat, 01 Mar 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/run-multiple-ai-agents-parallel-guide.html</guid>
+    </item>
+
+    <item>
+      <title>Vibe Coding Is Breaking Production: How to Ship AI-Generated Code Safely</title>
+      <link>https://getbeam.dev/blog/vibe-coding-breaking-production-security.html</link>
+      <description>The security debt crisis and how to build verification loops for AI-generated code.</description>
+      <pubDate>Sat, 01 Mar 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/vibe-coding-breaking-production-security.html</guid>
+    </item>
+
+    <item>
+      <title>The CLAUDE.md Guide: How Top Developers Configure Claude Code for Maximum Productivity</title>
+      <link>https://getbeam.dev/blog/claude-md-guide-best-practices.html</link>
+      <description>Best practices for structuring CLAUDE.md files across projects.</description>
+      <pubDate>Sat, 01 Mar 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/claude-md-guide-best-practices.html</guid>
+    </item>
+
+    <item>
+      <title>OpenAI Codex App vs Claude Code: Which AI Coding Agent Wins in 2026?</title>
+      <link>https://getbeam.dev/blog/codex-app-vs-claude-code-2026.html</link>
+      <description>Cloud-sandboxed vs local terminal agents compared head-to-head.</description>
+      <pubDate>Sat, 01 Mar 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/codex-app-vs-claude-code-2026.html</guid>
+    </item>
+
+    <item>
+      <title>Agentic Engineering in 2026: The Complete Guide to Supervising AI Coding Agents</title>
+      <link>https://getbeam.dev/blog/agentic-engineering-complete-guide-2026.html</link>
+      <description>From writing code to orchestrating agents — the complete transition guide.</description>
+      <pubDate>Sat, 01 Mar 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/agentic-engineering-complete-guide-2026.html</guid>
+    </item>
+
+    <item>
+      <title>10 MCP Servers Every Developer Should Know About in 2026</title>
+      <link>https://getbeam.dev/blog/best-mcp-servers-2026.html</link>
+      <description>The best Model Context Protocol servers categorized by use case.</description>
+      <pubDate>Sat, 01 Mar 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/best-mcp-servers-2026.html</guid>
+    </item>
+
+    <item>
+      <title>Claude Sonnet 4.6 vs Opus 4.6: Which Model Should You Use for Coding?</title>
+      <link>https://getbeam.dev/blog/claude-sonnet-4-6-vs-opus-4-6-coding.html</link>
+      <description>Benchmarks, pricing, and practical guidance for choosing the right Claude model.</description>
+      <pubDate>Sat, 01 Mar 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/claude-sonnet-4-6-vs-opus-4-6-coding.html</guid>
+    </item>
+
+    <item>
+      <title>Gemini CLI vs Claude Code: Google's Free AI Agent Enters the Ring</title>
+      <link>https://getbeam.dev/blog/gemini-cli-vs-claude-code-2026.html</link>
+      <description>How Google's free AI coding agent compares to Claude Code.</description>
+      <pubDate>Sat, 01 Mar 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/gemini-cli-vs-claude-code-2026.html</guid>
+    </item>
+
+    <item>
+      <title>My Agentic Engineering Setup: Terminal, Agents, and Workspace Management in 2026</title>
+      <link>https://getbeam.dev/blog/agentic-engineering-setup-2026.html</link>
+      <description>A complete walkthrough of the optimal AI-powered development environment.</description>
+      <pubDate>Sat, 01 Mar 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/agentic-engineering-setup-2026.html</guid>
+    </item>
+
+    <item>
+      <title>VS Code Multi-Agent Orchestration: A Hands-On Tutorial</title>
+      <link>https://getbeam.dev/blog/vscode-multi-agent-orchestration-tutorial.html</link>
+      <description>Step-by-step guide to running multiple AI agents in VS Code 1.109.</description>
+      <pubDate>Sat, 01 Mar 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/vscode-multi-agent-orchestration-tutorial.html</guid>
+    </item>
+
+    <item>
+      <title>The Developer's Guide to Model Context Protocol (MCP): From Zero to Production</title>
+      <link>https://getbeam.dev/blog/model-context-protocol-mcp-guide.html</link>
+      <description>Build your first MCP server and connect it to AI coding agents.</description>
+      <pubDate>Sat, 01 Mar 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/model-context-protocol-mcp-guide.html</guid>
+    </item>
+
+    <item>
+      <title>GitHub Copilot Coding Agent vs Claude Code: Background Agents vs Interactive Agents</title>
+      <link>https://getbeam.dev/blog/github-copilot-agent-vs-claude-code.html</link>
+      <description>When to use background automation vs interactive pair programming.</description>
+      <pubDate>Sat, 01 Mar 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/github-copilot-agent-vs-claude-code.html</guid>
+    </item>
+
+    <item>
+      <title>50 Claude Code Tips That Will 10x Your Productivity in 2026</title>
+      <link>https://getbeam.dev/blog/claude-code-tips-productivity-2026.html</link>
+      <description>Essential tips, power user techniques, and advanced features for Claude Code.</description>
+      <pubDate>Sat, 01 Mar 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/claude-code-tips-productivity-2026.html</guid>
+    </item>
+
+    <item>
+      <title>CLI vs IDE Coding Agents: Which Approach Gives You 10x Productivity?</title>
+      <link>https://getbeam.dev/blog/cli-vs-ide-coding-agents-productivity.html</link>
+      <description>Why terminal agents are dominating and how to build a hybrid workflow.</description>
+      <pubDate>Sat, 01 Mar 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/cli-vs-ide-coding-agents-productivity.html</guid>
+    </item>
+
+    <item>
+      <title>How to Secure Your Vibe Coding Workflow: A Security Checklist for AI-Generated Code</title>
+      <link>https://getbeam.dev/blog/vibe-coding-security-checklist.html</link>
+      <description>A practical 12-point security checklist for AI-generated code.</description>
+      <pubDate>Sat, 01 Mar 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/vibe-coding-security-checklist.html</guid>
+    </item>
+
+    <item>
+      <title>Agent Orchestration Frameworks Compared: LangGraph vs CrewAI vs AutoGen vs OpenAI Agents SDK</title>
+      <link>https://getbeam.dev/blog/agent-orchestration-frameworks-compared-2026.html</link>
+      <description>Feature comparison and use case matching for the top orchestration frameworks.</description>
+      <pubDate>Sat, 01 Mar 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/agent-orchestration-frameworks-compared-2026.html</guid>
+    </item>
+
+    <item>
+      <title>The Rise of AI Terminal Multiplexers: Superset, Chloe, and cmux Compared</title>
+      <link>https://getbeam.dev/blog/ai-terminal-multiplexers-compared-2026.html</link>
+      <description>How the new category of AI terminal multiplexers compares.</description>
+      <pubDate>Sat, 01 Mar 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/ai-terminal-multiplexers-compared-2026.html</guid>
+    </item>
+
+    <item>
+      <title>Anthropic's 2026 Agentic Coding Trends Report: Key Takeaways for Developers</title>
+      <link>https://getbeam.dev/blog/anthropic-agentic-coding-trends-2026.html</link>
+      <description>8 key trends from Anthropic's official report and what they mean for you.</description>
+      <pubDate>Sat, 01 Mar 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/anthropic-agentic-coding-trends-2026.html</guid>
+    </item>
+
+    <item>
+      <title>Best AI Coding Assistants in 2026: An Honest Comparison After Testing 10+ Tools</title>
+      <link>https://getbeam.dev/blog/best-ai-coding-assistants-2026-comparison.html</link>
+      <description>Tier rankings after testing Claude Code, Cursor, Copilot, and more.</description>
+      <pubDate>Sat, 01 Mar 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/best-ai-coding-assistants-2026-comparison.html</guid>
+    </item>
+
+    <item>
+      <title>How to Set Up Git Worktrees for Parallel AI Agent Development</title>
+      <link>https://getbeam.dev/blog/git-worktrees-parallel-ai-agents.html</link>
+      <description>Step-by-step guide to isolated parallel agent development with git worktrees.</description>
+      <pubDate>Sat, 01 Mar 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/git-worktrees-parallel-ai-agents.html</guid>
+    </item>
+
+    <item>
+      <title>From Vibe Coding to Production: A Step-by-Step Process for Shipping AI-Built Features</title>
+      <link>https://getbeam.dev/blog/vibe-coding-to-production-workflow.html</link>
+      <description>Bridge the gap between fast AI prototypes and production-ready code.</description>
+      <pubDate>Sat, 01 Mar 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/vibe-coding-to-production-workflow.html</guid>
+    </item>
+
+    <item>
+      <title>Claude Code Agent Teams: How to Run Parallel Agents on Your Codebase</title>
+      <link>https://getbeam.dev/blog/claude-code-agent-teams-parallel.html</link>
+      <description>Set up coordinated Claude instances working on different parts of your codebase.</description>
+      <pubDate>Sat, 01 Mar 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/claude-code-agent-teams-parallel.html</guid>
+    </item>
+
+    <item>
+      <title>The Developer's Pricing Guide: Claude Code vs Copilot vs Cursor vs Codex in 2026</title>
+      <link>https://getbeam.dev/blog/ai-coding-tools-pricing-guide-2026.html</link>
+      <description>Pricing models, hidden costs, and ROI calculations for every major AI coding tool.</description>
+      <pubDate>Sat, 01 Mar 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/ai-coding-tools-pricing-guide-2026.html</guid>
+    </item>
+
+    <item>
+      <title>What is Agentic Engineering? The 2026 Developer's Complete Guide</title>
+      <link>https://getbeam.dev/blog/what-is-agentic-engineering-2026.html</link>
+      <description>The definitive guide to building software by orchestrating AI coding agents.</description>
+      <pubDate>Sat, 01 Mar 2026 00:00:00 +0000</pubDate>
+      <guid isPermaLink="true">https://getbeam.dev/blog/what-is-agentic-engineering-2026.html</guid>
+    </item>
 
     <item>
       <title>Claude Code Worktrees: Run Parallel AI Agents Without Git Conflicts</title>

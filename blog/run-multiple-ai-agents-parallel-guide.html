@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D0XH8B0RKL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-D0XH8B0RKL');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Run Multiple AI Coding Agents in Parallel (The 2026 Guide) | Beam</title>
+    <meta name="description" content="The definitive guide to running multiple AI coding agents in parallel in 2026. Git worktrees, tool comparison, step-by-step setup with Claude Code, Codex, and Beam.">
+    <meta name="keywords" content="run multiple AI agents parallel, parallel coding agents 2026, git worktrees AI agents, Claude Code parallel sessions, multi-agent coding workflow">
+    <meta name="author" content="NextUp Technologies">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://getbeam.dev/blog/run-multiple-ai-agents-parallel-guide.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://getbeam.dev/blog/run-multiple-ai-agents-parallel-guide.html">
+    <meta property="og:title" content="How to Run Multiple AI Coding Agents in Parallel (The 2026 Guide)">
+    <meta property="og:description" content="The definitive guide to running multiple AI coding agents in parallel. Git worktrees, tool comparison, and step-by-step setup for maximum throughput.">
+    <meta property="og:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="How to Run Multiple AI Coding Agents in Parallel (The 2026 Guide)">
+    <meta name="twitter:description" content="The definitive guide to running multiple AI coding agents in parallel. Git worktrees, tool comparison, and step-by-step setup for maximum throughput.">
+    <meta name="twitter:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "How to Run Multiple AI Coding Agents in Parallel (The 2026 Guide)",
+        "description": "The definitive guide to running multiple AI coding agents in parallel in 2026. Git worktrees, tool comparison, step-by-step setup.",
+        "author": {
+            "@type": "Organization",
+            "name": "NextUp Technologies"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Beam"
+        },
+        "datePublished": "2026-03-01",
+        "keywords": "run multiple AI agents parallel, parallel coding agents 2026, git worktrees AI agents, multi-agent coding workflow"
+    }
+    </script>
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #111113;
+            --bg-tertiary: #1a1a1d;
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.4);
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --border: #27272a;
+            --success: #22c55e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        a, button, .btn, .related-card, .post-card, .editorial-card { cursor: pointer; }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        header {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 60px;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1.5rem;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 7px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .pixel-logo-wrap {
+            display: flex;
+            align-items: center;
+            filter: drop-shadow(0 0 6px rgba(59, 130, 246, 0.45));
+            width: 79px;
+            height: 19px;
+            flex-shrink: 0;
+            position: relative;
+            overflow: visible;
+        }
+
+        .pixel-logo {
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: block;
+            width: 3px;
+            height: 3px;
+            border-radius: 0.5px;
+            background: #a0c4ff;
+            box-shadow:
+                4px 0 0 0 #a2c5ff, 8px 0 0 0 #a4c6ff,
+                20px 0 0 0 #acc9ff, 24px 0 0 0 #aecaff, 28px 0 0 0 #b0cbff, 32px 0 0 0 #b2ccff,
+                44px 0 0 0 #bacfff, 48px 0 0 0 #bcd0ff,
+                60px 0 0 0 #c4d4ff,
+                76px 0 0 0 #d0daff,
+                0 4px 0 0 #96bdf8, 12px 4px 0 0 #9ec1f8,
+                20px 4px 0 0 #a4c4f8,
+                40px 4px 0 0 #b4ccf8, 52px 4px 0 0 #bcd0f8,
+                60px 4px 0 0 #c0d2f8, 64px 4px 0 0 #c2d3f8,
+                72px 4px 0 0 #c8d6f8, 76px 4px 0 0 #cad7f8,
+                0 8px 0 0 #8cb6f0, 4px 8px 0 0 #8eb7f0, 8px 8px 0 0 #90b8f0,
+                20px 8px 0 0 #9abef0, 24px 8px 0 0 #9cbff0, 28px 8px 0 0 #9ec0f0,
+                40px 8px 0 0 #aac6f0, 44px 8px 0 0 #acc7f0, 48px 8px 0 0 #aec8f0, 52px 8px 0 0 #b0c9f0,
+                60px 8px 0 0 #b6ccf0, 68px 8px 0 0 #bccff0,
+                76px 8px 0 0 #c4d3f0,
+                0 12px 0 0 #82afe8, 12px 12px 0 0 #8cb5e8,
+                20px 12px 0 0 #92b8e8,
+                40px 12px 0 0 #a2c0e8, 52px 12px 0 0 #aac4e8,
+                60px 12px 0 0 #aec6e8,
+                76px 12px 0 0 #bccde8,
+                0 16px 0 0 #78a8e0, 4px 16px 0 0 #7aa9e0, 8px 16px 0 0 #7caae0,
+                20px 16px 0 0 #88b0e0, 24px 16px 0 0 #8ab1e0, 28px 16px 0 0 #8cb2e0, 32px 16px 0 0 #8eb3e0,
+                40px 16px 0 0 #96b8e0, 52px 16px 0 0 #a0bce0,
+                60px 16px 0 0 #a4bee0,
+                76px 16px 0 0 #b4c6e0;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            background: var(--accent);
+            color: white;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+        }
+
+        article {
+            padding-bottom: 80px;
+        }
+
+        .breadcrumb {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+        }
+
+        .breadcrumb a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .meta {
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            font-size: 0.95rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 48px 0 20px;
+            color: var(--text-primary);
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        ul, ol {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            padding-left: 24px;
+        }
+
+        li {
+            margin-bottom: 12px;
+        }
+
+        .highlight {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 32px 0;
+        }
+
+        .highlight h3 {
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .kbd {
+            display: inline-block;
+            padding: 2px 8px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .cta-box h3 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+        }
+
+        .cta-box p {
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 24px;
+        }
+
+        .cta-box .btn {
+            background: white;
+            color: var(--accent);
+        }
+
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+
+        .related-articles { margin-top: 60px; padding-top: 40px; border-top: 1px solid var(--border); }
+        .related-articles h2 { font-size: 1.5rem; margin-bottom: 24px; }
+        .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .related-card { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-decoration: none; transition: border-color 0.2s; }
+        .related-card:hover { border-color: var(--accent); }
+        .related-card h4 { color: white; font-size: 1rem; margin: 0 0 8px 0; }
+        .related-card p { color: var(--text-muted); font-size: 0.85rem; margin: 0; }
+        @media (max-width: 600px) { .related-grid { grid-template-columns: 1fr; } h1 { font-size: 1.8rem; } }
+
+        blockquote {
+            border-left: 3px solid var(--accent);
+            padding-left: 20px;
+            margin: 24px 0;
+            font-style: italic;
+        }
+
+        blockquote p {
+            color: var(--text-secondary);
+        }
+
+        code {
+            font-family: 'JetBrains Mono', monospace;
+            background: var(--bg-tertiary);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.88rem;
+            border: 1px solid var(--border);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="/" class="logo">
+                <div class="logo-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                </div>
+                <span class="pixel-logo-wrap"><span class="pixel-logo"></span></span>
+            </a>
+            <a href="/" class="btn">Download Beam</a>
+        </div>
+    </header>
+
+    <main>
+        <article class="container">
+            <div class="breadcrumb">
+                <a href="/">Beam</a> / <a href="/blog/">Blog</a> / Run Multiple AI Agents in Parallel
+            </div>
+
+            <h1>How to Run Multiple AI Coding Agents in Parallel (The 2026 Guide)</h1>
+            <p class="meta">March 1, 2026 &bull; 14 min read</p>
+
+            <p>The single biggest productivity unlock in AI-assisted development is not a better model, a faster API, or a cleverer prompt. It is running multiple AI agents simultaneously on different parts of the same project. While one agent refactors your authentication module, another writes tests for your API endpoints, and a third scaffolds a new frontend component -- all at the same time, all making progress in parallel.</p>
+
+            <p>This is not theoretical. Developers who have adopted parallel agent workflows consistently report 3-5x throughput increases compared to sequential single-agent usage. But the setup is not trivial, and getting it wrong means merge conflicts, race conditions on files, and agents overwriting each other's work.</p>
+
+            <p>This guide covers everything you need to know to do it right.</p>
+
+            <h2>Why Parallel Agents Change Everything</h2>
+
+            <p>When you use a single AI agent, the bottleneck is not the agent's speed -- it is the serialization of tasks. You give the agent a task, it works on it, you review, you give it the next task. Even with the fastest models, you are limited by the sequential nature of the interaction.</p>
+
+            <p>Parallel agents break this bottleneck. Instead of doing tasks one after another, you decompose your work into independent streams and run them concurrently. The math is straightforward: if you can run three independent agent sessions simultaneously, and each one is as productive as a sequential session, you have tripled your throughput.</p>
+
+            <p>But the real gain is bigger than 3x, because parallel execution also eliminates the dead time between tasks -- the minutes you spend context-switching, re-reading code, and formulating the next prompt. When agents work in parallel, there is always something ready for review.</p>
+
+            <blockquote>
+                <p>"Running three Claude Code sessions in parallel on different feature branches is like having three senior developers working for you simultaneously. The hard part isn't the agents -- it's the project management."</p>
+            </blockquote>
+
+            <h2>The Foundation: Git Worktrees</h2>
+
+            <p>The single most important technical enabler for parallel AI agents is <strong>git worktrees</strong>. If you are not using them, start here. Everything else builds on this.</p>
+
+            <p>A git worktree lets you check out multiple branches of the same repository into separate directories simultaneously. Each worktree is a full working copy with its own working directory, but they all share the same <code>.git</code> database. This means:</p>
+
+            <ul>
+                <li>Each agent gets its own directory and its own branch</li>
+                <li>Agents cannot overwrite each other's files</li>
+                <li>You can run tests in each worktree independently</li>
+                <li>Merging happens through normal git operations when work is complete</li>
+            </ul>
+
+            <p>Here is the setup in practice:</p>
+
+            <div class="highlight">
+                <h3>Step-by-Step: Git Worktree Setup for Parallel Agents</h3>
+                <p><strong>1. Create worktrees for each agent:</strong></p>
+                <p><code>git worktree add ../project-auth feature/auth-refactor</code></p>
+                <p><code>git worktree add ../project-api feature/api-tests</code></p>
+                <p><code>git worktree add ../project-ui feature/new-dashboard</code></p>
+                <p><strong>2. Start an agent in each worktree directory:</strong></p>
+                <p>Open three terminal sessions (or three panes in Beam), <code>cd</code> into each worktree, and launch your agent.</p>
+                <p><strong>3. When work is complete, merge:</strong></p>
+                <p><code>git checkout main && git merge feature/auth-refactor</code></p>
+                <p style="margin-bottom: 0;"><strong>4. Clean up:</strong> <code>git worktree remove ../project-auth</code></p>
+            </div>
+
+            <p>Claude Code has native worktree support built in. When you run <code>/worktree</code> inside Claude Code, it automatically creates an isolated worktree with a new branch. This is the fastest path to parallel execution.</p>
+
+            <h2>Tool Comparison: Orchestrating Parallel Agents in 2026</h2>
+
+            <p>Several tools have emerged to help manage parallel agent workflows. Here is an honest comparison of the major options:</p>
+
+            <p><strong>Claude Code (Native Worktrees + Subagents)</strong></p>
+            <p>Claude Code's built-in <code>/worktree</code> command and subagent system make it the most straightforward option for parallel work. You can spawn subagents from a main Claude Code session, each working in its own worktree. The main session acts as an orchestrator, delegating tasks and reviewing results. This is the approach Anthropic explicitly designed for, and it works well for up to 3-5 parallel streams.</p>
+
+            <p><strong>Superset (claude-parallel)</strong></p>
+            <p>Superset is a community tool that wraps Claude Code with explicit parallel execution support. It lets you define a set of tasks in a configuration file and spawns separate Claude Code instances for each. The advantage is declarative task definition; the downside is less flexibility for interactive direction of individual agents.</p>
+
+            <p><strong>cmux (Claude Multiplexer)</strong></p>
+            <p>cmux is a terminal multiplexer purpose-built for Claude Code sessions. Think of it as tmux but designed specifically for managing multiple AI agent panes. It handles worktree creation, session naming, and provides a unified view of all running agents. Lightweight and effective for developers who prefer the terminal-centric approach.</p>
+
+            <p><strong>Beam</strong></p>
+            <p><a href="/" style="color: var(--accent);">Beam</a> takes a different approach as a full workspace manager. Rather than being a Claude-Code-specific orchestrator, Beam gives you the environment to run any combination of AI agents in organized split panes, tabs, and workspaces. You can have Claude Code in one pane, Codex in another, your test runner in a third, and a dev server in a fourth -- all within a single named workspace that you can save and restore. Beam is tool-agnostic, which makes it the best option if you are using multiple different agents or mixing terminal-based and IDE-based workflows.</p>
+
+            <div class="highlight">
+                <h3>Which Orchestration Tool Should You Choose?</h3>
+                <p><strong>If you only use Claude Code:</strong> Native worktrees + subagents are sufficient. Add cmux if you want better session management.</p>
+                <p><strong>If you use multiple AI agents:</strong> Beam gives you the flexibility to organize any combination of tools without being locked into a single agent's ecosystem.</p>
+                <p style="margin-bottom: 0;"><strong>If you want declarative task orchestration:</strong> Superset is purpose-built for defining and running parallel Claude Code tasks from a config file.</p>
+            </div>
+
+            <h2>Step-by-Step: Your First Parallel Agent Workflow</h2>
+
+            <p>Let's walk through a complete parallel workflow from decomposition to merge. We will use a practical example: you are adding a new feature to an existing web application that requires API changes, frontend components, and updated tests.</p>
+
+            <p><strong>Step 1: Decompose the work.</strong></p>
+
+            <p>Before touching any tool, spend 10 minutes breaking the feature into independent chunks. The key word is <em>independent</em> -- each chunk should be able to proceed without waiting for the others. For our example:</p>
+
+            <ul>
+                <li><strong>Stream A:</strong> API endpoint and database migration</li>
+                <li><strong>Stream B:</strong> Frontend components and state management</li>
+                <li><strong>Stream C:</strong> Integration tests and E2E tests</li>
+            </ul>
+
+            <p><strong>Step 2: Create the infrastructure.</strong></p>
+
+            <p>Create a worktree and feature branch for each stream. In Beam, set up a workspace with three split panes -- one for each agent session. Name each pane so you can identify it at a glance.</p>
+
+            <p><strong>Step 3: Launch and context each agent.</strong></p>
+
+            <p>Start Claude Code (or your agent of choice) in each worktree. Give each agent a focused prompt that includes: the specific task, relevant file paths, architectural constraints, and how their work connects to the other streams. Be explicit about boundaries -- tell Agent A "do not modify any frontend files" and Agent B "do not modify any API files."</p>
+
+            <p><strong>Step 4: Monitor and direct.</strong></p>
+
+            <p>This is where the orchestration skill matters. Cycle between your agent panes, reviewing output as it comes in. When an agent asks a question, answer it quickly to keep the stream moving. When an agent goes off track, redirect early -- the cost of a wrong direction compounds when you have multiple agents running.</p>
+
+            <p><strong>Step 5: Integration.</strong></p>
+
+            <p>When all streams complete, merge them together. Start with the most foundational stream (usually the API/data layer), then merge the frontend, then the tests. Run the full test suite after each merge to catch integration issues early.</p>
+
+            <h2>The Decomposition Skill: What Makes or Breaks Parallel Work</h2>
+
+            <p>The single most important skill for parallel agent workflows is decomposition -- the ability to break a large task into independent, parallelizable chunks. Poor decomposition leads to agents stepping on each other's toes, merge conflicts, and wasted work. Good decomposition leads to clean, parallel execution with minimal integration overhead.</p>
+
+            <p>Here are the principles that work:</p>
+
+            <ul>
+                <li><strong>Split by layer, not by feature.</strong> "Agent A does the API, Agent B does the frontend" works better than "Agent A does feature X entirely, Agent B does feature Y entirely," because layers have cleaner boundaries.</li>
+                <li><strong>Define interfaces first.</strong> Before spawning parallel agents, agree on the interfaces between their work. If the API agent and frontend agent both know the shape of the response object, they can work independently.</li>
+                <li><strong>Err on the side of independence.</strong> If two tasks might conflict, put them in the same stream. The cost of serializing two related tasks is lower than the cost of resolving conflicts between parallel agents.</li>
+                <li><strong>Start small.</strong> Two parallel streams is a great starting point. Add a third once you are comfortable managing two. Most developers find 3-4 parallel streams to be the practical maximum before cognitive overhead cancels out the throughput gains.</li>
+            </ul>
+
+            <h2>Common Pitfalls (and How to Avoid Them)</h2>
+
+            <p>After helping hundreds of developers set up parallel agent workflows, these are the mistakes that come up most often:</p>
+
+            <p><strong>Pitfall 1: Agents modifying shared files.</strong> If two agents edit the same file, you will get merge conflicts -- or worse, one agent's changes will silently overwrite the other's. The fix: use worktrees (so agents have their own copies) and be explicit about file boundaries in your prompts.</p>
+
+            <p><strong>Pitfall 2: No clear integration plan.</strong> It is easy to get excited about parallel execution and forget that all the work needs to come together. Before starting, define the merge order and have a plan for integration testing.</p>
+
+            <p><strong>Pitfall 3: Over-parallelizing.</strong> Running five agents when you can only meaningfully review three leads to rubber-stamping output without proper review. The quality of your review is the bottleneck, not the speed of the agents. Scale to your review capacity, not your API capacity.</p>
+
+            <p><strong>Pitfall 4: Identical context for all agents.</strong> Giving every agent the same massive context dump is wasteful and often confusing. Each agent should receive only the context relevant to its specific task, plus a brief overview of how its work fits into the larger picture.</p>
+
+            <blockquote>
+                <p>"The number of parallel agents you should run is not determined by how many your API plan supports. It is determined by how many output streams you can meaningfully review in a single sitting."</p>
+            </blockquote>
+
+            <h2>Advanced Patterns: Agent-to-Agent Coordination</h2>
+
+            <p>Once you are comfortable with basic parallel execution, there are more advanced patterns worth exploring.</p>
+
+            <p><strong>The Architect-Worker Pattern:</strong> One Claude Code session acts as the "architect" -- it plans the work, defines interfaces, and reviews output from the other agents. The worker agents receive their tasks from the architect and report back. In Claude Code, this maps naturally to the main session spawning subagents.</p>
+
+            <p><strong>The Pipeline Pattern:</strong> Agents work in sequence but on different stages of a pipeline. Agent A writes the implementation, Agent B writes tests for Agent A's output, Agent C writes documentation for the tested code. Each agent can start as soon as the previous one finishes a unit of work, creating an overlapping pipeline.</p>
+
+            <p><strong>The Specialist Pattern:</strong> Each agent is given a different persona or specialization. One agent focuses on security review, another on performance optimization, a third on documentation. They all work on the same codebase but through different lenses, and their outputs are complementary rather than overlapping.</p>
+
+            <h2>Setting Up Beam for Parallel Agent Workflows</h2>
+
+            <p>Here is the workspace setup that works best for parallel agent orchestration in <a href="/" style="color: var(--accent);">Beam</a>:</p>
+
+            <ol>
+                <li><strong>Create a workspace named after your project.</strong> Press <span class="kbd">&#8984;N</span> and name it (e.g., "payments-v2").</li>
+                <li><strong>Split into panes.</strong> Use <span class="kbd">&#8984;&#8997;&#8963;T</span> to create split panes -- one per agent. Three vertical panes is the sweet spot for most monitors.</li>
+                <li><strong>Name your tabs.</strong> Double-click each tab to rename it: "Agent: API", "Agent: Frontend", "Agent: Tests".</li>
+                <li><strong>Add a monitoring tab.</strong> Press <span class="kbd">&#8984;T</span> to add a new tab for your dev server, test runner, or integration work.</li>
+                <li><strong>Save the layout.</strong> Press <span class="kbd">&#8984;S</span> to save this workspace configuration. Next time you need to do parallel work, restore it in seconds.</li>
+            </ol>
+
+            <p>The key advantage is persistence. When you close Beam and reopen it, every pane, every tab, every working directory is exactly where you left it. Your agents' output history is preserved. You can pick up exactly where you stopped.</p>
+
+            <h2>The Throughput Math: Is It Really Worth It?</h2>
+
+            <p>Let's be concrete about the numbers. Assume a typical feature takes 4 hours of focused AI-assisted development with a single agent:</p>
+
+            <ul>
+                <li><strong>Sequential (1 agent):</strong> 4 hours elapsed time</li>
+                <li><strong>Parallel (3 agents):</strong> ~1.5 hours elapsed time (not 1.3 hours, because integration and review add overhead)</li>
+                <li><strong>Parallel (3 agents, experienced orchestrator):</strong> ~1.2 hours elapsed time</li>
+            </ul>
+
+            <p>That is a 2.5-3.3x throughput improvement. Over a full workday, that is the difference between shipping one feature and shipping three. Over a week, it compounds dramatically.</p>
+
+            <p>The investment is real -- you need to learn decomposition, manage worktrees, and build the review muscle. But for anyone doing serious AI-assisted development, parallel execution is the highest-ROI skill you can develop in 2026.</p>
+
+            <div class="cta-box">
+                <h3>Ready to Level Up Your Agentic Workflow?</h3>
+                <p>Beam gives you the workspace to run every AI agent from one cockpit -- split panes, tabs, projects, and more.</p>
+                <a href="/" class="btn">Download Beam Free</a>
+            </div>
+
+            <div class="related-articles">
+                <h2>Related Articles</h2>
+                <div class="related-grid">
+                    <a href="claude-code-worktrees-parallel-agents.html" class="related-card">
+                        <h4>Claude Code Worktrees for Parallel Agents</h4>
+                        <p>Deep dive into using git worktrees with Claude Code's native parallel capabilities.</p>
+                    </a>
+                    <a href="claude-code-vs-cursor-vs-windsurf-2026.html" class="related-card">
+                        <h4>Claude Code vs Cursor vs Windsurf in 2026</h4>
+                        <p>Which AI coding tool should you actually use? An honest comparison.</p>
+                    </a>
+                    <a href="claude-code-agent-teams-guide.html" class="related-card">
+                        <h4>Running Claude Code Agent Teams</h4>
+                        <p>How to manage multiple Claude Code sessions for parallel development workflows.</p>
+                    </a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>Beam -- The Agentic Engineering Platform</p>
+            <p style="margin-top: 8px;">
+                <a href="/">Home</a> · <a href="/blog/">Blog</a> · Built by NextUp Technologies
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>

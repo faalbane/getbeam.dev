@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D0XH8B0RKL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-D0XH8B0RKL');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Rise of AI Terminal Multiplexers: Superset, Chloe, and cmux Compared | Beam</title>
+    <meta name="description" content="AI terminal multiplexers are a new category of developer tools. We compare Superset, Chloe, cmux, and explain what developers actually need from this emerging space.">
+    <meta name="keywords" content="AI terminal multiplexer comparison, Superset vs Chloe vs cmux, AI terminal tools 2026, agentic terminal, multi-agent terminal">
+    <meta name="author" content="NextUp Technologies">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://getbeam.dev/blog/ai-terminal-multiplexers-compared-2026.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://getbeam.dev/blog/ai-terminal-multiplexers-compared-2026.html">
+    <meta property="og:title" content="The Rise of AI Terminal Multiplexers: Superset, Chloe, and cmux Compared">
+    <meta property="og:description" content="AI terminal multiplexers are a new category of developer tools. We compare Superset, Chloe, cmux, and explain what developers actually need from this emerging space.">
+    <meta property="og:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="The Rise of AI Terminal Multiplexers: Superset, Chloe, and cmux Compared">
+    <meta name="twitter:description" content="AI terminal multiplexers are a new category of developer tools. We compare Superset, Chloe, cmux, and explain what developers actually need from this emerging space.">
+    <meta name="twitter:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "The Rise of AI Terminal Multiplexers: Superset, Chloe, and cmux Compared",
+        "description": "AI terminal multiplexers are a new category of developer tools. We compare Superset, Chloe, cmux, and explain what developers actually need from this emerging space.",
+        "author": {
+            "@type": "Organization",
+            "name": "NextUp Technologies"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Beam"
+        },
+        "datePublished": "2026-03-01",
+        "keywords": "AI terminal multiplexer comparison, Superset vs Chloe vs cmux, AI terminal tools 2026, agentic terminal, multi-agent terminal"
+    }
+    </script>
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #111113;
+            --bg-tertiary: #1a1a1d;
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.4);
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --border: #27272a;
+            --success: #22c55e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        a, button, .btn, .related-card, .post-card, .editorial-card { cursor: pointer; }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+
+        .container { max-width: 800px; margin: 0 auto; padding: 0 24px; }
+
+        header {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 60px;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1.5rem;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 7px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .pixel-logo-wrap {
+            display: flex;
+            align-items: center;
+            filter: drop-shadow(0 0 6px rgba(59, 130, 246, 0.45));
+            width: 79px;
+            height: 19px;
+            flex-shrink: 0;
+            position: relative;
+            overflow: visible;
+        }
+
+        .pixel-logo {
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: block;
+            width: 3px;
+            height: 3px;
+            border-radius: 0.5px;
+            background: #a0c4ff;
+            box-shadow:
+                4px 0 0 0 #a2c5ff, 8px 0 0 0 #a4c6ff,
+                20px 0 0 0 #acc9ff, 24px 0 0 0 #aecaff, 28px 0 0 0 #b0cbff, 32px 0 0 0 #b2ccff,
+                44px 0 0 0 #bacfff, 48px 0 0 0 #bcd0ff,
+                60px 0 0 0 #c4d4ff,
+                76px 0 0 0 #d0daff,
+                0 4px 0 0 #96bdf8, 12px 4px 0 0 #9ec1f8,
+                20px 4px 0 0 #a4c4f8,
+                40px 4px 0 0 #b4ccf8, 52px 4px 0 0 #bcd0f8,
+                60px 4px 0 0 #c0d2f8, 64px 4px 0 0 #c2d3f8,
+                72px 4px 0 0 #c8d6f8, 76px 4px 0 0 #cad7f8,
+                0 8px 0 0 #8cb6f0, 4px 8px 0 0 #8eb7f0, 8px 8px 0 0 #90b8f0,
+                20px 8px 0 0 #9abef0, 24px 8px 0 0 #9cbff0, 28px 8px 0 0 #9ec0f0,
+                40px 8px 0 0 #aac6f0, 44px 8px 0 0 #acc7f0, 48px 8px 0 0 #aec8f0, 52px 8px 0 0 #b0c9f0,
+                60px 8px 0 0 #b6ccf0, 68px 8px 0 0 #bccff0,
+                76px 8px 0 0 #c4d3f0,
+                0 12px 0 0 #82afe8, 12px 12px 0 0 #8cb5e8,
+                20px 12px 0 0 #92b8e8,
+                40px 12px 0 0 #a2c0e8, 52px 12px 0 0 #aac4e8,
+                60px 12px 0 0 #aec6e8,
+                76px 12px 0 0 #bccde8,
+                0 16px 0 0 #78a8e0, 4px 16px 0 0 #7aa9e0, 8px 16px 0 0 #7caae0,
+                20px 16px 0 0 #88b0e0, 24px 16px 0 0 #8ab1e0, 28px 16px 0 0 #8cb2e0, 32px 16px 0 0 #8eb3e0,
+                40px 16px 0 0 #96b8e0, 52px 16px 0 0 #a0bce0,
+                60px 16px 0 0 #a4bee0,
+                76px 16px 0 0 #b4c6e0;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            background: var(--accent);
+            color: white;
+            transition: all 0.2s;
+        }
+
+        .btn:hover { background: #2563eb; transform: translateY(-2px); }
+
+        article { padding-bottom: 80px; }
+
+        .breadcrumb {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+        }
+
+        .breadcrumb a { color: var(--accent); text-decoration: none; }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .meta {
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            font-size: 0.95rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 48px 0 20px;
+            color: var(--text-primary);
+        }
+
+        h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 32px 0 16px;
+            color: var(--text-primary);
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        ul, ol {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            padding-left: 24px;
+        }
+
+        li { margin-bottom: 12px; }
+
+        strong { color: var(--text-primary); }
+
+        .highlight {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 32px 0;
+        }
+
+        .highlight h3 {
+            font-size: 1.1rem;
+            margin: 0 0 12px 0;
+            color: var(--text-primary);
+        }
+
+        .highlight p:last-child, .highlight ul:last-child {
+            margin-bottom: 0;
+        }
+
+        .kbd {
+            display: inline-block;
+            padding: 2px 8px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+        }
+
+        code {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 2px 6px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+        }
+
+        pre {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 20px;
+            overflow-x: auto;
+            margin: 24px 0;
+        }
+
+        pre code {
+            background: none;
+            border: none;
+            padding: 0;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .tip {
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 24px 0;
+        }
+
+        .tip strong {
+            color: var(--success);
+        }
+
+        .warning {
+            background: rgba(234, 179, 8, 0.1);
+            border: 1px solid rgba(234, 179, 8, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 24px 0;
+        }
+
+        .warning strong {
+            color: #eab308;
+        }
+
+        blockquote {
+            border-left: 3px solid var(--accent);
+            padding-left: 20px;
+            margin: 24px 0;
+            font-style: italic;
+        }
+
+        blockquote p { color: var(--text-secondary); }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .cta-box h3 { font-size: 1.5rem; margin-bottom: 12px; color: white; }
+        .cta-box p { color: rgba(255,255,255,0.8); margin-bottom: 24px; }
+        .cta-box .btn { background: white; color: var(--accent); }
+
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer a { color: var(--text-secondary); text-decoration: none; }
+
+        .related-articles { margin-top: 60px; padding-top: 40px; border-top: 1px solid var(--border); }
+        .related-articles h2 { font-size: 1.5rem; margin-bottom: 24px; }
+        .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .related-card { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-decoration: none; transition: border-color 0.2s; }
+        .related-card:hover { border-color: var(--accent); }
+        .related-card h4 { color: white; font-size: 1rem; margin: 0 0 8px 0; }
+        .related-card p { color: var(--text-muted); font-size: 0.85rem; margin: 0; }
+        @media (max-width: 600px) { .related-grid { grid-template-columns: 1fr; } h1 { font-size: 1.8rem; } }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="../" class="logo">
+                <div class="logo-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round">
+                        <path d="M4 17l6-6-6-6M12 19h8"/>
+                    </svg>
+                </div>
+                <div class="pixel-logo-wrap">
+                    <div class="pixel-logo"></div>
+                </div>
+            </a>
+            <a href="../" class="btn">Download Beam</a>
+        </div>
+    </header>
+
+    <main class="container">
+        <article>
+            <div class="breadcrumb">
+                <a href="../">Beam</a> / <a href="../#guides">Guides</a> / AI Terminal Multiplexers Compared
+            </div>
+
+            <h1>The Rise of AI Terminal Multiplexers: Superset, Chloe, and cmux Compared</h1>
+            <p class="meta">March 2026 &bull; 11 min read</p>
+
+            <p>A new category of developer tool has emerged in the past twelve months: the AI terminal multiplexer. These tools sit between the traditional terminal (iTerm2, Alacritty, Windows Terminal) and the AI coding agents (Claude Code, Gemini CLI, Codex) that developers now run daily. They promise to solve a specific problem -- managing multiple AI agent sessions from a single interface with features designed specifically for agentic workflows.</p>
+
+            <p>Three tools have gathered the most attention: Superset, Chloe, and cmux. Each takes a distinct approach. But before comparing them, it is worth examining why this category exists at all and what problem it actually solves.</p>
+
+            <h2>Why AI Terminal Multiplexers Exist</h2>
+
+            <p>The traditional terminal multiplexer -- tmux, screen, Zellij -- was designed for human operators managing server sessions. You split your screen, run processes in different panes, detach and reattach sessions. These tools are excellent at what they do, but they were built for a world where the operator types every command.</p>
+
+            <p>AI coding agents changed the equation. A developer running Claude Code does not type commands in the traditional sense. They describe what they want, the agent executes a series of tool calls, and the output streams back. The interaction pattern is different: longer-running sessions, more concurrent processes, heavier output, and a fundamentally different need for monitoring versus direct control.</p>
+
+            <div class="highlight">
+                <h3>What Changed with Agentic Workflows</h3>
+                <ul>
+                    <li><strong>Session count explosion:</strong> Developers running multi-agent workflows routinely have 4-8 concurrent terminal sessions, versus 2-3 in traditional workflows</li>
+                    <li><strong>Monitoring over typing:</strong> 70-80% of time is spent watching agent output rather than entering input. The interface needs to optimize for reading, not writing</li>
+                    <li><strong>Cross-session context:</strong> Agents in different sessions work on related tasks. Developers need to correlate output across sessions quickly</li>
+                    <li><strong>Project scoping:</strong> Each agent session should be scoped to a specific project or task. Traditional multiplexers have sessions and windows, but no concept of projects</li>
+                    <li><strong>State awareness:</strong> Knowing whether an agent is actively working, waiting for input, idle, or errored is critical. Traditional terminals show a blinking cursor regardless</li>
+                </ul>
+            </div>
+
+            <p>AI terminal multiplexers emerged to address these specific gaps. They are not replacing tmux for server administration. They are building a new interface layer optimized for the agentic development workflow.</p>
+
+            <h2>Superset: The Overlay Approach</h2>
+
+            <p>Superset takes the least disruptive approach of the three. It runs as an overlay on top of your existing terminal, adding AI-aware features without replacing your terminal emulator. Think of it as a heads-up display for your terminal sessions.</p>
+
+            <div class="highlight">
+                <h3>Superset Key Features</h3>
+                <ul>
+                    <li><strong>Terminal overlay:</strong> Works with any terminal emulator. Install it, activate it with a hotkey, and it adds a monitoring layer on top of your existing sessions</li>
+                    <li><strong>Agent detection:</strong> Automatically detects when a session is running an AI agent (Claude Code, Aider, Cursor CLI) and switches to an agent-optimized view</li>
+                    <li><strong>Output summarization:</strong> Uses a local language model to summarize long agent output into key actions and results. Useful for catching up on what happened in a session you were not watching</li>
+                    <li><strong>Session tagging:</strong> Tag sessions with project names and task descriptions. Filter the session list by tags</li>
+                    <li><strong>Cross-session search:</strong> Search across all active session outputs simultaneously. Find where a specific file was modified or where an error occurred, regardless of which session produced it</li>
+                </ul>
+            </div>
+
+            <p><strong>The appeal:</strong> Superset does not ask you to change your terminal. If you love iTerm2 or Alacritty, you keep using it. Superset adds intelligence on top. The overlay approach has the lowest switching cost of any tool in this space.</p>
+
+            <p><strong>The limitation:</strong> Because Superset is an overlay, it cannot control terminal rendering, keyboard handling, or session management at the level that native applications can. Split pane layouts are constrained by the underlying terminal's capabilities. The output summarization relies on a local model that consumes meaningful resources on laptops with less than 16GB of RAM.</p>
+
+            <h2>Chloe: The Agent-Native Terminal</h2>
+
+            <p>Chloe takes the opposite approach from Superset. It is a complete terminal replacement built from the ground up for AI agent workflows. Every design decision assumes the user is orchestrating AI agents rather than manually typing commands.</p>
+
+            <div class="highlight">
+                <h3>Chloe Key Features</h3>
+                <ul>
+                    <li><strong>Agent-first interface:</strong> Sessions are organized by agent type and task, not by terminal windows. The primary view shows agents and their current status rather than raw terminal output</li>
+                    <li><strong>Conversation view:</strong> Agent interactions are displayed as conversations (user prompt, agent response, tool calls) rather than raw terminal streams. Makes it easier to follow agent reasoning</li>
+                    <li><strong>Inter-agent messaging:</strong> Copy context from one agent session and inject it into another with a single command. Designed for multi-agent workflows where output from Agent A becomes input for Agent B</li>
+                    <li><strong>Built-in prompting:</strong> An integrated prompt editor with templates for common agent workflows. Define reusable prompts and launch agent sessions from them</li>
+                    <li><strong>Session recording:</strong> Record entire agent sessions for replay. Useful for debugging, documentation, and sharing workflows with team members</li>
+                </ul>
+            </div>
+
+            <p><strong>The appeal:</strong> Chloe provides the most purpose-built experience for agent orchestration. If you spend your entire day running AI agents and want every pixel of your interface optimized for that workflow, Chloe delivers.</p>
+
+            <p><strong>The limitation:</strong> It is a complete terminal replacement. If you need to drop into a standard terminal workflow (SSH sessions, log tailing, system administration), Chloe's agent-first interface can feel awkward. The conversation view, while intuitive for AI interactions, strips out terminal escape codes and formatting that some tools rely on. You end up keeping a traditional terminal open alongside Chloe for non-agent work.</p>
+
+            <h2>cmux: The Programmer's Multiplexer</h2>
+
+            <p>cmux (short for "Claude multiplexer," though it works with any agent) is a CLI-first tool built by and for developers who live in the terminal. It is closer in spirit to tmux than to a graphical application, adding AI-awareness to the traditional multiplexer model.</p>
+
+            <div class="highlight">
+                <h3>cmux Key Features</h3>
+                <ul>
+                    <li><strong>tmux-compatible keybindings:</strong> If you know tmux, you know cmux. Same prefix key, same split commands, same navigation. The learning curve for tmux users is near zero</li>
+                    <li><strong>Agent status bar:</strong> Each pane shows a status indicator for the running agent: working, idle, waiting for input, error. Replaces the raw cursor with meaningful state information</li>
+                    <li><strong>Pipe between panes:</strong> Pipe the output of one pane directly into another. This enables chaining agent sessions: the output of a code generation agent feeds directly into a review agent</li>
+                    <li><strong>Session persistence:</strong> Like tmux, sessions survive terminal disconnection. Resume your entire multi-agent workspace after a reboot or SSH disconnect</li>
+                    <li><strong>Headless mode:</strong> Run agent sessions in the background and attach to monitor them when needed. Useful for long-running agent tasks that do not require constant oversight</li>
+                </ul>
+            </div>
+
+            <p><strong>The appeal:</strong> cmux respects the Unix philosophy. It does one thing (multiplexing terminal sessions with agent awareness) and composes with other tools. It works over SSH, has no GUI dependencies, and is lightweight enough to run on any machine.</p>
+
+            <p><strong>The limitation:</strong> The CLI-only interface means no graphical project management, no drag-and-drop pane arrangement, and no visual session overview. If you want a polished, discoverable interface that you can learn by exploring, cmux is not it. You need to read the documentation and memorize keybindings, just like tmux.</p>
+
+            <h2>What Developers Actually Need</h2>
+
+            <p>After testing all three tools extensively, the honest assessment is that the AI terminal multiplexer category is solving a real problem but each tool has significant gaps. Here is what developers running multi-agent workflows actually need, mapped to how well each tool delivers.</p>
+
+            <blockquote>
+                <p>The ideal AI terminal tool is not a multiplexer with AI bolted on, and it is not an AI tool with a terminal bolted on. It is a workspace designed from the start for the hybrid workflow of human oversight and agent execution.</p>
+            </blockquote>
+
+            <h3>Need 1: Fast, Reliable Terminal Emulation</h3>
+
+            <p>Before any AI features matter, the terminal needs to render text quickly and correctly. Agent output can be voluminous -- thousands of lines per minute during active code generation. Superset inherits performance from the underlying terminal (good). cmux uses its own rendering engine that is fast but occasionally glitches on complex escape sequences (acceptable). Chloe's conversation view sacrifices raw rendering fidelity for readability (a trade-off that frustrates power users).</p>
+
+            <h3>Need 2: Visual Session Management</h3>
+
+            <p>Developers need to see all their agent sessions at a glance -- what is running, what is done, what needs attention. Chloe excels here with its agent-first dashboard. Superset's overlay provides a quick session list but it is transient. cmux relies on the status bar and manual navigation, which scales poorly beyond 6-8 sessions.</p>
+
+            <h3>Need 3: Project Context</h3>
+
+            <p>Each agent session belongs to a project. Sessions for "Backend API" should be grouped separately from sessions for "Frontend Redesign." None of the three tools handle project scoping as a first-class concept. Superset has tags (close), Chloe has folders (close), cmux has named sessions (not close enough).</p>
+
+            <h3>Need 4: Cross-Platform Support</h3>
+
+            <p>Developers use macOS, Linux, and Windows. cmux works on macOS and Linux. Superset works on macOS only (as of this writing). Chloe works on macOS and Linux with a Windows version in beta. For teams with diverse operating systems, this is a real constraint.</p>
+
+            <h3>Need 5: Works With Any Agent</h3>
+
+            <p>All three tools work with the major agents (Claude Code, Gemini CLI, Aider). But the agentic landscape moves fast. New agents appear monthly. The tools need to work with any CLI process, not just a hardcoded list. cmux handles this best because it treats every pane as a standard terminal -- any process that runs in a terminal runs in cmux. Superset's agent detection works well for known agents but falls back to standard terminal mode for unknown ones. Chloe's conversation view only works with agents it explicitly supports; unknown agents get a raw terminal view.</p>
+
+            <h2>Where Beam Fits in This Landscape</h2>
+
+            <p>Beam approaches the same problem from a different angle. Rather than adding AI awareness to a multiplexer (cmux), overlaying intelligence on a terminal (Superset), or building an agent-native interface that sacrifices terminal fidelity (Chloe), Beam is a full workspace application built on Electron with native terminal emulation via xterm.js and node-pty.</p>
+
+            <div class="highlight">
+                <h3>Beam's Differentiation</h3>
+                <ul>
+                    <li><strong>True terminal emulation:</strong> xterm.js provides complete VT100/VT220 terminal emulation. Every escape code, every color, every interactive TUI works correctly. No rendering compromises</li>
+                    <li><strong>Project system as a first-class concept:</strong> Sessions are organized into projects with persistent state. Open a project and your entire workspace layout -- tabs, split panes, terminal histories -- restores exactly where you left off</li>
+                    <li><strong>Visual workspace management:</strong> Drag-and-drop tab reordering, keyboard-driven split panes, and a sidebar navigator that shows all sessions across all projects. The interface is discoverable without reading documentation</li>
+                    <li><strong>Agent-agnostic by design:</strong> Beam is a terminal workspace, not an agent wrapper. It runs any CLI agent, any shell command, any interactive process. No hardcoded agent list, no special integration required</li>
+                    <li><strong>Cross-platform from day one:</strong> macOS, Windows, and Linux. Same interface, same features, same keyboard shortcuts</li>
+                    <li><strong>50+ keyboard shortcuts:</strong> Designed for the developer who lives in the keyboard. Quick switcher (<span class="kbd">Cmd+K</span>), split pane management, tab navigation, and project switching -- all without touching the mouse</li>
+                </ul>
+            </div>
+
+            <p>The philosophical difference is that Beam does not try to understand your agents. It does not parse their output, summarize their actions, or detect their state. Instead, it gives you the best possible workspace for running and monitoring them yourself. This is a deliberate design choice: agentic workflows evolve too fast for any tool to keep up with specialized integrations. A great workspace that works with everything is more durable than a specialized tool that works well with today's agents but needs updating when tomorrow's arrive.</p>
+
+            <h2>The Category Is Still Forming</h2>
+
+            <p>AI terminal multiplexers are less than a year old as a category. Superset, Chloe, and cmux each represent a different bet on what developers will want.</p>
+
+            <p>Superset bets that developers will not switch terminals, so intelligence must be an overlay. Chloe bets that AI agents are different enough from traditional processes that they need a purpose-built interface. cmux bets that the Unix philosophy still applies and AI awareness should be composable and minimal.</p>
+
+            <p>All three bets have merit. All three have limitations. The market has not yet decided which approach wins, and it is possible that the answer is "none of the above" or "all of the above, depending on the user."</p>
+
+            <div class="tip">
+                <strong>Practical recommendation:</strong> If you are already productive with tmux and want incremental improvements, try cmux. If you want a polished GUI experience, try Chloe. If you do not want to change your terminal at all, try Superset. And if you want a complete workspace that handles both agent and non-agent workflows equally well, try Beam. The switching cost between tools is low enough that experimenting is cheap.
+            </div>
+
+            <h2>Looking Ahead</h2>
+
+            <p>The convergence point for this category is predictable. Every AI terminal multiplexer will eventually need full terminal emulation (for compatibility), project-level organization (for workflow management), visual session overview (for monitoring), and agent-agnostic design (for longevity). The tools that arrive at this convergence point fastest -- whether by adding features or by starting with the right architecture -- will define the category.</p>
+
+            <p>The underlying truth is simpler than the tool landscape suggests: developers running AI agents need a well-organized workspace with good terminals. The AI-specific features (agent detection, output summarization, status awareness) are nice-to-haves that become less important as agents themselves improve at communicating their state. What remains essential is the workspace itself -- the ability to run many concurrent sessions, organized by project, visible at a glance, and navigable by keyboard.</p>
+
+            <p>That is the problem worth solving. The tools that solve it most cleanly will survive regardless of how the agentic landscape evolves.</p>
+
+            <div class="cta-box">
+                <h3>Ready to Level Up Your Agentic Workflow?</h3>
+                <p>Beam gives you the workspace to run every AI agent from one cockpit -- split panes, tabs, projects, and more.</p>
+                <a href="../" class="btn">Download Beam Free</a>
+            </div>
+
+            <div class="related-articles">
+                <h2>Related Articles</h2>
+                <div class="related-grid">
+                    <a href="run-claude-gemini-codex-side-by-side.html" class="related-card">
+                        <h4>Run Claude, Gemini, and Codex Side by Side</h4>
+                        <p>How to run multiple AI coding agents in parallel using Beam.</p>
+                    </a>
+                    <a href="agentic-engineering-guide.html" class="related-card">
+                        <h4>The Agentic Engineering Guide</h4>
+                        <p>A comprehensive guide to building with AI agents in 2026.</p>
+                    </a>
+                    <a href="organizing-claude-code-sessions.html" class="related-card">
+                        <h4>Organizing Claude Code Sessions</h4>
+                        <p>How to structure and manage multiple Claude Code terminal sessions.</p>
+                    </a>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>Beam &mdash; The Agentic Engineering Platform</p>
+            <p style="margin-top: 8px;">
+                <a href="../">Home</a> &middot; <a href="../blog/">Blog</a> &middot; Built by NextUp Technologies
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>

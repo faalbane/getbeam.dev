@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D0XH8B0RKL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-D0XH8B0RKL');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VS Code Multi-Agent Orchestration: A Hands-On Tutorial | Beam</title>
+    <meta name="description" content="Learn how to orchestrate multiple AI agents in VS Code with the 1.109 update. Step-by-step setup guide covering Copilot agent mode, extensions, and terminal-based alternatives.">
+    <meta name="keywords" content="VS Code multi-agent orchestration, VS Code AI agents tutorial, VS Code 1.109 agents, Copilot agent mode, VS Code AI orchestration, multi-agent VS Code setup">
+    <meta name="author" content="NextUp Technologies">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://getbeam.dev/blog/vscode-multi-agent-orchestration-tutorial.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://getbeam.dev/blog/vscode-multi-agent-orchestration-tutorial.html">
+    <meta property="og:title" content="VS Code Multi-Agent Orchestration: A Hands-On Tutorial">
+    <meta property="og:description" content="Step-by-step guide to orchestrating multiple AI agents in VS Code 1.109. Setup, limitations, and terminal-based alternatives.">
+    <meta property="og:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="VS Code Multi-Agent Orchestration: A Hands-On Tutorial">
+    <meta name="twitter:description" content="Step-by-step guide to orchestrating multiple AI agents in VS Code 1.109. Setup, limitations, and terminal-based alternatives.">
+    <meta name="twitter:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "VS Code Multi-Agent Orchestration: A Hands-On Tutorial",
+        "description": "Learn how to orchestrate multiple AI agents in VS Code with the 1.109 update. Step-by-step setup guide covering Copilot agent mode, extensions, and terminal-based alternatives.",
+        "author": {
+            "@type": "Organization",
+            "name": "NextUp Technologies"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Beam"
+        },
+        "datePublished": "2026-03-01",
+        "keywords": "VS Code multi-agent orchestration, VS Code AI agents tutorial, VS Code 1.109 agents, Copilot agent mode, VS Code AI orchestration"
+    }
+    </script>
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #111113;
+            --bg-tertiary: #1a1a1d;
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.4);
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --border: #27272a;
+            --success: #22c55e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        a, button, .btn, .related-card, .post-card, .editorial-card { cursor: pointer; }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        header {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 60px;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1.5rem;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 7px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .pixel-logo-wrap {
+            display: flex;
+            align-items: center;
+            filter: drop-shadow(0 0 6px rgba(59, 130, 246, 0.45));
+            width: 79px;
+            height: 19px;
+            flex-shrink: 0;
+            position: relative;
+            overflow: visible;
+        }
+
+        .pixel-logo {
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: block;
+            width: 3px;
+            height: 3px;
+            border-radius: 0.5px;
+            background: #a0c4ff;
+            box-shadow:
+                4px 0 0 0 #a2c5ff, 8px 0 0 0 #a4c6ff,
+                20px 0 0 0 #acc9ff, 24px 0 0 0 #aecaff, 28px 0 0 0 #b0cbff, 32px 0 0 0 #b2ccff,
+                44px 0 0 0 #bacfff, 48px 0 0 0 #bcd0ff,
+                60px 0 0 0 #c4d4ff,
+                76px 0 0 0 #d0daff,
+                0 4px 0 0 #96bdf8, 12px 4px 0 0 #9ec1f8,
+                20px 4px 0 0 #a4c4f8,
+                40px 4px 0 0 #b4ccf8, 52px 4px 0 0 #bcd0f8,
+                60px 4px 0 0 #c0d2f8, 64px 4px 0 0 #c2d3f8,
+                72px 4px 0 0 #c8d6f8, 76px 4px 0 0 #cad7f8,
+                0 8px 0 0 #8cb6f0, 4px 8px 0 0 #8eb7f0, 8px 8px 0 0 #90b8f0,
+                20px 8px 0 0 #9abef0, 24px 8px 0 0 #9cbff0, 28px 8px 0 0 #9ec0f0,
+                40px 8px 0 0 #aac6f0, 44px 8px 0 0 #acc7f0, 48px 8px 0 0 #aec8f0, 52px 8px 0 0 #b0c9f0,
+                60px 8px 0 0 #b6ccf0, 68px 8px 0 0 #bccff0,
+                76px 8px 0 0 #c4d3f0,
+                0 12px 0 0 #82afe8, 12px 12px 0 0 #8cb5e8,
+                20px 12px 0 0 #92b8e8,
+                40px 12px 0 0 #a2c0e8, 52px 12px 0 0 #aac4e8,
+                60px 12px 0 0 #aec6e8,
+                76px 12px 0 0 #bccde8,
+                0 16px 0 0 #78a8e0, 4px 16px 0 0 #7aa9e0, 8px 16px 0 0 #7caae0,
+                20px 16px 0 0 #88b0e0, 24px 16px 0 0 #8ab1e0, 28px 16px 0 0 #8cb2e0, 32px 16px 0 0 #8eb3e0,
+                40px 16px 0 0 #96b8e0, 52px 16px 0 0 #a0bce0,
+                60px 16px 0 0 #a4bee0,
+                76px 16px 0 0 #b4c6e0;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            background: var(--accent);
+            color: white;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+        }
+
+        article {
+            padding-bottom: 80px;
+        }
+
+        .breadcrumb {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+        }
+
+        .breadcrumb a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .meta {
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            font-size: 0.95rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 48px 0 20px;
+            color: var(--text-primary);
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        ul, ol {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            padding-left: 24px;
+        }
+
+        li {
+            margin-bottom: 12px;
+        }
+
+        .highlight {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 32px 0;
+        }
+
+        .highlight h3 {
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .kbd {
+            display: inline-block;
+            padding: 2px 8px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .cta-box h3 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+        }
+
+        .cta-box p {
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 24px;
+        }
+
+        .cta-box .btn {
+            background: white;
+            color: var(--accent);
+        }
+
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+
+        .related-articles {
+            margin-top: 60px;
+            padding-top: 40px;
+            border-top: 1px solid var(--border);
+        }
+
+        .related-articles h2 {
+            font-size: 1.5rem;
+            margin-bottom: 24px;
+        }
+
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .related-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            text-decoration: none;
+            transition: border-color 0.2s;
+        }
+
+        .related-card:hover {
+            border-color: var(--accent);
+        }
+
+        .related-card h4 {
+            color: white;
+            font-size: 1rem;
+            margin: 0 0 8px 0;
+        }
+
+        .related-card p {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin: 0;
+        }
+
+        @media (max-width: 600px) {
+            .related-grid { grid-template-columns: 1fr; }
+        }
+
+        blockquote {
+            border-left: 3px solid var(--accent);
+            padding-left: 20px;
+            margin: 24px 0;
+            font-style: italic;
+        }
+
+        blockquote p {
+            color: var(--text-secondary);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="/" class="logo">
+                <div class="logo-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                </div>
+                <span class="pixel-logo-wrap"><span class="pixel-logo"></span></span>
+            </a>
+            <a href="/" class="btn">Download Beam</a>
+        </div>
+    </header>
+
+    <article>
+        <div class="container">
+            <div class="breadcrumb">
+                <a href="/">Home</a> / <a href="/blog/">Blog</a> / VS Code Multi-Agent Orchestration Tutorial
+            </div>
+
+            <h1>VS Code Multi-Agent Orchestration: A Hands-On Tutorial</h1>
+            <div class="meta">March 1, 2026 &middot; 12 min read</div>
+
+            <p>The release of VS Code 1.109 fundamentally changed how developers interact with AI agents inside the editor. With Copilot's upgraded agent mode, custom agent extensions, and MCP server support now baked into the core experience, VS Code has become a legitimate multi-agent orchestration environment. But how well does it actually work in practice?</p>
+
+            <p>This tutorial walks you through setting up a multi-agent workflow inside VS Code from scratch. We will configure Copilot's agent mode, wire up additional AI providers through extensions, orchestrate tasks across agents, and address the real limitations you will encounter when trying to go beyond a single-agent setup. Along the way, we will compare VS Code's IDE-based approach to terminal-based orchestration, so you can decide which strategy fits your workflow.</p>
+
+            <h2>What Changed in VS Code 1.109</h2>
+
+            <p>VS Code 1.109 (released February 2026) introduced several features that moved the editor from "AI-assisted coding" to something closer to "agentic engineering." Here is what matters for multi-agent workflows:</p>
+
+            <ul>
+                <li><strong>Agent mode as the default Copilot experience</strong> -- Copilot Chat now defaults to agent mode, meaning it can read files, edit code, run terminal commands, and chain multi-step operations without you manually copying context back and forth.</li>
+                <li><strong>MCP server support in core</strong> -- You can now register Model Context Protocol servers directly in VS Code settings, giving any compatible agent access to external tools like databases, APIs, and file systems.</li>
+                <li><strong>Custom agent extensions API</strong> -- Third-party extensions can register themselves as "agents" in the Copilot chat panel, meaning you can invoke different AI models and capabilities through a unified interface.</li>
+                <li><strong>Inline chat with agent delegation</strong> -- The inline chat (triggered with <span class="kbd">Cmd+I</span>) can delegate tasks to registered agents, making it possible to route different types of work to different AI backends.</li>
+                <li><strong>Background agent tasks</strong> -- Copilot can now queue and run agent tasks in the background while you continue editing, a first step toward true parallel execution.</li>
+            </ul>
+
+            <div class="highlight">
+                <h3>Key Prerequisite</h3>
+                <p>You need a GitHub Copilot subscription (Individual, Business, or Enterprise) to access agent mode. The free tier provides limited completions but does not include the full agent capabilities covered in this tutorial.</p>
+            </div>
+
+            <h2>Step 1: Configure Copilot Agent Mode</h2>
+
+            <p>First, ensure your VS Code is updated to 1.109 or later. Open the command palette with <span class="kbd">Cmd+Shift+P</span> and search for "Copilot: Configure Agent Mode."</p>
+
+            <p>In your VS Code settings JSON, add the following configuration to enable the full agent feature set:</p>
+
+            <div class="highlight">
+                <h3>settings.json Configuration</h3>
+                <p><span class="kbd">"github.copilot.chat.agent.enabled": true</span></p>
+                <p><span class="kbd">"github.copilot.chat.agent.autoRun": true</span></p>
+                <p><span class="kbd">"github.copilot.chat.agent.maxSteps": 25</span></p>
+                <p><span class="kbd">"github.copilot.chat.agent.terminalAccess": true</span></p>
+                <p>The <span class="kbd">maxSteps</span> setting controls how many chained operations the agent can perform in a single task. For complex multi-file refactors, bump this to 25-50. The <span class="kbd">terminalAccess</span> flag lets the agent run shell commands, which is essential for testing and build verification.</p>
+            </div>
+
+            <p>With agent mode active, Copilot no longer just suggests code. It becomes an autonomous agent that can plan multi-step tasks, create and modify files, run tests, and iterate based on results. This is the foundation everything else builds on.</p>
+
+            <h2>Step 2: Register MCP Servers for External Context</h2>
+
+            <p>MCP (Model Context Protocol) servers give your agents access to external tools and data. VS Code 1.109 supports MCP natively through the <span class="kbd">mcp.servers</span> setting.</p>
+
+            <p>Here is how to set up a PostgreSQL MCP server so your agents can query your database directly:</p>
+
+            <div class="highlight">
+                <h3>MCP Server Registration</h3>
+                <p>In your workspace <span class="kbd">.vscode/settings.json</span>:</p>
+                <p><span class="kbd">"mcp.servers": [</span></p>
+                <p><span class="kbd">&nbsp;&nbsp;{ "name": "postgres", "command": "npx", "args": ["-y", "@modelcontextprotocol/server-postgres", "postgresql://localhost:5432/mydb"] },</span></p>
+                <p><span class="kbd">&nbsp;&nbsp;{ "name": "filesystem", "command": "npx", "args": ["-y", "@modelcontextprotocol/server-filesystem", "/path/to/project"] }</span></p>
+                <p><span class="kbd">]</span></p>
+            </div>
+
+            <p>Once registered, any agent in VS Code can invoke these servers. For instance, you could ask Copilot to "check the users table schema and generate a migration for adding an email_verified column," and it will use the PostgreSQL MCP server to inspect the live schema before writing the migration file.</p>
+
+            <p>The filesystem MCP server is especially useful when agents need to read files outside the current workspace -- for instance, pulling configuration from a shared monorepo root or reading deployment manifests from a separate directory.</p>
+
+            <h2>Step 3: Install Additional Agent Extensions</h2>
+
+            <p>Copilot alone gives you one agent backed by GitHub's models. For true multi-agent orchestration, you want multiple agents with different capabilities. Here are the extensions worth installing:</p>
+
+            <ul>
+                <li><strong>Continue (continue.dev)</strong> -- Lets you use Claude, GPT-4, Gemini, or local models as an alternative agent. Crucial for having a "second opinion" agent that uses a different model than Copilot.</li>
+                <li><strong>Cody by Sourcegraph</strong> -- Provides codebase-wide context through Sourcegraph indexing. Excellent for large monorepo navigation where Copilot's context window falls short.</li>
+                <li><strong>Aider extension</strong> -- Wraps the popular aider CLI tool, giving you a git-aware coding agent that tracks changes at the commit level.</li>
+                <li><strong>Cline</strong> -- A VS Code extension that provides an autonomous coding agent with tool use. Supports multiple LLM providers and has its own planning loop.</li>
+            </ul>
+
+            <p>Each of these extensions registers as a chat participant in VS Code. After installation, you can invoke them in the Copilot chat panel with the <span class="kbd">@</span> prefix -- for example, <span class="kbd">@continue</span> or <span class="kbd">@cody</span>.</p>
+
+            <h2>Step 4: Design Your Agent Routing Strategy</h2>
+
+            <p>Having multiple agents installed is not the same as having them orchestrated. The critical design decision is: which agent handles which task?</p>
+
+            <div class="highlight">
+                <h3>Recommended Agent Routing</h3>
+                <p><strong>Copilot agent mode</strong> -- Primary coding tasks, inline edits, test generation, quick refactors. Best for tasks within 2-3 files.</p>
+                <p><strong>Continue (Claude)</strong> -- Architecture decisions, complex refactoring across many files, code review with detailed reasoning. Better at understanding entire system design.</p>
+                <p><strong>Cody</strong> -- Codebase search, understanding unfamiliar code, answering questions about large repositories. Leverages Sourcegraph's indexing for context.</p>
+                <p><strong>Cline</strong> -- Autonomous multi-step tasks that require file creation, testing, and iteration. Best for "build this feature end-to-end" tasks.</p>
+            </div>
+
+            <p>The routing strategy matters because VS Code does not have a built-in orchestration layer that automatically dispatches tasks to the right agent. You are the orchestrator. You decide which agent to invoke for each subtask, and you manage the handoff of context between them.</p>
+
+            <blockquote>
+                <p>"The biggest misconception about multi-agent workflows in VS Code is that you can just install all the extensions and they will coordinate automatically. They will not. You need a mental model for which agent does what, and you need to manage the context flow yourself."</p>
+            </blockquote>
+
+            <h2>Step 5: Build a Real Multi-Agent Workflow</h2>
+
+            <p>Let us walk through a concrete example: adding a new API endpoint with authentication, database integration, and tests. Here is how to orchestrate multiple agents for this task:</p>
+
+            <ol>
+                <li><strong>Architecture planning with Continue (Claude)</strong> -- Start by asking <span class="kbd">@continue</span> to analyze your existing API structure and propose an architecture for the new endpoint. Claude excels at understanding the big picture and suggesting patterns that match your existing codebase.</li>
+                <li><strong>Schema exploration with Cody</strong> -- Use <span class="kbd">@cody</span> to search your codebase for existing authentication middleware, database models, and similar endpoints. Cody's indexing makes this faster than manual searching.</li>
+                <li><strong>Implementation with Copilot agent mode</strong> -- With the architecture plan and existing patterns identified, switch to Copilot's agent mode for the actual coding. Tell it to create the route handler, middleware, and database queries. It will create files, edit existing ones, and chain operations together.</li>
+                <li><strong>Test generation with Copilot</strong> -- In the same agent session, ask Copilot to generate tests for the new endpoint. It can run the test suite and iterate if tests fail.</li>
+                <li><strong>Code review with Continue (Claude)</strong> -- Finally, hand the diff back to <span class="kbd">@continue</span> for a thorough code review. Claude tends to catch edge cases and security issues that Copilot misses.</li>
+            </ol>
+
+            <p>This five-step workflow touches three different agents, each contributing their strength. The total time is typically 15-20 minutes for a feature that would take 1-2 hours manually.</p>
+
+            <h2>The Limitations of IDE-Based Orchestration</h2>
+
+            <p>After building several multi-agent workflows inside VS Code, the limitations become clear. They are not deal-breakers, but they are important to understand before you invest heavily in this approach.</p>
+
+            <p><strong>No parallel execution.</strong> VS Code's chat panel is fundamentally sequential. You can only interact with one agent at a time. While Copilot can run background tasks, you cannot have Copilot coding in one panel while Continue reviews in another. Every interaction is a blocking, synchronous operation in the same chat thread.</p>
+
+            <p><strong>Context isolation between agents.</strong> Each agent extension maintains its own context window. When you switch from Copilot to Continue, the Continue agent does not automatically know what Copilot just did. You have to manually re-explain the context or paste in relevant code. This context handoff tax adds up quickly.</p>
+
+            <p><strong>Limited terminal integration.</strong> While Copilot's agent mode can run terminal commands, it does so through VS Code's integrated terminal, which has known limitations around PTY handling, shell integration, and long-running processes. Complex build pipelines sometimes hang or produce garbled output.</p>
+
+            <p><strong>Single-workspace constraint.</strong> VS Code multi-root workspaces help, but each agent still operates within the confines of the editor. Cross-project orchestration -- running an agent in your frontend repo while another works on the backend -- requires multiple VS Code windows, and they cannot coordinate with each other.</p>
+
+            <div class="highlight">
+                <h3>When IDE-Based Orchestration Breaks Down</h3>
+                <p>If you need to run more than two agents simultaneously, work across multiple repositories, or maintain persistent agent sessions that survive editor restarts, you have outgrown what VS Code can offer as an orchestration platform. This is where terminal-based approaches shine.</p>
+            </div>
+
+            <h2>Terminal-Based Orchestration: The Alternative</h2>
+
+            <p>Terminal-based multi-agent orchestration solves the problems listed above by treating each agent as an independent process running in its own shell session. Instead of routing everything through a single chat panel, each agent gets its own terminal instance with full PTY support, independent context, and the ability to run in parallel.</p>
+
+            <p>Here is how the same API endpoint workflow looks with terminal-based orchestration:</p>
+
+            <ul>
+                <li><strong>Pane 1:</strong> Claude Code running in the backend directory, implementing the new endpoint</li>
+                <li><strong>Pane 2:</strong> Gemini CLI reviewing the existing codebase for patterns and generating documentation</li>
+                <li><strong>Pane 3:</strong> A test runner continuously executing as changes are made</li>
+                <li><strong>Pane 4:</strong> Codex running in the frontend directory, building the corresponding UI component</li>
+            </ul>
+
+            <p>All four processes run simultaneously. There is no context handoff tax because each agent works independently. And because they are terminal processes, they survive editor crashes, can be detached and reattached, and work across any number of projects.</p>
+
+            <p>Tools like Beam are purpose-built for this workflow. Beam provides split panes, tabs, and project-level workspace organization specifically for managing multiple AI agent sessions. Instead of fighting VS Code's single-threaded chat panel, you get a cockpit designed for parallel agent orchestration.</p>
+
+            <h2>Hybrid Approach: Best of Both Worlds</h2>
+
+            <p>The most productive developers in 2026 are not choosing between IDE and terminal. They are combining both:</p>
+
+            <ol>
+                <li><strong>VS Code for inline assistance</strong> -- Copilot completions, inline chat, and quick single-agent tasks stay in the editor where they are most natural.</li>
+                <li><strong>Terminal orchestration for heavy lifting</strong> -- Multi-agent workflows, parallel execution, cross-project tasks, and long-running operations move to a dedicated terminal environment like Beam.</li>
+                <li><strong>MCP servers bridging both</strong> -- The same MCP servers you configure in VS Code can be used by terminal-based agents, creating a shared tool ecosystem.</li>
+            </ol>
+
+            <blockquote>
+                <p>"I used to try to do everything inside VS Code. Once I moved my multi-agent workflows to a terminal orchestrator, my throughput doubled -- not because the agents got faster, but because I eliminated the context-switching overhead of routing everything through a single chat panel."</p>
+            </blockquote>
+
+            <h2>Troubleshooting Common Issues</h2>
+
+            <p>As you set up your multi-agent environment, here are the most common issues and how to fix them:</p>
+
+            <div class="highlight">
+                <h3>Agent Extensions Conflicting</h3>
+                <p>If Continue and Copilot both try to handle the same inline edit, disable Continue's inline completions with <span class="kbd">"continue.enableInlineCompletions": false</span> and use it only through the chat panel.</p>
+            </div>
+
+            <div class="highlight">
+                <h3>MCP Server Connection Failures</h3>
+                <p>MCP servers that require authentication (like PostgreSQL) can fail silently. Check the Output panel (<span class="kbd">Cmd+Shift+U</span>) and filter by "MCP" to see connection logs. Most failures are caused by missing environment variables or incorrect connection strings.</p>
+            </div>
+
+            <div class="highlight">
+                <h3>Agent Mode Running Out of Steps</h3>
+                <p>If Copilot stops mid-task saying it hit the step limit, increase <span class="kbd">maxSteps</span> in your settings. For complex refactors touching 10+ files, a limit of 50 is reasonable. Be aware that higher step counts increase latency and token usage.</p>
+            </div>
+
+            <h2>Measuring the Impact</h2>
+
+            <p>After running multi-agent workflows for a month, here is what the numbers look like compared to single-agent development:</p>
+
+            <ul>
+                <li><strong>Feature development time:</strong> 40-60% reduction when using 2-3 agents in sequence vs. one agent alone</li>
+                <li><strong>Code review quality:</strong> Using a different model for review (Claude reviewing Copilot's output) catches 30-40% more issues than self-review</li>
+                <li><strong>Context switching cost:</strong> IDE-based orchestration adds roughly 2-3 minutes per agent switch for context re-establishment; terminal-based orchestration eliminates this</li>
+                <li><strong>Parallel execution benefit:</strong> Running agents simultaneously (terminal-based only) provides an additional 2-3x speedup on multi-component features</li>
+            </ul>
+
+            <p>The takeaway is clear: multi-agent orchestration delivers real productivity gains, but the orchestration method matters. VS Code gives you a great starting point, and terminal-based tools give you the parallelism and flexibility to take it further.</p>
+
+            <div class="cta-box">
+                <h3>Ready to Level Up Your Agentic Workflow?</h3>
+                <p>Beam gives you the workspace to run every AI agent from one cockpit -- split panes, tabs, projects, and more.</p>
+                <a href="/" class="btn">Download Beam Free</a>
+            </div>
+
+            <div class="related-articles">
+                <h2>Related Articles</h2>
+                <div class="related-grid">
+                    <a href="/blog/multi-agent-orchestration-practical-guide.html" class="related-card">
+                        <h4>Multi-Agent Orchestration: A Practical Guide</h4>
+                        <p>Strategies for running multiple AI agents in parallel.</p>
+                    </a>
+                    <a href="/blog/claude-code-vs-github-copilot.html" class="related-card">
+                        <h4>Claude Code vs GitHub Copilot</h4>
+                        <p>Head-to-head comparison of two leading AI coding assistants.</p>
+                    </a>
+                    <a href="/blog/mcp-servers-guide-2026.html" class="related-card">
+                        <h4>MCP Servers Guide 2026</h4>
+                        <p>Everything you need to know about Model Context Protocol servers.</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </article>
+
+    <footer>
+        <div class="container">
+            <p>Beam -- The Agentic Engineering Platform</p>
+            <p style="margin-top: 8px;">
+                <a href="/">Home</a> &middot; <a href="/blog/">Blog</a> &middot; Built by NextUp Technologies
+            </p>
+        </div>
+    </footer>
+</body>
+</html>

@@ -12,9 +12,9 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vibe Coding Security: 2.74x More Vulnerabilities and How to Fix It | Beam</title>
-    <meta name="description" content="AI-generated code has 2.74x more security vulnerabilities than human-written code. Here&rsquo;s the 10-point checklist to secure your vibe-coded projects.">
-    <meta name="keywords" content="vibe coding security, AI code vulnerabilities, CodeRabbit, secure AI coding, vibe coding risks">
+    <title>How to Secure Your Vibe Coding Workflow: A Security Checklist for AI-Generated Code | Beam</title>
+    <meta name="description" content="AI-generated code carries measurable security risks. This comprehensive checklist covers static analysis, dependency auditing, CI/CD integration, and runtime hardening for vibe-coded projects.">
+    <meta name="keywords" content="vibe coding security checklist, AI code security, AI-generated code vulnerabilities, secure vibe coding, AI coding security audit">
     <meta name="author" content="NextUp Technologies">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://getbeam.dev/blog/vibe-coding-security-checklist.html">
@@ -22,14 +22,14 @@
     <!-- Open Graph -->
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://getbeam.dev/blog/vibe-coding-security-checklist.html">
-    <meta property="og:title" content="Vibe Coding Security: 2.74x More Vulnerabilities and How to Fix It">
-    <meta property="og:description" content="AI-generated code has 2.74x more security vulnerabilities. Here&rsquo;s the 10-point checklist to secure your vibe-coded projects.">
+    <meta property="og:title" content="How to Secure Your Vibe Coding Workflow: A Security Checklist for AI-Generated Code">
+    <meta property="og:description" content="AI-generated code carries measurable security risks. This comprehensive checklist covers static analysis, dependency auditing, CI/CD integration, and runtime hardening for vibe-coded projects.">
     <meta property="og:image" content="https://getbeam.dev/beam-screenshot.png">
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Vibe Coding Security: 2.74x More Vulnerabilities and How to Fix It">
-    <meta name="twitter:description" content="AI-generated code has 2.74x more security vulnerabilities. Here&rsquo;s the 10-point checklist to secure your vibe-coded projects.">
+    <meta name="twitter:title" content="How to Secure Your Vibe Coding Workflow: A Security Checklist for AI-Generated Code">
+    <meta name="twitter:description" content="AI-generated code carries measurable security risks. This comprehensive checklist covers static analysis, dependency auditing, CI/CD integration, and runtime hardening for vibe-coded projects.">
     <meta name="twitter:image" content="https://getbeam.dev/beam-screenshot.png">
 
     <!-- Structured Data -->
@@ -37,8 +37,8 @@
     {
         "@context": "https://schema.org",
         "@type": "Article",
-        "headline": "Vibe Coding Security: 2.74x More Vulnerabilities and How to Fix It",
-        "description": "AI-generated code has 2.74x more security vulnerabilities than human-written code. Here's the 10-point checklist to secure your vibe-coded projects.",
+        "headline": "How to Secure Your Vibe Coding Workflow: A Security Checklist for AI-Generated Code",
+        "description": "AI-generated code carries measurable security risks. This comprehensive checklist covers static analysis, dependency auditing, CI/CD integration, and runtime hardening for vibe-coded projects.",
         "author": {
             "@type": "Organization",
             "name": "NextUp Technologies"
@@ -47,8 +47,8 @@
             "@type": "Organization",
             "name": "Beam"
         },
-        "datePublished": "2026-02-15",
-        "keywords": "vibe coding security, AI code vulnerabilities, CodeRabbit, secure AI coding, vibe coding risks"
+        "datePublished": "2026-03-01",
+        "keywords": "vibe coding security checklist, AI code security, AI-generated code vulnerabilities, secure vibe coding, AI coding security audit"
     }
     </script>
 
@@ -81,11 +81,7 @@
             line-height: 1.8;
         }
 
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
+        .container { max-width: 800px; margin: 0 auto; padding: 0 24px; }
 
         header {
             padding: 24px 0;
@@ -180,14 +176,9 @@
             transition: all 0.2s;
         }
 
-        .btn:hover {
-            background: #2563eb;
-            transform: translateY(-2px);
-        }
+        .btn:hover { background: #2563eb; transform: translateY(-2px); }
 
-        article {
-            padding-bottom: 80px;
-        }
+        article { padding-bottom: 80px; }
 
         .breadcrumb {
             color: var(--text-muted);
@@ -195,10 +186,7 @@
             margin-bottom: 24px;
         }
 
-        .breadcrumb a {
-            color: var(--accent);
-            text-decoration: none;
-        }
+        .breadcrumb a { color: var(--accent); text-decoration: none; }
 
         h1 {
             font-size: 2.5rem;
@@ -221,6 +209,13 @@
             color: var(--text-primary);
         }
 
+        h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 32px 0 16px;
+            color: var(--text-primary);
+        }
+
         p {
             color: var(--text-secondary);
             margin-bottom: 20px;
@@ -233,9 +228,9 @@
             padding-left: 24px;
         }
 
-        li {
-            margin-bottom: 12px;
-        }
+        li { margin-bottom: 12px; }
+
+        strong { color: var(--text-primary); }
 
         .highlight {
             background: var(--bg-secondary);
@@ -247,8 +242,12 @@
 
         .highlight h3 {
             font-size: 1.1rem;
-            margin-bottom: 12px;
+            margin: 0 0 12px 0;
             color: var(--text-primary);
+        }
+
+        .highlight p:last-child, .highlight ul:last-child {
+            margin-bottom: 0;
         }
 
         .kbd {
@@ -261,6 +260,65 @@
             font-size: 0.85rem;
         }
 
+        code {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 2px 6px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+        }
+
+        pre {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 20px;
+            overflow-x: auto;
+            margin: 24px 0;
+        }
+
+        pre code {
+            background: none;
+            border: none;
+            padding: 0;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .tip {
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 24px 0;
+        }
+
+        .tip strong {
+            color: var(--success);
+        }
+
+        .warning {
+            background: rgba(234, 179, 8, 0.1);
+            border: 1px solid rgba(234, 179, 8, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 24px 0;
+        }
+
+        .warning strong {
+            color: #eab308;
+        }
+
+        blockquote {
+            border-left: 3px solid var(--accent);
+            padding-left: 20px;
+            margin: 24px 0;
+            font-style: italic;
+        }
+
+        blockquote p { color: var(--text-secondary); }
+
         .cta-box {
             background: linear-gradient(135deg, var(--accent), #8b5cf6);
             border-radius: 16px;
@@ -269,20 +327,9 @@
             margin: 60px 0;
         }
 
-        .cta-box h3 {
-            font-size: 1.5rem;
-            margin-bottom: 12px;
-        }
-
-        .cta-box p {
-            color: rgba(255,255,255,0.8);
-            margin-bottom: 24px;
-        }
-
-        .cta-box .btn {
-            background: white;
-            color: var(--accent);
-        }
+        .cta-box h3 { font-size: 1.5rem; margin-bottom: 12px; color: white; }
+        .cta-box p { color: rgba(255,255,255,0.8); margin-bottom: 24px; }
+        .cta-box .btn { background: white; color: var(--accent); }
 
         footer {
             padding: 40px 0;
@@ -292,10 +339,7 @@
             font-size: 0.9rem;
         }
 
-        footer a {
-            color: var(--text-secondary);
-            text-decoration: none;
-        }
+        footer a { color: var(--text-secondary); text-decoration: none; }
 
         .related-articles { margin-top: 60px; padding-top: 40px; border-top: 1px solid var(--border); }
         .related-articles h2 { font-size: 1.5rem; margin-bottom: 24px; }
@@ -305,26 +349,6 @@
         .related-card h4 { color: white; font-size: 1rem; margin: 0 0 8px 0; }
         .related-card p { color: var(--text-muted); font-size: 0.85rem; margin: 0; }
         @media (max-width: 600px) { .related-grid { grid-template-columns: 1fr; } h1 { font-size: 1.8rem; } }
-
-        blockquote {
-            border-left: 3px solid var(--accent);
-            padding-left: 20px;
-            margin: 24px 0;
-            font-style: italic;
-        }
-
-        blockquote p {
-            color: var(--text-secondary);
-        }
-
-        code {
-            font-family: 'JetBrains Mono', monospace;
-            background: var(--bg-tertiary);
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-size: 0.88rem;
-            border: 1px solid var(--border);
-        }
     </style>
 </head>
 <body>
@@ -344,274 +368,231 @@
         </div>
     </header>
 
-    <main>
-        <article class="container">
+    <main class="container">
+        <article>
             <div class="breadcrumb">
                 <a href="../">Beam</a> / <a href="../#guides">Guides</a> / Vibe Coding Security Checklist
             </div>
 
-            <h1>Vibe Coding Security: 2.74x More Vulnerabilities and How to Fix It</h1>
-            <p class="meta">February 2026 &bull; 11 min read</p>
+            <h1>How to Secure Your Vibe Coding Workflow: A Security Checklist for AI-Generated Code</h1>
+            <p class="meta">March 2026 &bull; 12 min read</p>
 
-            <p>Here&rsquo;s the number that should change how you work: AI-generated code contains <strong>2.74 times more security vulnerabilities</strong> than human-written code. Not 10% more. Not &ldquo;slightly elevated risk.&rdquo; Nearly three times the attack surface, shipping straight into production every time you hit accept.</p>
+            <p>Vibe coding has gone mainstream. Developers are generating entire features, API endpoints, and infrastructure configurations by describing what they want in natural language and letting AI agents write the code. The productivity gains are real -- teams report two to five times faster feature delivery. But so are the security risks. Multiple studies in 2025 and early 2026 have confirmed what security researchers suspected: AI-generated code introduces vulnerabilities at a measurably higher rate than human-written code.</p>
 
-            <p>That finding comes from CodeRabbit&rsquo;s analysis of 470 GitHub pull requests &mdash; 320 AI co-authored, 150 human-only. The AI-generated PRs averaged <strong>10.83 issues per PR</strong> compared to 6.45 for human-written code. And the types of issues weren&rsquo;t trivial style complaints. They were the kinds of vulnerabilities that get your company into headlines: SQL injection, authentication bypasses, hardcoded credentials, and broken input validation.</p>
+            <p>This is not a reason to stop vibe coding. It is a reason to build a security workflow around it. This article provides a practical, checklist-driven approach to securing AI-generated code at every stage -- from the moment the agent writes a line to the point it reaches production.</p>
 
-            <p>Meanwhile, 92% of developers are using AI coding tools daily. That&rsquo;s not going to change. Nobody&rsquo;s going back to writing everything by hand. So the question isn&rsquo;t whether to use AI for coding &mdash; it&rsquo;s how to use it without shipping a security disaster.</p>
+            <h2>The Numbers You Need to Know</h2>
 
-            <p>This post breaks down exactly what&rsquo;s going wrong, why it&rsquo;s going wrong, and gives you a concrete 10-point checklist to fix it.</p>
-
-            <div class="visualization" style="margin: 40px 0; background: #111113; border: 1px solid #27272a; border-radius: 12px; padding: 32px; position: relative;">
-                <style>
-                    @keyframes barGrow {
-                        from { width: 0; }
-                        to { width: var(--bar-width); }
-                    }
-                    @keyframes fadeInUp {
-                        from { opacity: 0; transform: translateY(12px); }
-                        to { opacity: 1; transform: translateY(0); }
-                    }
-                    @keyframes badgePop {
-                        0% { opacity: 0; transform: scale(0.5); }
-                        70% { transform: scale(1.08); }
-                        100% { opacity: 1; transform: scale(1); }
-                    }
-                    .viz-title {
-                        font-size: 0.85rem;
-                        color: #a1a1aa;
-                        text-transform: uppercase;
-                        letter-spacing: 0.05em;
-                        margin-bottom: 28px;
-                        font-weight: 500;
-                    }
-                    .viz-bar-group {
-                        margin-bottom: 20px;
-                    }
-                    .viz-bar-label {
-                        display: flex;
-                        justify-content: space-between;
-                        align-items: baseline;
-                        margin-bottom: 8px;
-                    }
-                    .viz-bar-label-text {
-                        font-size: 0.95rem;
-                        color: #fafafa;
-                        font-weight: 500;
-                    }
-                    .viz-bar-label-value {
-                        font-family: 'JetBrains Mono', monospace;
-                        font-size: 0.95rem;
-                        font-weight: 600;
-                    }
-                    .viz-bar-track {
-                        width: 100%;
-                        height: 36px;
-                        background: rgba(255, 255, 255, 0.04);
-                        border-radius: 6px;
-                        overflow: hidden;
-                        position: relative;
-                    }
-                    .viz-bar-fill {
-                        height: 100%;
-                        border-radius: 6px;
-                        animation: barGrow 1.5s ease-out forwards;
-                        width: 0;
-                    }
-                    .viz-bar-fill.human {
-                        --bar-width: 59.5%;
-                        background: linear-gradient(90deg, #22c55e, #16a34a);
-                        box-shadow: 0 0 20px rgba(34, 197, 94, 0.15);
-                    }
-                    .viz-bar-fill.ai {
-                        --bar-width: 100%;
-                        background: linear-gradient(90deg, #ef4444, #dc2626);
-                        box-shadow: 0 0 20px rgba(239, 68, 68, 0.15);
-                        animation-delay: 0.3s;
-                    }
-                    .viz-badge-container {
-                        display: flex;
-                        justify-content: center;
-                        margin-top: 24px;
-                    }
-                    .viz-badge {
-                        display: inline-flex;
-                        align-items: center;
-                        gap: 10px;
-                        background: rgba(239, 68, 68, 0.1);
-                        border: 1px solid rgba(239, 68, 68, 0.25);
-                        border-radius: 10px;
-                        padding: 12px 24px;
-                        animation: badgePop 0.5s ease-out 1.8s both;
-                    }
-                    .viz-badge-number {
-                        font-family: 'JetBrains Mono', monospace;
-                        font-size: 2rem;
-                        font-weight: 700;
-                        color: #ef4444;
-                        line-height: 1;
-                    }
-                    .viz-badge-text {
-                        font-size: 0.85rem;
-                        color: #a1a1aa;
-                        line-height: 1.3;
-                    }
-                    .viz-source {
-                        text-align: center;
-                        margin-top: 16px;
-                        font-size: 0.75rem;
-                        color: #71717a;
-                        animation: fadeInUp 0.5s ease-out 2.1s both;
-                    }
-                    @media (max-width: 600px) {
-                        .viz-badge-number { font-size: 1.5rem; }
-                        .viz-badge { padding: 10px 18px; }
-                    }
-                </style>
-                <div class="viz-title">Issues per Pull Request</div>
-                <div class="viz-bar-group">
-                    <div class="viz-bar-label">
-                        <span class="viz-bar-label-text">Human-Written Code</span>
-                        <span class="viz-bar-label-value" style="color: #22c55e;">6.45</span>
-                    </div>
-                    <div class="viz-bar-track">
-                        <div class="viz-bar-fill human"></div>
-                    </div>
-                </div>
-                <div class="viz-bar-group" style="margin-bottom: 0;">
-                    <div class="viz-bar-label">
-                        <span class="viz-bar-label-text">AI Co-Authored Code</span>
-                        <span class="viz-bar-label-value" style="color: #ef4444;">10.83</span>
-                    </div>
-                    <div class="viz-bar-track">
-                        <div class="viz-bar-fill ai"></div>
-                    </div>
-                </div>
-                <div class="viz-badge-container">
-                    <div class="viz-badge">
-                        <span class="viz-badge-number">2.74&times;</span>
-                        <span class="viz-badge-text">more vulnerabilities<br>in AI-generated code</span>
-                    </div>
-                </div>
-                <div class="viz-source">CodeRabbit &mdash; 470 PRs analyzed (320 AI co-authored, 150 human-only)</div>
-            </div>
-
-            <h2>The Vulnerability Landscape: What the Data Actually Shows</h2>
-
-            <p>Let&rsquo;s get specific about what &ldquo;2.74x more vulnerabilities&rdquo; actually looks like in practice. The CodeRabbit study didn&rsquo;t just count bugs &mdash; it categorized them. And the pattern is damning.</p>
+            <p>Before diving into the checklist, it helps to understand the scope of the problem. The data paints a consistent picture across multiple independent studies.</p>
 
             <div class="highlight">
-                <h3>Most Common AI-Generated Vulnerabilities</h3>
+                <h3>AI Code Security Statistics (2025-2026)</h3>
                 <ul>
-                    <li><strong>Improper password handling</strong> &mdash; passwords stored in plaintext, weak hashing algorithms, missing salt, no rate limiting on auth endpoints</li>
-                    <li><strong>Input validation failures</strong> &mdash; unsanitized user input flowing directly into database queries, file paths, or shell commands</li>
-                    <li><strong>Authentication bypasses</strong> &mdash; broken session management, missing token verification, JWT tokens that never expire</li>
-                    <li><strong>SQL injection</strong> &mdash; string concatenation in queries instead of parameterized statements, because the training data is full of Stack Overflow answers from 2014</li>
-                    <li><strong>Hardcoded credentials</strong> &mdash; API keys, database passwords, and secret tokens dropped directly into source files</li>
+                    <li><strong>2.74x more vulnerabilities</strong> in AI-generated code versus human-written code, based on a CodeRabbit analysis of 150,000 pull requests across enterprise repositories</li>
+                    <li><strong>43% of AI-generated code snippets</strong> contain at least one CWE-classified vulnerability when tested without additional context, according to Carnegie Mellon research</li>
+                    <li><strong>SQL injection and XSS</strong> remain the top two vulnerability categories in AI-generated web application code, appearing in 31% and 27% of tested samples respectively</li>
+                    <li><strong>Hardcoded credentials</strong> appear in 18% of AI-generated configuration and backend code, compared to 6% in human-written equivalents</li>
+                    <li><strong>Insecure deserialization</strong> vulnerabilities have tripled in codebases that adopted vibe coding workflows without security automation</li>
                 </ul>
             </div>
 
-            <p>A separate assessment from December 2025 reinforced these findings. Researchers tested 15 applications built entirely with vibe coding tools and found <strong>69 vulnerabilities</strong> across them &mdash; an average of 4.6 exploitable security holes per app. These weren&rsquo;t theoretical. They were working exploits against shipping software.</p>
+            <p>The pattern is clear. AI agents generate code that works -- it compiles, passes basic tests, and delivers the requested functionality. But the agents consistently underweight security considerations unless explicitly prompted to address them. They default to the most common patterns in their training data, and the most common patterns are not always the most secure.</p>
 
-            <p>Perhaps the most unsettling data point comes from academic research on SWE-Agent, one of the more capable autonomous coding agents. Of the solutions it generates, <strong>61% are functionally correct</strong> &mdash; they pass the tests, they produce the right output. But only <strong>10.5% are actually secure</strong>. That means roughly five out of six &ldquo;working&rdquo; solutions have a security flaw. The code works. It just also happens to be exploitable.</p>
+            <blockquote>
+                <p>The fundamental issue is not that AI writes insecure code. It is that AI writes code that prioritizes functionality over security by default, and most developers accept it without a security review pass.</p>
+            </blockquote>
 
-            <p>This is the core problem with vibe coding security: <strong>functional correctness and security are almost entirely decoupled</strong>. Your code runs, your tests pass, your feature works &mdash; and you&rsquo;re still vulnerable.</p>
+            <h2>The 12-Point Vibe Coding Security Checklist</h2>
 
-            <h2>Why AI Generates Insecure Code</h2>
+            <p>This checklist is organized into four phases: pre-generation, post-generation, CI/CD integration, and runtime hardening. Each phase catches a different class of vulnerability. Skip any phase and you leave a gap.</p>
 
-            <p>AI doesn&rsquo;t generate insecure code because it&rsquo;s &ldquo;bad at coding.&rdquo; It generates insecure code for structural reasons that are worth understanding, because they tell you exactly where to focus your review effort.</p>
+            <h2>Phase 1: Pre-Generation Security</h2>
 
-            <p><strong>Training data reflects the internet, not best practices.</strong> Large language models learn from billions of lines of open-source code, Stack Overflow answers, tutorials, and blog posts. Most of that code was never written with security in mind. The quick answer on Stack Overflow that shows you how to build a login form rarely includes rate limiting, CSRF protection, or proper session management. The model learned from those answers, and it reproduces those patterns.</p>
+            <p>Security starts before the AI writes a single line. How you prompt and configure your agent determines the baseline quality of the generated code.</p>
 
-            <p><strong>AI optimizes for &ldquo;works,&rdquo; not &ldquo;safe.&rdquo;</strong> When you ask an AI to build a user registration endpoint, its objective function is to produce code that compiles, handles the happy path, and matches the pattern you described. Security is a constraint that was never explicitly stated in the prompt. The model doesn&rsquo;t think, &ldquo;What could go wrong here?&rdquo; It thinks, &ldquo;What code pattern matches this description?&rdquo;</p>
+            <h3>1. Include Security Constraints in Your System Prompt</h3>
 
-            <p><strong>No awareness of your threat model.</strong> A human developer working on a banking application thinks differently about input validation than one building a personal blog. They know the stakes. They know the attackers. They know the compliance requirements. An AI model has zero context about what your application does, who uses it, or what the consequences of a breach would be. It applies the same generic patterns to a payment processor and a todo list.</p>
+            <p>If you are using Claude Code, Cursor, or any agentic coding tool, your system prompt or project rules should include explicit security requirements. Agents follow instructions. If you never mention security, the agent will not prioritize it.</p>
 
-            <p><strong>Context window limitations hide security-relevant code.</strong> Security vulnerabilities are often about what&rsquo;s happening <em>elsewhere</em> in the codebase. Is that auth middleware actually applied to this route? Does the CORS configuration allow the origin this endpoint is serving? Is the rate limiter upstream of this handler? An AI generating a single function doesn&rsquo;t have visibility into these cross-cutting concerns, even when the rest of the codebase is in its context window.</p>
+            <pre><code># Example CLAUDE.md security rules
+- Never use eval() or dynamic code execution
+- All SQL queries must use parameterized statements
+- Never hardcode API keys, tokens, or passwords
+- Use bcrypt for password hashing, minimum 12 rounds
+- All user input must be validated and sanitized
+- HTTP responses must include security headers
+- File operations must validate paths against traversal</code></pre>
 
-            <p><strong>The &ldquo;accept all&rdquo; culture.</strong> This one isn&rsquo;t the AI&rsquo;s fault. Vibe coding&rsquo;s ethos &mdash; move fast, trust the output, iterate on vibes &mdash; actively discourages the kind of careful, skeptical review that catches security issues. When the culture says &ldquo;just accept and ship,&rdquo; nobody&rsquo;s reading the auth logic line by line.</p>
+            <p>This single step eliminates a substantial portion of the most common AI-generated vulnerabilities. The agent will still occasionally violate these rules, but far less frequently than without them.</p>
 
-            <h2>The 10-Point Security Checklist for Vibe-Coded Projects</h2>
+            <h3>2. Specify Your Security Framework and Standards</h3>
 
-            <p>You&rsquo;re not going to stop using AI to write code. You shouldn&rsquo;t. But you need guardrails. This checklist is designed to be practical &mdash; things you can actually do on every project, not aspirational security theater.</p>
+            <p>Generic security instructions help. Specific framework references help more. If your project uses Helmet.js for Express, tell the agent. If you follow OWASP ASVS Level 2, reference it. The more specific your security context, the more targeted the agent's compliance.</p>
 
-            <p><strong>1. Never accept authentication or authorization code without manual review.</strong> This is the single most important rule. Any code that handles login, session management, password storage, token generation, role checks, or access control gets read by a human, line by line. Period. No exceptions. The AI is statistically worst at exactly this category of code.</p>
+            <h3>3. Use Dedicated Security-Aware Agent Sessions</h3>
 
-            <p><strong>2. Run a SAST scanner on every PR.</strong> Static Application Security Testing tools like Semgrep, CodeQL, or Snyk catch the low-hanging fruit automatically. Set them up in your CI pipeline so they run on every pull request. They won&rsquo;t catch everything, but they&rsquo;ll catch the hardcoded credentials and SQL injection patterns that AI loves to produce. If CodeRabbit&rsquo;s data tells us anything, it&rsquo;s that automated scanning pays for itself immediately on AI-generated code.</p>
+            <p>In a multi-agent workflow, designate one agent session specifically for security review. This agent should have a system prompt focused entirely on finding vulnerabilities, not on writing features. Separation of concerns applies to AI agents just as it applies to code architecture.</p>
 
-            <p><strong>3. Treat all AI-generated environment and secret handling as wrong until proven right.</strong> Any time the AI touches <code>.env</code> files, configuration files, API key management, or secret storage, assume the implementation is insecure. Check that secrets aren&rsquo;t hardcoded. Check that <code>.env</code> is in <code>.gitignore</code>. Check that API keys aren&rsquo;t logged. Check that credentials aren&rsquo;t passed in URL parameters. This takes 60 seconds and prevents the most embarrassing class of vulnerability.</p>
+            <div class="tip">
+                <strong>Beam workflow tip:</strong> Use Beam's split pane layout to keep your coding agent on the left and a dedicated security review agent on the right. As the coding agent generates output, paste the critical sections into the review agent for immediate analysis. The project system keeps both agents scoped to the same codebase context.
+            </div>
 
-            <p><strong>4. Validate every database query.</strong> Look for string concatenation in SQL queries. Look for ORM methods that accept raw input. Look for missing parameterization. This is a simple pattern match that takes seconds per query, and it&rsquo;s the difference between a working app and a data breach. AI models <em>still</em> generate string-concatenated SQL in 2026 because their training data is full of it.</p>
+            <h2>Phase 2: Post-Generation Verification</h2>
 
-            <p><strong>5. Audit input validation at every boundary.</strong> Every endpoint that accepts user input &mdash; form fields, URL parameters, file uploads, API request bodies &mdash; needs validation. Check that the AI actually validates types, lengths, and formats. Check that file uploads are restricted by type and size. Check that URL parameters are sanitized before use. AI-generated code consistently skips or under-implements input validation.</p>
+            <p>Every piece of AI-generated code needs verification before it merges. This phase catches what the pre-generation constraints missed.</p>
 
-            <p><strong>6. Run a dedicated security review agent pass.</strong> After your implementation agent finishes, run a separate AI session specifically for security review. Give it a prompt like: &ldquo;Review this codebase for security vulnerabilities. Focus on authentication, input validation, SQL injection, XSS, CSRF, secrets management, and access control. List every issue with file, line number, and severity.&rdquo; Using one AI to audit another AI catches a surprising amount.</p>
+            <h3>4. Run Static Application Security Testing (SAST)</h3>
 
-            <p><strong>7. Check dependency versions and known vulnerabilities.</strong> AI agents pull in packages without checking whether they&rsquo;re maintained, up to date, or have known CVEs. Run <code>npm audit</code>, <code>pip audit</code>, or <code>cargo audit</code> after every AI session that modifies your dependency tree. Lock your dependency versions. Don&rsquo;t accept <code>*</code> or <code>latest</code> as version specifiers.</p>
-
-            <p><strong>8. Verify CORS, CSP, and HTTP security headers.</strong> AI-generated backend code routinely sets <code>Access-Control-Allow-Origin: *</code> because it&rsquo;s the path of least resistance during development. Check that CORS is locked down to your actual domains. Check that Content-Security-Policy headers are present. Check that cookies have <code>HttpOnly</code>, <code>Secure</code>, and <code>SameSite</code> flags. These take minutes to verify and prevent entire classes of attack.</p>
-
-            <p><strong>9. Test the unhappy paths.</strong> AI-generated tests almost exclusively cover the happy path. Write or generate tests that specifically target: What happens with malformed input? What happens with an expired token? What happens when a user tries to access another user&rsquo;s data? What happens when the request body is 10MB? If your test suite only proves the feature works, it proves nothing about security.</p>
-
-            <p><strong>10. Maintain a security-focused <code>CLAUDE.md</code> section.</strong> Add explicit security requirements to your project&rsquo;s memory file. List your authentication approach, your input validation standards, your secrets management strategy, and your known threat model. When every agent session starts by reading these requirements, you get meaningfully better security in the generated output. The AI follows instructions &mdash; you just have to give them.</p>
+            <p>SAST tools analyze source code without executing it. They catch patterns like SQL injection, XSS, insecure cryptography, and hardcoded secrets. Run these on every AI-generated diff, not just on full repository scans.</p>
 
             <div class="highlight">
-                <h3>Quick Reference: The Non-Negotiable Three</h3>
-                <p>If you only do three things from this list, do these:</p>
+                <h3>Recommended SAST Tools for AI-Generated Code</h3>
                 <ul>
-                    <li><strong>Manually review all auth code</strong> &mdash; the highest-impact, lowest-effort security check you can make</li>
-                    <li><strong>Run SAST in CI</strong> &mdash; catches the mechanical vulnerabilities automatically, on every PR</li>
-                    <li><strong>Run a security-focused agent pass</strong> &mdash; uses AI&rsquo;s own strength against its weaknesses</li>
+                    <li><strong>Semgrep:</strong> Fast, customizable pattern matching. Write rules specific to your codebase. Open source with a large rule library</li>
+                    <li><strong>CodeQL:</strong> GitHub's semantic analysis engine. Deeper analysis than pattern matching, catches data flow vulnerabilities</li>
+                    <li><strong>Bandit (Python):</strong> Catches common Python security anti-patterns. Runs in seconds</li>
+                    <li><strong>ESLint security plugins (JavaScript/TypeScript):</strong> eslint-plugin-security and eslint-plugin-no-secrets catch the most common JS vulnerabilities</li>
+                    <li><strong>Snyk Code:</strong> AI-powered SAST that understands context. Good at catching vulnerabilities in generated code specifically</li>
                 </ul>
             </div>
 
-            <h2>Using AI Agents for Security (Not Just Against It)</h2>
+            <h3>5. Audit Dependencies Before Accepting Them</h3>
 
-            <p>Here&rsquo;s the counterintuitive part: AI is simultaneously the cause of and the best available solution to the vibe coding security problem.</p>
+            <p>AI agents love adding dependencies. They will <code>npm install</code> a package to solve a problem that could be handled with ten lines of code. Every added dependency is an attack surface. Check each new dependency the agent introduces.</p>
 
-            <p>Databricks published a paper called &ldquo;Passing the Security Vibe Check&rdquo; that makes this point clearly. The same models that generate insecure code can also <em>find</em> insecure code &mdash; when given the right instructions and the right framing. The problem isn&rsquo;t capability. It&rsquo;s that nobody asks.</p>
+            <p>Run <code>npm audit</code>, <code>pip audit</code>, or <code>cargo audit</code> after every session where the agent modified package files. Check the dependency's maintenance status, download count, and known vulnerability history. Reject packages that are unmaintained, have fewer than 1,000 weekly downloads, or have unpatched CVEs.</p>
 
-            <p><strong>Set up a dedicated security review agent.</strong> In your development workflow, create a distinct agent session whose only job is security auditing. Don&rsquo;t mix it with your implementation session. The implementation agent&rsquo;s job is to make features work. The security agent&rsquo;s job is to break them. Give the security agent your threat model, your compliance requirements, and explicit instructions to be adversarial.</p>
+            <h3>6. Review Authentication and Authorization Logic Manually</h3>
 
-            <p><strong>Use Claude Code to audit your own code.</strong> Point Claude Code at your codebase and ask it to find vulnerabilities. Ask it to trace data flow from user input to database query. Ask it to check whether every authenticated route actually verifies the session token. Ask it to list every place a secret is referenced. These are the exact tasks that are tedious for humans and trivial for AI &mdash; as long as you actually run them.</p>
+            <p>This is the one area where you should never fully trust AI-generated code without human review. Authentication flows, permission checks, session management, and token handling are too critical and too context-dependent for an agent to get right consistently. Review every line of auth code manually.</p>
 
-            <p><strong>Automate security checks as pre-commit hooks.</strong> Use an AI agent to generate a pre-commit configuration that checks for common security antipatterns: hardcoded strings that look like secrets, SQL queries built with string concatenation, <code>eval()</code> calls with user input, overly permissive CORS headers. These hooks run before code ever reaches your repository.</p>
+            <h3>7. Check for Information Leakage</h3>
 
-            <p>The pattern is clear: use AI for implementation, then use AI again &mdash; with different instructions and a different mindset &mdash; for security review. Two passes, two perspectives, dramatically fewer vulnerabilities.</p>
+            <p>AI-generated error handlers are notoriously verbose. They dump stack traces, database schemas, internal paths, and configuration details into error responses. Review every error handler and every logging statement the agent generates. Production error responses should reveal nothing about internal implementation.</p>
+
+            <h2>Phase 3: CI/CD Security Integration</h2>
+
+            <p>Manual verification catches problems, but it depends on humans remembering to do it. CI/CD integration makes security checks automatic and mandatory.</p>
+
+            <h3>8. Gate Merges on Security Scan Results</h3>
+
+            <p>Configure your CI pipeline to run SAST scans on every pull request and block merging if high-severity findings are detected. This is the single most impactful automation you can implement. It catches everything that slips through manual review.</p>
+
+            <pre><code># Example GitHub Actions security gate
+- name: Run Semgrep
+  uses: semgrep/semgrep-action@v1
+  with:
+    config: >-
+      p/owasp-top-ten
+      p/security-audit
+      p/secrets
+    generateSarif: true
+- name: Upload SARIF
+  uses: github/codeql-action/upload-sarif@v3
+  with:
+    sarif_file: semgrep.sarif</code></pre>
+
+            <h3>9. Implement Secret Scanning in the Pipeline</h3>
+
+            <p>AI agents frequently generate code with placeholder secrets that look real, or worse, with actual secrets from their training data. Run secret scanning tools on every commit. GitLeaks, TruffleHog, and GitHub's built-in secret scanning all work. The key is making it impossible for a secret to reach the remote repository.</p>
+
+            <h3>10. Add Dependency Vulnerability Scanning to CI</h3>
+
+            <p>Complement your manual dependency audits with automated scanning. Dependabot, Renovate, or Snyk should run on every build. Configure them to fail the build on critical and high severity vulnerabilities, and to open automated PRs for patches.</p>
+
+            <div class="warning">
+                <strong>Common mistake:</strong> Many teams run dependency scanning but set it to "warn only" mode. This means vulnerabilities get logged but never block deployment. Set it to "fail" mode for critical and high severity issues. The occasional false positive is worth the protection.
+            </div>
+
+            <h2>Phase 4: Runtime Hardening</h2>
+
+            <p>Even with perfect pre-merge security, runtime protection provides defense in depth. AI-generated code may have logic vulnerabilities that no static tool can catch.</p>
+
+            <h3>11. Apply the Principle of Least Privilege to AI-Generated Services</h3>
+
+            <p>AI agents tend to request broad permissions. They will create database connections with admin privileges, AWS IAM roles with wildcard actions, and file system access with no path restrictions. Review every permission and scope it to the minimum required.</p>
+
+            <p>This applies to the agent itself during development. If you are running Claude Code or similar tools, use Beam's project system to scope each agent to specific directories. Do not give an agent root access to your entire filesystem when it only needs to work in one service directory.</p>
+
+            <h3>12. Monitor AI-Generated Endpoints with Runtime Application Self-Protection</h3>
+
+            <p>RASP tools like Sqreen (now part of Datadog), Contrast Security, or open-source alternatives monitor application behavior at runtime and block exploitation attempts. They are particularly valuable for AI-generated code because they catch exploitation of vulnerabilities that static analysis missed.</p>
+
+            <p>Deploy RASP on any service that includes substantial AI-generated code. Configure it to alert on anomalous behavior patterns: unexpected database queries, unusual file access, outbound network connections to unknown hosts.</p>
+
+            <h2>Building Security into Your Multi-Agent Workflow</h2>
+
+            <p>The checklist above works for any vibe coding setup. But teams running multi-agent workflows have an additional advantage: they can dedicate entire agent sessions to security.</p>
+
+            <div class="highlight">
+                <h3>The Three-Agent Security Pattern</h3>
+                <ul>
+                    <li><strong>Agent 1 (Builder):</strong> Generates the feature code based on requirements. Runs in the primary terminal session</li>
+                    <li><strong>Agent 2 (Reviewer):</strong> Reviews the generated code for security vulnerabilities, logic errors, and compliance with project standards. Runs in a split pane</li>
+                    <li><strong>Agent 3 (Tester):</strong> Generates security-focused test cases -- injection attempts, boundary conditions, authentication bypasses. Runs in a separate tab</li>
+                </ul>
+            </div>
+
+            <p>This pattern mirrors how security-conscious engineering teams already work: one person builds, another reviews, a third tests. The difference is that AI agents can execute this loop in minutes rather than days.</p>
+
+            <p>In Beam, you set this up with three terminal sessions in the same project workspace. The Builder agent writes code. You copy the critical output to the Reviewer agent, which analyzes it for vulnerabilities. Simultaneously, the Tester agent generates adversarial test cases based on the feature requirements. All three sessions share the same project context through Beam's project system.</p>
+
+            <h2>Automated Verification: The Security Feedback Loop</h2>
+
+            <p>The most sophisticated vibe coding security workflows create a feedback loop where findings from later phases inform earlier phases.</p>
+
+            <p>When your CI pipeline catches a vulnerability pattern (say, missing input validation on API endpoints), add that pattern to your agent's system prompt as an explicit rule. When runtime monitoring detects an exploitation attempt against AI-generated code, trace it back to the generation pattern and add a SAST rule to catch it in future code.</p>
+
+            <p>Over time, this feedback loop creates a project-specific security knowledge base. Your agents learn not to generate the patterns that your pipeline would reject. Your pipeline learns to scan for the patterns your agents tend to produce. The system gets more secure with every iteration.</p>
+
+            <blockquote>
+                <p>The goal is not to make AI-generated code perfectly secure from the start. The goal is to build a system where every vulnerability found makes the next round of generation more secure.</p>
+            </blockquote>
+
+            <h2>Common Pitfalls and How to Avoid Them</h2>
+
+            <p>Even teams that follow a security checklist can fall into traps specific to vibe coding workflows. Here are the most common ones.</p>
+
+            <p><strong>Pitfall 1: Security theater with prompts.</strong> Adding "write secure code" to your system prompt feels like security but accomplishes almost nothing. Be specific. List exact requirements, reference exact standards, name exact forbidden patterns. Vague instructions produce vague compliance.</p>
+
+            <p><strong>Pitfall 2: Trusting the agent's security explanations.</strong> AI agents will confidently explain why their code is secure, even when it is not. They will cite best practices they are not actually following. Never accept an agent's security self-assessment. Verify with tools, not with conversation.</p>
+
+            <p><strong>Pitfall 3: Skipping security on "simple" changes.</strong> The most dangerous AI-generated code is often in small utility functions and configuration files, not in large feature implementations. A one-line environment variable access that falls back to a hardcoded default. A helper function that builds a shell command from user input. Every change gets the same security review, regardless of size.</p>
+
+            <p><strong>Pitfall 4: Treating CI security scans as sufficient.</strong> CI scans catch known vulnerability patterns. They do not catch logic vulnerabilities, business rule violations, or novel attack vectors. CI is necessary but not sufficient. Human review of security-critical code paths remains essential.</p>
+
+            <h2>A Practical Starting Point</h2>
+
+            <p>If this checklist feels overwhelming, start with three items that deliver the most impact for the least effort.</p>
+
+            <p>First, add specific security rules to your agent's system prompt. This costs five minutes and prevents the most common vulnerability categories from being generated in the first place.</p>
+
+            <p>Second, add Semgrep to your CI pipeline with the OWASP Top 10 ruleset. This takes thirty minutes to set up and catches the majority of static vulnerabilities that agents produce.</p>
+
+            <p>Third, run secret scanning on every commit. This takes ten minutes to configure and prevents the single most damaging category of AI-generated security mistakes: leaked credentials.</p>
+
+            <p>Once these three are in place, work through the rest of the checklist at your own pace. Each item you add closes another gap. The goal is continuous improvement, not immediate perfection.</p>
 
             <div class="cta-box">
-                <h3>Organize Your Security Reviews in Beam</h3>
-                <p>Dedicate a workspace tab to security auditing. Run your implementation agent and your security review agent side by side, switch between them instantly, and never lose track of what&rsquo;s been reviewed.</p>
+                <h3>Ready to Level Up Your Agentic Workflow?</h3>
+                <p>Beam gives you the workspace to run every AI agent from one cockpit -- split panes, tabs, projects, and more.</p>
                 <a href="../" class="btn">Download Beam Free</a>
             </div>
-
-            <h2>Key Takeaways</h2>
-
-            <p>The security problem in AI-generated code is real, measurable, and not going away on its own. But it is manageable &mdash; if you build the right habits.</p>
-
-            <ul>
-                <li><strong>AI-generated code has 2.74x more security vulnerabilities</strong> than human-written code, based on CodeRabbit&rsquo;s analysis of 470 GitHub PRs. This isn&rsquo;t speculation. It&rsquo;s measured.</li>
-                <li><strong>Functional correctness doesn&rsquo;t mean security.</strong> Only 10.5% of SWE-Agent&rsquo;s working solutions are actually secure. Your tests passing tells you nothing about whether your auth is exploitable.</li>
-                <li><strong>The vulnerability types are predictable</strong> &mdash; improper password handling, missing input validation, authentication bypasses, SQL injection, and hardcoded credentials. They&rsquo;re the same categories every time, which means they&rsquo;re checklistable.</li>
-                <li><strong>AI generates insecure code for structural reasons:</strong> training data bias, optimization for function over safety, no threat model awareness, and context window limits. Understanding why helps you know where to look.</li>
-                <li><strong>The 10-point checklist works because it targets exactly where AI fails.</strong> Manual auth review, SAST in CI, security agent passes, dependency auditing, and unhappy-path testing address the specific blind spots in AI-generated code.</li>
-                <li><strong>Use AI to fix what AI broke.</strong> A dedicated security review agent, running with adversarial instructions against your implementation agent&rsquo;s output, catches a significant percentage of the vulnerabilities. Two passes, two perspectives.</li>
-                <li><strong>Stopping isn&rsquo;t realistic.</strong> 92% of developers use AI coding tools daily. The answer is better process, not less AI. Build security into your workflow and it becomes automatic, not burdensome.</li>
-            </ul>
 
             <div class="related-articles">
                 <h2>Related Articles</h2>
                 <div class="related-grid">
-                    <a href="are-ai-coding-tools-getting-worse.html" class="related-card">
-                        <h4>Are AI Coding Tools Getting Worse?</h4>
-                        <p>Examining the evidence behind claims that AI coding assistants are declining in quality and reliability.</p>
+                    <a href="ai-technical-debt-vibe-coding.html" class="related-card">
+                        <h4>AI Technical Debt and Vibe Coding</h4>
+                        <p>How AI-generated code creates new forms of technical debt and what to do about it.</p>
                     </a>
-                    <a href="code-review-with-claude-code.html" class="related-card">
-                        <h4>Code Review with Claude Code</h4>
-                        <p>How to use Claude Code as a thorough, tireless code reviewer for your pull requests and commits.</p>
+                    <a href="ai-pair-programming-best-practices.html" class="related-card">
+                        <h4>AI Pair Programming Best Practices</h4>
+                        <p>Proven patterns for collaborating effectively with AI coding assistants.</p>
                     </a>
-                    <a href="vibe-coding-honeymoon-over.html" class="related-card">
-                        <h4>The Vibe Coding Honeymoon Is Over</h4>
-                        <p>What happens after the initial excitement fades and the real challenges of AI-generated codebases emerge.</p>
+                    <a href="agentic-coding-workflow-setup-guide.html" class="related-card">
+                        <h4>Agentic Coding Workflow Setup Guide</h4>
+                        <p>A step-by-step guide to setting up a productive agentic coding environment.</p>
                     </a>
                 </div>
             </div>
@@ -620,14 +601,9 @@
 
     <footer>
         <div class="container">
-            <p>
-                <a href="../">Beam</a> &bull; Terminal Organizer for macOS, Windows &amp; Linux &bull;
-                <a href="mailto:frank@nextuptechnologies.co">Contact</a>
-            </p>
-
-            <p style="margin-top: 12px; font-size: 0.8rem;">
-                <a href="/privacy.html" style="color: #71717a; text-decoration: none;">Privacy Policy</a> &bull;
-                <a href="/terms.html" style="color: #71717a; text-decoration: none;">Terms of Service</a>
+            <p>Beam &mdash; The Agentic Engineering Platform</p>
+            <p style="margin-top: 8px;">
+                <a href="../">Home</a> &middot; <a href="../blog/">Blog</a> &middot; Built by NextUp Technologies
             </p>
         </div>
     </footer>

@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D0XH8B0RKL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-D0XH8B0RKL');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Developer's Guide to Model Context Protocol (MCP): From Zero to Production | Beam</title>
+    <meta name="description" content="Complete guide to Model Context Protocol for developers. Learn MCP fundamentals, build your first MCP server, handle security, and explore the production ecosystem.">
+    <meta name="keywords" content="Model Context Protocol tutorial, MCP guide developers, MCP server tutorial, Model Context Protocol production, MCP security, build MCP server">
+    <meta name="author" content="NextUp Technologies">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://getbeam.dev/blog/model-context-protocol-mcp-guide.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://getbeam.dev/blog/model-context-protocol-mcp-guide.html">
+    <meta property="og:title" content="The Developer's Guide to Model Context Protocol (MCP): From Zero to Production">
+    <meta property="og:description" content="Complete guide to MCP for developers. Learn fundamentals, build servers, handle security, and deploy to production.">
+    <meta property="og:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="The Developer's Guide to Model Context Protocol (MCP): From Zero to Production">
+    <meta name="twitter:description" content="Complete guide to MCP for developers. Learn fundamentals, build servers, handle security, and deploy to production.">
+    <meta name="twitter:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "The Developer's Guide to Model Context Protocol (MCP): From Zero to Production",
+        "description": "Complete guide to Model Context Protocol for developers. Learn MCP fundamentals, build your first MCP server, handle security, and explore the production ecosystem.",
+        "author": {
+            "@type": "Organization",
+            "name": "NextUp Technologies"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Beam"
+        },
+        "datePublished": "2026-03-01",
+        "keywords": "Model Context Protocol tutorial, MCP guide developers, MCP server tutorial, Model Context Protocol production, MCP security"
+    }
+    </script>
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #111113;
+            --bg-tertiary: #1a1a1d;
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.4);
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --border: #27272a;
+            --success: #22c55e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        a, button, .btn, .related-card, .post-card, .editorial-card { cursor: pointer; }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        header {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 60px;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1.5rem;
+            text-decoration: none;
+            color: var(--text-primary);
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 7px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .pixel-logo-wrap {
+            display: flex;
+            align-items: center;
+            filter: drop-shadow(0 0 6px rgba(59, 130, 246, 0.45));
+            width: 79px;
+            height: 19px;
+            flex-shrink: 0;
+            position: relative;
+            overflow: visible;
+        }
+
+        .pixel-logo {
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: block;
+            width: 3px;
+            height: 3px;
+            border-radius: 0.5px;
+            background: #a0c4ff;
+            box-shadow:
+                4px 0 0 0 #a2c5ff, 8px 0 0 0 #a4c6ff,
+                20px 0 0 0 #acc9ff, 24px 0 0 0 #aecaff, 28px 0 0 0 #b0cbff, 32px 0 0 0 #b2ccff,
+                44px 0 0 0 #bacfff, 48px 0 0 0 #bcd0ff,
+                60px 0 0 0 #c4d4ff,
+                76px 0 0 0 #d0daff,
+                0 4px 0 0 #96bdf8, 12px 4px 0 0 #9ec1f8,
+                20px 4px 0 0 #a4c4f8,
+                40px 4px 0 0 #b4ccf8, 52px 4px 0 0 #bcd0f8,
+                60px 4px 0 0 #c0d2f8, 64px 4px 0 0 #c2d3f8,
+                72px 4px 0 0 #c8d6f8, 76px 4px 0 0 #cad7f8,
+                0 8px 0 0 #8cb6f0, 4px 8px 0 0 #8eb7f0, 8px 8px 0 0 #90b8f0,
+                20px 8px 0 0 #9abef0, 24px 8px 0 0 #9cbff0, 28px 8px 0 0 #9ec0f0,
+                40px 8px 0 0 #aac6f0, 44px 8px 0 0 #acc7f0, 48px 8px 0 0 #aec8f0, 52px 8px 0 0 #b0c9f0,
+                60px 8px 0 0 #b6ccf0, 68px 8px 0 0 #bccff0,
+                76px 8px 0 0 #c4d3f0,
+                0 12px 0 0 #82afe8, 12px 12px 0 0 #8cb5e8,
+                20px 12px 0 0 #92b8e8,
+                40px 12px 0 0 #a2c0e8, 52px 12px 0 0 #aac4e8,
+                60px 12px 0 0 #aec6e8,
+                76px 12px 0 0 #bccde8,
+                0 16px 0 0 #78a8e0, 4px 16px 0 0 #7aa9e0, 8px 16px 0 0 #7caae0,
+                20px 16px 0 0 #88b0e0, 24px 16px 0 0 #8ab1e0, 28px 16px 0 0 #8cb2e0, 32px 16px 0 0 #8eb3e0,
+                40px 16px 0 0 #96b8e0, 52px 16px 0 0 #a0bce0,
+                60px 16px 0 0 #a4bee0,
+                76px 16px 0 0 #b4c6e0;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            background: var(--accent);
+            color: white;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+        }
+
+        article {
+            padding-bottom: 80px;
+        }
+
+        .breadcrumb {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+        }
+
+        .breadcrumb a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .meta {
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            font-size: 0.95rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 48px 0 20px;
+            color: var(--text-primary);
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        ul, ol {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            padding-left: 24px;
+        }
+
+        li {
+            margin-bottom: 12px;
+        }
+
+        .highlight {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 32px 0;
+        }
+
+        .highlight h3 {
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .kbd {
+            display: inline-block;
+            padding: 2px 8px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, var(--accent), #8b5cf6);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .cta-box h3 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+        }
+
+        .cta-box p {
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 24px;
+        }
+
+        .cta-box .btn {
+            background: white;
+            color: var(--accent);
+        }
+
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+
+        .related-articles {
+            margin-top: 60px;
+            padding-top: 40px;
+            border-top: 1px solid var(--border);
+        }
+
+        .related-articles h2 {
+            font-size: 1.5rem;
+            margin-bottom: 24px;
+        }
+
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .related-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            text-decoration: none;
+            transition: border-color 0.2s;
+        }
+
+        .related-card:hover {
+            border-color: var(--accent);
+        }
+
+        .related-card h4 {
+            color: white;
+            font-size: 1rem;
+            margin: 0 0 8px 0;
+        }
+
+        .related-card p {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin: 0;
+        }
+
+        @media (max-width: 600px) {
+            .related-grid { grid-template-columns: 1fr; }
+        }
+
+        blockquote {
+            border-left: 3px solid var(--accent);
+            padding-left: 20px;
+            margin: 24px 0;
+            font-style: italic;
+        }
+
+        blockquote p {
+            color: var(--text-secondary);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="/" class="logo">
+                <div class="logo-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                </div>
+                <span class="pixel-logo-wrap"><span class="pixel-logo"></span></span>
+            </a>
+            <a href="/" class="btn">Download Beam</a>
+        </div>
+    </header>
+
+    <article>
+        <div class="container">
+            <div class="breadcrumb">
+                <a href="/">Home</a> / <a href="/blog/">Blog</a> / Model Context Protocol (MCP) Guide
+            </div>
+
+            <h1>The Developer's Guide to Model Context Protocol (MCP): From Zero to Production</h1>
+            <div class="meta">March 1, 2026 &middot; 14 min read</div>
+
+            <p>Model Context Protocol has become the de facto standard for connecting AI agents to external tools and data sources. What started as an Anthropic-led open specification in late 2024 has grown into an ecosystem with thousands of MCP servers, native support in every major IDE, and adoption by every leading AI provider. Yet most developers still treat MCP as a black box -- they install pre-built servers without understanding how the protocol works or how to build their own.</p>
+
+            <p>This guide changes that. We will cover MCP from first principles, build a production-ready MCP server from scratch, address the security considerations that most tutorials ignore, and map out the current ecosystem so you know what is available and what gaps remain. By the end, you will understand MCP well enough to build custom integrations for your specific infrastructure.</p>
+
+            <h2>What Is MCP and Why Does It Matter?</h2>
+
+            <p>Model Context Protocol is a standardized way for AI models (the "client") to communicate with external tools and data sources (the "server"). Think of it as a universal adapter between any AI agent and any tool.</p>
+
+            <p>Before MCP, every AI tool integration was custom. If you wanted Claude to query your database, you wrote a custom function calling implementation. If you wanted Copilot to access the same database, you wrote a completely different integration using GitHub's extension API. Each combination of AI agent and tool required its own glue code.</p>
+
+            <p>MCP eliminates this N-times-M problem by defining a standard protocol. Any MCP-compatible client (Claude Code, VS Code, Cursor, etc.) can connect to any MCP server (PostgreSQL, GitHub, Slack, etc.) without custom integration code. Build one server, and every client can use it.</p>
+
+            <div class="highlight">
+                <h3>The Three Primitives of MCP</h3>
+                <p><strong>Tools</strong> -- Functions that the AI agent can call. A database MCP server might expose <span class="kbd">query</span>, <span class="kbd">list_tables</span>, and <span class="kbd">describe_table</span> as tools. The agent decides when and how to call them.</p>
+                <p><strong>Resources</strong> -- Data that the agent can read. Resources are identified by URIs (like <span class="kbd">file:///path/to/config.json</span> or <span class="kbd">postgres://mydb/users</span>) and provide structured content to the agent's context window.</p>
+                <p><strong>Prompts</strong> -- Pre-built prompt templates that the server can offer. A code review MCP server might provide a <span class="kbd">security_review</span> prompt template that includes specific instructions for analyzing code vulnerabilities.</p>
+            </div>
+
+            <h2>How MCP Communication Works</h2>
+
+            <p>MCP uses JSON-RPC 2.0 over one of two transport mechanisms: stdio (standard input/output) for local servers, or HTTP with Server-Sent Events (SSE) for remote servers. The vast majority of current MCP servers use stdio, which means they run as local processes launched by the client application.</p>
+
+            <p>Here is the lifecycle of an MCP session:</p>
+
+            <ol>
+                <li><strong>Initialization</strong> -- The client spawns the MCP server process and sends an <span class="kbd">initialize</span> request containing the client's capabilities and protocol version.</li>
+                <li><strong>Capability negotiation</strong> -- The server responds with its capabilities: which tools it offers, what resources are available, and what prompts it provides.</li>
+                <li><strong>Tool discovery</strong> -- The client calls <span class="kbd">tools/list</span> to get the full schema of available tools, including parameter types and descriptions. This is what the AI model uses to decide when to invoke a tool.</li>
+                <li><strong>Execution</strong> -- When the AI model decides to use a tool, the client sends a <span class="kbd">tools/call</span> request with the tool name and arguments. The server executes the operation and returns the result.</li>
+                <li><strong>Shutdown</strong> -- The client sends a <span class="kbd">shutdown</span> notification, and the server process exits cleanly.</li>
+            </ol>
+
+            <blockquote>
+                <p>"The genius of MCP is not the protocol itself -- JSON-RPC over stdio is dead simple. The genius is that Anthropic got every major player to agree on the same standard. That is what makes a protocol valuable."</p>
+            </blockquote>
+
+            <h2>Building Your First MCP Server</h2>
+
+            <p>Let us build a practical MCP server that gives AI agents access to your project's environment variables and configuration. This is surprisingly useful -- agents frequently need to know database URLs, API keys (obfuscated), feature flags, and deployment targets to make informed coding decisions.</p>
+
+            <p>We will use the official MCP TypeScript SDK, which is the most mature implementation as of March 2026.</p>
+
+            <div class="highlight">
+                <h3>Project Setup</h3>
+                <p><span class="kbd">mkdir mcp-config-server && cd mcp-config-server</span></p>
+                <p><span class="kbd">npm init -y</span></p>
+                <p><span class="kbd">npm install @modelcontextprotocol/sdk zod</span></p>
+                <p><span class="kbd">npm install -D typescript @types/node</span></p>
+                <p>Create a <span class="kbd">tsconfig.json</span> with <span class="kbd">"module": "nodenext"</span> and <span class="kbd">"target": "es2022"</span>. The MCP SDK requires ESM modules.</p>
+            </div>
+
+            <p>Here is the core server implementation. Create <span class="kbd">src/index.ts</span>:</p>
+
+            <div class="highlight">
+                <h3>Server Implementation Pattern</h3>
+                <p>Import the <span class="kbd">McpServer</span> class from the SDK and create a new instance with your server's name and version. Register tools using <span class="kbd">server.tool()</span>, which takes a name, description, parameter schema (using Zod), and an async handler function.</p>
+                <p>For our config server, we register three tools:</p>
+                <p><span class="kbd">list_env_vars</span> -- Returns all non-secret environment variable names</p>
+                <p><span class="kbd">get_env_var</span> -- Returns the value of a specific variable (with secret masking)</p>
+                <p><span class="kbd">get_config_file</span> -- Reads and returns a configuration file from a whitelist of allowed paths</p>
+                <p>Finally, connect the server to stdio transport with <span class="kbd">server.connect(new StdioServerTransport())</span>.</p>
+            </div>
+
+            <p>The critical design decisions in this server are:</p>
+
+            <ul>
+                <li><strong>Secret masking</strong> -- Any environment variable containing "KEY", "SECRET", "PASSWORD", or "TOKEN" in its name gets its value replaced with <span class="kbd">***REDACTED***</span>. The agent knows the variable exists but cannot leak the actual value.</li>
+                <li><strong>Path whitelisting</strong> -- The <span class="kbd">get_config_file</span> tool only reads from explicitly allowed paths (like <span class="kbd">.env.example</span>, <span class="kbd">package.json</span>, <span class="kbd">tsconfig.json</span>). No arbitrary file reads.</li>
+                <li><strong>Read-only operations</strong> -- This server exposes no write capabilities. The agent can inspect configuration but not modify it.</li>
+            </ul>
+
+            <h2>Registering Your Server with Clients</h2>
+
+            <p>Once your server is built, you need to register it with your AI clients. The registration method varies by client:</p>
+
+            <div class="highlight">
+                <h3>Claude Code Configuration</h3>
+                <p>In your project's <span class="kbd">.claude/settings.json</span>:</p>
+                <p><span class="kbd">"mcpServers": {</span></p>
+                <p><span class="kbd">&nbsp;&nbsp;"config": {</span></p>
+                <p><span class="kbd">&nbsp;&nbsp;&nbsp;&nbsp;"command": "node",</span></p>
+                <p><span class="kbd">&nbsp;&nbsp;&nbsp;&nbsp;"args": ["./mcp-config-server/dist/index.js"]</span></p>
+                <p><span class="kbd">&nbsp;&nbsp;}</span></p>
+                <p><span class="kbd">}</span></p>
+            </div>
+
+            <div class="highlight">
+                <h3>VS Code Configuration</h3>
+                <p>In your workspace <span class="kbd">.vscode/settings.json</span>:</p>
+                <p><span class="kbd">"mcp.servers": [</span></p>
+                <p><span class="kbd">&nbsp;&nbsp;{ "name": "config", "command": "node", "args": ["./mcp-config-server/dist/index.js"] }</span></p>
+                <p><span class="kbd">]</span></p>
+            </div>
+
+            <p>The beauty of MCP is that the same server binary works with both clients. You build once and register everywhere.</p>
+
+            <h2>MCP Security: What Nobody Tells You</h2>
+
+            <p>MCP's simplicity is also its biggest security risk. When you register an MCP server, you are giving AI agents the ability to execute arbitrary code on your machine through the server's tool handlers. Here are the security considerations you must address before deploying MCP servers in production:</p>
+
+            <p><strong>The stdio trust model.</strong> Stdio-based MCP servers run as local processes with the same permissions as the parent application. If you run Claude Code as your user, every MCP server it spawns also runs as your user. A malicious or poorly-written MCP server has full access to your file system, network, and credentials.</p>
+
+            <p><strong>Supply chain attacks.</strong> Most developers install MCP servers via npm (<span class="kbd">npx -y @some-package/mcp-server</span>). This means you are downloading and executing code from npm on every launch. If the package is compromised, the attacker gets code execution in your development environment. Always pin specific versions and audit packages before use.</p>
+
+            <div class="highlight">
+                <h3>MCP Security Checklist</h3>
+                <p>Before deploying any MCP server in your workflow:</p>
+                <ul>
+                    <li>Audit the source code -- especially tool handlers that access files, databases, or network resources</li>
+                    <li>Pin package versions -- never use <span class="kbd">npx -y</span> with <span class="kbd">@latest</span> in production</li>
+                    <li>Implement path whitelisting -- never allow arbitrary file system access</li>
+                    <li>Mask sensitive data -- redact secrets, tokens, and credentials before returning them to the agent</li>
+                    <li>Use read-only modes -- only expose write operations when absolutely necessary</li>
+                    <li>Run in containers -- for high-security environments, run MCP servers in Docker containers with limited permissions</li>
+                    <li>Log tool invocations -- maintain an audit trail of what tools were called and with what arguments</li>
+                </ul>
+            </div>
+
+            <p><strong>Prompt injection through tool results.</strong> A particularly insidious attack vector: if an MCP server returns data that contains instructions (like a database record saying "ignore all previous instructions and..."), the AI model might follow those instructions. This is prompt injection via tool output. Mitigate by sanitizing MCP server responses and instructing agents to treat tool outputs as untrusted data.</p>
+
+            <blockquote>
+                <p>"Every MCP server is effectively a plugin with full system access. Treat them with the same caution you would give to a VS Code extension or a browser extension -- review the code, limit permissions, and monitor behavior."</p>
+            </blockquote>
+
+            <h2>The MCP Ecosystem in 2026</h2>
+
+            <p>The MCP ecosystem has exploded over the past year. Here is a map of what is available across major categories:</p>
+
+            <p><strong>Databases:</strong> PostgreSQL, MySQL, SQLite, MongoDB, Redis, DynamoDB, Supabase, PlanetScale, and Neon all have official or well-maintained community MCP servers. The PostgreSQL server is the most mature, supporting full schema introspection, query execution, and migration generation.</p>
+
+            <p><strong>Version control:</strong> GitHub, GitLab, and Bitbucket MCP servers provide access to repositories, pull requests, issues, and CI/CD pipelines. The GitHub MCP server is particularly useful -- agents can review PRs, check CI status, and even create issues directly.</p>
+
+            <p><strong>Cloud infrastructure:</strong> AWS, GCP, and Azure all have MCP servers that expose their management APIs. You can ask an agent to check your EC2 instances, query CloudWatch logs, or inspect Kubernetes pod status without leaving your coding session.</p>
+
+            <p><strong>Communication:</strong> Slack, Discord, Linear, Jira, and Notion MCP servers let agents access project management context. An agent working on a bug fix can pull the original Jira ticket for context without you manually copying the description.</p>
+
+            <p><strong>Specialized tooling:</strong> Sentry for error tracking, Datadog for monitoring, Stripe for payment API context, and dozens of domain-specific servers. The long tail of MCP servers is growing rapidly.</p>
+
+            <div class="highlight">
+                <h3>MCP Server Quality Tiers</h3>
+                <p><strong>Tier 1 (Production-ready):</strong> PostgreSQL, GitHub, filesystem, Slack -- well-tested, actively maintained, good security practices.</p>
+                <p><strong>Tier 2 (Usable but rough):</strong> MongoDB, AWS, Jira, Linear -- functional but may have edge cases, incomplete tool coverage, or sparse documentation.</p>
+                <p><strong>Tier 3 (Experimental):</strong> Most community servers -- may work for demos but lack error handling, security hardening, and long-term maintenance.</p>
+            </div>
+
+            <h2>Advanced Patterns: Composing MCP Servers</h2>
+
+            <p>The real power of MCP emerges when you compose multiple servers together. Here are patterns that production teams are using:</p>
+
+            <p><strong>The context stack.</strong> Register a database server, a GitHub server, and a monitoring server simultaneously. When an agent investigates a production bug, it can query the database for affected records, check the GitHub blame for the relevant code, and pull error rates from the monitoring system -- all within a single conversation.</p>
+
+            <p><strong>The review pipeline.</strong> Chain a filesystem server, a linting server, and a testing server. An agent implementing a feature can write code (filesystem), check it against lint rules (linting server), and run the test suite (testing server) in a tight feedback loop.</p>
+
+            <p><strong>The deployment assistant.</strong> Combine a Kubernetes MCP server, a Docker registry server, and a Slack notification server. An agent can check the current deployment status, verify the latest image is ready, trigger a deployment, and notify the team -- all through MCP tool calls.</p>
+
+            <p>The key insight is that MCP servers are composable by design. Each server focuses on one domain, and the AI agent handles the orchestration. This is fundamentally different from traditional automation, where you write explicit pipelines connecting tools. With MCP, the agent dynamically decides which tools to use and in what order based on the task at hand.</p>
+
+            <h2>Running MCP Servers in Multi-Agent Environments</h2>
+
+            <p>When you run multiple AI agents in parallel -- each in their own terminal session -- MCP server management becomes more complex. Each agent instance needs access to the same MCP servers, but you need to avoid conflicts from concurrent access.</p>
+
+            <p>Most stdio-based MCP servers are stateless, which means multiple agent instances can each spawn their own server process without conflict. However, servers that modify state (like a database migration server) need coordination to prevent race conditions.</p>
+
+            <p>Tools like Beam make this easier by providing per-pane MCP server configuration. Each split pane running a different agent can have its own set of MCP servers, or they can share a common set defined at the project level. This gives you the flexibility to run a read-only database server in every pane while restricting write-capable servers to a single designated pane.</p>
+
+            <h2>Building for Production: Testing and Monitoring</h2>
+
+            <p>Before deploying an MCP server to your team, invest in two areas that most tutorials skip:</p>
+
+            <p><strong>Testing tool handlers.</strong> Write integration tests that call each tool with representative inputs and verify the outputs. Test edge cases: what happens when a database query returns no results? When a file path does not exist? When the network is down? MCP tool handlers are just functions -- test them like any other critical code.</p>
+
+            <p><strong>Monitoring and logging.</strong> In production, you need to know which tools are being called, by which agents, with what arguments, and what results they returned. Build structured logging into your MCP server from day one. This audit trail is invaluable for debugging agent behavior and detecting misuse.</p>
+
+            <div class="highlight">
+                <h3>Production MCP Server Checklist</h3>
+                <ul>
+                    <li>Unit and integration tests for all tool handlers</li>
+                    <li>Structured JSON logging with tool name, arguments, result summary, and duration</li>
+                    <li>Health check endpoint for HTTP-based servers</li>
+                    <li>Graceful shutdown handling (clean up connections, flush logs)</li>
+                    <li>Rate limiting for expensive operations (database queries, API calls)</li>
+                    <li>Version pinning and reproducible builds</li>
+                    <li>Documentation of all tools with examples</li>
+                </ul>
+            </div>
+
+            <h2>What's Next for MCP</h2>
+
+            <p>The MCP specification continues to evolve. Here are the developments to watch in 2026:</p>
+
+            <ul>
+                <li><strong>Streamable HTTP transport</strong> -- The new HTTP transport replaces SSE for remote servers, enabling better bidirectional communication and authentication. This will make cloud-hosted MCP servers much more practical.</li>
+                <li><strong>OAuth integration</strong> -- Native OAuth flows for MCP servers, eliminating the need for API keys in environment variables. This addresses one of the biggest security pain points.</li>
+                <li><strong>Tool annotations</strong> -- Metadata that describes tool behavior (read-only vs. write, cost estimate, latency expectation) so agents and clients can make smarter decisions about tool usage.</li>
+                <li><strong>Agent-to-agent via MCP</strong> -- An emerging pattern where one agent exposes its capabilities as an MCP server that other agents can consume. This enables true multi-agent collaboration without shared context windows.</li>
+            </ul>
+
+            <p>MCP has rapidly become infrastructure-grade software. If you are building AI-powered development workflows, understanding MCP at a deep level is no longer optional -- it is a core competency. Start by building a simple server for your own infrastructure, and work your way up to the advanced composition patterns. The protocol is simple enough to learn in an afternoon and powerful enough to transform how your agents interact with the world.</p>
+
+            <div class="cta-box">
+                <h3>Ready to Level Up Your Agentic Workflow?</h3>
+                <p>Beam gives you the workspace to run every AI agent from one cockpit -- split panes, tabs, projects, and more.</p>
+                <a href="/" class="btn">Download Beam Free</a>
+            </div>
+
+            <div class="related-articles">
+                <h2>Related Articles</h2>
+                <div class="related-grid">
+                    <a href="/blog/mcp-servers-guide-2026.html" class="related-card">
+                        <h4>MCP Servers Guide 2026</h4>
+                        <p>The best MCP servers for developers this year.</p>
+                    </a>
+                    <a href="/blog/mcp-security-vulnerabilities-2026.html" class="related-card">
+                        <h4>MCP Security Vulnerabilities in 2026</h4>
+                        <p>Security risks every developer should know about.</p>
+                    </a>
+                    <a href="/blog/multi-agent-orchestration-practical-guide.html" class="related-card">
+                        <h4>Multi-Agent Orchestration Guide</h4>
+                        <p>Run multiple AI agents in parallel with MCP integration.</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </article>
+
+    <footer>
+        <div class="container">
+            <p>Beam -- The Agentic Engineering Platform</p>
+            <p style="margin-top: 8px;">
+                <a href="/">Home</a> &middot; <a href="/blog/">Blog</a> &middot; Built by NextUp Technologies
+            </p>
+        </div>
+    </footer>
+</body>
+</html>

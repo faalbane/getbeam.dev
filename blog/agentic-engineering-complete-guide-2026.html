@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D0XH8B0RKL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-D0XH8B0RKL');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agentic Engineering in 2026: The Complete Guide to Supervising AI Coding Agents | Beam Blog</title>
+    <meta name="description" content="The complete guide to agentic engineering in 2026. Learn how to supervise AI coding agents, set up guardrails, and orchestrate multi-agent workflows for maximum productivity.">
+    <meta name="keywords" content="agentic engineering guide 2026, supervising AI coding agents, agentic engineering, AI coding workflow, multi-agent orchestration, Claude Code, agentic development">
+    <meta name="author" content="NextUp Technologies">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://getbeam.dev/blog/agentic-engineering-complete-guide-2026.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://getbeam.dev/blog/agentic-engineering-complete-guide-2026.html">
+    <meta property="og:title" content="Agentic Engineering in 2026: The Complete Guide to Supervising AI Coding Agents">
+    <meta property="og:description" content="The complete guide to agentic engineering in 2026. Learn how to supervise AI coding agents, set up guardrails, and orchestrate multi-agent workflows.">
+    <meta property="og:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Agentic Engineering in 2026: The Complete Guide to Supervising AI Coding Agents">
+    <meta name="twitter:description" content="The complete guide to agentic engineering in 2026. Learn how to supervise AI coding agents, set up guardrails, and orchestrate multi-agent workflows.">
+    <meta name="twitter:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Agentic Engineering in 2026: The Complete Guide to Supervising AI Coding Agents",
+        "description": "The complete guide to agentic engineering in 2026. Learn how to supervise AI coding agents, set up guardrails, and orchestrate multi-agent workflows.",
+        "author": {
+            "@type": "Organization",
+            "name": "NextUp Technologies"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Beam"
+        },
+        "datePublished": "2026-03-01",
+        "keywords": "agentic engineering guide 2026, supervising AI coding agents, multi-agent orchestration"
+    }
+    </script>
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #111113;
+            --bg-tertiary: #1a1a1d;
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.4);
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --border: #27272a;
+            --success: #22c55e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        a, button, .btn, .related-card, .post-card, .editorial-card { cursor: pointer; }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+
+        .container { max-width: 800px; margin: 0 auto; padding: 0 24px; }
+
+        header { padding: 24px 0; border-bottom: 1px solid var(--border); margin-bottom: 60px; }
+        header .container { display: flex; justify-content: space-between; align-items: center; }
+
+        .logo { display: flex; align-items: center; gap: 12px; font-weight: 700; font-size: 1.5rem; text-decoration: none; color: var(--text-primary); }
+        .logo-icon { width: 32px; height: 32px; background: linear-gradient(135deg, var(--accent), #8b5cf6); border-radius: 7px; display: flex; align-items: center; justify-content: center; }
+        .pixel-logo-wrap { display: flex; align-items: center; filter: drop-shadow(0 0 6px rgba(59, 130, 246, 0.45)); width: 79px; height: 19px; flex-shrink: 0; position: relative; overflow: visible; }
+        .pixel-logo { position: absolute; top: 0; left: 0; display: block; width: 3px; height: 3px; border-radius: 0.5px; background: #a0c4ff; box-shadow: 4px 0 0 0 #a2c5ff, 8px 0 0 0 #a4c6ff, 20px 0 0 0 #acc9ff, 24px 0 0 0 #aecaff, 28px 0 0 0 #b0cbff, 32px 0 0 0 #b2ccff, 44px 0 0 0 #bacfff, 48px 0 0 0 #bcd0ff, 60px 0 0 0 #c4d4ff, 76px 0 0 0 #d0daff, 0 4px 0 0 #96bdf8, 12px 4px 0 0 #9ec1f8, 20px 4px 0 0 #a4c4f8, 40px 4px 0 0 #b4ccf8, 52px 4px 0 0 #bcd0f8, 60px 4px 0 0 #c0d2f8, 64px 4px 0 0 #c2d3f8, 72px 4px 0 0 #c8d6f8, 76px 4px 0 0 #cad7f8, 0 8px 0 0 #8cb6f0, 4px 8px 0 0 #8eb7f0, 8px 8px 0 0 #90b8f0, 20px 8px 0 0 #9abef0, 24px 8px 0 0 #9cbff0, 28px 8px 0 0 #9ec0f0, 40px 8px 0 0 #aac6f0, 44px 8px 0 0 #acc7f0, 48px 8px 0 0 #aec8f0, 52px 8px 0 0 #b0c9f0, 60px 8px 0 0 #b6ccf0, 68px 8px 0 0 #bccff0, 76px 8px 0 0 #c4d3f0, 0 12px 0 0 #82afe8, 12px 12px 0 0 #8cb5e8, 20px 12px 0 0 #92b8e8, 40px 12px 0 0 #a2c0e8, 52px 12px 0 0 #aac4e8, 60px 12px 0 0 #aec6e8, 76px 12px 0 0 #bccde8, 0 16px 0 0 #78a8e0, 4px 16px 0 0 #7aa9e0, 8px 16px 0 0 #7caae0, 20px 16px 0 0 #88b0e0, 24px 16px 0 0 #8ab1e0, 28px 16px 0 0 #8cb2e0, 32px 16px 0 0 #8eb3e0, 40px 16px 0 0 #96b8e0, 52px 16px 0 0 #a0bce0, 60px 16px 0 0 #a4bee0, 76px 16px 0 0 #b4c6e0; }
+
+        .btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; border-radius: 8px; font-weight: 600; font-size: 0.95rem; text-decoration: none; background: var(--accent); color: white; transition: all 0.2s; }
+        .btn:hover { background: #2563eb; transform: translateY(-2px); }
+
+        article { padding-bottom: 80px; }
+        .breadcrumb { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 24px; }
+        .breadcrumb a { color: var(--accent); text-decoration: none; }
+        h1 { font-size: 2.5rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 16px; line-height: 1.2; }
+        .meta { color: var(--text-muted); margin-bottom: 40px; font-size: 0.95rem; }
+        h2 { font-size: 1.5rem; font-weight: 600; margin: 48px 0 20px; color: var(--text-primary); }
+        p { color: var(--text-secondary); margin-bottom: 20px; font-size: 1.05rem; }
+        ul, ol { color: var(--text-secondary); margin-bottom: 20px; padding-left: 24px; }
+        li { margin-bottom: 12px; }
+        .highlight { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 24px; margin: 32px 0; }
+        .highlight h3 { font-size: 1.1rem; margin-bottom: 12px; color: var(--text-primary); }
+        .kbd { display: inline-block; padding: 2px 8px; background: var(--bg-tertiary); border: 1px solid var(--border); border-radius: 4px; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; }
+        .cta-box { background: linear-gradient(135deg, var(--accent), #8b5cf6); border-radius: 16px; padding: 40px; text-align: center; margin: 60px 0; }
+        .cta-box h3 { font-size: 1.5rem; margin-bottom: 12px; }
+        .cta-box p { color: rgba(255,255,255,0.8); margin-bottom: 24px; }
+        .cta-box .btn { background: white; color: var(--accent); }
+        footer { padding: 40px 0; border-top: 1px solid var(--border); text-align: center; color: var(--text-muted); font-size: 0.9rem; }
+        footer a { color: var(--text-secondary); text-decoration: none; }
+        .related-articles { margin-top: 60px; padding-top: 40px; border-top: 1px solid var(--border); }
+        .related-articles h2 { font-size: 1.5rem; margin-bottom: 24px; }
+        .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .related-card { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-decoration: none; transition: border-color 0.2s; }
+        .related-card:hover { border-color: var(--accent); }
+        .related-card h4 { color: white; font-size: 1rem; margin: 0 0 8px 0; }
+        .related-card p { color: var(--text-muted); font-size: 0.85rem; margin: 0; }
+        @media (max-width: 600px) { .related-grid { grid-template-columns: 1fr; } h1 { font-size: 1.8rem; } }
+        blockquote { border-left: 3px solid var(--accent); padding-left: 20px; margin: 24px 0; font-style: italic; }
+        blockquote p { color: var(--text-secondary); }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="/" class="logo">
+                <div class="logo-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                </div>
+                <span class="pixel-logo-wrap"><span class="pixel-logo"></span></span>
+            </a>
+            <a href="/" class="btn">Download Beam</a>
+        </div>
+    </header>
+
+    <article>
+        <div class="container">
+            <div class="breadcrumb">
+                <a href="/">Home</a> / <a href="/blog/">Blog</a> / Agentic Engineering Complete Guide 2026
+            </div>
+
+            <h1>Agentic Engineering in 2026: The Complete Guide to Supervising AI Coding Agents</h1>
+            <div class="meta">March 1, 2026 &middot; 12 min read</div>
+
+            <p>Software development has undergone a fundamental transformation. In 2024, developers used AI for autocomplete suggestions and occasional code generation. By early 2025, AI coding agents emerged that could autonomously edit files, run tests, and iterate on solutions. Now in 2026, the discipline of <strong>agentic engineering</strong> has become the defining skill for professional developers.</p>
+
+            <p>This is not a minor upgrade to your workflow. It is a complete rethinking of what it means to build software. The developer who types every line of code is being replaced by the developer who orchestrates, supervises, and steers AI agents through complex engineering tasks. This guide covers everything you need to know to master that shift.</p>
+
+            <h2>The Shift: From Writing Code to Orchestrating Agents</h2>
+
+            <p>The traditional development loop was straightforward: think, type, compile, debug, repeat. Agentic engineering replaces that loop with something more nuanced: define the intent, delegate to an agent, review the output, course-correct, and verify. Your role shifts from author to technical director.</p>
+
+            <p>This is not about being lazy or letting AI do your thinking. Quite the opposite. Effective agentic engineering requires deeper architectural understanding, better communication skills, and sharper judgment than traditional coding. You need to understand what good code looks like so you can recognize it when an agent produces it and catch it when the agent misses the mark.</p>
+
+            <div class="highlight">
+                <h3>The Core Competencies of Agentic Engineering</h3>
+                <ul>
+                    <li><strong>Intent specification</strong> -- Translating what you want into clear, unambiguous instructions that an AI agent can follow without misinterpretation.</li>
+                    <li><strong>Context curation</strong> -- Selecting which files, documentation, and constraints to surface so the agent has exactly the information it needs.</li>
+                    <li><strong>Output evaluation</strong> -- Reading and assessing generated code quickly, identifying subtle bugs, architectural violations, and style deviations.</li>
+                    <li><strong>Workflow orchestration</strong> -- Running multiple agents in parallel across different parts of a project, keeping them coordinated without conflicts.</li>
+                    <li><strong>Guardrail design</strong> -- Setting up automated checks, tests, and constraints that prevent agents from introducing regressions or security issues.</li>
+                </ul>
+            </div>
+
+            <h2>Setting Up Your Agentic Engineering Environment</h2>
+
+            <p>Your environment matters more than ever. When you were the one writing code, a basic terminal and editor were sufficient. When you are supervising multiple AI agents working in parallel, you need infrastructure that gives you visibility and control.</p>
+
+            <p>The foundation starts with your terminal setup. You need a workspace that can handle multiple concurrent agent sessions without losing track of what each one is doing. This means split panes for side-by-side monitoring, tabs for organizing by project or task, and a project system that persists your layout across sessions.</p>
+
+            <blockquote>
+                <p>"The best agentic engineers I know spend more time setting up their workspace than writing prompts. A well-organized environment with clear visibility into every running agent is the difference between productive orchestration and chaotic guessing."</p>
+            </blockquote>
+
+            <p>Here is what a production-grade agentic engineering environment looks like in 2026:</p>
+
+            <ol>
+                <li><strong>A multi-pane terminal workspace</strong> -- You need at minimum three visible panes: one for your primary agent, one for a secondary agent handling a parallel task, and one for running tests or monitoring output. Tools like Beam provide this out of the box with split panes, tabs, and project persistence.</li>
+                <li><strong>A well-structured CLAUDE.md or agent instruction file</strong> -- This is your project-level configuration that tells every agent session about your codebase conventions, testing requirements, and boundaries.</li>
+                <li><strong>MCP servers for extended context</strong> -- Model Context Protocol servers give your agents access to databases, documentation, APIs, and other tools beyond what the base model provides.</li>
+                <li><strong>A git workflow designed for agent output</strong> -- Feature branches per agent task, automated CI checks, and a review process that accounts for AI-generated code.</li>
+            </ol>
+
+            <h2>Practical Patterns for Agent Supervision</h2>
+
+            <p>After working with hundreds of developers adopting agentic workflows, clear patterns have emerged for how to supervise AI coding agents effectively. These are not theoretical suggestions. They are battle-tested practices from production engineering teams.</p>
+
+            <h2>Pattern 1: The Decomposition Pattern</h2>
+
+            <p>Never give an agent a vague, sweeping task like "build the authentication system." Instead, decompose the work into specific, verifiable units. Each unit should be small enough that you can review the output in under five minutes and confirm it meets your requirements.</p>
+
+            <div class="highlight">
+                <h3>Example Decomposition</h3>
+                <p>Instead of: "Add user authentication to the app"</p>
+                <p>Break it into:</p>
+                <ul>
+                    <li>Agent 1: Create the User model with email, hashed password, and timestamps. Write the migration.</li>
+                    <li>Agent 2: Implement the password hashing utility using bcrypt. Include unit tests.</li>
+                    <li>Agent 3: Build the login endpoint that validates credentials and returns a JWT.</li>
+                    <li>Agent 4: Add middleware that verifies the JWT on protected routes.</li>
+                </ul>
+                <p>Each task is specific, testable, and can run in parallel.</p>
+            </div>
+
+            <h2>Pattern 2: The Guardrail Pattern</h2>
+
+            <p>Never let an agent operate without automated checks. Before you start any agentic session, ensure your project has:</p>
+
+            <ul>
+                <li><strong>Type checking</strong> -- TypeScript strict mode, mypy for Python, or equivalent for your language. The agent should not be able to introduce type errors without being caught.</li>
+                <li><strong>Linting</strong> -- ESLint, Prettier, or your chosen formatter. Agents sometimes produce code that works but violates your style conventions.</li>
+                <li><strong>Test suites</strong> -- Every agent task should include a verification step: "Run the tests and fix any failures before marking this complete."</li>
+                <li><strong>Git boundaries</strong> -- Agents should work on feature branches, never directly on main. Use your CLAUDE.md to enforce this.</li>
+            </ul>
+
+            <p>The key insight is that guardrails are not about mistrusting the AI. They are about creating a tight feedback loop that catches issues early, the same way CI/CD catches human errors. An agent that runs tests after every change will self-correct faster than one operating in the dark.</p>
+
+            <h2>Pattern 3: The Parallel Orchestration Pattern</h2>
+
+            <p>One of the biggest productivity gains in agentic engineering comes from running multiple agents simultaneously. While one agent is implementing a feature, another can be writing tests for a different module, and a third can be refactoring a utility class.</p>
+
+            <p>The key to making this work is isolation. Each agent needs to work on a clearly defined scope that does not overlap with the others. If two agents are editing the same file, you will get merge conflicts and wasted work. Plan your task decomposition with parallel execution in mind.</p>
+
+            <p>In practice, this looks like opening multiple terminal panes in Beam, starting a Claude Code session in each one with a specific task, and monitoring their progress side by side. When one finishes, you review its output, merge it, and assign the next task. The throughput improvement is dramatic -- teams report three to five times the output compared to sequential agent usage.</p>
+
+            <h2>Pattern 4: The Context Window Pattern</h2>
+
+            <p>AI agents have finite context windows. Even with models that support 200K tokens, stuffing the entire codebase into context produces worse results than carefully curating what the agent sees. Treat context like a precious resource.</p>
+
+            <div class="highlight">
+                <h3>Context Curation Best Practices</h3>
+                <ul>
+                    <li><strong>Start narrow</strong> -- Point the agent at specific files rather than entire directories. "Look at src/auth/login.ts and src/models/user.ts" is better than "look at the src directory."</li>
+                    <li><strong>Use CLAUDE.md strategically</strong> -- Include architecture decisions, naming conventions, and anti-patterns. Do not include implementation details the agent can discover by reading the code.</li>
+                    <li><strong>Leverage MCP servers</strong> -- Instead of pasting documentation into the prompt, connect MCP servers that give the agent access to your docs, database schema, and API specs on demand.</li>
+                    <li><strong>Reset when stuck</strong> -- If an agent is going in circles, start a fresh session with cleaner context rather than adding more instructions to a polluted conversation.</li>
+                </ul>
+            </div>
+
+            <h2>Building Your CLAUDE.md for Agentic Teams</h2>
+
+            <p>The CLAUDE.md file (or equivalent agent instruction file) is the single most important artifact in an agentic engineering workflow. It is the document that every agent session reads before starting work, and it shapes the quality of everything they produce.</p>
+
+            <p>A good CLAUDE.md includes:</p>
+
+            <ul>
+                <li><strong>Project overview</strong> -- Two to three sentences describing what the project does and its architecture.</li>
+                <li><strong>Tech stack</strong> -- Languages, frameworks, and key libraries with their versions.</li>
+                <li><strong>Conventions</strong> -- Naming patterns, file organization, import ordering, error handling approach.</li>
+                <li><strong>Testing requirements</strong> -- What test framework you use, minimum coverage expectations, how to run tests.</li>
+                <li><strong>Boundaries</strong> -- What the agent should never do: do not modify the database schema without explicit approval, do not add new dependencies without discussion, always use feature branches.</li>
+                <li><strong>Common commands</strong> -- Build, test, lint, and deploy commands so the agent can verify its own work.</li>
+            </ul>
+
+            <p>Invest time in this document. Every minute you spend refining your CLAUDE.md saves hours of correcting agent output later. Update it as your project evolves. Treat it as living documentation, not a one-time setup artifact.</p>
+
+            <h2>Measuring Agentic Engineering Effectiveness</h2>
+
+            <p>How do you know if your agentic engineering practice is working? Traditional metrics like lines of code or commit frequency are misleading when agents are involved. Here are better measures:</p>
+
+            <ul>
+                <li><strong>First-pass acceptance rate</strong> -- What percentage of agent output do you merge without significant modifications? If it is below 70%, your instructions or guardrails need work.</li>
+                <li><strong>Task completion time</strong> -- How long from task definition to merged PR? This should trend downward as you refine your workflow.</li>
+                <li><strong>Regression rate</strong> -- Are agent-produced changes introducing bugs? Track this separately from human-authored changes.</li>
+                <li><strong>Parallel utilization</strong> -- How many agents are you running concurrently? If you are only running one at a time, you are leaving throughput on the table.</li>
+            </ul>
+
+            <h2>Common Pitfalls and How to Avoid Them</h2>
+
+            <p>Even experienced developers make predictable mistakes when transitioning to agentic engineering. Here are the most common ones:</p>
+
+            <p><strong>Over-delegation without review.</strong> The temptation to let agents work unsupervised is strong, especially when they produce good results early on. Resist it. Always review output before merging. The cost of a subtle bug that slips through is far higher than the time spent reviewing.</p>
+
+            <p><strong>Prompt over-engineering.</strong> Some developers write thousand-word prompts trying to anticipate every edge case. This usually backfires. Agents perform better with clear, concise instructions. If your prompt is longer than the code you expect in return, simplify it.</p>
+
+            <p><strong>Ignoring agent limitations.</strong> Current AI agents are excellent at well-defined coding tasks within a clear context. They struggle with cross-cutting architectural decisions, performance optimization without clear metrics, and creative design problems. Know when to step in and do the work yourself.</p>
+
+            <p><strong>Not investing in workspace tooling.</strong> Developers who try to supervise multiple agents in a single terminal window with tabs they keep losing track of will burn out quickly. Invest in a proper workspace like Beam that gives you the visibility and organization you need for multi-agent workflows.</p>
+
+            <h2>The Road Ahead</h2>
+
+            <p>Agentic engineering is not a trend that will fade. It is the new baseline for professional software development. The developers who master these skills today will have a significant advantage as AI agents become more capable and autonomous.</p>
+
+            <p>Start small. Pick one project, set up a proper workspace with split panes and project persistence, write a solid CLAUDE.md, and practice the decomposition pattern on your next feature. Once you see the productivity gains from one well-supervised agent, scaling to parallel orchestration will feel natural.</p>
+
+            <p>The future of software engineering is not AI replacing developers. It is developers who can effectively orchestrate AI agents replacing those who cannot.</p>
+
+            <div class="cta-box">
+                <h3>Ready to Level Up Your Agentic Workflow?</h3>
+                <p>Beam gives you the workspace to run every AI agent from one cockpit -- split panes, tabs, projects, and more.</p>
+                <a href="/" class="btn">Download Beam Free</a>
+            </div>
+
+            <div class="related-articles">
+                <h2>Related Articles</h2>
+                <div class="related-grid">
+                    <a href="/blog/agentic-engineering-setup-2026.html" class="related-card">
+                        <h4>My Agentic Engineering Setup: Terminal, Agents, and Workspace Management</h4>
+                        <p>The exact tools, configurations, and workflows for a production agentic engineering setup in 2026.</p>
+                    </a>
+                    <a href="/blog/best-mcp-servers-2026.html" class="related-card">
+                        <h4>10 MCP Servers Every Developer Should Know About in 2026</h4>
+                        <p>Extend your AI agents with the best Model Context Protocol servers available today.</p>
+                    </a>
+                    <a href="/blog/claude-sonnet-4-6-vs-opus-4-6-coding.html" class="related-card">
+                        <h4>Claude Sonnet 4.6 vs Opus 4.6: Which Model for Coding?</h4>
+                        <p>A head-to-head comparison of Anthropic's latest models for agentic coding tasks.</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </article>
+
+    <footer>
+        <div class="container">
+            <p>Beam -- The Agentic Engineering Platform</p>
+            <p style="margin-top: 8px;">
+                <a href="/">Home</a> · <a href="/blog/">Blog</a> · Built by NextUp Technologies
+            </p>
+        </div>
+    </footer>
+</body>
+</html>

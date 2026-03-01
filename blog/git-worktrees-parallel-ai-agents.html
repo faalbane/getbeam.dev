@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D0XH8B0RKL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-D0XH8B0RKL');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Set Up Git Worktrees for Parallel AI Agent Development | Beam</title>
+    <meta name="description" content="Learn how to set up git worktrees for parallel AI agent development. Run multiple AI coding agents on the same repo without merge conflicts using isolated working directories.">
+    <meta name="keywords" content="git worktrees AI agents, parallel AI development setup, git worktree tutorial, multiple AI agents same repo, agentic engineering worktrees">
+    <meta name="author" content="NextUp Technologies">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://getbeam.dev/blog/git-worktrees-parallel-ai-agents.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://getbeam.dev/blog/git-worktrees-parallel-ai-agents.html">
+    <meta property="og:title" content="How to Set Up Git Worktrees for Parallel AI Agent Development">
+    <meta property="og:description" content="Learn how to set up git worktrees for parallel AI agent development. Run multiple AI coding agents on the same repo without merge conflicts using isolated working directories.">
+    <meta property="og:image" content="https://getbeam.dev/beam-screenshot-1.9.6.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="How to Set Up Git Worktrees for Parallel AI Agent Development">
+    <meta name="twitter:description" content="Learn how to set up git worktrees for parallel AI agent development. Run multiple AI coding agents on the same repo without merge conflicts using isolated working directories.">
+    <meta name="twitter:image" content="https://getbeam.dev/beam-screenshot-1.9.6.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "How to Set Up Git Worktrees for Parallel AI Agent Development",
+        "description": "Learn how to set up git worktrees for parallel AI agent development. Run multiple AI coding agents on the same repo without merge conflicts using isolated working directories.",
+        "author": {
+            "@type": "Organization",
+            "name": "NextUp Technologies"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Beam"
+        },
+        "datePublished": "2026-03-01",
+        "keywords": "git worktrees AI agents, parallel AI development setup, git worktree tutorial, multiple AI agents same repo, agentic engineering worktrees"
+    }
+    </script>
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #111113;
+            --bg-tertiary: #1a1a1d;
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.4);
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --border: #27272a;
+            --success: #22c55e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        a, button, .btn, .related-card, .post-card, .editorial-card { cursor: pointer; }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+
+        .container { max-width: 800px; margin: 0 auto; padding: 0 24px; }
+
+        header { padding: 24px 0; border-bottom: 1px solid var(--border); margin-bottom: 60px; }
+        header .container { display: flex; justify-content: space-between; align-items: center; }
+
+        .logo { display: flex; align-items: center; gap: 12px; font-weight: 700; font-size: 1.5rem; text-decoration: none; color: var(--text-primary); }
+        .logo-icon { width: 32px; height: 32px; background: linear-gradient(135deg, var(--accent), #8b5cf6); border-radius: 7px; display: flex; align-items: center; justify-content: center; }
+        .pixel-logo-wrap { display: flex; align-items: center; filter: drop-shadow(0 0 6px rgba(59, 130, 246, 0.45)); width: 79px; height: 19px; flex-shrink: 0; position: relative; overflow: visible; }
+        .pixel-logo { position: absolute; top: 0; left: 0; display: block; width: 3px; height: 3px; border-radius: 0.5px; background: #a0c4ff; box-shadow: 4px 0 0 0 #a2c5ff, 8px 0 0 0 #a4c6ff, 20px 0 0 0 #acc9ff, 24px 0 0 0 #aecaff, 28px 0 0 0 #b0cbff, 32px 0 0 0 #b2ccff, 44px 0 0 0 #bacfff, 48px 0 0 0 #bcd0ff, 60px 0 0 0 #c4d4ff, 76px 0 0 0 #d0daff, 0 4px 0 0 #96bdf8, 12px 4px 0 0 #9ec1f8, 20px 4px 0 0 #a4c4f8, 40px 4px 0 0 #b4ccf8, 52px 4px 0 0 #bcd0f8, 60px 4px 0 0 #c0d2f8, 64px 4px 0 0 #c2d3f8, 72px 4px 0 0 #c8d6f8, 76px 4px 0 0 #cad7f8, 0 8px 0 0 #8cb6f0, 4px 8px 0 0 #8eb7f0, 8px 8px 0 0 #90b8f0, 20px 8px 0 0 #9abef0, 24px 8px 0 0 #9cbff0, 28px 8px 0 0 #9ec0f0, 40px 8px 0 0 #aac6f0, 44px 8px 0 0 #acc7f0, 48px 8px 0 0 #aec8f0, 52px 8px 0 0 #b0c9f0, 60px 8px 0 0 #b6ccf0, 68px 8px 0 0 #bccff0, 76px 8px 0 0 #c4d3f0, 0 12px 0 0 #82afe8, 12px 12px 0 0 #8cb5e8, 20px 12px 0 0 #92b8e8, 40px 12px 0 0 #a2c0e8, 52px 12px 0 0 #aac4e8, 60px 12px 0 0 #aec6e8, 76px 12px 0 0 #bccde8, 0 16px 0 0 #78a8e0, 4px 16px 0 0 #7aa9e0, 8px 16px 0 0 #7caae0, 20px 16px 0 0 #88b0e0, 24px 16px 0 0 #8ab1e0, 28px 16px 0 0 #8cb2e0, 32px 16px 0 0 #8eb3e0, 40px 16px 0 0 #96b8e0, 52px 16px 0 0 #a0bce0, 60px 16px 0 0 #a4bee0, 76px 16px 0 0 #b4c6e0; }
+
+        .btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; border-radius: 8px; font-weight: 600; font-size: 0.95rem; text-decoration: none; background: var(--accent); color: white; transition: all 0.2s; }
+        .btn:hover { background: #2563eb; transform: translateY(-2px); }
+
+        article { padding-bottom: 80px; }
+        .breadcrumb { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 24px; }
+        .breadcrumb a { color: var(--accent); text-decoration: none; }
+
+        h1 { font-size: 2.5rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 16px; line-height: 1.2; }
+        .meta { color: var(--text-muted); margin-bottom: 40px; font-size: 0.95rem; }
+
+        h2 { font-size: 1.5rem; font-weight: 600; margin: 48px 0 20px; color: var(--text-primary); }
+        p { color: var(--text-secondary); margin-bottom: 20px; font-size: 1.05rem; }
+        ul, ol { color: var(--text-secondary); margin-bottom: 20px; padding-left: 24px; }
+        li { margin-bottom: 12px; }
+
+        .highlight { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 24px; margin: 32px 0; }
+        .highlight h3 { font-size: 1.1rem; margin-bottom: 12px; color: var(--text-primary); }
+
+        .kbd { display: inline-block; padding: 2px 8px; background: var(--bg-tertiary); border: 1px solid var(--border); border-radius: 4px; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; }
+
+        .cta-box { background: linear-gradient(135deg, var(--accent), #8b5cf6); border-radius: 16px; padding: 40px; text-align: center; margin: 60px 0; }
+        .cta-box h3 { font-size: 1.5rem; margin-bottom: 12px; }
+        .cta-box p { color: rgba(255,255,255,0.8); margin-bottom: 24px; }
+        .cta-box .btn { background: white; color: var(--accent); }
+
+        footer { padding: 40px 0; border-top: 1px solid var(--border); text-align: center; color: var(--text-muted); font-size: 0.9rem; }
+        footer a { color: var(--text-secondary); text-decoration: none; }
+
+        .related-articles { margin-top: 60px; padding-top: 40px; border-top: 1px solid var(--border); }
+        .related-articles h2 { font-size: 1.5rem; margin-bottom: 24px; }
+        .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .related-card { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-decoration: none; transition: border-color 0.2s; }
+        .related-card:hover { border-color: var(--accent); }
+        .related-card h4 { color: white; font-size: 1rem; margin: 0 0 8px 0; }
+        .related-card p { color: var(--text-muted); font-size: 0.85rem; margin: 0; }
+        @media (max-width: 600px) { .related-grid { grid-template-columns: 1fr; } }
+
+        blockquote { border-left: 3px solid var(--accent); padding-left: 20px; margin: 24px 0; font-style: italic; }
+        blockquote p { color: var(--text-secondary); }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="/" class="logo">
+                <div class="logo-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                </div>
+                <span class="pixel-logo-wrap"><span class="pixel-logo"></span></span>
+            </a>
+            <a href="/" class="btn">Download Beam</a>
+        </div>
+    </header>
+
+    <article>
+        <div class="container">
+            <div class="breadcrumb">
+                <a href="/">Home</a> / <a href="/blog/">Blog</a> / Git Worktrees for Parallel AI Agents
+            </div>
+
+            <h1>How to Set Up Git Worktrees for Parallel AI Agent Development</h1>
+            <div class="meta">March 1, 2026 &middot; 12 min read</div>
+
+            <p>Running a single AI coding agent is powerful. Running three of them simultaneously on different features of the same codebase is transformative. But there is a catch: if you point multiple agents at the same git checkout, you will spend more time resolving conflicts than writing code. The solution is git worktrees -- an underused feature of git that gives each agent its own isolated working directory while sharing a single repository.</p>
+
+            <p>This guide walks you through setting up git worktrees specifically for parallel AI agent development. Whether you are running Claude Code, Codex, Gemini CLI, or any combination of tools, worktrees let you parallelize safely and merge cleanly.</p>
+
+            <h2>What Are Git Worktrees and Why Do They Matter for AI Development?</h2>
+
+            <p>A git worktree is an additional working directory linked to a single git repository. Unlike cloning the repo multiple times (which duplicates the entire <span class="kbd">.git</span> directory and history), worktrees share the underlying object store. Each worktree gets its own branch, its own working copy of the files, and its own index -- but they all reference the same repository.</p>
+
+            <div class="highlight">
+                <h3>Worktrees vs. Clones at a Glance</h3>
+                <ul>
+                    <li><strong>Git clone:</strong> Copies the entire repository including all history. Each clone is independent and has its own <span class="kbd">.git</span> directory. Disk usage multiplies with each clone.</li>
+                    <li><strong>Git worktree:</strong> Creates a new working directory that shares the same <span class="kbd">.git</span> object store. Minimal additional disk usage. Branches are aware of each other.</li>
+                    <li><strong>Why it matters for AI agents:</strong> Worktrees are faster to create, lighter on disk, and prevent branch checkout conflicts that happen when two agents try to switch branches in the same directory.</li>
+                </ul>
+            </div>
+
+            <p>For AI-assisted development, worktrees solve the fundamental problem of concurrent access. When you launch Claude Code in one worktree and Codex in another, they each have their own filesystem sandbox. They can write files, run tests, and make commits without stepping on each other. When both are done, you merge the branches just like any normal git workflow.</p>
+
+            <h2>Prerequisites and Initial Setup</h2>
+
+            <p>Before diving into worktrees, make sure your environment is ready. You need git 2.15 or later (run <span class="kbd">git --version</span> to check), a repository with at least one commit, and enough disk space for the working copies (though they are much lighter than full clones).</p>
+
+            <p>Start from your main repository checkout. For this guide, we will use a project called <span class="kbd">my-app</span> as an example:</p>
+
+            <div class="highlight">
+                <h3>Step 1: Verify Your Repository</h3>
+                <p>Navigate to your project root and confirm it is a git repository:</p>
+                <ul>
+                    <li><span class="kbd">cd ~/Projects/my-app</span></li>
+                    <li><span class="kbd">git status</span> -- should show you are on your main branch with a clean working tree</li>
+                    <li><span class="kbd">git worktree list</span> -- initially shows just your main checkout</li>
+                </ul>
+            </div>
+
+            <p>The <span class="kbd">git worktree list</span> command shows all linked worktrees. Right now it should only show one entry -- your main working directory. That is about to change.</p>
+
+            <h2>Creating Worktrees for Each AI Agent</h2>
+
+            <p>The pattern is straightforward: for each agent you want to run in parallel, create a dedicated worktree on a new feature branch. The syntax is <span class="kbd">git worktree add &lt;path&gt; -b &lt;branch-name&gt;</span>.</p>
+
+            <p>Here is a real-world setup where you want three agents working simultaneously -- one on a new API endpoint, one on UI components, and one on test coverage:</p>
+
+            <div class="highlight">
+                <h3>Step 2: Create Three Parallel Worktrees</h3>
+                <ul>
+                    <li><span class="kbd">git worktree add ../my-app-api -b feature/api-endpoint</span></li>
+                    <li><span class="kbd">git worktree add ../my-app-ui -b feature/ui-components</span></li>
+                    <li><span class="kbd">git worktree add ../my-app-tests -b feature/test-coverage</span></li>
+                </ul>
+                <p>Each command creates a new directory adjacent to your main checkout, checked out to a fresh branch based on your current HEAD.</p>
+            </div>
+
+            <p>After running these commands, your filesystem looks like this:</p>
+
+            <ul>
+                <li><span class="kbd">~/Projects/my-app/</span> -- main checkout (stays on main branch)</li>
+                <li><span class="kbd">~/Projects/my-app-api/</span> -- worktree for API agent</li>
+                <li><span class="kbd">~/Projects/my-app-ui/</span> -- worktree for UI agent</li>
+                <li><span class="kbd">~/Projects/my-app-tests/</span> -- worktree for test agent</li>
+            </ul>
+
+            <p>Each directory is a fully functional working copy. You can <span class="kbd">cd</span> into any of them, run your build tools, start dev servers, and -- most importantly -- point an AI agent at them.</p>
+
+            <h2>Launching AI Agents in Each Worktree</h2>
+
+            <p>With worktrees in place, launch your agents. The key principle: each agent gets its own terminal session pointed at its own worktree directory.</p>
+
+            <blockquote>
+                <p>"The biggest mistake developers make with parallel agents is running them in the same directory. Worktrees are the simplest way to give each agent its own sandbox without duplicating your entire repo."</p>
+            </blockquote>
+
+            <p>If you are using Claude Code, open a terminal in each worktree directory and start a session. Claude Code will automatically detect the git context and work within that branch. The same applies to Codex, Gemini CLI, or any other terminal-based AI agent.</p>
+
+            <div class="highlight">
+                <h3>Step 3: Assign Agents to Worktrees</h3>
+                <ul>
+                    <li><strong>Terminal 1 (API worktree):</strong> <span class="kbd">cd ../my-app-api && claude</span> -- Give it the prompt: "Add a REST endpoint for user preferences at /api/v1/preferences with GET and PUT methods."</li>
+                    <li><strong>Terminal 2 (UI worktree):</strong> <span class="kbd">cd ../my-app-ui && claude</span> -- Give it the prompt: "Create a settings panel component with tabs for Profile, Notifications, and Privacy."</li>
+                    <li><strong>Terminal 3 (Tests worktree):</strong> <span class="kbd">cd ../my-app-tests && claude</span> -- Give it the prompt: "Write integration tests for the user authentication flow covering login, logout, and token refresh."</li>
+                </ul>
+            </div>
+
+            <p>All three agents are now working simultaneously. Because each one is in its own directory on its own branch, there are zero file conflicts during execution. Each agent can create files, modify imports, run builds, and commit changes independently.</p>
+
+            <h2>Avoiding Conflicts: Branch Strategy for Parallel Agents</h2>
+
+            <p>Worktrees eliminate filesystem conflicts, but you still need to think about merge conflicts when bringing branches together. The best strategy is to assign each agent to a different area of the codebase.</p>
+
+            <p>Here are the principles that keep parallel agent branches mergeable:</p>
+
+            <ol>
+                <li><strong>Minimize file overlap:</strong> If two agents both need to modify the same file (like a router config or an index file), designate one agent as the owner of that file and have the other reference it without modifying it.</li>
+                <li><strong>Use additive patterns:</strong> Adding new files rarely causes conflicts. Modifying existing files sometimes does. Prefer tasks where agents create new modules, components, or test files rather than heavily refactoring shared code.</li>
+                <li><strong>Base all branches on the same commit:</strong> When you create worktrees, they branch from your current HEAD. This gives each agent the same starting point, which minimizes divergence.</li>
+                <li><strong>Merge frequently:</strong> If agents are working on related features, merge the first completed branch into main, then rebase the remaining branches before they finish. This keeps the merge surface small.</li>
+            </ol>
+
+            <div class="highlight">
+                <h3>Common Conflict Patterns and How to Prevent Them</h3>
+                <ul>
+                    <li><strong>Import/export index files:</strong> Two agents adding exports to the same <span class="kbd">index.ts</span>. Solution: have each agent create a separate barrel file that main imports.</li>
+                    <li><strong>Route definitions:</strong> Two agents adding routes to the same router file. Solution: use a modular routing pattern where each feature has its own route file.</li>
+                    <li><strong>Package dependencies:</strong> Two agents adding different packages, causing <span class="kbd">package-lock.json</span> conflicts. Solution: merge one branch first, then rebase the other to pick up the lock file changes.</li>
+                    <li><strong>Configuration files:</strong> Two agents modifying <span class="kbd">.env</span> or config objects. Solution: use environment-specific config files that get merged at runtime.</li>
+                </ul>
+            </div>
+
+            <h2>Monitoring and Managing Active Worktrees</h2>
+
+            <p>Once your agents are running, you need visibility into what is happening across all worktrees. Git provides built-in commands for this, but you can enhance the workflow with a few techniques.</p>
+
+            <p>Check the status of all worktrees at any time with <span class="kbd">git worktree list</span>. This shows each worktree path, the commit it is on, and which branch it is checked out to. Run it from any of the linked directories -- it always shows the full picture.</p>
+
+            <p>For real-time monitoring, use a tool like Beam that supports split panes and multiple terminal sessions. With Beam, you can have all three agent terminals visible simultaneously, watching their output side by side. The tab and project system lets you group related worktrees together, so you can switch between your "parallel agents" project and other work without losing context.</p>
+
+            <blockquote>
+                <p>"Visibility is the key to parallel agent orchestration. If you cannot see what each agent is doing in real time, you are flying blind. A split-pane terminal environment transforms parallel development from chaotic to manageable."</p>
+            </blockquote>
+
+            <h2>Merging Completed Work Back to Main</h2>
+
+            <p>When an agent finishes its task, you have a branch with commits ready to merge. Here is the recommended merge workflow:</p>
+
+            <div class="highlight">
+                <h3>Step 4: Merge Workflow</h3>
+                <ol>
+                    <li>Switch to your main checkout: <span class="kbd">cd ~/Projects/my-app</span></li>
+                    <li>Review the agent's work: <span class="kbd">git log feature/api-endpoint --oneline</span></li>
+                    <li>Run tests on the feature branch: <span class="kbd">cd ../my-app-api && npm test</span></li>
+                    <li>Merge when satisfied: <span class="kbd">cd ~/Projects/my-app && git merge feature/api-endpoint</span></li>
+                    <li>If other agents are still running, rebase their branches: <span class="kbd">cd ../my-app-ui && git rebase main</span></li>
+                    <li>Repeat for each completed branch</li>
+                </ol>
+            </div>
+
+            <p>The rebase step in item 5 is important. When you merge the first branch into main, the other agents' branches are now behind. Rebasing them onto the updated main ensures they incorporate the latest changes before they finish their work. If an agent is still actively running, wait until it completes its current task before rebasing.</p>
+
+            <h2>Cleaning Up Worktrees</h2>
+
+            <p>After merging, remove worktrees you no longer need. This keeps your filesystem clean and avoids confusion:</p>
+
+            <ul>
+                <li><span class="kbd">git worktree remove ../my-app-api</span> -- removes the worktree directory and unlinks it from the repository</li>
+                <li><span class="kbd">git branch -d feature/api-endpoint</span> -- deletes the merged branch</li>
+                <li><span class="kbd">git worktree prune</span> -- cleans up any stale worktree references if directories were manually deleted</li>
+            </ul>
+
+            <p>Run <span class="kbd">git worktree list</span> after cleanup to confirm only your main checkout remains.</p>
+
+            <h2>Advanced: Worktree Templates and Automation</h2>
+
+            <p>If you regularly use parallel agents, create a shell script that automates worktree creation. Here is a pattern that works well for teams:</p>
+
+            <div class="highlight">
+                <h3>Automation Script Pattern</h3>
+                <p>Create a script called <span class="kbd">parallel-agents.sh</span> that accepts a list of branch names and task descriptions. The script:</p>
+                <ul>
+                    <li>Creates a worktree for each branch name in a consistent directory structure</li>
+                    <li>Copies any necessary environment files (<span class="kbd">.env.local</span>) into each worktree</li>
+                    <li>Installs dependencies (<span class="kbd">npm install</span>) in each worktree so agents can run builds immediately</li>
+                    <li>Opens terminal sessions in each worktree (using a tool like Beam that supports scripted window creation)</li>
+                    <li>Outputs a summary of all worktrees and their assigned tasks</li>
+                </ul>
+            </div>
+
+            <p>Another advanced pattern is using worktrees for different stages of the same feature. Create one worktree for the implementation agent and another for a review agent. The implementation agent writes code, commits it, and the review agent (in its own worktree on a branch tracking the implementation branch) reviews the changes, suggests improvements, and creates a summary. This pipeline pattern turns worktrees into a multi-stage assembly line.</p>
+
+            <h2>Tool Integration: Making Worktrees Work with Your Stack</h2>
+
+            <p>Different AI agents and development tools have varying levels of worktree awareness. Here is what you need to know:</p>
+
+            <ul>
+                <li><strong>Claude Code:</strong> Fully worktree-aware. It detects the git context of whatever directory you launch it in. Claude Code even has a built-in worktree command that automates creation and cleanup.</li>
+                <li><strong>VS Code / Cursor:</strong> Open each worktree as a separate window. The git extension correctly tracks the branch for each worktree directory.</li>
+                <li><strong>Node.js projects:</strong> Each worktree needs its own <span class="kbd">node_modules</span>. Run <span class="kbd">npm install</span> in each worktree after creation. Consider using <span class="kbd">pnpm</span> with a shared store to save disk space.</li>
+                <li><strong>Docker:</strong> If your project uses Docker, each worktree can share the same Docker daemon but may need distinct container names. Use the worktree directory name as a container prefix.</li>
+                <li><strong>Database migrations:</strong> Be careful with agents that run migrations. Use separate test databases for each worktree to avoid migration conflicts.</li>
+            </ul>
+
+            <blockquote>
+                <p>"The best tool integration is the one you do not have to think about. Set up your worktrees correctly once, install dependencies, and let the agents treat each worktree as if it were the only copy of the project."</p>
+            </blockquote>
+
+            <h2>Real-World Example: Three Agents, One Sprint</h2>
+
+            <p>Here is a concrete example from a real project. The goal was to complete three sprint items in one afternoon using parallel agents:</p>
+
+            <ol>
+                <li><strong>Agent 1 (Claude Code):</strong> Implement a webhook handler for Stripe payment events. Created in <span class="kbd">../app-webhooks</span> worktree. Took 18 minutes. Created 4 new files, modified 2 existing files.</li>
+                <li><strong>Agent 2 (Claude Code):</strong> Add email notification templates for order confirmations. Created in <span class="kbd">../app-emails</span> worktree. Took 12 minutes. Created 6 new template files and a helper module.</li>
+                <li><strong>Agent 3 (Codex):</strong> Write end-to-end tests for the checkout flow. Created in <span class="kbd">../app-e2e</span> worktree. Took 25 minutes. Created 3 test files and a test fixture.</li>
+            </ol>
+
+            <p>Total elapsed time: 25 minutes (the longest agent). Total work completed: 3 sprint items that would have taken a solo developer most of a day. Merge conflicts: zero, because each agent worked on distinct parts of the codebase.</p>
+
+            <h2>Troubleshooting Common Issues</h2>
+
+            <div class="highlight">
+                <h3>Frequently Encountered Problems</h3>
+                <ul>
+                    <li><strong>"fatal: branch is already checked out":</strong> You cannot check out the same branch in two worktrees. Use <span class="kbd">-b</span> to create a new branch for each worktree.</li>
+                    <li><strong>Missing node_modules:</strong> Worktrees share git objects but not untracked files. Run <span class="kbd">npm install</span> in each new worktree.</li>
+                    <li><strong>Stale worktree references:</strong> If you delete a worktree directory manually (without <span class="kbd">git worktree remove</span>), run <span class="kbd">git worktree prune</span> to clean up.</li>
+                    <li><strong>Lock files blocking worktree creation:</strong> If a previous operation was interrupted, delete the <span class="kbd">.git/worktrees/&lt;name&gt;/locked</span> file or run <span class="kbd">git worktree unlock &lt;path&gt;</span>.</li>
+                    <li><strong>Performance with large repos:</strong> Worktrees share the object store, so even monorepos create worktrees quickly. The main cost is the working tree file checkout.</li>
+                </ul>
+            </div>
+
+            <h2>Bringing It All Together</h2>
+
+            <p>Git worktrees are the foundation of efficient parallel AI agent development. They solve the fundamental problem of multiple agents needing simultaneous access to the same codebase without creating filesystem conflicts or requiring heavyweight repository duplication.</p>
+
+            <p>The workflow is simple: create worktrees, assign agents, monitor progress, merge results, clean up. With practice, this becomes as natural as branching itself. The payoff is enormous -- you can parallelize development across multiple features, reduce wall-clock time for sprint work, and let each agent operate in a clean, isolated environment.</p>
+
+            <p>Pair this approach with a workspace tool like Beam that gives you split panes and project management, and you have a true parallel development cockpit. Each agent gets its own pane, each worktree gets its own tab, and you can see everything happening across your codebase in real time.</p>
+
+            <div class="cta-box">
+                <h3>Ready to Level Up Your Agentic Workflow?</h3>
+                <p>Beam gives you the workspace to run every AI agent from one cockpit — split panes, tabs, projects, and more.</p>
+                <a href="/" class="btn">Download Beam Free</a>
+            </div>
+
+            <div class="related-articles">
+                <h2>Related Articles</h2>
+                <div class="related-grid">
+                    <a href="/blog/claude-code-worktrees-parallel-agents.html" class="related-card">
+                        <h4>Claude Code Worktrees: Parallel Agents Without Conflicts</h4>
+                        <p>The Claude Code-specific guide to worktree-based parallel sessions.</p>
+                    </a>
+                    <a href="/blog/multi-agent-ai-coding-workflows.html" class="related-card">
+                        <h4>Multi-Agent AI Coding Workflows</h4>
+                        <p>Design patterns for running multiple AI agents on the same project.</p>
+                    </a>
+                    <a href="/blog/manage-multiple-claude-code-sessions.html" class="related-card">
+                        <h4>Manage Multiple Claude Code Sessions</h4>
+                        <p>Keep your parallel coding sessions organized and productive.</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </article>
+
+    <footer>
+        <div class="container">
+            <p>Beam — The Agentic Engineering Platform</p>
+            <p style="margin-top: 8px;">
+                <a href="/">Home</a> · <a href="/blog/">Blog</a> · Built by NextUp Technologies
+            </p>
+        </div>
+    </footer>
+</body>
+</html>

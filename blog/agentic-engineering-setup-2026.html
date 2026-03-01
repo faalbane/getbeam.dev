@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D0XH8B0RKL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-D0XH8B0RKL');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Agentic Engineering Setup: Terminal, Agents, and Workspace Management in 2026 | Beam Blog</title>
+    <meta name="description" content="A complete walkthrough of my 2026 agentic engineering setup. Terminal configuration, AI agent stack, workspace management with Beam, CLAUDE.md configuration, and the tools that make multi-agent development productive.">
+    <meta name="keywords" content="agentic engineering setup 2026, AI coding workspace, agentic development tools, terminal setup for AI agents, Claude Code workspace, multi-agent workflow setup">
+    <meta name="author" content="NextUp Technologies">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://getbeam.dev/blog/agentic-engineering-setup-2026.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://getbeam.dev/blog/agentic-engineering-setup-2026.html">
+    <meta property="og:title" content="My Agentic Engineering Setup: Terminal, Agents, and Workspace Management in 2026">
+    <meta property="og:description" content="The exact tools, configurations, and workflows I use for productive agentic engineering in 2026.">
+    <meta property="og:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="My Agentic Engineering Setup: Terminal, Agents, and Workspace Management in 2026">
+    <meta name="twitter:description" content="The exact tools, configurations, and workflows I use for productive agentic engineering in 2026.">
+    <meta name="twitter:image" content="https://getbeam.dev/beam-screenshot.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "My Agentic Engineering Setup: Terminal, Agents, and Workspace Management in 2026",
+        "description": "A complete walkthrough of my 2026 agentic engineering setup including terminal, AI agents, workspace management, and productivity tools.",
+        "author": {
+            "@type": "Organization",
+            "name": "NextUp Technologies"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Beam"
+        },
+        "datePublished": "2026-03-01",
+        "keywords": "agentic engineering setup 2026, AI coding workspace, multi-agent workflow"
+    }
+    </script>
+
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #111113;
+            --bg-tertiary: #1a1a1d;
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.4);
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --border: #27272a;
+            --success: #22c55e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        a, button, .btn, .related-card, .post-card, .editorial-card { cursor: pointer; }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+
+        .container { max-width: 800px; margin: 0 auto; padding: 0 24px; }
+
+        header { padding: 24px 0; border-bottom: 1px solid var(--border); margin-bottom: 60px; }
+        header .container { display: flex; justify-content: space-between; align-items: center; }
+
+        .logo { display: flex; align-items: center; gap: 12px; font-weight: 700; font-size: 1.5rem; text-decoration: none; color: var(--text-primary); }
+        .logo-icon { width: 32px; height: 32px; background: linear-gradient(135deg, var(--accent), #8b5cf6); border-radius: 7px; display: flex; align-items: center; justify-content: center; }
+        .pixel-logo-wrap { display: flex; align-items: center; filter: drop-shadow(0 0 6px rgba(59, 130, 246, 0.45)); width: 79px; height: 19px; flex-shrink: 0; position: relative; overflow: visible; }
+        .pixel-logo { position: absolute; top: 0; left: 0; display: block; width: 3px; height: 3px; border-radius: 0.5px; background: #a0c4ff; box-shadow: 4px 0 0 0 #a2c5ff, 8px 0 0 0 #a4c6ff, 20px 0 0 0 #acc9ff, 24px 0 0 0 #aecaff, 28px 0 0 0 #b0cbff, 32px 0 0 0 #b2ccff, 44px 0 0 0 #bacfff, 48px 0 0 0 #bcd0ff, 60px 0 0 0 #c4d4ff, 76px 0 0 0 #d0daff, 0 4px 0 0 #96bdf8, 12px 4px 0 0 #9ec1f8, 20px 4px 0 0 #a4c4f8, 40px 4px 0 0 #b4ccf8, 52px 4px 0 0 #bcd0f8, 60px 4px 0 0 #c0d2f8, 64px 4px 0 0 #c2d3f8, 72px 4px 0 0 #c8d6f8, 76px 4px 0 0 #cad7f8, 0 8px 0 0 #8cb6f0, 4px 8px 0 0 #8eb7f0, 8px 8px 0 0 #90b8f0, 20px 8px 0 0 #9abef0, 24px 8px 0 0 #9cbff0, 28px 8px 0 0 #9ec0f0, 40px 8px 0 0 #aac6f0, 44px 8px 0 0 #acc7f0, 48px 8px 0 0 #aec8f0, 52px 8px 0 0 #b0c9f0, 60px 8px 0 0 #b6ccf0, 68px 8px 0 0 #bccff0, 76px 8px 0 0 #c4d3f0, 0 12px 0 0 #82afe8, 12px 12px 0 0 #8cb5e8, 20px 12px 0 0 #92b8e8, 40px 12px 0 0 #a2c0e8, 52px 12px 0 0 #aac4e8, 60px 12px 0 0 #aec6e8, 76px 12px 0 0 #bccde8, 0 16px 0 0 #78a8e0, 4px 16px 0 0 #7aa9e0, 8px 16px 0 0 #7caae0, 20px 16px 0 0 #88b0e0, 24px 16px 0 0 #8ab1e0, 28px 16px 0 0 #8cb2e0, 32px 16px 0 0 #8eb3e0, 40px 16px 0 0 #96b8e0, 52px 16px 0 0 #a0bce0, 60px 16px 0 0 #a4bee0, 76px 16px 0 0 #b4c6e0; }
+
+        .btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; border-radius: 8px; font-weight: 600; font-size: 0.95rem; text-decoration: none; background: var(--accent); color: white; transition: all 0.2s; }
+        .btn:hover { background: #2563eb; transform: translateY(-2px); }
+
+        article { padding-bottom: 80px; }
+        .breadcrumb { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 24px; }
+        .breadcrumb a { color: var(--accent); text-decoration: none; }
+        h1 { font-size: 2.5rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 16px; line-height: 1.2; }
+        .meta { color: var(--text-muted); margin-bottom: 40px; font-size: 0.95rem; }
+        h2 { font-size: 1.5rem; font-weight: 600; margin: 48px 0 20px; color: var(--text-primary); }
+        p { color: var(--text-secondary); margin-bottom: 20px; font-size: 1.05rem; }
+        ul, ol { color: var(--text-secondary); margin-bottom: 20px; padding-left: 24px; }
+        li { margin-bottom: 12px; }
+        .highlight { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 24px; margin: 32px 0; }
+        .highlight h3 { font-size: 1.1rem; margin-bottom: 12px; color: var(--text-primary); }
+        .kbd { display: inline-block; padding: 2px 8px; background: var(--bg-tertiary); border: 1px solid var(--border); border-radius: 4px; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; }
+        .cta-box { background: linear-gradient(135deg, var(--accent), #8b5cf6); border-radius: 16px; padding: 40px; text-align: center; margin: 60px 0; }
+        .cta-box h3 { font-size: 1.5rem; margin-bottom: 12px; }
+        .cta-box p { color: rgba(255,255,255,0.8); margin-bottom: 24px; }
+        .cta-box .btn { background: white; color: var(--accent); }
+        footer { padding: 40px 0; border-top: 1px solid var(--border); text-align: center; color: var(--text-muted); font-size: 0.9rem; }
+        footer a { color: var(--text-secondary); text-decoration: none; }
+        .related-articles { margin-top: 60px; padding-top: 40px; border-top: 1px solid var(--border); }
+        .related-articles h2 { font-size: 1.5rem; margin-bottom: 24px; }
+        .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .related-card { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 24px; text-decoration: none; transition: border-color 0.2s; }
+        .related-card:hover { border-color: var(--accent); }
+        .related-card h4 { color: white; font-size: 1rem; margin: 0 0 8px 0; }
+        .related-card p { color: var(--text-muted); font-size: 0.85rem; margin: 0; }
+        @media (max-width: 600px) { .related-grid { grid-template-columns: 1fr; } h1 { font-size: 1.8rem; } }
+        blockquote { border-left: 3px solid var(--accent); padding-left: 20px; margin: 24px 0; font-style: italic; }
+        blockquote p { color: var(--text-secondary); }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="/" class="logo">
+                <div class="logo-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                </div>
+                <span class="pixel-logo-wrap"><span class="pixel-logo"></span></span>
+            </a>
+            <a href="/" class="btn">Download Beam</a>
+        </div>
+    </header>
+
+    <article>
+        <div class="container">
+            <div class="breadcrumb">
+                <a href="/">Home</a> / <a href="/blog/">Blog</a> / Agentic Engineering Setup 2026
+            </div>
+
+            <h1>My Agentic Engineering Setup: Terminal, Agents, and Workspace Management in 2026</h1>
+            <div class="meta">March 1, 2026 &middot; 13 min read</div>
+
+            <p>Every few months, someone asks me to walk through my development setup. The answer has changed more in the past year than in the previous decade. My workflow is no longer centered on a code editor with a terminal on the side. It is centered on a terminal workspace with multiple AI agents running in parallel, and a code editor that I open only when I need to visually verify something the agents produced.</p>
+
+            <p>This post is a full walkthrough of my agentic engineering setup in March 2026: the terminal I use, the agents I run, how I manage my workspace, how I structure my CLAUDE.md files, and the supporting tools that tie it all together. This is not aspirational. This is what I actually use every day to ship production software.</p>
+
+            <h2>The Terminal: Where Everything Happens</h2>
+
+            <p>The terminal is the control center of an agentic engineering workflow. It is where your agents live, where you monitor their output, and where you coordinate their work. Choosing the right terminal setup is the most consequential infrastructure decision you will make.</p>
+
+            <p>I use <strong>Beam</strong> as my primary terminal workspace. The reasons are specific to how agentic engineering works:</p>
+
+            <ul>
+                <li><strong>Split panes are essential, not optional.</strong> I typically run three to four visible panes at once. Two for active Claude Code sessions, one for Gemini CLI or a secondary agent, and one for running tests or tailing logs. Beam's split pane system lets me arrange these exactly how I need them and resize on the fly.</li>
+                <li><strong>Tabs organize by task, not by tool.</strong> Each tab in my setup represents a logical unit of work: "auth-refactor," "api-tests," "deploy-pipeline." Within each tab, I have the panes configured for that specific task. When I switch tabs, I switch contexts cleanly.</li>
+                <li><strong>Projects persist my layout.</strong> This is the feature that sold me. When I close Beam and reopen it tomorrow, my entire workspace is exactly as I left it: same tabs, same pane layout, same working directories. For long-running projects where I maintain specific agent configurations, this saves me fifteen minutes of setup every morning.</li>
+                <li><strong>Keyboard shortcuts for everything.</strong> In an agentic workflow, speed of navigation matters. I need to jump between panes, create new splits, close finished sessions, and switch projects without reaching for the mouse. Beam has over fifty keyboard shortcuts, and I use about twenty of them constantly.</li>
+            </ul>
+
+            <div class="highlight">
+                <h3>My Typical Beam Layout</h3>
+                <p><strong>Tab 1 - "Feature Work":</strong> Two side-by-side panes. Left pane: Claude Code with Sonnet, working on the current feature. Right pane: Claude Code with Sonnet, writing tests for a different module.</p>
+                <p><strong>Tab 2 - "Architecture":</strong> Single large pane running Claude Code with Opus for complex design decisions or debugging.</p>
+                <p><strong>Tab 3 - "Research":</strong> Gemini CLI session for codebase exploration and documentation research.</p>
+                <p><strong>Tab 4 - "Ops":</strong> Three panes. Top: test runner in watch mode. Bottom left: git operations. Bottom right: Docker logs or server output.</p>
+            </div>
+
+            <h2>The Agent Stack</h2>
+
+            <p>I do not rely on a single AI agent. Different agents have different strengths, and a mature agentic workflow uses the right agent for each task. Here is my current stack:</p>
+
+            <h2>Claude Code (Primary Agent)</h2>
+
+            <p>Claude Code is my primary coding agent for anything that touches production code. I run it with Sonnet 4.6 for most tasks and switch to Opus 4.6 for complex debugging, architectural decisions, and security-sensitive code.</p>
+
+            <p>The reason Claude Code earns the primary position is reliability on multi-file changes. When I tell it to "add request validation to all API endpoints using our shared validation schema," it does it consistently across twelve files without missing one or introducing inconsistencies. That reliability is what matters in a production workflow.</p>
+
+            <p>I configure Claude Code through a combination of the global settings and per-project CLAUDE.md files. The global settings handle my preferences (model selection, permission allowances). The CLAUDE.md handles project-specific context.</p>
+
+            <h2>Gemini CLI (Secondary Agent)</h2>
+
+            <p>Gemini CLI fills a specific niche in my workflow: exploration and research. Its million-token context window means I can load an entire codebase and ask broad questions like "trace the data flow from the API request to the database write for user creation" or "find all places where we handle rate limiting." The answers are comprehensive because the model sees everything at once.</p>
+
+            <p>I also use Gemini CLI for prototyping. When I want to explore an approach before committing to it, the free tier lets me iterate without cost pressure. I might try three different implementations of a caching strategy in Gemini CLI, pick the best approach, and then have Claude Code implement the production version.</p>
+
+            <h2>Aider (Specialized Agent)</h2>
+
+            <p>Aider remains useful for specific git-focused workflows. Its tight integration with git means it creates clean commits, handles merge conflicts well, and works naturally with feature branch workflows. I use it less frequently than Claude Code, but for "make this change and commit it with a good message" type tasks, it is efficient.</p>
+
+            <h2>Workspace Management: The Multiplier</h2>
+
+            <p>Having good agents is necessary but not sufficient. The workspace management layer is what turns individual agent usage into a productive orchestration practice.</p>
+
+            <p>Here is my workspace management approach:</p>
+
+            <p><strong>One project per major initiative.</strong> In Beam, I create a project for each significant piece of work. A project captures the full workspace state: tabs, panes, working directories, and terminal history. When I am working on the payments integration, I load the "payments" project. Everything is right where I left it.</p>
+
+            <p><strong>Consistent pane naming conventions.</strong> I use the first line of each agent session as a visual identifier. When starting a Claude Code session, my first message is always a brief statement of the task: "Implement the webhook handler for Stripe payment events." This means when I glance across my panes, I can immediately see what each agent is working on.</p>
+
+            <p><strong>Regular checkpoint reviews.</strong> Every thirty to forty-five minutes, I do a sweep across all running agents. I check each pane, review any completed work, merge what looks good, and redirect any agent that has gone off track. This cadence prevents drift without micromanaging.</p>
+
+            <div class="highlight">
+                <h3>Workspace Management Rules I Follow</h3>
+                <ul>
+                    <li>Never have more than four agent sessions running simultaneously. Beyond that, supervision quality degrades.</li>
+                    <li>Always have one pane dedicated to non-agent work: tests, logs, or manual verification.</li>
+                    <li>Close completed sessions immediately. Stale panes create confusion.</li>
+                    <li>Use different terminal background colors for different agent types. Claude Code sessions get a dark blue tint, Gemini sessions get a dark green. Visual differentiation helps when scanning quickly.</li>
+                </ul>
+            </div>
+
+            <h2>CLAUDE.md: The Project Brain</h2>
+
+            <p>My CLAUDE.md file is the most carefully maintained document in every project. It is the instruction set that every Claude Code session reads before starting work, and the quality of this document directly determines the quality of agent output.</p>
+
+            <p>Here is the structure I use for every project:</p>
+
+            <p><strong>Section 1: Project Overview.</strong> Two to three sentences. What does this project do? What is the architecture? What is the deployment target? This gives the agent baseline orientation.</p>
+
+            <p><strong>Section 2: Tech Stack and Versions.</strong> Explicit listing of every major technology with its version. This prevents the agent from using deprecated APIs or outdated patterns. I update this section whenever I upgrade a dependency.</p>
+
+            <p><strong>Section 3: Code Conventions.</strong> Naming patterns, file organization, import ordering, error handling approach, logging conventions. The more specific you are here, the less time you spend correcting style issues in agent output.</p>
+
+            <p><strong>Section 4: Testing Requirements.</strong> Which test framework, how to run tests, minimum expectations for test coverage on new code, and any testing patterns specific to the project (such as using factories for test data or specific mocking approaches).</p>
+
+            <p><strong>Section 5: Boundaries.</strong> This is the most important section. What the agent must never do without explicit approval: modifying database migrations, adding new dependencies, changing public API contracts, modifying CI/CD configuration. Clear boundaries prevent the most costly mistakes.</p>
+
+            <p><strong>Section 6: Common Commands.</strong> Build, test, lint, type-check, and deploy commands. The agent uses these to verify its own work. If your test command is <span class="kbd">npm run test:unit</span> instead of <span class="kbd">npm test</span>, the agent needs to know that.</p>
+
+            <blockquote>
+                <p>"I spend about thirty minutes per week maintaining my CLAUDE.md across all projects. That investment saves me hours of correcting agent mistakes and re-explaining project conventions. It is the highest-ROI documentation I write."</p>
+            </blockquote>
+
+            <h2>MCP Server Configuration</h2>
+
+            <p>My standard MCP setup includes four servers that I use across almost every project:</p>
+
+            <ul>
+                <li><strong>PostgreSQL MCP server</strong> -- Connected to the development database with read-only access. The agent can inspect schemas, run queries, and understand data relationships without me pasting table definitions into chat.</li>
+                <li><strong>GitHub MCP server</strong> -- For PR management, issue tracking, and code search across the organization. The agent can create branches, open PRs, and check CI status autonomously.</li>
+                <li><strong>Filesystem MCP server</strong> -- Configured with scoped access to the project directory. This provides an additional layer of safety beyond what Claude Code's built-in file access offers.</li>
+                <li><strong>Memory MCP server</strong> -- Persistent knowledge graph that carries context between sessions. After a month of use, the memory server knows the project's architecture, past debugging sessions, and my preferences well enough that new sessions start with meaningful context.</li>
+            </ul>
+
+            <p>I configure these through a project-level <span class="kbd">.mcp.json</span> file that lives in the repository. This means every team member gets the same MCP setup when they clone the project and start their first agent session.</p>
+
+            <h2>The Supporting Cast</h2>
+
+            <p>Beyond the terminal and agents, a few other tools round out the setup:</p>
+
+            <p><strong>VS Code</strong> -- I still open VS Code for visual tasks: reviewing diffs side by side, navigating complex type hierarchies, and using the debugger for stepping through code. But I spend maybe 20% of my time there, down from 80% a year ago.</p>
+
+            <p><strong>Git with conventional commits</strong> -- Every agent-produced change goes through git. I enforce conventional commit messages and require all changes to go through feature branches. This creates a clean audit trail of what was human-authored versus agent-produced.</p>
+
+            <p><strong>GitHub Actions for CI</strong> -- Every push triggers the full test suite, linting, type checking, and build verification. This is the automated guardrail layer that catches issues the agents might introduce. I trust my CI pipeline more than I trust any individual code review.</p>
+
+            <p><strong>Linear for task management</strong> -- Connected via MCP server. I break features into Linear tickets, and agents can read ticket descriptions for requirements. When an agent completes a task, I update the ticket and move to the next one.</p>
+
+            <h2>A Typical Day</h2>
+
+            <p>Here is what a productive day looks like with this setup:</p>
+
+            <p><strong>8:00 AM:</strong> Open Beam, load the current project. Review yesterday's in-progress work across the saved panes. Merge any completed work that passed overnight CI.</p>
+
+            <p><strong>8:15 AM:</strong> Check Linear for today's priorities. Decompose the top priority into three or four agent-sized tasks. Write a brief description for each.</p>
+
+            <p><strong>8:30 AM:</strong> Start Claude Code sessions in two panes with the first two tasks. Start a Gemini CLI session in a third pane to research an unfamiliar API I will need for the third task.</p>
+
+            <p><strong>9:00 AM:</strong> First checkpoint. Review the output from both Claude Code sessions. One is done and looks good -- merge it, start the next task. The other needs a small correction -- provide feedback and let it iterate.</p>
+
+            <p><strong>9:30 - 12:00 PM:</strong> Continue the cycle. Start tasks, monitor progress, review output, merge good work, redirect agents that drift. Three or four tasks completed per hour.</p>
+
+            <p><strong>12:00 PM:</strong> Lunch. Agents keep working. Some will be done when I return.</p>
+
+            <p><strong>1:00 PM:</strong> Review everything produced during lunch. Two tasks complete, one needs minor fixes. Merge the complete work, fix the issues, start afternoon tasks.</p>
+
+            <p><strong>1:30 - 5:00 PM:</strong> Same cadence as the morning. By end of day, twelve to fifteen discrete tasks completed. That is the output of what would have taken a week of manual coding.</p>
+
+            <p>The key insight is that this productivity comes not from any single tool being magical. It comes from the system: the workspace that provides visibility, the agents that do the implementation, the CLAUDE.md that ensures consistency, the MCP servers that provide context, and the CI pipeline that catches mistakes. Each piece is necessary, and together they create something that is genuinely transformative.</p>
+
+            <h2>Getting Started</h2>
+
+            <p>If this setup sounds overwhelming, start simple. The minimum viable agentic engineering setup is:</p>
+
+            <ol>
+                <li><strong>Install Beam</strong> for workspace management with split panes and projects.</li>
+                <li><strong>Install Claude Code</strong> and get an API key or subscription.</li>
+                <li><strong>Write a CLAUDE.md</strong> for your current project with at least the project overview, tech stack, and boundaries sections.</li>
+                <li><strong>Start with one agent session.</strong> Get comfortable reviewing agent output and providing feedback.</li>
+                <li><strong>Add a second pane</strong> once single-agent work feels natural. Run two agents on independent tasks.</li>
+            </ol>
+
+            <p>Scale from there. Add MCP servers when you identify specific pain points. Add Gemini CLI when you need a research agent. Add more panes as your supervision skills improve. The setup I described above took months to evolve. Yours will too, and that is fine. The important thing is to start.</p>
+
+            <div class="cta-box">
+                <h3>Ready to Level Up Your Agentic Workflow?</h3>
+                <p>Beam gives you the workspace to run every AI agent from one cockpit -- split panes, tabs, projects, and more.</p>
+                <a href="/" class="btn">Download Beam Free</a>
+            </div>
+
+            <div class="related-articles">
+                <h2>Related Articles</h2>
+                <div class="related-grid">
+                    <a href="/blog/agentic-engineering-complete-guide-2026.html" class="related-card">
+                        <h4>Agentic Engineering in 2026: The Complete Guide</h4>
+                        <p>Master the art of supervising AI coding agents with practical patterns and guardrails.</p>
+                    </a>
+                    <a href="/blog/best-mcp-servers-2026.html" class="related-card">
+                        <h4>10 MCP Servers Every Developer Should Know</h4>
+                        <p>Extend your AI agents with the best Model Context Protocol servers available today.</p>
+                    </a>
+                    <a href="/blog/gemini-cli-vs-claude-code-2026.html" class="related-card">
+                        <h4>Gemini CLI vs Claude Code in 2026</h4>
+                        <p>Google's free AI agent enters the ring. How does it compare for real coding work?</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </article>
+
+    <footer>
+        <div class="container">
+            <p>Beam -- The Agentic Engineering Platform</p>
+            <p style="margin-top: 8px;">
+                <a href="/">Home</a> · <a href="/blog/">Blog</a> · Built by NextUp Technologies
+            </p>
+        </div>
+    </footer>
+</body>
+</html>
