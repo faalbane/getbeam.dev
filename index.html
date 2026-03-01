@@ -167,17 +167,16 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            max-width: 1400px;
         }
 
         .logo {
             display: flex;
             align-items: center;
-            gap: 14px;
-            font-weight: 700;
-            font-size: 1.5rem;
-            letter-spacing: -0.02em;
+            gap: 12px;
             text-decoration: none;
             color: var(--text-primary);
+            flex-shrink: 0;
         }
 
         .logo-text {
@@ -194,18 +193,19 @@
         }
 
         .logo-icon {
-            width: 36px;
-            height: 36px;
+            width: 32px;
+            height: 32px;
             background: linear-gradient(135deg, var(--accent), #8b5cf6);
-            border-radius: 8px;
+            border-radius: 7px;
             display: flex;
             align-items: center;
             justify-content: center;
+            flex-shrink: 0;
         }
 
         .logo-icon svg {
-            width: 20px;
-            height: 20px;
+            width: 18px;
+            height: 18px;
         }
 
         nav {
@@ -226,22 +226,33 @@
             color: var(--text-primary);
         }
 
-        /* Nav download — matches hero btn-primary style */
+        /* Nav download — 8-bit style to match hero buttons */
         .nav-download-wrap {
             position: relative;
             display: inline-flex;
             align-items: stretch;
             height: 38px;
-            border-radius: 8px;
             background: var(--accent);
             border: none;
-            box-shadow: 0 0 20px var(--accent-glow);
-            transition: all 0.2s;
+            clip-path: polygon(
+                3px 0%, calc(100% - 3px) 0%,
+                100% 3px, 100% calc(100% - 3px),
+                calc(100% - 3px) 100%, 3px 100%,
+                0% calc(100% - 3px), 0% 3px
+            );
+            box-shadow:
+                inset -2px -2px 0 0 #1d4ed8,
+                inset 2px 2px 0 0 #60a5fa,
+                0 0 16px var(--accent-glow);
+            transition: all 0.15s;
         }
         .nav-download-wrap:hover {
             background: #2563eb;
             transform: translateY(-1px);
-            box-shadow: 0 0 30px var(--accent-glow);
+            box-shadow:
+                inset -2px -2px 0 0 #1d4ed8,
+                inset 2px 2px 0 0 #60a5fa,
+                0 0 24px var(--accent-glow);
         }
         .nav-dl-btn {
             display: inline-flex !important;
@@ -250,13 +261,14 @@
             padding: 0 14px 0 16px !important;
             background: none !important;
             border: none !important;
-            border-radius: 8px 0 0 8px !important;
             box-shadow: none !important;
             color: #fff !important;
-            font-size: 0.88rem !important;
+            font-family: 'JetBrains Mono', monospace !important;
+            font-size: 0.82rem !important;
             font-weight: 600 !important;
             text-decoration: none;
             white-space: nowrap;
+            letter-spacing: 0.02em;
             transition: color 0.2s;
         }
         .nav-dl-btn:hover {
@@ -278,7 +290,6 @@
             color: rgba(255, 255, 255, 0.7);
             border: none;
             border-left: 1px solid rgba(255,255,255,0.18);
-            border-radius: 0 8px 8px 0;
             cursor: pointer;
             transition: all 0.15s;
         }
@@ -621,6 +632,203 @@
         .screenshot img {
             width: 100%;
             display: block;
+        }
+
+        /* ═══ PIXEL ART LOGO ═══ */
+        .pixel-logo-wrap {
+            display: flex;
+            align-items: center;
+            filter: drop-shadow(0 0 6px rgba(59, 130, 246, 0.45));
+        }
+
+        .pixel-logo {
+            display: block;
+            width: 3px;
+            height: 3px;
+            border-radius: 0.5px;
+            background: #a0c4ff;
+            box-shadow:
+                /* Row 0 — B: ### E: #### A: ## M: #...# */
+                4px 0 0 0 #a2c5ff, 8px 0 0 0 #a4c6ff,
+                20px 0 0 0 #acc9ff, 24px 0 0 0 #aecaff, 28px 0 0 0 #b0cbff, 32px 0 0 0 #b2ccff,
+                44px 0 0 0 #bacfff, 48px 0 0 0 #bcd0ff,
+                60px 0 0 0 #c4d4ff,
+                76px 0 0 0 #d0daff,
+                /* Row 1 */
+                0 4px 0 0 #96bdf8, 12px 4px 0 0 #9ec1f8,
+                20px 4px 0 0 #a4c4f8,
+                40px 4px 0 0 #b4ccf8, 52px 4px 0 0 #bcd0f8,
+                60px 4px 0 0 #c0d2f8, 64px 4px 0 0 #c2d3f8,
+                72px 4px 0 0 #c8d6f8, 76px 4px 0 0 #cad7f8,
+                /* Row 2 */
+                0 8px 0 0 #8cb6f0, 4px 8px 0 0 #8eb7f0, 8px 8px 0 0 #90b8f0,
+                20px 8px 0 0 #9abef0, 24px 8px 0 0 #9cbff0, 28px 8px 0 0 #9ec0f0,
+                40px 8px 0 0 #aac6f0, 44px 8px 0 0 #acc7f0, 48px 8px 0 0 #aec8f0, 52px 8px 0 0 #b0c9f0,
+                60px 8px 0 0 #b6ccf0, 68px 8px 0 0 #bccff0,
+                76px 8px 0 0 #c4d3f0,
+                /* Row 3 */
+                0 12px 0 0 #82afe8, 12px 12px 0 0 #8cb5e8,
+                20px 12px 0 0 #92b8e8,
+                40px 12px 0 0 #a2c0e8, 52px 12px 0 0 #aac4e8,
+                60px 12px 0 0 #aec6e8,
+                76px 12px 0 0 #bccde8,
+                /* Row 4 */
+                0 16px 0 0 #78a8e0, 4px 16px 0 0 #7aa9e0, 8px 16px 0 0 #7caae0,
+                20px 16px 0 0 #88b0e0, 24px 16px 0 0 #8ab1e0, 28px 16px 0 0 #8cb2e0, 32px 16px 0 0 #8eb3e0,
+                40px 16px 0 0 #96b8e0, 52px 16px 0 0 #a0bce0,
+                60px 16px 0 0 #a4bee0,
+                76px 16px 0 0 #b4c6e0;
+            /* Total: 79px wide x 19px tall */
+        }
+
+        .logo .pixel-logo-wrap {
+            width: 79px;
+            height: 19px;
+            flex-shrink: 0;
+            position: relative;
+            overflow: visible;
+        }
+
+        .logo .pixel-logo {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        /* ═══ 8-BIT DOWNLOAD BUTTONS ═══ */
+        .btn-8bit {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 13px 26px;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 600;
+            font-size: 0.88rem;
+            text-decoration: none;
+            color: white;
+            border: none;
+            cursor: pointer;
+            clip-path: polygon(
+                4px 0%, calc(100% - 4px) 0%,
+                100% 4px, 100% calc(100% - 4px),
+                calc(100% - 4px) 100%, 4px 100%,
+                0% calc(100% - 4px), 0% 4px
+            );
+            transition: transform 0.1s, box-shadow 0.15s;
+            letter-spacing: 0.02em;
+        }
+
+        .btn-8bit:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn-8bit:active {
+            transform: translateY(1px);
+        }
+
+        .btn-8bit svg {
+            flex-shrink: 0;
+        }
+
+        .btn-8bit-primary {
+            background: #3b82f6;
+            box-shadow:
+                inset -3px -3px 0 0 #1d4ed8,
+                inset 3px 3px 0 0 #60a5fa,
+                0 0 20px rgba(59, 130, 246, 0.3);
+        }
+
+        .btn-8bit-primary:hover {
+            box-shadow:
+                inset -3px -3px 0 0 #1d4ed8,
+                inset 3px 3px 0 0 #60a5fa,
+                0 0 30px rgba(59, 130, 246, 0.5);
+        }
+
+        .btn-8bit-primary:active {
+            box-shadow:
+                inset 3px 3px 0 0 #1d4ed8,
+                inset -3px -3px 0 0 #60a5fa;
+        }
+
+        .btn-8bit-secondary {
+            background: #27272a;
+            box-shadow:
+                inset -3px -3px 0 0 #18181b,
+                inset 3px 3px 0 0 #3f3f46;
+        }
+
+        .btn-8bit-secondary:hover {
+            box-shadow:
+                inset -3px -3px 0 0 #18181b,
+                inset 3px 3px 0 0 #52525b,
+                0 0 20px rgba(255, 255, 255, 0.05);
+        }
+
+        .btn-8bit-secondary:active {
+            box-shadow:
+                inset 3px 3px 0 0 #18181b,
+                inset -3px -3px 0 0 #3f3f46;
+        }
+
+        /* ═══ SHOWCASE SECTION ═══ */
+        .showcase-section {
+            padding: 20px 0 100px;
+            position: relative;
+        }
+
+        .showcase-label {
+            text-align: center;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.18em;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+        }
+
+        .showcase-screenshot {
+            max-width: 1100px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .showcase-screenshot::before {
+            content: '';
+            position: absolute;
+            inset: -6px;
+            background: linear-gradient(135deg, var(--accent), #8b5cf6, #ec4899);
+            border-radius: 18px;
+            opacity: 0.35;
+            filter: blur(35px);
+            animation: glow-pulse 4s ease-in-out infinite;
+        }
+
+        .showcase-img-wrap {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow:
+                0 40px 80px rgba(0, 0, 0, 0.5),
+                0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+        }
+
+        .showcase-img-wrap img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .showcase-cta {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .showcase-cta .btn-8bit {
+            font-size: 0.95rem;
+            padding: 15px 36px;
         }
 
         /* Clickable screenshot hint */
@@ -3579,6 +3787,19 @@
                 grid-template-columns: 1fr;
             }
 
+            .showcase-section {
+                padding: 10px 0 60px;
+            }
+
+            .btn-8bit {
+                font-size: 0.82rem;
+                padding: 11px 20px;
+            }
+
+            .download-row {
+                flex-direction: column;
+                align-items: stretch;
+            }
         }
     </style>
 </head>
@@ -3593,7 +3814,9 @@
                         <path d="M4 17l6-6-6-6M12 19h8"/>
                     </svg>
                 </div>
-                <span class="logo-text">BEAM</span>
+                <div class="pixel-logo-wrap">
+                    <div class="pixel-logo"></div>
+                </div>
             </a>
             <nav>
                 <a href="#memory">Features</a>
@@ -3601,7 +3824,7 @@
                 <a href="/blog/">Blog</a>
                 <a href="/pricing.html">Pricing</a>
                 <div class="nav-download-wrap">
-                    <a href="Beam-v3.1.10.dmg" onclick="trackDownload(navDetectedPlatform)" class="nav-dl-btn" id="navDownloadBtn">
+                    <a href="Beam-v3.1.11.dmg" onclick="trackDownload(navDetectedPlatform)" class="nav-dl-btn" id="navDownloadBtn">
                         <svg id="navDlIcon" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"></svg>
                         <span id="navDlText">Download</span>
                     </a>
@@ -3609,20 +3832,20 @@
                         <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
                     </button>
                     <div class="nav-dl-dropdown" id="navDlDropdown">
-                        <a href="Beam-v3.1.10.dmg" onclick="trackDownload('macOS')">
+                        <a href="Beam-v3.1.11.dmg" onclick="trackDownload('macOS')">
                             <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
                             macOS (Apple Silicon)
                         </a>
-                        <a href="Beam-v3.1.10-x64.dmg" onclick="trackDownload('macOS-Intel')">
+                        <a href="Beam-v3.1.11-x64.dmg" onclick="trackDownload('macOS-Intel')">
                             <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
                             macOS (Intel)
                         </a>
                         <div class="nav-dl-sep"></div>
-                        <a href="Beam-v3.1.10-setup.exe" onclick="trackDownload('Windows')">
+                        <a href="Beam-v3.1.11-setup.exe" onclick="trackDownload('Windows')">
                             <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M3 12V6.75l6-1.32v6.48L3 12zm6.2.09v6.63l-6.2-1.32V12.1l6.2-.01zm.8 6.72V12.1l11 .01v7.2L10 18.81zm11-7.71l-11 .01V4.2L21 3v8.1z"/></svg>
                             Windows
                         </a>
-                        <a href="Beam-v3.1.10.AppImage" onclick="trackDownload('Linux')">
+                        <a href="Beam-v3.1.11.AppImage" onclick="trackDownload('Linux')">
                             <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12.5 2c-1.82 0-3.53.5-5 1.37l2.07 3.58a5.96 5.96 0 015.86 0L17.5 3.37A9.93 9.93 0 0012.5 2zM4.42 5.8A9.92 9.92 0 002.5 11h4.13c.16-1.99 1.09-3.77 2.47-5.03L4.42 5.8zm16.16 0l-4.68.17a7.95 7.95 0 012.47 5.03h4.13a9.92 9.92 0 00-1.92-5.2zM6.63 13H2.5c.22 2.3 1.37 4.34 3.08 5.72l2.28-3.94A7.9 7.9 0 016.63 13zm10.74 0c-.17.65-.44 1.26-.8 1.8 0 0 2.28 3.92 2.28 3.94A9.92 9.92 0 0021.5 13h-4.13zm-7.22 3.34L8.08 20.3A9.93 9.93 0 0012.5 22a9.93 9.93 0 004.42-1.7l-2.07-3.58a5.94 5.94 0 01-4.7-.38z"/></svg>
                             Linux
                         </a>
@@ -3638,7 +3861,7 @@
                 <div class="hero-content">
                     <div class="badge">
                         <span class="badge-dot"></span>
-                        v3.1.10 — Now Cross-Platform
+                        v3.1.11 — Now Cross-Platform
                     </div>
                     <h1>Agentic engineering<br><span>platform.</span></h1>
                     <div class="hero-category">Agentic Engineering Platform</div>
@@ -3648,11 +3871,11 @@
                     <div class="hero-buttons">
                         <div class="platform-downloads">
                             <div class="download-row">
-                                <a href="Beam-v3.1.10.dmg" onclick="trackDownload('macOS')" class="btn btn-primary">
+                                <a href="Beam-v3.1.11.dmg" onclick="trackDownload('macOS')" class="btn-8bit btn-8bit-primary">
                                     <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
                                     Download for macOS
                                 </a>
-                                <a href="Beam-v3.1.10-setup.exe" onclick="trackDownload('Windows')" class="btn btn-secondary">
+                                <a href="Beam-v3.1.11-setup.exe" onclick="trackDownload('Windows')" class="btn-8bit btn-8bit-secondary">
                                     <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M3 12V6.75l6-1.32v6.48L3 12zm6.2.09v6.63l-6.2-1.32V12.1l6.2-.01zm.8 6.72V12.1l11 .01v7.2L10 18.81zm11-7.71l-11 .01V4.2L21 3v8.1z"/></svg>
                                     Windows
                                 </a>
@@ -3660,7 +3883,7 @@
                             <div class="platform-note">
                                 <span>Free to start. <strong style="color:#fafafa;">Pro $10/mo.</strong></span>
                                 <span>&middot;</span>
-                                <span>Also on <a href="Beam-v3.1.10.AppImage">Linux</a></span>
+                                <span>Also on <a href="Beam-v3.1.11.AppImage">Linux</a></span>
                                 <span>&middot;</span>
                                 <a href="https://youtu.be/eMCpb1V5xGo" target="_blank" rel="noopener">Watch Demo</a>
                                 <span>&middot;</span>
@@ -3671,8 +3894,26 @@
                 </div>
                 <div class="hero-screenshot">
                     <div class="screenshot" style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;">
-                        <iframe src="https://www.youtube.com/embed/eMCpb1V5xGo?rel=0&modestbranding=1" title="Beam v3.1.10 Walkthrough" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:12px;"></iframe>
+                        <iframe src="https://www.youtube.com/embed/eMCpb1V5xGo?rel=0&modestbranding=1" title="Beam v3.1.11 Walkthrough" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:12px;"></iframe>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ SCREENSHOT SHOWCASE ═══ -->
+        <section class="showcase-section">
+            <div class="container" style="max-width:1200px;">
+                <p class="showcase-label">Built for the way you work</p>
+                <div class="showcase-screenshot">
+                    <div class="showcase-img-wrap">
+                        <img src="beamscreenshot2.png" alt="Beam workspace with project overview and multi-agent layout" width="2940" height="1728" loading="lazy" style="image-rendering:auto;" />
+                    </div>
+                </div>
+                <div class="showcase-cta">
+                    <a href="Beam-v3.1.11.dmg" onclick="trackDownload('showcase')" class="btn-8bit btn-8bit-primary">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+                        Try Beam
+                    </a>
                 </div>
             </div>
         </section>
@@ -4187,7 +4428,7 @@
             <div class="container">
                 <div class="final-cta-actions reveal">
                     <div class="final-cta-wrap" style="position:relative;">
-                        <a href="Beam-v3.1.10.dmg" onclick="trackDownload(navDetectedPlatform)" class="final-cta-dl" id="midCtaDl">
+                        <a href="Beam-v3.1.11.dmg" onclick="trackDownload(navDetectedPlatform)" class="final-cta-dl" id="midCtaDl">
                             <svg id="midCtaIcon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"></svg>
                             <span id="midCtaText">Download for macOS</span>
                         </a>
@@ -4195,11 +4436,11 @@
                             <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
                         </button>
                         <div class="final-cta-dropdown" id="midCtaDropdown">
-                            <a href="Beam-v3.1.10.dmg" onclick="trackDownload('macOS')"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg> macOS (Apple Silicon)</a>
-                            <a href="Beam-v3.1.10-x64.dmg" onclick="trackDownload('macOS-Intel')"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg> macOS (Intel)</a>
+                            <a href="Beam-v3.1.11.dmg" onclick="trackDownload('macOS')"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg> macOS (Apple Silicon)</a>
+                            <a href="Beam-v3.1.11-x64.dmg" onclick="trackDownload('macOS-Intel')"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg> macOS (Intel)</a>
                             <div class="nav-dl-sep"></div>
-                            <a href="Beam-v3.1.10-setup.exe" onclick="trackDownload('Windows')"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M3 12V6.75l6-1.32v6.48L3 12zm6.2.09v6.63l-6.2-1.32V12.1l6.2-.01zm.8 6.72V12.1l11 .01v7.2L10 18.81zm11-7.71l-11 .01V4.2L21 3v8.1z"/></svg> Windows</a>
-                            <a href="Beam-v3.1.10.AppImage" onclick="trackDownload('Linux')"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12.5 2c-1.82 0-3.53.5-5 1.37l2.07 3.58a5.96 5.96 0 015.86 0L17.5 3.37A9.93 9.93 0 0012.5 2zM4.42 5.8A9.92 9.92 0 002.5 11h4.13c.16-1.99 1.09-3.77 2.47-5.03L4.42 5.8zm16.16 0l-4.68.17a7.95 7.95 0 012.47 5.03h4.13a9.92 9.92 0 00-1.92-5.2zM6.63 13H2.5c.22 2.3 1.37 4.34 3.08 5.72l2.28-3.94A7.9 7.9 0 016.63 13zm10.74 0c-.17.65-.44 1.26-.8 1.8 0 0 2.28 3.92 2.28 3.94A9.92 9.92 0 0021.5 13h-4.13zm-7.22 3.34L8.08 20.3A9.93 9.93 0 0012.5 22a9.93 9.93 0 004.42-1.7l-2.07-3.58a5.94 5.94 0 01-4.7-.38z"/></svg> Linux</a>
+                            <a href="Beam-v3.1.11-setup.exe" onclick="trackDownload('Windows')"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M3 12V6.75l6-1.32v6.48L3 12zm6.2.09v6.63l-6.2-1.32V12.1l6.2-.01zm.8 6.72V12.1l11 .01v7.2L10 18.81zm11-7.71l-11 .01V4.2L21 3v8.1z"/></svg> Windows</a>
+                            <a href="Beam-v3.1.11.AppImage" onclick="trackDownload('Linux')"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12.5 2c-1.82 0-3.53.5-5 1.37l2.07 3.58a5.96 5.96 0 015.86 0L17.5 3.37A9.93 9.93 0 0012.5 2zM4.42 5.8A9.92 9.92 0 002.5 11h4.13c.16-1.99 1.09-3.77 2.47-5.03L4.42 5.8zm16.16 0l-4.68.17a7.95 7.95 0 012.47 5.03h4.13a9.92 9.92 0 00-1.92-5.2zM6.63 13H2.5c.22 2.3 1.37 4.34 3.08 5.72l2.28-3.94A7.9 7.9 0 016.63 13zm10.74 0c-.17.65-.44 1.26-.8 1.8 0 0 2.28 3.92 2.28 3.94A9.92 9.92 0 0021.5 13h-4.13zm-7.22 3.34L8.08 20.3A9.93 9.93 0 0012.5 22a9.93 9.93 0 004.42-1.7l-2.07-3.58a5.94 5.94 0 01-4.7-.38z"/></svg> Linux</a>
                         </div>
                     </div>
                 </div>
@@ -4221,9 +4462,9 @@
                         <div class="blog-icon-large">🧠</div>
                     </div>
                     <div class="editorial-featured-body">
-                        <div class="editorial-tag">New in v3.1.10</div>
+                        <div class="editorial-tag">New in v3.1.11</div>
                         <h3>AI Agent Memory Management: Persistent Context for Every Session</h3>
-                        <p>AI agents forget everything between sessions. Beam v3.1.10 gives every agent persistent project memory &mdash; architecture, conventions, and decisions loaded automatically on startup.</p>
+                        <p>AI agents forget everything between sessions. Beam v3.1.11 gives every agent persistent project memory &mdash; architecture, conventions, and decisions loaded automatically on startup.</p>
                     </div>
                 </a>
 
@@ -4235,7 +4476,7 @@
                             <h3>Context Engineering for AI Agents: Why Prompt Engineering Is Dead</h3>
                             <p>The paradigm shift from crafting single prompts to designing full information context &mdash; tools, memory, APIs, and history &mdash; for your AI agents.</p>
                         </div>
-                        <div class="editorial-card-tags"><span>Trending</span><span>New in v3.1.10</span></div>
+                        <div class="editorial-card-tags"><span>Trending</span><span>New in v3.1.11</span></div>
                     </a>
                 </div>
 
@@ -4341,7 +4582,7 @@
                         <div class="editorial-icon"><svg viewBox="0 0 48 48" fill="none" width="32" height="32"><path d="M24 8l2 6h6l-5 4 2 6-5-4-5 4 2-6-5-4h6l2-6z" stroke="#4285F4" stroke-width="2" fill="none"/><path d="M12 28h24M16 34h16" stroke="#3b82f6" stroke-width="2" stroke-linecap="round"/><path d="M20 40h8" stroke="#22c55e" stroke-width="2" stroke-linecap="round"/></svg></div>
                         <div>
                             <h3>Beam Now Supports Gemini CLI &mdash; Auto-Install Any AI Agent in One Click</h3>
-                            <p>Beam v3.1.10 adds Gemini CLI support with one-click auto-install for all AI coding agents.</p>
+                            <p>Beam v3.1.11 adds Gemini CLI support with one-click auto-install for all AI coding agents.</p>
                         </div>
                         <div class="editorial-card-tags"><span>Beam</span><span>New</span></div>
                     </a>
@@ -6962,7 +7203,7 @@
         <div id="changelogModal" class="modal" onclick="hideChangelog(event)">
             <div class="modal-content" onclick="event.stopPropagation()">
                 <div class="modal-header">
-                    <h2>What's New in v3.1.10</h2>
+                    <h2>What's New in v3.1.11</h2>
                     <button class="modal-close" onclick="hideChangelog()">&times;</button>
                 </div>
                 <div class="modal-body">
@@ -7040,7 +7281,7 @@
                     </svg>
                     Close
                 </button>
-                <img src="beam-screenshot-1.9.8.png" alt="Beam v3.1.10 - Full resolution preview">
+                <img src="beam-screenshot-1.9.8.png" alt="Beam v3.1.11 - Full resolution preview">
                 <p class="lightbox-hint">Click anywhere or press Esc to close</p>
             </div>
         </div>
@@ -7148,11 +7389,11 @@
                 if (btn2) { btn2.href = href; icon2.innerHTML = iconSvg; text2.textContent = label; }
             }
             if (/Win/.test(p) || /Windows/.test(ua)) {
-                setAll('Beam-v3.1.10-setup.exe', winIcon, 'Download for Windows', 'Windows');
+                setAll('Beam-v3.1.11-setup.exe', winIcon, 'Download for Windows', 'Windows');
             } else if (/Linux/.test(p) || /Linux/.test(ua)) {
-                setAll('Beam-v3.1.10.AppImage', linIcon, 'Download for Linux', 'Linux');
+                setAll('Beam-v3.1.11.AppImage', linIcon, 'Download for Linux', 'Linux');
             } else {
-                setAll('Beam-v3.1.10.dmg', macIcon, 'Download for macOS', 'macOS');
+                setAll('Beam-v3.1.11.dmg', macIcon, 'Download for macOS', 'macOS');
             }
         })();
 

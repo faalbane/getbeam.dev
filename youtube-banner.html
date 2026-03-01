@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beam YouTube Banner Generator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #18181b;
+            color: #fafafa;
+            font-family: 'JetBrains Mono', monospace;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px;
+            min-height: 100vh;
+        }
+
+        h1 {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: #a1a1aa;
+            margin-bottom: 8px;
+            letter-spacing: 0.05em;
+        }
+
+        .dimensions {
+            font-size: 0.75rem;
+            color: #52525b;
+            margin-bottom: 24px;
+        }
+
+        .safe-area-label {
+            font-size: 0.65rem;
+            color: #52525b;
+            margin-bottom: 32px;
+        }
+
+        /* Banner wrapper for scaling to viewport */
+        .banner-scroll {
+            width: 100%;
+            overflow-x: auto;
+            display: flex;
+            justify-content: center;
+            margin-bottom: 32px;
+        }
+
+        .banner-scale {
+            transform-origin: top center;
+        }
+
+        /* ===================================== */
+        /* THE BANNER  (2560 x 1440 px)          */
+        /* ===================================== */
+        #banner {
+            width: 2560px;
+            height: 1440px;
+            background: #0a0a0b;
+            position: relative;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        /* Subtle grid lines */
+        #banner .grid-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                linear-gradient(rgba(59, 130, 246, 0.035) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(59, 130, 246, 0.035) 1px, transparent 1px);
+            background-size: 80px 80px;
+            pointer-events: none;
+        }
+
+        /* Radial glow behind content */
+        #banner .radial-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 1600px;
+            height: 1000px;
+            background: radial-gradient(ellipse at center,
+                rgba(59, 130, 246, 0.08) 0%,
+                rgba(139, 92, 246, 0.04) 35%,
+                transparent 65%);
+            pointer-events: none;
+        }
+
+        /* Safe area guide (hidden during export) */
+        #banner .safe-area-guide {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 1546px;
+            height: 423px;
+            border: 1px dashed rgba(59, 130, 246, 0.15);
+            pointer-events: none;
+            z-index: 100;
+        }
+
+        /* Centered content wrapper */
+        #banner .content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+        }
+
+        /* Row: gradient icon + pixel BEAM */
+        #banner .logo-row {
+            display: flex;
+            align-items: center;
+            gap: 52px;
+        }
+
+        /* Gradient square icon with terminal prompt */
+        #banner .logo-icon {
+            width: 160px;
+            height: 160px;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            border-radius: 34px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            box-shadow:
+                0 0 60px rgba(59, 130, 246, 0.3),
+                0 0 120px rgba(139, 92, 246, 0.12);
+        }
+
+        #banner .logo-icon svg {
+            width: 90px;
+            height: 90px;
+        }
+
+        /* Pixel grid container */
+        #banner .pixel-grid {
+            display: grid;
+        }
+
+        /* Individual lit pixel */
+        #banner .px {
+            border-radius: 3px;
+        }
+
+        /* Empty cell (transparent) */
+        #banner .px-empty {
+            /* deliberately empty */
+        }
+
+        /* Subtitle text */
+        #banner .subtitle {
+            margin-top: 48px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 24px;
+            font-weight: 400;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: #71717a;
+        }
+
+        /* ===================================== */
+        /* SAVE BUTTON                           */
+        /* ===================================== */
+        .save-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 32px;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            letter-spacing: 0.03em;
+        }
+
+        .save-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(59, 130, 246, 0.35);
+        }
+
+        .save-btn:active {
+            transform: translateY(0);
+        }
+
+        .save-btn svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .save-status {
+            margin-top: 12px;
+            font-size: 0.75rem;
+            color: #52525b;
+            height: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Beam YouTube Channel Banner</h1>
+    <p class="dimensions">2560 x 1440px (YouTube recommended) &mdash; Safe area: 1546 x 423px centered</p>
+    <p class="safe-area-label">Dashed border shows the safe area visible on all devices</p>
+
+    <div class="banner-scroll">
+        <div class="banner-scale" id="bannerScale">
+            <div id="banner">
+                <!-- Grid background -->
+                <div class="grid-bg"></div>
+
+                <!-- Radial glow -->
+                <div class="radial-glow"></div>
+
+                <!-- Safe area guide -->
+                <div class="safe-area-guide" id="safeGuide"></div>
+
+                <!-- Centered content -->
+                <div class="content">
+                    <div class="logo-row">
+                        <!-- Gradient square logo icon -->
+                        <div class="logo-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M4 17l6-6-6-6"/>
+                                <path d="M12 19h8"/>
+                            </svg>
+                        </div>
+
+                        <!-- Pixel art BEAM (built by JS) -->
+                        <div class="pixel-grid" id="pixelGrid"></div>
+                    </div>
+
+                    <div class="subtitle">videos about agentic engineering</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button class="save-btn" onclick="saveBanner()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+        </svg>
+        Save as PNG
+    </button>
+    <p class="save-status" id="saveStatus"></p>
+
+    <script>
+    // ===================================================
+    // PIXEL ART GRID: B E A M
+    // '#' = lit pixel   '.' = empty
+    // ===================================================
+    const PIXEL_GRID = [
+        '###..####..##..#...#',
+        '#..#.#....#..#.##.##',
+        '###..###..####.#.#.#',
+        '#..#.#....#..#.#...#',
+        '###..####.#..#.#...#'
+    ];
+
+    // Each "pixel" in the art is rendered as a square block.
+    // We want the pixel art to be a prominent hero element.
+    // 20 cols * (size + gap) should be roughly 900-1000px
+    // to sit nicely beside the 160px icon within the 1546px safe area.
+    const PIXEL_SIZE = 42;  // block size in px
+    const PIXEL_GAP  = 6;   // gap between blocks
+
+    const COLS = PIXEL_GRID[0].length;  // 20
+    const ROWS = PIXEL_GRID.length;     // 5
+
+    // ===================================================
+    // BUILD PIXEL ART AS DOM DIVS
+    // (html2canvas captures divs reliably; canvas less so)
+    // ===================================================
+    function renderPixelArt() {
+        const grid = document.getElementById('pixelGrid');
+
+        grid.style.gridTemplateColumns = `repeat(${COLS}, ${PIXEL_SIZE}px)`;
+        grid.style.gridTemplateRows    = `repeat(${ROWS}, ${PIXEL_SIZE}px)`;
+        grid.style.gap = PIXEL_GAP + 'px';
+
+        for (let row = 0; row < ROWS; row++) {
+            for (let col = 0; col < COLS; col++) {
+                const isLit = PIXEL_GRID[row][col] === '#';
+                const el = document.createElement('div');
+
+                if (isLit) {
+                    el.className = 'px';
+
+                    // Hue shifts from 220 (blue) to ~260 (blue-violet) across columns
+                    // Lightness increases slightly down rows for depth
+                    const hue   = 220 + col * 2;
+                    const sat   = 70;
+                    const light = 55 + row * 4;
+                    const color = `hsl(${hue}, ${sat}%, ${light}%)`;
+                    const glow  = `hsla(${hue}, ${sat}%, ${light}%, 0.45)`;
+
+                    el.style.width      = PIXEL_SIZE + 'px';
+                    el.style.height     = PIXEL_SIZE + 'px';
+                    el.style.background = color;
+                    el.style.boxShadow  = `0 0 8px ${glow}, 0 0 20px ${glow}`;
+                } else {
+                    el.className = 'px-empty';
+                    el.style.width  = PIXEL_SIZE + 'px';
+                    el.style.height = PIXEL_SIZE + 'px';
+                }
+
+                grid.appendChild(el);
+            }
+        }
+    }
+
+    // ===================================================
+    // SCALE BANNER TO FIT THE VIEWPORT
+    // ===================================================
+    function scaleBanner() {
+        const scaleEl = document.getElementById('bannerScale');
+        const viewW   = window.innerWidth - 40;
+        const bannerW = 2560;
+        const scale   = Math.min(1, viewW / bannerW);
+        scaleEl.style.transform      = `scale(${scale})`;
+        scaleEl.style.transformOrigin = 'top center';
+        scaleEl.style.height          = (1440 * scale) + 'px';
+    }
+
+    // ===================================================
+    // SAVE AS PNG  (html2canvas)
+    // ===================================================
+    async function saveBanner() {
+        const status = document.getElementById('saveStatus');
+        status.textContent = 'Rendering...';
+
+        // Hide safe area guide
+        const guide = document.getElementById('safeGuide');
+        guide.style.display = 'none';
+
+        // Temporarily remove scale transform for accurate capture
+        const scaleEl       = document.getElementById('bannerScale');
+        const prevTransform = scaleEl.style.transform;
+        const prevHeight    = scaleEl.style.height;
+        scaleEl.style.transform = 'none';
+        scaleEl.style.height    = 'auto';
+
+        try {
+            const banner = document.getElementById('banner');
+            const canvas = await html2canvas(banner, {
+                width: 2560,
+                height: 1440,
+                scale: 1,
+                backgroundColor: '#0a0a0b',
+                useCORS: true,
+                logging: false
+            });
+
+            const link = document.createElement('a');
+            link.download = 'beam-youtube-banner.png';
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+
+            status.textContent = 'Saved! Check your downloads folder.';
+            setTimeout(() => { status.textContent = ''; }, 4000);
+        } catch (err) {
+            status.textContent = 'Error: ' + err.message;
+            console.error(err);
+        } finally {
+            guide.style.display     = '';
+            scaleEl.style.transform = prevTransform;
+            scaleEl.style.height    = prevHeight;
+        }
+    }
+
+    // ===================================================
+    // INIT
+    // ===================================================
+    window.addEventListener('load', () => {
+        renderPixelArt();
+        scaleBanner();
+    });
+    window.addEventListener('resize', scaleBanner);
+    </script>
+</body>
+</html>

@@ -1,17 +1,17 @@
-version: 3.1.10
+version: 3.1.11
 files:
-  - url: Beam-3.1.10-arm64-mac.zip
-    sha512: gOtrR2J1iJTvudpT865BgKaYySnoWy7Ow5mAmeVclOMzorcGpDkbxrmpV4G07r8bMBbNrfG0lv2ZfeVCkZIP7A==
-    size: 97531449
-  - url: Beam-3.1.10-mac.zip
-    sha512: DDsSVcGrf+tCzCevSaUus6kq47DpDSzBh3krIcCDvPPDrgIULYlOx4frbVj54suynJ94cSYOj2RaFgwUswUIIg==
-    size: 104687737
-  - url: beam-v3.1.10-arm64.dmg
-    sha512: jn6qiH3wq1xaJXLbZBxGQXiP7O4oq6HugaJYNf1lWj0XV3xIqP0u1PF8Mt/+BEX8awoupasgbgANOPdRwM4VBA==
-    size: 101567977
-  - url: beam-v3.1.10-x64.dmg
-    sha512: rpuhMfkryDtdJa3e04VmDemaPrJ/L3mTNOXoQzvvawx9/dLwlZC3LKUQCTqh/6gDJ/x+Lv4+udrMNLuer5FViw==
-    size: 108711238
-path: Beam-3.1.10-arm64-mac.zip
-sha512: gOtrR2J1iJTvudpT865BgKaYySnoWy7Ow5mAmeVclOMzorcGpDkbxrmpV4G07r8bMBbNrfG0lv2ZfeVCkZIP7A==
-releaseDate: '2026-02-28T16:44:27.300Z'
+  - url: Beam-3.1.11-arm64-mac.zip
+    sha512: xst3VSvYcDHjmdyi3bxHXSAvNDpd5mS9Ifh0P4XNaB/cPr9tKYvhFa6NBQdD2m2x7kdCVhZWBpZSOlgsckxaZA==
+    size: 97531410
+  - url: Beam-3.1.11-mac.zip
+    sha512: 6iriFADocxIXGMv4ZAW/cUcUqPyfF2BOx3rRN8O+SN3UHd42MtemXh1awbrFuxv1+ZxGI1oCOfowI2g1VEJEHg==
+    size: 104687717
+  - url: beam-v3.1.11-arm64.dmg
+    sha512: y0HcP4wZK6vz7SHHTO1vk20IJSp8zAyVVGHloSRB53p2nRkFPpqNE1zGsRrThlzPQeQ+XxJ9Ti3L5mMZKbNCag==
+    size: 101567194
+  - url: beam-v3.1.11-x64.dmg
+    sha512: Kky3K7pI4rI9uV9pA2VUW8EBaVL76Z0qncnAAc/U0ZnlUgTBCwxCEfyb25vvD5dfyCPi+Kuj8pdTBHNmPKABuw==
+    size: 108709714
+path: Beam-3.1.11-arm64-mac.zip
+sha512: xst3VSvYcDHjmdyi3bxHXSAvNDpd5mS9Ifh0P4XNaB/cPr9tKYvhFa6NBQdD2m2x7kdCVhZWBpZSOlgsckxaZA==
+releaseDate: '2026-03-01T19:43:52.991Z'

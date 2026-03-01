@@ -110,13 +110,60 @@
         }
 
         .logo-icon {
-            width: 36px;
-            height: 36px;
+            width: 32px;
+            height: 32px;
             background: linear-gradient(135deg, var(--accent), #8b5cf6);
-            border-radius: 8px;
+            border-radius: 7px;
             display: flex;
             align-items: center;
             justify-content: center;
+        }
+        .pixel-logo-wrap {
+            display: flex;
+            align-items: center;
+            filter: drop-shadow(0 0 6px rgba(59, 130, 246, 0.45));
+            width: 79px;
+            height: 19px;
+            flex-shrink: 0;
+            position: relative;
+            overflow: visible;
+        }
+
+        .pixel-logo {
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: block;
+            width: 3px;
+            height: 3px;
+            border-radius: 0.5px;
+            background: #a0c4ff;
+            box-shadow:
+                4px 0 0 0 #a2c5ff, 8px 0 0 0 #a4c6ff,
+                20px 0 0 0 #acc9ff, 24px 0 0 0 #aecaff, 28px 0 0 0 #b0cbff, 32px 0 0 0 #b2ccff,
+                44px 0 0 0 #bacfff, 48px 0 0 0 #bcd0ff,
+                60px 0 0 0 #c4d4ff,
+                76px 0 0 0 #d0daff,
+                0 4px 0 0 #96bdf8, 12px 4px 0 0 #9ec1f8,
+                20px 4px 0 0 #a4c4f8,
+                40px 4px 0 0 #b4ccf8, 52px 4px 0 0 #bcd0f8,
+                60px 4px 0 0 #c0d2f8, 64px 4px 0 0 #c2d3f8,
+                72px 4px 0 0 #c8d6f8, 76px 4px 0 0 #cad7f8,
+                0 8px 0 0 #8cb6f0, 4px 8px 0 0 #8eb7f0, 8px 8px 0 0 #90b8f0,
+                20px 8px 0 0 #9abef0, 24px 8px 0 0 #9cbff0, 28px 8px 0 0 #9ec0f0,
+                40px 8px 0 0 #aac6f0, 44px 8px 0 0 #acc7f0, 48px 8px 0 0 #aec8f0, 52px 8px 0 0 #b0c9f0,
+                60px 8px 0 0 #b6ccf0, 68px 8px 0 0 #bccff0,
+                76px 8px 0 0 #c4d3f0,
+                0 12px 0 0 #82afe8, 12px 12px 0 0 #8cb5e8,
+                20px 12px 0 0 #92b8e8,
+                40px 12px 0 0 #a2c0e8, 52px 12px 0 0 #aac4e8,
+                60px 12px 0 0 #aec6e8,
+                76px 12px 0 0 #bccde8,
+                0 16px 0 0 #78a8e0, 4px 16px 0 0 #7aa9e0, 8px 16px 0 0 #7caae0,
+                20px 16px 0 0 #88b0e0, 24px 16px 0 0 #8ab1e0, 28px 16px 0 0 #8cb2e0, 32px 16px 0 0 #8eb3e0,
+                40px 16px 0 0 #96b8e0, 52px 16px 0 0 #a0bce0,
+                60px 16px 0 0 #a4bee0,
+                76px 16px 0 0 #b4c6e0;
         }
 
         .btn {
@@ -278,11 +325,13 @@
         <div class="container">
             <a href="../" class="logo">
                 <div class="logo-icon">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round">
                         <path d="M4 17l6-6-6-6M12 19h8"/>
                     </svg>
                 </div>
-                Beam
+                <div class="pixel-logo-wrap">
+                    <div class="pixel-logo"></div>
+                </div>
             </a>
             <a href="../" class="btn">Download Beam</a>
         </div>

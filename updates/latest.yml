@@ -1,8 +1,8 @@
-version: 3.1.10
+version: 3.1.11
 files:
-  - url: beam-v3.1.10-setup.exe
-    sha512: oKRtU7lfGmTWizxOnB6MyLQPRSncv5n77ibYTRiQUJwCmUzIY9STSTUb3rdyLrpUy45Fb+FxyXttEIvL3Tew6w==
-    size: 86393706
-path: beam-v3.1.10-setup.exe
-sha512: oKRtU7lfGmTWizxOnB6MyLQPRSncv5n77ibYTRiQUJwCmUzIY9STSTUb3rdyLrpUy45Fb+FxyXttEIvL3Tew6w==
-releaseDate: '2026-02-28T16:45:15.150Z'
+  - url: beam-v3.1.11-setup.exe
+    sha512: 6Z84hBaNtkeX3lxz7ws0ld9FwpFb+E5EMBE1ayVIwxR1bP5AJDdoV98E7465dzeTHwQOuK88DHbF1rj+AM/4rA==
+    size: 86394418
+path: beam-v3.1.11-setup.exe
+sha512: 6Z84hBaNtkeX3lxz7ws0ld9FwpFb+E5EMBE1ayVIwxR1bP5AJDdoV98E7465dzeTHwQOuK88DHbF1rj+AM/4rA==
+releaseDate: '2026-03-01T19:44:45.038Z'
